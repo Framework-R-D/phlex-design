@@ -27,7 +27,7 @@ Framework output files MUST be readable outside the framework with minimal overh
     If you can provide specific use cases, we can evaluate the feasibility of this request.</dd>
 
 <dt><tt>[DUNE]</tt></dt>
-<dd><emph>[no further response to date]</emph></dd>
+<dd><em>[no further response to date]</em></dd>
 </dl>
 
 ## Discussion
