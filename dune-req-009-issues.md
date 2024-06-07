@@ -7,13 +7,13 @@ Framework output files MUST be readable outside the framework with minimal overh
 ## Subsequent correspondence
 
 <dl>
-<dt>`[Devs]`</dt>
+<dt><tt>[Devs]</tt></dt>
 <dd>By framework output file, do you mean the default framework-produced ROOT file that contains all physics data + framework metadata?  Does bare ROOT mean using the root command line without any extra dictionaries than what are already provided by ROOT?  Or does it mean the root command line with extra dictionaries?  Or something else?</dd>
 
-<dt>`[DUNE]`</dt>
+<dt><tt>[DUNE]</tt></dt>
 <dd>Yes. The preferred behavior is that framework data files (ARTROOT like files) are easily interrogated by users using ROOT without external dependencies or extra dictionaries.</dd>
 
-<dt>`[Devs]`</dt>
+<dt><tt>[Devs]</tt></dt>
 <dd>For what purposes would you like to read framework-produced data outside of the framework? The extent to which a framework output file can be read outside of a framework depends heavily on the kinds of data to be read and the user-provided layouts of those data. We imagine there are different kinds of data from an output file one may want to read (e.g.):
 
     * Detector raw data
@@ -26,8 +26,8 @@ Framework output files MUST be readable outside the framework with minimal overh
 
     If you can provide specific use cases, we can evaluate the feasibility of this request.</dd>
 
-<dt>`[DUNE]`</dt>
-<dd>_\[no further response to date\]_</dd>
+<dt><tt>[DUNE]</tt></dt>
+<dd><emph>[no further response to date]</emph></dd>
 </dl>
 
 ## Discussion
