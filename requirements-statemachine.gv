@@ -1,0 +1,47 @@
+digraph finite_state_machine {
+	//Define the nodes/states in the system and their style here
+
+	
+	/*These are the entry and exit nodes for the system. 
+	 * They are small, solid black circles.
+	 * Both are listed on the same line because they all have the same properties
+	 */
+	 
+	node [shape=point,label=""] ENTRY;
+	
+	// This line defines a new node style.
+
+	node [shape=box, style=rounded];
+	
+	 
+	 draft [label="Draft"];
+   rfr [label="Ready\nfor\nreview"];
+   review [label="In review"];
+   rfa [label="Ready\nfor\napproval"];
+   approved [label="Approved"];
+   disapproved [label="Disapproved"];
+   deferred [label="Deferred"];
+   removed [label="Removed"];
+   rework [label="Rework"];
+   implemented [label="Implemented"];
+   verified [label="Verified"];
+	 
+	 //Below are all of the definition of the edges that connect the nodes
+
+
+   ENTRY -> draft;
+   draft->rfr;
+   rfr->review;
+   review->rfa;
+   rfa->approved;
+   rfa->disapproved;
+   disapproved->draft;
+   approved->deferred;
+   deferred->approved;
+   approved->implemented;
+   implemented->verified;
+   implemented->rework;
+   rework->implemented;
+   draft->removed;
+   disapproved->removed;
+}
