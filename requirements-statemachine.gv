@@ -4,17 +4,17 @@ digraph finite_state_machine {
   // This line defines a new node style.
   node [shape=box, style=rounded];
 
-  draft [label="Draft", style="filled,rounded", fillcolor=lightblue1];
-  rfr [label="Ready\nfor\nreview", style="filled,rounded", fillcolor=lightblue1];
-  review [label="In review", style="filled,rounded", fillcolor=lightblue1];
-  rfa [label="Ready\nfor\napproval", style="filled,rounded", fillcolor=lightblue1];
-  approved [label="Approved", style="filled,rounded", fillcolor=lightgreen];
-  disapproved [label="Disapproved", style="filled,rounded", fillcolor=lightcoral];
-  deferred [label="Deferred"];
-  removed [label="Removed"];
-  rework [label="Rework"];
-  implemented [label="Implemented"];
-  verified [label="Verified"];
+  draft [label="Draft", style="filled,rounded", fillcolor="#cccccc"];
+  rfr [label="Ready\nfor\nreview", style="filled,rounded", fillcolor="#ffff66"];
+  review [label="In review", style="filled,rounded", fillcolor="#cab4ff"];
+  rfa [label="Ready\nfor\napproval", style="filled,rounded", fillcolor="#9bdfff"];
+  approved [label="Approved", style="filled,rounded", fillcolor="#ccffcc"];
+  disapproved [label="Disapproved", fontcolor=white, style="filled,rounded", fillcolor="#3d3d3d"];
+  deferred [label="Deferred", style="filled,rounded", fillcolor="#ffcc66"];
+  removed [label="Removed", style="filled,rounded", fillcolor="#e39191"];
+  rework [label="Rework", style="filled,rounded", fillcolor="#f7c0ff"];
+  implemented [label="Implemented", style="filled,rounded", fillcolor="#9ce78c"];
+  verified [label="Verified", style="filled,rounded", fillcolor="#00cc66"];
 
   // Below are all of the definition of the edges that connect the nodes
 
