@@ -99,8 +99,8 @@ colorlinks: true
   * Data products intended for diagnostic purposes only (never written).
   * Intermediate data products (not written by default).
   * Precious data products (written by default).
-  * Inter/intra-product references to data product members, and elements
-    and slices of collections (both data products and members).
+  * Inter/intra-product references to data products, their members, and
+    elements and slices of collections (both data products and members).
 
 * We must be able to use the information specified above to generate
   in-memory representations in each supported algorithm implementation
