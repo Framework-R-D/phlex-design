@@ -1,0 +1,69 @@
+digraph finite_state_machine {
+  fontname="Helvetica,Arial,sans-serif"
+  compound=true
+  node [fontname="Helvetica,Arial,sans-serif", style=filled, fillcolor=lightgray];
+
+  logging [label="Logging"];
+
+  subgraph cluster_external {
+    label="External subsystems";
+    node [fillcolor=lightyellow];
+    Build;
+    Documentation;
+  }
+
+  subgraph cluster_most_subsystems {
+    label = "Most framework subsystems";
+
+    algo_description [label="Algorithm description"];
+    application [label="Application"];
+    configuration [label="Configuration"];
+    data_modeling [label="Data modeling"];
+    error_handler [label="Error handler"];
+    io [label="IO"];
+    metadata_management [label="Metadata management"];
+    monitoring [label="Monitoring and reporting"];
+    plugin_management [label="Plugin management"];
+    registration [label="Registration"];
+    random_number [ label="Random number"];
+    resource_management [label="Resource management"];
+    signal_handler [label="Signal handler"];
+    task_management [label="Task management"];
+
+    algo_description -> registration;
+
+    application -> algo_description;
+    application -> configuration;
+    application -> error_handler;
+    application -> monitoring;
+    application -> plugin_management;
+    application -> signal_handler;
+    application -> task_management;
+
+    data_modeling -> monitoring;
+    data_modeling -> registration;
+
+    io -> data_modeling;
+
+    metadata_management -> data_modeling;
+    metadata_management -> registration;
+
+    plugin_management -> monitoring;
+    plugin_management -> registration;
+
+    resource_management -> monitoring;
+
+    task_management -> data_modeling;
+    task_management -> error_handler;
+    task_management -> io;
+    task_management -> metadata_management;
+    task_management -> monitoring;
+    task_management -> random_number;
+    task_management -> resource_management;
+    task_management -> signal_handler;
+  }
+
+  task_management -> logging [ltail=cluster_most_subsystems,
+                              fontname="Helvetica,Arial,sans-serif",
+                              label="Most subsystems use"];
+}
