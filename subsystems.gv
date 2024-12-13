@@ -9,11 +9,24 @@ digraph finite_state_machine {
     label="External subsystems";
     node [fillcolor=lightyellow];
     Build;
+    CI;
     Documentation;
+    event_display [label="Event display"];
+    workflow [label="Workflow management"];
   }
 
-  subgraph cluster_most_subsystems {
-    label = "Most framework subsystems";
+  subgraph cluster_plugins {
+    label="Plugins";
+    rankdir=TB;
+    node [shape=box,fillcolor=lightblue];
+    Algo [label="User algorithms"]
+    ROOT [label="IO backends"]
+    RUCIO [label="Data management"]
+    ellipsis [label="...", fillcolor=white, peripheries=0];
+  }
+
+  subgraph cluster_core_subsystems {
+    label = "Core framework subsystems";
 
     algo_description [label="Algorithm description"];
     application [label="Application"];
@@ -63,7 +76,14 @@ digraph finite_state_machine {
     task_management -> signal_handler;
   }
 
-  task_management -> logging [ltail=cluster_most_subsystems,
-                              fontname="Helvetica,Arial,sans-serif",
-                              label="Most subsystems use"];
+  task_management -> logging [ltail=cluster_core_subsystems,
+                              fontname="Helvetica,Arial,sans-serif"];
+  RUCIO -> logging [ltail=cluster_plugins,
+                              fontname="Helvetica,Arial,sans-serif"];
+  Documentation -> task_management [ltail=cluster_external,
+                                    lhead=cluster_core_subsystems,
+                                    fontname="Helvetica,Arial,sans-serif",
+                                    label="Makes use of",
+                                    style=dotted]
+
 }
