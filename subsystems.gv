@@ -1,29 +1,9 @@
 digraph finite_state_machine {
   fontname="Helvetica,Arial,sans-serif"
   compound=true
-  node [fontname="Helvetica,Arial,sans-serif", style=filled, fillcolor=lightgray];
+  node [fontname="Helvetica,Arial,sans-serif", style=filled, fillcolor=darksalmon];
 
   logging [label="Logging"];
-
-  subgraph cluster_external {
-    label="External subsystems";
-    node [fillcolor=lightyellow];
-    Build;
-    CI;
-    Documentation;
-    event_display [label="Event display"];
-    workflow [label="Workflow management"];
-  }
-
-  subgraph cluster_plugins {
-    label="Plugins";
-    rankdir=TB;
-    node [shape=box,fillcolor=lightblue];
-    Algo [label="User algorithms"]
-    ROOT [label="IO backends"]
-    RUCIO [label="Data management"]
-    ellipsis [label="...", fillcolor=white, peripheries=0];
-  }
 
   subgraph cluster_core_subsystems {
     label = "Core framework subsystems";
@@ -42,6 +22,8 @@ digraph finite_state_machine {
     resource_management [label="Resource management"];
     signal_handler [label="Signal handler"];
     task_management [label="Task management"];
+
+    { rank=same; plugin_management; data_modeling; resource_management; }
 
     algo_description -> registration;
 
@@ -76,14 +58,43 @@ digraph finite_state_machine {
     task_management -> signal_handler;
   }
 
-  task_management -> logging [ltail=cluster_core_subsystems,
-                              fontname="Helvetica,Arial,sans-serif"];
-  RUCIO -> logging [ltail=cluster_plugins,
-                              fontname="Helvetica,Arial,sans-serif"];
-  Documentation -> task_management [ltail=cluster_external,
-                                    lhead=cluster_core_subsystems,
-                                    fontname="Helvetica,Arial,sans-serif",
-                                    label="Makes use of",
-                                    style=dotted]
+  subgraph cluster_external {
+    label="External subsystems";
+    edge [style=invis]
+    node [fillcolor=lightyellow];
+    style="filled";
+    fillcolor="lightgray";
 
+    Build;
+    CI;
+    Documentation;
+    event_display [label="Event display"];
+    workflow [label="Workflow management"];
+  }
+
+  subgraph cluster_plugins {
+    label="Plugins";
+    edge [style=invis]
+    node [shape=box,fillcolor=lightblue];
+    ranksep="0.05";
+    style="filled";
+    fillcolor="lightgray";
+
+    Algo [label="User algorithms"]
+    ROOT [label="IO backends"]
+    RUCIO [label="Data management"]
+    ellipsis [label="etc.", fillcolor=none, peripheries=0];
+    Algo -> ROOT -> RUCIO -> ellipsis
+  }
+
+  plugin_management -> logging [ltail=cluster_core_subsystems,
+                                fontname="Helvetica,Arial,sans-serif"];
+  ROOT -> logging [ltail=cluster_plugins,
+                   fontname="Helvetica,Arial,sans-serif"];
+  workflow -> task_management [ltail=cluster_external,
+                               lhead=cluster_core_subsystems,
+                               fontname="Helvetica,Arial,sans-serif",
+                               label="Makes use of",
+                               style=dotted,
+                               minlen=3]
 }
