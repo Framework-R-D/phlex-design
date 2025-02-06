@@ -4,13 +4,13 @@ digraph finite_state_machine {
   node [fontname="Helvetica,Arial,sans-serif", style=filled, fillcolor=darksalmon];
 
   logging [label="Logging"];
+  configuration [label="Configuration"];
 
   subgraph cluster_core_subsystems {
     label = "Core framework subsystems";
 
     algo_description [label="Algorithm description"];
     application [label="Application"];
-    configuration [label="Configuration"];
     data_modeling [label="Data modeling"];
     error_handler [label="Error handler"];
     io [label="IO"];
@@ -23,12 +23,11 @@ digraph finite_state_machine {
     signal_handler [label="Signal handler"];
     task_management [label="Task management"];
 
-    { rank=same; plugin_management; data_modeling; resource_management; }
+    { rank=same; algo_description; task_management; }
 
     algo_description -> registration;
 
     application -> algo_description;
-    application -> configuration;
     application -> error_handler;
     application -> monitoring;
     application -> plugin_management;
@@ -84,17 +83,18 @@ digraph finite_state_machine {
     ROOT [label="IO backends"]
     RUCIO [label="Data management"]
     ellipsis [label="etc.", fillcolor=none, peripheries=0];
-    Algo -> ROOT -> RUCIO -> ellipsis
+    Algo -> ROOT -> RUCIO -> ellipsis;
   }
 
-  plugin_management -> logging [ltail=cluster_core_subsystems,
-                                fontname="Helvetica,Arial,sans-serif"];
-  ROOT -> logging [ltail=cluster_plugins,
-                   fontname="Helvetica,Arial,sans-serif"];
-  workflow -> task_management [ltail=cluster_external,
-                               lhead=cluster_core_subsystems,
-                               fontname="Helvetica,Arial,sans-serif",
-                               label="Makes use of",
-                               style=dotted,
-                               minlen=3]
+  algo_description -> configuration [ltail=cluster_core_subsystems];
+  error_handler -> logging [ltail=cluster_core_subsystems];
+
+  RUCIO -> logging [ltail=cluster_plugins];
+  ROOT -> configuration [ltail=cluster_plugins];
+  workflow -> application [ltail=cluster_external,
+                           lhead=cluster_core_subsystems,
+                           fontname="Helvetica,Arial,sans-serif",
+                           label=" Makes use of",
+                           style=dotted,
+                           minlen=3]
 }
