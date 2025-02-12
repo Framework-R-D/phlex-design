@@ -3,12 +3,12 @@ Subsystems
 
 The graph below depicts the relationships between the framework subsystems.
 
-.. graphviz:: ../subsystems.gv
+.. graphviz:: subsystems.gv
 
 Subsystems required for M1 demonstrators
 ----------------------------------------
 
-.. include:: subsystems/scheduler.rst
+.. include:: subsystems/task_management.rst
 .. include:: subsystems/algo_description.rst
 .. include:: subsystems/data_modeling.rst
 .. include:: subsystems/io.rst
