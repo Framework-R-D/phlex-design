@@ -3,3 +3,4 @@ build/
 *.pdf_IS_PORTABLE
 *.pdf
 requirements-statemachine.png
+*.md.bak
