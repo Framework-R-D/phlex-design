@@ -4,7 +4,7 @@ PRODUCTS = \
   requirements-lifecycle.pdf \
   dune-fw-design-ideas-chg.pdf \
   dune-req-009-issues.pdf \
-  dune-fw-design-concerns-chg.pdf \
+  dune-fw-design-concerns-chg-slides.pdf \
 	chunkable.pdf
 
 # All PDFs should be made portable, with subsetted fonts.
