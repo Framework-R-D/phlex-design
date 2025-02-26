@@ -44,9 +44,6 @@ $(call targets_with,-slides): override PANDOC_BEAMER = YES
 # Required by requirements-lifecycle.pdf
 requirements-statemachine.png: requirements-statemachine.gv
 	dot -Tpng $< -o $@
-
-# Identify targets requiring beamer.
-$(call targets_without,-paper): override PANDOC_BEAMER = YES
 ####################################
 
 ####################################
