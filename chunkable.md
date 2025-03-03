@@ -33,7 +33,7 @@ This is not the only example.
 Another could be a struct X that contains several parallel vectors, each of which is of the same length.
 The Python equivalents of these could be created with `numpy` `ndarray`s rather than with `std::vector`.
 
-Note that not all data products that can be chunked *must* be chunked.
+Note that not all data product instance that *can* be chunked *must* be chunked.
 The option to chunk the data is available if the data product is chunkable, but that option might not be used.
 
 We will call the separate pieces of a chunkable data product that has been chunked *chunks*.
@@ -60,8 +60,24 @@ The real use cases involve data structures that a sequence of some element type,
 The element type can be primitive or non-primitive.
 The sequence may be stored in array-of-struct or struct-of-array form.
 
+# Configurable Higher-Order Functions and Chunkable Data Products
+
+Chunkable data products are not an end in themselves.
+They are a means to support the processing of data products that are too large to hold in memory.
+For such processing to be be possible the CHOF that does the processing must be able to take advantage of the chunkability.
+Such CHOFs come in several forms:
+
+1. A CHOF that receives complete (unchunked) data products as input and produces one or more chunked data products as output.
+2. A CHOF that receives one or more chunked data products as input and produces one or more complete data products as output.
+3. A CHOF that both receives and produces chunked data products.
+
+Each of these will be considered in turn below.
+
 
 # How do we write a chunkable data product?
+
+
+
 
 * How do we tell the IO system that we need to chunk the data product that we want to write?
 
