@@ -13,10 +13,8 @@ Phlex is a data-processing framework that supports the **P**\ arallel, **h**\ ie
    :maxdepth: 3
    :caption: Contents:
 
-   programming_paradigm
-   data_organization
-   user_api
-   languages
+   introduction
+   conceptual_design
    subsystems
 
 .. toctree::
