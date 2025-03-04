@@ -73,6 +73,24 @@ Such CHOFs come in several forms:
 
 Each of these will be considered in turn below.
 
+Case (1) above can be handled by a CHOF that performs an *unfold*, generating a sequence of "smaller" data categories each containing a data product that carries part of the "too large" data.
+For example, we could have a CHOF that generates a "sequence" of millions of waveforms in a spill by creating a sequence of a hundred subspills[^subspill], each of which contains a `vector<waveform>` that is tens of thousands long.
+In this solution there is no need for a chunkable data product.
+This unfold does not create the entire sequence at once.
+It must make one element---or perhaps several elements--of the sequence at a time.
+The framework would then be responsible for calling the nodes in the graph that are awaiting inputs of type `vector<waveform>` that are found in subspills, and for writing each `vector<waveform>`.
+
+[^subspill]: We have used the name *subspill* here, but that name is in no way intended to be something special to the framework.
+             The CHOF that creates the new data set category in the run/subrun/spill hierarchy should the what defines the name.
+	     This might be left user-configurable.
+	     A different CHOF performing an unfold could create a different data set category (with a different name), also in the run/subrun/spill hierarchy, and the system would have to distinguish between the two.
+
+Case (2) above can be handled by a CHOF that performs a *fold*.
+To continue the example above, we could have a CHOF that folds over all the `vector<waveform>` in the subspills of a spill, creating a product that is then inserted into the spill.
+It is likely that this fold would have to be done using a window function rather than a more trivial fold.
+
+Case (3) above can be handled by a transform that acts on products within the subspill.
+
 
 # How do we write a chunkable data product?
 
