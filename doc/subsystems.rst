@@ -5,7 +5,7 @@ The graph below depicts the relationships between the framework subsystems.
 
 .. graphviz:: subsystems.gv
 
-Required core subsystems for M1 demonstrators
+Required core subsystems for F1 demonstrators
 ---------------------------------------------
 
 .. include:: subsystems/task_management.rst
@@ -14,7 +14,7 @@ Required core subsystems for M1 demonstrators
 .. include:: subsystems/io.rst
 .. include:: subsystems/configuration.rst
 
-Optional core subsystems for M1 demonstrators
+Optional core subsystems for F1 demonstrators
 ---------------------------------------------
 
 .. include:: subsystems/plugin_management.rst
