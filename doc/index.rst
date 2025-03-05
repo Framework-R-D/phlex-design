@@ -21,6 +21,7 @@ Phlex is a data-processing framework that supports the **P**\ arallel, **h**\ ie
    :maxdepth: 1
    :caption: Appendices:
 
+   definitions
    requirements
    platforms
    deployment
