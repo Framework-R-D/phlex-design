@@ -5,7 +5,8 @@ PRODUCTS = \
   dune-fw-design-ideas-chg.pdf \
   dune-req-009-issues.pdf \
   dune-fw-design-concerns-chg-slides.pdf \
-	chunkable.pdf
+	chunkable.pdf \
+	processing-giant-data.pdf
 
 # All PDFs should be made portable, with subsetted fonts.
 PORTABLE_PDF = 1
