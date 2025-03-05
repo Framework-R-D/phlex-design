@@ -1,0 +1,16 @@
+BEGIN_PROLOG
+included_seq: [ 23, 19, 17, 13, 11, 7, 5, 3, 2, 1]
+included_table: {
+  a: 9
+  b: 26
+  c: 625
+  d: @nil
+  e: infinity
+}
+END_PROLOG
+
+top: {
+  full_seq: [ 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, @sequence::included_seq ]
+  @table::included_table
+  c: @erase
+}
