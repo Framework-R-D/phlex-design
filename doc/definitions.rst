@@ -1,118 +1,98 @@
 Definitions
 ===========
 
-**APA**
-    Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
+.. glossary::
+   :sorted:
 
-**Algorithm**
+   APA
+       Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
 
-    A decomposed unit of processing; a user-defined function registered for execution by the framework.
+   Algorithm
+       A decomposed unit of processing; a user-defined function registered for execution by the framework.
 
-**Algorithmic origin**
+   Algorithmic origin
+       The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
 
-    The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
+   Ancestral data
+       The data used as input to the algorithm that produced the data at issue.
 
-**Ancestral data**
+   Backward compatibility (persisted data)
+       The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
 
-    The data used as input to the algorithm that produced the data at issue.
+   CRP
+       Charge Readout Plane: physical far-detector unit placed on either the top or bottom edge of an APA
 
-**Backward compatibility (persisted data)**
+   Configuration canonical form
+       The result of a transformation on a configuration that preserves the semantics of the configuration.
+       All semantically identical configurations shall have the same canonical form.
+       Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
 
-    The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
+   Data family
+       A collection of data sets (e.g.):
 
-**CRP**
+       - examples of data families in art: collection of Runs, collection of Events, and collection of SubRuns
+       - other examples of data families: collection of calibration intervals of the same type, collection of geometry/alignment intervals of the same type, collection of APAs, collection of trigger primitives, collection of beam spills
 
-    Charge Readout Plane: physical far-detector unit placed on either the top or bottom edge of an APA
+       The type of an element in a data family is called a category.
+       For example, the category of a family of Events is the type Event.
+       An object of type Event is a data set.
 
-**Configuration canonical form**
+   Data family hierarchy
+       A hierarchy of data families (e.g. run contains subrun contains event).
 
-    The result of a transformation on a configuration that preserves the semantics of the configuration.
-    All semantically identical configurations shall have the same canonical form.
-    Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
+   Data model
+       A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
+       The data model also specifies the mechanism for reading and writing persistable data products.
 
-**Data family**
+   Data product
+       An object of data the framework can provide as an input to a user-defined algorithm, or that can be produced as an output of an algorithm.
 
-    A collection of data sets (e.g.):
+   Data product set
+       A mathematical set of data products that is identifiable by the framework and used to determine which data products serve as inputs to an algorithm.
 
-    - examples of data families in art: collection of Runs, collection of Events, and collection of SubRuns
-    - other examples of data families: collection of calibration intervals of the same type, collection of geometry/alignment intervals of the same type, collection of APAs, collection of trigger primitives, collection of beam spills
+   Deterministic
+       Identical inputs produce identical results via identical behavior.
 
-    The type of an element in a data family is called a category.
-    For example, the category of a family of Events is the type Event.
-    An object of type Event is a data set.
+   Framework ecosystem
+       Ensemble of software delivered with the application framework.
 
-**Data family hierarchy**
+   Integration test
+       A test that verifies the behavior of multiple system components working in concert.
 
-    A hierarchy of data families (e.g. run contains subrun contains event).
+   Metadata
+       Data that is ancillary to physics data.
 
-**Data model**
+   Parentage
+       The set of unique identifiers of each ancestral datum.
 
-    A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
-    The data model also specifies the mechanism for reading and writing persistable data products.
+   Persistable data product
+       A data product that can be read from and written to persistent storage.
 
-**Data product**
+   Provenance
+       A description of how the data at issue were produced (parentage, configuration, library versions, and other information as specified by requirements).
 
-    An object of data the framework can provide as an input to a user-defined algorithm, or that can be produced as an output of an algorithm.
+   Reproducible
+       Identical inputs produce identical results.
 
-**Data product set**
+   Resource
+       A non-data software or hardware component managed by the program that can be required by algorithms.
 
-    A mathematical set of data products that is identifiable by the framework and used to determine which data products serve as inputs to an algorithm.
+       Examples include:
 
-**Deterministic**
+       - CPU cores
+       - CPU memory
+       - GPU "cores"
+       - GPU memory
+       - Network
+       - Thread-unsafe utilities
+       - Inference servers
+       - Databases
 
-    Identical inputs produce identical results via identical behavior.
+   Unit test
+       A test that verifies the behavior of a small and self-contained system component in isolation from other system components.
 
-**Framework ecosystem**
+   Validation
+       Did it do what we needed it to do (requirements)
 
-    Ensemble of software delivered with the application framework.
-
-**Integration test**
-
-    A test that verifies the behavior of multiple system components working in concert.
-
-**Metadata**
-
-    Data that is ancillary to physics data.
-
-**Parentage**
-
-    The set of unique identifiers of each ancestral datum.
-
-**Persistable data product**
-
-    A data product that can be read from and written to persistent storage.
-
-**Provenance**
-
-    A description of how the data at issue were produced (parentage, configuration, library versions, and other information as specified by requirements).
-
-**Reproducible**
-
-    Identical inputs produce identical results.
-
-**Resource**
-
-    A non-data software or hardware component managed by the program that can be required by algorithms.
-
-    Examples include:
-
-    - CPU cores
-    - CPU memory
-    - GPU "cores"
-    - GPU memory
-    - Network
-    - Thread-unsafe utilities
-    - Inference servers
-    - Databases
-
-**Unit test**
-
-    A test that verifies the behavior of a small and self-contained system component in isolation from other system components.
-
-**Validation**
-
-    Did it do what we needed it to do (requirements)
-
-**Verification**
-
-    Did it do what we intended it to do (code)
+   Verification
+       Did it do what we intended it to do (code)
