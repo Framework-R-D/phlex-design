@@ -142,11 +142,6 @@ Details of each higher-order function will be given in the corresponding section
 +------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
 
 
-.. _graph-processing:
-
-Graphs of higher-order functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. rubric:: Footnotes
 
 .. [#f1] As discussed :ref:`here <graph-processing>`, the general topology of a data-processing workflow is a *graph* of functions.
