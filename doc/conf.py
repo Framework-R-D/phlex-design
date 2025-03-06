@@ -13,7 +13,9 @@ author = 'Phlex developers'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.graphviz']
+extensions = ['sphinx.ext.graphviz',
+              'sphinx.ext.autosectionlabel']
+autosectionlabel_prefix_document = True
 
 templates_path = ['_templates']
 exclude_patterns = []

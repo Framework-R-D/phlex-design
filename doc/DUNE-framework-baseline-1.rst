@@ -2,7 +2,7 @@
 
 
 1 Algorithm Decomposability
--------------------------------------------------------------------------------------------------------------------------
+---------------------------
 
 Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
 
