@@ -4,3 +4,4 @@ build/
 *.pdf
 requirements-statemachine.png
 *.md.bak
+*.pyc
