@@ -195,7 +195,8 @@ Jama Connect entry: `(DUNE STKH #14) <https://fnal-prod.jamacloud.com/perspectiv
 5.1 Support C++ algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #81) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
+| Jama Connect entry: `(DUNE STKH #81) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
+| See :ref:`introduction:Programming languages`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the invocation of         |
@@ -209,7 +210,8 @@ Jama Connect entry: `(DUNE STKH #81) <https://fnal-prod.jamacloud.com/perspectiv
 5.2 Support Python algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #82) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
+| Jama Connect entry: `(DUNE STKH #82) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
+| See :ref:`introduction:Programming languages`
 
 +--------------+-------------------------------------------------------+
 | Requirement  |                                                       |
@@ -1626,7 +1628,8 @@ Jama Connect entry: `(DUNE STKH #119) <https://fnal-prod.jamacloud.com/perspecti
 51 Provenance discovery
 -----------------------
 
-Jama Connect entry: `(DUNE STKH #121) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
+| Jama Connect entry: `(DUNE STKH #121) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
+| See :ref:`introduction:Framework philosophy`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable users to discover the      |
