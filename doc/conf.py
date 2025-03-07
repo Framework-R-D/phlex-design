@@ -30,4 +30,5 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'bizstyle'
+html_logo = 'phlex-logo.svg'
 html_static_path = ['_static']
