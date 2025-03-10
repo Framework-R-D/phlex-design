@@ -120,13 +120,13 @@ Details of each higher-order function will be given in the corresponding section
 |                  |    p: D &\rightarrow& \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow                   |                            |                      |
 |                  |    q: D &\rightarrow& D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c                               |                            |                      |
 +------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Transform        | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                                          | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
+| Filter           | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                                          | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
 |                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow                   |                            |                      |
 |                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}                            |                            |                      |
 +------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Observer         | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                                          |                            | :math:`|b| = 0`      |
+| Observer         | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                                          | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
 |                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow                   |                            |                      |
-|                  |                                         |    \underbrace{\emptyset}_b                                        |                            |                      |
+|                  |                                         |    \underbrace{(\quad)}_{a'}                                       |                            |                      |
 +------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
 | Zip              |                                         | .. math::                                                          | .. math::                  | .. math::            |
 |                  |                                         |    (\underbrace{(a_{i_1\dots i_n})}_a,                             |    \dim(a)                 |    |c|               |
@@ -137,6 +137,9 @@ Details of each higher-order function will be given in the corresponding section
 | Sliding window   | :math:`s: A \times A \rightarrow B`     | *To be completed*                                                                                                      |
 +------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
 
+Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
+The set :math:`\mathbb{1}` indicates a one-element set whose element can represent a `false` value.
+In C++, this would be denoted by the return statement `return;` whereas in Python, it would be denoted by either `return` or `return None`.
 
 .. rubric:: Footnotes
 
