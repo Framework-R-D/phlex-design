@@ -23,10 +23,8 @@ However, as seen above, functional programming permits a mathematical descriptio
 Expressing the processing needs according to mathematics enables:
 
 - the use of mathematical rules to optimize the processing of the data,
-- naturally reproducible results, assuming the functions are :ref:`pure <pure-functions>`,
+- naturally reproducible results, assuming the functions are :ref:`pure <programming_paradigm:Pure functions>`,
 - parallel invocations of pure functions with no possibility of data races.
-
-.. _pure-functions:
 
 Pure functions
 ^^^^^^^^^^^^^^
@@ -48,9 +46,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <higher-order-functions>`), any awkwardness due to functional programming is largely alleviated.
-
-.. _higher-order-functions:
+By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), any awkwardness due to functional programming is largely alleviated.
 
 Sequences of data and higher-order functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -144,7 +140,7 @@ Details of each higher-order function will be given in the corresponding section
 
 .. rubric:: Footnotes
 
-.. [#f1] As discussed :ref:`here <graph-processing>`, the general topology of a data-processing workflow is a *graph* of functions.
+.. [#f1] As discussed :ref:`here <graph_processing:Graphs of higher-order functions>`, the general topology of a data-processing workflow is a *graph* of functions.
 
 .. rubric:: References
 
