@@ -35,11 +35,6 @@ Either:
    spack -e f1_config_demonstrator install
    ```
 
-1. Activate the installed environment:
-   ```
-   spack env activate f1_config_demonstrator
-   ```
-
 Or:
 
 1. Obtain the `build-spack-env.sh` script:
@@ -75,20 +70,25 @@ Or:
    https://scisoft.fnal.gov/scisoft/bundles/f1_config_demonstrator/v1_0/buildcfg/f1_config_demonstrator-1-0-gcc-14-2-0-cxx20-prof-gcc-11.yaml
    ```
 
-1. Activate the installed environment:
-   ```
-   . spack_env/setup-env.sh
-   spack env activate f1_config_demonstrator      
-   ```
-
 ## Compilation and development
 
 1. Make and enter a directory in which to build the code.
 
+1. Initialize Spack.
+
+1. Ascertain the compiler's location:
+   ```
+   export CXX=$(spack location -i gcc@14.2.0)
+   ```
+
+1. Activate the environment:
+   ```
+   spack env activate f1_config_demonstrator
+   ```
+
 1. Configure:
    ```
-   cmake -DCMAKE_CXX_COMPILER=$(spack location -i gcc@14.2.0) \
-         -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING:BOOL=ON -GNinja \
+   cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING:BOOL=ON -GNinja \
          <path-to-f1_config_demonstrator-source>
    ```
 
