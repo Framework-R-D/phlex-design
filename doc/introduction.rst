@@ -5,9 +5,9 @@ The following diagram illustrates three high-level computing stages commonly use
 
 .. image:: framework-scope.png
 
-Wikipedia decently defines a software framework as:
+Wikipedia decently defines a software framework as [Wiki-framework]_:
 
-  *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.* [Wiki-framework]_
+  *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
 In a HEP context, a user “plugs in” their code to a framework, often through dynamically loaded libraries called *plugins*.
 Although not required, this often means that the framework owns program's `main(...)` function, which calls user code under the covers.

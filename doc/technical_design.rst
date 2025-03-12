@@ -1,5 +1,5 @@
-Subsystems
-==========
+Technical design
+================
 
 The graph below depicts the relationships between the framework subsystems.
 

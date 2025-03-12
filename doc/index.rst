@@ -1,21 +1,16 @@
-.. phlex-design documentation master file, created by
-   sphinx-quickstart on Thu Feb  6 14:01:48 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Phlex framework design
 ======================
 
 Phlex is a data-processing framework that supports the **P**\ arallel, **h**\ ierarchical, and **l**\ ayered **ex**\ ecution of data-processing algorithms.
 
+This document gives a brief introduction to what Phlex aims to achieve, the conceptual design in support of those aims, and the technical design necessary to implement the conceptual design.
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
+   :maxdepth: 2
 
    introduction
    conceptual_design
-   subsystems
+   technical_design
 
 .. toctree::
    :maxdepth: 1

@@ -1,7 +1,11 @@
 Conceptual design
 =================
 
-.. include:: programming_paradigm.rst
-.. include:: graph_processing.rst
-.. include:: data_organization.rst
-.. include:: user_api.rst
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   programming_paradigm
+   graph_processing
+   data_organization
+   user_api

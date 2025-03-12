@@ -103,43 +103,37 @@ Note that :math:`n` is not necessarily equal to :math:`m`.
 The following table lists the higher-order functions supported by Phlex.
 Details of each higher-order function will be given in the corresponding sections in the User API section.
 
-+---------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
-| Higher-order function                                                                                                           | Resulting sequence                                |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Name             | Operator                                | Sequence transformation                                            | Dimension                  | Length               |
-+==================+=========================================+====================================================================+============================+======================+
-| Transform        | :math:`f: A \rightarrow B`              | .. math::                                                          | :math:`\dim(b) = \dim(a)`  | :math:`|b| = |a|`    |
-|                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow                   |                            |                      |
-|                  |                                         |    \underbrace{(b_{i_1\dots i_n})}_b                               |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Fold             | :math:`g: C \times D \rightarrow D`     | .. math::                                                          | :math:`\dim(d) < \dim(c)`  | :math:`|d| < |c|`    |
-|                  |                                         |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow                   |                            |                      |
-|                  |                                         |    \underbrace{(d_{i_1\dots i_m})}_d                               |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Unfold           | .. math::                               | .. math::                                                          | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
-|                  |    p: D &\rightarrow& \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow                   |                            |                      |
-|                  |    q: D &\rightarrow& D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c                               |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Filter           | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                                          | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
-|                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow                   |                            |                      |
-|                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}                            |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Observer         | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                                          | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
-|                  |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow                   |                            |                      |
-|                  |                                         |    \underbrace{(\quad)}_{a'}                                       |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Zip              |                                         | .. math::                                                          | .. math::                  | .. math::            |
-|                  |                                         |    (\underbrace{(a_{i_1\dots i_n})}_a,                             |    \dim(a)                 |    |c|               |
-|                  |                                         |     \underbrace{(b_{i_1\dots i_n})}_b)                             |            = \dim(b)       |     = \min(|a|, |b|) |
-|                  |                                         |      \rightarrow                                                   |            = \dim(c)       |                      |
-|                  |                                         |      \underbrace{((a_{i_1\dots i_n}, b_{i_1\dots i_n}))}_c         |                            |                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
-| Sliding window   | :math:`s: A \times A \rightarrow B`     | *To be completed*                                                                                                      |
-+------------------+-----------------------------------------+--------------------------------------------------------------------+----------------------------+----------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
+| Higher-order function                                                                                                                        | Resulting sequence                                |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| Name                                            | Operator                                | Sequence transformation                          | Dimension                  | Length               |
++=================================================+=========================================+==================================================+============================+======================+
+| :ref:`Transform <user_api:Transforms>`          | :math:`f: A \rightarrow B`              | .. math::                                        | :math:`\dim(b) = \dim(a)`  | :math:`|b| = |a|`    |
+|                                                 |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                 |                                         |    \underbrace{(b_{i_1\dots i_n})}_b             |                            |                      |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Fold <user_api:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| < |c|`    |
+|                                                 |                                         |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow |                            |                      |
+|                                                 |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Unfold <user_api:Unfolds>`                | .. math::                               | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
+|                                                 |    p: D &\rightarrow& \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
+|                                                 |    q: D &\rightarrow& D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Filter <user_api:Filters and predicates>` | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
+|                                                 |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                 |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Observer <user_api:Observers>`            | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
+|                                                 |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                 |                                         |    \underbrace{(\quad)}_{a'}                     |                            |                      |
++-------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
 The set :math:`\mathbb{1}` indicates a one-element set whose element can represent a `false` value.
 In C++, this would be denoted by the return statement `return;` whereas in Python, it would be denoted by either `return` or `return None`.
+
+Phlex will likely support other higher order functions as well, such as a sliding window.
 
 .. rubric:: Footnotes
 
