@@ -12,6 +12,7 @@ FetchContent_Declare(
   cetmodules
   GIT_REPOSITORY https://github.com/FNALssi/cetmodules
   GIT_TAG v4-branch
+#  GIT_TAG fd6ebf45
   FIND_PACKAGE_ARGS 3.99.00
 )
 # ... and Microsoft's C++ Guideline Support Library
@@ -33,7 +34,7 @@ FetchContent_MakeAvailable(cetmodules)
 ########################################################################
 
 find_package(cetmodules 3.99.00 REQUIRED)
-project(f1_config_demonstration VERSION 0.1 LANGUAGES CXX)
+project(f1cd VERSION 0.1 LANGUAGES CXX)
 
 # These activations are delayed to avoid invocation of language-specific
 # features by CMake Config files before they have been initialized by
@@ -43,6 +44,7 @@ FetchContent_MakeAvailable(GSL Catch2)
 include(CetCMakeEnv)
 include(SetCompilerFlags)
 include(CetCMakeConfig)
+include(CTest)
 
 cet_cmake_env()
 
@@ -84,6 +86,20 @@ include(CetMake)
 include(CetMakeLibrary)
 include(CetTest)
 
+cet_make_exec(NAME fhicl_t NO_EXPORT NO_EXPORT_ALL_SYMBOLS LIBRARIES PRIVATE fhiclcpp::fhiclcpp cetlib::cetlib)
+target_compile_features(fhicl_t PRIVATE cxx_std_20)
+
+cet_test(fhicl_t HANDBUILT
+  TEST_EXEC fhicl_t
+  DATAFILES FHiCL.fcl
+)
+
+cet_make_exec(NAME json_t NO_EXPORT NO_EXPORT_ALL_SYMBOLS LIBRARIES PRIVATE Jsonnet::libjsonnet++)
+target_compile_features(json_t PRIVATE cxx_std_20)
+cet_test(json_t HANDBUILT
+  TEST_EXEC json_t
+  DATAFILES JSON.json
+)
 
 ########################################################################
 # End matter

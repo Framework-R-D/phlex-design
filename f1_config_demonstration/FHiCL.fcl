@@ -10,7 +10,9 @@ included_table: {
 END_PROLOG
 
 top: {
-  full_seq: [ 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 22, @sequence::included_seq ]
+  full_seq: [ 4, 6, 8, 9, 10,
+              12, 14, 15, 16, 18,
+              20, 21, 22, @sequence::included_seq ]
   @table::included_table
   c: @erase
 }
