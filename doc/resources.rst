@@ -1,0 +1,8 @@
+Resources
+=========
+
+Limited resources
+-----------------
+
+GPUs
+----

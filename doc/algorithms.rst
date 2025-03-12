@@ -1,5 +1,5 @@
-User API
---------
+Algorithms
+----------
 
 Transforms
 ^^^^^^^^^^

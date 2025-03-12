@@ -20,10 +20,12 @@ author = 'Phlex developers'
 
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
+              'sphinx.ext.todo',
               'requirement']
 autosectionlabel_prefix_document = True
 
 templates_path = ['_templates']
+todo_include_todos = True
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
