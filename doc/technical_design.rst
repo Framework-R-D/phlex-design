@@ -3,7 +3,7 @@ Technical design
 
 The graph below depicts the relationships between the framework subsystems.
 
-.. graphviz:: subsystems.gv
+.. graphviz:: graphviz/subsystems.gv
 
 Required core subsystems for F1 demonstrators
 ---------------------------------------------
