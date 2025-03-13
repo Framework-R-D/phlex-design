@@ -14,9 +14,9 @@ For example, given two functions:
 a composite function :math:`h: \mbox{Wires} \rightarrow \mbox{Tracks}` can be constructed such that:
 
 .. math::
-   ts = h(ws) = g(f(ws)) = (f \circ g)(ws)
+   ts = h(ws) = g(f(ws)) = (g \circ f)(ws)
 
-or :math:`h = f \circ g`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
+or :math:`h = g \circ f`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
 
 In reality, the creation of tracks from wire signals is much more complicated [#f1]_.
 However, as seen above, functional programming permits a mathematical description of the data-processing to be performed.
