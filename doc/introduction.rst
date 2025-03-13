@@ -3,7 +3,7 @@ Introduction
 
 The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.
 
-.. image:: framework-scope.png
+.. graphviz:: framework-scope.gv
 
 Wikipedia decently defines a software framework as [Wiki-framework]_:
 

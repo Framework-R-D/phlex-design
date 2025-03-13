@@ -1,0 +1,34 @@
+digraph {
+  rankdir=LR
+  fontsize=10
+  margin="1,0.2"
+
+  // Set rank separation to zero so that the begin and end labels are close to the block point nodes.
+  ranksep=0
+
+  // Nodes for processing stages
+  node [shape="box",
+        style="filled,rounded",
+        fontname="Arial",
+        fontcolor="white",
+        fillcolor="gray40",
+        height=0.8,
+        margin="0.3,0.15"]
+  signals [shape="point", width=0.1, fillcolor="black"]
+  results [shape="point", width=0.1, fillcolor="black"]
+
+  DAQ
+  framework [label="Reconstruction and\nsimulation framework", fillcolor="royalblue3"]
+  Analysis
+
+  // Artificial nodes for creating labels
+  node [penwidth="0", style="nofill", fontcolor="black", margin="0,0"];
+  startlabel [label="Detector\nsignals"]
+  endlabel [label="Physics\nresults"]
+
+  startlabel -> signals [style=invis]
+  signals -> DAQ [arrowhead=none, minlen=3]
+  DAQ -> framework -> Analysis [minlen=4]
+  Analysis -> results [arrowhead=none, minlen=3]
+  results -> endlabel [style=invis]
+}
