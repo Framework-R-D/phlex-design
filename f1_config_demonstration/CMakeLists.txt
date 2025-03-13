@@ -1,5 +1,14 @@
 cmake_minimum_required(VERSION 3.24 FATAL_ERROR)
 
+# N.B. This is not really best practice according to
+# https://cmake.org/cmake/help/latest/guide/using-dependencies/index.html#dependency-providers
+#
+# Ideally this information would be provided on the CMake command line,
+# e.g.:
+#
+#   cmake \
+#     -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES:STRING=CetProvideDependency \
+#     ...
 if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   set(CMAKE_PROJECT_TOP_LEVEL_INCLUDES CetProvideDependency)
   # Provided by Cetmodules.
