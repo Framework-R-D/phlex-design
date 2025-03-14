@@ -1,0 +1,11 @@
+digraph {
+  rankdir=LR
+  node [shape="box", style="rounded"]
+
+  start [shape="point", width=0.1]
+  h [label=<<i><font color="blue">g ○ f</font></i>>];
+  end [shape="point", width=0.1, peripheries=2]
+
+  start -> h [label=<<i><font color="red">ws</font></i>>]
+  h -> end [label=<<i><font color="red">ts</font></i>>]
+}

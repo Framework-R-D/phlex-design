@@ -1,0 +1,40 @@
+digraph {
+  rankdir=LR
+  node [shape="box", style="rounded"]
+
+  start [shape="point", width=0.1]
+  end [shape="point", width=0.1, peripheries=2]
+  iota [label=<<i><font color="blue">iota</font></i> (unfold)>];
+  transform [label=<<i><font color="blue">square</font></i>>];
+  sum [label=<<i><font color="blue">sum</font></i> (fold)>];
+
+  start -> iota [label=<<table cellpadding="1" border="0" cellborder="0">
+                          <tr><td><font color="red"><i>n</i></font></td></tr>
+                        </table>>]
+
+  iota -> transform [label=<<table cellpadding="1" border="0" cellborder="0">
+                              <tr><td><font color="red"><i>1</i></font></td></tr>
+                            </table>>]
+  iota -> transform [label=<<table cellpadding="1" border="0" cellborder="0">
+                              <tr><td><font color="red"><i>2</i></font></td></tr>
+                             </table>>]
+  iota -> transform [label=<<font color="red">⋮</font>>, penwidth=0, arrowhead=none]
+  iota -> transform [label=<<table cellpadding="1" border="0" cellborder="0">
+                              <tr><td><font color="red"><i>n</i></font></td></tr>
+                            </table>>]
+
+  transform -> sum [label=<<table cellpadding="1" border="0" cellborder="0">
+                             <tr><td><font color="red"><i>1</i></font></td></tr>
+                           </table>>]
+  transform -> sum [label=<<table cellpadding="1" border="0" cellborder="0">
+                             <tr><td><font color="red"><i>4</i></font></td></tr>
+                           </table>>]
+  transform -> sum [label=<<font color="red">⋮</font>>, penwidth=0, arrowhead=none]
+  transform -> sum [label=<<table cellpadding="1" border="0" cellborder="0">
+                             <tr><td><font color="red"><i>n<sup>2</sup></i></font></td></tr>
+                           </table>>]
+
+  sum -> end [label=<<table cellpadding="1" border="0" cellborder="0">
+                        <tr><td><font color="red"><i>S(n)</i></font></td></tr>
+                      </table>>]
+}
