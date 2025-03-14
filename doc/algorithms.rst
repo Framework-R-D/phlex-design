@@ -1,5 +1,11 @@
 Algorithms
-----------
+==========
+
+Configured higher-order functions (CHOFs)
+-----------------------------------------
+
+HOF operators
+-------------
 
 Transforms
 ^^^^^^^^^^
@@ -78,3 +84,9 @@ Unfolds
 |    p: D &\rightarrow& \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                           |                   |
 |    q: D &\rightarrow& D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c             |                           |                   |
 +-----------------------------------------+--------------------------------------------------+---------------------------+-------------------+
+
+Composite CHOFs
+---------------
+
+Scheduling
+----------

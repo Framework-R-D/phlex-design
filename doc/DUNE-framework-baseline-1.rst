@@ -5,7 +5,7 @@
 
 Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow the execution of multiple   |
@@ -23,7 +23,7 @@ Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.r
 
 Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall mediate communication between     |
@@ -37,9 +37,9 @@ Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective
 2 Data Product Representation
 -----------------------------
 
-Jama Connect entry: `(DUNE STKH #2) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14539>`__
+Jama Connect entry: `DUNE STKH #2 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14539>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall separate the persistent           |
@@ -56,9 +56,9 @@ Jama Connect entry: `(DUNE STKH #2) <https://fnal-prod.jamacloud.com/perspective
 3 Full utilization of DUNE computing resources
 ----------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #8) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14548>`__
+Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14548>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall run on widely-used scientific     |
@@ -75,9 +75,9 @@ Jama Connect entry: `(DUNE STKH #8) <https://fnal-prod.jamacloud.com/perspective
 4 Algorithm hardware requirements
 ---------------------------------
 
-Jama Connect entry: `(DUNE STKH #9) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
+Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide an API that allows users  |
@@ -93,9 +93,9 @@ Jama Connect entry: `(DUNE STKH #9) <https://fnal-prod.jamacloud.com/perspective
 4.1 Algorithms can use multiple CPUs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #10) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
+Jama Connect entry: `DUNE STKH #10 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support running algorithms that   |
@@ -109,9 +109,9 @@ Jama Connect entry: `(DUNE STKH #10) <https://fnal-prod.jamacloud.com/perspectiv
 4.2 Algorithms can use a GPU
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #11) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14551>`__
+Jama Connect entry: `DUNE STKH #11 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14551>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support running algorithms that   |
@@ -126,9 +126,9 @@ Jama Connect entry: `(DUNE STKH #11) <https://fnal-prod.jamacloud.com/perspectiv
 4.2.1 Remote GPU algorithm support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jama Connect entry: `(DUNE STKH #42) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14607>`__
+Jama Connect entry: `DUNE STKH #42 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14607>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support algorithms that perform   |
@@ -144,9 +144,9 @@ Jama Connect entry: `(DUNE STKH #42) <https://fnal-prod.jamacloud.com/perspectiv
 4.2.2 Local GPU algorithm support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jama Connect entry: `(DUNE STKH #41) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14602>`__
+Jama Connect entry: `DUNE STKH #41 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14602>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support algorithms that perform   |
@@ -162,9 +162,9 @@ Jama Connect entry: `(DUNE STKH #41) <https://fnal-prod.jamacloud.com/perspectiv
 4.3 Shut down upon unmet algorithm hardware requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #13) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14553>`__
+Jama Connect entry: `DUNE STKH #13 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14553>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall shut down if the platform fails   |
@@ -178,9 +178,9 @@ Jama Connect entry: `(DUNE STKH #13) <https://fnal-prod.jamacloud.com/perspectiv
 4.4 Emit diagnostic upon unmet algorithm hardware requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #112) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14885>`__
+Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14885>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall emit a diagnostic message for     |
@@ -194,9 +194,9 @@ Jama Connect entry: `(DUNE STKH #112) <https://fnal-prod.jamacloud.com/perspecti
 5 Support for multiple programming languages
 --------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #14) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
+Jama Connect entry: `DUNE STKH #14 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the invocation of         |
@@ -218,7 +218,7 @@ Jama Connect entry: `(DUNE STKH #14) <https://fnal-prod.jamacloud.com/perspectiv
 5.1 Support C++ algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Jama Connect entry: `(DUNE STKH #81) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
+| Jama Connect entry: `DUNE STKH #81 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
 | See :ref:`introduction:Programming languages`
 
 +--------------+-------------------------------------------------------+
@@ -233,7 +233,7 @@ Jama Connect entry: `(DUNE STKH #14) <https://fnal-prod.jamacloud.com/perspectiv
 5.2 Support Python algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Jama Connect entry: `(DUNE STKH #82) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
+| Jama Connect entry: `DUNE STKH #82 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
 | See :ref:`introduction:Programming languages`
 
 +--------------+-------------------------------------------------------+
@@ -250,9 +250,9 @@ Jama Connect entry: `(DUNE STKH #14) <https://fnal-prod.jamacloud.com/perspectiv
 6 Provide instructions for writing algorithms in supported languages
 --------------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #16) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14556>`__
+Jama Connect entry: `DUNE STKH #16 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14556>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework documentation shall provide             |
@@ -267,9 +267,9 @@ Jama Connect entry: `(DUNE STKH #16) <https://fnal-prod.jamacloud.com/perspectiv
 7 Persist user-defined metadata
 -------------------------------
 
-Jama Connect entry: `(DUNE STKH #17) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14557>`__
+Jama Connect entry: `DUNE STKH #17 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14557>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide user-accessible           |
@@ -285,9 +285,9 @@ Jama Connect entry: `(DUNE STKH #17) <https://fnal-prod.jamacloud.com/perspectiv
 8 Framework shall read its own output files
 -------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #19) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14560>`__
+Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14560>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability to read a     |
@@ -306,9 +306,9 @@ Jama Connect entry: `(DUNE STKH #19) <https://fnal-prod.jamacloud.com/perspectiv
 9 Presenting data to subsequent algorithms
 ------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #20) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
+Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall present data produced by an       |
@@ -323,9 +323,9 @@ Jama Connect entry: `(DUNE STKH #20) <https://fnal-prod.jamacloud.com/perspectiv
 10 Mix input streams
 --------------------
 
-Jama Connect entry: `(DUNE STKH #21) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14563>`__
+Jama Connect entry: `DUNE STKH #21 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14563>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the creation of data sets |
@@ -342,9 +342,9 @@ Jama Connect entry: `(DUNE STKH #21) <https://fnal-prod.jamacloud.com/perspectiv
 11 Flexible data units
 ----------------------
 
-Jama Connect entry: `(DUNE STKH #22) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14580>`__
+Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14580>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support flexibly defined,         |
@@ -362,9 +362,9 @@ Jama Connect entry: `(DUNE STKH #22) <https://fnal-prod.jamacloud.com/perspectiv
 11.1 Definition of data products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #85) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
+Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability for           |
@@ -378,9 +378,9 @@ Jama Connect entry: `(DUNE STKH #85) <https://fnal-prod.jamacloud.com/perspectiv
 11.2 Creation of data sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #86) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
+Jama Connect entry: `DUNE STKH #86 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability for           |
@@ -394,9 +394,9 @@ Jama Connect entry: `(DUNE STKH #86) <https://fnal-prod.jamacloud.com/perspectiv
 11.3 Definition of data families
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #87) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
+Jama Connect entry: `DUNE STKH #87 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability for           |
@@ -410,9 +410,9 @@ Jama Connect entry: `(DUNE STKH #87) <https://fnal-prod.jamacloud.com/perspectiv
 11.4 Definition of data family hierarchies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #88) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698>`__
+Jama Connect entry: `DUNE STKH #88 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability for           |
@@ -427,9 +427,9 @@ Jama Connect entry: `(DUNE STKH #88) <https://fnal-prod.jamacloud.com/perspectiv
 12 Data product I/O independence
 --------------------------------
 
-Jama Connect entry: `(DUNE STKH #24) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14583>`__
+Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14583>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support reading from disk only    |
@@ -445,9 +445,9 @@ Jama Connect entry: `(DUNE STKH #24) <https://fnal-prod.jamacloud.com/perspectiv
 13 Process collections of unconstrained size
 --------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #25) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584>`__
+Jama Connect entry: `DUNE STKH #25 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support processing of collections |
@@ -464,9 +464,9 @@ Jama Connect entry: `(DUNE STKH #25) <https://fnal-prod.jamacloud.com/perspectiv
 13.1 Read collections of unconstrained size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #32) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14592>`__
+Jama Connect entry: `DUNE STKH #32 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14592>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the reading of            |
@@ -488,9 +488,9 @@ Jama Connect entry: `(DUNE STKH #32) <https://fnal-prod.jamacloud.com/perspectiv
 13.2 Write collections of unconstrained size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #120) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15288>`__
+Jama Connect entry: `DUNE STKH #120 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15288>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the writing of            |
@@ -504,9 +504,9 @@ Jama Connect entry: `(DUNE STKH #120) <https://fnal-prod.jamacloud.com/perspecti
 14 Configuration comparison
 ---------------------------
 
-Jama Connect entry: `(DUNE STKH #98) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14724>`__
+Jama Connect entry: `DUNE STKH #98 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14724>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability to compare    |
@@ -520,9 +520,9 @@ Jama Connect entry: `(DUNE STKH #98) <https://fnal-prod.jamacloud.com/perspectiv
 15 Record execution environment
 -------------------------------
 
-Jama Connect entry: `(DUNE STKH #30) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14590>`__
+Jama Connect entry: `DUNE STKH #30 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14590>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall record the job's execution        |
@@ -538,9 +538,9 @@ Jama Connect entry: `(DUNE STKH #30) <https://fnal-prod.jamacloud.com/perspectiv
 15.1 User-selectable list of recordable execution environment components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #100) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14730>`__
+Jama Connect entry: `DUNE STKH #100 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14730>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the list of recordable    |
@@ -554,9 +554,9 @@ Jama Connect entry: `(DUNE STKH #100) <https://fnal-prod.jamacloud.com/perspecti
 15.2 Save user-selected execution environment components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #101) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14731>`__
+Jama Connect entry: `DUNE STKH #101 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14731>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall save each execution-environment   |
@@ -571,9 +571,9 @@ Jama Connect entry: `(DUNE STKH #101) <https://fnal-prod.jamacloud.com/perspecti
 15.2.1 Record user-selected items from the shell environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jama Connect entry: `(DUNE STKH #123) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15480>`__
+Jama Connect entry: `DUNE STKH #123 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15480>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall record user-selected items from   |
@@ -587,9 +587,9 @@ Jama Connect entry: `(DUNE STKH #123) <https://fnal-prod.jamacloud.com/perspecti
 15.3 User-provided execution environment information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #124) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15482>`__
+Jama Connect entry: `DUNE STKH #124 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15482>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall record labelled execution         |
@@ -603,9 +603,9 @@ Jama Connect entry: `(DUNE STKH #124) <https://fnal-prod.jamacloud.com/perspecti
 16 Maximum memory usage
 -----------------------
 
-Jama Connect entry: `(DUNE STKH #31) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14591>`__
+Jama Connect entry: `DUNE STKH #31 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14591>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall gracefully shut down if the       |
@@ -630,9 +630,9 @@ Jama Connect entry: `(DUNE STKH #31) <https://fnal-prod.jamacloud.com/perspectiv
 16.1 Diagnostic message when exceeding memory limit
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #137) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15802>`__
+Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15802>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall emit a diagnostic message if the  |
@@ -647,9 +647,9 @@ Jama Connect entry: `(DUNE STKH #137) <https://fnal-prod.jamacloud.com/perspecti
 17 Unfolding data products
 --------------------------
 
-Jama Connect entry: `(DUNE STKH #33) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
+Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow the unfolding of data       |
@@ -667,9 +667,9 @@ Jama Connect entry: `(DUNE STKH #33) <https://fnal-prod.jamacloud.com/perspectiv
 18 Access to external data sources
 ----------------------------------
 
-Jama Connect entry: `(DUNE STKH #35) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14595>`__
+Jama Connect entry: `DUNE STKH #35 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14595>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support access to external data   |
@@ -692,9 +692,9 @@ Jama Connect entry: `(DUNE STKH #35) <https://fnal-prod.jamacloud.com/perspectiv
 18.1 Calibration database algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #40) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
+Jama Connect entry: `DUNE STKH #40 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support algorithms that provide   |
@@ -710,9 +710,9 @@ Jama Connect entry: `(DUNE STKH #40) <https://fnal-prod.jamacloud.com/perspectiv
 19 Algorithm code versioning and build information
 --------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #39) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14599>`__
+Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14599>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to record build    |
@@ -729,9 +729,9 @@ Jama Connect entry: `(DUNE STKH #39) <https://fnal-prod.jamacloud.com/perspectiv
 20 Algorithms independent of framework interface
 ------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #43) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
+Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the registration of       |
@@ -748,9 +748,9 @@ Jama Connect entry: `(DUNE STKH #43) <https://fnal-prod.jamacloud.com/perspectiv
 21 Safely executing thread-safe and non-thread-safe algorithms
 --------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #45) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14611>`__
+Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14611>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall safely execute user algorithms    |
@@ -767,9 +767,8 @@ Jama Connect entry: `(DUNE STKH #45) <https://fnal-prod.jamacloud.com/perspectiv
 22 Intra-algorithm concurrency and multi-threading
 --------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #46) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612>`__
-
-.. warning:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #46 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612>`__
+| See :ref:`subsystems/task_management:Task management`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow algorithms to use the same  |
@@ -792,9 +791,9 @@ Jama Connect entry: `(DUNE STKH #46) <https://fnal-prod.jamacloud.com/perspectiv
 23 Resource specification for the program
 -----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #47) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
+Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of       |
@@ -811,9 +810,9 @@ Jama Connect entry: `(DUNE STKH #47) <https://fnal-prod.jamacloud.com/perspectiv
 23.1 Specification of maximum number of CPU threads
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #146) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15865>`__
+Jama Connect entry: `DUNE STKH #146 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15865>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of the   |
@@ -828,9 +827,9 @@ Jama Connect entry: `(DUNE STKH #146) <https://fnal-prod.jamacloud.com/perspecti
 23.2 Specification of maximum allowed CPU memory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #147) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15866>`__
+Jama Connect entry: `DUNE STKH #147 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15866>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of the   |
@@ -844,9 +843,9 @@ Jama Connect entry: `(DUNE STKH #147) <https://fnal-prod.jamacloud.com/perspecti
 23.3 Specification of GPU resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #148) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15869>`__
+Jama Connect entry: `DUNE STKH #148 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15869>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of GPU   |
@@ -860,9 +859,9 @@ Jama Connect entry: `(DUNE STKH #148) <https://fnal-prod.jamacloud.com/perspecti
 23.4 Specification of user-defined resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #149) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15871>`__
+Jama Connect entry: `DUNE STKH #149 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15871>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of       |
@@ -876,9 +875,9 @@ Jama Connect entry: `(DUNE STKH #149) <https://fnal-prod.jamacloud.com/perspecti
 24 Resource specification for algorithms
 ----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #52) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620>`__
+Jama Connect entry: `DUNE STKH #52 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of       |
@@ -895,9 +894,9 @@ Jama Connect entry: `(DUNE STKH #52) <https://fnal-prod.jamacloud.com/perspectiv
 24.1 Serial access to a thread-unsafe resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #145) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`__
+Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall permit algorithm authors to       |
@@ -913,9 +912,9 @@ Jama Connect entry: `(DUNE STKH #145) <https://fnal-prod.jamacloud.com/perspecti
 24.2 Specification of algorithm's maximum number of CPU threads
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #152) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
+Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of the   |
@@ -930,9 +929,9 @@ Jama Connect entry: `(DUNE STKH #152) <https://fnal-prod.jamacloud.com/perspecti
 24.3 Specification of algorithm's CPU memory usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #154) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889>`__
+Jama Connect entry: `DUNE STKH #154 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of an    |
@@ -946,9 +945,9 @@ Jama Connect entry: `(DUNE STKH #154) <https://fnal-prod.jamacloud.com/perspecti
 24.4 Specification of algorithm's GPU resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #153) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15886>`__
+Jama Connect entry: `DUNE STKH #153 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15886>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of GPU   |
@@ -962,9 +961,9 @@ Jama Connect entry: `(DUNE STKH #153) <https://fnal-prod.jamacloud.com/perspecti
 24.5 Specification of algorithm's user-defined resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #155) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15891>`__
+Jama Connect entry: `DUNE STKH #155 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15891>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of       |
@@ -978,9 +977,9 @@ Jama Connect entry: `(DUNE STKH #155) <https://fnal-prod.jamacloud.com/perspecti
 25 Logging resource usage per algorithm invocation
 --------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #48) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14614>`__
+Jama Connect entry: `DUNE STKH #48 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14614>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support logging the usage of a    |
@@ -998,9 +997,9 @@ Jama Connect entry: `(DUNE STKH #48) <https://fnal-prod.jamacloud.com/perspectiv
 25.1 Elapsed time information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #60) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629>`__
+Jama Connect entry: `DUNE STKH #60 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to provide elapsed |
@@ -1024,9 +1023,9 @@ Jama Connect entry: `(DUNE STKH #60) <https://fnal-prod.jamacloud.com/perspectiv
 26 Resource-based algorithm concurrency
 ---------------------------------------
 
-Jama Connect entry: `(DUNE STKH #50) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14618>`__
+Jama Connect entry: `DUNE STKH #50 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14618>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall dynamically schedule algorithms   |
@@ -1044,9 +1043,9 @@ Jama Connect entry: `(DUNE STKH #50) <https://fnal-prod.jamacloud.com/perspectiv
 26.1 Efficient execution of algorithms requiring access to a network resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #144) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15854>`__
+Jama Connect entry: `DUNE STKH #144 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15854>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall efficiently execute a graph of    |
@@ -1067,9 +1066,9 @@ Jama Connect entry: `(DUNE STKH #144) <https://fnal-prod.jamacloud.com/perspecti
 26.2 Optimize memory management for data products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #142) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
+Jama Connect entry: `DUNE STKH #142 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall optimize the memory management of |
@@ -1091,9 +1090,9 @@ Jama Connect entry: `(DUNE STKH #142) <https://fnal-prod.jamacloud.com/perspecti
 26.3 Optimize availability of external resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #143) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15848>`__
+Jama Connect entry: `DUNE STKH #143 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15848>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall optimize the availability of      |
@@ -1122,9 +1121,9 @@ Jama Connect entry: `(DUNE STKH #143) <https://fnal-prod.jamacloud.com/perspecti
 26.4 Efficient execution of algorithms with specific CPU memory requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #150) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15874>`__
+Jama Connect entry: `DUNE STKH #150 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15874>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall efficiently execute a graph of    |
@@ -1139,9 +1138,9 @@ Jama Connect entry: `(DUNE STKH #150) <https://fnal-prod.jamacloud.com/perspecti
 26.5 Efficient execution of algorithms with specific GPU memory requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #151) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15875>`__
+Jama Connect entry: `DUNE STKH #151 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15875>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall efficiently execute a graph of    |
@@ -1156,9 +1155,9 @@ Jama Connect entry: `(DUNE STKH #151) <https://fnal-prod.jamacloud.com/perspecti
 27 Composable workflows using GPU algorithms and CPU algorithms
 ---------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #54) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14622>`__
+Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14622>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support composable workflows that |
@@ -1175,9 +1174,9 @@ Jama Connect entry: `(DUNE STKH #54) <https://fnal-prod.jamacloud.com/perspectiv
 28 Specification of data products required by an algorithm
 ----------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #65) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
+Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the specification of data |
@@ -1193,9 +1192,9 @@ Jama Connect entry: `(DUNE STKH #65) <https://fnal-prod.jamacloud.com/perspectiv
 29 Specification of data products created by an algorithm
 ---------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #156) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
+Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the specification of data |
@@ -1209,9 +1208,9 @@ Jama Connect entry: `(DUNE STKH #156) <https://fnal-prod.jamacloud.com/perspecti
 30 Emit message describing data flow of program
 -----------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #68) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14637>`__
+Jama Connect entry: `DUNE STKH #68 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14637>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to emit a          |
@@ -1228,9 +1227,9 @@ Jama Connect entry: `(DUNE STKH #68) <https://fnal-prod.jamacloud.com/perspectiv
 31 Emit message stating algorithm resource requirements
 -------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #56) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14625>`__
+Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14625>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to emit a message  |
@@ -1248,9 +1247,9 @@ Jama Connect entry: `(DUNE STKH #56) <https://fnal-prod.jamacloud.com/perspectiv
 32 Monitoring global memory use
 -------------------------------
 
-Jama Connect entry: `(DUNE STKH #59) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
+Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall be able to report the global      |
@@ -1267,9 +1266,9 @@ Jama Connect entry: `(DUNE STKH #59) <https://fnal-prod.jamacloud.com/perspectiv
 33 Framework-independent message logging
 ----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #61) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630>`__
+Jama Connect entry: `DUNE STKH #61 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support a logging solution that   |
@@ -1286,9 +1285,9 @@ Jama Connect entry: `(DUNE STKH #61) <https://fnal-prod.jamacloud.com/perspectiv
 34 Configuration validation
 ---------------------------
 
-Jama Connect entry: `(DUNE STKH #64) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14633>`__
+Jama Connect entry: `DUNE STKH #64 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14633>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall validate an algorithm's           |
@@ -1305,9 +1304,9 @@ Jama Connect entry: `(DUNE STKH #64) <https://fnal-prod.jamacloud.com/perspectiv
 35 Algorithm configuration schema availability
 ----------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #67) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14636>`__
+Jama Connect entry: `DUNE STKH #67 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14636>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to emit an         |
@@ -1324,9 +1323,9 @@ Jama Connect entry: `(DUNE STKH #67) <https://fnal-prod.jamacloud.com/perspectiv
 36 One configuration per framework execution
 --------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #69) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
+Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall accept exactly one configuration  |
@@ -1342,9 +1341,9 @@ Jama Connect entry: `(DUNE STKH #69) <https://fnal-prod.jamacloud.com/perspectiv
 37 Eager validation of algorithm configuration
 ----------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #70) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14639>`__
+Jama Connect entry: `DUNE STKH #70 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14639>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall validate the configuration of     |
@@ -1365,9 +1364,9 @@ Jama Connect entry: `(DUNE STKH #70) <https://fnal-prod.jamacloud.com/perspectiv
 38 Framework configuration language
 -----------------------------------
 
-Jama Connect entry: `(DUNE STKH #72) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
+Jama Connect entry: `DUNE STKH #72 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability to configure  |
@@ -1384,9 +1383,9 @@ Jama Connect entry: `(DUNE STKH #72) <https://fnal-prod.jamacloud.com/perspectiv
 39 I/O plugins
 --------------
 
-Jama Connect entry: `(DUNE STKH #73) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14642>`__
+Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14642>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide a public API that enables |
@@ -1414,9 +1413,9 @@ Jama Connect entry: `(DUNE STKH #73) <https://fnal-prod.jamacloud.com/perspectiv
 39.1 I/O backend for ROOT
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #74) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643>`__
+Jama Connect entry: `DUNE STKH #74 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support a ROOT IO       |
@@ -1432,9 +1431,9 @@ Jama Connect entry: `(DUNE STKH #74) <https://fnal-prod.jamacloud.com/perspectiv
 39.2 I/O backend for HDF5
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #141) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838>`__
+Jama Connect entry: `DUNE STKH #141 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support an HDF5 IO      |
@@ -1448,9 +1447,9 @@ Jama Connect entry: `(DUNE STKH #141) <https://fnal-prod.jamacloud.com/perspecti
 40 Data I/O backward compatibility
 ----------------------------------
 
-Jama Connect entry: `(DUNE STKH #76) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14645>`__
+Jama Connect entry: `DUNE STKH #76 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14645>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework IO subsystem shall support backward     |
@@ -1473,9 +1472,9 @@ Jama Connect entry: `(DUNE STKH #76) <https://fnal-prod.jamacloud.com/perspectiv
 40.1 Data product backward compatibility
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #106) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14796>`__
+Jama Connect entry: `DUNE STKH #106 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14796>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework's IO subsystem shall support backward   |
@@ -1489,9 +1488,9 @@ Jama Connect entry: `(DUNE STKH #106) <https://fnal-prod.jamacloud.com/perspecti
 40.2 Metadata backward compatibility
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #107) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14797>`__
+Jama Connect entry: `DUNE STKH #107 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14797>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework's IO subsystem shall support backward   |
@@ -1510,9 +1509,9 @@ Jama Connect entry: `(DUNE STKH #107) <https://fnal-prod.jamacloud.com/perspecti
 41 Configurable data compression
 --------------------------------
 
-Jama Connect entry: `(DUNE STKH #77) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14646>`__
+Jama Connect entry: `DUNE STKH #77 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14646>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework IO subsystem shall allow                |
@@ -1529,9 +1528,9 @@ Jama Connect entry: `(DUNE STKH #77) <https://fnal-prod.jamacloud.com/perspectiv
 42 User-configurable output file rollover
 -----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #78) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14647>`__
+Jama Connect entry: `DUNE STKH #78 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14647>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  |  The framework shall support user-configurable        |
@@ -1547,9 +1546,9 @@ Jama Connect entry: `(DUNE STKH #78) <https://fnal-prod.jamacloud.com/perspectiv
 42.1 Output file rollover due to number of data sets in data family
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #109) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14806>`__
+Jama Connect entry: `DUNE STKH #109 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14806>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to rollover output |
@@ -1573,9 +1572,9 @@ Jama Connect entry: `(DUNE STKH #109) <https://fnal-prod.jamacloud.com/perspecti
 42.2 Output file rollover due to file size
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #138) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15826>`__
+Jama Connect entry: `DUNE STKH #138 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15826>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to rollover output |
@@ -1590,9 +1589,9 @@ Jama Connect entry: `(DUNE STKH #138) <https://fnal-prod.jamacloud.com/perspecti
 42.3 Output file rollover due to user-defined quantities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #139) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15830>`__
+Jama Connect entry: `DUNE STKH #139 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15830>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to rollover output |
@@ -1610,9 +1609,9 @@ Jama Connect entry: `(DUNE STKH #139) <https://fnal-prod.jamacloud.com/perspecti
 42.4 Output file rollover due to file lifetime
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #140) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15832>`__
+Jama Connect entry: `DUNE STKH #140 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15832>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall have an option to rollover output |
@@ -1627,9 +1626,9 @@ Jama Connect entry: `(DUNE STKH #140) <https://fnal-prod.jamacloud.com/perspecti
 43 Algorithm invocation with data products from multiple data sets
 ------------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #89) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705>`__
+Jama Connect entry: `DUNE STKH #89 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow a single invocation of an   |
@@ -1643,9 +1642,9 @@ Jama Connect entry: `(DUNE STKH #89) <https://fnal-prod.jamacloud.com/perspectiv
 43.1 Algorithm invocation with data products from adjacent data sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #91) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713>`__
+Jama Connect entry: `DUNE STKH #91 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the invocation of an      |
@@ -1660,9 +1659,9 @@ Jama Connect entry: `(DUNE STKH #91) <https://fnal-prod.jamacloud.com/perspectiv
 43.1.1 User-defined adjacency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Jama Connect entry: `(DUNE STKH #92) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714>`__
+Jama Connect entry: `DUNE STKH #92 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support user code that defines    |
@@ -1676,9 +1675,9 @@ Jama Connect entry: `(DUNE STKH #92) <https://fnal-prod.jamacloud.com/perspectiv
 44 Algorithm invocation with data products from multiple data families
 ----------------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #113) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937>`__
+Jama Connect entry: `DUNE STKH #113 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow a single invocation of an   |
@@ -1693,9 +1692,9 @@ Jama Connect entry: `(DUNE STKH #113) <https://fnal-prod.jamacloud.com/perspecti
 45 Specification of algorithm output FPUs
 -----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #90) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706>`__
+Jama Connect entry: `DUNE STKH #90 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the user specification of |
@@ -1715,9 +1714,9 @@ Jama Connect entry: `(DUNE STKH #90) <https://fnal-prod.jamacloud.com/perspectiv
 46 Algorithm-Data Separability
 ------------------------------
 
-Jama Connect entry: `(DUNE STKH #110) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
+Jama Connect entry: `DUNE STKH #110 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The data objects exchanged among algorithms shall be  |
@@ -1731,9 +1730,9 @@ Jama Connect entry: `(DUNE STKH #110) <https://fnal-prod.jamacloud.com/perspecti
 47 ProtoDUNE single-phase raw data
 ----------------------------------
 
-Jama Connect entry: `(DUNE STKH #116) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15239>`__
+Jama Connect entry: `DUNE STKH #116 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15239>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support processing      |
@@ -1757,9 +1756,9 @@ Jama Connect entry: `(DUNE STKH #116) <https://fnal-prod.jamacloud.com/perspecti
 48 ProtoDUNE dual-phase raw data
 --------------------------------
 
-Jama Connect entry: `(DUNE STKH #117) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15240>`__
+Jama Connect entry: `DUNE STKH #117 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15240>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support processing      |
@@ -1783,9 +1782,9 @@ Jama Connect entry: `(DUNE STKH #117) <https://fnal-prod.jamacloud.com/perspecti
 49 ProtoDUNE II horizontal-drift raw data
 -----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #118) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15242>`__
+Jama Connect entry: `DUNE STKH #118 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15242>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support processing      |
@@ -1799,9 +1798,9 @@ Jama Connect entry: `(DUNE STKH #118) <https://fnal-prod.jamacloud.com/perspecti
 50 ProtoDUNE II vertical-drift raw data
 ---------------------------------------
 
-Jama Connect entry: `(DUNE STKH #119) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15244>`__
+Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15244>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework ecosystem shall support processing      |
@@ -1815,7 +1814,7 @@ Jama Connect entry: `(DUNE STKH #119) <https://fnal-prod.jamacloud.com/perspecti
 51 Provenance discovery
 -----------------------
 
-| Jama Connect entry: `(DUNE STKH #121) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
+| Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
 | See :ref:`introduction:Framework philosophy`
 
 +--------------+-------------------------------------------------------+
@@ -1830,9 +1829,9 @@ Jama Connect entry: `(DUNE STKH #119) <https://fnal-prod.jamacloud.com/perspecti
 51.1 Framework configuration persistency
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #27) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587>`__
+Jama Connect entry: `DUNE STKH #27 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide an option to persist the  |
@@ -1854,9 +1853,9 @@ Jama Connect entry: `(DUNE STKH #27) <https://fnal-prod.jamacloud.com/perspectiv
 51.2 Framework recording of metadata for reproduction of output data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #28) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14588>`__
+Jama Connect entry: `DUNE STKH #28 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14588>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall record metadata to output         |
@@ -1873,9 +1872,9 @@ Jama Connect entry: `(DUNE STKH #28) <https://fnal-prod.jamacloud.com/perspectiv
 52 Reproducibility of data products
 -----------------------------------
 
-Jama Connect entry: `(DUNE STKH #122) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
+Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the reproduction of data  |
@@ -1889,9 +1888,9 @@ Jama Connect entry: `(DUNE STKH #122) <https://fnal-prod.jamacloud.com/perspecti
 52.1 Reproducibility with pseudo-random numbers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #36) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14596>`__
+Jama Connect entry: `DUNE STKH #36 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14596>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide a facility to produce     |
@@ -1908,9 +1907,9 @@ Jama Connect entry: `(DUNE STKH #36) <https://fnal-prod.jamacloud.com/perspectiv
 52.2 Independence from unique hardware characteristics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #63) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632>`__
+Jama Connect entry: `DUNE STKH #63 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall operate independently of unique   |
@@ -1926,9 +1925,9 @@ Jama Connect entry: `(DUNE STKH #63) <https://fnal-prod.jamacloud.com/perspectiv
 53 Command line interface (CLI)
 -------------------------------
 
-Jama Connect entry: `(DUNE STKH #125) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15710>`__
+Jama Connect entry: `DUNE STKH #125 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15710>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide a command-line interface  |
@@ -1942,9 +1941,9 @@ Jama Connect entry: `(DUNE STKH #125) <https://fnal-prod.jamacloud.com/perspecti
 54 Support local configuration changes
 --------------------------------------
 
-Jama Connect entry: `(DUNE STKH #126) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15715>`__
+Jama Connect entry: `DUNE STKH #126 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15715>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the use of local          |
@@ -1960,9 +1959,9 @@ Jama Connect entry: `(DUNE STKH #126) <https://fnal-prod.jamacloud.com/perspecti
 55 Configuration tracing
 ------------------------
 
-Jama Connect entry: `(DUNE STKH #127) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15718>`__
+Jama Connect entry: `DUNE STKH #127 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15718>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework configuration system shall have an      |
@@ -1978,9 +1977,9 @@ Jama Connect entry: `(DUNE STKH #127) <https://fnal-prod.jamacloud.com/perspecti
 56 Configuration language single point of maintenance
 -----------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #128) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15723>`__
+Jama Connect entry: `DUNE STKH #128 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15723>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The language used for configuring a framework program |
@@ -1997,9 +1996,9 @@ Jama Connect entry: `(DUNE STKH #128) <https://fnal-prod.jamacloud.com/perspecti
 57 Enable identification of data sets containing chunked data products
 ----------------------------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #129) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15737>`__
+Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15737>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall record metadata identifying data  |
@@ -2014,9 +2013,9 @@ Jama Connect entry: `(DUNE STKH #129) <https://fnal-prod.jamacloud.com/perspecti
 58 Thread-safe design for algorithms
 ------------------------------------
 
-Jama Connect entry: `(DUNE STKH #130) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
+Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall facilitate the development of     |
@@ -2030,9 +2029,9 @@ Jama Connect entry: `(DUNE STKH #130) <https://fnal-prod.jamacloud.com/perspecti
 59 Framework build flags
 ------------------------
 
-Jama Connect entry: `(DUNE STKH #131) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15744>`__
+Jama Connect entry: `DUNE STKH #131 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15744>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework build system shall support options that |
@@ -2046,9 +2045,9 @@ Jama Connect entry: `(DUNE STKH #131) <https://fnal-prod.jamacloud.com/perspecti
 60 Floating-point environment
 -----------------------------
 
-Jama Connect entry: `(DUNE STKH #132) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15746>`__
+Jama Connect entry: `DUNE STKH #132 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15746>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow the per-execution setting   |
@@ -2063,9 +2062,9 @@ Jama Connect entry: `(DUNE STKH #132) <https://fnal-prod.jamacloud.com/perspecti
 61 Composing configurations of framework components
 ---------------------------------------------------
 
-Jama Connect entry: `(DUNE STKH #133) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
+Jama Connect entry: `DUNE STKH #133 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support executing programs        |
@@ -2080,9 +2079,9 @@ Jama Connect entry: `(DUNE STKH #133) <https://fnal-prod.jamacloud.com/perspecti
 62 Graceful shutdown of framework program
 -----------------------------------------
 
-Jama Connect entry: `(DUNE STKH #134) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15787>`__
+Jama Connect entry: `DUNE STKH #134 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15787>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall attempt a graceful shutdown by    |
@@ -2111,9 +2110,9 @@ Jama Connect entry: `(DUNE STKH #134) <https://fnal-prod.jamacloud.com/perspecti
 62.1 Graceful shutdown for uncaught exception
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #135) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15788>`__
+Jama Connect entry: `DUNE STKH #135 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15788>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall by default attempt a graceful     |
@@ -2128,9 +2127,9 @@ Jama Connect entry: `(DUNE STKH #135) <https://fnal-prod.jamacloud.com/perspecti
 62.2 Graceful shutdown for received signal
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `(DUNE STKH #136) <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15789>`__
+Jama Connect entry: `DUNE STKH #136 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15789>`__
 
-.. warning:: Not yet referenced in design
+.. todo:: Not yet referenced in design
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall by default attempt a graceful     |

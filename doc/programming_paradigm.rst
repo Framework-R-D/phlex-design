@@ -1,5 +1,5 @@
 Functional programming
-----------------------
+======================
 
 Phlex supports a *functional programming* paradigm, where data-processing occurs by favoring the use of *functions* instead of the direct manipulation of stateful objects.
 The processing of data happens by using chained operations, where the output of one function serves as the input to other functions.
@@ -27,7 +27,7 @@ Expressing the processing needs according to mathematics enables:
 - parallel invocations of pure functions with no possibility of data races.
 
 Pure functions
-^^^^^^^^^^^^^^
+--------------
 
 According to Wikipedia [Wiki-pure]_, a pure function has the following properties:
 
@@ -38,7 +38,7 @@ The composition of pure functions is also a pure function.
 For example, assuming the functions :math:`f` and :math:`g` above are pure, then the composite function :math:`h` will also be pure.
 
 Difficulties with functional programming
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
 One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
@@ -49,7 +49,7 @@ Phlex aims to restore the functional programming approach as the natural way of 
 By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), any awkwardness due to functional programming is largely alleviated.
 
 Sequences of data and higher-order functions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------
 
 Particle physics results are obtained by performing statistical analysis on sequences of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
@@ -90,7 +90,7 @@ A calculation is then generally expressed in terms of:
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
 
 Higher-order functions supported by Phlex
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In general, higher-order functions transform one sequence to another:
 
@@ -137,7 +137,7 @@ Phlex will likely support other higher order functions as well, such as a slidin
 
 .. rubric:: Footnotes
 
-.. [#f1] As discussed :ref:`here <graph_processing:Graphs of higher-order functions>`, the general topology of a data-processing workflow is a *graph* of functions.
+.. [#f1] As discussed :ref:`here <data_flow:Data flow>`, the general topology of a data-processing workflow is a *graph* of functions.
 
 .. rubric:: References
 
