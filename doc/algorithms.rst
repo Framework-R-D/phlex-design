@@ -1,6 +1,9 @@
 Algorithms
 ==========
 
+For each algorithm, it is possible to specify which hardware resources required by it :dune:`4 Algorithm hardware requirements`.
+Specifically, the registration code for an algorithm allows the specification of the maximum number of CPU threads the framework can use when invoking the algorithm :dune:`4.1 Algorithms can use multiple CPUs`.
+
 Configured higher-order functions (CHOFs)
 -----------------------------------------
 

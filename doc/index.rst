@@ -17,6 +17,6 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
    :caption: Appendices:
 
    definitions
-   requirements <DUNE-framework-baseline-1>
+   requirements
    platforms
    deployment

@@ -78,9 +78,8 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 4 Algorithm hardware requirements
 ---------------------------------
 
-Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
+| See :ref:`algorithms:Algorithms`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide an API that allows users  |
@@ -96,9 +95,8 @@ Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.r
 4.1 Algorithms can use multiple CPUs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #10 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #10 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
+| See :ref:`algorithms:Algorithms`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support running algorithms that   |
@@ -197,9 +195,8 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 5 Support for multiple programming languages
 --------------------------------------------
 
-Jama Connect entry: `DUNE STKH #14 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #14 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
+| See :ref:`introduction:Programming languages`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the invocation of         |
@@ -794,9 +791,8 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 23 Resource specification for the program
 -----------------------------------------
 
-Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
+| See :ref:`user_configuration:Program resource specification`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of       |
