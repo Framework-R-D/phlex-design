@@ -15,6 +15,9 @@ project = 'Phlex framework'
 copyright = '2025, Fermi Forward Discovery Group, LLC'
 author = 'Phlex developers'
 
+version = "0"
+release = "0.1"
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 

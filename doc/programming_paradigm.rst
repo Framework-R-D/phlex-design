@@ -117,8 +117,8 @@ Details of each higher-order function are provided by the link to the correspond
 |                                                   |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
 +---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 | :ref:`Unfold <algorithms:Unfolds>`                | .. math::                               | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
-|                                                   |    p: D &\rightarrow& \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
-|                                                   |    q: D &\rightarrow& D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
+|                                                   |    p: D &\rightarrow \mbox{Boolean} \\  |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
+|                                                   |    q: D &\rightarrow D \times C         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
 +---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 | :ref:`Filter <algorithms:Filters and predicates>` | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
 |                                                   |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
