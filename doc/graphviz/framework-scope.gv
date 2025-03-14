@@ -17,9 +17,9 @@ digraph {
   signals [shape="point", width=0.1, fillcolor="black"]
   results [shape="point", width=0.1, fillcolor="black"]
 
-  DAQ
-  framework [label="Reconstruction and\nsimulation framework", fillcolor="royalblue3"]
-  Analysis
+  DAQ [label=<<b>DAQ</b>>]
+  framework [label=<<b>Reconstruction and<br/>simulation framework</b>>, fillcolor="royalblue3"]
+  Analysis [label=<<b>Analysis</b>>]
 
   // Artificial nodes for creating labels
   node [penwidth="0", style="nofill", fontcolor="black", margin="0,0"];
