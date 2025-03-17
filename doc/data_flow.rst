@@ -32,13 +32,13 @@ Some observations:
   This means that whereas the equation does not need to specify where the :math:`ws` wires originate (or where the :math:`ts` tracks end up), such locations must be specified in the graph.
   Any node that has only outgoing edges is called a *source* (denoted by a solid dot), and any node that has only incoming edges is a *sink* (denoted by an encircled solid dot).
 
-Data flow and higher-order functions
-------------------------------------
+Data flow with sequences
+------------------------
 
 As :ref:`mentioned earlier <programming_paradigm:Sequences of data and higher-order functions>`, processing sequences of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of sequences.  Specifically [#f2]_:
 
-- Instead of the individual objects :math:`ws`, :math:`hs`, and math:`ts` being passed along the edges, the sequences :math:`(ws_i)`, :math:`(hs_i)`, and :math:`(ts_i)` are passed.
+- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`(ws_i)`, :math:`(hs_i)`, and :math:`(ts_i)` are passed.
 - The functions :math:`f` and :math:`g` map to :math:`\mbox{transform}\left\{f\right\}` and :math:`\mbox{transform}\left\{g\right\}`, respectively.
 
 .. graphviz:: graphviz/functional-programming-data-flow-hof.gv
@@ -70,7 +70,7 @@ By adopting a sequence-based representation of the sum-of-squares problem, the d
 .. graphviz:: graphviz/unfold-transform-fold-hof.gv
    :align: center
 
-In addition, the topology of the sequence-based graph remains the same regardless of the values of :math:`n`; the topology of the object-based graph becomes intractable as :math:`n` increases.
+In addition, the topology of the sequence-based graph remains the same regardless of the value of :math:`n`; the topology of the object-based graph becomes intractable as :math:`n` increases.
 
 The vast majority of graphs included in this design document adopt the sequence-based data-flow representation.
 

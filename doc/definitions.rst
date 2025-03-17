@@ -27,6 +27,10 @@ Definitions
        All semantically identical configurations shall have the same canonical form.
        Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
 
+   Configured higher-order function (CHOF)
+       An entity created when registering an algorithm with the framework.
+       The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
+
    Data family
        A collection of data sets (e.g.):
 

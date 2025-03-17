@@ -37,16 +37,7 @@ According to Wikipedia [Wiki-pure]_, a pure function has the following propertie
 The composition of pure functions is also a pure function.
 For example, assuming the functions :math:`f` and :math:`g` above are pure, then the composite function :math:`h` will also be pure.
 
-Difficulties with functional programming
-----------------------------------------
-
-One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
-Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
-We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
-It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
-
-Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), any awkwardness due to functional programming is largely alleviated.
+Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the :ref:`framework philosophy <introduction:Framework philosophy>`.
 
 Sequences of data and higher-order functions
 --------------------------------------------
@@ -92,7 +83,7 @@ Such a formulation lends itself to well-established processing patterns that can
 Higher-order functions supported by Phlex
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In general, higher-order functions transform one sequence to another:
+In general, HOFs transform one sequence to another:
 
 .. math::
    (a_{i_1i_2\dots i_n}) \rightarrow (b_{j_1j_2\dots j_m})
@@ -100,8 +91,9 @@ In general, higher-order functions transform one sequence to another:
 where the multiple indices indicate that the sequences can be multidimensional.
 Note that :math:`n` is not necessarily equal to :math:`m`.
 
-The following table lists the higher-order functions supported by Phlex.
+The following table lists the HOFs supported by Phlex.
 Details of each higher-order function are provided by the link to the corresponding section in the User API section.
+As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
 
 +------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
 | Higher-order function                                                                                                                          | Resulting sequence                                |
@@ -134,6 +126,17 @@ The set :math:`\mathbb{1}` indicates a one-element set whose element can represe
 In C++, this would be denoted by the return statement `return;` whereas in Python, it would be denoted by either `return` or `return None`.
 
 Phlex will likely support other higher order functions as well, such as a sliding window.
+
+Difficulties with functional programming
+----------------------------------------
+
+One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
+Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
+We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
+It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
+
+Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
+By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), any awkwardness due to functional programming is largely alleviated.
 
 .. rubric:: Footnotes
 

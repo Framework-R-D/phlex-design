@@ -24,9 +24,8 @@ Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.r
 1.1 Algorithm Communication Via Data Products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
+| See :ref:`scheduling:Building the data-flow graph`, :ref:`algorithms:Framework registration`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall mediate communication between     |
@@ -79,7 +78,7 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 ---------------------------------
 
 | Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
-| See :ref:`algorithms:Algorithms`
+| See :ref:`algorithms:Framework registration`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide an API that allows users  |
@@ -96,7 +95,7 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #10 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
-| See :ref:`algorithms:Algorithms`
+| See :ref:`algorithms:Framework registration`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support running algorithms that   |
@@ -729,9 +728,8 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 20 Algorithms independent of framework interface
 ------------------------------------------------
 
-Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
+| See :ref:`algorithms:Algorithms`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall support the registration of       |

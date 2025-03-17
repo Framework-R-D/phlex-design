@@ -1,11 +1,92 @@
 Algorithms
 ==========
 
-For each algorithm, it is possible to specify which hardware resources required by it :dune:`4 Algorithm hardware requirements`.
-Specifically, the registration code for an algorithm allows the specification of the maximum number of CPU threads the framework can use when invoking the algorithm :dune:`4.1 Algorithms can use multiple CPUs`.
+As :ref:`mentioned earlier <programming_paradigm:Higher-order functions supported by Phlex>`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+The specific signature expected of each algorithm depends on which HOF is needed (see the :ref:`algorithms:HOF operators` below).
+Usually, an algorithm does not need to depend on framework interface :dune:`20 Algorithms independent of framework interface`.
+There may be scenarios, however, where dependence on framework interface is required, especially if framework-specific metadata types are used by the algorithm.
 
-Configured higher-order functions (CHOFs)
------------------------------------------
+Framework registration
+----------------------
+
+.. important::
+
+   The C++ interface below is illustrative and not intended to reflect the final registration interface.
+
+Phlex adopts a `fluent interface <https://en.wikipedia.org/wiki/Fluent_interface>`_ for registering algorithms.
+This makes it possible to express the sentence:
+
+    *With the function* `make_tracks` *and unlimited concurrency, transform "hits" to "tracks" for each event.*
+
+in terms of the C++ code:
+
+.. code:: c++
+
+   ALGORITHMS(m)
+   {
+     m.with(
+            make_tracks,           // (1) Algorithm/HOF operator
+            concurrency::unlimited // (2) Allowed CPU concurrency
+           )
+      .transform(                  // (3) Higher-order function
+                 "hits"            // (4) Input data product
+                )
+      .to("tracks")                // (5) Output data product
+      .for_each("event");          // (6) Where to find input data product/place output data product
+   }
+
+The above code specifies 6 pieces of information:
+
+1. The algorithm/HOF operator to be used
+2. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`4.1 Algorithms can use multiple CPUs`
+3. The HOF to be used (generally expressed as an active verb)
+4. The product name(s) from which to form the input data product sequence
+5. The name(s) of the data product created by the algorithm
+6. The data category where the input data products are found and the output data products are to be placed
+
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see :ref:`below <algorithms:HOF operators>` for specific interface).
+However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
+
+When executed, the above code creates a :term:`configured higher-order function <Configured higher-order function (CHOF)>`, which serves as a node in the function-centric data-flow graph.
+
+Accessing configuation information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A more typical usage pattern is to access information from the program's configuration.
+
+.. code:: c++
+
+   ALGORITHMS(m, config)
+   {
+     auto selected_data_category = config.get<std::string>("data_category", "event");
+     m.with(make_tracks, concurrency::unlimited)
+      .transform("hits")
+      .to("tracks")
+      .for_each(selected_data_category);
+   }
+
+
+Framework dependence in registration code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lambda expressions
+^^^^^^^^^^^^^^^^^^
+
+Lambda expressions may be preferable when needing to register overloaded functions.
+
+Member functions of classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Multiple input arguments
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Multiple output arguments
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Allowed types in function signatures
+------------------------------------
+
+
 
 HOF operators
 -------------
@@ -90,6 +171,3 @@ Unfolds
 
 Composite CHOFs
 ---------------
-
-Scheduling
-----------

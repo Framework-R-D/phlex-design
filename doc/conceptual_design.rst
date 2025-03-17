@@ -10,6 +10,8 @@ Conceptual design
 Preliminaries
 -------------
 
+Phlex is inspired by *functional programming* and *data-flow graphs*, which are described below in more detail.
+
 .. toctree::
    :maxdepth: 2
 
@@ -19,15 +21,14 @@ Preliminaries
 Public interface
 ----------------
 
-The framework is a system of integrated aspects that must work together.
-To illustrate how these subsystems are designed to work together, we use the below graph to describe each aspect.
-
-.. todo::
-   Make graph
+To motivate the public interface, we first discuss how a Phlex data-flow graph is built or, equivalently, how work is scheduled to be performed by Phlex.
+We then move on to the ingredients of the data flow, such as data organization and algorithms.
+Lastly, we cover how a Phlex program configuration is used to express the desired data flow.
 
 .. toctree::
    :maxdepth: 2
 
+   scheduling
    data_organization
    algorithms
    sources_sinks

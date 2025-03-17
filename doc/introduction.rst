@@ -33,8 +33,9 @@ A framework is a tool that aids the scientific process of inferring accurate phy
 Maintaining data integrity is therefore paramount, as is retaining an accounting of how physics results were obtained from that data.
 The Phlex design therefore:
 
-- treats all data presented to (or created by) Phlex as immutable during any Phlex program, and
-- requires recording the :term:`provenance` of every created :term:`data product` :dune:`51 Provenance discovery`.
+- treats all data presented to (or created by) Phlex as immutable during any Phlex program,
+- requires recording the :term:`provenance` of every created :term:`data product` :dune:`51 Provenance discovery`, and
+- to the extent possible ensures the :term:`reproducible` creation of data products.
 
 Programming languages
 ---------------------
