@@ -95,31 +95,31 @@ The following table lists the HOFs supported by Phlex.
 Details of each higher-order function are provided by the link to the corresponding section in the User API section.
 As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
-| Higher-order function                                                                                                                          | Resulting sequence                                |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| Name                                              | Operator                                | Sequence transformation                          | Dimension                  | Length               |
-+===================================================+=========================================+==================================================+============================+======================+
-| :ref:`Transform <algorithms:Transforms>`          | :math:`f: A \rightarrow B`              | .. math::                                        | :math:`\dim(b) = \dim(a)`  | :math:`|b| = |a|`    |
-|                                                   |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                   |                                         |    \underbrace{(b_{i_1\dots i_n})}_b             |                            |                      |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Fold <algorithms:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| < |c|`    |
-|                                                   |                                         |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow |                            |                      |
-|                                                   |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Unfold <algorithms:Unfolds>`                | .. math::                               | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
-|                                                   |    p: D &\rightarrow \mbox{Boolean} \\  |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
-|                                                   |    q: D &\rightarrow D \times C         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Filter <algorithms:Filters and predicates>` | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
-|                                                   |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                   |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Observer <algorithms:Observers>`            | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
-|                                                   |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                   |                                         |    \underbrace{(\quad)}_{a'}                     |                            |                      |
-+---------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
+| Higher-order function                                                                                                                             | Resulting sequence                                |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| Name                                                 | Operator                                | Sequence transformation                          | Dimension                  | Length               |
++======================================================+=========================================+==================================================+============================+======================+
+| :ref:`Transform <hof_operators:Transforms>`          | :math:`f: A \rightarrow B`              | .. math::                                        | :math:`\dim(b) = \dim(a)`  | :math:`|b| = |a|`    |
+|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                      |                                         |    \underbrace{(b_{i_1\dots i_n})}_b             |                            |                      |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Fold <hof_operators:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| < |c|`    |
+|                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow |                            |                      |
+|                                                      |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Unfold <hof_operators:Unfolds>`                | .. math::                               | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
+|                                                      |    p: D &\rightarrow \mbox{Boolean} \\  |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
+|                                                      |    q: D &\rightarrow D \times C         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Filter <hof_operators:Filters and predicates>` | :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
+|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+| :ref:`Observer <hof_operators:Observers>`            | :math:`p: A \rightarrow \mathbb{1}`     | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
+|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
+|                                                      |                                         |    \underbrace{(\quad)}_{a'}                     |                            |                      |
++------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
 The set :math:`\mathbb{1}` indicates a one-element set whose element can represent a `false` value.
