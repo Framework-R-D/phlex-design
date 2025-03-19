@@ -2,7 +2,7 @@ Algorithms
 ==========
 
 As :ref:`mentioned earlier <programming_paradigm:Higher-order functions supported by Phlex>`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-The specific signature expected of each algorithm depends on which HOF is needed (see the :ref:`algorithms:HOF operators` below).
+The specific signature expected of each algorithm depends on which HOF is needed (see the :ref:`hof_operators:HOF operators` below).
 Usually, an algorithm does not need to depend on framework interface :dune:`20 Algorithms independent of framework interface`.
 There may be scenarios, however, where dependence on framework interface is required, especially if framework-specific metadata types are used by the algorithm.
 
@@ -44,7 +44,7 @@ The above code specifies 6 pieces of information:
 5. The name(s) of the data product created by the algorithm
 6. The data category where the input data products are found and the output data products are to be placed
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see :ref:`below <algorithms:HOF operators>` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :ref:`section on HOF operators <hof_operators:HOF operators>` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
 
 When executed, the above code creates a :term:`configured higher-order function <Configured higher-order function (CHOF)>`, which serves as a node in the function-centric data-flow graph.
@@ -69,6 +69,61 @@ A more typical usage pattern is to access information from the program's configu
 Framework dependence in registration code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Allowed signatures for registered functions
+-------------------------------------------
+
+In general, Phlex supports the registration of C++ algorithms with function signatures like (see :ref:`below <algorithms:HOF operators>`):
+
+.. code:: c++
+
+   return_type function_name(P1, ..., Pn, R1, ..., Rm) [qualifiers];
+
+where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate resources.
+We will first discuss the data-product and resource types, followed by the :cpp:`return_type`, and then the :cpp:`function_name` and optional qualifers.
+
+Input parameters
+^^^^^^^^^^^^^^^^
+
+A data product of type :cpp:`P` can be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`T` types) is one of the following:
+
+- :cpp:`P const&` — immutable access to a data product provided through a reference
+- :cpp:`P const*` — immutable access to a data product provided through a pointer
+- :cpp:`P const` — the data product is copied into an immutable object (assumes data product is copyable)
+- :cpp:`P` — the data product is copied into a mutable object (assumes data product is copyable)
+- :cpp:`phlex::handle<P>` — a lightweight object that provides immutable access to a data product as well as any metadata associated with it
+
+For each of these cases, the data product itself remains immutable.
+
+Whereas data-product types are allowed to be copyable and immutable, resources of type :cpp:`R` are not assumed to be copyable or immutable.
+The following types are therefore supported:
+
+- :cpp:`R const&` — immutable access to a resource provided through a reference
+- :cpp:`R const*` — immutable access to a resource provided through a pointer
+- :cpp:`R&` — mutable access to a resource provided through a reference (if mutable access permitted by resource)
+- :cpp:`R*` — mutable access to a resource provided through a pointer (if mutable access permitted by resource)
+- :cpp:`phlex::resource<R>` — a lightweight object that provides access to the resource as well as any metadata associated with it
+
+Resources are described in more detail :ref:`here <resources:Resources>` along with a motivation for why mutable access is sometimes necessary
+
+Return type
+^^^^^^^^^^^
+
+The meaning of an algorithm's return type depends on the HOF and is discussed in the :ref:`section on HOF operators <hof_operators:HOF operators>`.
+However, to simplify the discussion we introduce to concept of the *created data-product type*.
+For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
+This means that the data products created by algorithms must have types that connote unique ownership.
+Such semantics are conveyed to the framework by returning *values* and not null objects.
+
+A created data-product type supports either:
+
+- :cpp:`T`, where :cpp:`T` is not a pointer or reference type
+- :cpp:`std::unique_ptr<T>`, where the created object is non-null
+
+The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:
+
+- *bare pointer types*, such as :cpp:`T*` or :cpp:`T const*`
+- *reference types*, such as :cpp:`T&` or :cpp:`T const&`
+
 Lambda expressions
 ^^^^^^^^^^^^^^^^^^
 
@@ -77,97 +132,13 @@ Lambda expressions may be preferable when needing to register overloaded functio
 Member functions of classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Multiple input arguments
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Multiple output arguments
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Allowed types in function signatures
-------------------------------------
-
-
-
 HOF operators
--------------
+^^^^^^^^^^^^^
 
-Transforms
-^^^^^^^^^^
+The specific function signature of the algorithm depends on the HOF to which the algorithm serves as an operator.
+Please see the below links for details on each operator.
 
-+----------------------------+--------------------------------------------------+-----------------------------------------------+
-| Transform                                                                     | Resulting sequence                            |
-+----------------------------+--------------------------------------------------+---------------------------+-------------------+
-| Operator                   | Sequence transformation                          | Dimension                 | Length            |
-+============================+==================================================+===========================+===================+
-| :math:`f: A \rightarrow B` | .. math::                                        | :math:`\dim(b) = \dim(a)` | :math:`|b| = |a|` |
-|                            |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                           |                   |
-|                            |    \underbrace{(b_{i_1\dots i_n})}_b             |                           |                   |
-+----------------------------+--------------------------------------------------+---------------------------+-------------------+
+.. toctree::
+   :maxdepth: 2
 
-Filters and predicates
-^^^^^^^^^^^^^^^^^^^^^^
-
-+--------------------------------------------------------------------------------------------+---------------------------------------------------+
-| Filter                                                                                     | Resulting sequence                                |
-+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| Operator (predicate)                    | Sequence transformation                          | Dimension                  | Length               |
-+=========================================+==================================================+============================+======================+
-| :math:`p: A \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
-|                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
-+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-
-Phlex will not schedule a predicate for execution if it is not bound to a filter.
-Phlex will also not schedule a filter for execution if there are no non-filter algorithms downstream of it.
-
-Observers
-^^^^^^^^^
-
-+----------------------------------------------------------------------------------------+-----------------------------------------------+
-| Observer                                                                               | Resulting sequence                            |
-+-------------------------------------+--------------------------------------------------+----------------------------+------------------+
-| Operator                            | Sequence transformation                          | Dimension                  | Length           |
-+=====================================+==================================================+============================+==================+
-| :math:`p: A \rightarrow \mathbb{1}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0` |
-|                                     |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                  |
-|                                     |    \underbrace{(\quad)}_{a'}                     |                            |                  |
-+-------------------------------------+--------------------------------------------------+----------------------------+------------------+
-
-As :ref:`mentioned earlier <programming_paradigm:Higher-order functions supported by Phlex>`, observers are a special case of filters that always reject the data presented to them.
-Because of this, in a purely functional approach, it is unnecessary to invoke an observer as no data will be produced by an observer.
-Additionally, any algorithms downstream of an always-rejecting filter will never be invoked.
-
-However, there are cases where a user may wish to inspect a data product without adjusting the data flow of the program.
-This is done by creating an algorithm called an *observer*, which may access a data product but create no data products.
-An example of this is writing ROOT histograms or trees that are not intended to be used in another framework program.
-
-Unlike filters and predicates, observers (by definition) are allowed to be the most downstream algorithms of the graph.
-
-Folds
-^^^^^
-
-+----------------------------------------------------------------------------------------+-----------------------------------------------+
-| Fold                                                                                   | Resulting sequence                            |
-+-------------------------------------+--------------------------------------------------+---------------------------+-------------------+
-| Operator                            | Sequence transformation                          | Dimension                 | Length            |
-+=====================================+==================================================+===========================+===================+
-| :math:`g: C \times D \rightarrow D` | .. math::                                        | :math:`\dim(d) < \dim(c)` | :math:`|d| < |c|` |
-|                                     |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow |                           |                   |
-|                                     |    \underbrace{(d_{i_1\dots i_m})}_d             |                           |                   |
-+-------------------------------------+--------------------------------------------------+---------------------------+-------------------+
-
-Unfolds
-^^^^^^^
-
-+-------------------------------------------------------------------------------------------+-----------------------------------------------+
-| Unfold                                                                                    | Resulting sequence                            |
-+----------------------------------------+--------------------------------------------------+---------------------------+-------------------+
-| Operators                              | Sequence transformation                          | Dimension                 | Length            |
-+========================================+==================================================+===========================+===================+
-| .. math::                              | .. math::                                        | :math:`\dim(c) > \dim(d)` | :math:`|c| > |d|` |
-|    p: D &\rightarrow \mbox{Boolean} \\ |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                           |                   |
-|    q: D &\rightarrow D \times C        |    \underbrace{(c_{i_1\dots i_n})}_c             |                           |                   |
-+----------------------------------------+--------------------------------------------------+---------------------------+-------------------+
-
-Composite CHOFs
----------------
+   hof_operators
