@@ -31,6 +31,12 @@ templates_path = ['_templates']
 todo_include_todos = True
 todo_emit_warnings = True
 
+rst_prolog ="""
+.. role:: cpp(code)
+   :language: c++
+   :class: highlight
+"""
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
