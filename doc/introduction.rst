@@ -1,5 +1,6 @@
+************
 Introduction
-============
+************
 
 The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.
 
@@ -18,7 +19,7 @@ However, the HEP community tends to perform final-stage analysis using standalon
 Phlex, therefore, aims to satisfy the data-processing needs of only physics reconstruction and simulation.
 
 Requirements process
---------------------
+====================
 
 Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment.
 The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements [#f1]_.
@@ -27,7 +28,7 @@ The stakeholder requirements are listed in :ref:`an appendix <requirements:Frame
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
 
 Framework philosophy
---------------------
+====================
 
 A framework is a tool that aids the scientific process of inferring accurate physics results from observed data.
 Maintaining data integrity is therefore paramount, as is retaining an accounting of how physics results were obtained from that data.
@@ -38,7 +39,7 @@ The Phlex design therefore:
 - to the extent possible ensures the :term:`reproducible` creation of data products.
 
 Programming languages
----------------------
+=====================
 
 The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :dune:`5 Support for multiple programming languages`.  Specifically, an algorithm may be written in either C++ (no standard yet specified) :dune:`5.1 Support C++ algorithms` or Python (no version yet specified) :dune:`5.2 Support Python algorithms`.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.

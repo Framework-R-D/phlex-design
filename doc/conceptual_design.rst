@@ -1,5 +1,6 @@
+*****************
 Conceptual design
-=================
+*****************
 
 .. admonition:: Purpose
 
@@ -8,7 +9,7 @@ Conceptual design
    A more technical description of the intended design is given :ref:`here <technical_design:Technical design>`.
 
 Preliminaries
--------------
+=============
 
 Phlex is inspired by *functional programming* and *data-flow graphs*, which are described below in more detail.
 
@@ -19,7 +20,7 @@ Phlex is inspired by *functional programming* and *data-flow graphs*, which are 
    data_flow
 
 Public interface
-----------------
+================
 
 To motivate the public interface, we first discuss how a Phlex data-flow graph is built or, equivalently, how work is scheduled to be performed by Phlex.
 We then move on to the ingredients of the data flow, such as data organization and algorithms.
