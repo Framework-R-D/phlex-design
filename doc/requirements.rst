@@ -91,21 +91,6 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 | Tags         | General, Original, Reproducibility                    |
 +--------------+-------------------------------------------------------+
 
-4.1 Algorithms can use multiple CPUs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-| Jama Connect entry: `DUNE STKH #10 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14550>`__
-| See :ref:`algorithms:Framework registration`
-
-+--------------+-------------------------------------------------------+
-| Requirement  | The framework shall support running algorithms that   |
-|              | require multiple CPUs.                                |
-+==============+=======================================================+
-| Status       | Approved                                              |
-+--------------+-------------------------------------------------------+
-| Tags         | General, Reproducibility                              |
-+--------------+-------------------------------------------------------+
-
 4.2 Algorithms can use a GPU
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -909,9 +894,8 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
 24.2 Specification of algorithm's maximum number of CPU threads
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
+| See :ref:`algorithms:Framework registration`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall enable the specification of the   |
