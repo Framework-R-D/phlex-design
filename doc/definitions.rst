@@ -66,6 +66,9 @@ Definitions
    Metadata
        Data that is ancillary to physics data.
 
+   Module
+       A compiled library that is dynamically loadable by the framework.
+
    Parentage
        The set of unique identifiers of each ancestral datum.
 
