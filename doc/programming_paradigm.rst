@@ -162,7 +162,9 @@ By leveraging commonly used processing patterns (see next section on :ref:`highe
 
 .. [#f1] As discussed :ref:`here <data_flow:Data flow>`, the general topology of a data-processing workflow is a *graph* of functions.
 
-.. rubric:: References
+.. only:: html
+
+   .. rubric:: References
 
 .. [Wiki-pure] https://en.wikipedia.org/wiki/Pure_function
 .. [Wiki-hof] https://en.wikipedia.org/wiki/Higher-order_function

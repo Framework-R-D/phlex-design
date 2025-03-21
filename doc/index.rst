@@ -12,8 +12,13 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
    conceptual_design
    technical_design
 
+.. raw:: latex
+
+   \appendix
+   \setcounter{secnumdepth}{0}
+
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
    :caption: Appendices:
 
    definitions
