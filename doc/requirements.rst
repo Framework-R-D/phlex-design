@@ -6,7 +6,8 @@ Framework requirements
 1 Algorithm Decomposability
 ---------------------------
 
-Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
+| Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
+| See :ref:`scheduling:Building the data-flow graph`
 
 .. todo:: Not yet referenced in design
 
@@ -290,9 +291,8 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 9 Presenting data to subsequent algorithms
 ------------------------------------------
 
-Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
+| See :ref:`scheduling:Building the data-flow graph`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall present data produced by an       |
