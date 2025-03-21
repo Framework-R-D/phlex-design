@@ -18,7 +18,7 @@ Transforms
 |                            |    \)                                            |                           |                   |
 +----------------------------+--------------------------------------------------+---------------------------+-------------------+
 
-**Return type**: A transform algorithm may create multiple data products by returning an `std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` are pointer or reference types models a data-product created type.
+**Return type**: A transform algorithm may create multiple data products by returning an `std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
 
 Filters and predicates
 ----------------------

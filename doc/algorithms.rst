@@ -14,26 +14,22 @@ We will first discuss the :ref:`data-product and resource types <algorithms:Inpu
 Input parameters
 ----------------
 
-A data product of type :cpp:`P` can be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`T` types) is one of the following:
+A data product of type :cpp:`P` can be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
 
-- :cpp:`P const&` — immutable access to a data product provided through a reference
-- :cpp:`P const*` — immutable access to a data product provided through a pointer
-- :cpp:`P const` — the data product is copied into an immutable object (assumes data product is copyable)
-- :cpp:`P` — the data product is copied into a mutable object (assumes data product is copyable)
-- :cpp:`phlex::handle<P>` — a lightweight object that provides immutable access to a data product as well as any metadata associated with it
+- :cpp:`P const&` — read-only access to a data product provided through a reference
+- :cpp:`P const*` — read-only access to a data product provided through a pointer
+- :cpp:`P` — the data product is copied into an object (assumes data product is copyable) [#f1]_
+- :cpp:`phlex::handle<P>` — a lightweight object that provides read-only access to a data product as well as any metadata associated with it
 
 For each of these cases, the data product itself remains immutable.
 
-Whereas data-product types are allowed to be copyable and immutable, resources of type :cpp:`R` are not assumed to be copyable or immutable.
+Whereas data products are allowed to be copied, resources of type :cpp:`R` cannot be copied.
 The following types are therefore supported:
 
-- :cpp:`R const&` — immutable access to a resource provided through a reference
-- :cpp:`R const*` — immutable access to a resource provided through a pointer
-- :cpp:`R&` — mutable access to a resource provided through a reference (if mutable access permitted by resource)
-- :cpp:`R*` — mutable access to a resource provided through a pointer (if mutable access permitted by resource)
-- :cpp:`phlex::resource<R>` — a lightweight object that provides access to the resource as well as any metadata associated with it
+- :cpp:`R const&` — read-only access to a resource provided through a reference
+- :cpp:`R const*` — read-only access to a resource provided through a pointer
 
-Resources are described in more detail :ref:`here <resources:Resources>` along with a motivation for why mutable access is sometimes necessary
+Resources are described in more detail :ref:`here <resources:Resources>`.
 
 Return types
 ------------
@@ -60,7 +56,7 @@ Function names and qualifiers
 The :cpp:`function_name` :ref:`above <algorithms:Algorithms>` may be any function name supported by the C++ language.
 Code authors should aim to implement algorithms as free functions.
 However, in some cases it may be necessary for class member functions to be used instead.
-When member functions are required, the qualifier :cpp:`const` should be specified to indicate that the class instance remains immutable during the execution of the member function [#f1]_.
+When member functions are required, the qualifier :cpp:`const` should be specified to indicate that the class instance remains immutable during the execution of the member function [#f2]_.
 
 Framework registration
 ----------------------
@@ -219,7 +215,7 @@ This works well except in cases where the registered algorithms are overloaded f
 For example, suppose one wants to register C++'s overloaded :cpp:`std::sqrt(...)` function with the framework.
 Simply specifying :cpp:`with(std::sqrt)` will fail at compile time as the compiler will not be able to determine which overload is desired.
 
-Instead, the code author can use the following [#f2]_:
+Instead, the code author can use the following [#f3]_:
 
 .. code:: c++
 
@@ -227,19 +223,12 @@ Instead, the code author can use the following [#f2]_:
 
 where the desired overload is selected based on the :cpp:`double` argument to the lambda expression.
 
-HOF operators
-^^^^^^^^^^^^^
-
-The specific function signature of the algorithm depends on the HOF to which the algorithm serves as an operator.
-Please see the below links for details on each operator.
-
-.. toctree::
-   :maxdepth: 2
-
-   hof_operators
+.. include:: hof_operators.rst
 
 .. rubric:: Footnotes
 
-.. [#f1] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
+.. [#f1] In C++, the function signature corresponds to the function *declaration*, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
+         However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
+.. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
          However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
-.. [#f2] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .
+.. [#f3] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .
