@@ -84,7 +84,7 @@ in terms of the C++ *registration stanza*:
 
 .. code:: c++
 
-   REGISTER_ALGORITHMS(m)          // <== Registration opener
+   PHLEX_REGISTER_ALGORITHMS(m)    // <== Registration opener
    {
      m.with(                       // <-- Beginning of registration satement
             make_tracks,           // (1) Algorithm/HOF operator
@@ -99,7 +99,7 @@ in terms of the C++ *registration stanza*:
    }
 
 The registration stanza is included in C++ file called a :term:`module`, which is a compiled library that is dynamically loadable by Phlex.
-The stanza is introduced by an *opener*—e.g. :cpp:`REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
+The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement contains a series of chained *clauses*, starting with a :cpp:`with(...)` clause.
 In the case of a transform, six pieces of information are provided in the registration statement:
 
@@ -136,7 +136,7 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
 
 .. code:: c++
 
-   REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      // Get data category from configuration, defaulting to "spill" if no data category
      // is specified in the configuration.
@@ -168,9 +168,9 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<hits>` object
 
 .. code:: c++
 
-  tracks make_tracks_debug(hits const& hs, std::size_t spill_number) { ... }
+   tracks make_tracks_debug(hits const& hs, std::size_t spill_number) { ... }
 
-  REGISTER_ALGORITHMS(m)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.with([](phlex::handle<hits> hs) {
               return make_tracks_debug(*hs, hs.id()->number());
@@ -195,7 +195,7 @@ Member functions of classes
      ...
    };
 
-   REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      auto track_seed = config.get<std::size_t>("track_seed");
      auto selected_data_category = config.get<std::string>("data_category", "event");
