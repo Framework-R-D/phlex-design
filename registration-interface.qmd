@@ -1,0 +1,259 @@
+---
+title: Considerations for registration interface
+author:
+    - Kyle Knoepfel
+date: 2025-03-2t
+geometry:
+    margin=1in
+pdf-engine: pdflatex
+number-sections: true
+
+---
+
+\newcommand\iset[1]{{\mathcal{I}_{#1}}}
+\newcommand\sequence[2]{{(#1_i)_{i \in \iset{#2}}}}
+\newcommand\bluetext[1]{{\textcolor{blue}{\text{#1}}}}
+
+# Introduction
+
+Phlex is adopting a functional programming paradigm that uses higher-order functions (HOFs) whose operators act on sequences of data.
+The challenge is to determine how algorithms that serve as operators to HOFs should be registered with Phlex.
+The [Meld project](https://github.com/framework-r-d/meld) provides a [fluent interface](https://en.wikipedia.org/wiki/Fluent_interface) for registering algorithms.
+It has been observed that the current interface for Meld can lead to confusion, especially for fold operations.
+In this document I discuss aspects of how code authors (and job runners) might specify HOFs and the sequences of data on which they operate.
+
+I claim that a fluent interface is desirable and still possible in the context of registering algorithms.
+However, I believe that the interface should be adjusted wrt. Meld.
+
+# Relevant questions for users
+
+For the framework user, relevant questions are:
+
+1. What type of HOF do I want to use?
+2. What algorithm will serve as the HOF operator?
+3. How do I specify the data products that serve as input to the algorithm?
+4. How do I specify the data products that serve as output from the algorithm?
+
+To answer these questions, we will focus on three HOFs---the *transform*, the *fold*, and the *unfold*.
+Each of these HOFs require an operation that will be applied to the data presented to the HOF.
+In a non-framework context, each HOF might be invoked in C++ as:
+
+``` c++
+auto transformed_sequence = transform(tr_op, sequence);
+auto folded_result        = fold(f_op, sequence, initializer);
+auto unfolded_sequence    = unfold(keep_going, uf_op, starting_point);
+```
+
+In a framework context, the HOFs are invoked by the framework and not the code-author/job-runner.
+The arguments `tr_op`, `f_op`, `keep_going`, and `uf_op` represent user-provided operations registered with the framework, which applies the operations to data according to the desired HOF (thus addressing questions 1 and 2 above).
+
+It is more difficult, however, to reason about how input data products (question 3) and output data products (question 4) relate, respectively, to the `sequence`/`starting_point` arguments and return values above.
+
+To answer questions 3 and 4, we first discuss the concept of the sequence.
+
+# Sequences
+
+Higher-order functions operate on sequences, which can be represented by the expression
+
+$$
+(a_i | a_i \in A)_{i \in \mathcal{I}} \ .
+$$
+
+In words, this is the sequence of all $a$'s of type $A$[^types] that can be indexed by the *index set* $\mathcal{I}$.
+
+[^types]: In a framework context, the type $A$ represents a combination of both the programming language's type (e.g `int`) and a product label (like `"good_tracks"`). We use the notation $A = \mathtt{T} \wedge L$ to describe this combination.  See @sec-appendix for an appendix discussing types in more detail.
+
+A crucial difference between a sequence and a set is that items in a sequence are allowed to be duplicated whereas items in a set are not.
+For example, the sequence:
+
+$$
+(a_i)_{i \in \{1, \dots, n\}} = (a_1, a_2, \dots, a_n) =
+(\underset{a_1}{1}, \underset{a_2}{1}, \dots, \underset{a_m}{2}, \dots, \underset{a_n}{1})
+$$
+
+is a sequence of $n$ numbers with $a_i \in \mathbb{Z}$, each having the value of $1$ except for $a_m = 2$.
+If the sequence were instead replaced with a set, we would have:
+
+$$
+\{a_1, a_2, \dots, a_n\} =
+\{\underset{a_1}{1}, \underset{a_2}{1}, \dots, \underset{a_m}{2}, \dots, \underset{a_n}{1}\} = \{1, 2\}
+$$
+
+thus losing most of the content of the sequence, including any relevant ordering.
+
+In HEP, data are identified by (e.g.) run and spill numbers, and it is very likely that specific values of data will be repeated for different spills.
+An important reason for using sequences to process data is, therefore, to ensure that data are not lost.
+For example, two simulated spills with identical simulation contents should remain as distinct simulated spills.
+
+# Index sets used with frameworks
+
+The index set in the above example was simply the set of numbers $\mathcal{I} = \{1, \dots, n\}$.
+From this set of numbers, the sequence $(a_i)_{i \in \mathcal{I}}$ could be generated.
+
+In HEP framework contexts, however, the index $i$ usually corresponds to a tuple of numbers, not just one number.
+
+Consider a framework job that will process data from 3 calibration periods, 2 runs (with each run containing 2 spills), and 10 particle data-product sets.  The set of all identifiers for these data-product sets would be:
+
+$$
+\begin{aligned}
+\mathcal{J} =\{& \\
+& (J), & \bluetext{Job} \\
+& (J, C_1), (J, C_2), (J, C_3), & \bluetext{Calibrations}\\
+& (J, R_1), (J, R_1, S_1), (J, R_1, S_2), & \bluetext{Run 1}\\
+& (J, R_2), (J, R_2, S_1), (J, R_2, S_2), & \bluetext{Run 2}\\
+& (J, P_1), \dots, (J, P_{10}) & \bluetext{Particles} \\
+&\}
+\end{aligned}
+$$
+
+From this set, one can construct many different index sets (e.g.):
+
+Index set | Notes
+----------|-----------
+$\iset{\text{Job}}=\{(J)\}$ | Only the job 
+$\iset{R_1}=\{(R_1), (R_1, S_1), (R_1, S_2)\}$| All identifiers containing $R_1$
+$\iset{R_2\ \text{spills}}=\{(R_2, S_1), (R_2, S_2)\}$| Only spills in $R_2$
+$\iset{\text{Runs}}=\{(R_1), (R_2)\}$ | Only runs
+$\iset{\text{Spills}}=\{(R_1, S_1), (R_1, S_2), (R_2, S_1), (R_2, S_2)\}$ | All spills
+$\iset{\text{Calibrations}} = \{(C_1), (C_2), (C_3)\}$ | All calibrations
+$\iset{\text{Particles}} = \{(P_1), \dots, (P_{10})\}$ | All particles
+$\iset{R_1\text{ spills with } C} = \{[(R_1, S_1), (C_1)], [(R_1, S_2), (C_1)]\}$ | All $R_1$ spills, each with an associated calibration
+
+: Various index sets from the job with the identifier set $\mathcal{J}$. For brevity, the job number $J$ is suppressed in all entries but $\mathcal{I}_{\text{Job}}$. {tbl-colwidths="[60,40]"}
+
+The index set chosen for the sequence depends on the processing needs.
+
+# Data products and sequences
+
+The last concept we will introduce is the *data-product scope*, which refers to the a level in the data hierarchy to which the data-product set belongs (e.g. the "spill").
+
+With these concepts, we can discuss how data products and sequences work together.
+We start by discussing the transform.
+
+## Transforms
+
+The transform is the most straightforward of the HOFs to analyze.
+
+Suppose a user would like to register an algorithm `make_vertices` that will operate on the track collection of type `Tracks` and label `"good_tracks"` in each spill of the job.
+Each invocation of `make_vertices` will create a collection of type `Vertices` and label `"good_vertices"`.
+
+Mathematically, this operation looks like:
+
+$$
+\sequence{ts}{\text{Spills}} \xrightarrow{\text{transform}\{\mathtt{make\_vertices}\}} \sequence{vs}{\text{Spills}}
+$$
+
+where each $ts_i \in$ `Tracks` $\wedge$ `"good_tracks"`, each $vs_i \in$ `Vertices` $\wedge$ `"good_vertices"`, and $\iset{\text{spills}}$ as defined above is the index set for both the input and output.
+
+In this case, the *scopes* of the input and output data products are the same--namely, the "spill".
+That is, the data products in question are either retrieved from or inserted into the "spill" level of the data hierarchy.
+
+To fully specify the transform, we thus need:
+
+1. the algorithm that serves as the transform operation (e.g. `make_vertices`)
+2. the input sequence
+    i. element type (e.g. `Tracks` $\wedge$ `"good_tracks"`)
+    ii. element scope (e.g. "spill")
+    iii. index set, which is constrained by the specified element scope (e.g $\iset{\text{Spills}}$)
+3. the output sequence 
+    i. element type (e.g. `Vertices` $\wedge$ `"good_vertices"`)
+    ii. *the output element scope is the same as the input element scope*
+    iii. *the output index set is the same as the input index set*
+
+## Folds
+
+In a framework context, it is convenient for a HOF to receive a sequence as input *and* to emit a sequence as output.
+The fold is, therefore, a little awkward to reason about as it collapses a single sequence of $n$ elements into a single value.
+
+To resolve this complication, we introduce the *partitioning fold* $\text{pfold}$, which performs a fold on *each subset* of a [partition](https://en.wikipedia.org/wiki/Partition_of_a_set) of the input index set.
+Each subset's *single* fold result is an entry in the partitioning fold's output sequence.
+
+To illustrate, consider that the index set $\iset{\text{Spills}}$ can be expressed as the union
+
+$$
+\iset{\text{Spills}} = \iset{R_1 \text{ spills}} \cup \iset{R_2 \text{ spills}}
+$$
+
+so that a partition of $\iset{\text{Spills}}$ is $\{\iset{R_1 \text{ spills}}, \iset{R_2 \text{ spills}}\}$.
+
+To apply this to a concrete problem, let's assume that a user wants to register the algorithm `sum_tracks` to create the sum `"total_tracks"` of all tracks across the spills in each run.
+Notationally, we have:
+
+$$
+\sequence{ts}{\text{Spills}} \xrightarrow{\text{pfold}\{\mathtt{sum\_ntracks},\ 0,\ \text{Runs}\}} \sequence{n}{\text{Runs}}
+$$
+
+where the result is a sequence of fold results for each run---i.e. $n_{(J, R_1)}$ and $n_{(J, R_2)}$.
+Note that the scope of each fold result (i.e. the "run") is *above* that of the data products that contributed to the fold.
+
+Another allowed partition of $\iset{\text{Spills}}$ is simply the single-member set $\{\iset{\text{Spills}}\}$.
+Choosing this partition, one obtains:
+
+$$
+\sequence{ts}{\text{Spills}} \xrightarrow{\text{pfold}\{\mathtt{sum\_ntracks},\ 0,\ \text{Job}\}} \sequence{n}{\text{Job}}
+$$
+
+yielding a sequence with only one fold result $n_{(J)}$ corresponding to the entire job.
+
+**N.B.** For each fold result, the framework must record the input index set (e.g. $\iset{\text{Spills}}$) that describes the contributors to that result.
+A fold result from one job may be folded with a fold result from another job, in which case the input index sets must be used to guard against double counting.
+
+To fully specify the partitioning fold, we thus need:
+
+1. the algorithm that serves as the fold operation (e.g. `sum_tracks`)
+2. the input sequence
+    i. element type (e.g. `Tracks` $\wedge$ `"good_tracks"`)
+    ii. element scope (e.g. "spill")
+    iii. index set, which is constrained by the specified element scope (e.g $\iset{\text{Spills}}$)
+3. the output sequence
+    i. element type (e.g. `int` $\wedge$ `"total_tracks"`)
+    ii. element scope (or partition), which must be a parent scope *above* the input sequence element scope (e.g. "run" or "job")
+    iii. index set (e.g. $\iset{\text{Job}}$), which is constrained by the specified scope
+4. the initializer $c_0$ (e.g. $0$), or an initializing function that, when invoked, returns the initializer $c_0$.
+
+# Unfolds
+
+The purpose of the unfold is to generate a sequence from a single value---the opposite of the fold.
+Instead of using one user-provided function, the unfold requires two:
+
+1. A `keep_going` predicate that returns `true` until the sequence is complete.
+2. An unfolding operation `uf_op` that is invoked whenever `keep_going` returns true.
+
+Suppose a user wants to perform a systematics study where a data-product `seed` is presented as a seed to an algorithm `generate_random`, which is tasked with creating 10 random numbers `"energy"` corresponding to the energy of a particle.
+Each `"energy"` data product is placed in a *particle* data-product set.
+
+The sequence transformation would look like:
+
+$$
+\sequence{s}{\text{Job}} \xrightarrow{\text{uunfold}\{\mathtt{keep\_going},\ \mathtt{next\_number}\}} \sequence{E}{\text{Particles}}
+$$
+
+where $s_i \in$ `int` $\wedge$ `"seed"`, $E_i \in$ `double` $\wedge$ `"energy"`, and $\iset{\text{Particles}}$ as defined earlier.
+The function $\text{uunfold}$ (pronounced "U unfold") is an *unpartitioning unfold*, where a flattened output sequence is created from all unfolded sequences.
+
+To fully specify the unpartitioning unfold, we thus need:
+
+1. the predicate `keep_going` (e.g. returns `true` until 10 random numbers have been generated)
+2. the algorithm that serves as the unfold operation (e.g. `next_number`, which generates the random number)
+3. the input sequence
+    i. element type (e.g. `int` $\wedge$ `"seed"`)
+    ii. element scope (or partition, e.g. "job")
+    iii. index set, which is constrained by the specified scope(e.g. $\iset{\text{Job}}$)
+3. the output sequence
+    i. element type (e.g. `double` $\wedge$ `"energy"`)
+    ii. element scope, which must be a child scope *below* the input sequence element scope (e.g. "particle")
+    iii. *the output index set is generated based on the element scope and the unfold operation (e.g. $\mathcal{I}_{\text{Particles}}$)*
+
+# Takeaways
+
+# Appendix: Types used with frameworks {#sec-appendix}
+
+A reasonable mathematical description of a type is that it is a mathematical *set* of objects.
+For example, the type `int` is an approximation to the mathematical set $\mathbb{Z}$, although there may be technological limitations on what values an object of type `int` can take.
+
+Suppose, however, that an algorithm $p(n_{POT})$ is configured to operate on an integer $n_{POT}$ that corresponds to the number of protons on target.
+In such a case, specifying the function $p$ as $p: \mathbb{Z} \rightarrow R$ (where $R$ is an arbitrary return type) is too permissive.
+In a framework context, not all data of type `int` (the equivalent to $\mathbb{Z}$) are suitable for processing by the algorithm $p$.
+
+In this document, we therefore refer to a type as including more than just the programming language's type `T`; it also includes various labels that identify which kind of `T` is desired.
+The type required to specify a data product will therefore be expressed as $\mathtt{T} \wedge L$, where the first set in typewriter style (e.g. $\mathtt{T}$) refers to the programming language's type and the second set in math style (e.g. $L$) represents a label associated with the data.
