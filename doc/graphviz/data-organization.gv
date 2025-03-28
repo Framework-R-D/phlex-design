@@ -24,12 +24,12 @@ digraph {
   spill1 [label=<Spill 1> fillcolor="lightblue"]
   spill2 [label=<Spill 2> fillcolor="lightblue"]
   spill3 [label=<Spill 1> fillcolor="lightblue"]
-  apa3 [style=invis]
+  apa3 [label="..." shape="plaintext" margin=0 style="rounded"]
 
   job -> {run1 run2} [color=gray]
   run1 -> {spill1 spill2}
   run2 -> spill3
-  spill3 -> apa3 [style=dotted]
+  spill3 -> apa3
 
   node [style="rounded,filled" fillcolor="lightgreen"]
   subgraph cluster_apa_family_1 {
@@ -76,11 +76,12 @@ digraph {
      t1N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
 
+  edge [style=dotted]
   family_label_1 -> sequence_label_1 [style=invis]
-  apa11 -> t11 [arrowhead=curve]
-  apa12 -> t12 [arrowhead=curve]
+  apa11 -> t11
+  apa12 -> t12
   apa1Dots -> t1Dots [style=invis]
-  apa1N -> t1N [arrowhead=curve]
+  apa1N -> t1N
 
   subgraph cluster_product_sequence_2 {
      style="filled,rounded"
@@ -93,7 +94,7 @@ digraph {
   }
 
   family_label_2 -> sequence_label_2 [style=invis]
-  apa21 -> t21 [arrowhead=curve]
+  apa21 -> t21
   apa2Dots -> t2Dots [style=invis]
-  apa2N -> t2N [arrowhead=curve]
+  apa2N -> t2N
 }

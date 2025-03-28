@@ -9,8 +9,6 @@ Framework requirements
 | Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
 | See :ref:`scheduling:Building the data-flow graph`
 
-.. todo:: Not yet referenced in design
-
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow the execution of multiple   |
 |              | algorithms.                                           |
@@ -346,9 +344,8 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 11.1 Definition of data products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
+| See :ref:`data_organization:Data products`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall provide the ability for           |
@@ -631,9 +628,8 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
 17 Unfolding data products
 --------------------------
 
-Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
+| See :ref:`algorithms:Unfolds`
 
 +--------------+-------------------------------------------------------+
 | Requirement  | The framework shall allow the unfolding of data       |

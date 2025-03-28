@@ -34,7 +34,7 @@ Resources are described in more detail :ref:`here <resources:Resources>`.
 Return types
 ------------
 
-The meaning of an algorithm's return type depends on the HOF and is discussed in the :ref:`section on HOF operators <hof_operators:HOF operators>`.
+The meaning of an algorithm's return type depends on the HOF and is discussed in the :ref:`section on HOF operators <algorithms:HOF operators>`.
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
 For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
 This means that the data products created by algorithms must have types that connote unique ownership.
@@ -65,6 +65,10 @@ Framework registration
 
    The C++ interface below is illustrative and not intended to reflect the final registration interface.
 
+To the extent possible, Phlex preserves data flow among data products and algorithms.
+This is indicated in the interface for registering algorithms.
+In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.
+
 Consider the following C++ classes and function:
 
 .. code:: c++
@@ -86,16 +90,16 @@ in terms of the C++ *registration stanza*:
 
    PHLEX_REGISTER_ALGORITHMS(m)    // <== Registration opener
    {
-     m.with(                       // <-- Beginning of registration satement
-            make_tracks,           // (1) Algorithm/HOF operator
+     m.with(                       // <-- Beginning of registration statement
+            make_tracks,           // (1) Algorithm/HOF operation
             concurrency::unlimited // (2) Allowed CPU concurrency
            )
       .transform(                  // (3) Higher-order function
-                 "good_hits"       // (4) Specification of input data product to make_tracks
+                 "good_hits"       // (4) Spec. of input data product to make_tracks
                 )
-      .to("good_tracks")           // (5) Specification of output data product from make_tracks
-      .for_each("spill")           // (6) Where to find input data product/place output data product
-      ;                            // <-- End of registration satement
+      .to("good_tracks")           // (5) Spec. of output data product from make_tracks
+      .for_each("spill")           // (6) Scope of input/output data products
+      ;                            // <-- End of registration statement
    }
 
 The registration stanza is included in C++ file called a :term:`module`, which is a compiled library that is dynamically loadable by Phlex.
@@ -110,7 +114,7 @@ In the case of a transform, six pieces of information are provided in the regist
 5. The specification(s) of the data product(s) created by the algorithm
 6. The data category where the input data products are found and the output data products are to be placed
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :ref:`section on HOF operators <hof_operators:HOF operators>` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :ref:`section on HOF operators <algorithms:HOF operators>` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:
@@ -138,14 +142,14 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
 
    PHLEX_REGISTER_ALGORITHMS(m, config)
    {
-     // Get data category from configuration, defaulting to "spill" if no data category
+     // Get data scope from configuration, defaulting to "spill" if no data scope
      // is specified in the configuration.
-     auto selected_data_category = config.get<std::string>("data_category", "spill");
+     auto selected_data_scope = config.get<std::string>("data_scope", "spill");
 
      m.with(make_tracks, concurrency::unlimited)
       .transform("good_hits")
       .to("good_tracks")
-      .for_each(selected_data_category);
+      .for_each(selected_data_scope);
    }
 
 .. important::
@@ -198,13 +202,13 @@ Member functions of classes
    PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      auto track_seed = config.get<std::size_t>("track_seed");
-     auto selected_data_category = config.get<std::string>("data_category", "event");
+     auto selected_data_scope = config.get<std::string>("data_scope", "spill");
 
      m.make<track_maker>(track_seed)
       .with(&track_maker::make, concurrency::unlimited)
       .transform("good_hits")
       .to("good_tracks")
-      .for_each(selected_data_category);
+      .for_each(selected_data_scope);
    }
 
 Overloaded functions

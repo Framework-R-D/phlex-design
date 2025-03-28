@@ -4,6 +4,10 @@ Data organization
 Data products
 -------------
 
+Framework users are able to define their own data products :dune:`11.1 Definition of data products`.
+
+.. todo:: Describe what defining data products means.
+
 Data product identifiers
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -24,3 +28,5 @@ The following diagram illustrates the difference between data categories, data f
 
 Data-product lookup policies
 ----------------------------
+
+
