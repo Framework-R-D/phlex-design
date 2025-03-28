@@ -5,3 +5,5 @@ build/
 requirements-statemachine.png
 *.md.bak
 *.pyc
+registration-interface.html
+registration-interface_files/
