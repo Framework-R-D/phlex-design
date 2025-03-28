@@ -1,7 +1,9 @@
 Configuration
 ^^^^^^^^^^^^^
 
-Configuration handles ingestion of human-readable text to produce an initialized framework program.
+.. todo::
 
-- Includes validation of the configuration
-- Includes command-line interface
+   Configuration handles ingestion of human-readable text to produce an initialized framework program.
+
+   - Includes validation of the configuration
+   - Includes command-line interface

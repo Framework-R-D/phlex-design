@@ -11,6 +11,7 @@ Required core subsystems for F1 demonstrators
 
 .. include:: subsystems/task_management.rst
 .. include:: subsystems/data_modeling.rst
+.. include:: subsystems/data_management.rst
 .. include:: subsystems/registration.rst
 .. include:: subsystems/io.rst
 .. include:: subsystems/configuration.rst

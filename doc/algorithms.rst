@@ -110,8 +110,8 @@ In the case of a transform, six pieces of information are provided in the regist
 1. The algorithm/HOF operator to be used
 2. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
 3. The HOF to be used (generally expressed as an active verb)
-4. The product specification(s) from which to form the input data product sequence
-5. The specification(s) of the data product(s) created by the algorithm
+4. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
+5. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
 6. The data category where the input data products are found and the output data products are to be placed
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :ref:`section on HOF operators <algorithms:HOF operators>` for specific interface).
