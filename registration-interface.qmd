@@ -2,7 +2,7 @@
 title: Considerations for registration interface
 author:
     - Kyle Knoepfel
-date: 2025-03-2t
+date: 2025-03-27
 geometry:
     margin=1in
 pdf-engine: pdflatex
@@ -110,7 +110,7 @@ From this set, one can construct many different index sets (e.g.):
 
 Index set | Notes
 ----------|-----------
-$\iset{\text{Job}}=\{(J)\}$ | Only the job 
+$\iset{\text{Job}}=\{(J)\}$ | Only the job
 $\iset{R_1}=\{(R_1), (R_1, S_1), (R_1, S_2)\}$| All identifiers containing $R_1$
 $\iset{R_2\ \text{spills}}=\{(R_2, S_1), (R_2, S_2)\}$| Only spills in $R_2$
 $\iset{\text{Runs}}=\{(R_1), (R_2)\}$ | Only runs
@@ -155,7 +155,7 @@ To fully specify the transform, we thus need:
     i. element type (e.g. `Tracks` $\wedge$ `"good_tracks"`)
     ii. element scope (e.g. "spill")
     iii. index set, which is constrained by the specified element scope (e.g $\iset{\text{Spills}}$)
-3. the output sequence 
+3. the output sequence
     i. element type (e.g. `Vertices` $\wedge$ `"good_vertices"`)
     ii. *the output element scope is the same as the input element scope*
     iii. *the output index set is the same as the input index set*
