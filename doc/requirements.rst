@@ -1398,9 +1398,8 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 32 Monitoring global memory use
 -------------------------------
 
-Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
+| See :ref:`technical_design:Monitoring and reporting`
 
 .. table::
     :widths: 15 85
@@ -2270,9 +2269,8 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
 58 Thread-safe design for algorithms
 ------------------------------------
 
-Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
+| See :ref:`programming_paradigm:Functional programming`
 
 .. table::
     :widths: 15 85

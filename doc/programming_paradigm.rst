@@ -24,7 +24,7 @@ Expressing the processing needs according to mathematics enables:
 
 - the use of mathematical rules to optimize the processing of the data,
 - naturally reproducible results, assuming the functions are :ref:`pure <programming_paradigm:Pure functions>`,
-- parallel invocations of pure functions with no possibility of data races.
+- parallel invocations of pure functions with no possibility of data races :dune:`58 Thread-safe design for algorithms`.
 
 Pure functions
 --------------
