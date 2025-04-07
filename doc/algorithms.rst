@@ -130,12 +130,6 @@ In the case of a transform, six pieces of information are provided in the regist
 1. The algorithm/HOF operator to be used
 2. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
 3. The HOF to be used (generally expressed as an active verb)
-
-   .. admonition:: Chris Green
-      :class: admonition-chg
-
-      I think I know what is meant here, but could we make it a little clearer, e.g. "The name of the HOF to be used, which generally should be expressed as an action, e.g. ``make_tracks`` or ``calculate_de_dx``?"
-
 4. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
 5. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
 6. The data category where the input data products are found and the output data products are to be placed

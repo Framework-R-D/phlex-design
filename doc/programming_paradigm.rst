@@ -123,14 +123,11 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 | :ref:`Unfold <hof_operators:Unfolds>`                | :math:`p: D \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
-|                                                      | .. admonition:: Chris Green             |    \(                                            |                            |                      |
-|                                                      |    :class: admonition-chg               |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
-|                                                      |    I don't understand this unfold form. |    \)                                            |                            |                      |
 |                                                      +-----------------------------------------+                                                  |                            |                      |
-|                                                      | :math:`q: D \rightarrow D \times C`     |                                                  |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
+|                                                      | :math:`q: D \rightarrow D \times C`     |    \(                                            |                            |                      |
+|                                                      |                                         |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
+|                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
+|                                                      |                                         |    \)                                            |                            |                      |
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 | :ref:`Filter <hof_operators:Filters and predicates>` | :math:`p: A \rightarrow \text{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
