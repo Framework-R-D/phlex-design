@@ -69,6 +69,7 @@ rst_prolog ="""
 html_theme = 'bizstyle'
 html_logo = 'phlex-logo.svg'
 html_static_path = ['_static']
+html_style='phlexframework.css'
 
 
 # -- Options for LaTeX output -------------------------------------------------
