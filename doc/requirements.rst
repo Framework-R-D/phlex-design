@@ -2270,7 +2270,7 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
 ------------------------------------
 
 | Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
-| See :ref:`programming_paradigm:Functional programming`
+| See :ref:`functional_programming:Functional programming`
 
 .. table::
     :widths: 15 85

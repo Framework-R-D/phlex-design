@@ -18,7 +18,7 @@ Transforms
 |                            |    \)                                            |                           |                   |
 +----------------------------+--------------------------------------------------+---------------------------+-------------------+
 
-**Return type**: A transform algorithm may create multiple data products by returning an `std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
+**Return type**: A transform algorithm may create multiple data products by returning an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
 
 Filters and predicates
 ----------------------
@@ -64,7 +64,7 @@ Observers
 |                                      |    \)                                            |                            |                  |
 +--------------------------------------+--------------------------------------------------+----------------------------+------------------+
 
-As :ref:`mentioned earlier <programming_paradigm:Higher-order functions supported by Phlex>`, observers are a special case of filters that always reject the data presented to them.
+As :ref:`mentioned earlier <functional_programming:Higher-order functions supported by Phlex>`, observers are a special case of filters that always reject the data presented to them.
 Because of this, in a purely functional approach, it is unnecessary to invoke an observer as no data will be produced by an observer.
 Additionally, any algorithms downstream of an always-rejecting filter will never be invoked.
 

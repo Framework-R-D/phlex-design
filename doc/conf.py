@@ -46,10 +46,22 @@ todo_emit_warnings = True
 #      If necessary, you can use the :no-wrap: math option
 #      (https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-option-math-no-wrap)
 
+extra_packages = r"""
+\usepackage{bbm}
+\usepackage{relsize}
+"""
+
+new_commands = r"""
+\newcommand\comp[0]{\circ}
+\newcommand\sequence[1]{{(#1_i)_{i \in \mathcal{I}}}}
+\newcommand\transform[2]{\text{transform}\{#1, #2\}}
+\newcommand\fold[3]{\text{fold}\{#1, #2, #3\}}
+"""
+
 extensions.append('sphinx.ext.imgmath')
 imgmath_image_format='svg'
 imgmath_font_size = 13
-imgmath_latex_preamble=r"\usepackage{bbm}"
+imgmath_latex_preamble=extra_packages + r"\usepackage{fouriernc}" + new_commands
 
 # -- Code-highlighting roles -------------------------------------------------
 
@@ -77,5 +89,5 @@ html_style='phlexframework.css'
 
 latex_logo = 'phlex-logo.png'
 latex_elements = {
-    "extrapackages": r'\usepackage{bbm}'
+    "preamble": extra_packages + new_commands,
 }

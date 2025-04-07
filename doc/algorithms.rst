@@ -1,7 +1,7 @@
 Algorithms
 ==========
 
-As :ref:`mentioned earlier <programming_paradigm:Higher-order functions supported by Phlex>`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+As :ref:`mentioned earlier <functional_programming:Higher-order functions supported by Phlex>`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
 In general, Phlex supports the registration of C++ algorithms with function signatures like (see :ref:`below <algorithms:HOF operators>`):
 
 .. code:: c++
@@ -162,9 +162,7 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
 
    PHLEX_REGISTER_ALGORITHMS(m, config)
    {
-     // Get data scope from configuration, defaulting to "spill" if no data scope
-     // is specified in the configuration.
-     auto selected_data_scope = config.get<std::string>("data_scope", "spill");
+     auto selected_data_scope = config.get<std::string>("data_scope");
 
      m.with(make_tracks, concurrency::unlimited)
       .transform("good_hits")
@@ -239,7 +237,7 @@ Member functions of classes
    PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      auto track_seed = config.get<std::size_t>("track_seed");
-     auto selected_data_scope = config.get<std::string>("data_scope", "spill");
+     auto selected_data_scope = config.get<std::string>("data_scope");
 
      m.make<track_maker>(track_seed)
       .with(&track_maker::make, concurrency::unlimited)

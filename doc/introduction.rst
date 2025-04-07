@@ -26,8 +26,8 @@ Requirements process
 
    Do we need to cite an introductory source that explains these concepts, or are we assuming familiarity?
 
-Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment.
-The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements [#f1]_.
+Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment [#f1]_.
+The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements.
 
 .. admonition:: Chris Green
    :class: admonition-chg

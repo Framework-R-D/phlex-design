@@ -6,10 +6,12 @@ Phlex framework design
 
    Document title in title case?
 
-.. admonition:: Chris Green
-   :class: admonition-chg
+.. only:: latex
 
-   Give this section a heading of its own, maybe?
+   .. admonition:: Chris Green
+      :class: admonition-chg
+
+      Give this section a heading of its own, maybe?
 
 Phlex is a data-processing framework that supports the **P**\ arallel, **h**\ ierarchical, and **l**\ ayered **ex**\ ecution of data-processing algorithms.
 
@@ -19,6 +21,7 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
    :maxdepth: 2
 
    introduction
+   preliminaries
    conceptual_design
    technical_design
 

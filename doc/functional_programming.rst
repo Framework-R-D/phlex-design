@@ -1,7 +1,7 @@
 Functional programming
 ======================
 
-Phlex supports a *functional programming* paradigm, where data-processing occurs by favoring the use of *functions* instead of the direct manipulation of stateful objects.
+Functional programming is a paradigm that favors the use of *functions* instead of the direct manipulation of stateful objects.
 The processing of data happens by using chained operations, where the output of one function serves as the input to other functions.
 
 For example, given two functions:
@@ -14,16 +14,16 @@ For example, given two functions:
 a composite function :math:`h: \mbox{Wires} \rightarrow \mbox{Tracks}` can be constructed such that:
 
 .. math::
-   ts = h(ws) = g(f(ws)) = (g \circ f)(ws)
+   ts = h(ws) = g(f(ws)) = (g \comp f)(ws)
 
-or :math:`h = g \circ f`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
+or :math:`h = g \comp f`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
 
 In reality, the creation of tracks from wire signals is much more complicated [#f1]_.
 However, as seen above, functional programming permits a mathematical description of the data-processing to be performed.
 Expressing the processing needs according to mathematics enables:
 
 - the use of mathematical rules to optimize the processing of the data,
-- naturally reproducible results, assuming the functions are :ref:`pure <programming_paradigm:Pure functions>`,
+- naturally reproducible results, assuming the functions are :ref:`pure <functional_programming:Pure functions>`,
 - parallel invocations of pure functions with no possibility of data races :dune:`58 Thread-safe design for algorithms`.
 
 Pure functions
@@ -49,13 +49,13 @@ For example, a relatively simple result is calculating the arithmetic mean of :m
 .. math::
    \overline{b} = \frac{1}{n}\sum_{i \in \mathcal{I}} b_i
 
-where the sum is over a sequence of numbers :math:`(b_i)_{i \in \mathcal{I}}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` used to identify each element of the sequence.
+where the sum is over a sequence of numbers :math:`\sequence{b}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
 
 The sum is an example of a data reduction or *fold*, where a sequence is collapsed into one result.
 In particular, the average of :math:`n` numbers can be expressed as:
 
 .. math::
-   \overline{b} = \mbox{avg} \left\{(b_i)_{i \in \mathcal{I}}\right\} = \frac{1}{n} \mbox{fold}(+, (b_i)_{i \in \mathcal{I}})
+   \overline{b} = \mbox{avg} \left\{\sequence{b}\right\} = \frac{1}{n} \fold{+}{0}{\sequence{b}}
 
 where the fold accepts a binary operator (:math:`+` in this case) that is applied to pairs of (usually consecutive) elements of the provided sequence.
 
@@ -64,18 +64,22 @@ where the fold accepts a binary operator (:math:`+` in this case) that is applie
 
    This seems overly simplified: should we mention a running sum rather than just, "pairs of ... elements of the provided sequence?"
 
-The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied to elements of that sequence.
+The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
 
 Additional HOFs exist---for example, suppose the sequence :math:`(b_i)` was created by applying a function :math:`p: A \rightarrow B` to each element of a sequence :math:`(a_i)`.
 Such a HOF is called a map or *transform*:
 
 .. math::
-   (b_i)_{i \in \mathcal{I}} = (p(a_i))_{i \in \mathcal{I}} = \mbox{transform}(p, (a_i)_{i \in \mathcal{I}})
+   \sequence{b} = (p(a_i))_{i \in \mathcal{I}} = \transform{p}{\sequence{a}}
 
 In such a scenario, the average :math:`\overline{b}` could be expressed as:
 
 .. math::
-   \overline{b} = \frac{1}{n} \mbox{fold}(+, \mbox{transform}(p, (a_i)_{i \in \mathcal{I}}))
+   \overline{b} = \frac{1}{n} \fold{+}{0}{\transform{p}{\sequence{a}}} = \frac{1}{n} \fold{+ \comp p}{0}{\sequence{a}}
+
+The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
+The operator to this single fold is ':math:`+ \comp p`', indicating that the function :math:`p` should be applied first before invoking the :math:`+` operation.
+Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.
 
 A calculation is then generally expressed in terms of:
 
@@ -166,7 +170,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <functional_programming:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 
 .. rubric:: Footnotes
 
@@ -178,3 +182,4 @@ By leveraging commonly used processing patterns (see next section on :ref:`highe
 
 .. [Wiki-pure] https://en.wikipedia.org/wiki/Pure_function
 .. [Wiki-hof] https://en.wikipedia.org/wiki/Higher-order_function
+.. [Bird] Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132

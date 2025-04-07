@@ -88,8 +88,7 @@ Definitions
 
        - CPU cores
        - CPU memory
-       - GPU "cores"
-       - GPU memory
+       - GPUs
        - Network
        - Thread-unsafe utilities
        - Inference servers
