@@ -41,6 +41,12 @@ Phlex will not schedule a predicate for execution if it is not bound to a filter
 Phlex will also not schedule a filter for execution if there are no non-filter algorithms downstream of it.
 Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Is it reaasonable to want to use a predicate to filter output?
+   This would seem to be in conflict with the "no downstream non-filter algorithms" restriction.
+
 Observers
 ---------
 
@@ -104,6 +110,8 @@ Unfolds
 
 Unfolds are the opposite of folds, where the output sequence is larger than the input sequence :dune:`17 Unfolding data products`.
 An unfold can be used for parallelizing the processing of a data product in smaller chunks.
+
+.. todo:: Explain predicate unfolds here.
 
 Composite CHOFs
 ---------------

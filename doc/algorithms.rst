@@ -219,6 +219,11 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<hits>` object
 
 The lambda expression *does* depend on framework interface; the :cpp:`make_tracks_debug` function, however, retains its framework independence.
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   If one passes a framework-dependent closure to an algorithm, is that algorithm still framework-independent?
+
 Member functions of classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
