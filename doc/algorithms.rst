@@ -188,7 +188,8 @@ Except for the specification of :cpp:`make_tracks` as the algorithm to be invoke
 .. admonition:: Chris Green
    :class: admonition-chg
 
-   What about :cpp:`for_each()`? Would it be simpler to list only :cpp:`make_tracks` and "C++ operations on the :cpp:m object" as exceptions?
+   What about :cpp:`for_each()`?
+   Would it be simpler to list only :cpp:`make_tracks` and "C++ operations on the :cpp:m object" as exceptions?
 
 Framework dependence in registration code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
