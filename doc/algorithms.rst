@@ -271,5 +271,5 @@ where the desired overload is selected based on the :cpp:`double` argument to th
             Should this have a reference to an explanation of this at e.g. ``cppreference.com``?
 
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
-         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm, and DUNE's stated desire for re[rpducibility.
+         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
 .. [#f3] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .

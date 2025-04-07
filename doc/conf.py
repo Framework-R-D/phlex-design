@@ -31,7 +31,7 @@ templates_path = ['_templates']
 
 extensions.append('sphinx.ext.todo')
 todo_include_todos = True
-todo_emit_warnings = False
+todo_emit_warnings = True
 
 # -- Rendering LaTeX math expressions-----------------------------------------
 
