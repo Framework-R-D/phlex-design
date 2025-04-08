@@ -68,7 +68,7 @@ The sum is an example of a data reduction or *fold*, where a sequence is collaps
 In particular, the arithmetic mean above can be expressed as:
 
 .. math::
-   \overline{b} = \mbox{avg} \left\{\sequence{b}\right\} = \frac{1}{n} \fold{+}{0}{\sequence{b}}
+   \overline{b} = \frac{1}{n} \fold{+}{0}{\sequence{b}}
 
 where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
 
