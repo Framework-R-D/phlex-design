@@ -38,14 +38,8 @@ Filters and predicates
 +-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 
 Phlex will not schedule a predicate for execution if it is not bound to a filter.
-Phlex will also not schedule a filter for execution if there are no non-filter algorithms downstream of it.
+Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
 Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   Is it reaasonable to want to use a predicate to filter output?
-   This would seem to be in conflict with the "no downstream non-filter algorithms" restriction.
 
 Observers
 ---------
