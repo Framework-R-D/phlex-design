@@ -8,12 +8,7 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 
    return_type function_name(P1, ..., Pn, R1, ..., Rm) [qualifiers];
 
-where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate resources.
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   Should "resources" be a term with a glossary definition?
+where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate :term:`resources <resource>`.
 
 We will first discuss the :ref:`data-product and resource types <algorithms:Input parameters>`, followed by the :ref:`return type <algorithms:Return types>`, and then the :ref:`function name and optional qualifers <algorithms:Function names and qualifiers>`.
 
@@ -44,12 +39,10 @@ The meaning of an algorithm's return type depends on the HOF and is discussed in
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
 For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
 This means that the data products created by algorithms must have types that connote unique ownership.
-Such semantics are conveyed to the framework by returning *values* and not null objects.
+An algorithm's returned object must therefore model a created data-product type, which can be:
 
-A created data-product type supports either:
-
-- :cpp:`T`, where :cpp:`T` is not a pointer or reference type
-- :cpp:`std::unique_ptr<T>`, where the created object is non-null
+- a *value* of type :cpp:`T`, or
+- a :cpp:`std::unique_ptr<T>`, where the created object is non-null.
 
 The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:
 
@@ -108,12 +101,7 @@ in terms of the C++ *registration stanza*:
       ;                            // <-- End of registration statement
    }
 
-The registration stanza is included in C++ file called a :term:`module`, which is a compiled library that is dynamically loadable by Phlex.
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   Do you mean a C++ module, or a linker-defined module? It seems a bit strange to describe a, "C++ file" as a "compiled library ..."
+The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement contains a series of chained *clauses*, starting with a :cpp:`with(...)` clause.

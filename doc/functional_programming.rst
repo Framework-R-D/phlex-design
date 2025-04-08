@@ -39,8 +39,21 @@ For example, assuming the functions :math:`f` and :math:`g` above are pure, then
 
 Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the :ref:`framework philosophy <introduction:Framework philosophy>`.
 
+Difficulties with functional programming
+----------------------------------------
+
+One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
+Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
+We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
+It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
+
+Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
+By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <functional_programming:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
+The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
+
 Sequences of data and higher-order functions
---------------------------------------------
+============================================
 
 Particle physics results are obtained by performing statistical analysis on sequences of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
@@ -52,17 +65,12 @@ For example, a relatively simple result is calculating the arithmetic mean of :m
 where the sum is over a sequence of numbers :math:`\sequence{b}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
 
 The sum is an example of a data reduction or *fold*, where a sequence is collapsed into one result.
-In particular, the average of :math:`n` numbers can be expressed as:
+In particular, the arithmetic mean above can be expressed as:
 
 .. math::
    \overline{b} = \mbox{avg} \left\{\sequence{b}\right\} = \frac{1}{n} \fold{+}{0}{\sequence{b}}
 
-where the fold accepts a binary operator (:math:`+` in this case) that is applied to pairs of (usually consecutive) elements of the provided sequence.
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   This seems overly simplified: should we mention a running sum rather than just, "pairs of ... elements of the provided sequence?"
+where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
 
 The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
 
@@ -90,7 +98,7 @@ A calculation is then generally expressed in terms of:
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
 
 Higher-order functions supported by Phlex
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------
 
 In general, HOFs transform one sequence to another:
 
@@ -117,7 +125,7 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 |                                                      |                                         |    \underbrace{(b_{i_1\dots i_n})}_b             |                            |                      |
 |                                                      |                                         |    \)                                            |                            |                      |
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Fold <hof_operators:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| < |c|`    |
+| :ref:`Fold <hof_operators:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| \le |c|`  |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
 |                                                      |                                         |                                                  |                            |                      |
 |                                                      |                                         |    \(                                            |                            |                      |
@@ -125,7 +133,7 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 |                                                      |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
 |                                                      |                                         |    \)                                            |                            |                      |
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Unfold <hof_operators:Unfolds>`                | :math:`p: D \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
+| :ref:`Unfold <hof_operators:Unfolds>`                | :math:`p: D \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| \ge |d|`  |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
 |                                                      +-----------------------------------------+                                                  |                            |                      |
 |                                                      | :math:`q: D \rightarrow D \times C`     |    \(                                            |                            |                      |
@@ -160,17 +168,6 @@ Phlex will likely support other higher order functions as well, such as a slidin
    :class: admonition-chg
 
    I'm not sure about the form of the above: if we're going to support a sliding window, then it should have a line in the preceeding table. If we merely wish to state that Phex may be extended straightforwardly to support other higher order functions, then we should say that.
-
-Difficulties with functional programming
-----------------------------------------
-
-One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
-Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
-We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
-It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
-
-Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <functional_programming:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 
 .. rubric:: Footnotes
 
