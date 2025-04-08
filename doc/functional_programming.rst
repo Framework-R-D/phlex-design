@@ -23,7 +23,7 @@ However, as seen above, functional programming permits a mathematical descriptio
 Expressing the processing needs according to mathematics enables:
 
 - the use of mathematical rules to optimize the processing of the data,
-- naturally reproducible results, assuming the functions are :ref:`pure <functional_programming:Pure functions>`,
+- naturally reproducible results, assuming the functions are pure (see :numref:`functional_programming:Pure functions`),
 - parallel invocations of pure functions with no possibility of data races :dune:`58 Thread-safe design for algorithms`.
 
 Pure functions
@@ -37,7 +37,7 @@ According to Wikipedia [Wiki-pure]_, a pure function has the following propertie
 The composition of pure functions is also a pure function.
 For example, assuming the functions :math:`f` and :math:`g` above are pure, then the composite function :math:`h` will also be pure.
 
-Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the :ref:`framework philosophy <introduction:Framework philosophy>`.
+Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the framework philosophy in :numref:`introduction:Framework philosophy`.
 
 Difficulties with functional programming
 ----------------------------------------
@@ -48,7 +48,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <functional_programming:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see :numref:`functional_programming:Sequences of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
 
@@ -149,10 +149,10 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 |                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
 |                                                      |                                         |    \)                                            |                            |                      |
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Observer <hof_operators:Observers>`            | .. math::                               | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
-|                                                      |    :no-wrap:                            |    :no-wrap:                                     |                            |                      |
+| :ref:`Observer <hof_operators:Observers>`            | :math:`p: A \rightarrow \mathbbm{1}`    | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
+|                                                      |                                         |    :no-wrap:                                     |                            |                      |
 |                                                      |                                         |                                                  |                            |                      |
-|                                                      |    \(p: A \rightarrow \mathbbm{1}\)     |    \(                                            |                            |                      |
+|                                                      |                                         |    \(                                            |                            |                      |
 |                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
 |                                                      |                                         |    \underbrace{(\quad)}_{a'}                     |                            |                      |
 |                                                      |                                         |    \)                                            |                            |                      |
@@ -171,7 +171,7 @@ Phlex will likely support other higher order functions as well, such as a slidin
 
 .. rubric:: Footnotes
 
-.. [#f1] As discussed :ref:`here <data_flow:Data flow>`, the general topology of a data-processing workflow is a *graph* of functions.
+.. [#f1] As discussed in :numref:`data_flow:Data flow`, the general topology of a data-processing workflow is a *graph* of functions.
 
 .. only:: html
 

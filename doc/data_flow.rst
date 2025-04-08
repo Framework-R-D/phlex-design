@@ -1,7 +1,7 @@
 Data flow
 =========
 
-In the :ref:`description of functional programming <functional_programming:Functional programming>`, the example was given for creating tracks from wires.
+In :numref:`functional_programming:Functional programming`, the example was given for creating tracks from wires.
 The simplified expression for doing this was the chained application of two functions :math:`f` and :math:`g` such that:
 
 .. math::
@@ -35,7 +35,7 @@ Some observations:
 Data flow with sequences
 ------------------------
 
-As :ref:`mentioned earlier <functional_programming:Sequences of data and higher-order functions>`, processing sequences of data is a critical aspect of obtaining physics results.
+As mentioned earlier in :numref:`functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of sequences.  Specifically [#f2]_:
 
 - Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`(ws_i)`, :math:`(hs_i)`, and :math:`(ts_i)` are passed.
@@ -44,7 +44,7 @@ The data-flow discussion in the previous section naturally maps to applying the 
 .. graphviz:: graphviz/functional-programming-data-flow-hof.gv
    :align: center
 
-The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are :ref:`pure functions<functional_programming:Pure functions>`, the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`functional_programming:Pure functions`), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
 Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.
 
 .. admonition:: Chris Green

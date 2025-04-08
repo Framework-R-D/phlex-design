@@ -7,7 +7,7 @@ Framework requirements
 ---------------------------
 
 | Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
-| See :ref:`scheduling:Building the data-flow graph`
+| See :numref:`scheduling:Building the data-flow graph`
 
 .. table::
     :widths: 15 85
@@ -27,7 +27,7 @@ Framework requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
-| See :ref:`scheduling:Building the data-flow graph`, :ref:`algorithms:Framework registration`
+| See :numref:`scheduling:Building the data-flow graph`, :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -45,7 +45,7 @@ Framework requirements
 -----------------------------
 
 | Jama Connect entry: `DUNE STKH #2 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14539>`__
-| See :ref:`data_organization:Data products`
+| See :numref:`data_organization:Data products`
 
 .. table::
     :widths: 15 85
@@ -88,7 +88,7 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 ---------------------------------
 
 | Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
-| See :ref:`algorithms:Framework registration`
+| See :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -165,7 +165,7 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 --------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #14 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
-| See :ref:`introduction:Programming languages`
+| See :numref:`introduction:Programming languages`
 
 .. table::
     :widths: 15 85
@@ -189,7 +189,7 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #81 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
-| See :ref:`introduction:Programming languages`
+| See :numref:`introduction:Programming languages`
 
 .. table::
     :widths: 15 85
@@ -207,7 +207,7 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #82 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
-| See :ref:`introduction:Programming languages`
+| See :numref:`introduction:Programming languages`
 
 .. table::
     :widths: 15 85
@@ -290,7 +290,7 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
-| See :ref:`scheduling:Building the data-flow graph`
+| See :numref:`scheduling:Building the data-flow graph`
 
 .. table::
     :widths: 15 85
@@ -354,7 +354,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
-| See :ref:`data_organization:Data products`
+| See :numref:`data_organization:Data products`
 
 .. table::
     :widths: 15 85
@@ -372,7 +372,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #86 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
-| See :ref:`data_organization:Data categories, families, and data-product sets`
+| See :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -390,7 +390,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #87 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
-| See :ref:`data_organization:Data categories, families, and data-product sets`
+| See :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -408,7 +408,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #88 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698>`__
-| See :ref:`data_organization:Data categories, families, and data-product sets`
+| See :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -679,7 +679,7 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
 --------------------------
 
 | Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
-| See :ref:`algorithms:Unfolds`
+| See :numref:`algorithms:Unfolds`
 
 .. table::
     :widths: 15 85
@@ -770,7 +770,7 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-| See :ref:`algorithms:Algorithms`
+| See :numref:`algorithms:Algorithms`
 
 .. table::
     :widths: 15 85
@@ -813,7 +813,7 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 --------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #46 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612>`__
-| See :ref:`technical_design:Task management`
+| See :numref:`technical_design:Task management`
 
 .. table::
     :widths: 15 85
@@ -838,7 +838,7 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 -----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
-| See :ref:`user_configuration:Program resource specification`
+| See :numref:`user_configuration:Program resource specification`
 
 .. table::
     :widths: 15 85
@@ -979,7 +979,7 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
-| See :ref:`algorithms:Framework registration`
+| See :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -1120,7 +1120,7 @@ Jama Connect entry: `DUNE STKH #48 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #60 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629>`__
-| See :ref:`technical_design:Monitoring and reporting`
+| See :numref:`technical_design:Monitoring and reporting`
 
 .. table::
     :widths: 15 85
@@ -1316,7 +1316,7 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 ----------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
-| See :ref:`algorithms:Framework registration`
+| See :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -1336,7 +1336,7 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 ---------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
-| See :ref:`algorithms:Framework registration`
+| See :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -1399,7 +1399,7 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 -------------------------------
 
 | Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
-| See :ref:`technical_design:Monitoring and reporting`
+| See :numref:`technical_design:Monitoring and reporting`
 
 .. table::
     :widths: 15 85
@@ -1420,7 +1420,7 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 ----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #61 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630>`__
-| See :ref:`technical_design:Logging`
+| See :numref:`technical_design:Logging`
 
 .. table::
     :widths: 15 85
@@ -2040,7 +2040,7 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 -----------------------
 
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
-| See :ref:`introduction:Framework philosophy`
+| See :numref:`introduction:Framework philosophy`
 
 .. table::
     :widths: 15 85
@@ -2270,7 +2270,7 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
 ------------------------------------
 
 | Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
-| See :ref:`functional_programming:Functional programming`
+| See :numref:`functional_programming:Functional programming`
 
 .. table::
     :widths: 15 85

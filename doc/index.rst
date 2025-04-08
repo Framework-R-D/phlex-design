@@ -19,6 +19,7 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
 
    introduction
    preliminaries
@@ -33,6 +34,7 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
 .. toctree::
    :titlesonly:
    :caption: Appendices:
+   :numbered:
 
    definitions
    requirements

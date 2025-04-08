@@ -26,6 +26,13 @@ extensions = ['sphinx.ext.graphviz',
               'requirement']
 
 autosectionlabel_prefix_document = True
+numfig = True
+numfig_format = {
+    'code-block': 'Listing %s',
+    'figure': 'Fig. %s',
+    'section': 'Section %s',
+    'table': 'Table %s',
+}
 
 templates_path = ['_templates']
 
@@ -81,7 +88,7 @@ rst_prolog ="""
 html_theme = 'bizstyle'
 html_logo = 'phlex-logo.svg'
 html_static_path = ['_static']
-html_style='phlexframework.css'
+# html_style='phlexframework.css'
 
 
 # -- Options for LaTeX output -------------------------------------------------

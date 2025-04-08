@@ -34,7 +34,7 @@ The Phlex design may additionally satisfy *system requirements* in support of th
 
    Apparently there is a Sphinx extension `Sphinx-Needs <https://sphinxcontrib-needs.readthedocs.io/en/latest/>`__ which may help with referring to and cross-referencing requirements, etc.
 
-The stakeholder requirements are listed in :ref:`an appendix <requirements:Framework requirements>` for convenience.
+The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
 
 Framework philosophy
