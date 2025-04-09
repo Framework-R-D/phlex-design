@@ -1,17 +1,16 @@
 Phlex framework design
 ======================
 
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   Document title in title case?
-
-.. only:: latex
+.. only:: html
 
    .. admonition:: Chris Green
       :class: admonition-chg
 
-      Give this section a heading of its own, maybe?
+      Document title in title case?
+
+.. raw:: latex
+
+   \section*{Preface}
 
 Phlex is a data-processing framework that supports the **P**\ arallel, **h**\ ierarchical, and **l**\ ayered **ex**\ ecution of data-processing algorithms.
 

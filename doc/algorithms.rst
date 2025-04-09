@@ -1,8 +1,8 @@
 Algorithms
 ==========
 
-As mentioned in :numref:`Section (%s) <functional_programming:Higher-order functions supported by Phlex>`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`Section (%s) <algorithms:HOF operators>`):
+As mentioned in :numref:`functional_programming:Higher-order functions supported by Phlex`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`algorithms:HOF operators`):
 
 .. code:: c++
 
@@ -10,7 +10,7 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 
 where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate :term:`resources <resource>`.
 
-We will first discuss the :ref:`data-product and resource types <algorithms:Input parameters>`, followed by the :ref:`return type <algorithms:Return types>`, and then the :ref:`function name and optional qualifers <algorithms:Function names and qualifiers>`.
+We will first discuss the data-product and resource types in :numref:`algorithms:Input parameters`, followed by the return types in :numref:`algorithms:Return types`, and then the function name and optional qualifers in :numref:`algorithms:Function names and qualifiers`.
 
 Input parameters
 ----------------
@@ -30,12 +30,12 @@ The following types are therefore supported:
 - :cpp:`R const&` — read-only access to a resource provided through a reference
 - :cpp:`R const*` — read-only access to a resource provided through a pointer
 
-Resources are described in more detail :ref:`here <resources:Resources>`.
+Resources are described in more detail in :numref:`resources:Resources`.
 
 Return types
 ------------
 
-The meaning of an algorithm's return type depends on the HOF and is discussed in the :ref:`section on HOF operators <algorithms:HOF operators>`.
+The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`algorithms:HOF operators`.
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
 For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
 This means that the data products created by algorithms must have types that connote unique ownership.
@@ -52,7 +52,7 @@ The following types (or their equivalents) are forbidden as created data-product
 Function names and qualifiers
 -----------------------------
 
-The :cpp:`function_name` :ref:`above <algorithms:Algorithms>` may be any function name supported by the C++ language.
+The :cpp:`function_name` in :numref:`algorithms:Algorithms` above may be any function name supported by the C++ language.
 Code authors should aim to implement algorithms as free functions.
 However, in some cases it may be necessary for class member functions to be used instead.
 When member functions are required, the qualifier :cpp:`const` should be specified to indicate that the class instance remains immutable during the execution of the member function [#f2]_.
@@ -87,7 +87,7 @@ in terms of the C++ *registration stanza*:
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m)    // <== Registration opener
+   PHLEX_REGISTER_ALGORITHMS(m)    // <== Registration opener (w/o configuration object)
    {
      m.with(                       // <-- Beginning of registration statement
             make_tracks,           // (1) Algorithm/HOF operation
@@ -122,7 +122,7 @@ In the case of a transform, six pieces of information are provided in the regist
 5. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
 6. The data category where the input data products are found and the output data products are to be placed
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :ref:`section on HOF operators <algorithms:HOF operators>` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`algorithms:HOF operators` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:
