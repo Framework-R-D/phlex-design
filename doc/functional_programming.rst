@@ -14,7 +14,7 @@ For example, given two functions:
 a composite function :math:`h: \mbox{Wires} \rightarrow \mbox{Tracks}` can be constructed such that:
 
 .. math::
-   ts = h(ws) = g(f(ws)) = (g \comp f)(ws)
+   ts = h\ ws = g\ (f\ ws) = (g \comp f)\ ws
 
 or :math:`h = g \comp f`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
 
@@ -68,22 +68,22 @@ The sum is an example of a data reduction or *fold*, where a sequence is collaps
 In particular, the arithmetic mean above can be expressed as:
 
 .. math::
-   \overline{b} = \frac{1}{n} \fold{+}{0}{\sequence{b}}
+   \overline{b} = \frac{1}{n}\ \fold{+}{0}\ \sequence{b}
 
 where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
 
 The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
 
-Additional HOFs exist---for example, suppose the sequence :math:`(b_i)` was created by applying a function :math:`p: A \rightarrow B` to each element of a sequence :math:`(a_i)`.
+Additional HOFs exist---for example, suppose the sequence :math:`[b_i]` was created by applying a function :math:`p: A \rightarrow B` to each element of a sequence :math:`[a_i]`.
 Such a HOF is called a map or *transform*:
 
 .. math::
-   \sequence{b} = (p(a_i))_{i \in \mathcal{I}} = \transform{p}{\sequence{a}}
+   \sequence{b} = [p\ a_i]_{i \in \mathcal{I}} = \transform{p}\ \sequence{a}
 
 In such a scenario, the average :math:`\overline{b}` could be expressed as:
 
 .. math::
-   \overline{b} = \frac{1}{n} \fold{+}{0}{\transform{p}{\sequence{a}}} = \frac{1}{n} \fold{+ \comp p}{0}{\sequence{a}}
+   \overline{b} = \frac{1}{n}\ \fold{+}{0}\ \transform{p}\ \sequence{a} = \frac{1}{n}\ \fold{+ \comp p}{0}\ \sequence{a}
 
 The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
 The operator to this single fold is ':math:`+ \comp p`', indicating that the function :math:`p` should be applied first before invoking the :math:`+` operation.
@@ -103,71 +103,44 @@ Higher-order functions supported by Phlex
 In general, HOFs transform one sequence to another:
 
 .. math::
-   (a_{i_1i_2\dots i_n}) \rightarrow (b_{j_1j_2\dots j_m})
+    \sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}
 
-where the multiple indices indicate that the sequences can be multidimensional.
-Note that :math:`n` is not necessarily equal to :math:`m`.
+where the functions :math:`f_1, f_2, \ \dots` are *operators* required by the HOF.
+Note that the output index set :math:`\iset{\text{output}}` is not necessarily the same as the input index set :math:`\iset{\text{input}}`.
 
 The following table lists the HOFs supported by Phlex.
-Details of each higher-order function are provided by the link to the corresponding section in the User API section.
 As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------+
-| **Higher-order function**                                                                                                                         | **Resulting sequence**                            |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| Name                                                 | Operator                                | Sequence transformation                          | Dimension                  | Length               |
-+======================================================+=========================================+==================================================+============================+======================+
-| :ref:`Transform <hof_operators:Transforms>`          | :math:`f: A \rightarrow B`              | .. math::                                        | :math:`\dim(b) = \dim(a)`  | :math:`|b| = |a|`    |
-|                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
-|                                                      |                                         |    \(                                            |                            |                      |
-|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(b_{i_1\dots i_n})}_b             |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Fold <hof_operators:Folds>`                    | :math:`g: C \times D \rightarrow D`     | .. math::                                        | :math:`\dim(d) < \dim(c)`  | :math:`|d| \le |c|`  |
-|                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
-|                                                      |                                         |    \(                                            |                            |                      |
-|                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(d_{i_1\dots i_m})}_d             |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Unfold <hof_operators:Unfolds>`                | :math:`p: D \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| \ge |d|`  |
-|                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      +-----------------------------------------+                                                  |                            |                      |
-|                                                      | :math:`q: D \rightarrow D \times C`     |    \(                                            |                            |                      |
-|                                                      |                                         |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Filter <hof_operators:Filters and predicates>` | :math:`p: A \rightarrow \text{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
-|                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
-|                                                      |                                         |    \(                                            |                            |                      |
-|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_{a'}          |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
-| :ref:`Observer <hof_operators:Observers>`            | :math:`p: A \rightarrow \mathbbm{1}`    | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| = 0`     |
-|                                                      |                                         |    :no-wrap:                                     |                            |                      |
-|                                                      |                                         |                                                  |                            |                      |
-|                                                      |                                         |    \(                                            |                            |                      |
-|                                                      |                                         |    \underbrace{(a_{i_1\dots i_n})}_a \rightarrow |                            |                      |
-|                                                      |                                         |    \underbrace{(\quad)}_{a'}                     |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
-+------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
+.. table::
+   :widths: 15 30 30 25
+
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
+   | **Higher-order function**                                                                  | Operator(s)                                                  | Output sequence length |
+   +======================================================+=====================================+==============================================================+========================+
+   | :ref:`Transform <hof_operators:Transforms>`          | :math:`b = \transform{f}\ a`        | :math:`f: A \rightarrow B`                                   | :math:`|b| = |a|`      |
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
+   | :ref:`Filter <hof_operators:Filters and predicates>` | :math:`a' = \filter{p}\ a`          | :math:`p: A \rightarrow \text{Boolean}`                      | :math:`|a'| \le |a|`   |
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
+   | :ref:`Observer <hof_operators:Observers>`            | :math:`[\ \ ] = \observe{f}\ a`     | :math:`f: A \rightarrow \mathbbm{1}`                         | :math:`0`              |
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
+   | :ref:`Fold <hof_operators:Folds>`                    | :math:`d = \fold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                          | :math:`|d| \le |c|`    |
+   |                                                      |                                     +--------------------------------------------------------------+                        |
+   |                                                      |                                     | :math:`init: \mathbbm{1} \rightarrow D`                      |                        |
+   |                                                      |                                     +--------------------------------------------------------------+                        |
+   |                                                      |                                     | :math:`part: \{\iset{c}\} \rightarrow \mathcal{P}(\iset{c})` |                        |
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
+   | :ref:`Unfold <hof_operators:Unfolds>`                | :math:`c = \unfold{p}{gen}{cat}\ d` | :math:`p: D \rightarrow \mbox{Boolean}`                      | :math:`|c| \ge |d|`    |
+   |                                                      |                                     +--------------------------------------------------------------+                        |
+   |                                                      |                                     | :math:`gen: D \rightarrow D \times C`                        |                        |
+   |                                                      |                                     +--------------------------------------------------------------+                        |
+   |                                                      |                                     | :math:`cat: \mathbbm{1} \rightarrow L`                       |                        |
+   +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
 
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
 The set :math:`\mathbbm{1}` indicates a one-element set whose element can represent a `false` value.
 In C++, this would be denoted by the return statement :cpp:`return;` whereas in Python, it would be denoted by either :py:`return` or :py:`return None`.
 
-Phlex will likely support other higher order functions as well, such as a sliding window.
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   I'm not sure about the form of the above: if we're going to support a sliding window, then it should have a line in the preceeding table. If we merely wish to state that Phex may be extended straightforwardly to support other higher order functions, then we should say that.
+Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes
 

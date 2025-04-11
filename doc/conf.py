@@ -56,13 +56,35 @@ todo_emit_warnings = True
 extra_packages = r"""
 \usepackage{bbm}
 \usepackage{relsize}
+\usepackage{xparse}
 """
 
 new_commands = r"""
+\NewDocumentCommand{\iset}{g}{
+  \IfNoValueTF{#1}
+    {\mathcal{I}}
+    {\mathcal{I}_#1}
+}
+
 \newcommand\comp[0]{\circ}
-\newcommand\sequence[1]{{(#1_i)_{i \in \mathcal{I}}}}
-\newcommand\transform[2]{\text{transform}\{#1, #2\}}
-\newcommand\fold[3]{\text{fold}\{#1, #2, #3\}}
+
+\NewDocumentCommand{\sequence}{mg}{
+  \IfNoValueTF{#2}
+    {[#1_i]_{i \in \iset}}
+    {[#1_i]_{i \in \iset{#2}}}
+}
+
+\newcommand\transform[1]{\text{transform}(#1)}
+\newcommand\predicate[1]{\text{predicate}(#1)}
+\newcommand\filter[1]{\text{filter}(#1)}
+\newcommand\observe[1]{\text{observe}(#1)}
+\newcommand\unfold[3]{\text{unfold}(#1,\ #2,\ #3)}
+
+\NewDocumentCommand{\fold}{mmg}{
+  \IfNoValueTF{#3}
+    {\text{fold}(#1,\ #2)}
+    {\text{fold}(#1,\ #2,\ #3)}
+}
 """
 
 extensions.append('sphinx.ext.imgmath')

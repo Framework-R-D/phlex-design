@@ -4,16 +4,16 @@ digraph {
 
   start [shape="point", width=0.1]
   end [shape="point", width=0.1, peripheries=2]
-  f [label=<transform{ <i><font color="blue">f</font></i>  }>];
-  g [label=<transform{ <i><font color="blue">g</font></i> }>];
+  f [label=<transform( <i><font color="blue">f</font></i> )>];
+  g [label=<transform( <i><font color="blue">g</font></i> )>];
 
   start -> f [label=<<table cellpadding="1" border="0" cellborder="0">
-                       <tr><td>(<i><font color="red">ws</font><sub>i</sub></i> )</td></tr>
+                       <tr><td>[<i><font color="red">ws</font><sub>i</sub></i>]</td></tr>
                       </table>>]
   f -> g [label=<<table cellpadding="1" border="0" cellborder="0">
-                   <tr><td><font color="darkgray">(<i>hs<sub>i</sub></i> )</font></td></tr>
+                   <tr><td><font color="darkgray">[<i>hs<sub>i</sub></i>]</font></td></tr>
                   </table>>]
   g -> end [label=<<table cellpadding="1" border="0" cellborder="0">
-                     <tr><td>(<i><font color="red">ts</font><sub>i</sub></i> )</td></tr>
+                     <tr><td>[<i><font color="red">ts</font><sub>i</sub></i>]</td></tr>
                     </table>>]
 }

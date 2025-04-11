@@ -13,11 +13,11 @@ digraph {
                         </table>>]
 
   iota -> transform [label=<<table cellpadding="1" border="0" cellborder="0">
-                              <tr><td><font color="red">(<i>i</i>)</font></td></tr>
+                              <tr><td><font color="red">[<i>i</i>]</font></td></tr>
                             </table>>]
 
   transform -> sum [label=<<table cellpadding="1" border="0" cellborder="0">
-                             <tr><td><font color="red">(<i>i<sup>2</sup></i>)</font></td></tr>
+                             <tr><td><font color="red">[<i>i<sup>2</sup></i>]</font></td></tr>
                            </table>>]
 
   sum -> end [label=<<table cellpadding="1" border="0" cellborder="0">

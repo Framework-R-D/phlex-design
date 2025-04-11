@@ -5,7 +5,7 @@ In :numref:`functional_programming:Functional programming`, the example was give
 The simplified expression for doing this was the chained application of two functions :math:`f` and :math:`g` such that:
 
 .. math::
-   ts = g(f(ws)) = (g \comp f)(ws)
+   ts = g\ (f\ ws) = (g \comp f)\ ws
 
 where :math:`ws` and :math:`ts` are the wires and tracks, respectively.
 
@@ -38,8 +38,8 @@ Data flow with sequences
 As mentioned earlier in :numref:`functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of sequences.  Specifically [#f2]_:
 
-- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`(ws_i)`, :math:`(hs_i)`, and :math:`(ts_i)` are passed.
-- The functions :math:`f` and :math:`g` map to :math:`\mbox{transform}\left\{f\right\}` and :math:`\mbox{transform}\left\{g\right\}`, respectively.
+- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`[ws_i]`, :math:`[hs_i]`, and :math:`[ts_i]` are passed.
+- The functions :math:`f` and :math:`g` map to :math:`\transform{f}` and :math:`\transform{g}`, respectively.
 
 .. graphviz:: graphviz/functional-programming-data-flow-hof.gv
    :align: center

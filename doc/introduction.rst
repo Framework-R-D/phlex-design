@@ -10,8 +10,10 @@ Wikipedia decently defines a software framework as [Wiki-framework]_:
 
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
-In a HEP context, a user “plugs in” their code to a framework, often through dynamically loaded libraries called *plugins*.
-Although not required, this often means that the framework provides a program's `main(...)` function, which (directly or indirectly) invokes user code as configured at appropriate points in the program's execution.
+The framework orchestrates data flow, resource management, and parallel execution.
+It enables a scientific collaboration to write standardized workflows where physicists can insert their own algorithms.
+In a HEP context, this insertion often occurs by the framework dynamically loading libraries called *plugins*.
+Although not required, a framework often provides a program's `main(...)` function, which (directly or indirectly) invokes user code within the plugins as configured at appropriate points in the program's execution.
 
 Frameworks are typically used in a high-level trigger environment, for reconstructing physics objects from detector signals, or for simulating physics processes.
 Many analysis needs can also be met by a data-processing framework.

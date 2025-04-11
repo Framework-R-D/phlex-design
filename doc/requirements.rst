@@ -1,3 +1,7 @@
+.. raw:: latex
+
+   \newcommand\extraverticalws{1.5\baselineskip}
+
 Framework requirements
 ======================
 
@@ -8,6 +12,10 @@ Framework requirements
 
 | Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
 | See :numref:`scheduling:Building the data-flow graph`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -29,6 +37,10 @@ Framework requirements
 | Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
 | See :numref:`scheduling:Building the data-flow graph`, :numref:`algorithms:Framework registration`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -46,6 +58,10 @@ Framework requirements
 
 | Jama Connect entry: `DUNE STKH #2 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14539>`__
 | See :numref:`data_organization:Data products`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -89,6 +105,10 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 
 | Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
 | See :numref:`algorithms:Framework registration`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -167,6 +187,10 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 | Jama Connect entry: `DUNE STKH #14 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554>`__
 | See :numref:`introduction:Programming languages`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -191,6 +215,10 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 | Jama Connect entry: `DUNE STKH #81 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663>`__
 | See :numref:`introduction:Programming languages`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -208,6 +236,10 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
 
 | Jama Connect entry: `DUNE STKH #82 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664>`__
 | See :numref:`introduction:Programming languages`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -292,6 +324,10 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
 | See :numref:`scheduling:Building the data-flow graph`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -356,6 +392,10 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
 | See :numref:`data_organization:Data products`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -373,6 +413,10 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #86 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
 | See :numref:`data_organization:Data categories, families, and data-product sets`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -392,6 +436,10 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #87 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
 | See :numref:`data_organization:Data categories, families, and data-product sets`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -409,6 +457,10 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #88 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698>`__
 | See :numref:`data_organization:Data categories, families, and data-product sets`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -681,6 +733,10 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
 | Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
 | See :numref:`algorithms:Unfolds`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -772,6 +828,10 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
 | See :numref:`algorithms:Algorithms`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -815,6 +875,10 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #46 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612>`__
 | See :numref:`technical_design:Task management`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -839,6 +903,10 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
 | See :numref:`user_configuration:Program resource specification`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -981,6 +1049,10 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
 | Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
 | See :numref:`algorithms:Framework registration`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -1121,6 +1193,10 @@ Jama Connect entry: `DUNE STKH #48 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #60 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629>`__
 | See :numref:`technical_design:Monitoring and reporting`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -1318,6 +1394,10 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
 | See :numref:`algorithms:Framework registration`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -1337,6 +1417,10 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
 | See :numref:`algorithms:Framework registration`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -1401,6 +1485,10 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 | Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
 | See :numref:`technical_design:Monitoring and reporting`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -1421,6 +1509,10 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 
 | Jama Connect entry: `DUNE STKH #61 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630>`__
 | See :numref:`technical_design:Logging`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -2042,6 +2134,10 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
 | See :numref:`introduction:Framework philosophy`
 
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
+
 .. table::
     :widths: 15 85
 
@@ -2271,6 +2367,10 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
 
 | Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
 | See :numref:`functional_programming:Functional programming`
+
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85

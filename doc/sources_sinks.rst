@@ -1,20 +1,26 @@
-Sources and sinks
-=================
-
-Sources
--------
+Framework driver
+================
 
 .. code:: c++
 
-   PHLEX_REGISTER_SOURCE(config)
+   PHLEX_REGISTER_DRIVER(config)
    {
    }
 
-Sinks
--------
+Data sources
+============
 
 .. code:: c++
 
-   PHLEX_REGISTER_SINK(config)
+   PHLEX_REGISTER_DATA_SOURCE(config)
+   {
+   }
+
+Data sinks
+==========
+
+.. code:: c++
+
+   PHLEX_REGISTER_DATA_SINK(config)
    {
    }
