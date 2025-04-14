@@ -73,9 +73,11 @@ cet_report_compiler_flags(REPORT_THRESHOLD VERBOSE)
 # Build code and tests
 find_package(fhiclpy 4.04 REQUIRED)
 find_package(fhiclcpp 4.19 REQUIRED)
+find_package(cetlib REQUIRED)
 find_package(Jsonnet 0.21 REQUIRED)
 find_package(Python 3.9 COMPONENTS Development REQUIRED)
 find_package(Microsoft.GSL REQUIRED)
+find_package(yaml-cpp 0.8.0 REQUIRED)
 
 include(CetMake)
 include(CetMakeLibrary)
@@ -89,7 +91,11 @@ cet_test(fhicl_t HANDBUILT
   DATAFILES FHiCL.fcl
 )
 
-cet_make_exec(NAME json_t NO_EXPORT NO_EXPORT_ALL_SYMBOLS LIBRARIES PRIVATE Jsonnet::libjsonnet++)
+cet_make_exec(NAME json_t
+  SOURCE json_t.cc make_parameter_set_from_YAML_string.cc
+  NO_EXPORT NO_EXPORT_ALL_SYMBOLS
+  LIBRARIES PRIVATE fhiclcpp::fhiclcpp Jsonnet::libjsonnet++ yaml-cpp::yaml-cpp)
+
 target_compile_features(json_t PRIVATE cxx_std_20)
 cet_test(json_t HANDBUILT
   TEST_EXEC json_t

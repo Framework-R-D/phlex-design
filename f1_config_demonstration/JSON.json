@@ -3,9 +3,17 @@
     full_seq: [ 4, 6, 8, 9, 10, 12, 14,
                 15, 16, 18, 20, 21, 22,
                 23, 19, 17, 13, 11, 7, 5, 3, 2, 1 ],
+    hetero_seq: [ 3, 7, { b: 6 }, "ethel" ],
     a: 9,
-    b: 26,
+    b: "26",
     d: null,
-    e: "infinity",
+    f: "infinity",
+    g: "-infinity",
+    e: "\"infinity\"",
+    j: "0x77ff6",
+    k: "0b011110101",
+    nested_map: { x: "Mary had a little lamb", y: 4 },
+    sequence_of_maps: [ { a: 3, b: 4 }, { f: 5, g: 6 } ],
+    my_cplx: "(.23,5.88)"
   }
 }
