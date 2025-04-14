@@ -18,7 +18,7 @@ a composite function :math:`h: \mbox{Wires} \rightarrow \mbox{Tracks}` can be co
 
 or :math:`h = g \comp f`, where :math:`ws \in \mbox{Wires}` and :math:`ts \in \mbox{Tracks}`.
 
-In reality, the creation of tracks from wire signals is much more complicated [#f1]_.
+In reality, the creation of tracks from wire signals is much more complicated [#graph]_.
 However, as seen above, functional programming permits a mathematical description of the data-processing to be performed.
 Expressing the processing needs according to mathematics enables:
 
@@ -136,15 +136,14 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
    |                                                      |                                     | :math:`cat: \mathbbm{1} \rightarrow L`                       |                        |
    +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
 
+:numref:`algorithms:HOF operators` describes each of the operators in detail.
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
-The set :math:`\mathbbm{1}` indicates a one-element set whose element can represent a `false` value.
-In C++, this would be denoted by the return statement :cpp:`return;` whereas in Python, it would be denoted by either :py:`return` or :py:`return None`.
 
 Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes
 
-.. [#f1] As discussed in :numref:`data_flow:Data flow`, the general topology of a data-processing workflow is a *graph* of functions.
+.. [#graph] As discussed in :numref:`data_flow:Data flow`, the general topology of a data-processing workflow is a *graph* of functions.
 
 .. only:: html
 

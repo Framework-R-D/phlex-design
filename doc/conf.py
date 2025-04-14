@@ -85,6 +85,17 @@ new_commands = r"""
     {\text{fold}(#1,\ #2)}
     {\text{fold}(#1,\ #2,\ #3)}
 }
+
+% The following is needed to ensure consistent footnote ordering
+% within each LaTeX-rendered chapter:
+%  (see https://github.com/sphinx-doc/sphinx/issues/3652#issuecomment-303195583)
+\makeatletter
+\def\FNH@footnoteenv@i[#1]{\FNH@footnoteenv}
+\def\FNH@footnotetextenv@i[#1]{\FNH@footnotetextenv}
+\def\sphinxfootnotemark [#1]%
+   {\ifx\thepage\relax\else\protect\spx@opt@BeforeFootnote
+                             \protect\footnotemark\fi}%
+\makeatother
 """
 
 extensions.append('sphinx.ext.imgmath')
