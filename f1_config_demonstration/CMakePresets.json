@@ -1,0 +1,24 @@
+{
+   "configurePresets" : [
+     {
+       "cacheVariables" : {
+         "CMAKE_CXX_EXTENSIONS" : {
+           "type" : "BOOL",
+           "value" : "OFF"
+         },
+         "CMAKE_CXX_STANDARD_REQUIRED" : {
+           "type" : "BOOL",
+           "value" : "ON"
+         },
+         "CMAKE_PROJECT_TOP_LEVEL_INCLUDES" : {
+           "type" : "STRING",
+           "value" : "CetProvideDependency"
+         }
+       },
+       "description" : "Default configuration",
+       "displayName" : "Default configuration",
+       "name" : "default"
+     }
+   ],
+   "version" : 3
+}
