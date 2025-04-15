@@ -9,5 +9,4 @@ These algorithms then serve as operators to higher-order functions that operate 
 The framework is a system of integrated aspects that must work together.
 To illustrate how these subsystems are designed to work together, we use the below graph to describe each aspect.
 
-.. todo::
-   Make graph
+.. graphviz:: graphviz/work-flow.gv

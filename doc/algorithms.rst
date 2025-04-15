@@ -254,14 +254,14 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
-.. [#f1] In C++, the function signature corresponds to the function *declaration*, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
+.. [#f1] In C++, the function signature corresponds to the function *declaration* [CppFunctionDecl]_, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
          However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
-
-         .. admonition:: Chris Green
-            :class: admonition-chg
-
-            Should this have a reference to an explanation of this at e.g. ``cppreference.com``?
-
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
          However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
 .. [#f3] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .
+
+.. only:: html
+
+   .. rubric:: References
+
+.. [CppFunctionDecl] https://en.cppreference.com/w/cpp/language/function

@@ -1,0 +1,103 @@
+digraph {
+  node [shape="box", style="rounded"]
+  //  edge [dir=both, arrowtail=dot];
+
+  start [shape="point", width=0.1]
+  unfold [label=<unfold(<font color="blue">into_apas</font>)>]
+  transform [label=<transform(<font color="blue">clamp</font>)>]
+  fold [label=<fold(<font color="blue">sum_waveforms</font>)>]
+  filter [label=<filter(<font color="blue">high_energy</font>)>];
+  observer [label=<observe(<font color="blue">high_energy_waveforms</font>)>];
+  out [label="Data sink(s)", shape="cylinder", style="filled", fillcolor="lightgray"]
+
+  {
+    rank=same;
+    resource [label=<Histogram<br/> resource>,
+              shape=hexagon,
+              style=filled,
+              fillcolor=thistle,
+              margin=0];
+    root [label="ROOT file", style=filled, shape=cylinder];
+  }
+
+  start -> driver [label=" Configuration"];
+
+  {
+    rank=same;
+    driver [label="Driver"];
+    input [label="Data source(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
+  }
+
+  driver -> input [style="dotted", arrowhead=none];
+
+  {
+    rank=same;
+    waveforms_provider [label=<provide(Waveforms)>, style="filled,rounded" fillcolor="lightblue"];
+    geometry [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
+    gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
+  }
+
+  driver -> geometry [label=< [J]>];
+  driver -> waveforms_provider [label=< [Spill<sub><i>i</i></sub>]>];
+
+  geometry -> gdml [style="dotted", arrowhead=none];
+  resource -> root [style="dotted", arrowhead=none];
+
+  waveforms_provider -> input [style="dotted", arrowhead=none];
+  waveforms_provider -> unfold [label=< [Waveforms<sub><i>i</i></sub>]>];
+  geometry -> unfold [label=< [Geometry]>];
+
+  unfold:s -> transform [xlabel=< [Waveforms<sub><i>ij</i></sub>]>];
+  transform:s -> fold [taillabel=<[ClampedWaveforms<sub><i>ij</i></sub>] >,
+                       labelangle=-80,
+                       labeldistance=7
+                      ];
+
+  unfold:s -> out [style="dashed", color="gray"];
+  transform:s -> out [style="dashed", color="gray"];
+
+
+  unfold:s -> filter [label=< [Waveforms<sub><i>ij</i></sub>]>];
+  filter:s -> observer [label=< [Waveforms<sub><i>ij</i> '</sub>]>];
+  resource -> observer [style="dashed"];
+
+  fold:s -> out [style="dashed", color="gray"];
+
+  // hit_finder [label=<transform(<font color="blue">find_hits</font>)>];
+  // flash_finder [label=<transform(<font color="blue">find_flashes</font>)>];
+  // hit_clustering [label=<transform(<font color="blue">cluster_hits</font>)>];
+  // wire_creator [label=<transform(<font color="blue">create_wires</font>)>];
+  //
+  // out [label=<Data sink>, shape=cylinder, style="filled", fillcolor="lightgray"];
+  //
+  // driver -> {waveforms_provider, rawdigits_provider, clock_data} [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                      <tr><td><font color="red">[Spill<i><sub>i</sub></i>]</font></td></tr>
+  //                     </table>>];
+  //
+  // waveforms_provider -> hit_finder [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                      <tr><td><font color="red">[OpDetWaveforms<i><sub>i</sub></i>]</font></td></tr>
+  //                     </table>>]
+  // rawdigits_provider -> wire_creator [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                      <tr><td><font color="red">[RawDigits<i><sub>i</sub></i>]</font></td></tr>
+  //                     </table>>]
+  // hit_finder -> flash_finder [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                  <tr><td><font color="red">[OpHits<i><sub>i</sub></i>]</font></td></tr>
+  //                 </table>>]
+  // clock_data -> flash_finder [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                  <tr><td><font color="red">[TriggerTime<i><sub>i</sub></i>]</font></td></tr>
+  //                 </table>>]
+  //
+  // hit_finder -> hit_clustering [label=<<table cellpadding="1" border="0" cellborder="0">
+  //                  <tr><td><font color="red">[OpHits<i><sub>i</sub></i>]</font></td></tr>
+  //                 </table>>]
+  // flash_finder -> out [color="gray",
+  //                      style="dashed",
+  //                      label=<<table cellpadding="1" border="0" cellborder="0">
+  //                    <tr><td><font color="red">[OpFlashes<i><sub>i</sub></i>]</font></td></tr>
+  //                   </table>>]
+  // wire_creator -> out [color="gray",
+  //                      style="dashed",
+  //                      label=<<table cellpadding="1" border="0" cellborder="0">
+  //                    <tr><td><font color="red">[Wires<i><sub>i</sub></i>]</font></td></tr>
+  //                   </table>>]
+}
