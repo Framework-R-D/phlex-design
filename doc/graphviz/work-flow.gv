@@ -1,6 +1,6 @@
 digraph {
   node [shape="box", style="rounded"]
-  //  edge [dir=both, arrowtail=dot];
+  edge [fontcolor="red"];
 
   start [shape="point", width=0.1]
   unfold [label=<unfold(<font color="blue">into_apas</font>)>]
@@ -20,7 +20,7 @@ digraph {
     root [label="ROOT file", style=filled, shape=cylinder];
   }
 
-  start -> driver [label=" Configuration"];
+  start -> driver [label=" Configuration", fontcolor="forestgreen"];
 
   {
     rank=same;
@@ -37,8 +37,8 @@ digraph {
     gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
   }
 
-  driver -> geometry [label=< [J]>];
-  driver -> waveforms_provider [label=< [Spill<sub><i>i</i></sub>]>];
+  driver -> geometry [label=" [J]", fontcolor="darkorange"];
+  driver -> waveforms_provider [label=< [Spill<sub><i>i</i></sub>]>, fontcolor="darkorange"];
 
   geometry -> gdml [style="dotted", arrowhead=none];
   resource -> root [style="dotted", arrowhead=none];
@@ -62,42 +62,4 @@ digraph {
   resource -> observer [style="dashed"];
 
   fold:s -> out [style="dashed", color="gray"];
-
-  // hit_finder [label=<transform(<font color="blue">find_hits</font>)>];
-  // flash_finder [label=<transform(<font color="blue">find_flashes</font>)>];
-  // hit_clustering [label=<transform(<font color="blue">cluster_hits</font>)>];
-  // wire_creator [label=<transform(<font color="blue">create_wires</font>)>];
-  //
-  // out [label=<Data sink>, shape=cylinder, style="filled", fillcolor="lightgray"];
-  //
-  // driver -> {waveforms_provider, rawdigits_provider, clock_data} [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                      <tr><td><font color="red">[Spill<i><sub>i</sub></i>]</font></td></tr>
-  //                     </table>>];
-  //
-  // waveforms_provider -> hit_finder [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                      <tr><td><font color="red">[OpDetWaveforms<i><sub>i</sub></i>]</font></td></tr>
-  //                     </table>>]
-  // rawdigits_provider -> wire_creator [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                      <tr><td><font color="red">[RawDigits<i><sub>i</sub></i>]</font></td></tr>
-  //                     </table>>]
-  // hit_finder -> flash_finder [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                  <tr><td><font color="red">[OpHits<i><sub>i</sub></i>]</font></td></tr>
-  //                 </table>>]
-  // clock_data -> flash_finder [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                  <tr><td><font color="red">[TriggerTime<i><sub>i</sub></i>]</font></td></tr>
-  //                 </table>>]
-  //
-  // hit_finder -> hit_clustering [label=<<table cellpadding="1" border="0" cellborder="0">
-  //                  <tr><td><font color="red">[OpHits<i><sub>i</sub></i>]</font></td></tr>
-  //                 </table>>]
-  // flash_finder -> out [color="gray",
-  //                      style="dashed",
-  //                      label=<<table cellpadding="1" border="0" cellborder="0">
-  //                    <tr><td><font color="red">[OpFlashes<i><sub>i</sub></i>]</font></td></tr>
-  //                   </table>>]
-  // wire_creator -> out [color="gray",
-  //                      style="dashed",
-  //                      label=<<table cellpadding="1" border="0" cellborder="0">
-  //                    <tr><td><font color="red">[Wires<i><sub>i</sub></i>]</font></td></tr>
-  //                   </table>>]
 }
