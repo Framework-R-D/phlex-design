@@ -1,4 +1,4 @@
-#include "make_parameter_set_from_YAML_string.h"
+#include "make_parameter_set_from_YAML.h"
 
 #include "fhiclcpp/parse.h"
 #include "fhiclcpp/intermediate_table.h"
@@ -8,12 +8,6 @@
 #include <format>
 #include <iostream>
 #include <sstream>
-
-template <typename T>
-bool YAML::conversion::ConvertStreamTo(std::stringstream &stream, std::complex<T> &rhs)
-{ 
-  return ((stream >> rhs) && (stream >> std::ws).eof());
-}
 
 namespace {
 
@@ -74,14 +68,23 @@ namespace {
     }
   }
   
+  fhicl::ParameterSet make_parameter_set_from_YAML(YAML::Node const &top_node)
+  {
+    fhicl::intermediate_table tbl;
+    for (auto it = top_node.begin(); it != top_node.end(); ++it ) {
+      add_node_to_table(it->first.Scalar(), it->second, tbl);
+    }
+    return fhicl::ParameterSet::make(tbl);
+  }
+}
+
+fhicl::ParameterSet make_parameter_set_from_YAML_file(std::string const &yaml_filename)
+{
+  return make_parameter_set_from_YAML(YAML::LoadFile(yaml_filename));
 }
 
 fhicl::ParameterSet make_parameter_set_from_YAML_string(std::string const &yaml_in)
 {
-  fhicl::intermediate_table tbl;
-  auto const & top_node = YAML::Load(yaml_in);
-  for (auto it = top_node.begin(); it != top_node.end(); ++it ) {
-    add_node_to_table(it->first.Scalar(), it->second, tbl);
-  }
-  return fhicl::ParameterSet::make(tbl);
+  return make_parameter_set_from_YAML(YAML::Load(yaml_in));
 }
+

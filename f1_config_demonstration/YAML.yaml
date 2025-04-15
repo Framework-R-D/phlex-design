@@ -1,0 +1,47 @@
+top:
+  a: 9
+  b: 26
+  d: ~
+  e: "\"infinity\""
+  f: infinity
+  full_seq:
+  - 4
+  - 6
+  - 8
+  - 9
+  - 10
+  - 12
+  - 14
+  - 15
+  - 16
+  - 18
+  - 20
+  - 21
+  - 22
+  - 23
+  - 19
+  - 17
+  - 13
+  - 11
+  - 7
+  - 5
+  - 3
+  - 2
+  - 1
+  g: -infinity
+  hetero_seq:
+  - 3
+  - 7
+  - b: 6
+  - ethel
+  j: 0x77ff6
+  k: 0b011110101
+  my_cplx: "(.23,5.88)"
+  nested_map:
+  x: Mary had a little lamb
+  y: 4
+  sequence_of_maps:
+  - a: 3
+    b: 4
+  - f: 5
+    g: 6

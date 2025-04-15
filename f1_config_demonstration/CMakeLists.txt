@@ -83,7 +83,9 @@ include(CetMake)
 include(CetMakeLibrary)
 include(CetTest)
 
-cet_make_exec(NAME fhicl_t NO_EXPORT NO_EXPORT_ALL_SYMBOLS LIBRARIES PRIVATE fhiclcpp::fhiclcpp cetlib::cetlib)
+cet_make_exec(NAME fhicl_t NO_EXPORT NO_EXPORT_ALL_SYMBOLS
+  LIBRARIES PRIVATE fhiclcpp::fhiclcpp cetlib::cetlib
+)
 target_compile_features(fhicl_t PRIVATE cxx_std_20)
 
 cet_test(fhicl_t HANDBUILT
@@ -91,15 +93,33 @@ cet_test(fhicl_t HANDBUILT
   DATAFILES FHiCL.fcl
 )
 
-cet_make_exec(NAME json_t
-  SOURCE json_t.cc make_parameter_set_from_YAML_string.cc
-  NO_EXPORT NO_EXPORT_ALL_SYMBOLS
-  LIBRARIES PRIVATE fhiclcpp::fhiclcpp Jsonnet::libjsonnet++ yaml-cpp::yaml-cpp)
+cet_make_library(LIBRARY_NAME f1cd SOURCE make_parameter_set_from_YAML.cc
+  LIBRARIES PUBLIC fhiclcpp::fhiclcpp PRIVATE yaml-cpp::yaml-cpp
+)
+target_compile_features(f1cd PRIVATE cxx_std_20)
 
+cet_make_exec(NAME json_t
+  SOURCE json_t.cc
+  NO_EXPORT NO_EXPORT_ALL_SYMBOLS
+  LIBRARIES PRIVATE f1cd::f1cd fhiclcpp::fhiclcpp Jsonnet::libjsonnet++
+)
 target_compile_features(json_t PRIVATE cxx_std_20)
+
 cet_test(json_t HANDBUILT
   TEST_EXEC json_t
   DATAFILES JSON.json
+)
+
+cet_make_exec(NAME yaml_t
+  SOURCE yaml_t.cc
+  NO_EXPORT NO_EXPORT_ALL_SYMBOLS
+  LIBRARIES PRIVATE f1cd::f1cd fhiclcpp::fhiclcpp
+)
+target_compile_features(yaml_t PRIVATE cxx_std_20)
+
+cet_test(yaml_t HANDBUILT
+  TEST_EXEC yaml_t
+  DATAFILES YAML.yaml
 )
 
 ########################################################################

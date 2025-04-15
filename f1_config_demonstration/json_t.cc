@@ -1,7 +1,7 @@
 #include "fhiclcpp/ParameterSet.h"
 
 #include "libjsonnet++.h"
-#include "make_parameter_set_from_YAML_string.h"
+#include "make_parameter_set_from_YAML.h"
 
 #include <iostream>
 #include <string>
