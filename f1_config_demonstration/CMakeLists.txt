@@ -77,6 +77,7 @@ find_package(cetlib REQUIRED)
 find_package(Jsonnet 0.21 REQUIRED)
 find_package(Python 3.9 COMPONENTS Development REQUIRED)
 find_package(Microsoft.GSL REQUIRED)
+find_package(spdlog REQUIRED)
 find_package(yaml-cpp 0.8.0 REQUIRED)
 
 include(CetMake)
@@ -96,12 +97,13 @@ cet_test(fhicl_t HANDBUILT
 cet_make_library(LIBRARY_NAME f1cd SOURCE make_parameter_set_from_YAML.cc
   LIBRARIES PUBLIC fhiclcpp::fhiclcpp PRIVATE yaml-cpp::yaml-cpp
 )
+target_compile_definitions(f1cd PUBLIC SPDLOG_USE_STD_FORMAT=1)
 target_compile_features(f1cd PRIVATE cxx_std_20)
 
 cet_make_exec(NAME json_t
   SOURCE json_t.cc
   NO_EXPORT NO_EXPORT_ALL_SYMBOLS
-  LIBRARIES PRIVATE f1cd::f1cd fhiclcpp::fhiclcpp Jsonnet::libjsonnet++
+  LIBRARIES PRIVATE f1cd::f1cd fhiclcpp::fhiclcpp Jsonnet::libjsonnet++ spdlog::spdlog
 )
 target_compile_features(json_t PRIVATE cxx_std_20)
 
