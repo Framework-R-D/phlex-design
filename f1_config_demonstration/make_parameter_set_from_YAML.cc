@@ -4,6 +4,7 @@
 #include "fhiclcpp/intermediate_table.h"
 #include "fhiclcpp/ParameterSet.h"
 #include "yaml-cpp/yaml.h"
+#include "spdlog/spdlog.h"
 
 #include <format>
 #include <iostream>
@@ -36,16 +37,16 @@ namespace {
   {
     switch (node.Type()) {
     case YAML::NodeType::Undefined:
-      std::cout << "found undefined " << key << std::endl;
+      spdlog::info("found undefined {}", key);
       break;
     case YAML::NodeType::Null:
-      std::cout << "found null " << key << std::endl;
+      spdlog::info("found null {}", key);
       tbl.putNil(key);
       break;
     case YAML::NodeType::Scalar:
       {
         auto const input_string = node.Scalar();
-        std::cout << "found scalar " << key << ": " << input_string << std::endl;
+        spdlog::info("found scalar {}: {}", key, input_string);
         fhicl::extended_value xval;
         std::string unparsed;
         if (fhicl::parse_value_string(input_string, xval, unparsed)) {
@@ -56,11 +57,11 @@ namespace {
       }
       break;
     case YAML::NodeType::Sequence:
-      std::cout << "found sequence " << key << std::endl;
+      spdlog::info("found sequence {}", key);
       add_node_as_sequence(key, node, tbl);
       break;
     case YAML::NodeType::Map:
-      std::cout << "found map " << key << std::endl;
+      spdlog::info("found map {}", key);
       add_node_as_map(key, node, tbl);
       break;
     default:
@@ -87,4 +88,3 @@ fhicl::ParameterSet make_parameter_set_from_YAML_string(std::string const &yaml_
 {
   return make_parameter_set_from_YAML(YAML::Load(yaml_in));
 }
-
