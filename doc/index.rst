@@ -1,13 +1,6 @@
 Phlex framework design
 ======================
 
-.. only:: html
-
-   .. admonition:: Chris Green
-      :class: admonition-chg
-
-      Document title in title case?
-
 .. raw:: latex
 
    \section*{Preface}

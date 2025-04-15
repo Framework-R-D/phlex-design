@@ -106,13 +106,6 @@ The registration stanza is included in a C++ file that is compiled into a :term:
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement contains a series of chained *clauses*, starting with a :cpp:`with(...)` clause.
 
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   What significance does the ordering have beyond the first :cpp:`with(...)` or :cpp:`make(...)`?
-   Is this enforced?
-   If so, is this at compile time, configuration time or run time?
-
 In the case of a transform, six pieces of information are provided in the registration statement:
 
 1. The algorithm/HOF operator to be used
@@ -163,19 +156,12 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
    The :cpp:`config` C++ object provides access to the configuration parameters corresponding **only to the module containing the registration stanza.**
    In other words, one registration stanza may not access the configuration parameters of another registration stanza.
 
-   .. admonition:: Chris Green
-      :class: admonition-chg
+   .. todo::
 
-      Should we provide some limited access to framework configuration of interest (e.g. via an optional supplemental argument), such as global verbosity and/or debug flags?
+      Determine if we provide some limited access to framework configuration of interest (e.g. via an optional supplemental argument), such as global verbosity and/or debug flags.
 
 
 Except for the specification of :cpp:`make_tracks` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
-
-.. admonition:: Chris Green
-   :class: admonition-chg
-
-   What about :cpp:`for_each()`?
-   Would it be simpler to list only :cpp:`make_tracks` and "C++ operations on the :cpp:m object" as exceptions?
 
 Framework dependence in registration code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -205,10 +191,10 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<hits>` object
 
 The lambda expression *does* depend on framework interface; the :cpp:`make_tracks_debug` function, however, retains its framework independence.
 
-.. admonition:: Chris Green
-   :class: admonition-chg
+.. todo::
 
-   If one passes a framework-dependent closure to an algorithm, is that algorithm still framework-independent?
+   Further explain what framework independence means.
+   For example, if one passes a framework-dependent closure to an algorithm, is that algorithm still framework-independent?
 
 Member functions of classes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

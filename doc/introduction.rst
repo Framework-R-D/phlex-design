@@ -23,18 +23,16 @@ Phlex, therefore, aims to satisfy the data-processing needs of only physics reco
 Requirements process
 ====================
 
-.. admonition:: Chris Green
-   :class: admonition-chg
+.. todo::
 
-   Do we need to cite an introductory source that explains these concepts, or are we assuming familiarity?
+   Describe *stakeholder* and *system* requirements.
 
 Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment [#f1]_.
 The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements.
 
-.. admonition:: Chris Green
-   :class: admonition-chg
+.. todo::
 
-   Apparently there is a Sphinx extension `Sphinx-Needs <https://sphinxcontrib-needs.readthedocs.io/en/latest/>`__ which may help with referring to and cross-referencing requirements, etc.
+   Evaluate whether the Sphinx extension `Sphinx-Needs <https://sphinxcontrib-needs.readthedocs.io/en/latest/>`__ may help with referring to and cross-referencing requirements, etc.
 
 The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
