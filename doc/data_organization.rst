@@ -42,7 +42,7 @@ Framework users are expected to define their own data products :dune:`11.1 Defin
 
 
 
-Structre and Representation
+Structure and Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation :dune:`2 Data Product Representation`.
