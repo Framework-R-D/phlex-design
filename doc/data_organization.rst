@@ -5,6 +5,8 @@ This section provides a conceptual overview of *data products*, *data product se
 It aims to establish a mental model for how all of these facilitate scientific workflows without delving into implementation specifics. 
 
 Data products represent things like raw detector readouts, calibration information, and derived physics quanties.
+We call these kinds of things represented by data products *conceptual data products*.
+Data product types are the programming language representations of conceptual data products.
 A data set category is an experiement-defined level of aggregation of data products, e.g. run, subrun, spill, or an interval of validity for some flavor of calibration.
 A data product set is a collection of data products, associated with a data set category.
 A data set family is a sequence of data product sets that are in the same category.
@@ -21,23 +23,23 @@ Conceptual Nature
 ^^^^^^^^^^^^^^^^^
 
 Data products are distinct entities that encapsulate processed or raw data, separate from the algorithms :dune:`46 Algorithm-Data Separability`.
-Data products serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps :dune:`1.1 Algorithm Communication Via Data Products`.   
-Data products are associated with metadata and provenance information that describe how the data products were created :dune:`51 Provenance discovery`. 
-They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility :dune:`63 Independence from unique hardware characteristics`.  
+They serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps :dune:`1.1 Algorithm Communication Via Data Products`.   
+They are associated with metadata and provenance information that describe how the data products were created :dune:`51 Provenance discovery`. 
+They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility :dune:`52.2 Independence from unique hardware characteristics`.  
 They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows :dune:`9 Presenting data to subsequent algorithms`. 
 
 Hierarchical and Flexible Organization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :dune:`11.1 Definition of data products`, :dune: `11.2 Creation of data sets`, and :dune:`11.3 Definition of data families`.
-
-They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune: `.(STK #43).
+They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune:`20 Algorithms independent of framework interface`.
 
 Defining Data Product Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. todo:: Describe what defining data products means.
 
+Data product types are not defined by the framework.
 Framework users are expected to define their own data products :dune:`11.1 Definition of data products`.
 
 
@@ -45,10 +47,11 @@ Framework users are expected to define their own data products :dune:`11.1 Defin
 Structure and Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The in-memory layout of a data product is determined by its type in the specified programming language. 
 Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation :dune:`2 Data Product Representation`.
-In some cases, it may even be advantageous to have multiple in-memory representations for the same data product.
+In some cases, it may even be advantageous to have multiple in-memory representations, and therefore multiple data products types, for the same conceptual data product. 
 
-Data products maintain a separation between their persistent (on-disk) and in-memory representations, allowing flexibility in how they are stored versus how algorithms interact with them (STK #2).
+Data products maintain a separation between their persistent (on-disk) and in-memory representations, allowing flexibility in how they are stored versus how algorithms interact with them.
 
 
 Abstract Types and Dependencies
