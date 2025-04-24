@@ -1,9 +1,23 @@
 digraph {
 
   fontname="Helvetica,Arial"
+  
+  
+  node [shape="plaintext" style="rounded" margin="0"]
+  subgraph cluster_giov_categories {
+     label=<<b>Data set<br/>categories<br/>(Geometry hierarchy)</b>>
+     color=none
+
+     job_category_2 [label=<Job> fontcolor="gray"]
+     giov_category [label=<GIOV>]
+
+     job_category_2 -> giov_category [color="gray"]
+   }
+  
+    
   node [shape="plaintext" fontname="Helvetica,Arial"]
   edge [arrowhead="none"]
-   node [shape="box" style="filled,rounded"]
+  node [shape="box" style="filled,rounded"]
 
   job [label=<Job> fillcolor="gray98" fontcolor="gray" color="gray"]
   run1 [label=<Run 1> fillcolor="lightyellow"]
@@ -52,6 +66,7 @@ digraph {
   spill2 -> family_label_2 [style=invis]
 
   node [shape="plaintext" style="rounded" margin="0"]
+  
   subgraph cluster_product_sequence_1 {
      style="filled,rounded"
      fillcolor="#eee2ee"
