@@ -8,7 +8,7 @@ digraph {
   fold [label=<fold(<font color="blue">sum_waveforms</font>)>]
   filter [label=<filter(<font color="blue">high_energy</font>)>];
   observer [label=<observe(<font color="blue">high_energy_waveforms</font>)>];
-  out [label="Data sink(s)", shape="cylinder", style="filled", fillcolor="lightgray"]
+  out [label="ROOT output file(s)", shape="cylinder", style="filled", fillcolor="lightgray"]
 
   {
     rank=same;
@@ -17,34 +17,34 @@ digraph {
               style=filled,
               fillcolor=thistle,
               margin=0];
-    root [label="ROOT file", style=filled, shape=cylinder];
+    root [label="ROOT analysis file", style=filled, shape=cylinder];
   }
 
   start -> driver [label=" Configuration", fontcolor="forestgreen"];
 
   {
     rank=same;
+    gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
     driver [label="Driver"];
-    input [label="Data source(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
+    input [label="ROOT input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
   }
 
   driver -> input [style="dotted", arrowhead=none];
 
   {
     rank=same;
-    waveforms_provider [label=<provide(Waveforms)>, style="filled,rounded" fillcolor="lightblue"];
     geometry [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
-    gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
+    sim_hits_provider [label=<provide(SimHits)>, style="filled,rounded" fillcolor="lightblue"];
   }
 
   driver -> geometry [label=" [J]", fontcolor="darkorange"];
-  driver -> waveforms_provider [label=< [Spill<sub><i>i</i></sub>]>, fontcolor="darkorange"];
+  driver -> sim_hits_provider [label=< [Spill<sub><i>i</i></sub>]>, fontcolor="darkorange"];
 
   geometry -> gdml [style="dotted", arrowhead=none];
   resource -> root [style="dotted", arrowhead=none];
 
-  waveforms_provider -> input [style="dotted", arrowhead=none];
-  waveforms_provider -> unfold [label=< [Waveforms<sub><i>i</i></sub>]>];
+  sim_hits_provider -> input [style="dotted", arrowhead=none];
+  sim_hits_provider -> unfold [label=< [SimHits<sub><i>i</i></sub>]>];
   geometry -> unfold [label=< [Geometry]>];
 
   unfold:s -> transform [xlabel=< [Waveforms<sub><i>ij</i></sub>]>];
