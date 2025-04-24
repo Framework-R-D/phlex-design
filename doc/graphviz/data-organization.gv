@@ -1,24 +1,19 @@
 digraph {
-
   fontname="Helvetica,Arial"
-  
-  
+  edge [arrowhead="none"]
   node [shape="plaintext" style="rounded" margin="0"]
+
+  // cluster_giov_categories at the top for leftmost placement
   subgraph cluster_giov_categories {
      label=<<b>Data set<br/>categories<br/>(Geometry hierarchy)</b>>
      color=none
-
      job_category_2 [label=<Job> fontcolor="gray"]
      giov_category [label=<GIOV>]
+     job_category_2 -> giov_category [style="dotted" color="gray"]
+  }
 
-     job_category_2 -> giov_category [color="gray"]
-   }
-  
-    
   node [shape="plaintext" fontname="Helvetica,Arial"]
-  edge [arrowhead="none"]
   node [shape="box" style="filled,rounded"]
-
   job [label=<Job> fillcolor="gray98" fontcolor="gray" color="gray"]
   run1 [label=<Run 1> fillcolor="lightyellow"]
   run2 [label=<Run 2> fillcolor="lightyellow"]
@@ -26,7 +21,6 @@ digraph {
   spill2 [label=<Spill 2> fillcolor="lightblue"]
   spill3 [label=<Spill 1> fillcolor="lightblue"]
   apa3 [label="..." shape="plaintext" margin=0 style="rounded"]
-
   job -> {run1 run2} [color=gray]
   run1 -> {spill1 spill2}
   run2 -> spill3
@@ -36,14 +30,12 @@ digraph {
   subgraph cluster_apa_family_1 {
      style="filled,rounded"
      fillcolor="#e6ffe6"
-
      family_label_1 [label=<<i>APA family</i>> shape="plaintext" margin=0 style="rounded"]
      apa11 [label=<APA 1>]
      apa12 [label=<APA 2>]
      apa1Dots [label="..." shape="plaintext" margin=0 style="rounded"]
      apa1N [label=<APA <i>n</i>>]
   }
-
   spill1 -> family_label_1 [style=invis]
   spill1 -> apa11
   spill1 -> apa12
@@ -53,31 +45,30 @@ digraph {
   subgraph cluster_apa_family_2 {
      style="filled,rounded"
      fillcolor="#e6ffe6"
-
      apa21 [label=<APA 1>]
      apa2Dots [label="..." shape="plaintext" margin=0 style="rounded"]
      apa2N [label=<APA <i>n</i>>]
      family_label_2 [label=<<i>APA family</i>> shape="plaintext" margin=0 style="rounded"]
   }
-
   spill2 -> apa21
   spill2 -> apa2Dots [style=invis]
   spill2 -> apa2N
   spill2 -> family_label_2 [style=invis]
 
+  // Waveform clusters with explicit margin and border
   node [shape="plaintext" style="rounded" margin="0"]
-  
   subgraph cluster_product_sequence_1 {
      style="filled,rounded"
-     fillcolor="#eee2ee"
-
-     sequence_label_1 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
+     fillcolor="#eee2ee" // Light purple background
+     color="purple" // Purple border
+     penwidth=2 // Thicker border for visibility
+     margin=10 // Ensure space for fillcolor
+     sequence_label_1 [label=<<i>Waveforms sequence</i>> shape="box" style="filled,rounded" fillcolor="#eee2ee" fontname="Helvetica,Arial"]
      t11 [label=<<i>Waveforms<sub>1</sub></i>> fontsize=11.5 fontcolor="purple"]
      t12 [label=<<i>Waveforms<sub>2</sub></i>> fontsize=11.5 fontcolor="purple"]
      t1Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t1N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
-
   edge [style=dotted]
   family_label_1 -> sequence_label_1 [style=invis]
   apa11 -> t11
@@ -87,31 +78,36 @@ digraph {
 
   subgraph cluster_product_sequence_2 {
      style="filled,rounded"
-     fillcolor="#eee2ee"
-
-     sequence_label_2 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
+     fillcolor="#eee2ee" // Light purple background
+     color="purple" // Purple border
+     penwidth=2 // Thicker border for visibility
+     margin=10 // Ensure space for fillcolor
+     sequence_label_2 [label=<<i>Waveforms sequence</i>> shape="box" style="filled,rounded" fillcolor="#eee2ee" fontname="Helvetica,Arial"]
      t21 [label=<<i>Waveforms<sub>1</sub></i>> fontsize=11.5 fontcolor="purple"]
      t2Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t2N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
 
- subgraph cluster_readout_categories {
+  subgraph cluster_readout_categories {
     label=<<b>Data set<br/>categories<br/>(Readout hierarchy)</b>>
     color=none
-
     job_category [label=<Job> fontcolor="gray"]
     run_category [label=<Run>]
     spill_category [label=<Spill>]
     apa_category [label=<APA>]
-
     job_category -> run_category [color="gray"]
     run_category -> spill_category -> apa_category
   }
-
-
 
   family_label_2 -> sequence_label_2 [style=invis]
   apa21 -> t21
   apa2Dots -> t2Dots [style=invis]
   apa2N -> t2N
+
+  // Constraints to place cluster_giov_categories at the far left
+  giov_category -> sequence_label_1 [style=invis constraint=false]
+  giov_category -> sequence_label_2 [style=invis constraint=false]
+  {rank=same; sequence_label_1; t11; t12; t1Dots; t1N}
+  {rank=same; sequence_label_2; t21; t2Dots; t2N}
+  {rank=same; giov_category; sequence_label_1; sequence_label_2}
 }
