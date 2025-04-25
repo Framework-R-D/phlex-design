@@ -36,7 +36,7 @@ The in-memory layout of a data product is determined by its type in the specifie
 Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation :dune:`2 Data Product Representation`.
 In general, a single conceptual data product can be represented in multiple data product types, including types for different supported programming languages.
 
-The framework can determine the memory footprint of each data product :dune:`24.3 Specification of algorithm's CPU memory usage`. 
+The framework provides the ability to determine the memory footprint of each data product :dune:`24.3 Specification of algorithm's CPU memory usage`. 
 
 Defining Data Product Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -54,9 +54,24 @@ Hierarchical and Flexible Organization
 
 Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :dune:`11.1 Definition of data products`, :dune:`11.2 Creation of data sets`, and :dune:`11.3 Definition of data families`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune:`20 Algorithms independent of framework interface`.
+This provides the ability to process data too large to fit into memory at one time :dune:`13 Process collections of unconstrained size`.
 
-Data product identifiers
--------------------------
+Data product management
+-----------------------
+
+Management of the data products returned by an algorithm is taken over by the framework.
+Readonly access to input data products is provided to algorithms :dune:`51 Provenance discovery`, :dune:`58 Thread-safe design for algorithms`.
+Data products that are intended to be written out are sent to the IO system as soon as they are created :dune:`26.2 Optimize memory management for data products`.
+Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
+
+
+Data product metadata
+---------------------
+
+Each data product is associated with a specific set of metadata.
+These metadata record information about how the data product was created, to allow that created to be reproducible.
+The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
+
 
 Fields required for identifying data products from which to create a sequence:
 
