@@ -100,6 +100,9 @@ new_commands = r"""
 
 % Remove extra vertical space after line blocks
 \AtEndEnvironment{DUlineblock}{\vspace*{-1.5\baselineskip}}
+
+% Number subsubsections
+\setcounter{secnumdepth}{3}
 """
 
 extensions.append('sphinx.ext.imgmath')

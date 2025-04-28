@@ -50,7 +50,7 @@ Data categories, families, and data-product sets
 ------------------------------------------------
 
 Hierarchical and Flexible Organization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :dune:`11.1 Definition of data products,11.2 Creation of data sets,11.3 Definition of data families`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune:`20 Algorithms independent of framework interface`.
