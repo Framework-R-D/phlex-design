@@ -57,6 +57,7 @@ extra_packages = r"""
 \usepackage{bbm}
 \usepackage{relsize}
 \usepackage{xparse}
+\usepackage{etoolbox}
 """
 
 new_commands = r"""
@@ -96,6 +97,9 @@ new_commands = r"""
    {\ifx\thepage\relax\else\protect\spx@opt@BeforeFootnote
                              \protect\footnotemark\fi}%
 \makeatother
+
+% Remove extra vertical space after line blocks
+\AtEndEnvironment{DUlineblock}{\vspace*{-1.5\baselineskip}}
 """
 
 extensions.append('sphinx.ext.imgmath')
