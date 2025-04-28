@@ -7,3 +7,4 @@ Configuration
 
    - Includes validation of the configuration
    - Includes command-line interface
+   - Develop configuration schema for program resources
