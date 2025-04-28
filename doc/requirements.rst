@@ -837,8 +837,7 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 -----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
-
-.. todo:: Not yet referenced in design
+| See :numref:`technical_design:Program resource specification`
 
 .. table::
     :widths: 15 85
