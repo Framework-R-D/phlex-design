@@ -15,16 +15,16 @@
    nature: any data exchange with other algorithms and/or the outside
    world must take place solely via the input arguments and returned
    data in order to satisfy requirements for reproducibility, and for
-   verifiiability via provenance.
-
-1. Users are people, and will do the mininum (including learning new
-   things) to have something that works for what they need.
+   verifiability via provenance.
 
 1. An algorithm must be configurable by the framework: in other words,
    if the configuration method is not dependent on the framework, then
    the framework must be provided with an algorithm-specific way of
    converting its own representation of the algorithm's configuration
    into one the algorithm can understand.
+
+1. Users are people, and will do the mininum (including learning new
+   things) to have something that works for what they need.
 
 ### Assumptions (negotiable)
 
@@ -39,8 +39,9 @@
 ```.c++
 output_data_or_tuple_type
 reco_algorithm(algo_config_type const & config,
-               input_data_type_A const & input_A,
-               input_data_type_A const & input_B,
+               input_data_type_A const & input_A1,
+               input_data_type_A const & input_A2,
+               input_data_type_C const & input_C1,
                ...);
 ```
 
@@ -59,7 +60,7 @@ reco_algorithm(algo_config_type const & config,
    framework; in the context of our givens, that means that the
    information must be conveyed to the framework either via static
    configuration, or via the registration code.
-   
+
 1. In particular, communication with external databases (e.g. for
    calibration data), must be carefully specified and the data must be
    provided by said external database in a way both that the algorithm
@@ -78,7 +79,7 @@ reco_algorithm(algo_config_type const & config,
    and/or provides as a result.
    
 1. The main argument I've been hearing about the need for
-   framework-agnostic algorithms is the need for easy debugging of
+   framework-agnostic algorithms is the need for easy testing of
    algorithm code, although it's likely that some people actually want
    to use their algorithms in a non-framework context for physics
    analysis. In either case though, it seems to me as if the need for
