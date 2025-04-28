@@ -322,7 +322,7 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
-| See :numref:`scheduling:Building the data-flow graph`
+| See :numref:`scheduling:Building the data-flow graph`, :numref:`data_organization:Data products`
 
 .. raw:: latex
 
@@ -499,9 +499,12 @@ Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.
 13 Process collections of unconstrained size
 --------------------------------------------
 
-Jama Connect entry: `DUNE STKH #25 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584>`__
+| Jama Connect entry: `DUNE STKH #25 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584>`__
+| See :numref:`data_organization:Data categories, families, and data-product sets`
 
-.. todo:: Not yet referenced in design
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -826,7 +829,7 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-| See :numref:`algorithms:Algorithms`
+| See :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
 
 .. raw:: latex
 
@@ -1025,7 +1028,7 @@ Jama Connect entry: `DUNE STKH #52 <https://fnal-prod.jamacloud.com/perspective.
 24.1 Serial access to a thread-unsafe resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`__
+Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`_
 
 .. todo:: Not yet referenced in design
 
@@ -1069,9 +1072,12 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
 24.3 Specification of algorithm's CPU memory usage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #154 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889>`__
+| Jama Connect entry: `DUNE STKH #154 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889>`__
+| See :numref:`data_organization:Data products`
 
-.. todo:: Not yet referenced in design
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -1270,9 +1276,12 @@ Jama Connect entry: `DUNE STKH #144 <https://fnal-prod.jamacloud.com/perspective
 26.2 Optimize memory management for data products
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #142 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
+| Jama Connect entry: `DUNE STKH #142 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
+| See :numref:`data_organization:Data product management`
 
-.. todo:: Not yet referenced in design
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -2020,9 +2029,12 @@ Jama Connect entry: `DUNE STKH #90 <https://fnal-prod.jamacloud.com/perspective.
 46 Algorithm-Data Separability
 ------------------------------
 
-Jama Connect entry: `DUNE STKH #110 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
+| Jama Connect entry: `DUNE STKH #110 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
+| See :numref:`data_organization:Data products`
 
-.. todo:: Not yet referenced in design
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -2132,7 +2144,7 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 -----------------------
 
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
-| See :numref:`introduction:Framework philosophy`
+| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Data product management`
 
 .. raw:: latex
 
@@ -2241,9 +2253,12 @@ Jama Connect entry: `DUNE STKH #36 <https://fnal-prod.jamacloud.com/perspective.
 52.2 Independence from unique hardware characteristics
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #63 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632>`__
+| Jama Connect entry: `DUNE STKH #63 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632>`__
+| See :numref:`data_organization:Data products`
 
-.. todo:: Not yet referenced in design
+.. raw:: latex
+
+   \vspace*{-\extraverticalws}
 
 .. table::
     :widths: 15 85
@@ -2366,7 +2381,7 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
 ------------------------------------
 
 | Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
-| See :numref:`functional_programming:Functional programming`
+| See :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
 
 .. raw:: latex
 
