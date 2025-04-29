@@ -512,9 +512,8 @@ Jama Connect entry: `DUNE STKH #120 <https://fnal-prod.jamacloud.com/perspective
 14 Configuration comparison
 ---------------------------
 
-Jama Connect entry: `DUNE STKH #98 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14724>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #98 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14724>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -1437,9 +1436,8 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 34 Configuration validation
 ---------------------------
 
-Jama Connect entry: `DUNE STKH #64 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14633>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #64 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14633>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -1459,9 +1457,8 @@ Jama Connect entry: `DUNE STKH #64 <https://fnal-prod.jamacloud.com/perspective.
 35 Algorithm configuration schema availability
 ----------------------------------------------
 
-Jama Connect entry: `DUNE STKH #67 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14636>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #67 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14636>`__
+| See :numref:`user_configuration:Semantic structure of the configuration`
 
 .. table::
     :widths: 15 85
@@ -1481,9 +1478,8 @@ Jama Connect entry: `DUNE STKH #67 <https://fnal-prod.jamacloud.com/perspective.
 36 One configuration per framework execution
 --------------------------------------------
 
-Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -1502,9 +1498,8 @@ Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.
 37 Eager validation of algorithm configuration
 ----------------------------------------------
 
-Jama Connect entry: `DUNE STKH #70 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14639>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #70 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14639>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`, :numref:`user_configuration:Semantic structure of the configuration`.
 
 .. table::
     :widths: 15 85
@@ -1527,9 +1522,8 @@ Jama Connect entry: `DUNE STKH #70 <https://fnal-prod.jamacloud.com/perspective.
 38 Framework configuration language
 -----------------------------------
 
-Jama Connect entry: `DUNE STKH #72 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #72 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2053,9 +2047,8 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 51.1 Framework configuration persistency
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #27 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #27 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2161,9 +2154,8 @@ Jama Connect entry: `DUNE STKH #36 <https://fnal-prod.jamacloud.com/perspective.
 53 Command line interface (CLI)
 -------------------------------
 
-Jama Connect entry: `DUNE STKH #125 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15710>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #125 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15710>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2180,9 +2172,8 @@ Jama Connect entry: `DUNE STKH #125 <https://fnal-prod.jamacloud.com/perspective
 54 Support local configuration changes
 --------------------------------------
 
-Jama Connect entry: `DUNE STKH #126 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15715>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #126 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15715>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2201,9 +2192,8 @@ Jama Connect entry: `DUNE STKH #126 <https://fnal-prod.jamacloud.com/perspective
 55 Configuration tracing
 ------------------------
 
-Jama Connect entry: `DUNE STKH #127 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15718>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #127 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15718>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2222,9 +2212,8 @@ Jama Connect entry: `DUNE STKH #127 <https://fnal-prod.jamacloud.com/perspective
 56 Configuration language single point of maintenance
 -----------------------------------------------------
 
-Jama Connect entry: `DUNE STKH #128 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15723>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #128 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15723>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
@@ -2321,9 +2310,8 @@ Jama Connect entry: `DUNE STKH #132 <https://fnal-prod.jamacloud.com/perspective
 61 Composing configurations of framework components
 ---------------------------------------------------
 
-Jama Connect entry: `DUNE STKH #133 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #133 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
+| See :numref:`user_configuration:The mechanics of configuration specification`
 
 .. table::
     :widths: 15 85
