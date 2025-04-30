@@ -28,6 +28,7 @@ jobs:
       - name: Build document
         working-directory: ./doc
         run: |
+          conda activate build_docs
           dot -c  # because it's weird out of the box
           make html latexpdf
 
