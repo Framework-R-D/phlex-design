@@ -48,7 +48,12 @@ jobs:
         run: |
           conda activate build_docs
           dot -c  # because it's weird out of the box
-          tlmgr install cmap
-          make html latexpdf
+          make latex
+
+      - name: Make the PDF file
+        uses: xu-cheng/latex-action@v3
+        working-directory: ./doc/build/latex/
+        with:
+          root_file: phlexframework.tex
 
       - run: echo "Build status ${{ job.status }}"
