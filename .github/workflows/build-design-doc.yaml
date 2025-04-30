@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'doc/**'
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   Build-Design-Document-Actions:
