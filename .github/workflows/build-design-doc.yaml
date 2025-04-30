@@ -14,23 +14,21 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Setting up Miniforge
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          python-version: "3.x"
-          #cache: "pip"
-
-      - name: Install sphinx-build tool
-        run: |
-          python -m venv .venv
-          . .venv/bin/activate
-          python -m pip install --upgrade pip
-          pip install sphinx
+          mamba-version: "*"
+          miniforge-version: latest
+          auto-update-conda: true
+          activate-environment: build_docs
+          show-channel-urls: true
+          conda-remove-defaults: true
+          environment-file: environment.yml
 
       - name: Build document
         working-directory: ./doc
         run: |
-          . .venv/bin/activate
+          dot -c  # because it's weird out of the box
           make html latexpdf
 
       - run: echo "Build status ${{ job.status }}"

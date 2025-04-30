@@ -5,7 +5,7 @@ digraph {
   start [shape="point", width=0.1]
   end [shape="point", width=0.1, peripheries=2]
   iota [label=<<i><font color="blue">iota</font></i> (unfold)>];
-  transform [label=<transform{ <i><font color="blue">square</font></i> }>];
+  transform [label=<transform( <i><font color="blue">square</font></i> )>];
   sum [label=<<i><font color="blue">sum</font></i> (fold)>];
 
   start -> iota [label=<<table cellpadding="1" border="0" cellborder="0">
