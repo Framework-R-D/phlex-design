@@ -1,5 +1,5 @@
 Task management
-^^^^^^^^^^^^^^^
+===============
 
 .. todo::
    - Includes building the task graph

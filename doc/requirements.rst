@@ -811,7 +811,7 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 --------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #46 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612>`__
-| See :numref:`technical_design:Task management`
+| See :numref:`subsystems/task_management:Task management`
 
 .. table::
     :widths: 15 85
@@ -836,7 +836,7 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
 -----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
-| See :numref:`technical_design:Program resource specification`
+| See :numref:`subsystems/configuration:Program resource specification`
 
 .. table::
     :widths: 15 85
@@ -1117,7 +1117,7 @@ Jama Connect entry: `DUNE STKH #48 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #60 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629>`__
-| See :numref:`technical_design:Monitoring and reporting`
+| See :numref:`subsystems/monitoring:Monitoring and reporting`
 
 .. table::
     :widths: 15 85
@@ -1395,7 +1395,7 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 -------------------------------
 
 | Jama Connect entry: `DUNE STKH #59 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628>`__
-| See :numref:`technical_design:Monitoring and reporting`
+| See :numref:`subsystems/monitoring:Monitoring and reporting`
 
 .. table::
     :widths: 15 85
@@ -1416,7 +1416,7 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
 ----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #61 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630>`__
-| See :numref:`technical_design:Logging`
+| See :numref:`subsystems/logging:Logging`
 
 .. table::
     :widths: 15 85

@@ -6,33 +6,25 @@ The graph below depicts the relationships between the framework subsystems.
 
 .. graphviz:: graphviz/subsystems.gv
 
-Required core subsystems for F1 demonstrators
-=============================================
+.. toctree::
+   :maxdepth: 2
 
-.. include:: subsystems/task_management.rst
-.. include:: subsystems/data_modeling.rst
-.. include:: subsystems/data_management.rst
-.. include:: subsystems/registration.rst
-.. include:: subsystems/io.rst
-.. include:: subsystems/configuration.rst
-
-Optional core subsystems for F1 demonstrators
-=============================================
-
-.. include:: subsystems/plugin_management.rst
-.. include:: subsystems/logging.rst
-.. include:: subsystems/algo_description.rst
-
-Other core subsystems
-=====================
-
-.. include:: subsystems/application.rst
-.. include:: subsystems/error_handler.rst
-.. include:: subsystems/metadata_management.rst
-.. include:: subsystems/monitoring.rst
-.. include:: subsystems/random_numbers.rst
-.. include:: subsystems/resource_management.rst
-.. include:: subsystems/signal_handler.rst
+   subsystems/task_management
+   subsystems/data_management
+   subsystems/data_modeling
+   subsystems/metadata_management
+   subsystems/io
+   subsystems/registration
+   subsystems/plugin_management
+   subsystems/resource_management
+   subsystems/application
+   subsystems/configuration
+   subsystems/algo_description
+   subsystems/error_handler
+   subsystems/signal_handler
+   subsystems/random_numbers
+   subsystems/monitoring
+   subsystems/logging
 
 External subsystems
 ===================
