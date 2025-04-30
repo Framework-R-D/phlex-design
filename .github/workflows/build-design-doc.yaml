@@ -31,4 +31,4 @@ jobs:
         working-directory: ./doc
         run: make html latexpdf
 
-      - run: echo "Build status: ${{ job.status }}""
+      - run: echo "Build status: ${{ job.status }}"
