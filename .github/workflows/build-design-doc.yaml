@@ -29,6 +29,8 @@ jobs:
 
       - name: Build document
         working-directory: ./doc
-        run: make html latexpdf
+        run: |
+          . .venv/bin/activate
+          make html latexpdf
 
       - run: echo "Build status ${{ job.status }}"
