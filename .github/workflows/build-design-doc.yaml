@@ -17,15 +17,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
-          cache: "pip"
+          python-version: "3.x"
+          #cache: "pip"
 
       - name: Install sphinx-build tool
         run: |
           python -m venv .venv
           . .venv/bin/activate
           python -m pip install --upgrade pip
-          pip install -U sphinx
+          pip install sphinx
 
       - name: Build document
         working-directory: ./doc
