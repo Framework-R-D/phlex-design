@@ -6,4 +6,4 @@ dependencies:
   - sphinx[version='>=8.2']
   - graphviz2drawio
   - graphviz[version='>=12']
-  - r-tinytex
+  - genomedk::tinytex
