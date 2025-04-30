@@ -151,15 +151,9 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
       .for_each(selected_data_scope);
    }
 
-.. important::
+.. note::
 
-   The :cpp:`config` C++ object provides access to the configuration parameters corresponding **only to the module containing the registration stanza.**
-   In other words, one registration stanza may not access the configuration parameters of another registration stanza.
-
-   .. todo::
-
-      Determine if we provide some limited access to framework configuration of interest (e.g. via an optional supplemental argument), such as global verbosity and/or debug flags.
-
+   As discussed in :numref:`user_configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
 
 Except for the specification of :cpp:`make_tracks` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
 
