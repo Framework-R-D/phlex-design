@@ -10,6 +10,9 @@ on:
 jobs:
   Build-Design-Document-Actions:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/xu-cheng/texlive-full:latest
+
     defaults:
       run:
         shell: bash -l {0}
@@ -48,12 +51,12 @@ jobs:
         run: |
           conda activate build_docs
           dot -c  # because it's weird out of the box
-          make latex
+          make html latex
 
-      - name: Make the PDF file
-        uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./doc/build/latex/
-          root_file: phlexframework.tex
+      # - name: Make the PDF file
+      #   uses: xu-cheng/latex-action@v3
+      #   with:
+      #     working_directory: ./doc/build/latex/
+      #     root_file: phlexframework.tex
 
       - run: echo "Build status ${{ job.status }}"
