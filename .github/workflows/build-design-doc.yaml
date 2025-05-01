@@ -45,12 +45,14 @@ jobs:
         id: cache
 
       - name: Build document
-        uses: xu-cheng/texlive-action@v3
-        run: |
-          conda activate build_docs
-          dot -c  # because it's weird out of the box
-          cd ./doc
-          make html latex
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          run: |
+            conda activate build_docs
+            dot -c  # because it's weird out of the box
+            cd ./doc
+            make html latex
 
       # - name: Make the PDF file
       #   uses: xu-cheng/latex-action@v3
