@@ -28,7 +28,6 @@ They are associated with (rather than containing) metadata and provenance inform
 They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility :dune:`52.2 Independence from unique hardware characteristics`.
 They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows :dune:`9 Presenting data to subsequent algorithms`.
 
-
 Structure and Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -64,14 +63,12 @@ Readonly access to input data products is provided to algorithms :dune:`51 Prove
 Data products that are intended to be written out are sent to the IO system as soon as they are created :dune:`26.2 Optimize memory management for data products`.
 Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
 
-
 Data product metadata
 ---------------------
 
 Each data product is associated with a specific set of metadata.
 These metadata record information about how the data product was created, to allow that created to be reproducible.
 The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
-
 
 Fields required for identifying data products from which to create a sequence:
 
@@ -80,10 +77,6 @@ Fields required for identifying data products from which to create a sequence:
 - phase
 - creator
 - name
-
-
-
-
 
 Data-product lookup policies
 ----------------------------
