@@ -10,8 +10,6 @@ on:
 jobs:
   Build-Design-Document-Actions:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/xu-cheng/texlive-full:latest
 
     defaults:
       run:
@@ -47,10 +45,11 @@ jobs:
         id: cache
 
       - name: Build document
-        working-directory: ./doc
+        uses: xu-cheng/texlive-action@v3
         run: |
           conda activate build_docs
           dot -c  # because it's weird out of the box
+          cd ./doc
           make html latex
 
       # - name: Make the PDF file
