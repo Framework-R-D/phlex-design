@@ -8,52 +8,22 @@ on:
   workflow_dispatch: # Allow manual triggering
 
 jobs:
-  Build-Design-Document-Actions:
+  build-design-document:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
+
+    container:
+      image: ghcr.io/framework-r-d/phlexdoc:2025-05-01
 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-
-      - name: Setting up Miniforge
-        uses: conda-incubator/setup-miniconda@v3
-        with:
-          mamba-version: "*"
-          miniforge-version: latest
-          auto-update-conda: true
-          activate-environment: build_docs
-          show-channel-urls: true
-          conda-remove-defaults: true
-          environment-file: environment.yml
-
-      - name: Cache date
-        id: get-date
-        run: echo "today=$(/bin/date -u '+%Y%m%d')" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Cache Conda env
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.CONDA }}/envs
-          key: miniforge-${{ runner.os }}--${{ runner.arch }}--${{ steps.get-date.outputs.today }}-${{ hashFiles('environment.yml') }}-${{ env.CACHE_NUMBER }}
-        env:
-          CACHE_NUMBER: 1
-        id: cache
-
-      - name: Build document
+      - name: Build LaTeX document
         working-directory: ./doc
         run: |
-          conda activate build_docs
           dot -c  # because it's weird out of the box
-          make latex
-
-      - name: Make the PDF file
-        uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./doc/build/latex/
-          root_file: phlexframework.tex
-
-      - run: echo "Build status ${{ job.status }}"
+          make latexpdf
+      - name: Build HTML document
+        working-directory: ./doc
+        run: |
+          dot -c  # because it's weird out of the box
+          make html
