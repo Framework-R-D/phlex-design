@@ -14,12 +14,12 @@ These algorithms then serve as operators to higher-order functions that operate 
 
 To guide the discussion of Phlex's conceptual model, we refer to the graph in  :numref:`workflow`, which illustrates various framework aspects:
 
-- the creation of the data-flow graph itself (see :numref:`scheduling:Building the data-flow graph`)
+- the data-flow graph itself (see :numref:`scheduling:Topology of the data-flow graph`)
 - data products and data-product sets as passed along graph edges (see :numref:`data_organization:Data organization`)
 - user-provided algorithms such as transforms, folds, etc. (see :numref:`algorithms:Algorithms` and :numref:`algorithms:HOF operators` )
 - the framework driver (see :numref:`sources_sinks:Framework driver`)
-- data sources (see :numref:`sources_sinks:Data sources`)
-- data sinks (see :numref:`sources_sinks:Data sinks`)
+- data sources (see :numref:`sources_sinks:Data sources`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
+- data sinks (see :numref:`sources_sinks:Data sinks`), which are plugins that may write data products to an external entity (e.g. output files)
 - resources (see :numref:`resources:Resources`)
 - program configuration (see :numref:`user_configuration:Program configuration`)
 

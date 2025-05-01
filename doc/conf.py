@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('.') + '/_extensions')
 
 project = 'Phlex framework'
 copyright = '2025, Fermi Forward Discovery Group, LLC'
-author = 'Phlex developers'
+author = 'PRELIMINARY'
 
 version = "0"
 release = "0.1"

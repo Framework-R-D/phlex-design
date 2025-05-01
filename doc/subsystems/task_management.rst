@@ -12,3 +12,33 @@ With oneTBB, the user does not explicitly manage threads but specifies tasks tha
 
 Depending on the need, oneTBB interface may be explicitly used in algorithm code to take advantage of intra-algorithm parallelism.
 Such use will integrate smoothly with Phlex's scheduled tasks as both the framework and the algorithm will be using oneTBB's shared thread pool :dune:`22 Intra-algorithm concurrency and multi-threading`.
+
+Creating the data-flow graph
+----------------------------
+
+The data-flow graph is constructed using the pattern described in the subsections below.
+
+Program configuration
+^^^^^^^^^^^^^^^^^^^^^
+
+The Phlex program ingests a program configuration that includes a specification of all algorithms that are graph-node *candidates*.
+
+Required data products
+^^^^^^^^^^^^^^^^^^^^^^
+
+All configured observers and data sinks are constructed as graph nodes.
+The framework records the list of data products required by each of these nodes.
+A data sink can be configured to accept all data products created by the algorithms in the configuration, without specifying the individual data products created by each algorithm.
+
+Created data products
+^^^^^^^^^^^^^^^^^^^^^
+
+The transforms, folds, and unfolds specified in the configuration are created as graph nodes.
+The framework records the list of the data products produced by each of these nodes.
+
+Connecting algorithms
+^^^^^^^^^^^^^^^^^^^^^
+
+The data product lists recorded in :numref:`scheduling:Required data products` and :numref:`scheduling:Created data products` are compared.
+Edges are created between the nodes in :numref:`scheduling:Created data products` that create data products and those that match what is required by those in :numref:`scheduling:Required data products`.
+This step is iterative so that all graph-node candidates from :numref:`scheduling:Program configuration`.
