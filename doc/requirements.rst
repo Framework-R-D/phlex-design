@@ -354,7 +354,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
-| See :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Hierarchical and Flexible Organization`
 
 .. table::
     :widths: 15 85
@@ -372,7 +372,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #86 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
-| See :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Hierarchical and Flexible Organization`
 
 .. table::
     :widths: 15 85
@@ -390,7 +390,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #87 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
-| See :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Hierarchical and Flexible Organization`
 
 .. table::
     :widths: 15 85
@@ -408,7 +408,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #88 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698>`__
-| See :numref:`data_organization:Data categories, families, and data-product sets`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -724,7 +724,8 @@ Jama Connect entry: `DUNE STKH #35 <https://fnal-prod.jamacloud.com/perspective.
 18.1 Calibration database algorithms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #40 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
+| Jama Connect entry: `DUNE STKH #40 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
+| See :numref:`data_organization:Data organization`.
 
 .. todo:: Not yet referenced in design
 
@@ -1572,9 +1573,8 @@ Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.
 39.1 I/O backend for ROOT
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #74 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #74 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643>`__
+| See :numref:`data_organization:Conceptual Nature`.
 
 .. table::
     :widths: 15 85
@@ -1593,9 +1593,8 @@ Jama Connect entry: `DUNE STKH #74 <https://fnal-prod.jamacloud.com/perspective.
 39.2 I/O backend for HDF5
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Jama Connect entry: `DUNE STKH #141 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838>`__
-
-.. todo:: Not yet referenced in design
+| Jama Connect entry: `DUNE STKH #141 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838>`__
+| See :numref:`data_organization:Conceptual Nature`.
 
 .. table::
     :widths: 15 85
@@ -2030,8 +2029,7 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 -----------------------
 
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
-| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`
-
+| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product metadata`.
 .. table::
     :widths: 15 85
 
@@ -2093,7 +2091,8 @@ Jama Connect entry: `DUNE STKH #28 <https://fnal-prod.jamacloud.com/perspective.
 52 Reproducibility of data products
 -----------------------------------
 
-Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
+| Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
+| See :numref:`data_organization:Data product metadata`.
 
 .. todo:: Not yet referenced in design
 
