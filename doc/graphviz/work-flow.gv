@@ -53,8 +53,8 @@ digraph {
                        labeldistance=7
                       ];
 
-  unfold:s -> out [style="dotted", arrowhead=none];
-  transform:s -> out [style="dotted", arrowhead=none];
+  unfold:s -> out [style="dotted", arrowhead=none, label=<[Waveforms<sub><i>ij</i></sub>]>];
+  transform:s -> out [style="dotted", arrowhead=none, label=<[ClampedWaveforms<sub><i>ij</i></sub>]>];
 
 
   unfold:s -> filter [label=< [Waveforms<sub><i>ij</i></sub>]>];
