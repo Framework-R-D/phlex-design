@@ -58,10 +58,11 @@ extra_packages = r"""
 \usepackage{relsize}
 \usepackage{xparse}
 \usepackage{etoolbox}
-\usepackage[angle=30,color=lightgray]{background}
-
-\backgroundsetup{contents={Preliminary}}
 """
+
+preliminary_watermark = r"""
+\usepackage[angle=30,color=lightgray]{background}
+\backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
 \NewDocumentCommand{\iset}{g}{
@@ -139,5 +140,5 @@ html_style='phlexframework.css'
 
 latex_logo = 'phlex-logo.png'
 latex_elements = {
-    "preamble": extra_packages + new_commands,
+    "preamble": extra_packages + preliminary_watermark + new_commands,
 }
