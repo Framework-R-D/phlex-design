@@ -39,6 +39,6 @@ The framework records the list of the data products produced by each of these no
 Connecting algorithms
 ^^^^^^^^^^^^^^^^^^^^^
 
-The data product lists recorded in :numref:`scheduling:Required data products` and :numref:`scheduling:Created data products` are compared.
-Edges are created between the nodes in :numref:`scheduling:Created data products` that create data products and those that match what is required by those in :numref:`scheduling:Required data products`.
-This step is iterative so that all graph-node candidates from :numref:`scheduling:Program configuration`.
+The data product lists recorded in :numref:`subsystems/task_management:Required data products` and :numref:`subsystems/task_management:Created data products` are compared.
+Edges are created between the nodes in :numref:`subsystems/task_management:Created data products` that create data products and those that match what is required by those in :numref:`subsystems/task_management:Required data products`.
+This step is iterative so that all graph-node candidates from :numref:`subsystems/task_management:Program configuration`.
