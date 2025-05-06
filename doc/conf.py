@@ -58,6 +58,9 @@ extra_packages = r"""
 \usepackage{relsize}
 \usepackage{xparse}
 \usepackage{etoolbox}
+\usepackage[angle=30,color=lightgray]{background}
+
+\backgroundsetup{contents={Preliminary}}
 """
 
 new_commands = r"""
