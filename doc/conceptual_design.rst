@@ -28,13 +28,13 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
              Solid arrows show the flow of data through the graph.
              Dotted lines indicate communication of data through the IO system.
              The *Driver* is configured to process all *spills* in the specified ROOT input files.
-             The *provide* algorithms are configured to read *SimHits* associated with *spills* from the ROOT input files and a single *Geomtry* object from the GDML file.
-             For each *spill*, an *unfold* algorithm is configured to create a sequence of *Waveforrms* objects, creating one *Waveforms* object in each *APA*.
+             The *provide* algorithms are configured to read *SimHits* associated with *spills* from the ROOT input files and a single *Geometry* object from the GDML file.
+             For each *spill*, an *unfold* algorithm is configured to create a sequence of *Waveforms* objects, creating one *Waveforms* object in each *APA*.
              A *transform* algorithm is run on each of the *Waveforms* objects to create a *ClampedWaveforms* object.
-             A *fold* algorithim is run on each of the *ClampedWaveforms* objects in a *spill* to create a *SummedWaveforms* object for the *spill*.
+             A *fold* algorithm is run on each of the *ClampedWaveforms* objects in a *spill* to create a *SummedWaveforms* object for the *spill*.
              Each *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* objects are written to a ROOT output file, each one associated with the appropriate *spill* or *APA*.
-             This workflow also show a *filter* algorithm selecting only "high energy" *Waveforms*, and an *observe* algorithm creating a histogram from them, which is written to a ROOT analysis file.
-             Note that in this workflow the names *spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by DUNE.
+             This workflow also shows a *filter* algorithm selecting only "high energy" *Waveforms*, and an *observe* algorithm creating a histogram from them, which is written to a ROOT analysis file.
+             Note that in this workflow the names *spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
    :name: workflow
 
 .. toctree::

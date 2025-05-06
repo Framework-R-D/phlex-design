@@ -7,7 +7,7 @@ Framework requirements
 ---------------------------
 
 | Jama Connect entry: `DUNE STKH #1 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536>`__
-| See :numref:`scheduling:Building the data-flow graph`
+| See :numref:`scheduling:Topology of the data-flow graph`
 
 .. table::
     :widths: 15 85
@@ -27,7 +27,7 @@ Framework requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
-| See :numref:`scheduling:Building the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`algorithms:Framework registration`
+| See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`algorithms:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -290,11 +290,11 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #20 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562>`__
-| See :numref:`scheduling:Building the data-flow graph`, :numref:`data_organization:Conceptual Nature`
+| See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`
 
 .. table::
     :widths: 15 85
-
+ 
     +--------------+-------------------------------------------------------+
     | Requirement  | The framework shall present data produced by an       |
     |              | already executed algorithm to each subsequent,        |

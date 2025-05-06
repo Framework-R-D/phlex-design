@@ -59,7 +59,7 @@ Note that the language is left unspecified for the implementation of the framewo
 .. rubric:: Footnotes
 
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.
-         In such a case, the stakeholder requirements of one experiment cannot negate those of another (particularly DUNE).
+         In such a case, the stakeholder requirements of one experiment may not negate those of another (particularly DUNE).
 
 .. only:: html
 
