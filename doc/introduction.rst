@@ -20,23 +20,35 @@ Many analysis needs can also be met by a data-processing framework.
 However, the HEP community tends to perform final-stage analysis using standalone applications.
 Phlex, therefore, aims to satisfy the data-processing needs of only physics reconstruction and simulation.
 
+====================
 Requirements process
 ====================
 
-.. todo::
+Phlex provides facilities and behaviors intended to support the physics goals of its stakeholders, notably the DUNE experiment [#f1]_.
+DUNE has established a set of high-level requirements or *stakeholder requirements*, which constrain the design of the framework in support of DUNE's needs.
+A dedicated tool [Jama-connect]_ is used to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
+As the design matures, *system requirements* are then created to guide implementation in support of the stakeholder requirements.
 
-   Describe *stakeholder* and *system* requirements.
+----------------------
+Requirements ownership
+----------------------
 
-Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment [#f1]_.
-The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements.
+Each Phlex stakeholder owns its stakeholder requirements, which support the high-level needs of the experiment.
+System requirements, which are subservient to stakeholder requirements, are owned by the Phlex developers, who are free to adjust the implementation to satisfy all stakeholder requirements.
 
-.. todo::
-
-   Evaluate whether the Sphinx extension `Sphinx-Needs <https://sphinxcontrib-needs.readthedocs.io/en/latest/>`__ may help with referring to and cross-referencing requirements, etc.
+-----------------------------
+Requirements in this document
+-----------------------------
 
 The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
 
+Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`conceptual_design:Conceptual design`.
+Some stakeholder requirements are referenced in the technical design in :numref:`technical_design:Technical design` if those requirements do not affect the conceptual framework model.
+No system requirements are currently referenced in this document.
+Should it become necessary to refer to the system requirements, such references will be limited to the technical design in :numref:`technical_design:Technical design`.
+
+====================
 Framework philosophy
 ====================
 
@@ -48,6 +60,7 @@ The Phlex design therefore:
 - requires recording the :term:`provenance` of every created :term:`data product` :dune:`51 Provenance discovery`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
+=====================
 Programming languages
 =====================
 
@@ -66,3 +79,4 @@ Note that the language is left unspecified for the implementation of the framewo
    .. rubric:: References
 
 .. [Wiki-framework] https://en.wikipedia.org/wiki/Software_framework
+.. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
