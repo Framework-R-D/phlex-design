@@ -13,7 +13,14 @@ A data set family is a sequence of data product sets that are in the same catego
 :numref:`data-organization` illustrates the relationships between all of these.
 
 .. graphviz:: graphviz/data-organization.gv
-   :caption: An example of some possible data product hierarchies.
+   :caption: An example of some possible data product hierarchies. 
+             Three different data set categories are shown; *Run*, *Spill*, and *APA*.
+             Rectangles with rounded corners represent data product sets, e.g. *Run 1*, *Spill 1*, and *APA 1*.
+             A solid line from a data product set to a data product sets represent a data product within the set.
+             Rounded rectangles that have rectangles within represent data product families, e.g. *APA* family.
+             At the very bottom, we can see inside of a data product set, which is shown as a sequence of data products, in this case called as *Waveforms sequence*.
+             A dotted line from a data product set to a data product represents a data product within the set e.g. *Waveform 1* in the *APA 1* data product set.
+             The names of different data set categories are user defined, and not special to the Phlex framework.  
    :name: data-organization
 
 Data products

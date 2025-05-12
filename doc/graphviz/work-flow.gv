@@ -61,5 +61,5 @@ digraph {
   filter:s -> observer [label=< [Waveforms<sub><i>ij</i> '</sub>]>];
   resource -> observer [style="dashed"];
 
-  fold:s -> out [style="dotted", arrowhead=none];
+  fold:s -> out [style="dotted", arrowhead=none, label=<[SummedWaveforms<sub><i>ij</i></sub>]>];
 }
