@@ -40,7 +40,7 @@ In mathematical expressions, parentheses are then reserved in this document to s
 Representing :cpp:`void` or :py:`NoneType`
 ------------------------------------------
 
-In HEP, it is common to encounter the C++ functions like:
+In HEP, it is common to encounter C++ functions like:
 
 .. code:: c++
 
@@ -59,7 +59,7 @@ The above functions are thus represented in function notation as:
 
    g&: \mathbbm{1} \rightarrow \mathbb{R}\ .
 
-This notation will be used as we discuss the operators required of Phlex's higher-order functions.
+This notation will be used as we discuss the operators required by Phlex's higher-order functions.
 
 .. rubric:: Footnotes
 

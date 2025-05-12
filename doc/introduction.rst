@@ -64,7 +64,7 @@ The Phlex design therefore:
 Programming languages
 =====================
 
-The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :dune:`5 Support for multiple programming languages`.  Specifically, an algorithm may be written in either C++ (no standard yet specified) :dune:`5.1 Support C++ algorithms` or Python (no version yet specified) :dune:`5.2 Support Python algorithms`.
+The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :dune:`5 Support for multiple programming languages`.  Specifically, an algorithm may be written in either C++ [#f2]_ :dune:`5.1 Support C++ algorithms` or Python [#f3]_ :dune:`5.2 Support Python algorithms`.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.
 
 Note that the language is left unspecified for the implementation of the framework itself.
@@ -73,6 +73,8 @@ Note that the language is left unspecified for the implementation of the framewo
 
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.
          In such a case, the stakeholder requirements of one experiment may not negate those of another (particularly DUNE).
+.. [#f2] As of this writing, Phlex supports the C++23 standard.
+.. [#f3] Phlex adheres to NEP-29 [NEP-29]_ in deprecating old versions of Python and of `numpy`.
 
 .. only:: html
 
@@ -80,3 +82,4 @@ Note that the language is left unspecified for the implementation of the framewo
 
 .. [Wiki-framework] https://en.wikipedia.org/wiki/Software_framework
 .. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
+.. [NEP-29] https://numpy.org/neps/nep-0029-deprecation_policy.html
