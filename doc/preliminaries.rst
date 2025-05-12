@@ -11,5 +11,6 @@ With these ingredients, we are then able to discuss functional programming and h
 
    function_notation
    types
+   sequences
    functional_programming
    data_flow
