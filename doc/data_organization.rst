@@ -17,8 +17,8 @@ A data set family is a sequence of data product sets that are in the same catego
              Three different user-defined data product set categories are shown; *Run*, *Spill*, and *APA*.
              Rectangles with labels *Run i*, *Spill i,j*, and *APA i,j,k* represent data product sets.
              The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
-             A solid line from a data product set to another data product set represents association between data product sets the two. 
-             The bottom rectangle shows that *Waveforms 1* is in the data product set *APA 1,1,1*, etc.
+             A solid line from a data product set to another data product set represents association between the two data product sets. 
+             The bottom rectangle shows that *Waveforms 1,1,1* is in the data product set *APA 1,1,1*, etc.
              Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
              The names of different data set categories are user defined, and not special to the Phlex framework.  
    :name: data-organization

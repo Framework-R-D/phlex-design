@@ -68,9 +68,9 @@ digraph {
      fillcolor="#eee2ee"
 
      sequence_label_1 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
-     t11 [label=<<i>Waveforms<sub>1</sub></i>> fontsize=11.5 fontcolor="purple"]
+     t11 [label=<<i>Waveforms<sub>1,1,1</sub></i>> fontsize=11.5 fontcolor="purple"]
      t1Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
-     t1N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
+     t1N [label=<<i>Waveforms<sub>1,1,n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
 
   edge [style=dotted]
@@ -84,9 +84,9 @@ digraph {
      fillcolor="#eee2ee"
 
      sequence_label_2 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
-     t21 [label=<<i>Waveforms<sub>1</sub></i>> fontsize=11.5 fontcolor="purple"]
+     t21 [label=<<i>Waveforms<sub>1,2,1</sub></i>> fontsize=11.5 fontcolor="purple"]
      t2Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
-     t2N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
+     t2N [label=<<i>Waveforms<sub>1,2,n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
 
   family_label_2 -> sequence_label_2 [style=invis]
