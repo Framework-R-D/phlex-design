@@ -1,0 +1,63 @@
+digraph g {
+ fontname="Helvetica,Arial"
+ compound=true;
+
+ # All data product sets are in rectangular nodes
+ node [shape=box, style=filled];
+ tr1 [label=<TriggerRecord<sub>1</sub>>, fillcolor=lightyellow];
+ tb1 [label=<TimeBin<sub>1,1</sub>>, fillcolor=palegreen1];
+ tb2 [label=<TimeBin<sub>1,n</sub>>, fillcolor=palegreen1];
+
+ # Data product sets are connected with data products by solid lines.
+ edge [style=solid, arrowhead=none];
+ tr1 -> tb1;
+ tr1 -> tb2;
+
+
+ # All data products are in rounded rectangle nodes
+ node [shape=box, style="filled,rounded"]
+
+ # TR-level products are yellow
+ node [fillcolor=lightyellow]
+ depos [label=Deposits]
+ dw [label=DigitizedWaveform];
+
+ # TB-level products are palegreen1
+ node [fillcolor=palegreen1]
+
+ subgraph cluster_unfold {
+   label="DriftedDepos sequence";
+   proxy1 [style=invis, shape=point, width=0, height=0];
+   dd1 [label=DriftedDepos];
+   ddn [label=DriftedDepos];
+ }
+ cd1 [label=ConvolvedDepos];
+ cdn [label=ConvolvedDepos];
+ subgraph cluster_noise {
+   label="NoisyConvolvedDepos sequence";
+   proxy2 [style=invis, shape=point, width=0, height=0];
+   ncd1 [label=NoisyConvolvedDepos];
+   ncdn [label=NoisyConvolvedDepos];
+ }
+
+
+ # Data products are connected with data product sets by dotted lines.
+ edge [style=dotted, arrowhead=none];
+ tr1 -> depos;
+ tb1 -> dd1;
+ tb2 -> ddn;
+ tb1 -> cd1;
+ tb2 -> cdn;
+ tb1 -> ncd1;
+ tb2 -> ncdn;
+ tr1 -> dw;
+
+ # Algorithms creating data products are indicated by arrows with solid lines.
+ edge [style=solid, arrowhead=normal];
+ depos -> proxy1 [label="unfold(drift)", lhead=cluster_unfold];
+ dd1 -> cd1 [label="transform(convolve)"];
+ ddn -> cdn [label="transform(convolve)"];
+ cd1 -> ncd1 [label="transform(noise)"];
+ cdn -> ncdn [label="transform(noise)"];
+ proxy2 -> dw [label="fold(digitize)", ltail=cluster_noise];
+}
