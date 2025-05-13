@@ -14,7 +14,7 @@ A data set family is a sequence of data product sets that are in the same catego
 
 .. graphviz:: graphviz/data-organization.gv
    :caption: An example of some possible data product hierarchies. 
-             Three different data product set categories are shown; *Run*, *Spill*, and *APA*.
+             Three different user-defineddata product set categories are shown; *Run*, *Spill*, and *APA*.
              Rectangles with labels *Run n*, *Spill n*, and *APA n* represent data product sets.
              The pale blue rectangles show two data product set families for *Spills*: the first shows spills associated with *Run 1* and the second with *Run 2*.
              The pale green rectangles show two data product set families.
@@ -57,9 +57,6 @@ Framework users are expected to define their own data products :dune:`11.1 Defin
 Data categories, families, and data-product sets
 ------------------------------------------------
 
-Hierarchical and Flexible Organization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :dune:`11.1 Definition of data products,11.2 Creation of data sets,11.3 Definition of data families`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune:`20 Algorithms independent of framework interface`.
 This provides the ability to process data too large to fit into memory at one time :dune:`13 Process collections of unconstrained size`.
@@ -73,7 +70,7 @@ Read-only access to a data product must not mutate it.
 Data products that are intended to be written out are sent to the IO system as soon as they are created :dune:`26.2 Optimize memory management for data products`.
 Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
 
-Data product metadata
+Data product identification
 ---------------------
 
 Each data product is associated with a specific set of metadata describing the algorithms and configurations used in their creation.
