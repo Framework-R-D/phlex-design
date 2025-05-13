@@ -19,11 +19,11 @@ digraph {
   node [shape="box" style="filled,rounded"]
 
   job [label=<Job> fillcolor="gray98" fontcolor="gray" color="gray"]
-  run1 [label=<Run 1> fillcolor="lightyellow"]
-  run2 [label=<Run 2> fillcolor="lightyellow"]
-  spill1 [label=<Spill 1,1> fillcolor="lightblue"]
-  spill2 [label=<Spill 1,2> fillcolor="lightblue"]
-  spill3 [label=<Spill 2,1> fillcolor="lightblue"]
+  run1 [label=<Run<sub>1</sub>> fillcolor="lightyellow"]
+  run2 [label=<Run<sub>2</sub>> fillcolor="lightyellow"]
+  spill1 [label=<Spill<sub>1,1</sub>> fillcolor="lightblue"]
+  spill2 [label=<Spill<sub>1,2</sub>> fillcolor="lightblue"]
+  spill3 [label=<Spill<sub>2,1</sub>> fillcolor="lightblue"]
   apa3 [label="..." shape="plaintext" margin=0 style="rounded"]
 
   job -> {run1 run2} [color=gray]
@@ -37,15 +37,13 @@ digraph {
      fillcolor="#e6ffe6"
 
      family_label_1 [label=<<i>APA family</i>> shape="plaintext" margin=0 style="rounded"]
-     apa11 [label=<APA 1,1,1>]
-     apa12 [label=<APA 1,1,2>]
+     apa11 [label=<APA<sub>1,1,1</sub>>]
      apa1Dots [label="..." shape="plaintext" margin=0 style="rounded"]
-     apa1N [label=<APA 1,1,<i>n</i>>]
+     apa1N [label=<APA<sub>1,1,<i>n</i></sub>>]
   }
 
   spill1 -> family_label_1 [style=invis]
   spill1 -> apa11
-  spill1 -> apa12
   spill1 -> apa1Dots [style=invis]
   spill1 -> apa1N
 
@@ -53,9 +51,9 @@ digraph {
      style="filled,rounded"
      fillcolor="#e6ffe6"
 
-     apa21 [label=<APA 1,2,1>]
+     apa21 [label=<APA<sub>1,2,1</sub>>]
      apa2Dots [label="..." shape="plaintext" margin=0 style="rounded"]
-     apa2N [label=<APA 1,2,<i>n</i>>]
+     apa2N [label=<APA<sub>1,2,<i>n</i></sub>>]
      family_label_2 [label=<<i>APA family</i>> shape="plaintext" margin=0 style="rounded"]
   }
 
@@ -71,7 +69,6 @@ digraph {
 
      sequence_label_1 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t11 [label=<<i>Waveforms<sub>1</sub></i>> fontsize=11.5 fontcolor="purple"]
-     t12 [label=<<i>Waveforms<sub>2</sub></i>> fontsize=11.5 fontcolor="purple"]
      t1Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t1N [label=<<i>Waveforms<sub>n</sub></i>> fontsize=11.5 fontcolor="purple"]
   }
@@ -79,7 +76,6 @@ digraph {
   edge [style=dotted]
   family_label_1 -> sequence_label_1 [style=invis]
   apa11 -> t11
-  apa12 -> t12
   apa1Dots -> t1Dots [style=invis]
   apa1N -> t1N
 

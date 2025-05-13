@@ -14,10 +14,9 @@ A data set family is a sequence of data product sets that are in the same catego
 
 .. graphviz:: graphviz/data-organization.gv
    :caption: An example of some possible data product hierarchies. 
-             Three different user-defineddata product set categories are shown; *Run*, *Spill*, and *APA*.
-             Rectangles with labels *Run n*, *Spill n*, and *APA n* represent data product sets.
-             The pale blue rectangles show two data product set families for *Spills*: the first shows spills associated with *Run 1* and the second with *Run 2*.
-             The pale green rectangles show two data product set families.
+             Three different user-defined data product set categories are shown; *Run*, *Spill*, and *APA*.
+             Rectangles with labels *Run i*, *Spill i,j*, and *APA i,j,k* represent data product sets.
+             The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
              A solid line from a data product set to another data product set represents association between data product sets the two. 
              The bottom rectangle shows that *Waveforms 1* is in the data product set *APA 1,1,1*, etc.
              Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
@@ -52,7 +51,6 @@ Defining Data Product Types
 Data product types are not defined by the framework.
 Framework users are expected to define their own data products :dune:`11.1 Definition of data products`.
 
-.. todo:: Sketch how users define data product types.
 
 Data categories, families, and data-product sets
 ------------------------------------------------
@@ -71,7 +69,7 @@ Data products that are intended to be written out are sent to the IO system as s
 Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
 
 Data product identification
----------------------
+---------------------------
 
 Each data product is associated with a specific set of metadata describing the algorithms and configurations used in their creation.
 These metadata allow that creation to be reproducible :dune:`52 Reproducibility of data products`.
@@ -85,14 +83,10 @@ Such metadata include:
 - the *processing phase*, an identifier for the job in which the data product was created
 - an individual *name* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
 
-.. todo:: Get agreement that the *product type* metadata (e.g. *friendly class name*) should not be part of the user's mental model, even if it may be needed for the functioning of the system.
+In addition to these metadata, a data product is also specified by its *type*.
 
 The metadata are stored in the framework output file, and the IO interface allows access to the metadata :dune:`51 Provenance discovery`.
 
 The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
 The algorithms are configured to identify the inputs in which they are interested by selecting on  any of the metadata defined above, as well as by the programming language types of their inputs.
 
-
-
-Data-product lookup policies
-----------------------------
