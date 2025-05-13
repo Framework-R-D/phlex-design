@@ -13,20 +13,20 @@ A data set family is a sequence of data product sets that are in the same catego
 :numref:`data-organization` illustrates the relationships between all of these.
 
 .. graphviz:: graphviz/data-organization.gv
-   :caption: An example of some possible data product hierarchies. 
+   :caption: An example of some possible data product hierarchies.
              Three different user-defined data product set categories are shown; *Run*, *Spill*, and *APA*.
              Rectangles with labels *Run i*, *Spill i,j*, and *APA i,j,k* represent data product sets.
              The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
-             A solid line from a data product set to another data product set represents association between the two data product sets. 
+             A solid line from a data product set to another data product set represents association between the two data product sets.
              The bottom rectangle shows that *Waveforms 1,1,1* is in the data product set *APA 1,1,1*, etc.
              Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
-             The names of different data set categories are user defined, and not special to the Phlex framework.  
+             The names of different data set categories are user defined, and not special to the Phlex framework.
    :name: data-organization
 
 Data products
 -------------
 
-Conceptual Nature
+Conceptual nature
 ^^^^^^^^^^^^^^^^^
 
 Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them :dune:`46 Algorithm-Data Separability`.
@@ -36,7 +36,7 @@ They are not tied to specific hardware or algorithm implementations, ensuring in
 They are also not tied to any specific IO back end, but must support reading and writing with both ROOT :dune:`39.1 I/O backend for ROOT` and HDF5 :dune:`39.2 I/O backend for HDF5`.
 They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows :dune:`9 Presenting data to subsequent algorithms`.
 
-Structure and Representation
+Structure and representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The in-memory layout of a data product is determined by its type in the specified programming language.
@@ -45,7 +45,7 @@ In general, a single conceptual data product can be represented in multiple data
 
 The framework provides the ability to determine the memory footprint of each data product :dune:`24.3 Specification of algorithm's CPU memory usage`.
 
-Defining Data Product Types
+Defining data product types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data product types are not defined by the framework.
@@ -89,4 +89,3 @@ The metadata are stored in the framework output file, and the IO interface allow
 
 The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
 The algorithms are configured to identify the inputs in which they are interested by selecting on  any of the metadata defined above, as well as by the programming language types of their inputs.
-

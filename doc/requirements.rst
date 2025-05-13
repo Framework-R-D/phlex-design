@@ -294,7 +294,7 @@ Jama Connect entry: `DUNE STKH #19 <https://fnal-prod.jamacloud.com/perspective.
 
 .. table::
     :widths: 15 85
- 
+
     +--------------+-------------------------------------------------------+
     | Requirement  | The framework shall present data produced by an       |
     |              | already executed algorithm to each subsequent,        |
@@ -354,7 +354,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #85 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693>`__
-| See :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -372,7 +372,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #86 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696>`__
-| See :numref:`data_organization:Data organization`, :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -390,7 +390,7 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #87 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697>`__
-| See :numref:`data_organization:Data organization`, :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -448,7 +448,7 @@ Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.
 --------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #25 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584>`__
-| See :numref:`data_organization:Hierarchical and Flexible Organization`
+| See :numref:`data_organization:Data categories, families, and data-product sets`
 
 .. table::
     :widths: 15 85
@@ -769,7 +769,7 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-| See :numref:`data_organization:Hierarchical and Flexible Organization`, :numref:`algorithms:Algorithms`
+| See :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
 
 .. table::
     :widths: 15 85
@@ -2029,7 +2029,7 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 -----------------------
 
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
-| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product metadata`.
+| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
 .. table::
     :widths: 15 85
 
@@ -2092,7 +2092,7 @@ Jama Connect entry: `DUNE STKH #28 <https://fnal-prod.jamacloud.com/perspective.
 -----------------------------------
 
 | Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
-| See :numref:`data_organization:Data product metadata`.
+| See :numref:`data_organization:Data product identification`.
 
 .. todo:: Not yet referenced in design
 
