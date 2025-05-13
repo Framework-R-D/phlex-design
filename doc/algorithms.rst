@@ -9,6 +9,7 @@ In general, Phlex supports the registration of C++ algorithms with function sign
    return_type function_name(P1, ..., Pn, R1, ..., Rm) [qualifiers];
 
 where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate :term:`resources <resource>`.
+Each registered function must accept at least one data product.
 
 We will first discuss the data-product and resource types in :numref:`algorithms:Input parameters`, followed by the return types in :numref:`algorithms:Return types`, and then the function name and optional qualifers in :numref:`algorithms:Function names and qualifiers`.
 
@@ -77,43 +78,51 @@ Consider the following C++ classes and function:
 
    tracks make_tracks(hits const& hs) { ... }
 
-where the implementations of `hits`, `tracks`, and `make_tracks` are unspecified.
-Phlex adopts a `fluent interface <https://en.wikipedia.org/wiki/Fluent_interface>`_ for registering algorithms.
-This makes it possible to express the sentence:
-
-    *With the function* `make_tracks` *and unlimited concurrency, transform "hits" to "tracks" for each spill.*
-
-in terms of the C++ *registration stanza*:
+where the implementations of :cpp:`hits`, :cpp:`tracks`, and :cpp:`make_tracks` are unspecified.
+Suppose a physicist would like to use the function :cpp:`make_tracks` to transform "good_hits" to "good_tracks" for each spill with unlimited concurrency.
+This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m)    // <== Registration opener (w/o configuration object)
+   PHLEX_REGISTER_ALGORITHMS()     // <== Registration opener (w/o configuration object)
    {
-     m.with(                       // <-- Beginning of registration statement
-            make_tracks,           // (1) Algorithm/HOF operation
-            concurrency::unlimited // (2) Allowed CPU concurrency
-           )
-      .transform(                  // (3) Higher-order function
-                 "good_hits"       // (4) Spec. of input data product to make_tracks
-                )
-      .to("good_tracks")           // (5) Spec. of output data product from make_tracks
-      .for_each("spill")           // (6) Scope of input/output data products
-      ;                            // <-- End of registration statement
+     products("good_tracks")       // (1) Spec. of output data product from make_tracks
+       = transform(                // (2) Higher-order function
+           "track_maker",          // (3) Name assigned to HOF
+           make_tracks,            // (4) Algorithm/HOF operation
+           concurrency::unlimited  // (5) Allowed CPU concurrency
+         )
+         .sequence(
+           "good_hits"             // (6) Spec. of input data product to make_tracks
+           _in("spill")            // (7) Scope of input/output data products
+         );
    }
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
-The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
-A registration statement contains a series of chained *clauses*, starting with a :cpp:`with(...)` clause.
+The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
+A registration statement is a programming statement that closely follow the equation described in :numref:`functional_programming:Higher-order functions supported by Phlex`:
 
-In the case of a transform, six pieces of information are provided in the registration statement:
+.. math::
 
-1. The algorithm/HOF operator to be used
-2. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
-3. The HOF to be used (generally expressed as an active verb)
-4. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
-5. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
-6. The data category where the input data products are found and the output data products are to be placed
+   \sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}
+
+where the output sequence elements :math:`b_i` are data products created by applying the desired HOF to an input sequence formed from data products :math:`a_i`.
+In the above example, we have the following mappings:
+
+- :math:`\sequence{b}{\text{output}} \Longrightarrow` :cpp:`products(...)`
+- :math:`\text{HOF}(f_1,\ f_2,\ \dots) \Longrightarrow` :cpp:`transform(...)`
+- :math:`\sequence{a}{\text{input}} \Longrightarrow` :cpp:`sequence(...)`
+
+Specifically, seven pieces of information are provided in the registration statement:
+
+1. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
+2. The HOF to be used (generally expressed as an active verb)
+3. The name to assign to the configured HOF
+4. The algorithm/HOF operator to be used
+5. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
+6. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
+7. The data category where the input data products are found and the output data products are to be placed
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`algorithms:HOF operators` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
