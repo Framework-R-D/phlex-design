@@ -4,8 +4,8 @@
 
 #include <string>
 
-fhicl::ParameterSet make_parameter_set_from_YAML_file(std::string const &yaml_filename);
-fhicl::ParameterSet make_parameter_set_from_YAML_string(std::string const &yaml_in);
+fhicl::ParameterSet make_parameter_set_from_YAML_file(std::string const& yaml_filename);
+fhicl::ParameterSet make_parameter_set_from_YAML_string(std::string const& yaml_in);
 
 #endif /* MAKE_PARAMETER_SET_FROM_YAML_STRING_H */
 

@@ -62,8 +62,7 @@ namespace {
       std::string unparsed;
       if (fhicl::parse_value_string(input_string, xval, unparsed)) {
         tbl.insert(key, std::move(xval));
-      }
-      else {
+      } else {
         tbl.put(key, input_string, false);
       }
     } break;
