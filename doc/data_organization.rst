@@ -14,12 +14,13 @@ A data set family is a sequence of data product sets that are in the same catego
 
 .. graphviz:: graphviz/data-organization.gv
    :caption: An example of some possible data product hierarchies. 
-             Three different data set categories are shown; *Run*, *Spill*, and *APA*.
-             Rectangles with rounded corners represent data product sets, e.g. *Run 1*, *Spill 1*, and *APA 1*.
-             A solid line from a data product set to a data product sets represent a data product within the set.
-             Rounded rectangles that have rectangles within represent data product families, e.g. *APA* family.
-             At the very bottom, we can see inside of a data product set, which is shown as a sequence of data products, in this case called as *Waveforms sequence*.
-             A dotted line from a data product set to a data product represents a data product within the set e.g. *Waveform 1* in the *APA 1* data product set.
+             Three different data product set categories are shown; *Run*, *Spill*, and *APA*.
+             Rectangles with labels *Run n*, *Spill n*, and *APA n* represent data product sets.
+             The pale blue rectangles show two data product set families for *Spills*: the first shows spills associated with *Run 1* and the second with *Run 2*.
+             The pale green rectangles show two data product set families.
+             A solid line from a data product set to another data product set represents association between data product sets the two. 
+             The bottom rectangle shows that *Waveforms 1* is in the data product set *APA 1,1,1*, etc.
+             Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
              The names of different data set categories are user defined, and not special to the Phlex framework.  
    :name: data-organization
 
@@ -67,7 +68,8 @@ Data product management
 -----------------------
 
 Management of the data products returned by an algorithm is taken over by the framework.
-Readonly access to input data products is provided to algorithms :dune:`51 Provenance discovery,58 Thread-safe design for algorithms`.
+Read-only access to input data products is provided to algorithms :dune:`51 Provenance discovery,58 Thread-safe design for algorithms`.
+Read-only access to a data product must not mutate it.
 Data products that are intended to be written out are sent to the IO system as soon as they are created :dune:`26.2 Optimize memory management for data products`.
 Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
 
