@@ -74,7 +74,7 @@ Note that the language is left unspecified for the implementation of the framewo
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.
          In such a case, the stakeholder requirements of one experiment may not negate those of another (particularly DUNE).
 .. [#f2] As of this writing, Phlex supports the C++23 standard.
-.. [#f3] Phlex adheres to NEP-29 [NEP-29]_ in deprecating old versions of Python and of `numpy`.
+.. [#f3] Phlex adheres to SPEC 0 [SPEC-0]_ in supporting Python versions and core package dependencies.
 
 .. only:: html
 
@@ -82,4 +82,4 @@ Note that the language is left unspecified for the implementation of the framewo
 
 .. [Wiki-framework] https://en.wikipedia.org/wiki/Software_framework
 .. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
-.. [NEP-29] https://numpy.org/neps/nep-0029-deprecation_policy.html
+.. [SPEC-0] https://scientific-python.org/specs/spec-0000/
