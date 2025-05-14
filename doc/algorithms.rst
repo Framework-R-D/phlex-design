@@ -84,45 +84,47 @@ This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS()     // <== Registration opener (w/o configuration object)
+   PHLEX_REGISTER_ALGORITHMS(m)  // <== Registration opener (w/o configuration object)
    {
-     products("good_tracks")       // (1) Spec. of output data product from make_tracks
-       = transform(                // (2) Higher-order function
-           "track_maker",          // (3) Name assigned to HOF
-           make_tracks,            // (4) Algorithm/HOF operation
-           concurrency::unlimited  // (5) Allowed CPU concurrency
-         )
-         .sequence(
-           "good_hits"             // (6) Spec. of input data product to make_tracks
-           _in("spill")            // (7) Scope of input/output data products
-         );
+     products("good_tracks") =   // 1. Specification of output data product from make_tracks
+       transform(                // 2. Higher-order function
+         "track_maker",          // 3. Name assigned to HOF
+         make_tracks,            // 4. Algorithm/HOF operation
+         concurrency::unlimited  // 5. Allowed CPU concurrency
+       )
+       .sequence(
+         "good_hits"             // 6. Specification of input data product to make_tracks
+         _in("spill")            // 7. Data category to search for input data products
+       );
    }
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
-A registration statement is a programming statement that closely follow the equation described in :numref:`functional_programming:Higher-order functions supported by Phlex`:
+A registration statement is a programming statement that closely follows the equation described in :numref:`functional_programming:Higher-order functions supported by Phlex`:
 
 .. math::
 
    \sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}
 
-where the output sequence elements :math:`b_i` are data products created by applying the desired HOF to an input sequence formed from data products :math:`a_i`.
-In the above example, we have the following mappings:
+Specifically, in the registration stanza above, we have the following:
 
-- :math:`\sequence{b}{\text{output}} \Longrightarrow` :cpp:`products(...)`
-- :math:`\text{HOF}(f_1,\ f_2,\ \dots) \Longrightarrow` :cpp:`transform(...)`
-- :math:`\sequence{a}{\text{input}} \Longrightarrow` :cpp:`sequence(...)`
+   :cpp:`products(...)`
+     1. This is the equivalent of the output sequence :math:`\sequence{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`.
 
-Specifically, seven pieces of information are provided in the registration statement:
+   :cpp:`transform(...)`
+     Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
 
-1. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
-2. The HOF to be used (generally expressed as an active verb)
-3. The name to assign to the configured HOF
-4. The algorithm/HOF operator to be used
-5. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
-6. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
-7. The data category where the input data products are found and the output data products are to be placed
+     2. The HOF to be used,
+     3. The name to assign to the configured HOF,
+     4. The algorithm/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
+     5. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`.
+
+   :cpp:`sequence(...)`
+     The specification of the input sequence :math:`\sequence{a}{\text{input}}` requires:
+
+     6. The specification(s) of data products that serve as input sequence elements :dune:`28 Specification of data products required by an algorithm`, and
+     7. The data category where the input data products are found.
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`algorithms:HOF operators` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
@@ -146,7 +148,7 @@ Accessing configuration information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Instead of hard-coding all pieces of registration information, it is desirable to specify a subset of such information through a program's run-time configuration.
-To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration opener:
+To do this, an additional argument (e.g. :cpp:`config`) is passed to the registration opener:
 
 .. code:: c++
 
@@ -154,10 +156,9 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
    {
      auto selected_data_scope = config.get<std::string>("data_scope");
 
-     m.with(make_tracks, concurrency::unlimited)
-      .transform("good_hits")
-      .to("good_tracks")
-      .for_each(selected_data_scope);
+     products("good_tracks") =
+       transform("track_maker", make_tracks, concurrency::unlimited)
+       .sequence("good_hits"_in(selected_data_scope));
    }
 
 .. note::
@@ -183,13 +184,15 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<hits>` object
 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
-     m.with([](phlex::handle<hits> hs) {
-              return make_tracks_debug(*hs, hs.id()->number());
-            },
-            concurrency::unlimited)
-      .transform("good_hits")
-      .to("good_tracks")
-      .for_each("spill");
+     products("good_tracks") =
+       transform(
+         "track_maker",
+         [](phlex::handle<hits> hs) {
+           return make_tracks_debug(*hs, hs.id()->number());
+         },
+         concurrency::unlimited
+       )
+       .sequence("good_hits"_in("spill"));
    }
 
 The lambda expression *does* depend on framework interface; the :cpp:`make_tracks_debug` function, however, retains its framework independence.
@@ -216,26 +219,25 @@ Member functions of classes
      auto track_seed = config.get<std::size_t>("track_seed");
      auto selected_data_scope = config.get<std::string>("data_scope");
 
-     m.make<track_maker>(track_seed)
-      .with(&track_maker::make, concurrency::unlimited)
-      .transform("good_hits")
-      .to("good_tracks")
-      .for_each(selected_data_scope);
+     products("good_tracks") =
+       m.make<track_maker>(track_seed)
+         .transform("track_maker", &track_maker::make, concurrency::unlimited)
+         .sequence("good_hits"_in(selected_data_scope));
    }
 
 Overloaded functions
 ^^^^^^^^^^^^^^^^^^^^
 
-Phlex performs a substantial amount of type deduction through the :cpp:`with(...)` clause.
+Phlex performs a substantial amount of type deduction through the :cpp:`transform(...)` clause.
 This works well except in cases where the registered algorithms are overloaded functions.
 For example, suppose one wants to register C++'s overloaded :cpp:`std::sqrt(...)` function with the framework.
-Simply specifying :cpp:`with(std::sqrt)` will fail at compile time as the compiler will not be able to determine which overload is desired.
+Simply specifying :cpp:`transform(..., std::sqrt)` will fail at compile time as the compiler will not be able to determine which overload is desired.
 
 Instead, the code author can use the following [#f3]_:
 
 .. code:: c++
 
-   m.with([](double x){ return std::sqrt(x); }) ... ;
+   transform(..., [](double x){ return std::sqrt(x); }, ...);
 
 where the desired overload is selected based on the :cpp:`double` argument to the lambda expression.
 
@@ -247,7 +249,7 @@ where the desired overload is selected based on the :cpp:`double` argument to th
          However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
          However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
-.. [#f3] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .
+.. [#f3] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.
 
 .. only:: html
 
