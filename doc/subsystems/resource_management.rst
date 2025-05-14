@@ -1,4 +1,4 @@
-Resource management
+Resource Management
 ===================
 
 .. todo::

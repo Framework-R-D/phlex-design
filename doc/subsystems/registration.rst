@@ -1,4 +1,4 @@
-Algorithm registration
+Algorithm Registration
 ======================
 
 .. todo::

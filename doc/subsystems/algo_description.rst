@@ -1,4 +1,4 @@
-Algorithm description
+Algorithm Description
 =====================
 
 .. todo::

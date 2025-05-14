@@ -1,4 +1,4 @@
-Plugin management
+Plugin Management
 =================
 
 .. todo::

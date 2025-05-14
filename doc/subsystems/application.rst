@@ -1,4 +1,4 @@
-Framework application
+Framework Application
 =====================
 
 .. todo::

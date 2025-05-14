@@ -1,4 +1,4 @@
-Functional programming
+Functional Programming
 ======================
 
 Functional programming is a paradigm that favors the use of *functions* instead of the direct manipulation of stateful objects.
@@ -26,7 +26,7 @@ Expressing the processing needs according to mathematics enables:
 - naturally reproducible results, assuming the functions are pure (see :numref:`functional_programming:Pure functions`),
 - parallel invocations of pure functions with no possibility of data races :dune:`58 Thread-safe design for algorithms`.
 
-Pure functions
+Pure Functions
 --------------
 
 According to Wikipedia [Wiki-pure]_, a pure function has the following properties:
@@ -39,7 +39,7 @@ For example, assuming the functions :math:`f` and :math:`g` above are pure, then
 
 Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the framework philosophy in :numref:`introduction:Framework philosophy`.
 
-Difficulties with functional programming
+Difficulties with Functional Programming
 ----------------------------------------
 
 One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
@@ -52,7 +52,7 @@ By leveraging commonly used processing patterns (see :numref:`functional_program
 The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
 
-Sequences of data and higher-order functions
+Sequences of Data and Higher-Order Functions
 ============================================
 
 Particle physics results are obtained by performing statistical analysis on sequences of data.
@@ -97,7 +97,7 @@ A calculation is then generally expressed in terms of:
 
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
 
-Higher-order functions supported by Phlex
+Higher-Order Functions Supported by Phlex
 -----------------------------------------
 
 In general, HOFs transform one sequence to another:

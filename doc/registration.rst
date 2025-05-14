@@ -1,4 +1,4 @@
-Framework registration
+Framework Registration
 ======================
 
 .. attention::
@@ -84,7 +84,7 @@ The block, however, must contain a registration statement to execute an algorith
    A module must contain only one registration stanza.
    Note that multiple registration statements may be made in each stanza.
 
-Accessing configuration information
+Accessing Configuration Information
 -----------------------------------
 
 Instead of hard-coding all pieces of registration information, it is desirable to specify a subset of such information through a program's run-time configuration.
@@ -107,7 +107,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 Except for the specification of :cpp:`make_tracks` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
 
-Framework dependence in registration code
+Framework Dependence in Registration Code
 -----------------------------------------
 
 Usually, classes like :cpp:`hits` and :cpp:`tracks` and algorithms like :cpp:`make_tracks` do not need to depend on framework interface :dune:`20 Algorithms independent of framework interface`.
@@ -142,7 +142,7 @@ The lambda expression *does* depend on framework interface; the :cpp:`make_track
    Further explain what framework independence means.
    For example, if one passes a framework-dependent closure to an algorithm, is that algorithm still framework-independent?
 
-Member functions of classes
+Member Functions of Classes
 ---------------------------
 
 .. code:: c++
@@ -165,7 +165,7 @@ Member functions of classes
          .sequence("good_hits"_in(selected_data_scope));
    }
 
-Overloaded functions
+Overloaded Functions
 --------------------
 
 Phlex performs a substantial amount of type deduction through the :cpp:`transform(...)` clause.

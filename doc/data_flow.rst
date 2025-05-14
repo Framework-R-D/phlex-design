@@ -1,4 +1,4 @@
-Data flow
+Data Flow
 =========
 
 In :numref:`functional_programming:Functional programming`, the example was given for creating tracks from wires.
@@ -32,7 +32,7 @@ Some observations:
   This means that whereas the equation does not need to specify where the :math:`ws` wires originate (or where the :math:`ts` tracks end up), such locations must be specified in the graph.
   Any node that has only outgoing edges is called a *source* (denoted by a solid dot), and any node that has only incoming edges is a *sink* (denoted by an encircled solid dot).
 
-Data flow with sequences
+Data Flow with Sequences
 ------------------------
 
 As mentioned earlier in :numref:`functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.

@@ -1,4 +1,4 @@
-HOF operators
+HOF Operators
 =============
 
 Transforms
@@ -12,7 +12,7 @@ Transforms
 
 **Return type**: A transform algorithm may create multiple data products by returning an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
 
-Filters and predicates
+Filters and Predicates
 ----------------------
 
 +----------------------------+-----------------------------------------+------------------------+

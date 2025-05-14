@@ -1,2 +1,2 @@
-Random number support
+Random Number Support
 =====================

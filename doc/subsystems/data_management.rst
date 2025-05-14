@@ -1,4 +1,4 @@
-Data product management
+Data Product Management
 =======================
 
 .. todo::

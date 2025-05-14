@@ -1,5 +1,5 @@
 *****************
-Conceptual design
+Conceptual Design
 *****************
 
 .. admonition:: Purpose

@@ -1,4 +1,4 @@
-Error handler
+Error Handler
 =============
 
 .. todo::

@@ -1,5 +1,5 @@
 =================
-Function notation
+Function Notation
 =================
 
 We refer to the function :math:`f: A \rightarrow B` as the function :math:`f` that takes an element of the set :math:`A` to an element of the set :math:`B`.
@@ -18,7 +18,7 @@ where :math:`\mathbb{N}` is the set of natural numbers.
 Invoking :math:`power(1.5, 2)` results in the real number :math:`1.5^2 = 2.25`, whereas invoking :math:`halve(5)` divides :math:`5` by :math:`2`, returning the pair :math:`(2, 1)`, where the first number is the quotient, and the second is the remainder.
 
 -------------------
-Function invocation
+Function Invocation
 -------------------
 
 It is conventional in mathematics to use parentheses to denote the application of the function :math:`f` to an argument :math:`x` ---i.e. :math:`f(x)`.

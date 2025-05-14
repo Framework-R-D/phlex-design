@@ -13,7 +13,7 @@ Each registered function must accept at least one data product.
 
 We will first discuss the data-product and resource types in :numref:`algorithms:Input parameters`, followed by the return types in :numref:`algorithms:Return types`, and then the function name and optional qualifers in :numref:`algorithms:Function names and qualifiers`.
 
-Input parameters
+Input Parameters
 ----------------
 
 A data product of type :cpp:`P` may be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
@@ -33,7 +33,7 @@ The following types are therefore supported:
 
 Resources are described in more detail in :numref:`resources:Resources`.
 
-Return types
+Return Types
 ------------
 
 The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`registration:HOF operators`.
@@ -50,7 +50,7 @@ The following types (or their equivalents) are forbidden as created data-product
 - *bare pointer types*, such as :cpp:`T*` or :cpp:`T const*`
 - *reference types*, such as :cpp:`T&` or :cpp:`T const&`
 
-Function names and qualifiers
+Function Names and Qualifiers
 -----------------------------
 
 The :cpp:`function_name` in :numref:`algorithms:Algorithms` above may be any function name supported by the C++ language.

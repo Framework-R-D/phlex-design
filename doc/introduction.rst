@@ -21,7 +21,7 @@ However, the HEP community tends to perform final-stage analysis using standalon
 Phlex, therefore, aims to satisfy the data-processing needs of only physics reconstruction and simulation.
 
 ====================
-Requirements process
+Requirements Process
 ====================
 
 Phlex provides facilities and behaviors intended to support the physics goals of its stakeholders, notably the DUNE experiment [#f1]_.
@@ -30,14 +30,14 @@ A dedicated tool [Jama-connect]_ is used to manage such stakeholder requirements
 As the design matures, *system requirements* are then created to guide implementation in support of the stakeholder requirements.
 
 ----------------------
-Requirements ownership
+Requirements Ownership
 ----------------------
 
 Each Phlex stakeholder owns its stakeholder requirements, which support the high-level needs of the experiment.
 System requirements, which are subservient to stakeholder requirements, are owned by the Phlex developers, who are free to adjust the implementation to satisfy all stakeholder requirements.
 
 -----------------------------
-Requirements in this document
+Requirements in This Document
 -----------------------------
 
 The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
@@ -49,7 +49,7 @@ No system requirements are currently referenced in this document.
 Should it become necessary to refer to the system requirements, such references will be limited to the technical design in :numref:`technical_design:Technical design`.
 
 ====================
-Framework philosophy
+Framework Philosophy
 ====================
 
 A framework is a tool that aids the scientific process of inferring accurate physics results from observed data.
@@ -61,7 +61,7 @@ The Phlex design therefore:
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
 =====================
-Programming languages
+Programming Languages
 =====================
 
 The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :dune:`5 Support for multiple programming languages`.  Specifically, an algorithm may be written in either C++ [#f2]_ :dune:`5.1 Support C++ algorithms` or Python [#f3]_ :dune:`5.2 Support Python algorithms`.

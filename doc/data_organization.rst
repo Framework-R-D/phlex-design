@@ -1,4 +1,4 @@
-Data organization
+Data Organization
 =================
 
 This section provides a conceptual overview of *data products*, *data product sets*, *data set categories*, and *data set families*, as defined in :dune:`11.1 Definition of data products,11.2 Creation of data sets,11.3 Definition of data families,11.4 Definition of data family hierarchies`.
@@ -23,10 +23,10 @@ A data set family is a sequence of data product sets that are in the same catego
              The names of different data set categories are user defined, and not special to the Phlex framework.
    :name: data-organization
 
-Data products
+Data Products
 -------------
 
-Conceptual nature
+Conceptual Nature
 ^^^^^^^^^^^^^^^^^
 
 Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them :dune:`46 Algorithm-Data Separability`.
@@ -36,7 +36,7 @@ They are not tied to specific hardware or algorithm implementations, ensuring in
 They are also not tied to any specific IO back end, but must support reading and writing with both ROOT :dune:`39.1 I/O backend for ROOT` and HDF5 :dune:`39.2 I/O backend for HDF5`.
 They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows :dune:`9 Presenting data to subsequent algorithms`.
 
-Structure and representation
+Structure and Representation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The in-memory layout of a data product is determined by its type in the specified programming language.
@@ -45,21 +45,21 @@ In general, a single conceptual data product can be represented in multiple data
 
 The framework provides the ability to determine the memory footprint of each data product :dune:`24.3 Specification of algorithm's CPU memory usage`.
 
-Defining data product types
+Defining Data Product Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data product types are not defined by the framework.
 Framework users are expected to define their own data products :dune:`11.1 Definition of data products`.
 
 
-Data categories, families, and data-product sets
+Data Categories, Families, and Data-Product Sets
 ------------------------------------------------
 
 Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :dune:`11.1 Definition of data products,11.2 Creation of data sets,11.3 Definition of data families`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :dune:`20 Algorithms independent of framework interface`.
 This provides the ability to process data too large to fit into memory at one time :dune:`13 Process collections of unconstrained size`.
 
-Data product management
+Data Product Management
 -----------------------
 
 Management of the data products returned by an algorithm is taken over by the framework.
@@ -68,7 +68,7 @@ Read-only access to a data product must not mutate it.
 Data products that are intended to be written out are sent to the IO system as soon as they are created :dune:`26.2 Optimize memory management for data products`.
 Data products are removed from memory as soon as they are no longer needed as input to another algorithm :dune:`26.2 Optimize memory management for data products`.
 
-Data product identification
+Data Product Identification
 ---------------------------
 
 Each data product is associated with a specific set of metadata describing the algorithms and configurations used in their creation.

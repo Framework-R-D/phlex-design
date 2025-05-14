@@ -1,4 +1,4 @@
-Metadata management
+Metadata Management
 ===================
 
 .. todo::

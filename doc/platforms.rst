@@ -1,2 +1,2 @@
-Supported platforms
+Supported Platforms
 ===================

@@ -1,4 +1,4 @@
-Monitoring and reporting
+Monitoring and Reporting
 ========================
 
 .. todo::

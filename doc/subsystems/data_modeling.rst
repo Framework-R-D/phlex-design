@@ -1,4 +1,4 @@
-Data modeling
+Data Modeling
 =============
 
 .. todo::

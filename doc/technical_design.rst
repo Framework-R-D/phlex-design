@@ -1,5 +1,5 @@
 ****************
-Technical design
+Technical Design
 ****************
 
 The graph below depicts the relationships between the framework subsystems.
@@ -26,7 +26,7 @@ The graph below depicts the relationships between the framework subsystems.
    subsystems/monitoring
    subsystems/logging
 
-External subsystems
+External Subsystems
 ===================
 
 - Build

@@ -7,7 +7,7 @@ Resources
    {
    }
 
-Limited resources
+Limited Resources
 -----------------
 
 GPUs

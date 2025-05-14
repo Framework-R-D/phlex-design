@@ -1,2 +1,2 @@
-Signal handler
+Signal Handler
 ==============

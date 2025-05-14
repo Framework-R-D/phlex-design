@@ -1,4 +1,4 @@
-Phlex framework design
+Phlex Framework Design
 ======================
 
 .. raw:: latex

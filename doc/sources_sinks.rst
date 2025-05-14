@@ -1,4 +1,4 @@
-Framework driver
+Framework Driver
 ================
 
 .. code:: c++
@@ -7,7 +7,7 @@ Framework driver
    {
    }
 
-Data sources
+Data Sources
 ============
 
 .. code:: c++
@@ -16,7 +16,7 @@ Data sources
    {
    }
 
-Data sinks
+Data Sinks
 ==========
 
 .. code:: c++

@@ -1,4 +1,4 @@
-Program configuration
+Program Configuration
 =====================
 
 The application of a specific configuration to a particular invocation of Phlex may be factorized into:
@@ -7,8 +7,8 @@ The application of a specific configuration to a particular invocation of Phlex 
 #. The way the configuration is accessed programmatically by both framework and user code
 #. The semantic structure of the configuration as it relates to the structure and operation of the application
 
-The mechanics of configuration specification
---------------------------------------------
+Mechanics of Configuration Specification
+----------------------------------------
 
 Configuration of the Phlex application may be effectuated by:
 
@@ -32,7 +32,7 @@ For each supported configuration input language, Phlex shall support facilities 
 * Specifically overriding configuration items specified earlier in the configuration document :dune:`54 Support local configuration changes`, and
 * The ability to compose a single configuration document from multiple distinct sources :dune:`61 Composing configurations of framework components`.
 
-Programmatic access to the configuration
+Programmatic Access to the Configuration
 ----------------------------------------
 
 In order to preserve the framework-independent nature of user algorithms, the appropriate section of configuration will be made available to the appropriate algorithm's registration code in the form of a hierarchical configuration object in the appropriate programming language (C++ or Python).
@@ -42,7 +42,7 @@ Customizable facilities will exist to enable the presentation of configuration i
 
 Users will not be able generally to access live configuration outside the scope of their own algorithm, although "framework-level" configuration will be viewable from registration code, as will configuration metadata attached to any input data registered for the algorithm.
 
-Semantic structure of the configuration
+Semantic Structure of the Configuration
 ---------------------------------------
 
 The semantic structure of the configuration is constrained by the common features of the permitted document languages, and of the C++ and Python programmatic representations.

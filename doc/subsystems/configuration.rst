@@ -9,7 +9,7 @@ Configuration
    - Includes command-line interface
    - Develop configuration schema for program resources
 
-Program resource specification
+Program Resource Specification
 ------------------------------
 
- The configuration supports a block of parameters that specify the hardware resources required by the program :dune:`23 Resource specification for the program`.
+The configuration supports a block of parameters that specify the hardware resources required by the program :dune:`23 Resource specification for the program`.
