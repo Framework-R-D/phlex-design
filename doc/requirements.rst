@@ -27,7 +27,7 @@ Framework requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #111 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847>`__
-| See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`algorithms:Framework registration`
+| See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`registration:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -88,7 +88,7 @@ Jama Connect entry: `DUNE STKH #8 <https://fnal-prod.jamacloud.com/perspective.r
 ---------------------------------
 
 | Jama Connect entry: `DUNE STKH #9 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549>`__
-| See :numref:`algorithms:Framework registration`
+| See :numref:`registration:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -677,7 +677,7 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
 --------------------------
 
 | Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
-| See :numref:`algorithms:Unfolds`
+| See :numref:`registration:Unfolds`
 
 .. table::
     :widths: 15 85
@@ -978,7 +978,7 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
-| See :numref:`algorithms:Framework registration`
+| See :numref:`registration:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -1313,7 +1313,7 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 ----------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
-| See :numref:`algorithms:Framework registration`
+| See :numref:`registration:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -1333,7 +1333,7 @@ Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.
 ---------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
-| See :numref:`algorithms:Framework registration`
+| See :numref:`registration:Framework registration`
 
 .. table::
     :widths: 15 85
@@ -2030,6 +2030,7 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
 
 | Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
 | See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
+
 .. table::
     :widths: 15 85
 

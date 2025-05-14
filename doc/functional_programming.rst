@@ -136,7 +136,7 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
    |                                                      |                                     | :math:`cat: \mathbbm{1} \rightarrow L`                       |                        |
    +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
 
-:numref:`algorithms:HOF operators` describes each of the operators in detail.
+:numref:`registration:HOF operators` describes each of the operators in detail.
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
 
 Phlex will likely support other higher order functions as well.
