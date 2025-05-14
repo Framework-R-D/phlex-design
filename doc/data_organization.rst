@@ -14,11 +14,11 @@ A data set family is a sequence of data product sets that are in the same catego
 
 .. graphviz:: graphviz/data-organization.gv
    :caption: An example of some possible data product hierarchies.
-             Three different user-defined data product set categories are shown; *Run*, *Spill*, and *APA*.
-             Rectangles with labels *Run i*, *Spill i,j*, and *APA i,j,k* represent data product sets.
+             Three different user-defined data product set categories are shown: :math:`\textsf{Run}`, :math:`\textsf{Spill}`, and :math:`\textsf{APA}`.
+             Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data product sets.
              The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
              A solid line from a data product set to another data product set represents association between the two data product sets.
-             The bottom rectangle shows that *Waveforms 1,1,1* is in the data product set *APA 1,1,1*, etc.
+             The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data product set :math:`\textsf{APA}_{1,1,1}`, etc.
              Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
              The names of different data set categories are user defined, and not special to the Phlex framework.
    :name: data-organization
