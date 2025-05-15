@@ -21,7 +21,7 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
              The label on the line shows both the HOF being used  and the user-supplied algorithm used by that HOF.
    :name: fig-wirecell
    :alt: A possible Wire-Cell charged waveform simulation workflow.
-   :align: center 
+   :align: center
 
 The workflow begins with the simulated *Deposits* for a trigger record.
 The *Deposits* object is to be used as input to an algorithm that deals with the drift of the charge to the wires.
@@ -43,4 +43,3 @@ When the fold is complete, the then-finalized *DigitizedWaveform* object is put 
 
 .. [#f1] If, for the SNB trigger records, the data are too large to fit into memory, then we would have to start from pre-existing time-binned *Depos* objects, and the initial unfold in this workflow would not be needed.
          If this is true for simulated spill trigger records, but not for simulation SNB trigger records, then either the two cases would use slightly different workflows, or the spill trigger records could just contain a single time bin for spill trigger records.
-

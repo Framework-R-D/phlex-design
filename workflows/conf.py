@@ -17,8 +17,6 @@ numfig_format = {
 
 graphviz_output_format = 'png'  # PNG for LaTeX compatibility
 
-master_doc = 'dummy'
-
 latex_elements = {
     'papersize': 'letterpaper',
     'pointsize': '10pt',
@@ -29,8 +27,6 @@ latex_elements = {
        ''',
 }
 
-
 latex_documents = [
-    ('wirecell-charge-waveform-sim-doc', 'wirecell-charge-waveform-sim-doc.tex', 'Wire-Cell Charge Waveform Simulation', 'Marc Paterno and Saba Sehrish', 'howto'),
+    ('index', 'wirecell-charge-waveform-sim-doc.tex', 'Wire-Cell Charge Waveform Simulation', 'Marc Paterno and Saba Sehrish', 'howto'),
 ]
-
