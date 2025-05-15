@@ -3,21 +3,8 @@ import re
 from docutils import nodes
 from sphinx.addnodes import pending_xref
 
-def extract_headings(app, doctree, docname):
-    target_doc = 'requirements'  # change to your actual .rst file name without .rst
-    if docname != target_doc:
-        return
-
-    print(f"Headings in {docname}:")
-    for section in doctree.traverse(nodes.section):
-        title_node = section.next_node(nodes.title)
-        if title_node:
-            heading_text = title_node.astext()
-            anchor_id = section['ids'][0] if section['ids'] else '(no id)'
-            print(f"  - {heading_text} (id: {anchor_id})")
 
 def setup(app):
-    app.connect('doctree-resolved', extract_headings)
     requirement_pattern = re.compile(r"([\d\.]+)\s+(.+)")
     app.add_role("dune", autoref("DUNE", requirement_pattern))
     return {'version': '1.0', 'parallel_read_safe': True}
