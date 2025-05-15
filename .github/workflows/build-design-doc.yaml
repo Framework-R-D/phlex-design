@@ -22,6 +22,8 @@ jobs:
         working-directory: ./doc
         run: |
           dot -c  # because it's weird out of the box
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
           git config --global --add safe.directory ${{ github.workspace }}
           make latexpdf
 
