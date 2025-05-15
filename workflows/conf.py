@@ -23,7 +23,12 @@ latex_elements = {
     'papersize': 'letterpaper',
     'pointsize': '10pt',
     'fontpkg': r'\usepackage{bookman}',
+    'preamble': r'''
+       \usepackage{microtype}
+       \usepackage{hyperref}
+       ''',
 }
+
 
 latex_documents = [
     ('wirecell-charge-waveform-sim-doc', 'wirecell-charge-waveform-sim-doc.tex', 'Wire-Cell Charge Waveform Simulation', 'Marc Paterno and Saba Sehrish', 'howto'),
