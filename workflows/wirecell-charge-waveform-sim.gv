@@ -1,5 +1,5 @@
 digraph g {
- fontname="Helvetica,Arial"
+ fontname="sans-serif";
  compound=true;
 
  # All data product sets are in rectangular nodes
