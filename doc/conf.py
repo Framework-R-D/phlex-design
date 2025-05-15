@@ -7,6 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 import os
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.abspath('.') + '/_extensions')
@@ -15,8 +16,10 @@ project = 'Phlex framework'
 copyright = '2025, Fermi Forward Discovery Group, LLC'
 author = ''
 
+git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
+
 version = "0"
-release = "0.1"
+release = f"0 ({git_commit})"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -142,3 +145,9 @@ latex_logo = 'phlex-logo.png'
 latex_elements = {
     "preamble": extra_packages + preliminary_watermark + new_commands,
 }
+latex_documents = [("index",
+                    f"phlex-design-v{version}-{git_commit}.tex",
+                    project,
+                    author,
+                    "manual",
+                    False)]

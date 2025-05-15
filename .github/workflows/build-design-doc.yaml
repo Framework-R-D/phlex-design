@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: phlex-design-document
-          path: ./doc/build/latex/phlexframework.pdf
+          path: ./doc/build/latex/phlex-design*.pdf
           if-no-files-found: error
