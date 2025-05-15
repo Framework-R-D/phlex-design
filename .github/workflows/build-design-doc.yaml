@@ -17,13 +17,21 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+
       - name: Build LaTeX document
         working-directory: ./doc
         run: |
           dot -c  # because it's weird out of the box
           make latexpdf
+
       - name: Build HTML document
         working-directory: ./doc
         run: |
           dot -c  # because it's weird out of the box
           make html
+
+      - name: Upload PDF document
+        uses: actions/upload-artifact@v4
+        with:
+          name: phlex-design-document
+          path: .doc/build/latex/phlexframework.pdf
