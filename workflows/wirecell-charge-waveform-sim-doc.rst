@@ -11,10 +11,6 @@ The workflow we propose is illustrated in :numref:`fig-wirecell`.
 Because the processing we show does not need to span (or, equivalently, *fold over*) multiple trigger records, we show only one trigger record in the diagram.
 
 
-.. graphviz:: wirecell-charge-waveform-sim-func.gv
-   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
-             Shaded rounded rectangles denote higher order functions (HOFs).
-   :name: fig-wirecell-func
 
 .. graphviz:: wirecell-charge-waveform-sim.gv
    :caption: A possible Wire-Cell charged waveform simulation workflow, in the data-centric view.
@@ -30,7 +26,7 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
    :align: center
 
 The workflow begins with the simulated *Deposits* for a trigger record.
-The *Deposits* object is to be used as input to an algorithm that deals with the drift of the charge to the wires.
+The *Deposits* object is to be used as input to an algorithm that deals with the drift of the charge, shown as a rectangle labeled with *unfold* HOF and *drift* algorithm.
 The generated information from this algorithm is too large to hold in memory at one time, so an *unfold* higher order function (HOF) is used to create a sequence of *DriftedDepos* objects, one for each *time bin* that the unfold creates.
 This unfold defines both the time bins themselves, and the *DriftedDepos* object that is put into each of the generated time bins.
 The period of time covered by each time bin, and the number of time bins, and the contents of the *DriftedDepos* object put into each time bin, are under the control of the user-specified *drift* algorithm that is given to the unfold function.
@@ -49,3 +45,24 @@ When the fold is complete, the then-finalized *DigitizedWaveform* object is put 
 
 .. [#f1] If, for the SNB trigger records, the data are too large to fit into memory, then we would have to start from pre-existing time-binned *Depos* objects, and the initial unfold in this workflow would not be needed.
          If this is true for simulated spill trigger records, but not for simulation SNB trigger records, then either the two cases would use slightly different workflows, or the spill trigger records could just contain a single time bin for spill trigger records.
+
+
+.. graphviz:: wirecell-charge-waveform-sim-func.gv
+   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
+             Shaded rectangles denote higher order functions (HOFs) and the user-supplied algorithms used in the HOF.
+             The solid arrow shows the data flow from one HOF to the next one in the workflow.
+             The label on the solid arrows show data products.
+   :name: fig-wirecell-func
+
+We present a function-centric view of the workflow in :numref:`fig-wirecell-func`.
+The workflow begins with the *Depos* as an input to the algorithm that deals with the drift of the charge to the wires.
+The unfold creates a sequence of *DriftedDepos* objects, one for each time bin that the unfold creates.
+(Do we want to show timebins?)
+This is shown in the first shaded rectangle as an *unfold(drif)* HOF and algorithm.
+The *DriftedDepos* objects are then passed as input to the *transform* HOF.
+The *transform* HOF applies the user-supplied *convolve* algorithm to each of the *DriftedDepos* objects in the *DriftedDepos* sequence, yielding a *ConvolvedDepos* object for each time bin.
+The *ConvolvedDepos* objects are then passed as input to another *transform* HOF, with *noise* algorithm that adds noise to the *ConvolvedDepos* objects and produced *NoisedConvolvedDepos* objects for each time bin. 
+This is shown in the third shaded rectangle as an *transform(noise)* HOF and algorithm.
+In the final step, the *NoisedConvolvedDepos* objects are passed as input to the user-supplied *digitize* algorithm.
+The *fold* HOF applies the user-written *digitize* algorithm to the *NoisedConvolvedDepos* sequence, to create a single *DigitizedWaveform* object associated with the trigger record.  
+
