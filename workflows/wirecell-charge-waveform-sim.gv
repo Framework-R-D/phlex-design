@@ -5,8 +5,13 @@ digraph g {
  # All data product sets are in rectangular nodes
  node [shape=box, style=filled];
  tr1 [label=<TriggerRecord<sub>1</sub>>, fillcolor=lightyellow];
- tb1 [label=<TimeBin<sub>1,1</sub>>, fillcolor=palegreen1];
- tb2 [label=<TimeBin<sub>1,n</sub>>, fillcolor=palegreen1];
+
+ subgraph cluster_tb{
+  peripheries=0
+  tb1 [label=<TimeBin<sub>1,1</sub>>, fillcolor=palegreen1];
+  tbdots [label="...", shape=plaintext, style=rounded, margin=0]
+  tb2 [label=<TimeBin<sub>1,n</sub>>, fillcolor=palegreen1];
+ }
 
  # Data product sets are connected with data products by solid lines.
  edge [style=solid, arrowhead=none];
@@ -19,27 +24,34 @@ digraph g {
 
  # TR-level products are yellow
  node [fillcolor=lightyellow]
- depos [label=Deposits]
+ depos [label=Depos]
  dw [label=DigitizedWaveform];
+
+ depos -> tb2 [style=invis]
 
  # TB-level products are palegreen1
  node [fillcolor=palegreen1]
 
- subgraph cluster_unfold {
+  subgraph cluster_unfold {
    label="DriftedDepos sequence";
-   proxy1 [style=invis, shape=point, width=0, height=0];
-   dd1 [label=DriftedDepos];
-   ddn [label=DriftedDepos];
- }
- cd1 [label=ConvolvedDepos];
- cdn [label=ConvolvedDepos];
- subgraph cluster_noise {
-   label="NoisyConvolvedDepos sequence";
-   proxy2 [style=invis, shape=point, width=0, height=0];
-   ncd1 [label=NoisyConvolvedDepos];
-   ncdn [label=NoisyConvolvedDepos];
+   dd1 [label=<DriftedDepos<sub>1,1</sub>>];
+   ddots [label="...", shape=plaintext, style=rounded, margin=0]
+   ddn [label=<DriftedDepos<sub>1,n</sub>>];
  }
 
+  subgraph cluster_conv {
+    label="ConvolvedDepos sequence";
+    cd1 [label=<ConvolvedDepos<sub>1,1</sub>>];
+    cdots [label="...", shape=plaintext, style=rounded, margin=0]
+    cdn [label=<ConvolvedDepos<sub>1,n</sub>>];
+  }
+
+ subgraph cluster_noise {
+   label="NoisyConvolvedDepos sequence";
+   ncd1 [label=<NoisyConvolvedDepos<sub>1,1</sub>>];
+   ndots [label="...", shape=plaintext, style=rounded, margin=0]
+   ncdn [label=<NoisyConvolvedDepos<sub>1,n</sub>>];
+ }
 
  # Data products are connected with data product sets by dotted lines.
  edge [style=dotted, arrowhead=none];
@@ -54,10 +66,8 @@ digraph g {
 
  # Algorithms creating data products are indicated by arrows with solid lines.
  edge [style=solid, arrowhead=normal];
- depos -> proxy1 [label="unfold(drift)", lhead=cluster_unfold];
- dd1 -> cd1 [label="transform(convolve)"];
- ddn -> cdn [label="transform(convolve)"];
- cd1 -> ncd1 [label="transform(noise)"];
- cdn -> ncdn [label="transform(noise)"];
- proxy2 -> dw [label="fold(digitize)", ltail=cluster_noise];
+ depos -> dd1 [label="unfold(drift)", lhead=cluster_unfold];
+ dd1 -> cd1 [label="transform(convolve)", ltail=cluster_unfold, lhead=cluster_conv];
+ cd1 -> ncd1 [label="transform(noise)", ltail=cluster_conv, lhead=cluster_noise];
+ ncd1 -> dw [label="fold(digitize)", ltail=cluster_noise];
 }

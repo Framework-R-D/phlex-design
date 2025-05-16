@@ -2,7 +2,7 @@ Wire-cell Charged Waveform Simulation
 =====================================
 
 This note describes one possible workflow the Wire-Cell charged waveform simulation.
-This is an attempt to describe the workflow specified in https://github.com/orgs/Framework-R-D/discussions/3#discussioncomment-12997648 using our terminology.
+This is an attempt to describe the workflow specified in https://github.com/orgs/Framework-R-D/discussions/3#discussioncomment-12997648 using Phlex terminology.
 In this document we have concentrated on the "chunking" described in the first bullet item.
 The purpose of this document is to describe the workflow with just enough detail to ensure that the higher order functions (HOFs) described are sufficient to the task.
 
