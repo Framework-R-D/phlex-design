@@ -10,8 +10,14 @@ We begin with the assumption that the simulated energy deposit information (e.g.
 The workflow we propose is illustrated in :numref:`fig-wirecell`.
 Because the processing we show does not need to span (or, equivalently, *fold over*) multiple trigger records, we show only one trigger record in the diagram.
 
+
+.. graphviz:: wirecell-charge-waveform-sim-func.gv
+   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
+             Shaded rounded rectangles denote higher order functions (HOFs).
+   :name: fig-wirecell-func
+
 .. graphviz:: wirecell-charge-waveform-sim.gv
-   :caption: A possible Wire-Cell charged waveform simulation workflow.
+   :caption: A possible Wire-Cell charged waveform simulation workflow, in the data-centric view.
              Shaded rectangles denote data product sets.
              Solid lines without an arrow show the relationship between hierarchical data product sets.
              Shaded rounded rectangles denote data products.
