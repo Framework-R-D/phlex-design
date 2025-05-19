@@ -24,8 +24,8 @@ digraph g {
 
  # TR-level products are yellow
  node [fillcolor=lightyellow]
- depos [label=Depos]
- dw [label=DigitizedWaveform];
+ depos [label=<Depos<sub>1</sub>>]
+ dw [label=<DigitizedWaveform<sub>1</sub>>];
 
  depos -> tb2 [style=invis]
 

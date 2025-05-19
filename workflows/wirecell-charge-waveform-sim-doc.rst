@@ -61,8 +61,7 @@ The unfold creates a sequence of *DriftedDepos* objects, one for each time bin t
 This is shown in the first shaded rectangle as an *unfold(drif)* HOF and algorithm.
 The *DriftedDepos* objects are then passed as input to the *transform* HOF.
 The *transform* HOF applies the user-supplied *convolve* algorithm to each of the *DriftedDepos* objects in the *DriftedDepos* sequence, yielding a *ConvolvedDepos* object for each time bin.
-The *ConvolvedDepos* objects are then passed as input to another *transform* HOF, with *noise* algorithm that adds noise to the *ConvolvedDepos* objects and produced *NoisedConvolvedDepos* objects for each time bin. 
+The *ConvolvedDepos* objects are then passed as input to another *transform* HOF, with *noise* algorithm that adds noise to the *ConvolvedDepos* objects and produced *NoisedConvolvedDepos* objects for each time bin.
 This is shown in the third shaded rectangle as an *transform(noise)* HOF and algorithm.
 In the final step, the *NoisedConvolvedDepos* objects are passed as input to the user-supplied *digitize* algorithm.
-The *fold* HOF applies the user-written *digitize* algorithm to the *NoisedConvolvedDepos* sequence, to create a single *DigitizedWaveform* object associated with the trigger record.  
-
+The *fold* HOF applies the user-written *digitize* algorithm to the *NoisedConvolvedDepos* sequence, to create a single *DigitizedWaveform* object associated with the trigger record.

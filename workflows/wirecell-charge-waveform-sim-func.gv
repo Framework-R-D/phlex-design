@@ -2,16 +2,22 @@ digraph g {
   node [shape=rounded, style=filled, fillcolor=lightyellow];
 
   source [label="input", shape=point, style=filled]
-  unfold [label="unfold(drift)"]
-  noise [label="transform(noise)"]
-  convolve [label="transform(convolve)"]
-  fold[label="fold(digitize)"]
+
+  subgraph cluster_sim {
+    label=<<b>[sim]</b>>
+    labeljust=left
+    margin=45
+    unfold [label="unfold(drift)"]
+    noise [label="transform(noise)"]
+    convolve [label="transform(convolve)"]
+    fold[label="fold(digitize)"]
+  }
   sink [label="output", shape=point, style=filled]
 
-  source -> unfold [label=<Depos<sub>i</sub>>]
-  unfold -> convolve [label=<DriftedDepos<sub>i,j</sub>>]
-  convolve -> noise [label=<ConvolvedDepos<sub>i,j</sub>>]
-  noise -> fold [label=<NoisyConvolvedDepos<sub>i,j</sub>>]
-  fold -> sink [label=<DigitizedWaveform<sub>i</sub>>]
+  source -> unfold [label=< Depos<sub>i</sub>>]
+  unfold -> convolve [label=< DriftedDepos<sub>i,j</sub>>]
+  convolve -> noise [label=< ConvolvedDepos<sub>i,j</sub>>]
+  noise -> fold [label=< NoisyConvolvedDepos<sub>i,j</sub>>]
+  fold -> sink [label=< DigitizedWaveform<sub>i</sub>>]
 
 }
