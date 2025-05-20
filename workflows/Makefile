@@ -1,7 +1,7 @@
 
 # Directories
 SOURCEDIR = .
-BUILDDIR = _build
+BUILDDIR = build
 
 # Sphinx commands
 SPHINXBUILD = sphinx-build
