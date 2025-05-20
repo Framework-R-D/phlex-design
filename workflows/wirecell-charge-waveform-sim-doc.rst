@@ -7,10 +7,12 @@ In this document we have concentrated on the "chunking" described in the first b
 The purpose of this document is to describe the workflow with just enough detail to ensure that the higher order functions (HOFs) described are sufficient to the task.
 
 We begin with the assumption that the simulated energy deposit information (e.g. hits simulated by GEANT4) for a single trigger record will fit into memory at one time, even for the 100s supernova burst (SNB) trigger record. [#f1]_
-The workflow we propose is illustrated in :numref:`fig-wirecell`.
-Because the processing we show does not need to span (or, equivalently, *fold over*) multiple trigger records, we show only one trigger record in the diagram.
+The workflow we propose is illustrated in :numref:`fig-wirecell` and :numref:`fig-wirecell-func`.
+Each diagram shows the workflow as a graph.
+:numref:`fig-wirecell` shows the data-centric view of the workflow, in which the nodes are data and the edges are relations between the data, including the functions that create the data.
+:numref:`fig-wirecell-func` shows the function-centric view of the workflow, in which the nodes are functions and the edges show the flow of data between the functions.
 
-
+Because the processing we show does not need to span (or, equivalently, *fold over*) multiple trigger records, we show only one trigger record in the diagrams.
 
 .. graphviz:: wirecell-charge-waveform-sim.gv
    :caption: A possible Wire-Cell charged waveform simulation workflow, in the data-centric view.
@@ -24,6 +26,15 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
    :name: fig-wirecell
    :alt: A possible Wire-Cell charged waveform simulation workflow.
    :align: center
+
+.. graphviz:: wirecell-charge-waveform-sim-func.gv
+   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
+             Shaded rectangles denote higher order functions (HOFs) and the user-supplied algorithms used in the HOF.
+             The solid arrow shows the data flow from one HOF to the next one in the workflow.
+             The label on the solid arrows show data products.
+             The indices on the names of the data products imply the hierarchy of data product sets to which the data products belong.
+             A single index denotes a data product that belongs to a *TriggerRecord*; a double index denotes one that belongs to a *TimeBin*.
+   :name: fig-wirecell-func
 
 The workflow begins with the simulated *Deposits* for a trigger record.
 The *Deposits* object is to be used as input to an algorithm that deals with the drift of the charge, shown as a rectangle labeled with *unfold* HOF and *drift* algorithm.
@@ -46,22 +57,3 @@ When the fold is complete, the then-finalized *DigitizedWaveform* object is put 
 .. [#f1] If, for the SNB trigger records, the data are too large to fit into memory, then we would have to start from pre-existing time-binned *Depos* objects, and the initial unfold in this workflow would not be needed.
          If this is true for simulated spill trigger records, but not for simulation SNB trigger records, then either the two cases would use slightly different workflows, or the spill trigger records could just contain a single time bin for spill trigger records.
 
-
-.. graphviz:: wirecell-charge-waveform-sim-func.gv
-   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
-             Shaded rectangles denote higher order functions (HOFs) and the user-supplied algorithms used in the HOF.
-             The solid arrow shows the data flow from one HOF to the next one in the workflow.
-             The label on the solid arrows show data products.
-   :name: fig-wirecell-func
-
-We present a function-centric view of the workflow in :numref:`fig-wirecell-func`.
-The workflow begins with the *Depos* as an input to the algorithm that deals with the drift of the charge to the wires.
-The unfold creates a sequence of *DriftedDepos* objects, one for each time bin that the unfold creates.
-(Do we want to show timebins?)
-This is shown in the first shaded rectangle as an *unfold(drif)* HOF and algorithm.
-The *DriftedDepos* objects are then passed as input to the *transform* HOF.
-The *transform* HOF applies the user-supplied *convolve* algorithm to each of the *DriftedDepos* objects in the *DriftedDepos* sequence, yielding a *ConvolvedDepos* object for each time bin.
-The *ConvolvedDepos* objects are then passed as input to another *transform* HOF, with *noise* algorithm that adds noise to the *ConvolvedDepos* objects and produced *NoisedConvolvedDepos* objects for each time bin.
-This is shown in the third shaded rectangle as an *transform(noise)* HOF and algorithm.
-In the final step, the *NoisedConvolvedDepos* objects are passed as input to the user-supplied *digitize* algorithm.
-The *fold* HOF applies the user-written *digitize* algorithm to the *NoisedConvolvedDepos* sequence, to create a single *DigitizedWaveform* object associated with the trigger record.
