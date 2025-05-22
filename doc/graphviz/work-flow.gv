@@ -38,28 +38,28 @@ digraph {
   }
 
   driver -> geometry [label=" [J]", fontcolor="darkorange"];
-  driver -> sim_hits_provider [label=< [Spill<sub><i>i</i></sub>]>, fontcolor="darkorange"];
+  driver -> sim_hits_provider [label=< [Spill<sub><i>j</i></sub>]>, fontcolor="darkorange"];
 
   geometry -> gdml [style="dotted", arrowhead=none];
   resource -> root [style="dotted", arrowhead=none];
 
   sim_hits_provider -> input [style="dotted", arrowhead=none];
-  sim_hits_provider -> unfold [label=< [SimHits<sub><i>i</i></sub>]>];
+  sim_hits_provider -> unfold [label=< [SimHits<sub><i>j</i></sub>]>];
   geometry -> unfold [label=< [Geometry]>];
 
-  unfold:s -> transform [xlabel=< [Waveforms<sub><i>ij</i></sub>]>];
-  transform:s -> fold [taillabel=<[ClampedWaveforms<sub><i>ij</i></sub>] >,
+  unfold:s -> transform [xlabel=< [Waveforms<sub><i>j k</i></sub>]>];
+  transform:s -> fold [taillabel=<[ClampedWaveforms<sub><i>j k</i></sub>] >,
                        labelangle=-80,
                        labeldistance=7
                       ];
 
-  unfold:s -> out [style="dotted", arrowhead=none, label=<[Waveforms<sub><i>ij</i></sub>]>];
+  unfold:s -> out [style="dotted", arrowhead=none, label=<[Waveforms<sub><i>j k</i></sub>]>];
   transform:s -> out [style="dotted", arrowhead=none];
 
 
-  unfold:s -> filter [label=< [Waveforms<sub><i>ij</i></sub>]>];
-  filter:s -> observer [label=< [Waveforms<sub><i>ij</i> '</sub>]>];
+  unfold:s -> filter [label=< [Waveforms<sub><i>j k</i></sub>]>];
+  filter:s -> observer [label=< [Waveforms<sub><i>j k</i> '</sub>]>];
   resource -> observer [style="dashed"];
 
-  fold:s -> out [style="dotted", arrowhead=none, label=< [SummedWaveforms<sub><i>i</i></sub>]>];
+  fold:s -> out [style="dotted", arrowhead=none, label=< [SummedWaveforms<sub><i>j</i></sub>]>];
 }
