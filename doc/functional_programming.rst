@@ -123,13 +123,13 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
    +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
    | :ref:`Observer <hof_operators:Observers>`            | :math:`[\ \ ] = \observe{f}\ a`     | :math:`f: A \rightarrow \mathbbm{1}`                         | :math:`0`              |
    +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
-   | :ref:`Fold <hof_operators:Folds>`                    | :math:`d = \fold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                          | :math:`|d| \le |c|`    |
+   | :ref:`Fold <hof_operators:Partitioned Folds>`        | :math:`d = \fold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                          | :math:`|d| \le |c|`    |
    |                                                      |                                     +--------------------------------------------------------------+                        |
    |                                                      |                                     | :math:`init: \mathbbm{1} \rightarrow D`                      |                        |
    |                                                      |                                     +--------------------------------------------------------------+                        |
    |                                                      |                                     | :math:`part: \{\iset{c}\} \rightarrow \mathcal{P}(\iset{c})` |                        |
    +------------------------------------------------------+-------------------------------------+--------------------------------------------------------------+------------------------+
-   | :ref:`Unfold <hof_operators:Unfolds>`                | :math:`c = \unfold{p}{gen}{cat}\ d` | :math:`p: D \rightarrow \mbox{Boolean}`                      | :math:`|c| \ge |d|`    |
+   | :ref:`Unfold <hof_operators:Partitioned Unfolds>`    | :math:`c = \unfold{p}{gen}{cat}\ d` | :math:`p: D \rightarrow \mbox{Boolean}`                      | :math:`|c| \ge |d|`    |
    |                                                      |                                     +--------------------------------------------------------------+                        |
    |                                                      |                                     | :math:`gen: D \rightarrow D \times C`                        |                        |
    |                                                      |                                     +--------------------------------------------------------------+                        |
