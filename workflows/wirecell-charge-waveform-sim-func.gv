@@ -1,4 +1,5 @@
 digraph g {
+  size="8,5.5"
   node [shape=rounded, style=filled, fillcolor=lightyellow];
 
   source [label="input", shape=point, style=filled]
