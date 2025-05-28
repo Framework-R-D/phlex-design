@@ -60,7 +60,7 @@ Such analysis typically involves repeated invocations of the same kind of operat
 For example, a relatively simple result is calculating the arithmetic mean of :math:`n` numbers:
 
 .. math::
-   \overline{b} = \frac{1}{n}\sum_{i \in \mathcal{I}} b_i
+   \overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i
 
 where the sum is over a sequence of numbers :math:`\sequence{b}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
 
@@ -68,31 +68,31 @@ The sum is an example of a data reduction or *fold*, where a sequence is collaps
 In particular, the arithmetic mean above can be expressed as:
 
 .. math::
-   \overline{b} = \frac{1}{n}\ \fold{+}{0}\ \sequence{b}
+   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}
 
 where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
 
 The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
 
-Additional HOFs exist---for example, suppose the sequence :math:`[b_i]` was created by applying a function :math:`p: A \rightarrow B` to each element of a sequence :math:`[a_i]`.
+Additional HOFs exist---for example, suppose the sequence :math:`[c_i]` was created by applying a function :math:`w: E \rightarrow C` to each element of a sequence :math:`[e_i]`.
 Such a HOF is called a map or *transform*:
 
 .. math::
-   \sequence{b} = [p\ a_i]_{i \in \mathcal{I}} = \transform{p}\ \sequence{a}
+   \sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}
 
 In such a scenario, the average :math:`\overline{b}` could be expressed as:
 
 .. math::
-   \overline{b} = \frac{1}{n}\ \fold{+}{0}\ \transform{p}\ \sequence{a} = \frac{1}{n}\ \fold{+ \comp p}{0}\ \sequence{a}
+   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}
 
 The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
-The operator to this single fold is ':math:`+ \comp p`', indicating that the function :math:`p` should be applied first before invoking the :math:`+` operation.
+The operator to this single fold is ':math:`+ \comp w`', indicating that the function :math:`w` should be applied first before invoking the :math:`+` operation.
 Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.
 
 A calculation is then generally expressed in terms of:
 
 1. The HOFs to be used (:math:`\mbox{fold}`, :math:`\mbox{transform}`, etc.)
-2. The operation to be used by each HOF (:math:`+`, :math:`p`, etc.)
+2. The operation to be used by each HOF (:math:`+`, :math:`w`, etc.)
 3. The sequence(s) of data on which the HOFs are to be applied.
 
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.

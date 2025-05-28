@@ -2,13 +2,13 @@
 Sequences
 *********
 
-A finite sequence can be represented as a list of objects, each of which are indexed by elements of another set.
+A finite sequence can be represented as a list of objects, each of which are of the same set or *type* (see :numref:`types:Types`).
 For example, the sequence :math:`a = [a_1, a_2, \dots, a_n]` is written as
 
 .. math::
     a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}
 
-where :math:`\mathcal{I}_a = \{1, 2, \dots, n\}` is the index set whose elements are used to identify objects within the sequence :math:`a`.
+where each :math:`a_i \in A`, and :math:`\mathcal{I}_a = \{1, 2, \dots, n\}` is the :term:`index set` whose elements are used to identify objects within the sequence :math:`a`.
 
 In general, an index set does not impose an order on the sequence elements---the sequence :math:`a` could thus be equivalently expressed as:
 

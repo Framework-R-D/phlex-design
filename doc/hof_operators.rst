@@ -1,6 +1,9 @@
 HOF Operators
 =============
 
+In what follows, a sequence :math:`[a_i]_{i \in \iset{a}}` will often be represented by a single variable :math:`a`.
+Whether a variable name (e.g. :math:`a`) represents a sequence or an operation to a higher-order function will be apparent based on context.
+
 Transforms
 ----------
 
@@ -11,6 +14,9 @@ Transforms
 +------------------------------+----------------------------+------------------------+
 
 **Return type**: A transform algorithm may create multiple data products by returning an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
+
+Registration interface
+^^^^^^^^^^^^^^^^^^^^^^
 
 Filters and Predicates
 ----------------------
@@ -34,6 +40,9 @@ Phlex will not schedule a predicate for execution if it is not bound to a filter
 Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
 Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).
 
+Registration interface
+^^^^^^^^^^^^^^^^^^^^^^
+
 Observers
 ---------
 
@@ -52,6 +61,9 @@ This is done by creating an algorithm called an *observer*, which may access a d
 An example of this is writing ROOT histograms or trees that are not intended to be used in another framework program.
 
 Unlike filters and predicates, observers (by definition) are allowed to be the most downstream algorithms of the graph.
+
+Registration interface
+^^^^^^^^^^^^^^^^^^^^^^
 
 Partitioned Folds
 -----------------
@@ -159,7 +171,11 @@ Partitioned Unfolds
 Unfolds are the opposite of folds, where the output sequence is larger than the input sequence :dune:`17 Unfolding data products`.
 An unfold can be used for parallelizing the processing of a data product in smaller chunks.
 
-.. todo:: Explain predicate unfolds here.
+Unfolding predicate
+^^^^^^^^^^^^^^^^^^^
+
+Registration interface
+^^^^^^^^^^^^^^^^^^^^^^
 
 Composite CHOFs
 ---------------

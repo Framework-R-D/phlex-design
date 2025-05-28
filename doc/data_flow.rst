@@ -82,4 +82,4 @@ The vast majority of graphs included in this design document adopt the sequence-
 
 .. [#f1] Treating functions as nodes and data as edges is a function-centric view of the graph.
          It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the *line digraph* of the function-centric graph.
-.. [#f2] In Haskell (and, correspondingly, in category theory), this transformation is achieved through the `List` functor.
+.. [#f2] In Haskell (and, similarly, in category theory), this transformation is achieved through the `List/fmap` functor.
