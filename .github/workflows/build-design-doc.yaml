@@ -25,16 +25,24 @@ jobs:
           git config --global --add safe.directory $GITHUB_WORKSPACE
           make latexpdf
 
+      - name: Upload PDF document
+        id: upload-pdf-document
+        uses: actions/upload-artifact@v4
+        with:
+          name: phlex-design-pdf
+          path: ./doc/build/latex/phlex-design*.pdf
+          if-no-files-found: error
+
       - name: Build HTML document
         working-directory: ./doc
         run: |
           dot -c  # because it's weird out of the box
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          make html
+          SPHINX_EXISTING_PDF=${{ steps.upload-pdf-document.outputs.artifact-url }} make html
 
-      - name: Upload PDF document
+      - name: Upload HTML document
         uses: actions/upload-artifact@v4
         with:
-          name: phlex-design-document
-          path: ./doc/build/latex/phlex-design*.pdf
+          name: phlex-design-html
+          path: ./doc/build/html/
           if-no-files-found: error

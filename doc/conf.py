@@ -129,6 +129,11 @@ rst_prolog ="""
    :class: highlight
 """
 
+# -- Detect if PDF rendering is available and provide link to it in HTML rendering (see index.rst)
+if existing_pdf := os.environ.get("SPHINX_EXISTING_PDF"):
+    tags.add("pdf_already_exists")
+    rst_epilog = f".. _here: {existing_pdf}"
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
