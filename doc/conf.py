@@ -135,7 +135,8 @@ rst_prolog ="""
 html_theme = 'bizstyle'
 html_logo = 'phlex-logo.svg'
 html_static_path = ['_static']
-html_style='phlexframework.css'
+html_style ='phlexframework.css'
+html_last_updated_fmt = ""  # Equivalent to showing (e.g.) May 29, 2025
 
 
 # -- Options for LaTeX output -------------------------------------------------
