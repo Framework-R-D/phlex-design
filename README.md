@@ -1,5 +1,5 @@
-# dune-framework-design
-Design ideas for the DUNE data-processing framework
+# Phlex design
+Design ideas for Phlex, which is intended to satisfy DUNE's data-processing framework requirements.
 
 ## Building the design document
 
