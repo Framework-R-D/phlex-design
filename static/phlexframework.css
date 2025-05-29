@@ -4,3 +4,9 @@
 div.admonition-chg {
     background-color: burlywood;
 }
+
+.body {
+    background-image: url("preliminary-watermark.png");
+    background-repeat: repeat;
+    background-size: 100%;
+}
