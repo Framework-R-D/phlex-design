@@ -15,11 +15,13 @@ jobs:
       image: ghcr.io/framework-r-d/phlexdoc:2025-05-01
 
     steps:
-      - name: Check out repository code
+      - name: Check out repository code (main branch)
         uses: actions/checkout@v4
+        with:
+          path: main
 
       - name: Build LaTeX document
-        working-directory: ./doc
+        working-directory: ./main/doc
         run: |
           dot -c  # because it's weird out of the box
           git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -30,19 +32,28 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: phlex-design-pdf
-          path: ./doc/build/latex/phlex-design*.pdf
+          path: ./main/doc/build/latex/phlex-design*.pdf
           if-no-files-found: error
 
       - name: Build HTML document
-        working-directory: ./doc
+        working-directory: ./main/doc
         run: |
           dot -c  # because it's weird out of the box
           git config --global --add safe.directory $GITHUB_WORKSPACE
           SPHINX_EXISTING_PDF=${{ steps.upload-pdf-document.outputs.artifact-url }} make html
+          # GitHub pages don't like directories that begin with an underscore
+          for d in static sources images; do mv build/html/_$d build/html/$d; done
+          for d in static sources images; do sed -i -e "s|_$d/|$d/|g" $(find build/html/ -name \*.html); done
+
+     #  - name: Check out repository code (gh-pages branch)
+     #    uses: actions/checkout@v4
+     #    with:
+     #      path: gh-pages
+     #      ref: gh-pages
 
       - name: Upload HTML document
         uses: actions/upload-artifact@v4
         with:
           name: phlex-design-html
-          path: ./doc/build/html/
+          path: ./main/doc/build/html/
           if-no-files-found: error
