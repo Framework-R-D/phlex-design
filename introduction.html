@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Introduction &#8212; Phlex framework 0 (7c8bca1) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=ee8a1ce5" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=8f370cc3"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Preliminaries" href="preliminaries.html" />
+    <link rel="prev" title="Phlex Framework Design" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="preliminaries.html" title="2. Preliminaries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Phlex Framework Design"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="introduction">
+<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.</p>
+<div class="graphviz"><img src="images/graphviz-3da1e75f9b74aab2b7de1954c7b57d577eb35840.png" alt="digraph {
+  rankdir=LR
+  fontsize=10
+  margin=&quot;1,0.2&quot;
+
+  // Set rank separation to zero so that the begin and end labels are close to the block point nodes.
+  ranksep=0
+
+  // Nodes for processing stages
+  node [shape=&quot;box&quot;,
+        style=&quot;filled,rounded&quot;,
+        fontname=&quot;Arial&quot;,
+        fontcolor=&quot;white&quot;,
+        fillcolor=&quot;gray40&quot;,
+        height=0.8,
+        margin=&quot;0.3,0.15&quot;]
+  signals [shape=&quot;point&quot;, width=0.1, fillcolor=&quot;black&quot;]
+  results [shape=&quot;point&quot;, width=0.1, fillcolor=&quot;black&quot;]
+
+  DAQ [label=&lt;&lt;b&gt;DAQ&lt;/b&gt;&gt;]
+  framework [label=&lt;&lt;b&gt;Reconstruction and&lt;br/&gt;simulation framework&lt;/b&gt;&gt;, fillcolor=&quot;royalblue3&quot;]
+  Analysis [label=&lt;&lt;b&gt;Analysis&lt;/b&gt;&gt;]
+
+  // Artificial nodes for creating labels
+  node [penwidth=&quot;0&quot;, style=&quot;nofill&quot;, fontcolor=&quot;black&quot;, margin=&quot;0,0&quot;];
+  startlabel [label=&quot;Detector\nsignals&quot;]
+  endlabel [label=&quot;Physics\nresults&quot;]
+
+  startlabel -&gt; signals [style=invis]
+  signals -&gt; DAQ [arrowhead=none, minlen=3]
+  DAQ -&gt; framework -&gt; Analysis [minlen=4]
+  Analysis -&gt; results [arrowhead=none, minlen=3]
+  results -&gt; endlabel [style=invis]
+}" class="graphviz" /></div>
+<p>Wikipedia decently defines a software framework as <a class="reference internal" href="#wiki-framework" id="id1"><span>[Wiki-framework]</span></a>:</p>
+<blockquote>
+<div><p><em>an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.</em></p>
+</div></blockquote>
+<p>The framework orchestrates data flow, resource management, and parallel execution.
+It enables a scientific collaboration to write standardized workflows where physicists can insert their own algorithms.
+In a HEP context, this insertion often occurs by the framework dynamically loading libraries called <em>plugins</em>.
+Although not required, a framework often provides a program’s <cite>main(…)</cite> function, which (directly or indirectly) invokes user code within the plugins as configured at appropriate points in the program’s execution.</p>
+<p>Frameworks are typically used in a high-level trigger environment, for reconstructing physics objects from detector signals, or for simulating physics processes.
+Many analysis needs can also be met by a data-processing framework.
+However, the HEP community tends to perform final-stage analysis using standalone applications.
+Phlex, therefore, aims to satisfy the data-processing needs of only physics reconstruction and simulation.</p>
+<section id="requirements-process">
+<h2><span class="section-number">1.1. </span>Requirements Process<a class="headerlink" href="#requirements-process" title="Link to this heading">¶</a></h2>
+<p>Phlex provides facilities and behaviors intended to support the physics goals of its stakeholders, notably the DUNE experiment <a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+DUNE has established a set of high-level requirements or <em>stakeholder requirements</em>, which constrain the design of the framework in support of DUNE’s needs.
+A dedicated tool <a class="reference internal" href="#jama-connect" id="id3"><span>[Jama-connect]</span></a> is used to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
+As the design matures, <em>system requirements</em> are then created to guide implementation in support of the stakeholder requirements.</p>
+<section id="requirements-ownership">
+<h3><span class="section-number">1.1.1. </span>Requirements Ownership<a class="headerlink" href="#requirements-ownership" title="Link to this heading">¶</a></h3>
+<p>Each Phlex stakeholder owns its stakeholder requirements, which support the high-level needs of the experiment.
+System requirements, which are subservient to stakeholder requirements, are owned by the Phlex developers, who are free to adjust the implementation to satisfy all stakeholder requirements.</p>
+</section>
+<section id="requirements-in-this-document">
+<h3><span class="section-number">1.1.2. </span>Requirements in This Document<a class="headerlink" href="#requirements-in-this-document" title="Link to this heading">¶</a></h3>
+<p>The stakeholder requirements are listed in <a class="reference internal" href="requirements.html#framework-requirements"><span class="std std-numref">Appendix 2</span></a> for convenience.
+To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. <a class="reference internal" href="requirements.html#algorithm-decomposability"><span class="std std-ref">[DUNE 1]</span></a>).</p>
+<p>Where possible, we limit references to stakeholder requirements to the conceptual design in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Section 3</span></a>.
+Some stakeholder requirements are referenced in the technical design in <a class="reference internal" href="technical_design.html#technical-design"><span class="std std-numref">Section 4</span></a> if those requirements do not affect the conceptual framework model.
+No system requirements are currently referenced in this document.
+Should it become necessary to refer to the system requirements, such references will be limited to the technical design in <a class="reference internal" href="technical_design.html#technical-design"><span class="std std-numref">Section 4</span></a>.</p>
+</section>
+</section>
+<section id="framework-philosophy">
+<h2><span class="section-number">1.2. </span>Framework Philosophy<a class="headerlink" href="#framework-philosophy" title="Link to this heading">¶</a></h2>
+<p>A framework is a tool that aids the scientific process of inferring accurate physics results from observed data.
+Maintaining data integrity is therefore paramount, as is retaining an accounting of how physics results were obtained from that data.
+The Phlex design therefore:</p>
+<ul class="simple">
+<li><p>treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program’s execution,</p></li>
+<li><p>requires recording the <a class="reference internal" href="definitions.html#term-Provenance"><span class="xref std std-term">provenance</span></a> of every created <a class="reference internal" href="definitions.html#term-Data-product"><span class="xref std std-term">data product</span></a> <a class="reference internal" href="requirements.html#provenance-discovery"><span class="std std-ref">[DUNE 51]</span></a>, and</p></li>
+<li><p>enables, and—to the extent possible—ensures the <a class="reference internal" href="definitions.html#term-Reproducible"><span class="xref std std-term">reproducible</span></a> creation of data products.</p></li>
+</ul>
+</section>
+<section id="programming-languages">
+<h2><span class="section-number">1.3. </span>Programming Languages<a class="headerlink" href="#programming-languages" title="Link to this heading">¶</a></h2>
+<p>The framework will support user <a class="reference internal" href="definitions.html#term-Algorithm"><span class="xref std std-term">algorithms</span></a> written in multiple programming languages <a class="reference internal" href="requirements.html#support-for-multiple-programming-languages"><span class="std std-ref">[DUNE 5]</span></a>.  Specifically, an algorithm may be written in either C++ <a class="footnote-reference brackets" href="#f2" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="reference internal" href="requirements.html#support-c-algorithms"><span class="std std-ref">[DUNE 5.1]</span></a> or Python <a class="footnote-reference brackets" href="#f3" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="reference internal" href="requirements.html#support-python-algorithms"><span class="std std-ref">[DUNE 5.2]</span></a>.
+If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.</p>
+<p>Note that the language is left unspecified for the implementation of the framework itself.</p>
+</section>
+<section id="framework-independence-of-algorithms">
+<h2><span class="section-number">1.4. </span>Framework Independence of Algorithms<a class="headerlink" href="#framework-independence-of-algorithms" title="Link to this heading">¶</a></h2>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>It is possible for additional experiments to become stakeholders of the Phlex framework.
+In such a case, the stakeholder requirements of one experiment may not negate those of another (particularly DUNE).</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>As of this writing, Phlex supports the C++23 standard.</p>
+</aside>
+<aside class="footnote brackets" id="f3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
+<p>Phlex adheres to SPEC 0 <a class="reference internal" href="#spec-0" id="id6"><span>[SPEC-0]</span></a> in supporting Python versions and core package dependencies.</p>
+</aside>
+</aside>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-framework" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-framework</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Software_framework">https://en.wikipedia.org/wiki/Software_framework</a></p>
+</div>
+<div class="citation" id="jama-connect" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Jama-connect</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.jamasoftware.com/platform/jama-connect/">https://www.jamasoftware.com/platform/jama-connect/</a></p>
+</div>
+<div class="citation" id="spec-0" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">SPEC-0</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://scientific-python.org/specs/spec-0000/">https://scientific-python.org/specs/spec-0000/</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. Introduction</a><ul>
+<li><a class="reference internal" href="#requirements-process">1.1. Requirements Process</a><ul>
+<li><a class="reference internal" href="#requirements-ownership">1.1.1. Requirements Ownership</a></li>
+<li><a class="reference internal" href="#requirements-in-this-document">1.1.2. Requirements in This Document</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#framework-philosophy">1.2. Framework Philosophy</a></li>
+<li><a class="reference internal" href="#programming-languages">1.3. Programming Languages</a></li>
+<li><a class="reference internal" href="#framework-independence-of-algorithms">1.4. Framework Independence of Algorithms</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Phlex Framework Design</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="preliminaries.html"
+                          title="next chapter"><span class="section-number">2. </span>Preliminaries</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="preliminaries.html" title="2. Preliminaries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Phlex Framework Design"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

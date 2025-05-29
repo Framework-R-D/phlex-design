@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.2. Types &#8212; Phlex framework 0 (7c8bca1) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=ee8a1ce5" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=8f370cc3"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2.3. Sequences" href="sequences.html" />
+    <link rel="prev" title="2.1. Function Notation" href="function_notation.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sequences.html" title="2.3. Sequences"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="function_notation.html" title="2.1. Function Notation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="types">
+<h1><span class="section-number">2.2. </span>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h1>
+<p>A reasonable description of a type is that it is a mathematical <em>set</em> of objects.
+For example, the type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> is an approximation to the mathematical set <img class="math" src="images/math/2fe1c20a9f019fec390eca2c3ff0a8e4dd4ff656.svg" alt="\mathbb{Z}"/>, although there may be technological limitations on what values an object of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> can take.</p>
+<p>Suppose, however, that an algorithm <img class="math" src="images/math/fada175a0f7816e81232a46752d3dda6d93c4c15.svg" alt="p(n_{\text{POT}})"/> is configured to operate on an integer <img class="math" src="images/math/05811e464c1c792a8226690170b0090618a73044.svg" alt="n_{\text{POT}}"/> that corresponds to the number of protons on target.
+In such a case, specifying the function <img class="math" src="images/math/48e6fc51d22855ea987d9ee8ef9af655d311b2ab.svg" alt="p"/> as <img class="math" src="images/math/98d0fb810a2425a5a9e843ced7086dc8d870fa08.svg" alt="p: \mathbb{Z} \rightarrow R"/> (where <img class="math" src="images/math/36d5c64a7943b4a5bc1b740350129ea7cdfed40a.svg" alt="R"/> is an arbitrary return type) is too permissive.
+In a framework context, not all data of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> (the equivalent to <img class="math" src="images/math/2fe1c20a9f019fec390eca2c3ff0a8e4dd4ff656.svg" alt="\mathbb{Z}"/>) are suitable for processing by the algorithm <img class="math" src="images/math/48e6fc51d22855ea987d9ee8ef9af655d311b2ab.svg" alt="p"/>.</p>
+<p>In this document, the type therefore refers to a mathematical set that includes more than just the programming language’s type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code>; it can also include various labels that identify which kind of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code> is desired.
+When necessary, the type required to specify a data product will be expressed as <img class="math" src="images/math/bf0204279aa5dbf22b162aded349f307b9de2939.svg" alt="\mathtt{T} \wedge L"/>, where the first set in typewriter style (e.g. <img class="math" src="images/math/94c6c202f9443ec44cd79e574f24c875a30970a7.svg" alt="\mathtt{T}"/>) refers to the programming language’s type and the second set in math style (e.g. <img class="math" src="images/math/42ab7d6b7225dd690cc92f7ef5ab83cff5b1193d.svg" alt="L"/>) represents a label associated with the data.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="function_notation.html"
+                          title="previous chapter"><span class="section-number">2.1. </span>Function Notation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sequences.html"
+                          title="next chapter"><span class="section-number">2.3. </span>Sequences</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/types.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sequences.html" title="2.3. Sequences"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="function_notation.html" title="2.1. Function Notation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

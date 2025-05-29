@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HOF Operators &#8212; Phlex framework 0 (7c8bca1) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=ee8a1ce5" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=8f370cc3"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">HOF Operators</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="hof-operators">
+<h1>HOF Operators<a class="headerlink" href="#hof-operators" title="Link to this heading">¶</a></h1>
+<p>In what follows, a sequence <img class="math" src="images/math/5eae2bbd8ce3825421476e017c98f9153653799b.svg" alt="[a_i]_{i \in \iset{a}}"/> will often be represented by a single variable <img class="math" src="images/math/4ec2cb927753c275c98b9a64217721c0d6d04107.svg" alt="a"/>.
+Whether a variable name (e.g. <img class="math" src="images/math/4ec2cb927753c275c98b9a64217721c0d6d04107.svg" alt="a"/>) represents a sequence or an operation to a higher-order function will be apparent based on context.</p>
+<section id="transforms">
+<h2>Transforms<a class="headerlink" href="#transforms" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Transform</strong></p></th>
+<th class="head"><p>Operator</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img class="math" src="images/math/5bc6d3e95594a8eea715417b0a29a86393d5535f.svg" alt="b = \transform{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/ccbdf273cb6c99bcb703b815a36416612bbfbdba.svg" alt="f: A \rightarrow B"/></p></td>
+<td><p><img class="math" src="images/math/4b7e3ad8c9a5af2d09a8038f4fb8d015c0e2035a.svg" alt="|b| = |a|"/></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Return type</strong>: A transform algorithm may create multiple data products by returning an <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a data-product created type.</p>
+<section id="registration-interface">
+<h3>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="filters-and-predicates">
+<h2>Filters and Predicates<a class="headerlink" href="#filters-and-predicates" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Filter</strong></p></th>
+<th class="head"><p>Operator (predicate)</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img class="math" src="images/math/cfa2aa16e212b0e9c187ee009c72b524c35806d2.svg" alt="a' = \filter{p}\ a"/></p></td>
+<td><p><img class="math" src="images/math/fd972ce84b20e847c8f0450b54af5af3a4c54d72.svg" alt="p: A \rightarrow \text{Boolean}"/></p></td>
+<td><p><img class="math" src="images/math/c23bf147a02329c8dee6d9c84634a3beda57187f.svg" alt="|a'| \le |a|"/></p></td>
+</tr>
+</tbody>
+</table>
+<p>Any user-defined algorithm or output sink may be configured to operate on data that satisfy a Boolean condition or <em>predicate</em>.
+The act of restricting the invocation of a function to data that satisfy a predicate is known as <em>filtering</em>.
+To filter data as presented to a given algorithm, one or more predicates must be specified in a <em>filter clause</em>.
+Phlex will not schedule a predicate for execution if it is not bound to a filter.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Define filter clause.
+Many algorithms can specify the same predicate in their filter clauses without executing the predicate multiple times.</p>
+</div>
+<p>Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
+Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).</p>
+<section id="id2">
+<h3>Registration interface<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="observers">
+<h2>Observers<a class="headerlink" href="#observers" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Observer</strong></p></th>
+<th class="head"><p>Operator</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img class="math" src="images/math/30b7c97530d62679e59b7f6cf5430670e85a49c0.svg" alt="[\ \ ] = \observe{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/b46907f51c96a393366d8d0b565d8cca9fcc3f45.svg" alt="f: A \rightarrow \mathbbm{1}"/></p></td>
+<td><p><img class="math" src="images/math/4610071c7c4c8a5dcf20a27c4173f046ef256fb7.svg" alt="0"/></p></td>
+</tr>
+</tbody>
+</table>
+<p>As mentioned in <a class="reference internal" href="functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a>, observers are a special case of filters that always reject the data presented to them.
+Because of this, in a purely functional approach, it is unnecessary to invoke an observer as no data will be produced by an observer.
+Additionally, any algorithms downstream of an always-rejecting filter will never be invoked.</p>
+<p>However, there are cases where a user may wish to inspect a data product without adjusting the data flow of the program.
+This is done by creating an algorithm called an <em>observer</em>, which may access a data product but create no data products.
+An example of this is writing ROOT histograms or trees that are not intended to be used in another framework program.</p>
+<p>Unlike filters and predicates, observers (by definition) are allowed to be the most downstream algorithms of the graph.</p>
+<section id="id3">
+<h3>Registration interface<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="partitioned-folds">
+<h2>Partitioned Folds<a class="headerlink" href="#partitioned-folds" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Partitioned fold</strong></p></th>
+<th class="head"><p>Operators</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="3"><p><img class="math" src="images/math/517b8c0c73e2d53aa0ca98499738f47edce03387.svg" alt="d = \fold{f}{\textit{init}}{\textit{part}}\ c"/></p></td>
+<td><p><img class="math" src="images/math/457e20422e52b1b3d06a8e0d87e3a1d52d0d0e22.svg" alt="f: D \times C \rightarrow D"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/ff286f99e0f5bcbbce09b8ee357decdec44d42aa.svg" alt="|d| \le |c|"/></p></td>
+</tr>
+<tr class="row-odd"><td><p><img class="math" src="images/math/9e543f97e1ebd46adcbbcde748b6139d986bd820.svg" alt="\textit{init}: \mathbbm{1} \rightarrow D"/></p></td>
+</tr>
+<tr class="row-even"><td><p><img class="math" src="images/math/d7411c1f0c1113aa2329901873f8a3528d67bf27.svg" alt="\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})"/></p></td>
+</tr>
+</tbody>
+</table>
+<p>As mentioned in <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, a <em>fold</em> can be defined as a transformation of a sequence of data to a single value:</p>
+<div class="math">
+<p><img src="images/math/09176d2a70064756c3d0cddbda1be2fd4009e30f.svg" alt="d = \fold{f}{\textit{init}}\ \sequence{c}{c}"/></p>
+</div><p>where the user-defined operation <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> is applied repeatedly between an accumulated value (initialized by <img class="math" src="images/math/b85af96cfcf4d39fda04f189c50589f7010b9c83.svg" alt="init"/>) and each element of the input sequence.</p>
+<p>In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
+For example, consider a program that processes <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/> runs, each of which contains spills, identified by the tuple <img class="math" src="images/math/166ea4c3e23de898cfaca61c561b3c644abfce09.svg" alt="(R\ i, S\ j)"/>.
+The user may wish to create one histogram per run that contains the track multiplicity per spill.
+Instead of creating a single fold result, we thus use a <em>partitioned fold</em>:</p>
+<div class="math">
+<p><img src="images/math/58cd0b82ceeddc8a2b3b4ab7e6eb2ba68687ae38.svg" alt="\begin{align*}
+[h_{(R\ 1)}&amp;,\ \dots,\ h_{(R\ n)}] \\
+           &amp;= \fold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
+\end{align*}"/></p>
+</div><p>where <img class="math" src="images/math/79027b01f0188f82db58245e0e910343c7b3fd95.svg" alt="h_{(R\ i)}"/> denotes the histogram for run <img class="math" src="images/math/056f7dd41e8d4b43a19d9f9cc73ffd07d879d13b.svg" alt="i"/>, and <img class="math" src="images/math/e313b7849c61077e7e0290bfd19de79c4a3fbc21.svg" alt="m_{(R\ i,\ S\ j)}"/> is the track multiplicity for spill <img class="math" src="images/math/2a8e362ef53eece103e24a8ac737688afe99f99a.svg" alt="j"/> in run <img class="math" src="images/math/056f7dd41e8d4b43a19d9f9cc73ffd07d879d13b.svg" alt="i"/>.</p>
+<p>The above equation can be expressed more succinctly as:</p>
+<div class="math">
+<p><img src="images/math/e976e787153c726c6b3e444c5893372c22d8459d.svg" alt="[h_j]_{j \in \iset{\text{out}}} = \fold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}"/></p>
+</div><p>where</p>
+<div class="math">
+<p><img src="images/math/8dc95a63104776904e95c736247e63516d87004b.svg" alt="\begin{align*}
+\iset{\text{in}} &amp;= \{(R\ 1,\ S\ 1),\ (R\ 1,\ S\ 2),\ \dots,\ (R\ n,\ S\ 1),\ (R\ n,\ S\ 2), \dots\}, \text{and}\\
+\iset{\text{out}} &amp;= \{(R\ 1),\ \dots, (R\ n)\}\ .
+\end{align*}"/></p>
+</div><section id="partitions">
+<h3>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">¶</a></h3>
+<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em>. <a class="reference internal" href="registration.html#wiki-partition" id="id4"><span>[Wiki-partition]</span></a>
+Each subset of the partition is called a <em>cell</em>.
+In the above example, the role of the <img class="math" src="images/math/2fee4cae2368f8047942722099cefbd255303558.svg" alt="\textit{into\_runs}"/> operation is to partition the input sequence into runs so that there is one fold result per run.
+In general, however, the partitioning function is of the form <img class="math" src="images/math/d7411c1f0c1113aa2329901873f8a3528d67bf27.svg" alt="\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})"/>, where:</p>
+<ul class="simple">
+<li><p>the domain is the singleton set that contains only the index set <img class="math" src="images/math/a189a2725d6505c7cd6b02f7b5d3e551db779c12.svg" alt="\iset{c}"/> (i.e. <img class="math" src="images/math/e14ef30b8a2768c601079df4e21bd94e6501945f.svg" alt="\textit{part}"/> can only be invoked on <img class="math" src="images/math/a189a2725d6505c7cd6b02f7b5d3e551db779c12.svg" alt="\iset{c}"/>), and</p></li>
+<li><p>the codomain is the set of partitions of the index set <img class="math" src="images/math/a189a2725d6505c7cd6b02f7b5d3e551db779c12.svg" alt="\iset{c}"/>.</p></li>
+</ul>
+<p>The function <img class="math" src="images/math/10d2efcb725fe06836b4c674642c9c6ba00a4aca.svg" alt="part"/> also establishes an equivalence relationship on the index set <img class="math" src="images/math/a189a2725d6505c7cd6b02f7b5d3e551db779c12.svg" alt="\iset{c}"/>, where each element of the index set is mapped to a cell of the partition.
+The number of elements in the output sequence <img class="math" src="images/math/6523da84ccc63282a3e196b6a20e122e8d9ef48f.svg" alt="d"/> corresponds to the number of partition cells.</p>
+</section>
+<section id="initializing-the-accumulator">
+<h3>Initializing the Accumulator<a class="headerlink" href="#initializing-the-accumulator" title="Link to this heading">¶</a></h3>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Change the domain type of <img class="math" src="images/math/6b9ede978c1ba883af8af976016ac0ecad7cd142.svg" alt="\textit{init}"/>.</p>
+</div>
+<p>A crucial ingredient of the fold is the <em>accumulator</em>, which stores the fold result while it is being formed.
+Each accumulator is initialized by invoking a user-defined operation <img class="math" src="images/math/9e543f97e1ebd46adcbbcde748b6139d986bd820.svg" alt="\textit{init}: \mathbbm{1} \rightarrow D"/>, which returns an object that has the same type <img class="math" src="images/math/1cb3c4a121b3397b62826854d679f518692fa001.svg" alt="D"/> as the fold result. <a class="footnote-reference brackets" href="#finit" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
+Instead of invoking a function, an accumulator is often initialized with a value.
+However, in functional programming, a value can be represented by invoking a function that always returns the same result.
+Expressing an initializer as a function thus supports value-initialization while retaining the flexibility that may occasionally be required through functions.</p>
+</section>
+<section id="fold-operation">
+<h3>Fold Operation<a class="headerlink" href="#fold-operation" title="Link to this heading">¶</a></h3>
+<p>A cell’s fold result is obtained by repeatedly applying a fold operation to the cell’s accumulator and each element of that cell’s input sequence.
+The fold operation has the signature <img class="math" src="images/math/457e20422e52b1b3d06a8e0d87e3a1d52d0d0e22.svg" alt="f: D \times C \rightarrow D"/>, where <img class="math" src="images/math/1cb3c4a121b3397b62826854d679f518692fa001.svg" alt="D"/> represents the type of the accumulator/fold result, and <img class="math" src="images/math/d149b877c03a393426d1aa3a0a7ac436a7ee443c.svg" alt="C"/> is the type of each element of the input sequence.</p>
+<p>In the above example, the function <img class="math" src="images/math/a1f346ace9b73dfc0ad6449215aeafe81851a6b7.svg" alt="\textit{fill}"/> receives a histogram <img class="math" src="images/math/79027b01f0188f82db58245e0e910343c7b3fd95.svg" alt="h_{(R\ i)}"/> as the accumulator for run <img class="math" src="images/math/056f7dd41e8d4b43a19d9f9cc73ffd07d879d13b.svg" alt="i"/> and “combines” it with a track multiplicity object <img class="math" src="images/math/e313b7849c61077e7e0290bfd19de79c4a3fbc21.svg" alt="m_{(R\ i,\ S\ j)}"/> that belongs to spill <img class="math" src="images/math/2a8e362ef53eece103e24a8ac737688afe99f99a.svg" alt="j"/> in run <img class="math" src="images/math/056f7dd41e8d4b43a19d9f9cc73ffd07d879d13b.svg" alt="i"/>.
+This “combined” value is then returned by <img class="math" src="images/math/a1f346ace9b73dfc0ad6449215aeafe81851a6b7.svg" alt="\textit{fill}"/> as the updated value of the accumulator.
+The function <img class="math" src="images/math/a1f346ace9b73dfc0ad6449215aeafe81851a6b7.svg" alt="\textit{fill}"/> is repeatedly invoked to update the accumulator with each track multiplicity value.
+Once all track multiplcity values in run <img class="math" src="images/math/056f7dd41e8d4b43a19d9f9cc73ffd07d879d13b.svg" alt="i"/> have been processed by <img class="math" src="images/math/a1f346ace9b73dfc0ad6449215aeafe81851a6b7.svg" alt="\textit{fill}"/>, the accumulator’s value becomes the fold result for that run.</p>
+</section>
+<section id="id7">
+<h3>Registration interface<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="partitioned-unfolds">
+<h2>Partitioned Unfolds<a class="headerlink" href="#partitioned-unfolds" title="Link to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Partitioned unfold</strong></p></th>
+<th class="head"><p>Operators</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="3"><p><img class="math" src="images/math/a2faf4848b64f88327a9d8d63c9e9b280aaf79da.svg" alt="c = \unfold{p}{\textit{gen}}{\textit{label}}\ d"/></p></td>
+<td><p><img class="math" src="images/math/4f64272bb6e71a77742be1555f7b5f4cbec4d335.svg" alt="p: D \rightarrow \mbox{Boolean}"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/ba2f74be5fbdc9514aafbdd9ad7f2fab80a42847.svg" alt="|c| \ge |d|"/></p></td>
+</tr>
+<tr class="row-odd"><td><p><img class="math" src="images/math/0879d6b4cb4f03217250b10eee4cee93f71300a9.svg" alt="\textit{gen}: D \rightarrow D \times C"/></p></td>
+</tr>
+<tr class="row-even"><td><p><img class="math" src="images/math/a3e293958e47a59dc2a8e1da2e5e83e220dbf3c4.svg" alt="\textit{label}: \mathbbm{1} \rightarrow L"/></p></td>
+</tr>
+</tbody>
+</table>
+<p>Unfolds are the opposite of folds, where the output sequence is larger than the input sequence <a class="reference internal" href="requirements.html#unfolding-data-products"><span class="std std-ref">[DUNE 17]</span></a>.
+An unfold can be used for parallelizing the processing of a data product in smaller chunks.</p>
+<section id="unfolding-predicate">
+<h3>Unfolding predicate<a class="headerlink" href="#unfolding-predicate" title="Link to this heading">¶</a></h3>
+</section>
+<section id="id8">
+<h3>Registration interface<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="composite-chofs">
+<h2>Composite CHOFs<a class="headerlink" href="#composite-chofs" title="Link to this heading">¶</a></h2>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="finit" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">1</a><span class="fn-bracket">]</span></span>
+<p>It is acceptable for <img class="math" src="images/math/6b9ede978c1ba883af8af976016ac0ecad7cd142.svg" alt="\textit{init}"/> to return a type that is convertible to the accumulator’s type.</p>
+</aside>
+</aside>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-partition" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Wiki-partition</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Partition_of_a_set">https://en.wikipedia.org/wiki/Partition_of_a_set</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">HOF Operators</a><ul>
+<li><a class="reference internal" href="#transforms">Transforms</a><ul>
+<li><a class="reference internal" href="#registration-interface">Registration interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#filters-and-predicates">Filters and Predicates</a><ul>
+<li><a class="reference internal" href="#id2">Registration interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#observers">Observers</a><ul>
+<li><a class="reference internal" href="#id3">Registration interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#partitioned-folds">Partitioned Folds</a><ul>
+<li><a class="reference internal" href="#partitions">Partitions</a></li>
+<li><a class="reference internal" href="#initializing-the-accumulator">Initializing the Accumulator</a></li>
+<li><a class="reference internal" href="#fold-operation">Fold Operation</a></li>
+<li><a class="reference internal" href="#id7">Registration interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#partitioned-unfolds">Partitioned Unfolds</a><ul>
+<li><a class="reference internal" href="#unfolding-predicate">Unfolding predicate</a></li>
+<li><a class="reference internal" href="#id8">Registration interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#composite-chofs">Composite CHOFs</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/hof_operators.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">HOF Operators</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

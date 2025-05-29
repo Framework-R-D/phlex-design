@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.4. Functional Programming &#8212; Phlex framework 0 (7c8bca1) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=ee8a1ce5" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=8f370cc3"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2.6. Data Flow" href="data_flow.html" />
+    <link rel="prev" title="2.3. Sequences" href="sequences.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="data_flow.html" title="2.6. Data Flow"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sequences.html" title="2.3. Sequences"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="functional-programming">
+<h1><span class="section-number">2.4. </span>Functional Programming<a class="headerlink" href="#functional-programming" title="Link to this heading">¶</a></h1>
+<p>Functional programming is a paradigm that favors the use of <em>functions</em> instead of the direct manipulation of stateful objects.
+The processing of data happens by using chained operations, where the output of one function serves as the input to other functions.</p>
+<p>For example, given two functions:</p>
+<div class="math">
+<p><img src="images/math/83d21d6b87975efd96f23aa90196a750f1a171c6.svg" alt="f: \mbox{Wires} \rightarrow \mbox{Hits}
+
+g: \mbox{Hits} \rightarrow \mbox{Tracks}"/></p>
+</div><p>a composite function <img class="math" src="images/math/bb0c6499115cebe0f4a937b52abe975c2811a2d4.svg" alt="h: \mbox{Wires} \rightarrow \mbox{Tracks}"/> can be constructed such that:</p>
+<div class="math">
+<p><img src="images/math/f7994aeb7f980b21ca50fa67347377d7c9794cdc.svg" alt="ts = h\ ws = g\ (f\ ws) = (g \comp f)\ ws"/></p>
+</div><p>or <img class="math" src="images/math/894e60b26ca0679c75713d479e88b8539ae28dea.svg" alt="h = g \comp f"/>, where <img class="math" src="images/math/246a85ed0c5b084d4b25f62e05fa75968ac02475.svg" alt="ws \in \mbox{Wires}"/> and <img class="math" src="images/math/f6240f103dcea7a2a68a99e5752dc9073b17cedf.svg" alt="ts \in \mbox{Tracks}"/>.</p>
+<p>In reality, the creation of tracks from wire signals is much more complicated <a class="footnote-reference brackets" href="#graph" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+However, as seen above, functional programming permits a mathematical description of the data-processing to be performed.
+Expressing the processing needs according to mathematics enables:</p>
+<ul class="simple">
+<li><p>the use of mathematical rules to optimize the processing of the data,</p></li>
+<li><p>naturally reproducible results, assuming the functions are pure (see <a class="reference internal" href="#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>),</p></li>
+<li><p>parallel invocations of pure functions with no possibility of data races <a class="reference internal" href="requirements.html#thread-safe-design-for-algorithms"><span class="std std-ref">[DUNE 58]</span></a>.</p></li>
+</ul>
+<section id="pure-functions">
+<h2><span class="section-number">2.4.1. </span>Pure Functions<a class="headerlink" href="#pure-functions" title="Link to this heading">¶</a></h2>
+<p>According to Wikipedia <a class="reference internal" href="#wiki-pure" id="id2"><span>[Wiki-pure]</span></a>, a pure function has the following properties:</p>
+<ul class="simple">
+<li><p>the function return values are identical for identical arguments, and</p></li>
+<li><p>the function has no side effects.</p></li>
+</ul>
+<p>The composition of pure functions is also a pure function.
+For example, assuming the functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> above are pure, then the composite function <img class="math" src="images/math/0604e8d6a20ea3aecb9eaa791ea873c166f7e4f5.svg" alt="h"/> will also be pure.</p>
+<p>Using pure functions to create data products ensures <a class="reference internal" href="definitions.html#term-Reproducible"><span class="xref std std-term">reproducibility</span></a>, as discussed in the framework philosophy in <a class="reference internal" href="introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>.</p>
+</section>
+<section id="difficulties-with-functional-programming">
+<h2><span class="section-number">2.4.2. </span>Difficulties with Functional Programming<a class="headerlink" href="#difficulties-with-functional-programming" title="Link to this heading">¶</a></h2>
+<p>One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
+Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
+We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
+It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often <em>procedural</em>).</p>
+<p>Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
+By leveraging commonly used processing patterns (see <a class="reference internal" href="#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a> on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+The framework also does not place constraints on the algorithm <em>implementations</em>—algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
+The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.</p>
+</section>
+</section>
+<section id="sequences-of-data-and-higher-order-functions">
+<h1><span class="section-number">2.5. </span>Sequences of Data and Higher-Order Functions<a class="headerlink" href="#sequences-of-data-and-higher-order-functions" title="Link to this heading">¶</a></h1>
+<p>Particle physics results are obtained by performing statistical analysis on sequences of data.
+Such analysis typically involves repeated invocations of the same kind of operation.
+For example, a relatively simple result is calculating the arithmetic mean of <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/> numbers:</p>
+<div class="math">
+<p><img src="images/math/dd5ec1086f7bc7cae318b2e6b0900dc745d1eadf.svg" alt="\overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i"/></p>
+</div><p>where the sum is over a sequence of numbers <img class="math" src="images/math/63929e395c353629c4d48f793541359d33dd3b5e.svg" alt="\sequence{b}"/>, and <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/> is the size or <em>cardinality</em> of the index set <img class="math" src="images/math/9f7ec0958d28dd2ada61a408c2f025021d7e03c6.svg" alt="\mathcal{I}"/> (e.g. <img class="math" src="images/math/7901f02bdb1b98a9aac64b2990fcd2bc4a7abfc8.svg" alt="\{1, 2, \dots, n\}"/>) used to identify each element of the sequence.</p>
+<p>The sum is an example of a data reduction or <em>fold</em>, where a sequence is collapsed into one result.
+In particular, the arithmetic mean above can be expressed as:</p>
+<div class="math">
+<p><img src="images/math/bbcb70e99a40a544cb0e4c567b15e665efbfaa58.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}"/></p>
+</div><p>where the fold accepts a binary operator (<img class="math" src="images/math/208334f0dd03e7e80195a6635dccb9103eb8970e.svg" alt="+"/> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.</p>
+<p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-hof]</span></a> that accepts a sequence and an operator applied in some way to elements of that sequence.</p>
+<p>Additional HOFs exist—for example, suppose the sequence <img class="math" src="images/math/d288a72e1c3a7f1f0397ac811d004b909364d580.svg" alt="[c_i]"/> was created by applying a function <img class="math" src="images/math/b214bbe11db0ca8a5ab0665571e116dc85423b9a.svg" alt="w: E \rightarrow C"/> to each element of a sequence <img class="math" src="images/math/7e8fe41b6d58e40b82d61b5c540d427d0aacb26a.svg" alt="[e_i]"/>.
+Such a HOF is called a map or <em>transform</em>:</p>
+<div class="math">
+<p><img src="images/math/130bbf9961feda6cff4b6acea0059ad49bef3c2f.svg" alt="\sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}"/></p>
+</div><p>In such a scenario, the average <img class="math" src="images/math/c6a8994b0433fee20ee6f144721f77c7dcc45b11.svg" alt="\overline{b}"/> could be expressed as:</p>
+<div class="math">
+<p><img src="images/math/58a8b84f45fda98197521c16875118f1ad54d827.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}"/></p>
+</div><p>The second equality holds by the fold-map fusion law <a class="reference internal" href="#bird" id="id4"><span>[Bird]</span></a>, which states that the application of a <img class="math" src="images/math/a1f74d6543849c85cbab7839e7a1286804b8fd18.svg" alt="\text{transform}"/> followed by a <img class="math" src="images/math/58f2cdbe013f953ae19759aa8711cbac76ca5270.svg" alt="\text{fold}"/> can be reduced to a single <img class="math" src="images/math/58f2cdbe013f953ae19759aa8711cbac76ca5270.svg" alt="\text{fold}"/>.
+The operator to this single fold is ‘<img class="math" src="images/math/57a748d96122edd2fb3411668ad8572bc76c1bb1.svg" alt="+ \comp w"/>’, indicating that the function <img class="math" src="images/math/c3a4444068800390a9df1238f6114bcdc72528f2.svg" alt="w"/> should be applied first before invoking the <img class="math" src="images/math/208334f0dd03e7e80195a6635dccb9103eb8970e.svg" alt="+"/> operation.
+Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.</p>
+<p>A calculation is then generally expressed in terms of:</p>
+<ol class="arabic simple">
+<li><p>The HOFs to be used (<img class="math" src="images/math/a0d57e056a7d7ca145aa94e7283851a32a03c5f7.svg" alt="\mbox{fold}"/>, <img class="math" src="images/math/b07e637492927cb3024189db3e2e2331bdc4163c.svg" alt="\mbox{transform}"/>, etc.)</p></li>
+<li><p>The operation to be used by each HOF (<img class="math" src="images/math/208334f0dd03e7e80195a6635dccb9103eb8970e.svg" alt="+"/>, <img class="math" src="images/math/c3a4444068800390a9df1238f6114bcdc72528f2.svg" alt="w"/>, etc.)</p></li>
+<li><p>The sequence(s) of data on which the HOFs are to be applied.</p></li>
+</ol>
+<p>Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.</p>
+<section id="higher-order-functions-supported-by-phlex">
+<h2><span class="section-number">2.5.1. </span>Higher-Order Functions Supported by Phlex<a class="headerlink" href="#higher-order-functions-supported-by-phlex" title="Link to this heading">¶</a></h2>
+<p>In general, HOFs transform one sequence to another:</p>
+<div class="math">
+<p><img src="images/math/92c5033e4781b249f9ec197dbd76e017723a92dd.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
+</div><p>where the functions <img class="math" src="images/math/3841f09309afb8ba4acfe3c61a8a911c708c6be7.svg" alt="f_1, f_2, \ \dots"/> are <em>operators</em> required by the HOF.
+Note that the output index set <img class="math" src="images/math/3a8b6c18a4947c60d0cbc5b49e7fdf221c78ee4e.svg" alt="\iset{\text{output}}"/> is not necessarily the same as the input index set <img class="math" src="images/math/0bba1974ffa031c273137138c757f5b5ac982c15.svg" alt="\iset{\text{input}}"/>.</p>
+<p>The following table lists the HOFs supported by Phlex.
+As discussed later, each HOF’s <em>operator</em> is an <a class="reference internal" href="definitions.html#term-Algorithm"><span class="xref std std-term">algorithm</span></a> registered with the framework.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Higher-order function</strong></p></th>
+<th class="head"><p>Operator(s)</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="hof_operators.html#transforms"><span class="std std-ref">Transform</span></a></p></td>
+<td><p><img class="math" src="images/math/5bc6d3e95594a8eea715417b0a29a86393d5535f.svg" alt="b = \transform{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/ccbdf273cb6c99bcb703b815a36416612bbfbdba.svg" alt="f: A \rightarrow B"/></p></td>
+<td><p><img class="math" src="images/math/4b7e3ad8c9a5af2d09a8038f4fb8d015c0e2035a.svg" alt="|b| = |a|"/></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="hof_operators.html#filters-and-predicates"><span class="std std-ref">Filter</span></a></p></td>
+<td><p><img class="math" src="images/math/cfa2aa16e212b0e9c187ee009c72b524c35806d2.svg" alt="a' = \filter{p}\ a"/></p></td>
+<td><p><img class="math" src="images/math/fd972ce84b20e847c8f0450b54af5af3a4c54d72.svg" alt="p: A \rightarrow \text{Boolean}"/></p></td>
+<td><p><img class="math" src="images/math/c23bf147a02329c8dee6d9c84634a3beda57187f.svg" alt="|a'| \le |a|"/></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="hof_operators.html#observers"><span class="std std-ref">Observer</span></a></p></td>
+<td><p><img class="math" src="images/math/30b7c97530d62679e59b7f6cf5430670e85a49c0.svg" alt="[\ \ ] = \observe{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/b46907f51c96a393366d8d0b565d8cca9fcc3f45.svg" alt="f: A \rightarrow \mathbbm{1}"/></p></td>
+<td><p><img class="math" src="images/math/4610071c7c4c8a5dcf20a27c4173f046ef256fb7.svg" alt="0"/></p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p><a class="reference internal" href="hof_operators.html#partitioned-folds"><span class="std std-ref">Fold</span></a></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/011a5a4d33560f6627a18bf38905914718e86469.svg" alt="d = \fold{f}{init}{part}\ c"/></p></td>
+<td><p><img class="math" src="images/math/457e20422e52b1b3d06a8e0d87e3a1d52d0d0e22.svg" alt="f: D \times C \rightarrow D"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/ff286f99e0f5bcbbce09b8ee357decdec44d42aa.svg" alt="|d| \le |c|"/></p></td>
+</tr>
+<tr class="row-even"><td><p><img class="math" src="images/math/a653fa96c86276af9fe1d941fc8e817057439383.svg" alt="init: \mathbbm{1} \rightarrow D"/></p></td>
+</tr>
+<tr class="row-odd"><td><p><img class="math" src="images/math/3181d81e65d528b7007e56910ebba23cb047d0e7.svg" alt="part: \{\iset{c}\} \rightarrow \mathcal{P}(\iset{c})"/></p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p><a class="reference internal" href="hof_operators.html#partitioned-unfolds"><span class="std std-ref">Unfold</span></a></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/9c1fceb038c74b536abb7d79999e586d186d322c.svg" alt="c = \unfold{p}{gen}{cat}\ d"/></p></td>
+<td><p><img class="math" src="images/math/4f64272bb6e71a77742be1555f7b5f4cbec4d335.svg" alt="p: D \rightarrow \mbox{Boolean}"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/ba2f74be5fbdc9514aafbdd9ad7f2fab80a42847.svg" alt="|c| \ge |d|"/></p></td>
+</tr>
+<tr class="row-odd"><td><p><img class="math" src="images/math/fd8003b444b1a4f8b86ace400490ea6baa9d1ace.svg" alt="gen: D \rightarrow D \times C"/></p></td>
+</tr>
+<tr class="row-even"><td><p><img class="math" src="images/math/b8cdb7b7b5a3d6bedbb9b9a7770bfe5ca4bbde8b.svg" alt="cat: \mathbbm{1} \rightarrow L"/></p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference internal" href="registration.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> describes each of the operators in detail.
+Note that the observer is a special case of the filter, where the predicate’s Boolean return value is always <cite>false</cite>.</p>
+<p>Phlex will likely support other higher order functions as well.</p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="graph" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>As discussed in <a class="reference internal" href="data_flow.html#data-flow"><span class="std std-numref">Section 2.6</span></a>, the general topology of a data-processing workflow is a <em>graph</em> of functions.</p>
+</aside>
+</aside>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-pure" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Wiki-pure</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Pure_function">https://en.wikipedia.org/wiki/Pure_function</a></p>
+</div>
+<div class="citation" id="wiki-hof" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Wiki-hof</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Higher-order_function">https://en.wikipedia.org/wiki/Higher-order_function</a></p>
+</div>
+<div class="citation" id="bird" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Bird</a><span class="fn-bracket">]</span></span>
+<p>Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132</p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">2.4. Functional Programming</a><ul>
+<li><a class="reference internal" href="#pure-functions">2.4.1. Pure Functions</a></li>
+<li><a class="reference internal" href="#difficulties-with-functional-programming">2.4.2. Difficulties with Functional Programming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sequences-of-data-and-higher-order-functions">2.5. Sequences of Data and Higher-Order Functions</a><ul>
+<li><a class="reference internal" href="#higher-order-functions-supported-by-phlex">2.5.1. Higher-Order Functions Supported by Phlex</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sequences.html"
+                          title="previous chapter"><span class="section-number">2.3. </span>Sequences</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="data_flow.html"
+                          title="next chapter"><span class="section-number">2.6. </span>Data Flow</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/functional_programming.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="data_flow.html" title="2.6. Data Flow"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sequences.html" title="2.3. Sequences"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

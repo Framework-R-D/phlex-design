@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.6. Data Flow &#8212; Phlex framework 0 (7c8bca1) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=ee8a1ce5" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=8f370cc3"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Conceptual Design" href="conceptual_design.html" />
+    <link rel="prev" title="2.4. Functional Programming" href="functional_programming.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="conceptual_design.html" title="3. Conceptual Design"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="functional_programming.html" title="2.4. Functional Programming"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="data-flow">
+<h1><span class="section-number">2.6. </span>Data Flow<a class="headerlink" href="#data-flow" title="Link to this heading">¶</a></h1>
+<p>In <a class="reference internal" href="functional_programming.html#functional-programming"><span class="std std-numref">Section 2.4</span></a>, the example was given for creating tracks from wires.
+The simplified expression for doing this was the chained application of two functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> such that:</p>
+<div class="math">
+<p><img src="images/math/e6e39a0854ec9ec58ffc9cf7fb3df091fab96a02.svg" alt="ts = g\ (f\ ws) = (g \comp f)\ ws"/></p>
+</div><p>where <img class="math" src="images/math/437ceea0a16876a6fb2627129d2d900ee6d6e2d2.svg" alt="ws"/> and <img class="math" src="images/math/c2a99853d869cab35180ea1b079f00ef8b584e30.svg" alt="ts"/> are the wires and tracks, respectively.</p>
+<p>An alternative representation to the equational form is a <em>directed graph</em></p>
+<div align="center" class="align-center"><div class="graphviz"><img src="images/graphviz-c1663f770227d4196872962f7f4d67e042fe3886.png" alt="digraph {
+  rankdir=LR
+  node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
+
+  start [shape=&quot;point&quot;, width=0.1]
+  end [shape=&quot;point&quot;, width=0.1, peripheries=2]
+  f [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;f&lt;/font&gt;&lt;/i&gt;&gt;];
+  g [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;g&lt;/font&gt;&lt;/i&gt;&gt;];
+  start -&gt; f [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ws&lt;/font&gt;&lt;/i&gt;&gt;]
+  f -&gt; g [label=&lt;&lt;i&gt;&lt;font color=&quot;darkgray&quot;&gt;hs&lt;/font&gt;&lt;/i&gt;&gt;]
+  g -&gt; end [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ts&lt;/font&gt;&lt;/i&gt;&gt;]
+}" class="graphviz" /></div>
+</div>
+<p>where the functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> are vertices or <em>nodes</em> and the data <img class="math" src="images/math/437ceea0a16876a6fb2627129d2d900ee6d6e2d2.svg" alt="ws"/> and <img class="math" src="images/math/c2a99853d869cab35180ea1b079f00ef8b584e30.svg" alt="ts"/> are passed along arrows or <em>edges</em> that connect the nodes <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+The arrows indicate the flow of the data (or <em>data flow</em>) through the graph.</p>
+<p>Some observations:</p>
+<ul>
+<li><p>The function <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> returns hits that are unlabeled in the equational form.
+For the graph above, we explicitly label those hits as <img class="math" src="images/math/fdd69add0930dba499581b2c4c453fd845492480.svg" alt="hs"/> to emphasize that data are always passed along edges.
+If, however, the hits are not needed by any other function in the graph, the two functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> can be replaced by their composition <img class="math" src="images/math/0f9275c19e89c118b73e798b1bd6fdbd09effbd2.svg" alt="h=g \circ f"/></p>
+<div align="center" class="align-center"><div class="graphviz"><img src="images/graphviz-c5481386fea2008b24c373ff1e73626bb16fbaa5.png" alt="digraph {
+  rankdir=LR
+  node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
+
+  start [shape=&quot;point&quot;, width=0.1]
+  h [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;g ○ f&lt;/font&gt;&lt;/i&gt;&gt;];
+  end [shape=&quot;point&quot;, width=0.1, peripheries=2]
+
+  start -&gt; h [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ws&lt;/font&gt;&lt;/i&gt;&gt;]
+  h -&gt; end [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ts&lt;/font&gt;&lt;/i&gt;&gt;]
+}" class="graphviz" /></div>
+</div>
+<p>resulting in potential performance improvements in computational efficiency and program memory usage.</p>
+</li>
+<li><p>A directed graph can have no unterminated edges—i.e. an edge must have a source (the tail of the arrow) and a target (the head of the arrow).
+This means that whereas the equation does not need to specify where the <img class="math" src="images/math/437ceea0a16876a6fb2627129d2d900ee6d6e2d2.svg" alt="ws"/> wires originate (or where the <img class="math" src="images/math/c2a99853d869cab35180ea1b079f00ef8b584e30.svg" alt="ts"/> tracks end up), such locations must be specified in the graph.
+Any node that has only outgoing edges is called a <em>source</em> (denoted by a solid dot), and any node that has only incoming edges is a <em>sink</em> (denoted by an encircled solid dot).</p></li>
+</ul>
+<section id="data-flow-with-sequences">
+<h2><span class="section-number">2.6.1. </span>Data Flow with Sequences<a class="headerlink" href="#data-flow-with-sequences" title="Link to this heading">¶</a></h2>
+<p>As mentioned earlier in <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, processing sequences of data is a critical aspect of obtaining physics results.
+The data-flow discussion in the previous section naturally maps to applying the functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> to elements of sequences.  Specifically <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
+<ul class="simple">
+<li><p>Instead of the individual objects <img class="math" src="images/math/437ceea0a16876a6fb2627129d2d900ee6d6e2d2.svg" alt="ws"/>, <img class="math" src="images/math/fdd69add0930dba499581b2c4c453fd845492480.svg" alt="hs"/>, and <img class="math" src="images/math/c2a99853d869cab35180ea1b079f00ef8b584e30.svg" alt="ts"/> being passed along the edges, the sequences <img class="math" src="images/math/0db596686bab4e1ae03bca5a42e33eaa2e3d744d.svg" alt="[ws_i]"/>, <img class="math" src="images/math/e33cf3de56f32df9ad90be090f7d58935d28945c.svg" alt="[hs_i]"/>, and <img class="math" src="images/math/19a0669eeeb826a4fe6c46f45e684f4cd67a7504.svg" alt="[ts_i]"/> are passed.</p></li>
+<li><p>The functions <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> map to <img class="math" src="images/math/791b28950dd7f2c0d50bf1eb67b94f0512a0b413.svg" alt="\transform{f}"/> and <img class="math" src="images/math/ab5daff2e13cd124d9eed44b8861b6868ba60f88.svg" alt="\transform{g}"/>, respectively.</p></li>
+</ul>
+<div align="center" class="align-center"><div class="graphviz"><img src="images/graphviz-c53146fa366e4e0c7cb0f02459bec03166329fd0.png" alt="digraph {
+  rankdir=LR
+  node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
+
+  start [shape=&quot;point&quot;, width=0.1]
+  end [shape=&quot;point&quot;, width=0.1, peripheries=2]
+  f [label=&lt;transform( &lt;i&gt;&lt;font color=&quot;blue&quot;&gt;f&lt;/font&gt;&lt;/i&gt; )&gt;];
+  g [label=&lt;transform( &lt;i&gt;&lt;font color=&quot;blue&quot;&gt;g&lt;/font&gt;&lt;/i&gt; )&gt;];
+
+  start -&gt; f [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                       &lt;tr&gt;&lt;td&gt;[&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ws&lt;/font&gt;&lt;sub&gt;i&lt;/sub&gt;&lt;/i&gt;]&lt;/td&gt;&lt;/tr&gt;
+                      &lt;/table&gt;&gt;]
+  f -&gt; g [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                   &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;darkgray&quot;&gt;[&lt;i&gt;hs&lt;sub&gt;i&lt;/sub&gt;&lt;/i&gt;]&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                  &lt;/table&gt;&gt;]
+  g -&gt; end [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                     &lt;tr&gt;&lt;td&gt;[&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ts&lt;/font&gt;&lt;sub&gt;i&lt;/sub&gt;&lt;/i&gt;]&lt;/td&gt;&lt;/tr&gt;
+                    &lt;/table&gt;&gt;]
+}" class="graphviz" /></div>
+</div>
+<p>The above graph does not specify an implementation—assuming <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> and <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.</p>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>Determine whether the choice between (a) and (b) can be decided in user code, by user configuration, or by something else.</p>
+</div>
+<p>One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
+As an illustration, consider the calculation of a sum of squares for all integers from 1 through <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/>:</p>
+<div class="math">
+<p><img src="images/math/3cfdac043b07a508bb0a11669a3eb7778319b891.svg" alt="S(n) = \sum_{i=1}^n i^2"/></p>
+</div><p>This calculation requires three separate steps:</p>
+<ol class="arabic simple">
+<li><p>an unfold called <em>iota</em> that, given an integer <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/>, generates a sequence of integers from 1 through <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/>,</p></li>
+<li><p>a transformation called <em>square</em> that squares each integer in the sequence, and</p></li>
+<li><p>a fold called <em>sum</em> that sums all squared integers.</p></li>
+</ol>
+<p>The data-flow graph of individual objects looks like:</p>
+<div align="center" class="align-center"><div class="graphviz"><img src="images/graphviz-e518047b64edfd01071f2132110e3c298dee0503.png" alt="digraph {
+  rankdir=LR
+  node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
+
+  start [shape=&quot;point&quot;, width=0.1]
+  end [shape=&quot;point&quot;, width=0.1, peripheries=2]
+  iota [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;iota&lt;/font&gt;&lt;/i&gt;&gt;];
+  transform [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;square&lt;/font&gt;&lt;/i&gt;&gt;];
+  sum [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;sum&lt;/font&gt;&lt;/i&gt;&gt;];
+
+  start -&gt; iota [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                          &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;n&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                        &lt;/table&gt;&gt;]
+
+  iota -&gt; transform [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                              &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;1&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                            &lt;/table&gt;&gt;]
+  iota -&gt; transform [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                              &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;2&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                             &lt;/table&gt;&gt;]
+  iota -&gt; transform [label=&lt;&lt;font color=&quot;red&quot;&gt;⋮&lt;/font&gt;&gt;, penwidth=0, arrowhead=none]
+  iota -&gt; transform [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                              &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;n&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                            &lt;/table&gt;&gt;]
+
+  transform -&gt; sum [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                             &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;1&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                           &lt;/table&gt;&gt;]
+  transform -&gt; sum [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                             &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;4&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                           &lt;/table&gt;&gt;]
+  transform -&gt; sum [label=&lt;&lt;font color=&quot;red&quot;&gt;⋮&lt;/font&gt;&gt;, penwidth=0, arrowhead=none]
+  transform -&gt; sum [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                             &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;n&lt;sup&gt;2&lt;/sup&gt;&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                           &lt;/table&gt;&gt;]
+
+  sum -&gt; end [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                        &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S(n)&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                      &lt;/table&gt;&gt;]
+}" class="graphviz" /></div>
+</div>
+<p>where each number is passed along its own edge to the nodes performing the calculation.
+By adopting a sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:</p>
+<div align="center" class="align-center"><div class="graphviz"><img src="images/graphviz-145025f1d1833d2a7bfcfbbaed5681d0ad54d8dd.png" alt="digraph {
+  rankdir=LR
+  node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
+
+  start [shape=&quot;point&quot;, width=0.1]
+  end [shape=&quot;point&quot;, width=0.1, peripheries=2]
+  iota [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;iota&lt;/font&gt;&lt;/i&gt;&gt;];
+  transform [label=&lt;transform(&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;square&lt;/font&gt;&lt;/i&gt;)&gt;];
+  sum [label=&lt;&lt;i&gt;&lt;font color=&quot;blue&quot;&gt;sum&lt;/font&gt;&lt;/i&gt;&gt;];
+
+  start -&gt; iota [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                          &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;n&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                        &lt;/table&gt;&gt;]
+
+  iota -&gt; transform [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                              &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;[&lt;i&gt;i&lt;/i&gt;]&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                            &lt;/table&gt;&gt;]
+
+  transform -&gt; sum [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                             &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;[&lt;i&gt;i&lt;sup&gt;2&lt;/sup&gt;&lt;/i&gt;]&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                           &lt;/table&gt;&gt;]
+
+  sum -&gt; end [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
+                       &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S(n)&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                     &lt;/table&gt;&gt;]
+}" class="graphviz" /></div>
+</div>
+<p>In addition, the topology of the sequence-based graph remains the same regardless of the value of <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/>; the topology of the object-based graph becomes intractable as <img class="math" src="images/math/9fc02e61f328c0894acf7c9a88548856360d4f15.svg" alt="n"/> increases.</p>
+<p>The vast majority of graphs included in this design document adopt the sequence-based data-flow representation.</p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Treating functions as nodes and data as edges is a function-centric view of the graph.
+It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the <em>line digraph</em> of the function-centric graph.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>In Haskell (and, similarly, in category theory), this transformation is achieved through the <cite>List/fmap</cite> functor.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">2.6. Data Flow</a><ul>
+<li><a class="reference internal" href="#data-flow-with-sequences">2.6.1. Data Flow with Sequences</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="functional_programming.html"
+                          title="previous chapter"><span class="section-number">2.4. </span>Functional Programming</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="conceptual_design.html"
+                          title="next chapter"><span class="section-number">3. </span>Conceptual Design</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/data_flow.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="conceptual_design.html" title="3. Conceptual Design"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="functional_programming.html" title="2.4. Functional Programming"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (7c8bca1) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
