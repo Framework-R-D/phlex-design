@@ -64,6 +64,8 @@ jobs:
       - name: Push HTML pages to gh-pages branch
         working-directory: ./gh-pages/
         run: |
+          # Remove the contents to avoid retaining generated images that are no longer used
+          rm -rf *
           # Copy built HTML pages into gh-pages source tree
           cp -r ../main/doc/build/html/* .
           # Note: the following account information will not work on GHES
