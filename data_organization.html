@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex framework 0 (f8e13f5) documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0 (295fb90) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=584f6c18" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=9b2483e8"></script>
+    <script src="static/documentation_options.js?v=a6786716"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -157,11 +157,11 @@ A data set family is a sequence of data product sets that are in the same catego
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">An example of some possible data product hierarchies.
-Three different user-defined data product set categories are shown: <img class="math" src="images/math/95ab0e56742c9d8f6d366fc9b560c3e190130197.svg" alt="\textsf{Run}"/>, <img class="math" src="images/math/8b8d7df2f89f4c9e9b41b5cd5a61b2310accd7f4.svg" alt="\textsf{Spill}"/>, and <img class="math" src="images/math/7dab5d72dd1f7433a8e013cc070724bef6433b3c.svg" alt="\textsf{APA}"/>.
-Rectangles with labels <img class="math" src="images/math/4a30ebb9f1c198045cdbd504a5d5be457bf31360.svg" alt="\textsf{Run}_i"/>, <img class="math" src="images/math/e8d575a2de97ecf8477aa91a4722ea031dae3c42.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="images/math/b05991d69b48fb5f137576b83ea9b03e0d8e7e1e.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
+Three different user-defined data product set categories are shown: <img class="math" src="images/math/3897d7b3e17a920ea8f831d0797bef6555450bb3.svg" alt="\textsf{Run}"/>, <img class="math" src="images/math/1b2cd3836575409964a923d18090d9630763a51e.svg" alt="\textsf{Spill}"/>, and <img class="math" src="images/math/21a7915eddf2b3fb26424b9bbaa029522c3a2884.svg" alt="\textsf{APA}"/>.
+Rectangles with labels <img class="math" src="images/math/120b26cd51c2d61da1ef2305ba52cd0b76467bd8.svg" alt="\textsf{Run}_i"/>, <img class="math" src="images/math/2fffc43b5a3e4a516fd88d2cb99601b4494eeaaa.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="images/math/e89665467cce9a09ba6a714060865f6933abc130.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
 The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in <a class="reference internal" href="conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 A solid line from a data product set to another data product set represents association between the two data product sets.
-The bottom rectangle shows that <img class="math" src="images/math/e10b79889b028a85562830450e062e3e917b3806.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="images/math/225740648de849fa0c3ae6f464667ee8bd3bcd4c.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
+The bottom rectangle shows that <img class="math" src="images/math/3959ae2950f9599910dd0197cc9a723cf06d9482.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="images/math/e6c9705c3c9c0493d4c1a30359ad29ac116cb600.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
 Each pale purple rectangle indicates the data product sequence created by one call to the <em>unfold</em> higher order function described in <a class="reference internal" href="conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 The names of different data set categories are user defined, and not special to the Phlex framework.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -232,7 +232,7 @@ The algorithms are configured to identify the inputs in which they are intereste
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
@@ -295,7 +295,7 @@ The algorithms are configured to identify the inputs in which they are intereste
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>

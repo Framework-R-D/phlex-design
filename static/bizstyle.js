@@ -17,7 +17,7 @@ const initialiseBizStyle = () => {
 }
 
 window.addEventListener("resize",
-  () => (document.querySelector("li.nav-item-0 a").innerText = (window.innerWidth <= 776) ? "Top" : "Phlex framework 0 (f8e13f5) documentation")
+  () => (document.querySelector("li.nav-item-0 a").innerText = (window.innerWidth <= 776) ? "Top" : "Phlex 0 (295fb90) documentation")
 )
 
 if (document.readyState !== "loading") initialiseBizStyle()

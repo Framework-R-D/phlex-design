@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.1. Function Notation &#8212; Phlex framework 0 (f8e13f5) documentation</title>
+    <title>2.1. Function Notation &#8212; Phlex 0 (295fb90) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=584f6c18" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=9b2483e8"></script>
+    <script src="static/documentation_options.js?v=a6786716"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="preliminaries.html" title="2. Preliminaries"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
       </ul>
@@ -49,62 +49,36 @@
             
   <section id="function-notation">
 <h1><span class="section-number">2.1. </span>Function Notation<a class="headerlink" href="#function-notation" title="Link to this heading">¶</a></h1>
-<p>We refer to the function <img class="math" src="images/math/ccbdf273cb6c99bcb703b815a36416612bbfbdba.svg" alt="f: A \rightarrow B"/> as the function <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> that takes an element of the set <img class="math" src="images/math/0da43b1a02acd3ba8bc78206e9d2843bf9deb1f8.svg" alt="A"/> to an element of the set <img class="math" src="images/math/795377e71b440e5ec171d3bf868326df5554144a.svg" alt="B"/>.
-For example, the function <img class="math" src="images/math/8f91ada5c81cd0c082aca3e1d73758df275caf62.svg" alt="flip: \mathbb{R} \rightarrow \mathbb{R}"/> accepts a real number (e.g. <img class="math" src="images/math/2695b9aae42099b3d40346a3bca529251f3a23a9.svg" alt="3.14"/>) and multiplies it by <img class="math" src="images/math/4e1f23ba1177fe1304fa1df75ef535bd0131497c.svg" alt="-1"/>, returning another real number (e.g. <img class="math" src="images/math/b48ec40d0c9899774c4e123da6dfc560f8704a23.svg" alt="-3.14"/>).</p>
-<p>The types <img class="math" src="images/math/0da43b1a02acd3ba8bc78206e9d2843bf9deb1f8.svg" alt="A"/> and <img class="math" src="images/math/795377e71b440e5ec171d3bf868326df5554144a.svg" alt="B"/> are allowed to represent Cartesian products of sets (e.g. <img class="math" src="images/math/fa5a9c1d653c296e2460d8208e0d760bf30e9939.svg" alt="A = A_1 \times \dots \times A_n"/>), thus enabling multivariate functions.
+<p>We refer to the function <img class="math" src="images/math/26a746d324731fb61a7f9577cb9cdc6115b3f00d.svg" alt="f: A \rightarrow B"/> as the function <img class="math" src="images/math/95d26f24e2620ceacddb44be8e71dd9b69a478e1.svg" alt="f"/> that takes an element of the set <img class="math" src="images/math/762d5a720c04e9b489da3883ce09681569d838f9.svg" alt="A"/> to an element of the set <img class="math" src="images/math/74031312cc72dab61cc1b939661e771f58e90833.svg" alt="B"/>.
+For example, the function <img class="math" src="images/math/56dacbf6f1e48a561e101e22c503dbb7648ccdae.svg" alt="flip: \mathbb{R} \rightarrow \mathbb{R}"/> accepts a real number (e.g. <img class="math" src="images/math/825e44d5249109492300cae01df44dee3cdc8545.svg" alt="3.14"/>) and multiplies it by <img class="math" src="images/math/fb08f4da6c535824329856910e67023deb585249.svg" alt="-1"/>, returning another real number (e.g. <img class="math" src="images/math/9e83dd24ceef837b26365f24c7d39a76bcde60dd.svg" alt="-3.14"/>).</p>
+<p>The types <img class="math" src="images/math/762d5a720c04e9b489da3883ce09681569d838f9.svg" alt="A"/> and <img class="math" src="images/math/74031312cc72dab61cc1b939661e771f58e90833.svg" alt="B"/> are allowed to represent Cartesian products of sets (e.g. <img class="math" src="images/math/25be5b0fa66119726c7f7a75583ab179dbc300f3.svg" alt="A = A_1 \times \dots \times A_n"/>), thus enabling multivariate functions.
 For example, the following are simple multivariate functions:</p>
 <div class="math">
-<p><img src="images/math/e09146b4d65a127fb90b0b4c42222bee331929ce.svg" alt="power : \mathbb{R} \times \mathbb{N} \rightarrow \mathbb{R}
+<p><img src="images/math/baa2bd1f4e01624ea9cd9f4f24d9e93bc964f91b.svg" alt="power : \mathbb{R} \times \mathbb{N} \rightarrow \mathbb{R}
 
 halve : \mathbb{N} \rightarrow \mathbb{N} \times \mathbb{N}"/></p>
-</div><p>where <img class="math" src="images/math/094e94eb6d21900fe5b69fbfbd09cede00f9f1da.svg" alt="\mathbb{N}"/> is the set of natural numbers.
-Invoking <img class="math" src="images/math/b9d26e5e9cf9c5a32cbc7e93577cdefed3585cbe.svg" alt="power(1.5, 2)"/> results in the real number <img class="math" src="images/math/6e31f4e4eecc97e698aee27665c8ab035d01b5b5.svg" alt="1.5^2 = 2.25"/>, whereas invoking <img class="math" src="images/math/f8c3d995aef2f2cd907bfcefcbb8c6727eb3e1f8.svg" alt="halve(5)"/> divides <img class="math" src="images/math/594ed3f4d94d4406ed15af2ed782f5b502397b62.svg" alt="5"/> by <img class="math" src="images/math/f9b7ee87559c4c730dc53241a23d16f78ea19f54.svg" alt="2"/>, returning the pair <img class="math" src="images/math/db0ef04a17a7a400bf4d3f2f983df1d0f6731644.svg" alt="(2, 1)"/>, where the first number is the quotient, and the second is the remainder.</p>
-<section id="function-invocation">
-<h2><span class="section-number">2.1.1. </span>Function Invocation<a class="headerlink" href="#function-invocation" title="Link to this heading">¶</a></h2>
-<p>It is conventional in mathematics to use parentheses to denote the application of the function <img class="math" src="images/math/796b8f8fc710134508de64c53c33913781e42d59.svg" alt="f"/> to an argument <img class="math" src="images/math/63b16b3139c5f3176771f9811248c41aeb32e433.svg" alt="x"/> —i.e. <img class="math" src="images/math/792c2b7af55e235827571e0482bd8d7dd2fa3c70.svg" alt="f(x)"/>.
-To avoid cluttered expressions in this document, we adopt an alternative whereby the parentheses are omitted and whitespace is used to delimit the function and its argument(s):</p>
+</div><p>where <img class="math" src="images/math/a962900e6ad82d1943b4621533416267e72bd502.svg" alt="\mathbb{N}"/> is the set of natural numbers.
+Invoking <img class="math" src="images/math/6fb6e417941520f961b1c184cb31c0650c4c1980.svg" alt="power(1.5, 2)"/> results in the real number <img class="math" src="images/math/beab57fbc76fe0851f8a63a3b99165d4fec9d416.svg" alt="1.5^2 = 2.25"/>, whereas invoking <img class="math" src="images/math/40b5fd331180cef59489d4bc1e8d00be7519357c.svg" alt="halve(5)"/> divides <img class="math" src="images/math/bf2575212a7b2fae7e509b5c191af2ac42db9cbe.svg" alt="5"/> by <img class="math" src="images/math/a3aa4fae164b4c0f616f20d4a90610b43ea02d17.svg" alt="2"/>, returning the pair <img class="math" src="images/math/3228b3185f6d4f7fa1fd820f214e8c21d745add7.svg" alt="(2, 1)"/>, where the first number is the quotient, and the second is the remainder.</p>
+<p>It is conventional to use parentheses to denote the application of the function <img class="math" src="images/math/95d26f24e2620ceacddb44be8e71dd9b69a478e1.svg" alt="f"/> to an argument <img class="math" src="images/math/2f43d5405843dd027f09611c65c62cef1ae5fe36.svg" alt="x"/> —i.e. <img class="math" src="images/math/4a85af286f342f5df83930c082342b22379514e6.svg" alt="f(x)"/>.
+To avoid cluttered expressions in this document, however, we adopt an alternative whereby the parentheses are omitted and whitespace is used to delimit the function and its argument(s):</p>
 <div class="math">
-<p><img src="images/math/f0606d76f9b1b35a912b197f020c4d201e3d2b6b.svg" alt="f(x) &amp;\Longrightarrow f\ x\
+<p><img src="images/math/b0b4340bfc25315e5e7b1de64992a2f2374c4ca3.svg" alt="f(x) &amp;\Longrightarrow f\ x\
 
 g(f(x)) &amp;\Longrightarrow g\ (f\ x) = g\ f\ x \ ."/></p>
 </div><p>In mathematical expressions, parentheses are then reserved in this document to specify:</p>
 <ol class="arabic simple">
-<li><p>The order of operations (e.g. <img class="math" src="images/math/71295e595ec6e8110b7cb629ec6b913b21fa2d22.svg" alt="f\ x"/> is to be evaluated first, and its output serves as input to the function <img class="math" src="images/math/84745e106b0ce5ba826be4109b16dcc98033ec5e.svg" alt="g"/>).</p></li>
-<li><p>A tuple of arguments that serve as input to a single function invocation (e.g. <img class="math" src="images/math/4b78bc7afdf67b6bd6ac7c67868e065ed747544b.svg" alt="power\ (1.5, 2)"/> above) <a class="footnote-reference brackets" href="#apply" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+<li><p>The order of operations (e.g. <img class="math" src="images/math/81ce4534e366e2b570d0d0aae53a0eacc5308bed.svg" alt="f\ x"/> is to be evaluated first, and its output serves as input to the function <img class="math" src="images/math/cb0bc9df53077a37b63629a3aa410743755f5519.svg" alt="g"/>).</p></li>
+<li><p>A tuple of arguments that serve as input to a single function invocation (e.g. <img class="math" src="images/math/0c3948a89acb100e6a7d683176d0134276002116.svg" alt="power\ (1.5, 2)"/> above) <a class="footnote-reference brackets" href="#apply" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
 <li><p>The binding of user-defined algorithms to higher-order functions (see <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>).</p></li>
 </ol>
-</section>
-<section id="representing-void-or-nonetype">
-<h2><span class="section-number">2.1.2. </span>Representing <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> or <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code><a class="headerlink" href="#representing-void-or-nonetype" title="Link to this heading">¶</a></h2>
-<p>In HEP, it is common to encounter C++ functions like:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
-<span class="kt">double</span><span class="w"> </span><span class="nf">g</span><span class="p">();</span>
-</pre></div>
-</div>
-<p>where the function either returns nothing (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code>) or it accepts no argument.
-Python supports similar behavior for its functions and methods, but using the keyword <code class="code highlight py docutils literal highlight-py"><span class="kc">None</span></code> instead of <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code>.</p>
-<p>The mathematical set that is used to represent C++’s <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and Python’s <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code> is the set <img class="math" src="images/math/317638d7b0cc1c886e652134056d55005256ce76.svg" alt="\mathbbm{1}"/>, which contains only one element <a class="footnote-reference brackets" href="#void" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
-The above functions are thus represented in function notation as:</p>
-<div class="math">
-<p><img src="images/math/eed93788ca93f4fa0bf2df37b15c2640a6acac23.svg" alt="f&amp;: \mathbb{Z} \rightarrow \mathbbm{1}\ , \text{ and}
-
-g&amp;: \mathbbm{1} \rightarrow \mathbb{R}\ ."/></p>
-</div><p>This notation will be used as we discuss the operators required by Phlex’s higher-order functions.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="apply" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The expression <img class="math" src="images/math/71295e595ec6e8110b7cb629ec6b913b21fa2d22.svg" alt="f\ x"/> can equivalently be written <img class="math" src="images/math/dad8d8381d941de250edcef3a31c53cd16837201.svg" alt="f\ (x)"/>, where <img class="math" src="images/math/3f5eff4ae52db58809ddfa601bb5ce2f1a0e2a3c.svg" alt="(x)"/> is a single-element tuple.
+<p>The expression <img class="math" src="images/math/81ce4534e366e2b570d0d0aae53a0eacc5308bed.svg" alt="f\ x"/> can equivalently be written <img class="math" src="images/math/708d99ffe9c45de5c60402de69b7dcb60a9e9a75.svg" alt="f\ (x)"/>, where <img class="math" src="images/math/07fbb26e7063ff65918ef45e4d9996163cf23a31.svg" alt="(x)"/> is a single-element tuple.
 With this interpretation, the conventional function-invocation notation can be recovered.</p>
 </aside>
-<aside class="footnote brackets" id="void" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p>It is tempting to associate <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="kc">None</span></code> with the empty set <img class="math" src="images/math/a60b2c40da0cccbc0dc2454ac98c0213985ccf76.svg" alt="\emptyset"/>.
-However, a function must always be invoked with at least one object, and it must return at least one object.
-The empty set contains no such objects that can be presented to (or returned from) a function.</p>
 </aside>
-</aside>
-</section>
 </section>
 
 
@@ -115,19 +89,8 @@ The empty set contains no such objects that can be presented to (or returned fro
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">2.1. Function Notation</a><ul>
-<li><a class="reference internal" href="#function-invocation">2.1.1. Function Invocation</a></li>
-<li><a class="reference internal" href="#representing-void-or-nonetype">2.1.2. Representing <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> or <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code></a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="preliminaries.html"
@@ -171,7 +134,7 @@ The empty set contains no such objects that can be presented to (or returned fro
         <li class="right" >
           <a href="preliminaries.html" title="2. Preliminaries"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
       </ul>

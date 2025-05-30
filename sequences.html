@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Sequences &#8212; Phlex framework 0 (f8e13f5) documentation</title>
+    <title>2.3. Sequences &#8212; Phlex 0 (295fb90) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=584f6c18" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=9b2483e8"></script>
+    <script src="static/documentation_options.js?v=a6786716"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
       </ul>
@@ -50,19 +50,19 @@
   <section id="sequences">
 <h1><span class="section-number">2.3. </span>Sequences<a class="headerlink" href="#sequences" title="Link to this heading">¶</a></h1>
 <p>A finite sequence can be represented as a list of objects, each of which are of the same set or <em>type</em> (see <a class="reference internal" href="types.html#types"><span class="std std-numref">Section 2.2</span></a>).
-For example, the sequence <img class="math" src="images/math/44d0133c60151c3936800a1792703fb9a1ebfc1f.svg" alt="a = [a_1, a_2, \dots, a_n]"/> is written as</p>
+For example, the sequence <img class="math" src="images/math/44557cc5d04e1545690c79b620de0a714e4f65f3.svg" alt="a = [a_1, a_2, \dots, a_n]"/> is written as</p>
 <div class="math">
-<p><img src="images/math/5ed76e0b3b0c838df7a18e076d724025f10084d5.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}"/></p>
-</div><p>where each <img class="math" src="images/math/9a41a7837362e538b076e6f3a9d96cc08dce41e8.svg" alt="a_i \in A"/>, and <img class="math" src="images/math/a08c7b803217f1e1ab8aad811766d389d1292f50.svg" alt="\mathcal{I}_a = \{1, 2, \dots, n\}"/> is the <a class="reference internal" href="definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <img class="math" src="images/math/4ec2cb927753c275c98b9a64217721c0d6d04107.svg" alt="a"/>.</p>
-<p>In general, an index set does not impose an order on the sequence elements—the sequence <img class="math" src="images/math/4ec2cb927753c275c98b9a64217721c0d6d04107.svg" alt="a"/> could thus be equivalently expressed as:</p>
+<p><img src="images/math/763af15f20c340d469905c0219e10f0cff435d9e.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}"/></p>
+</div><p>where each <img class="math" src="images/math/22b6306ac0f74cabc2f65c7a1e3d8fa66e15643b.svg" alt="a_i \in A"/>, and <img class="math" src="images/math/416ce85afc22fe814b8ecbcaf9f3b88495db8204.svg" alt="\mathcal{I}_a = \{1, 2, \dots, n\}"/> is the <a class="reference internal" href="definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <img class="math" src="images/math/7d407d07b52acef824428adcdf90a98516792b22.svg" alt="a"/>.</p>
+<p>In general, an index set does not impose an order on the sequence elements—the sequence <img class="math" src="images/math/7d407d07b52acef824428adcdf90a98516792b22.svg" alt="a"/> could thus be equivalently expressed as:</p>
 <div class="math">
-<p><img src="images/math/b2305903bd87ed1ee5015be35052814e51b05610.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]"/></p>
-</div><p>or any of the <img class="math" src="images/math/697e10ea2f0a19125a8b93f9e5f082da4856e38a.svg" alt="n!"/> orderings possible.
+<p><img src="images/math/bf32dbefb32499be5eb59f13c1ba693e35e8f0ae.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]"/></p>
+</div><p>or any of the <img class="math" src="images/math/d8a95baf6aac8183d0cc30116222a9355f82f2f6.svg" alt="n!"/> orderings possible.
 The index set simply provides a mapping from an index to the data object itself.</p>
-<p>The <em>length</em> of the sequence <img class="math" src="images/math/4ec2cb927753c275c98b9a64217721c0d6d04107.svg" alt="a"/> above is denoted by <img class="math" src="images/math/d11d7f97ec89a3ba838aca3d17d00c395e60b082.svg" alt="|a|"/>, and it equals the <em>cardinality</em> of the index set: <img class="math" src="images/math/e9c939826d7f9b9655d068f45fe9d89971836919.svg" alt="|a| = |\mathcal{I}_a| = n"/>.
+<p>The <em>length</em> of the sequence <img class="math" src="images/math/7d407d07b52acef824428adcdf90a98516792b22.svg" alt="a"/> above is denoted by <img class="math" src="images/math/7c5ab225242953dd578074bdf3287edf5029e379.svg" alt="|a|"/>, and it equals the <em>cardinality</em> of the index set: <img class="math" src="images/math/49eee514a58c2fff422696352dae701eee7770ef.svg" alt="|a| = |\mathcal{I}_a| = n"/>.
 In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:</p>
 <div class="math">
-<p><img src="images/math/dadd59a7add085c5959a1bace3b5d5232c91e53e.svg" alt="[\ ] = [a_i]_{i \in \emptyset} \ ."/></p>
+<p><img src="images/math/800a43177360b485bd355c5618f0c826f3896dc1.svg" alt="[\ ] = [a_i]_{i \in \emptyset} \ ."/></p>
 </div></section>
 
 
@@ -73,7 +73,7 @@ In this document, we will have need of a list of length 0, or the empty list, wh
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex framework"/>
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
   <div>
     <h4>Previous topic</h4>
@@ -118,7 +118,7 @@ In this document, we will have need of a list of length 0, or the empty list, wh
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex framework 0 (f8e13f5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (295fb90) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
       </ul>
