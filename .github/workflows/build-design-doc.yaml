@@ -11,6 +11,11 @@ jobs:
   build-design-document:
     runs-on: ubuntu-latest
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     container:
       image: ghcr.io/framework-r-d/phlexdoc:2025-05-01
 
@@ -60,7 +65,7 @@ jobs:
         working-directory: ./gh-pages/
         run: |
           # Copy built HTML pages into gh-pages source tree
-          cp -r ../main/doc/build/html .
+          cp -r ../main/doc/build/html/ .
           # Note: the following account information will not work on GHES
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
