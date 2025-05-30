@@ -12,7 +12,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('.') + '/_extensions')
 
-project = 'Phlex framework'
+project = 'Phlex'
 copyright = '2025, Fermi Forward Discovery Group, LLC'
 author = ''
 
@@ -110,6 +110,9 @@ new_commands = r"""
 
 % Number subsubsections
 \setcounter{secnumdepth}{3}
+
+% Make table caption width span entire textwidth
+\usepackage[width=\textwidth]{caption}
 """
 
 extensions.append('sphinx.ext.imgmath')
@@ -127,11 +130,15 @@ rst_prolog ="""
 .. role:: py(code)
    :language: py
    :class: highlight
+
+.. role:: haskell(code)
+   :language: haskell
+   :class: highlight
 """
 
 # -- Detect if PDF rendering is available and provide link to it in HTML rendering (see index.rst)
 if existing_pdf := os.environ.get("SPHINX_EXISTING_PDF"):
-    tags.add("pdf_already_exists")
+    tags.add("pdf_already_exists")  # pyright: ignore[reportUndefinedVariable]
     rst_epilog = f".. _here: {existing_pdf}"
 
 # -- Options for HTML output -------------------------------------------------
