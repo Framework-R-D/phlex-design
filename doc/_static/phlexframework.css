@@ -1,8 +1,13 @@
-/* Import the Sphinx theme style.  */
+/* Import the Sphinx theme style. */
 @import url("bizstyle.css");
 
 div.admonition-chg {
     background-color: burlywood;
+}
+
+/* Ensure left-justified figure captions. */
+figure p {
+    text-align: left;
 }
 
 .body {
