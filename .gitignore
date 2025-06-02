@@ -7,3 +7,4 @@ requirements-statemachine.png
 *.pyc
 .quarto-output/
 .quarto/
+.vscode/
