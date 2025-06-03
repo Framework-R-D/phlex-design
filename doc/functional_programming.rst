@@ -44,7 +44,7 @@ Difficulties with Functional Programming
 
 One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
-We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
+We argue, though, that physicists often think in terms of functional programming when developing the high-level processing steps of a workflow.
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
@@ -62,7 +62,7 @@ For example, a relatively simple result is calculating the arithmetic mean of :m
 .. math::
    \overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i
 
-where the sum is over a sequence of numbers :math:`\sequence{b}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
+where the sum is over a sequence of numbers :math:`\sequence{c}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
 
 The sum is an example of a data reduction or *fold*, where a sequence is collapsed into one result.
 In particular, the arithmetic mean above can be expressed as:
@@ -80,7 +80,7 @@ Such a HOF is called a map or *transform*:
 .. math::
    \sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}
 
-In such a scenario, the average :math:`\overline{b}` could be expressed as:
+In such a scenario, the average :math:`\overline{c}` could be expressed as:
 
 .. math::
    \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}
