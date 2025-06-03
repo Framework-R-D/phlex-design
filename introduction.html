@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; Phlex 0 (1aaec50) documentation</title>
+    <title>1. Introduction &#8212; Phlex 0 (860e254) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=de1d4e58"></script>
+    <script src="static/documentation_options.js?v=5e376f8b"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1aaec50) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (860e254) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>  
@@ -132,6 +132,15 @@ The Phlex design therefore:</p>
 <p>The framework will support user <a class="reference internal" href="definitions.html#term-Algorithm"><span class="xref std std-term">algorithms</span></a> written in multiple programming languages <a class="reference internal" href="requirements.html#support-for-multiple-programming-languages"><span class="std std-ref">[DUNE 5]</span></a>.  Specifically, an algorithm may be written in either C++ <a class="footnote-reference brackets" href="#f2" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="reference internal" href="requirements.html#support-c-algorithms"><span class="std std-ref">[DUNE 5.1]</span></a> or Python <a class="footnote-reference brackets" href="#f3" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="reference internal" href="requirements.html#support-python-algorithms"><span class="std std-ref">[DUNE 5.2]</span></a>.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.</p>
 <p>Note that the language is left unspecified for the implementation of the framework itself.</p>
+</section>
+<section id="framework-independence">
+<h2><span class="section-number">1.4. </span>Framework Independence<a class="headerlink" href="#framework-independence" title="Link to this heading">¶</a></h2>
+<p>We define a algorithm as <em>framework-independent</em> if it contains no explicit dependencies on framework libraries—i.e. it is possible to build and execute the algorithm independent of a framework context.
+For framework-independent C++ algorithms, this means there are no direct or transitive framework libraries that are either included as headers in the algorithm code or linked as run-time libraries.
+Similarly, framework-independent Python algorithms import no direct or transitive framework packages.</p>
+<p>Phlex is required to support the registration of user-defined, framework-independent algorithms <a class="reference internal" href="requirements.html#algorithms-independent-of-framework-interface"><span class="std std-ref">[DUNE 20]</span></a>.
+This does not mean that <em>all</em> framework-independent algorithms are suitable for registration, nor does it mean that all algorithms registered with the framework must be framework-independent.
+In fact, depending on what the algorithm is doing, some algorithms might require explicit framework dependencies.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="f1" role="doc-footnote">
@@ -187,6 +196,7 @@ In such a case, the stakeholder requirements of one experiment may not negate th
 </li>
 <li><a class="reference internal" href="#framework-philosophy">1.2. Framework Philosophy</a></li>
 <li><a class="reference internal" href="#programming-languages">1.3. Programming Languages</a></li>
+<li><a class="reference internal" href="#framework-independence">1.4. Framework Independence</a></li>
 </ul>
 </li>
 </ul>
@@ -235,13 +245,13 @@ In such a case, the stakeholder requirements of one experiment may not negate th
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1aaec50) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (860e254) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 02, 2025.
+      Last updated on Jun 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

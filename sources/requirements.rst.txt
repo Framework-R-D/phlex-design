@@ -769,7 +769,7 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
 ------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-| See :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
+| See :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
 
 .. table::
     :widths: 15 85
