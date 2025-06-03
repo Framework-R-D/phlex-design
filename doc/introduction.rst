@@ -69,6 +69,18 @@ If there is a need to support user algorithms written in another programming lan
 
 Note that the language is left unspecified for the implementation of the framework itself.
 
+======================
+Framework Independence
+======================
+
+We define a algorithm as *framework-independent* if it contains no explicit dependencies on framework libraries—i.e. it is possible to build and execute the algorithm independent of a framework context.
+For framework-independent C++ algorithms, this means there are no direct or transitive framework libraries that are either included as headers in the algorithm code or linked as run-time libraries.
+Similarly, framework-independent Python algorithms import no direct or transitive framework packages.
+
+Phlex is required to support the registration of user-defined, framework-independent algorithms :dune:`20 Algorithms independent of framework interface`.
+This does not mean that *all* framework-independent algorithms are suitable for registration, nor does it mean that all algorithms registered with the framework must be framework-independent.
+In fact, depending on what the algorithm is doing, some algorithms might require explicit framework dependencies.
+
 .. rubric:: Footnotes
 
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.
