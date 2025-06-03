@@ -73,7 +73,7 @@ Note that the language is left unspecified for the implementation of the framewo
 Framework Independence
 ======================
 
-We define a algorithm as *framework-independent* if it contains no explicit dependencies on framework libraries—i.e. it is possible to build and execute the algorithm independent of a framework context.
+We define an algorithm as *framework-independent* if it contains no explicit dependencies on framework libraries—i.e. it is possible to build and execute the algorithm independent of a framework context.
 For framework-independent C++ algorithms, this means there are no direct or transitive framework libraries that are either included as headers in the algorithm code or linked as run-time libraries.
 Similarly, framework-independent Python algorithms import no direct or transitive framework packages.
 

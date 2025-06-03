@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.4. Functional Programming &#8212; Phlex 0 (860e254) documentation</title>
+    <title>2.4. Functional Programming &#8212; Phlex 0 (a133eb0) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=5e376f8b"></script>
+    <script src="static/documentation_options.js?v=23a92b7f"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (860e254) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a133eb0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
@@ -83,7 +83,7 @@ For example, assuming the functions <img class="math" src="images/math/95d26f24e
 <h2><span class="section-number">2.4.2. </span>Difficulties with Functional Programming<a class="headerlink" href="#difficulties-with-functional-programming" title="Link to this heading">¶</a></h2>
 <p>One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
-We argue, though, that physicists often think in terms of functional programming when developing a workflow about the high-level processing steps.
+We argue, though, that physicists often think in terms of functional programming when developing the high-level processing steps of a workflow.
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often <em>procedural</em>).</p>
 <p>Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
 By leveraging commonly used processing patterns (see <a class="reference internal" href="#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a> on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
@@ -98,7 +98,7 @@ Such analysis typically involves repeated invocations of the same kind of operat
 For example, a relatively simple result is calculating the arithmetic mean of <img class="math" src="images/math/fa6f20a3bd0fe7f264c60f819b7bc665955ae869.svg" alt="n"/> numbers:</p>
 <div class="math">
 <p><img src="images/math/aa10eb7383803875e34de589bd4b23ac833a395f.svg" alt="\overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i"/></p>
-</div><p>where the sum is over a sequence of numbers <img class="math" src="images/math/b6bc6a3070c2cbfb94bcc952735b4e5ba2a148b4.svg" alt="\sequence{b}"/>, and <img class="math" src="images/math/fa6f20a3bd0fe7f264c60f819b7bc665955ae869.svg" alt="n"/> is the size or <em>cardinality</em> of the index set <img class="math" src="images/math/6181d44aa2263ff67415cd945e46a96ecef3d210.svg" alt="\mathcal{I}"/> (e.g. <img class="math" src="images/math/125a0188fedd1720e15a2e6ac3defe31c1b996a4.svg" alt="\{1, 2, \dots, n\}"/>) used to identify each element of the sequence.</p>
+</div><p>where the sum is over a sequence of numbers <img class="math" src="images/math/941dd95d659cd717a9000e4eb40d3b656b53437a.svg" alt="\sequence{c}"/>, and <img class="math" src="images/math/fa6f20a3bd0fe7f264c60f819b7bc665955ae869.svg" alt="n"/> is the size or <em>cardinality</em> of the index set <img class="math" src="images/math/6181d44aa2263ff67415cd945e46a96ecef3d210.svg" alt="\mathcal{I}"/> (e.g. <img class="math" src="images/math/125a0188fedd1720e15a2e6ac3defe31c1b996a4.svg" alt="\{1, 2, \dots, n\}"/>) used to identify each element of the sequence.</p>
 <p>The sum is an example of a data reduction or <em>fold</em>, where a sequence is collapsed into one result.
 In particular, the arithmetic mean above can be expressed as:</p>
 <div class="math">
@@ -109,7 +109,7 @@ In particular, the arithmetic mean above can be expressed as:</p>
 Such a HOF is called a map or <em>transform</em>:</p>
 <div class="math">
 <p><img src="images/math/2059cc529cc68ec0616bb8394d7972fd5816e479.svg" alt="\sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}"/></p>
-</div><p>In such a scenario, the average <img class="math" src="images/math/e71016d9d4861cef9457bef4e08f97925ecd5ff7.svg" alt="\overline{b}"/> could be expressed as:</p>
+</div><p>In such a scenario, the average <img class="math" src="images/math/6d89118303587e4e317df2af468e3a67e321dc84.svg" alt="\overline{c}"/> could be expressed as:</p>
 <div class="math">
 <p><img src="images/math/20d0018df86001c8615815297663e76c243c379f.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}"/></p>
 </div><p>The second equality holds by the fold-map fusion law <a class="reference internal" href="#bird" id="id4"><span>[Bird]</span></a>, which states that the application of a <img class="math" src="images/math/248b611b1dce081fa56de5a1407478d5d244a006.svg" alt="\text{transform}"/> followed by a <img class="math" src="images/math/325fe2b3f3eeca4a006b89bf18a212aba1768d5f.svg" alt="\text{fold}"/> can be reduced to a single <img class="math" src="images/math/325fe2b3f3eeca4a006b89bf18a212aba1768d5f.svg" alt="\text{fold}"/>.
@@ -276,7 +276,7 @@ Note that the observer is a special case of the filter, where the predicate’s 
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (860e254) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a133eb0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
