@@ -677,7 +677,7 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
 --------------------------
 
 | Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
-| See :numref:`registration:Partitioned Unfolds`
+| See :numref:`hof_operators:Partitioned Unfolds`
 
 .. table::
     :widths: 15 85
