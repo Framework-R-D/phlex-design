@@ -1,7 +1,12 @@
+**********************
 Framework requirements
-======================
+**********************
 
 **Requirements norm**: Baseline 1 (created March 03, 2025)
+
+=======================
+Conceptual requirements
+=======================
 
 1 Algorithm Decomposability
 ---------------------------
@@ -123,44 +128,6 @@ Jama Connect entry: `DUNE STKH #11 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | General, Accelerators, Reproducibility                |
     +--------------+-------------------------------------------------------+
 
-4.2 Shut down upon unmet algorithm hardware requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #13 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14553>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall shut down if the platform fails   |
-    |              | to meet each specified hardware requirement.          |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | General                                               |
-    +--------------+-------------------------------------------------------+
-
-4.3 Emit diagnostic upon unmet algorithm hardware requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14885>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall emit a diagnostic message for     |
-    |              | each hardware requirement the platform fails to meet. |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | General                                               |
-    +--------------+-------------------------------------------------------+
-
 5 Support for multiple programming languages
 --------------------------------------------
 
@@ -219,26 +186,6 @@ Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective
     | Status       | Approved                                              |
     +--------------+-------------------------------------------------------+
     | Tags         | General                                               |
-    +--------------+-------------------------------------------------------+
-
-6 Provide instructions for writing algorithms in supported languages
---------------------------------------------------------------------
-
-Jama Connect entry: `DUNE STKH #16 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14556>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework documentation shall provide             |
-    |              | instructions for writing framework-executable         |
-    |              | algorithms in supported languages.                    |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Documentation                                         |
     +--------------+-------------------------------------------------------+
 
 7 Persist user-defined metadata
@@ -423,27 +370,6 @@ Jama Connect entry: `DUNE STKH #22 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Flexible Processing Unit (FPU)                        |
     +--------------+-------------------------------------------------------+
 
-12 Data product I/O independence
---------------------------------
-
-Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14583>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support reading from disk only    |
-    |              | the data products required by a given algorithm.      |
-    +==============+=======================================================+
-    | Notes        | This is ID #14 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Data I/O layer                              |
-    +--------------+-------------------------------------------------------+
-
 13 Process collections of unconstrained size
 --------------------------------------------
 
@@ -465,8 +391,485 @@ Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Original, Flexible Processing Unit (FPU)              |
     +--------------+-------------------------------------------------------+
 
+17 Unfolding data products
+--------------------------
+
+| Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
+| See :numref:`hof_operators:Partitioned Unfolds`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall allow the unfolding of data       |
+    |              | products into a sequence of finer-grained data        |
+    |              | products.                                             |
+    +==============+=======================================================+
+    | Notes        | This is ID #58 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Memory management, Original, Flexible Processing Unit |
+    |              | (FPU)                                                 |
+    +--------------+-------------------------------------------------------+
+
+18 Access to external data sources
+----------------------------------
+
+Jama Connect entry: `DUNE STKH #35 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14595>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support access to external data   |
+    |              | sources.                                              |
+    +==============+=======================================================+
+    | Notes        | This is ID #47 from the original DUNE document.       |
+    |              |                                                       |
+    |              | By "external data sources," we mean "data sources     |
+    |              | **other than** framework-readable data files          |
+    |              | containing detector readout or simulated physics      |
+    |              | data."                                                |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Services                                    |
+    +--------------+-------------------------------------------------------+
+
+18.1 Calibration database algorithms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Jama Connect entry: `DUNE STKH #40 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
+| See :numref:`data_organization:Data organization`.
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support algorithms that provide   |
+    |              | data from calibration databases.                      |
+    +==============+=======================================================+
+    | Notes        | This is ID #68 as proposed to DUNE.                   |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Services                                              |
+    +--------------+-------------------------------------------------------+
+
+20 Algorithms independent of framework interface
+------------------------------------------------
+
+| Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
+| See :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the registration of       |
+    |              | algorithms that are independent of framework          |
+    |              | interface.                                            |
+    +==============+=======================================================+
+    | Notes        | This is ID #48 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Services, Original                                    |
+    +--------------+-------------------------------------------------------+
+
+21 Safely executing thread-safe and non-thread-safe algorithms
+--------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14611>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall safely execute user algorithms    |
+    |              | declared to be non-thread-safe along with those       |
+    |              | declared to be thread-safe.                           |
+    +==============+=======================================================+
+    | Notes        | This is ID #26 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Concurrency and multithreading              |
+    +--------------+-------------------------------------------------------+
+
+23 Resource specification for the program
+-----------------------------------------
+
+| Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
+| See :numref:`subsystems/configuration:Program resource specification`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall enable the specification of       |
+    |              | resources required by the program.                    |
+    +==============+=======================================================+
+    | Notes        | This is ID #28 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Concurrency and multithreading, Resource    |
+    |              | management                                            |
+    +--------------+-------------------------------------------------------+
+
+23.4 Specification of user-defined resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #149 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15871>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall enable the specification of       |
+    |              | user-defined resources required by the program.       |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Resource management                                   |
+    +--------------+-------------------------------------------------------+
+
+24 Resource specification for algorithms
+----------------------------------------
+
+Jama Connect entry: `DUNE STKH #52 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall enable the specification of       |
+    |              | resources required by each algorithm.                 |
+    +==============+=======================================================+
+    | Notes        | This is ID #33 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Concurrency and multithreading, Resource    |
+    |              | management                                            |
+    +--------------+-------------------------------------------------------+
+
+24.1 Serial access to a thread-unsafe resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`_
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall permit algorithm authors to       |
+    |              | specify that the algorithm requires serial access to  |
+    |              | a thread-unsafe resource.                             |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Concurrency and multithreading, Original, Resource    |
+    |              | management                                            |
+    +--------------+-------------------------------------------------------+
+
+24.5 Specification of algorithm's user-defined resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #155 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15891>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall enable the specification of       |
+    |              | user-defined resources required by the algorithm.     |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Resource management                                   |
+    +--------------+-------------------------------------------------------+
+
+26 Resource-based algorithm concurrency
+---------------------------------------
+
+Jama Connect entry: `DUNE STKH #50 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14618>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall dynamically schedule algorithms   |
+    |              | to execute efficiently according to the availability  |
+    |              | of each algorithm's required resources.               |
+    +==============+=======================================================+
+    | Notes        | This is ID #31 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Concurrency and multithreading, Resource    |
+    |              | management                                            |
+    +--------------+-------------------------------------------------------+
+
+26.2 Optimize memory management for data products
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+| Jama Connect entry: `DUNE STKH #142 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
+| See :numref:`data_organization:Data product management`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall optimize the memory management of |
+    |              | data products.                                        |
+    +==============+=======================================================+
+    | Notes        | Optimization means making the data products           |
+    |              | available for the shortest period of time possible    |
+    |              | for all algorithms that require them.  The framework, |
+    |              | however, may need to run in series multiple           |
+    |              | algorithms requiring those data products if those     |
+    |              | algorithms would run out of resources if run          |
+    |              | concurrently.                                         |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Resource management                                   |
+    +--------------+-------------------------------------------------------+
+
+27 Composable workflows using GPU algorithms and CPU algorithms
+---------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14622>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support composable workflows that |
+    |              | use GPU algorithms along with CPU algorithms.         |
+    +==============+=======================================================+
+    | Notes        | This is ID #36 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Concurrency and multithreading, Resource    |
+    |              | management                                            |
+    +--------------+-------------------------------------------------------+
+
+28 Specification of data products required by an algorithm
+----------------------------------------------------------
+
+| Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
+| See :numref:`registration:Framework registration`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the specification of data |
+    |              | products required as input by an algorithm.           |
+    +==============+=======================================================+
+    | Notes        | This is ID #63 as proposed to DUNE.                   |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Registration                                          |
+    +--------------+-------------------------------------------------------+
+
+29 Specification of data products created by an algorithm
+---------------------------------------------------------
+
+| Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
+| See :numref:`registration:Framework registration`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the specification of data |
+    |              | products created as output by an algorithm.           |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Registration                                          |
+    +--------------+-------------------------------------------------------+
+
+36 One configuration per framework execution
+--------------------------------------------
+
+| Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
+| See :numref:`user_configuration:Mechanics of configuration specification`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall accept exactly one configuration  |
+    |              | per program execution.                                |
+    +==============+=======================================================+
+    | Notes        | This is ID #44 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Configuration                               |
+    +--------------+-------------------------------------------------------+
+
+38 Framework configuration language
+-----------------------------------
+
+| Jama Connect entry: `DUNE STKH #72 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
+| See :numref:`user_configuration:Mechanics of configuration specification`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall provide the ability to configure  |
+    |              | the execution of a framework program at runtime using |
+    |              | a human-readable language.                            |
+    +==============+=======================================================+
+    | Notes        | This is ID #60 as proposed to DUNE.                   |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Configuration                                         |
+    +--------------+-------------------------------------------------------+
+
+39 I/O plugins
+--------------
+
+Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14642>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall provide a public API that enables |
+    |              | the implementation of a concrete IO backend for a     |
+    |              | specific persistent storage format.                   |
+    +==============+=======================================================+
+    | Notes        | This is ID #50 from the original DUNE document.       |
+    |              |                                                       |
+    |              | Data includes physics data and metadata (both         |
+    |              | user-provided and framework metadata).                |
+    |              |                                                       |
+    |              | The goal is to enable non-framework developers to     |
+    |              | implement an IO backend without needing to modify the |
+    |              | framework itself.                                     |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Data I/O layer, Original                              |
+    +--------------+-------------------------------------------------------+
+
+======================
+Technical requirements
+======================
+
+4.2 Shut down upon unmet algorithm hardware requirements
+--------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #13 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14553>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall shut down if the platform fails   |
+    |              | to meet each specified hardware requirement.          |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | General                                               |
+    +--------------+-------------------------------------------------------+
+
+4.3 Emit diagnostic upon unmet algorithm hardware requirements
+--------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #112 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14885>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall emit a diagnostic message for     |
+    |              | each hardware requirement the platform fails to meet. |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | General                                               |
+    +--------------+-------------------------------------------------------+
+
+6 Provide instructions for writing algorithms in supported languages
+--------------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #16 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14556>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework documentation shall provide             |
+    |              | instructions for writing framework-executable         |
+    |              | algorithms in supported languages.                    |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Documentation                                         |
+    +--------------+-------------------------------------------------------+
+
+12 Data product I/O independence
+--------------------------------
+
+Jama Connect entry: `DUNE STKH #24 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14583>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support reading from disk only    |
+    |              | the data products required by a given algorithm.      |
+    +==============+=======================================================+
+    | Notes        | This is ID #14 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Data I/O layer                              |
+    +--------------+-------------------------------------------------------+
+
 13.1 Read collections of unconstrained size
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------------------
 
 Jama Connect entry: `DUNE STKH #32 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14592>`__
 
@@ -491,7 +894,7 @@ Jama Connect entry: `DUNE STKH #32 <https://fnal-prod.jamacloud.com/perspective.
     +--------------+-------------------------------------------------------+
 
 13.2 Write collections of unconstrained size
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------
 
 Jama Connect entry: `DUNE STKH #120 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15288>`__
 
@@ -673,76 +1076,6 @@ Jama Connect entry: `DUNE STKH #137 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Memory management, Error handling                     |
     +--------------+-------------------------------------------------------+
 
-17 Unfolding data products
---------------------------
-
-| Jama Connect entry: `DUNE STKH #33 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593>`__
-| See :numref:`hof_operators:Partitioned Unfolds`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall allow the unfolding of data       |
-    |              | products into a sequence of finer-grained data        |
-    |              | products.                                             |
-    +==============+=======================================================+
-    | Notes        | This is ID #58 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Memory management, Original, Flexible Processing Unit |
-    |              | (FPU)                                                 |
-    +--------------+-------------------------------------------------------+
-
-18 Access to external data sources
-----------------------------------
-
-Jama Connect entry: `DUNE STKH #35 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14595>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support access to external data   |
-    |              | sources.                                              |
-    +==============+=======================================================+
-    | Notes        | This is ID #47 from the original DUNE document.       |
-    |              |                                                       |
-    |              | By "external data sources," we mean "data sources     |
-    |              | **other than** framework-readable data files          |
-    |              | containing detector readout or simulated physics      |
-    |              | data."                                                |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Services                                    |
-    +--------------+-------------------------------------------------------+
-
-18.1 Calibration database algorithms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-| Jama Connect entry: `DUNE STKH #40 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600>`__
-| See :numref:`data_organization:Data organization`.
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support algorithms that provide   |
-    |              | data from calibration databases.                      |
-    +==============+=======================================================+
-    | Notes        | This is ID #68 as proposed to DUNE.                   |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Services                                              |
-    +--------------+-------------------------------------------------------+
-
 19 Algorithm code versioning and build information
 --------------------------------------------------
 
@@ -763,49 +1096,6 @@ Jama Connect entry: `DUNE STKH #39 <https://fnal-prod.jamacloud.com/perspective.
     | Status       | Approved                                              |
     +--------------+-------------------------------------------------------+
     | Tags         | Original, Reproducibility, Provenance                 |
-    +--------------+-------------------------------------------------------+
-
-20 Algorithms independent of framework interface
-------------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #43 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608>`__
-| See :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the registration of       |
-    |              | algorithms that are independent of framework          |
-    |              | interface.                                            |
-    +==============+=======================================================+
-    | Notes        | This is ID #48 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Services, Original                                    |
-    +--------------+-------------------------------------------------------+
-
-21 Safely executing thread-safe and non-thread-safe algorithms
---------------------------------------------------------------
-
-Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14611>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall safely execute user algorithms    |
-    |              | declared to be non-thread-safe along with those       |
-    |              | declared to be thread-safe.                           |
-    +==============+=======================================================+
-    | Notes        | This is ID #26 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Concurrency and multithreading              |
     +--------------+-------------------------------------------------------+
 
 22 Intra-algorithm concurrency and multi-threading
@@ -833,29 +1123,8 @@ Jama Connect entry: `DUNE STKH #45 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Original, Concurrency and multithreading              |
     +--------------+-------------------------------------------------------+
 
-23 Resource specification for the program
------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #47 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613>`__
-| See :numref:`subsystems/configuration:Program resource specification`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall enable the specification of       |
-    |              | resources required by the program.                    |
-    +==============+=======================================================+
-    | Notes        | This is ID #28 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Concurrency and multithreading, Resource    |
-    |              | management                                            |
-    +--------------+-------------------------------------------------------+
-
 23.1 Specification of maximum number of CPU threads
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #146 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15865>`__
 
@@ -875,7 +1144,7 @@ Jama Connect entry: `DUNE STKH #146 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 23.2 Specification of maximum allowed CPU memory
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #147 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15866>`__
 
@@ -894,7 +1163,7 @@ Jama Connect entry: `DUNE STKH #147 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 23.3 Specification of GPU resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------
 
 Jama Connect entry: `DUNE STKH #148 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15869>`__
 
@@ -912,70 +1181,8 @@ Jama Connect entry: `DUNE STKH #148 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Resource management                                   |
     +--------------+-------------------------------------------------------+
 
-23.4 Specification of user-defined resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #149 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15871>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall enable the specification of       |
-    |              | user-defined resources required by the program.       |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Resource management                                   |
-    +--------------+-------------------------------------------------------+
-
-24 Resource specification for algorithms
-----------------------------------------
-
-Jama Connect entry: `DUNE STKH #52 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall enable the specification of       |
-    |              | resources required by each algorithm.                 |
-    +==============+=======================================================+
-    | Notes        | This is ID #33 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Concurrency and multithreading, Resource    |
-    |              | management                                            |
-    +--------------+-------------------------------------------------------+
-
-24.1 Serial access to a thread-unsafe resource
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15856>`_
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall permit algorithm authors to       |
-    |              | specify that the algorithm requires serial access to  |
-    |              | a thread-unsafe resource.                             |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Concurrency and multithreading, Original, Resource    |
-    |              | management                                            |
-    +--------------+-------------------------------------------------------+
-
 24.2 Specification of algorithm's maximum number of CPU threads
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #152 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883>`__
 | See :numref:`registration:Framework registration`
@@ -994,7 +1201,7 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 24.3 Specification of algorithm's CPU memory usage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #154 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889>`__
 | See :numref:`data_organization:Structure and Representation`
@@ -1012,7 +1219,7 @@ Jama Connect entry: `DUNE STKH #145 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 24.4 Specification of algorithm's GPU resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------
 
 Jama Connect entry: `DUNE STKH #153 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15886>`__
 
@@ -1031,7 +1238,7 @@ Jama Connect entry: `DUNE STKH #153 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 24.4.1 Remote GPU algorithm support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Jama Connect entry: `DUNE STKH #42 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14607>`__
 
@@ -1052,7 +1259,7 @@ Jama Connect entry: `DUNE STKH #42 <https://fnal-prod.jamacloud.com/perspective.
     +--------------+-------------------------------------------------------+
 
 24.4.2 Local GPU algorithm support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Jama Connect entry: `DUNE STKH #41 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14602>`__
 
@@ -1070,25 +1277,6 @@ Jama Connect entry: `DUNE STKH #41 <https://fnal-prod.jamacloud.com/perspective.
     | Status       | Approved                                              |
     +--------------+-------------------------------------------------------+
     | Tags         | Services                                              |
-    +--------------+-------------------------------------------------------+
-
-24.5 Specification of algorithm's user-defined resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #155 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15891>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall enable the specification of       |
-    |              | user-defined resources required by the algorithm.     |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Resource management                                   |
     +--------------+-------------------------------------------------------+
 
 25 Logging resource usage per algorithm invocation
@@ -1140,31 +1328,8 @@ Jama Connect entry: `DUNE STKH #48 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | General, Resource management                          |
     +--------------+-------------------------------------------------------+
 
-26 Resource-based algorithm concurrency
----------------------------------------
-
-Jama Connect entry: `DUNE STKH #50 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14618>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall dynamically schedule algorithms   |
-    |              | to execute efficiently according to the availability  |
-    |              | of each algorithm's required resources.               |
-    +==============+=======================================================+
-    | Notes        | This is ID #31 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Concurrency and multithreading, Resource    |
-    |              | management                                            |
-    +--------------+-------------------------------------------------------+
-
 26.1 Efficient execution of algorithms requiring access to a network resource
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #144 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15854>`__
 
@@ -1189,34 +1354,8 @@ Jama Connect entry: `DUNE STKH #144 <https://fnal-prod.jamacloud.com/perspective
     |              | management                                            |
     +--------------+-------------------------------------------------------+
 
-26.2 Optimize memory management for data products
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-| Jama Connect entry: `DUNE STKH #142 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847>`__
-| See :numref:`data_organization:Data product management`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall optimize the memory management of |
-    |              | data products.                                        |
-    +==============+=======================================================+
-    | Notes        | Optimization means making the data products           |
-    |              | available for the shortest period of time possible    |
-    |              | for all algorithms that require them.  The framework, |
-    |              | however, may need to run in series multiple           |
-    |              | algorithms requiring those data products if those     |
-    |              | algorithms would run out of resources if run          |
-    |              | concurrently.                                         |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Resource management                                   |
-    +--------------+-------------------------------------------------------+
-
 26.3 Optimize availability of external resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #143 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15848>`__
 
@@ -1248,7 +1387,7 @@ Jama Connect entry: `DUNE STKH #143 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 26.4 Efficient execution of algorithms with specific CPU memory requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #150 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15874>`__
 
@@ -1268,7 +1407,7 @@ Jama Connect entry: `DUNE STKH #150 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 26.5 Efficient execution of algorithms with specific GPU memory requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------------------------------------
 
 Jama Connect entry: `DUNE STKH #151 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15875>`__
 
@@ -1285,66 +1424,6 @@ Jama Connect entry: `DUNE STKH #151 <https://fnal-prod.jamacloud.com/perspective
     | Status       | Approved                                              |
     +--------------+-------------------------------------------------------+
     | Tags         | Resource management, Memory management                |
-    +--------------+-------------------------------------------------------+
-
-27 Composable workflows using GPU algorithms and CPU algorithms
----------------------------------------------------------------
-
-Jama Connect entry: `DUNE STKH #54 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14622>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support composable workflows that |
-    |              | use GPU algorithms along with CPU algorithms.         |
-    +==============+=======================================================+
-    | Notes        | This is ID #36 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Concurrency and multithreading, Resource    |
-    |              | management                                            |
-    +--------------+-------------------------------------------------------+
-
-28 Specification of data products required by an algorithm
-----------------------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #65 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634>`__
-| See :numref:`registration:Framework registration`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the specification of data |
-    |              | products required as input by an algorithm.           |
-    +==============+=======================================================+
-    | Notes        | This is ID #63 as proposed to DUNE.                   |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Registration                                          |
-    +--------------+-------------------------------------------------------+
-
-29 Specification of data products created by an algorithm
----------------------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #156 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897>`__
-| See :numref:`registration:Framework registration`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the specification of data |
-    |              | products created as output by an algorithm.           |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Registration                                          |
     +--------------+-------------------------------------------------------+
 
 30 Emit message describing data flow of program
@@ -1476,26 +1555,6 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Original, Configuration                               |
     +--------------+-------------------------------------------------------+
 
-36 One configuration per framework execution
---------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #69 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638>`__
-| See :numref:`user_configuration:Mechanics of configuration specification`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall accept exactly one configuration  |
-    |              | per program execution.                                |
-    +==============+=======================================================+
-    | Notes        | This is ID #44 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Configuration                               |
-    +--------------+-------------------------------------------------------+
-
 37 Eager validation of algorithm configuration
 ----------------------------------------------
 
@@ -1520,58 +1579,8 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Original, Configuration                               |
     +--------------+-------------------------------------------------------+
 
-38 Framework configuration language
------------------------------------
-
-| Jama Connect entry: `DUNE STKH #72 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641>`__
-| See :numref:`user_configuration:Mechanics of configuration specification`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall provide the ability to configure  |
-    |              | the execution of a framework program at runtime using |
-    |              | a human-readable language.                            |
-    +==============+=======================================================+
-    | Notes        | This is ID #60 as proposed to DUNE.                   |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Configuration                                         |
-    +--------------+-------------------------------------------------------+
-
-39 I/O plugins
---------------
-
-Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14642>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall provide a public API that enables |
-    |              | the implementation of a concrete IO backend for a     |
-    |              | specific persistent storage format.                   |
-    +==============+=======================================================+
-    | Notes        | This is ID #50 from the original DUNE document.       |
-    |              |                                                       |
-    |              | Data includes physics data and metadata (both         |
-    |              | user-provided and framework metadata).                |
-    |              |                                                       |
-    |              | The goal is to enable non-framework developers to     |
-    |              | implement an IO backend without needing to modify the |
-    |              | framework itself.                                     |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Data I/O layer, Original                              |
-    +--------------+-------------------------------------------------------+
-
 39.1 I/O backend for ROOT
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
 | Jama Connect entry: `DUNE STKH #74 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643>`__
 | See :numref:`data_organization:Conceptual Nature`.
@@ -1591,7 +1600,7 @@ Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.
     +--------------+-------------------------------------------------------+
 
 39.2 I/O backend for HDF5
-^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
 | Jama Connect entry: `DUNE STKH #141 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838>`__
 | See :numref:`data_organization:Conceptual Nature`.
@@ -1607,6 +1616,10 @@ Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.
     +--------------+-------------------------------------------------------+
     | Tags         | Data I/O layer, Original                              |
     +--------------+-------------------------------------------------------+
+
+=========================
+Unclassified requirements
+=========================
 
 40 Data I/O backward compatibility
 ----------------------------------
