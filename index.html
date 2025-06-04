@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Phlex Framework Design &#8212; Phlex 0 (1b2e040) documentation</title>
+    <title>Phlex Framework Design &#8212; Phlex 0 (f407182) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=dfc18828"></script>
+    <script src="static/documentation_options.js?v=4b07ef6a"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -32,7 +32,7 @@
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Phlex Framework Design</a></li> 
       </ul>
     </div>  
@@ -48,7 +48,7 @@
 <p>This document gives a brief introduction to what Phlex aims to achieve, the conceptual design in support of those aims, and the technical design necessary to implement the conceptual design.</p>
 <div class="admonition-pdf-available admonition">
 <p class="admonition-title">PDF available</p>
-<p>A PDF rendering of this documentation is available <a class="reference external" href="https://github.com/Framework-R-D/phlex-design/actions/runs/15444950316/artifacts/3259721110">here</a>.</p>
+<p>A PDF rendering of this documentation is available <a class="reference external" href="https://github.com/Framework-R-D/phlex-design/actions/runs/15453675378/artifacts/3263158668">here</a>.</p>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
@@ -73,33 +73,33 @@
 <li class="toctree-l2"><a class="reference internal" href="data_organization.html">3.2. Data Organization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algorithms.html">3.3. Algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="registration.html">3.4. Framework Registration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequence_spec.html">3.5. Specifying Sequences</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html">3.6. HOF Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sources_sinks.html">3.7. Framework Driver</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sources_sinks.html#data-sources">3.8. Data Sources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sources_sinks.html#data-sinks">3.9. Data Sinks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resources.html">3.10. Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html">3.11. Program Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html">3.5. HOF Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html">3.6. Framework Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="providers.html">3.7. Data-Product Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outputs.html">3.8. Data-Product Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">3.9. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_configuration.html">3.10. Program Configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="technical_design.html">4. Technical Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="subsystems/task_management.html">4.1. Task Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/data_management.html">4.2. Data Product Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/data_modeling.html">4.3. Data Modeling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/metadata_management.html">4.4. Metadata Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/io.html">4.5. IO</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/registration.html">4.6. Algorithm Registration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/plugin_management.html">4.7. Plugin Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/resource_management.html">4.8. Resource Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/application.html">4.9. Framework Application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/configuration.html">4.10. Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/algo_description.html">4.11. Algorithm Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/error_handler.html">4.12. Error Handler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/signal_handler.html">4.13. Signal Handler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/random_numbers.html">4.14. Random Number Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/monitoring.html">4.15. Monitoring and Reporting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="subsystems/logging.html">4.16. Logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="technical_design.html#external-subsystems">4.17. External Subsystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence_spec.html">4.2. Specifying Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/data_management.html">4.3. Data Product Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/data_modeling.html">4.4. Data Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/metadata_management.html">4.5. Metadata Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/io.html">4.6. IO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/registration.html">4.7. Algorithm Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/plugin_management.html">4.8. Plugin Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/resource_management.html">4.9. Resource Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/application.html">4.10. Framework Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/configuration.html">4.11. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/algo_description.html">4.12. Algorithm Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/error_handler.html">4.13. Error Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/signal_handler.html">4.14. Signal Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/random_numbers.html">4.15. Random Number Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/monitoring.html">4.16. Monitoring and Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subsystems/logging.html">4.17. Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical_design.html#external-subsystems">4.18. External Subsystems</a></li>
 </ul>
 </li>
 </ul>
@@ -160,7 +160,7 @@
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Phlex Framework Design</a></li> 
       </ul>
     </div>

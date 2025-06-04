@@ -6,18 +6,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (1b2e040) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (f407182) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=dfc18828"></script>
+    <script src="static/documentation_options.js?v=4b07ef6a"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3.5. Specifying Sequences" href="sequence_spec.html" />
+    <link rel="next" title="3.5. HOF Operators" href="hof_operators.html" />
     <link rel="prev" title="3.3. Algorithms" href="algorithms.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -31,12 +31,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="sequence_spec.html" title="3.5. Specifying Sequences"
+          <a href="hof_operators.html" title="3.5. HOF Operators"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -109,7 +109,7 @@ A registration statement is a programming statement that closely follows the equ
 </dd>
 </dl>
 </div></blockquote>
-<p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.6</span></a> for specific interface).
+<p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm <a class="reference internal" href="requirements.html#algorithm-communication-via-data-products"><span class="std std-ref">[DUNE 1.1]</span></a> and the hardware resources required by the algorithm <a class="reference internal" href="requirements.html#algorithm-hardware-requirements"><span class="std std-ref">[DUNE 4]</span></a>.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm’s function signature.
 In other words:</p>
@@ -141,7 +141,7 @@ To do this, an additional argument (e.g. <code class="code highlight c++ docutil
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As discussed in <a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration"><span class="std std-numref">Section 3.11.2</span></a>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
+<p>As discussed in <a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration"><span class="std std-numref">Section 3.10.2</span></a>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
 </div>
 <p>Except for the specification of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> as the algorithm to be invoked, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span></code> as the HOF, all other pieces of information may be provided through the configuration.</p>
 </section>
@@ -244,8 +244,8 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="sequence_spec.html"
-                          title="next chapter"><span class="section-number">3.5. </span>Specifying Sequences</a></p>
+    <p class="topless"><a href="hof_operators.html"
+                          title="next chapter"><span class="section-number">3.5. </span>HOF Operators</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -275,12 +275,12 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="sequence_spec.html" title="3.5. Specifying Sequences"
+          <a href="hof_operators.html" title="3.5. HOF Operators"
              >next</a> |</li>
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>

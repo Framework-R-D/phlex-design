@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Framework requirements &#8212; Phlex 0 (1b2e040) documentation</title>
+    <title>2. Framework requirements &#8212; Phlex 0 (f407182) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=dfc18828"></script>
+    <script src="static/documentation_options.js?v=4b07ef6a"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="definitions.html" title="1. Definitions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Framework requirements</a></li> 
       </ul>
     </div>  
@@ -49,8 +49,10 @@
   <section id="framework-requirements">
 <h1><span class="section-number">2. </span>Framework requirements<a class="headerlink" href="#framework-requirements" title="Link to this heading">¶</a></h1>
 <p><strong>Requirements norm</strong>: Baseline 1 (created March 03, 2025)</p>
+<section id="conceptual-requirements">
+<h2><span class="section-number">2.1. </span>Conceptual requirements<a class="headerlink" href="#conceptual-requirements" title="Link to this heading">¶</a></h2>
 <section id="algorithm-decomposability">
-<h2><span class="section-number">2.1. </span>1 Algorithm Decomposability<a class="headerlink" href="#algorithm-decomposability" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.1. </span>1 Algorithm Decomposability<a class="headerlink" href="#algorithm-decomposability" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14536">DUNE STKH #1</a></div>
 <div class="line">See <a class="reference internal" href="scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a></div>
@@ -79,7 +81,7 @@ algorithms.</p></th>
 </tbody>
 </table>
 <section id="algorithm-communication-via-data-products">
-<h3><span class="section-number">2.1.1. </span>1.1 Algorithm Communication Via Data Products<a class="headerlink" href="#algorithm-communication-via-data-products" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.1.1. </span>1.1 Algorithm Communication Via Data Products<a class="headerlink" href="#algorithm-communication-via-data-products" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14847">DUNE STKH #111</a></div>
 <div class="line">See <a class="reference internal" href="scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>, <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a>, <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
@@ -107,7 +109,7 @@ algorithms via data products</p></th>
 </section>
 </section>
 <section id="data-product-representation">
-<h2><span class="section-number">2.2. </span>2 Data Product Representation<a class="headerlink" href="#data-product-representation" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.2. </span>2 Data Product Representation<a class="headerlink" href="#data-product-representation" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14539">DUNE STKH #2</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#structure-and-representation"><span class="std std-numref">Section 3.2.1.2</span></a></div>
@@ -138,7 +140,7 @@ representations as seen by algorithms.</p></th>
 </table>
 </section>
 <section id="full-utilization-of-dune-computing-resources">
-<h2><span class="section-number">2.3. </span>3 Full utilization of DUNE computing resources<a class="headerlink" href="#full-utilization-of-dune-computing-resources" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.3. </span>3 Full utilization of DUNE computing resources<a class="headerlink" href="#full-utilization-of-dune-computing-resources" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14548">DUNE STKH #8</a></p>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
@@ -170,7 +172,7 @@ computing resources.</p></th>
 </table>
 </section>
 <section id="algorithm-hardware-requirements">
-<h2><span class="section-number">2.4. </span>4 Algorithm hardware requirements<a class="headerlink" href="#algorithm-hardware-requirements" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.4. </span>4 Algorithm hardware requirements<a class="headerlink" href="#algorithm-hardware-requirements" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14549">DUNE STKH #9</a></div>
 <div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
@@ -199,7 +201,7 @@ to express hardware requirements of the algorithms.</p></th>
 </tbody>
 </table>
 <section id="algorithms-can-use-a-gpu">
-<h3><span class="section-number">2.4.1. </span>4.1 Algorithms can use a GPU<a class="headerlink" href="#algorithms-can-use-a-gpu" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.4.1. </span>4.1 Algorithms can use a GPU<a class="headerlink" href="#algorithms-can-use-a-gpu" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14551">DUNE STKH #11</a></p>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
@@ -226,65 +228,9 @@ require a GPU.</p></th>
 </tbody>
 </table>
 </section>
-<section id="shut-down-upon-unmet-algorithm-hardware-requirements">
-<h3><span class="section-number">2.4.2. </span>4.2 Shut down upon unmet algorithm hardware requirements<a class="headerlink" href="#shut-down-upon-unmet-algorithm-hardware-requirements" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14553">DUNE STKH #13</a></p>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall shut down if the platform fails
-to meet each specified hardware requirement.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>General</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="emit-diagnostic-upon-unmet-algorithm-hardware-requirements">
-<h3><span class="section-number">2.4.3. </span>4.3 Emit diagnostic upon unmet algorithm hardware requirements<a class="headerlink" href="#emit-diagnostic-upon-unmet-algorithm-hardware-requirements" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14885">DUNE STKH #112</a></p>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall emit a diagnostic message for
-each hardware requirement the platform fails to meet.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>General</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 <section id="support-for-multiple-programming-languages">
-<h2><span class="section-number">2.5. </span>5 Support for multiple programming languages<a class="headerlink" href="#support-for-multiple-programming-languages" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.5. </span>5 Support for multiple programming languages<a class="headerlink" href="#support-for-multiple-programming-languages" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14554">DUNE STKH #14</a></div>
 <div class="line">See <a class="reference internal" href="introduction.html#programming-languages"><span class="std std-numref">Section 1.3</span></a></div>
@@ -317,7 +263,7 @@ be added for that language as a sub-requirement.</p>
 </tbody>
 </table>
 <section id="support-c-algorithms">
-<h3><span class="section-number">2.5.1. </span>5.1 Support C++ algorithms<a class="headerlink" href="#support-c-algorithms" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.5.1. </span>5.1 Support C++ algorithms<a class="headerlink" href="#support-c-algorithms" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14663">DUNE STKH #81</a></div>
 <div class="line">See <a class="reference internal" href="introduction.html#programming-languages"><span class="std std-numref">Section 1.3</span></a></div>
@@ -344,7 +290,7 @@ algorithms written in C++.</p></th>
 </table>
 </section>
 <section id="support-python-algorithms">
-<h3><span class="section-number">2.5.2. </span>5.2 Support Python algorithms<a class="headerlink" href="#support-python-algorithms" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.5.2. </span>5.2 Support Python algorithms<a class="headerlink" href="#support-python-algorithms" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14664">DUNE STKH #82</a></div>
 <div class="line">See <a class="reference internal" href="introduction.html#programming-languages"><span class="std std-numref">Section 1.3</span></a></div>
@@ -371,39 +317,10 @@ algorithms written in Python.</p></th>
 </table>
 </section>
 </section>
-<section id="provide-instructions-for-writing-algorithms-in-supported-languages">
-<h2><span class="section-number">2.6. </span>6 Provide instructions for writing algorithms in supported languages<a class="headerlink" href="#provide-instructions-for-writing-algorithms-in-supported-languages" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14556">DUNE STKH #16</a></p>
-<div class="admonition-todo admonition" id="id5">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework documentation shall provide
-instructions for writing framework-executable
-algorithms in supported languages.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Documentation</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="persist-user-defined-metadata">
-<h2><span class="section-number">2.7. </span>7 Persist user-defined metadata<a class="headerlink" href="#persist-user-defined-metadata" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.6. </span>7 Persist user-defined metadata<a class="headerlink" href="#persist-user-defined-metadata" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14557">DUNE STKH #17</a></p>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -432,9 +349,9 @@ persistence of user-defined metadata.</p></th>
 </table>
 </section>
 <section id="framework-shall-read-its-own-output-files">
-<h2><span class="section-number">2.8. </span>8 Framework shall read its own output files<a class="headerlink" href="#framework-shall-read-its-own-output-files" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.7. </span>8 Framework shall read its own output files<a class="headerlink" href="#framework-shall-read-its-own-output-files" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14560">DUNE STKH #19</a></p>
-<div class="admonition-todo admonition" id="id7">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -466,7 +383,7 @@ of the combined job.</p></th>
 </table>
 </section>
 <section id="presenting-data-to-subsequent-algorithms">
-<h2><span class="section-number">2.9. </span>9 Presenting data to subsequent algorithms<a class="headerlink" href="#presenting-data-to-subsequent-algorithms" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.8. </span>9 Presenting data to subsequent algorithms<a class="headerlink" href="#presenting-data-to-subsequent-algorithms" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14562">DUNE STKH #20</a></div>
 <div class="line">See <a class="reference internal" href="scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>, <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a></div>
@@ -494,9 +411,9 @@ requesting algorithm.</p></th>
 </table>
 </section>
 <section id="mix-input-streams">
-<h2><span class="section-number">2.10. </span>10 Mix input streams<a class="headerlink" href="#mix-input-streams" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.9. </span>10 Mix input streams<a class="headerlink" href="#mix-input-streams" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14563">DUNE STKH #21</a></p>
-<div class="admonition-todo admonition" id="id8">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -526,9 +443,9 @@ originating from disparate input sources.</p></th>
 </table>
 </section>
 <section id="flexible-data-units">
-<h2><span class="section-number">2.11. </span>11 Flexible data units<a class="headerlink" href="#flexible-data-units" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.10. </span>11 Flexible data units<a class="headerlink" href="#flexible-data-units" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14580">DUNE STKH #22</a></p>
-<div class="admonition-todo admonition" id="id9">
+<div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -558,7 +475,7 @@ of data.</p></th>
 </tbody>
 </table>
 <section id="definition-of-data-products">
-<h3><span class="section-number">2.11.1. </span>11.1 Definition of data products<a class="headerlink" href="#definition-of-data-products" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.10.1. </span>11.1 Definition of data products<a class="headerlink" href="#definition-of-data-products" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14693">DUNE STKH #85</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>, <a class="reference internal" href="data_organization.html#defining-data-product-types"><span class="std std-numref">Section 3.2.1.3</span></a>, <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a></div>
@@ -585,7 +502,7 @@ user-level code to define data products.</p></th>
 </table>
 </section>
 <section id="creation-of-data-sets">
-<h3><span class="section-number">2.11.2. </span>11.2 Creation of data sets<a class="headerlink" href="#creation-of-data-sets" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.10.2. </span>11.2 Creation of data sets<a class="headerlink" href="#creation-of-data-sets" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14696">DUNE STKH #86</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>, <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a></div>
@@ -612,7 +529,7 @@ user-level code to create new data sets.</p></th>
 </table>
 </section>
 <section id="definition-of-data-families">
-<h3><span class="section-number">2.11.3. </span>11.3 Definition of data families<a class="headerlink" href="#definition-of-data-families" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.10.3. </span>11.3 Definition of data families<a class="headerlink" href="#definition-of-data-families" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14697">DUNE STKH #87</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>, <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a></div>
@@ -639,7 +556,7 @@ user-level code to define data families.</p></th>
 </table>
 </section>
 <section id="definition-of-data-family-hierarchies">
-<h3><span class="section-number">2.11.4. </span>11.4 Definition of data family hierarchies<a class="headerlink" href="#definition-of-data-family-hierarchies" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.10.4. </span>11.4 Definition of data family hierarchies<a class="headerlink" href="#definition-of-data-family-hierarchies" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14698">DUNE STKH #88</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>, <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a></div>
@@ -667,39 +584,8 @@ families.</p></th>
 </table>
 </section>
 </section>
-<section id="data-product-i-o-independence">
-<h2><span class="section-number">2.12. </span>12 Data product I/O independence<a class="headerlink" href="#data-product-i-o-independence" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14583">DUNE STKH #24</a></p>
-<div class="admonition-todo admonition" id="id10">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support reading from disk only
-the data products required by a given algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #14 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Data I/O layer</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="process-collections-of-unconstrained-size">
-<h2><span class="section-number">2.13. </span>13 Process collections of unconstrained size<a class="headerlink" href="#process-collections-of-unconstrained-size" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.11. </span>13 Process collections of unconstrained size<a class="headerlink" href="#process-collections-of-unconstrained-size" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14584">DUNE STKH #25</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a></div>
@@ -728,313 +614,12 @@ document.</p></td>
 </tr>
 </tbody>
 </table>
-<section id="read-collections-of-unconstrained-size">
-<h3><span class="section-number">2.13.1. </span>13.1 Read collections of unconstrained size<a class="headerlink" href="#read-collections-of-unconstrained-size" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14592">DUNE STKH #32</a></p>
-<div class="admonition-todo admonition" id="id11">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support the reading of
-collections too large to hold in memory.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #57 from the original DUNE document.</p>
-<p>Very large data collections could be 10s of GBs in
-size, and the memory budget may be a maximum of a few
-GBs.</p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Memory management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="write-collections-of-unconstrained-size">
-<h3><span class="section-number">2.13.2. </span>13.2 Write collections of unconstrained size<a class="headerlink" href="#write-collections-of-unconstrained-size" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15288">DUNE STKH #120</a></p>
-<div class="admonition-todo admonition" id="id12">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support the writing of
-collections too large to hold in memory.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Original, Memory management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="configuration-comparison">
-<h2><span class="section-number">2.14. </span>14 Configuration comparison<a class="headerlink" href="#configuration-comparison" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14724">DUNE STKH #98</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall provide the ability to compare
-two configurations.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Configuration</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="record-execution-environment">
-<h2><span class="section-number">2.15. </span>15 Record execution environment<a class="headerlink" href="#record-execution-environment" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14590">DUNE STKH #30</a></p>
-<div class="admonition-todo admonition" id="id13">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall record the job’s execution
-environment.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #20 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Reproducibility, Provenance</p></td>
-</tr>
-</tbody>
-</table>
-<section id="user-selectable-list-of-recordable-execution-environment-components">
-<h3><span class="section-number">2.15.1. </span>15.1 User-selectable list of recordable execution environment components<a class="headerlink" href="#user-selectable-list-of-recordable-execution-environment-components" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14730">DUNE STKH #100</a></p>
-<div class="admonition-todo admonition" id="id14">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall provide the list of recordable
-components of the execution environment.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Reproducibility, Provenance</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="save-user-selected-execution-environment-components">
-<h3><span class="section-number">2.15.2. </span>15.2 Save user-selected execution environment components<a class="headerlink" href="#save-user-selected-execution-environment-components" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14731">DUNE STKH #101</a></p>
-<div class="admonition-todo admonition" id="id15">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall save each execution-environment
-description selected by the user from the
-framework-provided-list.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Reproducibility, Provenance</p></td>
-</tr>
-</tbody>
-</table>
-<section id="record-user-selected-items-from-the-shell-environment">
-<h4><span class="section-number">2.15.2.1. </span>15.2.1 Record user-selected items from the shell environment<a class="headerlink" href="#record-user-selected-items-from-the-shell-environment" title="Link to this heading">¶</a></h4>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15480">DUNE STKH #123</a></p>
-<div class="admonition-todo admonition" id="id16">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall record user-selected items from
-the shell environment.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Provenance</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="user-provided-execution-environment-information">
-<h3><span class="section-number">2.15.3. </span>15.3 User-provided execution environment information<a class="headerlink" href="#user-provided-execution-environment-information" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15482">DUNE STKH #124</a></p>
-<div class="admonition-todo admonition" id="id17">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall record labelled execution
-environment information provided by the user.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Provenance</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="maximum-memory-usage">
-<h2><span class="section-number">2.16. </span>16 Maximum memory usage<a class="headerlink" href="#maximum-memory-usage" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14591">DUNE STKH #31</a></p>
-<div class="admonition-todo admonition" id="id18">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall gracefully shut down if the
-program attempts to exceed a configured memory limit.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #59 from the original DUNE document.</p>
-<p>The maximum memory available is a static quantity
-that can apply to (a) a job using an entire node with
-all of its available RSS, and (b) a job using a
-specific grid slot with a limit on the RSS.  It is
-assumed that the operating system and C++/Python
-runtimes are not already enforcing this limit.</p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Memory management, Resource management</p></td>
-</tr>
-</tbody>
-</table>
-<section id="diagnostic-message-when-exceeding-memory-limit">
-<h3><span class="section-number">2.16.1. </span>16.1 Diagnostic message when exceeding memory limit<a class="headerlink" href="#diagnostic-message-when-exceeding-memory-limit" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15802">DUNE STKH #137</a></p>
-<div class="admonition-todo admonition" id="id19">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall emit a diagnostic message if the
-program attempts to exceed the configured maximum
-memory.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Memory management, Error handling</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 <section id="unfolding-data-products">
-<h2><span class="section-number">2.17. </span>17 Unfolding data products<a class="headerlink" href="#unfolding-data-products" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.12. </span>17 Unfolding data products<a class="headerlink" href="#unfolding-data-products" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14593">DUNE STKH #33</a></div>
-<div class="line">See <a class="reference internal" href="hof_operators.html#partitioned-unfolds"><span class="std std-numref">Section 3.6.5</span></a></div>
+<div class="line">See <a class="reference internal" href="hof_operators.html#partitioned-unfolds"><span class="std std-numref">Section 3.5.5</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1063,9 +648,9 @@ products.</p></th>
 </table>
 </section>
 <section id="access-to-external-data-sources">
-<h2><span class="section-number">2.18. </span>18 Access to external data sources<a class="headerlink" href="#access-to-external-data-sources" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.13. </span>18 Access to external data sources<a class="headerlink" href="#access-to-external-data-sources" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14595">DUNE STKH #35</a></p>
-<div class="admonition-todo admonition" id="id20">
+<div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1098,12 +683,12 @@ data.”</p>
 </tbody>
 </table>
 <section id="calibration-database-algorithms">
-<h3><span class="section-number">2.18.1. </span>18.1 Calibration database algorithms<a class="headerlink" href="#calibration-database-algorithms" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.13.1. </span>18.1 Calibration database algorithms<a class="headerlink" href="#calibration-database-algorithms" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14600">DUNE STKH #40</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>.</div>
 </div>
-<div class="admonition-todo admonition" id="id21">
+<div class="admonition-todo admonition" id="id8">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1132,40 +717,8 @@ data from calibration databases.</p></th>
 </table>
 </section>
 </section>
-<section id="algorithm-code-versioning-and-build-information">
-<h2><span class="section-number">2.19. </span>19 Algorithm code versioning and build information<a class="headerlink" href="#algorithm-code-versioning-and-build-information" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14599">DUNE STKH #39</a></p>
-<div class="admonition-todo admonition" id="id22">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall have an option to record build
-information, including the source code version,
-associated with each algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #25 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Reproducibility, Provenance</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="algorithms-independent-of-framework-interface">
-<h2><span class="section-number">2.20. </span>20 Algorithms independent of framework interface<a class="headerlink" href="#algorithms-independent-of-framework-interface" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.14. </span>20 Algorithms independent of framework interface<a class="headerlink" href="#algorithms-independent-of-framework-interface" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14608">DUNE STKH #43</a></div>
 <div class="line">See <a class="reference internal" href="introduction.html#framework-independence"><span class="std std-numref">Section 1.4</span></a>, <a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a>, <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a></div>
@@ -1196,9 +749,9 @@ interface.</p></th>
 </table>
 </section>
 <section id="safely-executing-thread-safe-and-non-thread-safe-algorithms">
-<h2><span class="section-number">2.21. </span>21 Safely executing thread-safe and non-thread-safe algorithms<a class="headerlink" href="#safely-executing-thread-safe-and-non-thread-safe-algorithms" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.15. </span>21 Safely executing thread-safe and non-thread-safe algorithms<a class="headerlink" href="#safely-executing-thread-safe-and-non-thread-safe-algorithms" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14611">DUNE STKH #45</a></p>
-<div class="admonition-todo admonition" id="id23">
+<div class="admonition-todo admonition" id="id9">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1227,46 +780,11 @@ declared to be thread-safe.</p></th>
 </tbody>
 </table>
 </section>
-<section id="intra-algorithm-concurrency-and-multi-threading">
-<h2><span class="section-number">2.22. </span>22 Intra-algorithm concurrency and multi-threading<a class="headerlink" href="#intra-algorithm-concurrency-and-multi-threading" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14612">DUNE STKH #46</a></div>
-<div class="line">See <a class="reference internal" href="subsystems/task_management.html#task-management"><span class="std std-numref">Section 4.1</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall allow algorithms to use the same
-parallelism mechanisms the framework uses to schedule
-the execution of algorithms.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #27 from the original DUNE document.</p>
-<p>It is the responsibility of the algorithm author to
-ensure that any parallelism libraries used can work
-compatibly with those used by the framework itself.</p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Concurrency and multithreading</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="resource-specification-for-the-program">
-<h2><span class="section-number">2.23. </span>23 Resource specification for the program<a class="headerlink" href="#resource-specification-for-the-program" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.16. </span>23 Resource specification for the program<a class="headerlink" href="#resource-specification-for-the-program" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14613">DUNE STKH #47</a></div>
-<div class="line">See <a class="reference internal" href="subsystems/configuration.html#program-resource-specification"><span class="std std-numref">Section 4.10.1</span></a></div>
+<div class="line">See <a class="reference internal" href="subsystems/configuration.html#program-resource-specification"><span class="std std-numref">Section 4.11.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1292,95 +810,10 @@ management</p></td>
 </tr>
 </tbody>
 </table>
-<section id="specification-of-maximum-number-of-cpu-threads">
-<h3><span class="section-number">2.23.1. </span>23.1 Specification of maximum number of CPU threads<a class="headerlink" href="#specification-of-maximum-number-of-cpu-threads" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15865">DUNE STKH #146</a></p>
-<div class="admonition-todo admonition" id="id24">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of the
-maximum number of CPU threads permitted by the
-program.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-maximum-allowed-cpu-memory">
-<h3><span class="section-number">2.23.2. </span>23.2 Specification of maximum allowed CPU memory<a class="headerlink" href="#specification-of-maximum-allowed-cpu-memory" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15866">DUNE STKH #147</a></p>
-<div class="admonition-todo admonition" id="id25">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of the
-maximum CPU memory allowed by the program.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management, Memory management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-gpu-resources">
-<h3><span class="section-number">2.23.3. </span>23.3 Specification of GPU resources<a class="headerlink" href="#specification-of-gpu-resources" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15869">DUNE STKH #148</a></p>
-<div class="admonition-todo admonition" id="id26">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of GPU
-resources required by the program.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="specification-of-user-defined-resources">
-<h3><span class="section-number">2.23.4. </span>23.4 Specification of user-defined resources<a class="headerlink" href="#specification-of-user-defined-resources" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.16.1. </span>23.4 Specification of user-defined resources<a class="headerlink" href="#specification-of-user-defined-resources" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15871">DUNE STKH #149</a></p>
-<div class="admonition-todo admonition" id="id27">
+<div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1407,9 +840,9 @@ user-defined resources required by the program.</p></th>
 </section>
 </section>
 <section id="resource-specification-for-algorithms">
-<h2><span class="section-number">2.24. </span>24 Resource specification for algorithms<a class="headerlink" href="#resource-specification-for-algorithms" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.17. </span>24 Resource specification for algorithms<a class="headerlink" href="#resource-specification-for-algorithms" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14620">DUNE STKH #52</a></p>
-<div class="admonition-todo admonition" id="id28">
+<div class="admonition-todo admonition" id="id11">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1438,9 +871,9 @@ management</p></td>
 </tbody>
 </table>
 <section id="serial-access-to-a-thread-unsafe-resource">
-<h3><span class="section-number">2.24.1. </span>24.1 Serial access to a thread-unsafe resource<a class="headerlink" href="#serial-access-to-a-thread-unsafe-resource" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.17.1. </span>24.1 Serial access to a thread-unsafe resource<a class="headerlink" href="#serial-access-to-a-thread-unsafe-resource" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15856">DUNE STKH #145</a></p>
-<div class="admonition-todo admonition" id="id29">
+<div class="admonition-todo admonition" id="id12">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1467,155 +900,10 @@ management</p></td>
 </tbody>
 </table>
 </section>
-<section id="specification-of-algorithm-s-maximum-number-of-cpu-threads">
-<h3><span class="section-number">2.24.2. </span>24.2 Specification of algorithm’s maximum number of CPU threads<a class="headerlink" href="#specification-of-algorithm-s-maximum-number-of-cpu-threads" title="Link to this heading">¶</a></h3>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15883">DUNE STKH #152</a></div>
-<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of the
-maximum number of CPU threads permitted by the
-algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-algorithm-s-cpu-memory-usage">
-<h3><span class="section-number">2.24.3. </span>24.3 Specification of algorithm’s CPU memory usage<a class="headerlink" href="#specification-of-algorithm-s-cpu-memory-usage" title="Link to this heading">¶</a></h3>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15889">DUNE STKH #154</a></div>
-<div class="line">See <a class="reference internal" href="data_organization.html#structure-and-representation"><span class="std std-numref">Section 3.2.1.2</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of an
-algorithm’s expected CPU memory usage.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management, Memory management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-algorithm-s-gpu-resources">
-<h3><span class="section-number">2.24.4. </span>24.4 Specification of algorithm’s GPU resources<a class="headerlink" href="#specification-of-algorithm-s-gpu-resources" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15886">DUNE STKH #153</a></p>
-<div class="admonition-todo admonition" id="id30">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall enable the specification of GPU
-resources required by the algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Resource management</p></td>
-</tr>
-</tbody>
-</table>
-<section id="remote-gpu-algorithm-support">
-<h4><span class="section-number">2.24.4.1. </span>24.4.1 Remote GPU algorithm support<a class="headerlink" href="#remote-gpu-algorithm-support" title="Link to this heading">¶</a></h4>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14607">DUNE STKH #42</a></p>
-<div class="admonition-todo admonition" id="id31">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support algorithms that perform
-calculations using a remote GPU.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #70 as proposed to DUNE.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Services</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="local-gpu-algorithm-support">
-<h4><span class="section-number">2.24.4.2. </span>24.4.2 Local GPU algorithm support<a class="headerlink" href="#local-gpu-algorithm-support" title="Link to this heading">¶</a></h4>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14602">DUNE STKH #41</a></p>
-<div class="admonition-todo admonition" id="id32">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support algorithms that perform
-calculations using a local GPU.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #69 as proposed to DUNE.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Services</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
 <section id="specification-of-algorithm-s-user-defined-resources">
-<h3><span class="section-number">2.24.5. </span>24.5 Specification of algorithm’s user-defined resources<a class="headerlink" href="#specification-of-algorithm-s-user-defined-resources" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.17.2. </span>24.5 Specification of algorithm’s user-defined resources<a class="headerlink" href="#specification-of-algorithm-s-user-defined-resources" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15891">DUNE STKH #155</a></p>
-<div class="admonition-todo admonition" id="id33">
+<div class="admonition-todo admonition" id="id13">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1641,79 +929,10 @@ user-defined resources required by the algorithm.</p></th>
 </table>
 </section>
 </section>
-<section id="logging-resource-usage-per-algorithm-invocation">
-<h2><span class="section-number">2.25. </span>25 Logging resource usage per algorithm invocation<a class="headerlink" href="#logging-resource-usage-per-algorithm-invocation" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14614">DUNE STKH #48</a></p>
-<div class="admonition-todo admonition" id="id34">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support logging the usage of a
-specified resource for each algorithm using the
-resource.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #29 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Concurrency and multithreading, Resource
-management</p></td>
-</tr>
-</tbody>
-</table>
-<section id="elapsed-time-information">
-<h3><span class="section-number">2.25.1. </span>25.1 Elapsed time information<a class="headerlink" href="#elapsed-time-information" title="Link to this heading">¶</a></h3>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14629">DUNE STKH #60</a></div>
-<div class="line">See <a class="reference internal" href="subsystems/monitoring.html#monitoring-and-reporting"><span class="std std-numref">Section 4.15</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall have an option to provide elapsed
-time information for each algorithm executed in a
-framework program.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #66 as proposed to DUNE.</p>
-<p>This option is intended to capture wall-clock time
-and not CPU time.  If more granular reporting of CPU
-vs. IO time is required, dedicated profiling tools
-like VTune or Linaro Forge should be used.</p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>General, Resource management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
 <section id="resource-based-algorithm-concurrency">
-<h2><span class="section-number">2.26. </span>26 Resource-based algorithm concurrency<a class="headerlink" href="#resource-based-algorithm-concurrency" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.1.18. </span>26 Resource-based algorithm concurrency<a class="headerlink" href="#resource-based-algorithm-concurrency" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14618">DUNE STKH #50</a></p>
-<div class="admonition-todo admonition" id="id35">
+<div class="admonition-todo admonition" id="id14">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1742,44 +961,8 @@ management</p></td>
 </tr>
 </tbody>
 </table>
-<section id="efficient-execution-of-algorithms-requiring-access-to-a-network-resource">
-<h3><span class="section-number">2.26.1. </span>26.1 Efficient execution of algorithms requiring access to a network resource<a class="headerlink" href="#efficient-execution-of-algorithms-requiring-access-to-a-network-resource" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15854">DUNE STKH #144</a></p>
-<div class="admonition-todo admonition" id="id36">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall efficiently execute a graph of
-algorithms where at least one algorithm requires
-access to a network resource.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>An example of efficient execution is an algorithm
-requiring network resource does not occupy a core
-that can do other work while the algorithm “waits”
-for the resource to respond.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Concurrency and multithreading, Original, Resource
-management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="optimize-memory-management-for-data-products">
-<h3><span class="section-number">2.26.2. </span>26.2 Optimize memory management for data products<a class="headerlink" href="#optimize-memory-management-for-data-products" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.1.18.1. </span>26.2 Optimize memory management for data products<a class="headerlink" href="#optimize-memory-management-for-data-products" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15847">DUNE STKH #142</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-product-management"><span class="std std-numref">Section 3.2.3</span></a></div>
@@ -1814,10 +997,1021 @@ concurrently.</p></td>
 </tbody>
 </table>
 </section>
-<section id="optimize-availability-of-external-resources">
-<h3><span class="section-number">2.26.3. </span>26.3 Optimize availability of external resources<a class="headerlink" href="#optimize-availability-of-external-resources" title="Link to this heading">¶</a></h3>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15848">DUNE STKH #143</a></p>
+</section>
+<section id="composable-workflows-using-gpu-algorithms-and-cpu-algorithms">
+<h3><span class="section-number">2.1.19. </span>27 Composable workflows using GPU algorithms and CPU algorithms<a class="headerlink" href="#composable-workflows-using-gpu-algorithms-and-cpu-algorithms" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14622">DUNE STKH #54</a></p>
+<div class="admonition-todo admonition" id="id15">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support composable workflows that
+use GPU algorithms along with CPU algorithms.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #36 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Concurrency and multithreading, Resource
+management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-data-products-required-by-an-algorithm">
+<h3><span class="section-number">2.1.20. </span>28 Specification of data products required by an algorithm<a class="headerlink" href="#specification-of-data-products-required-by-an-algorithm" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14634">DUNE STKH #65</a></div>
+<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support the specification of data
+products required as input by an algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #63 as proposed to DUNE.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Registration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-data-products-created-by-an-algorithm">
+<h3><span class="section-number">2.1.21. </span>29 Specification of data products created by an algorithm<a class="headerlink" href="#specification-of-data-products-created-by-an-algorithm" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15897">DUNE STKH #156</a></div>
+<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support the specification of data
+products created as output by an algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Registration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-configuration-per-framework-execution">
+<h3><span class="section-number">2.1.22. </span>36 One configuration per framework execution<a class="headerlink" href="#one-configuration-per-framework-execution" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14638">DUNE STKH #69</a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall accept exactly one configuration
+per program execution.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #44 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Configuration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="framework-configuration-language">
+<h3><span class="section-number">2.1.23. </span>38 Framework configuration language<a class="headerlink" href="#framework-configuration-language" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14641">DUNE STKH #72</a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall provide the ability to configure
+the execution of a framework program at runtime using
+a human-readable language.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #60 as proposed to DUNE.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Configuration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="i-o-plugins">
+<h3><span class="section-number">2.1.24. </span>39 I/O plugins<a class="headerlink" href="#i-o-plugins" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14642">DUNE STKH #73</a></p>
+<div class="admonition-todo admonition" id="id16">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall provide a public API that enables
+the implementation of a concrete IO backend for a
+specific persistent storage format.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #50 from the original DUNE document.</p>
+<p>Data includes physics data and metadata (both
+user-provided and framework metadata).</p>
+<p>The goal is to enable non-framework developers to
+implement an IO backend without needing to modify the
+framework itself.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Data I/O layer, Original</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="technical-requirements">
+<h2><span class="section-number">2.2. </span>Technical requirements<a class="headerlink" href="#technical-requirements" title="Link to this heading">¶</a></h2>
+<section id="shut-down-upon-unmet-algorithm-hardware-requirements">
+<h3><span class="section-number">2.2.1. </span>4.2 Shut down upon unmet algorithm hardware requirements<a class="headerlink" href="#shut-down-upon-unmet-algorithm-hardware-requirements" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14553">DUNE STKH #13</a></p>
+<div class="admonition-todo admonition" id="id17">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall shut down if the platform fails
+to meet each specified hardware requirement.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>General</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="emit-diagnostic-upon-unmet-algorithm-hardware-requirements">
+<h3><span class="section-number">2.2.2. </span>4.3 Emit diagnostic upon unmet algorithm hardware requirements<a class="headerlink" href="#emit-diagnostic-upon-unmet-algorithm-hardware-requirements" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14885">DUNE STKH #112</a></p>
+<div class="admonition-todo admonition" id="id18">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall emit a diagnostic message for
+each hardware requirement the platform fails to meet.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>General</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="provide-instructions-for-writing-algorithms-in-supported-languages">
+<h3><span class="section-number">2.2.3. </span>6 Provide instructions for writing algorithms in supported languages<a class="headerlink" href="#provide-instructions-for-writing-algorithms-in-supported-languages" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14556">DUNE STKH #16</a></p>
+<div class="admonition-todo admonition" id="id19">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework documentation shall provide
+instructions for writing framework-executable
+algorithms in supported languages.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Documentation</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-product-i-o-independence">
+<h3><span class="section-number">2.2.4. </span>12 Data product I/O independence<a class="headerlink" href="#data-product-i-o-independence" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14583">DUNE STKH #24</a></p>
+<div class="admonition-todo admonition" id="id20">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support reading from disk only
+the data products required by a given algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #14 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Data I/O layer</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read-collections-of-unconstrained-size">
+<h3><span class="section-number">2.2.5. </span>13.1 Read collections of unconstrained size<a class="headerlink" href="#read-collections-of-unconstrained-size" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14592">DUNE STKH #32</a></p>
+<div class="admonition-todo admonition" id="id21">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support the reading of
+collections too large to hold in memory.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #57 from the original DUNE document.</p>
+<p>Very large data collections could be 10s of GBs in
+size, and the memory budget may be a maximum of a few
+GBs.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Memory management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="write-collections-of-unconstrained-size">
+<h3><span class="section-number">2.2.6. </span>13.2 Write collections of unconstrained size<a class="headerlink" href="#write-collections-of-unconstrained-size" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15288">DUNE STKH #120</a></p>
+<div class="admonition-todo admonition" id="id22">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support the writing of
+collections too large to hold in memory.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Original, Memory management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="configuration-comparison">
+<h3><span class="section-number">2.2.7. </span>14 Configuration comparison<a class="headerlink" href="#configuration-comparison" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14724">DUNE STKH #98</a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall provide the ability to compare
+two configurations.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Configuration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="record-execution-environment">
+<h3><span class="section-number">2.2.8. </span>15 Record execution environment<a class="headerlink" href="#record-execution-environment" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14590">DUNE STKH #30</a></p>
+<div class="admonition-todo admonition" id="id23">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall record the job’s execution
+environment.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #20 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Reproducibility, Provenance</p></td>
+</tr>
+</tbody>
+</table>
+<section id="user-selectable-list-of-recordable-execution-environment-components">
+<h4><span class="section-number">2.2.8.1. </span>15.1 User-selectable list of recordable execution environment components<a class="headerlink" href="#user-selectable-list-of-recordable-execution-environment-components" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14730">DUNE STKH #100</a></p>
+<div class="admonition-todo admonition" id="id24">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall provide the list of recordable
+components of the execution environment.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Reproducibility, Provenance</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="save-user-selected-execution-environment-components">
+<h4><span class="section-number">2.2.8.2. </span>15.2 Save user-selected execution environment components<a class="headerlink" href="#save-user-selected-execution-environment-components" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14731">DUNE STKH #101</a></p>
+<div class="admonition-todo admonition" id="id25">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall save each execution-environment
+description selected by the user from the
+framework-provided-list.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Reproducibility, Provenance</p></td>
+</tr>
+</tbody>
+</table>
+<section id="record-user-selected-items-from-the-shell-environment">
+<h5><span class="section-number">2.2.8.2.1. </span>15.2.1 Record user-selected items from the shell environment<a class="headerlink" href="#record-user-selected-items-from-the-shell-environment" title="Link to this heading">¶</a></h5>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15480">DUNE STKH #123</a></p>
+<div class="admonition-todo admonition" id="id26">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall record user-selected items from
+the shell environment.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Provenance</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="user-provided-execution-environment-information">
+<h4><span class="section-number">2.2.8.3. </span>15.3 User-provided execution environment information<a class="headerlink" href="#user-provided-execution-environment-information" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15482">DUNE STKH #124</a></p>
+<div class="admonition-todo admonition" id="id27">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall record labelled execution
+environment information provided by the user.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Provenance</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="maximum-memory-usage">
+<h3><span class="section-number">2.2.9. </span>16 Maximum memory usage<a class="headerlink" href="#maximum-memory-usage" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14591">DUNE STKH #31</a></p>
+<div class="admonition-todo admonition" id="id28">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall gracefully shut down if the
+program attempts to exceed a configured memory limit.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #59 from the original DUNE document.</p>
+<p>The maximum memory available is a static quantity
+that can apply to (a) a job using an entire node with
+all of its available RSS, and (b) a job using a
+specific grid slot with a limit on the RSS.  It is
+assumed that the operating system and C++/Python
+runtimes are not already enforcing this limit.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Memory management, Resource management</p></td>
+</tr>
+</tbody>
+</table>
+<section id="diagnostic-message-when-exceeding-memory-limit">
+<h4><span class="section-number">2.2.9.1. </span>16.1 Diagnostic message when exceeding memory limit<a class="headerlink" href="#diagnostic-message-when-exceeding-memory-limit" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15802">DUNE STKH #137</a></p>
+<div class="admonition-todo admonition" id="id29">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall emit a diagnostic message if the
+program attempts to exceed the configured maximum
+memory.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Memory management, Error handling</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="algorithm-code-versioning-and-build-information">
+<h3><span class="section-number">2.2.10. </span>19 Algorithm code versioning and build information<a class="headerlink" href="#algorithm-code-versioning-and-build-information" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14599">DUNE STKH #39</a></p>
+<div class="admonition-todo admonition" id="id30">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall have an option to record build
+information, including the source code version,
+associated with each algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #25 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Reproducibility, Provenance</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="intra-algorithm-concurrency-and-multi-threading">
+<h3><span class="section-number">2.2.11. </span>22 Intra-algorithm concurrency and multi-threading<a class="headerlink" href="#intra-algorithm-concurrency-and-multi-threading" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14612">DUNE STKH #46</a></div>
+<div class="line">See <a class="reference internal" href="subsystems/task_management.html#task-management"><span class="std std-numref">Section 4.1</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall allow algorithms to use the same
+parallelism mechanisms the framework uses to schedule
+the execution of algorithms.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #27 from the original DUNE document.</p>
+<p>It is the responsibility of the algorithm author to
+ensure that any parallelism libraries used can work
+compatibly with those used by the framework itself.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Concurrency and multithreading</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-maximum-number-of-cpu-threads">
+<h3><span class="section-number">2.2.12. </span>23.1 Specification of maximum number of CPU threads<a class="headerlink" href="#specification-of-maximum-number-of-cpu-threads" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15865">DUNE STKH #146</a></p>
+<div class="admonition-todo admonition" id="id31">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of the
+maximum number of CPU threads permitted by the
+program.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-maximum-allowed-cpu-memory">
+<h3><span class="section-number">2.2.13. </span>23.2 Specification of maximum allowed CPU memory<a class="headerlink" href="#specification-of-maximum-allowed-cpu-memory" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15866">DUNE STKH #147</a></p>
+<div class="admonition-todo admonition" id="id32">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of the
+maximum CPU memory allowed by the program.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management, Memory management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-gpu-resources">
+<h3><span class="section-number">2.2.14. </span>23.3 Specification of GPU resources<a class="headerlink" href="#specification-of-gpu-resources" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15869">DUNE STKH #148</a></p>
+<div class="admonition-todo admonition" id="id33">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of GPU
+resources required by the program.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-algorithm-s-maximum-number-of-cpu-threads">
+<h3><span class="section-number">2.2.15. </span>24.2 Specification of algorithm’s maximum number of CPU threads<a class="headerlink" href="#specification-of-algorithm-s-maximum-number-of-cpu-threads" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15883">DUNE STKH #152</a></div>
+<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of the
+maximum number of CPU threads permitted by the
+algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-algorithm-s-cpu-memory-usage">
+<h3><span class="section-number">2.2.16. </span>24.3 Specification of algorithm’s CPU memory usage<a class="headerlink" href="#specification-of-algorithm-s-cpu-memory-usage" title="Link to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15889">DUNE STKH #154</a></div>
+<div class="line">See <a class="reference internal" href="data_organization.html#structure-and-representation"><span class="std std-numref">Section 3.2.1.2</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of an
+algorithm’s expected CPU memory usage.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management, Memory management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specification-of-algorithm-s-gpu-resources">
+<h3><span class="section-number">2.2.17. </span>24.4 Specification of algorithm’s GPU resources<a class="headerlink" href="#specification-of-algorithm-s-gpu-resources" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15886">DUNE STKH #153</a></p>
+<div class="admonition-todo admonition" id="id34">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall enable the specification of GPU
+resources required by the algorithm.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tags</p></td>
+<td><p>Resource management</p></td>
+</tr>
+</tbody>
+</table>
+<section id="remote-gpu-algorithm-support">
+<h4><span class="section-number">2.2.17.1. </span>24.4.1 Remote GPU algorithm support<a class="headerlink" href="#remote-gpu-algorithm-support" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14607">DUNE STKH #42</a></p>
+<div class="admonition-todo admonition" id="id35">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support algorithms that perform
+calculations using a remote GPU.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #70 as proposed to DUNE.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Services</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="local-gpu-algorithm-support">
+<h4><span class="section-number">2.2.17.2. </span>24.4.2 Local GPU algorithm support<a class="headerlink" href="#local-gpu-algorithm-support" title="Link to this heading">¶</a></h4>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14602">DUNE STKH #41</a></p>
+<div class="admonition-todo admonition" id="id36">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support algorithms that perform
+calculations using a local GPU.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #69 as proposed to DUNE.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Services</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="logging-resource-usage-per-algorithm-invocation">
+<h3><span class="section-number">2.2.18. </span>25 Logging resource usage per algorithm invocation<a class="headerlink" href="#logging-resource-usage-per-algorithm-invocation" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14614">DUNE STKH #48</a></p>
 <div class="admonition-todo admonition" id="id37">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall support logging the usage of a
+specified resource for each algorithm using the
+resource.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #29 from the original DUNE document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Original, Concurrency and multithreading, Resource
+management</p></td>
+</tr>
+</tbody>
+</table>
+<section id="elapsed-time-information">
+<h4><span class="section-number">2.2.18.1. </span>25.1 Elapsed time information<a class="headerlink" href="#elapsed-time-information" title="Link to this heading">¶</a></h4>
+<div class="line-block">
+<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14629">DUNE STKH #60</a></div>
+<div class="line">See <a class="reference internal" href="subsystems/monitoring.html#monitoring-and-reporting"><span class="std std-numref">Section 4.16</span></a></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall have an option to provide elapsed
+time information for each algorithm executed in a
+framework program.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>This is ID #66 as proposed to DUNE.</p>
+<p>This option is intended to capture wall-clock time
+and not CPU time.  If more granular reporting of CPU
+vs. IO time is required, dedicated profiling tools
+like VTune or Linaro Forge should be used.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>General, Resource management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="efficient-execution-of-algorithms-requiring-access-to-a-network-resource">
+<h3><span class="section-number">2.2.19. </span>26.1 Efficient execution of algorithms requiring access to a network resource<a class="headerlink" href="#efficient-execution-of-algorithms-requiring-access-to-a-network-resource" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15854">DUNE STKH #144</a></p>
+<div class="admonition-todo admonition" id="id38">
+<p class="admonition-title">Todo</p>
+<p>Not yet referenced in design</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>The framework shall efficiently execute a graph of
+algorithms where at least one algorithm requires
+access to a network resource.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Notes</p></td>
+<td><p>An example of efficient execution is an algorithm
+requiring network resource does not occupy a core
+that can do other work while the algorithm “waits”
+for the resource to respond.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Approved</p></td>
+</tr>
+<tr class="row-even"><td><p>Tags</p></td>
+<td><p>Concurrency and multithreading, Original, Resource
+management</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="optimize-availability-of-external-resources">
+<h3><span class="section-number">2.2.20. </span>26.3 Optimize availability of external resources<a class="headerlink" href="#optimize-availability-of-external-resources" title="Link to this heading">¶</a></h3>
+<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15848">DUNE STKH #143</a></p>
+<div class="admonition-todo admonition" id="id39">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1857,9 +2051,9 @@ central database providing these.”</p>
 </table>
 </section>
 <section id="efficient-execution-of-algorithms-with-specific-cpu-memory-requirements">
-<h3><span class="section-number">2.26.4. </span>26.4 Efficient execution of algorithms with specific CPU memory requirements<a class="headerlink" href="#efficient-execution-of-algorithms-with-specific-cpu-memory-requirements" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">2.2.21. </span>26.4 Efficient execution of algorithms with specific CPU memory requirements<a class="headerlink" href="#efficient-execution-of-algorithms-with-specific-cpu-memory-requirements" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15874">DUNE STKH #150</a></p>
-<div class="admonition-todo admonition" id="id38">
+<div class="admonition-todo admonition" id="id40">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1886,9 +2080,9 @@ required amount of CPU memory.</p></th>
 </table>
 </section>
 <section id="efficient-execution-of-algorithms-with-specific-gpu-memory-requirements">
-<h3><span class="section-number">2.26.5. </span>26.5 Efficient execution of algorithms with specific GPU memory requirements<a class="headerlink" href="#efficient-execution-of-algorithms-with-specific-gpu-memory-requirements" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">2.2.22. </span>26.5 Efficient execution of algorithms with specific GPU memory requirements<a class="headerlink" href="#efficient-execution-of-algorithms-with-specific-gpu-memory-requirements" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15875">DUNE STKH #151</a></p>
-<div class="admonition-todo admonition" id="id39">
+<div class="admonition-todo admonition" id="id41">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -1914,100 +2108,10 @@ required amount of GPU memory.</p></th>
 </tbody>
 </table>
 </section>
-</section>
-<section id="composable-workflows-using-gpu-algorithms-and-cpu-algorithms">
-<h2><span class="section-number">2.27. </span>27 Composable workflows using GPU algorithms and CPU algorithms<a class="headerlink" href="#composable-workflows-using-gpu-algorithms-and-cpu-algorithms" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14622">DUNE STKH #54</a></p>
-<div class="admonition-todo admonition" id="id40">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support composable workflows that
-use GPU algorithms along with CPU algorithms.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #36 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Concurrency and multithreading, Resource
-management</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-data-products-required-by-an-algorithm">
-<h2><span class="section-number">2.28. </span>28 Specification of data products required by an algorithm<a class="headerlink" href="#specification-of-data-products-required-by-an-algorithm" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14634">DUNE STKH #65</a></div>
-<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support the specification of data
-products required as input by an algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #63 as proposed to DUNE.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Registration</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="specification-of-data-products-created-by-an-algorithm">
-<h2><span class="section-number">2.29. </span>29 Specification of data products created by an algorithm<a class="headerlink" href="#specification-of-data-products-created-by-an-algorithm" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15897">DUNE STKH #156</a></div>
-<div class="line">See <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall support the specification of data
-products created as output by an algorithm.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-odd"><td><p>Tags</p></td>
-<td><p>Registration</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="emit-message-describing-data-flow-of-program">
-<h2><span class="section-number">2.30. </span>30 Emit message describing data flow of program<a class="headerlink" href="#emit-message-describing-data-flow-of-program" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.23. </span>30 Emit message describing data flow of program<a class="headerlink" href="#emit-message-describing-data-flow-of-program" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14637">DUNE STKH #68</a></p>
-<div class="admonition-todo admonition" id="id41">
+<div class="admonition-todo admonition" id="id42">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -2037,9 +2141,9 @@ without executing the workflow.</p></th>
 </table>
 </section>
 <section id="emit-message-stating-algorithm-resource-requirements">
-<h2><span class="section-number">2.31. </span>31 Emit message stating algorithm resource requirements<a class="headerlink" href="#emit-message-stating-algorithm-resource-requirements" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.24. </span>31 Emit message stating algorithm resource requirements<a class="headerlink" href="#emit-message-stating-algorithm-resource-requirements" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14625">DUNE STKH #56</a></p>
-<div class="admonition-todo admonition" id="id42">
+<div class="admonition-todo admonition" id="id43">
 <p class="admonition-title">Todo</p>
 <p>Not yet referenced in design</p>
 </div>
@@ -2070,10 +2174,10 @@ management</p></td>
 </table>
 </section>
 <section id="monitoring-global-memory-use">
-<h2><span class="section-number">2.32. </span>32 Monitoring global memory use<a class="headerlink" href="#monitoring-global-memory-use" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.25. </span>32 Monitoring global memory use<a class="headerlink" href="#monitoring-global-memory-use" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14628">DUNE STKH #59</a></div>
-<div class="line">See <a class="reference internal" href="subsystems/monitoring.html#monitoring-and-reporting"><span class="std std-numref">Section 4.15</span></a></div>
+<div class="line">See <a class="reference internal" href="subsystems/monitoring.html#monitoring-and-reporting"><span class="std std-numref">Section 4.16</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2101,10 +2205,10 @@ points in time.</p></th>
 </table>
 </section>
 <section id="framework-independent-message-logging">
-<h2><span class="section-number">2.33. </span>33 Framework-independent message logging<a class="headerlink" href="#framework-independent-message-logging" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.26. </span>33 Framework-independent message logging<a class="headerlink" href="#framework-independent-message-logging" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14630">DUNE STKH #61</a></div>
-<div class="line">See <a class="reference internal" href="subsystems/logging.html#logging"><span class="std std-numref">Section 4.16</span></a></div>
+<div class="line">See <a class="reference internal" href="subsystems/logging.html#logging"><span class="std std-numref">Section 4.17</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2132,10 +2236,10 @@ explicitly relying on the framework.</p></th>
 </table>
 </section>
 <section id="configuration-validation">
-<h2><span class="section-number">2.34. </span>34 Configuration validation<a class="headerlink" href="#configuration-validation" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.27. </span>34 Configuration validation<a class="headerlink" href="#configuration-validation" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14633">DUNE STKH #64</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2163,10 +2267,10 @@ registration time.</p></th>
 </table>
 </section>
 <section id="algorithm-configuration-schema-availability">
-<h2><span class="section-number">2.35. </span>35 Algorithm configuration schema availability<a class="headerlink" href="#algorithm-configuration-schema-availability" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.28. </span>35 Algorithm configuration schema availability<a class="headerlink" href="#algorithm-configuration-schema-availability" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14636">DUNE STKH #67</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration"><span class="std std-numref">Section 3.11.3</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration"><span class="std std-numref">Section 3.10.3</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2193,41 +2297,11 @@ form.</p></th>
 </tbody>
 </table>
 </section>
-<section id="one-configuration-per-framework-execution">
-<h2><span class="section-number">2.36. </span>36 One configuration per framework execution<a class="headerlink" href="#one-configuration-per-framework-execution" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14638">DUNE STKH #69</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall accept exactly one configuration
-per program execution.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #44 from the original DUNE document.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Original, Configuration</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="eager-validation-of-algorithm-configuration">
-<h2><span class="section-number">2.37. </span>37 Eager validation of algorithm configuration<a class="headerlink" href="#eager-validation-of-algorithm-configuration" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.2.29. </span>37 Eager validation of algorithm configuration<a class="headerlink" href="#eager-validation-of-algorithm-configuration" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14639">DUNE STKH #70</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a>, <a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration"><span class="std std-numref">Section 3.11.3</span></a>.</div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a>, <a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration"><span class="std std-numref">Section 3.10.3</span></a>.</div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2257,76 +2331,8 @@ schemata.</p>
 </tbody>
 </table>
 </section>
-<section id="framework-configuration-language">
-<h2><span class="section-number">2.38. </span>38 Framework configuration language<a class="headerlink" href="#framework-configuration-language" title="Link to this heading">¶</a></h2>
-<div class="line-block">
-<div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14641">DUNE STKH #72</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall provide the ability to configure
-the execution of a framework program at runtime using
-a human-readable language.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #60 as proposed to DUNE.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Configuration</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="i-o-plugins">
-<h2><span class="section-number">2.39. </span>39 I/O plugins<a class="headerlink" href="#i-o-plugins" title="Link to this heading">¶</a></h2>
-<p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14642">DUNE STKH #73</a></p>
-<div class="admonition-todo admonition" id="id43">
-<p class="admonition-title">Todo</p>
-<p>Not yet referenced in design</p>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Requirement</p></th>
-<th class="head"><p>The framework shall provide a public API that enables
-the implementation of a concrete IO backend for a
-specific persistent storage format.</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Notes</p></td>
-<td><p>This is ID #50 from the original DUNE document.</p>
-<p>Data includes physics data and metadata (both
-user-provided and framework metadata).</p>
-<p>The goal is to enable non-framework developers to
-implement an IO backend without needing to modify the
-framework itself.</p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Status</p></td>
-<td><p>Approved</p></td>
-</tr>
-<tr class="row-even"><td><p>Tags</p></td>
-<td><p>Data I/O layer, Original</p></td>
-</tr>
-</tbody>
-</table>
 <section id="i-o-backend-for-root">
-<h3><span class="section-number">2.39.1. </span>39.1 I/O backend for ROOT<a class="headerlink" href="#i-o-backend-for-root" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">2.2.30. </span>39.1 I/O backend for ROOT<a class="headerlink" href="#i-o-backend-for-root" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14643">DUNE STKH #74</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a>.</div>
@@ -2356,7 +2362,7 @@ backend.</p></th>
 </table>
 </section>
 <section id="i-o-backend-for-hdf5">
-<h3><span class="section-number">2.39.2. </span>39.2 I/O backend for HDF5<a class="headerlink" href="#i-o-backend-for-hdf5" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">2.2.31. </span>39.2 I/O backend for HDF5<a class="headerlink" href="#i-o-backend-for-hdf5" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15838">DUNE STKH #141</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a>.</div>
@@ -2383,8 +2389,10 @@ backend.</p></th>
 </table>
 </section>
 </section>
+<section id="unclassified-requirements">
+<h2><span class="section-number">2.3. </span>Unclassified requirements<a class="headerlink" href="#unclassified-requirements" title="Link to this heading">¶</a></h2>
 <section id="data-i-o-backward-compatibility">
-<h2><span class="section-number">2.40. </span>40 Data I/O backward compatibility<a class="headerlink" href="#data-i-o-backward-compatibility" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.1. </span>40 Data I/O backward compatibility<a class="headerlink" href="#data-i-o-backward-compatibility" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14645">DUNE STKH #76</a></p>
 <div class="admonition-todo admonition" id="id44">
 <p class="admonition-title">Todo</p>
@@ -2419,7 +2427,7 @@ framework.</p>
 </tbody>
 </table>
 <section id="data-product-backward-compatibility">
-<h3><span class="section-number">2.40.1. </span>40.1 Data product backward compatibility<a class="headerlink" href="#data-product-backward-compatibility" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.1.1. </span>40.1 Data product backward compatibility<a class="headerlink" href="#data-product-backward-compatibility" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14796">DUNE STKH #106</a></p>
 <div class="admonition-todo admonition" id="id45">
 <p class="admonition-title">Todo</p>
@@ -2447,7 +2455,7 @@ compatibility of data products.</p></th>
 </table>
 </section>
 <section id="metadata-backward-compatibility">
-<h3><span class="section-number">2.40.2. </span>40.2 Metadata backward compatibility<a class="headerlink" href="#metadata-backward-compatibility" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.1.2. </span>40.2 Metadata backward compatibility<a class="headerlink" href="#metadata-backward-compatibility" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14797">DUNE STKH #107</a></p>
 <div class="admonition-todo admonition" id="id46">
 <p class="admonition-title">Todo</p>
@@ -2482,7 +2490,7 @@ framework operation.</p></td>
 </section>
 </section>
 <section id="configurable-data-compression">
-<h2><span class="section-number">2.41. </span>41 Configurable data compression<a class="headerlink" href="#configurable-data-compression" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.2. </span>41 Configurable data compression<a class="headerlink" href="#configurable-data-compression" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14646">DUNE STKH #77</a></p>
 <div class="admonition-todo admonition" id="id47">
 <p class="admonition-title">Todo</p>
@@ -2514,7 +2522,7 @@ concrete IO implementation.</p></th>
 </table>
 </section>
 <section id="user-configurable-output-file-rollover">
-<h2><span class="section-number">2.42. </span>42 User-configurable output file rollover<a class="headerlink" href="#user-configurable-output-file-rollover" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.3. </span>42 User-configurable output file rollover<a class="headerlink" href="#user-configurable-output-file-rollover" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14647">DUNE STKH #78</a></p>
 <div class="admonition-todo admonition" id="id48">
 <p class="admonition-title">Todo</p>
@@ -2544,7 +2552,7 @@ rollover of output files.</p></th>
 </tbody>
 </table>
 <section id="output-file-rollover-due-to-number-of-data-sets-in-data-family">
-<h3><span class="section-number">2.42.1. </span>42.1 Output file rollover due to number of data sets in data family<a class="headerlink" href="#output-file-rollover-due-to-number-of-data-sets-in-data-family" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.3.1. </span>42.1 Output file rollover due to number of data sets in data family<a class="headerlink" href="#output-file-rollover-due-to-number-of-data-sets-in-data-family" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14806">DUNE STKH #109</a></p>
 <div class="admonition-todo admonition" id="id49">
 <p class="admonition-title">Todo</p>
@@ -2583,7 +2591,7 @@ contain data for:</p>
 </table>
 </section>
 <section id="output-file-rollover-due-to-file-size">
-<h3><span class="section-number">2.42.2. </span>42.2 Output file rollover due to file size<a class="headerlink" href="#output-file-rollover-due-to-file-size" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.3.2. </span>42.2 Output file rollover due to file size<a class="headerlink" href="#output-file-rollover-due-to-file-size" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15826">DUNE STKH #138</a></p>
 <div class="admonition-todo admonition" id="id50">
 <p class="admonition-title">Todo</p>
@@ -2612,7 +2620,7 @@ output-file size.</p></th>
 </table>
 </section>
 <section id="output-file-rollover-due-to-user-defined-quantities">
-<h3><span class="section-number">2.42.3. </span>42.3 Output file rollover due to user-defined quantities<a class="headerlink" href="#output-file-rollover-due-to-user-defined-quantities" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.3.3. </span>42.3 Output file rollover due to user-defined quantities<a class="headerlink" href="#output-file-rollover-due-to-user-defined-quantities" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15830">DUNE STKH #139</a></p>
 <div class="admonition-todo admonition" id="id51">
 <p class="admonition-title">Todo</p>
@@ -2645,7 +2653,7 @@ quantity is the number of protons on target (POTs).</p></td>
 </table>
 </section>
 <section id="output-file-rollover-due-to-file-lifetime">
-<h3><span class="section-number">2.42.4. </span>42.4 Output file rollover due to file lifetime<a class="headerlink" href="#output-file-rollover-due-to-file-lifetime" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.3.4. </span>42.4 Output file rollover due to file lifetime<a class="headerlink" href="#output-file-rollover-due-to-file-lifetime" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15832">DUNE STKH #140</a></p>
 <div class="admonition-todo admonition" id="id52">
 <p class="admonition-title">Todo</p>
@@ -2675,7 +2683,7 @@ the file has been open.</p></th>
 </section>
 </section>
 <section id="algorithm-invocation-with-data-products-from-multiple-data-sets">
-<h2><span class="section-number">2.43. </span>43 Algorithm invocation with data products from multiple data sets<a class="headerlink" href="#algorithm-invocation-with-data-products-from-multiple-data-sets" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.4. </span>43 Algorithm invocation with data products from multiple data sets<a class="headerlink" href="#algorithm-invocation-with-data-products-from-multiple-data-sets" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14705">DUNE STKH #89</a></p>
 <div class="admonition-todo admonition" id="id53">
 <p class="admonition-title">Todo</p>
@@ -2702,7 +2710,7 @@ algorithm with data products from multiple data sets.</p></th>
 </tbody>
 </table>
 <section id="algorithm-invocation-with-data-products-from-adjacent-data-sets">
-<h3><span class="section-number">2.43.1. </span>43.1 Algorithm invocation with data products from adjacent data sets<a class="headerlink" href="#algorithm-invocation-with-data-products-from-adjacent-data-sets" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.4.1. </span>43.1 Algorithm invocation with data products from adjacent data sets<a class="headerlink" href="#algorithm-invocation-with-data-products-from-adjacent-data-sets" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14713">DUNE STKH #91</a></p>
 <div class="admonition-todo admonition" id="id54">
 <p class="admonition-title">Todo</p>
@@ -2730,7 +2738,7 @@ data sets.</p></th>
 </tbody>
 </table>
 <section id="user-defined-adjacency">
-<h4><span class="section-number">2.43.1.1. </span>43.1.1 User-defined adjacency<a class="headerlink" href="#user-defined-adjacency" title="Link to this heading">¶</a></h4>
+<h5><span class="section-number">2.3.4.1.1. </span>43.1.1 User-defined adjacency<a class="headerlink" href="#user-defined-adjacency" title="Link to this heading">¶</a></h5>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14714">DUNE STKH #92</a></p>
 <div class="admonition-todo admonition" id="id55">
 <p class="admonition-title">Todo</p>
@@ -2760,7 +2768,7 @@ adjacency of data sets within a data family.</p></th>
 </section>
 </section>
 <section id="algorithm-invocation-with-data-products-from-multiple-data-families">
-<h2><span class="section-number">2.44. </span>44 Algorithm invocation with data products from multiple data families<a class="headerlink" href="#algorithm-invocation-with-data-products-from-multiple-data-families" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.5. </span>44 Algorithm invocation with data products from multiple data families<a class="headerlink" href="#algorithm-invocation-with-data-products-from-multiple-data-families" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14937">DUNE STKH #113</a></p>
 <div class="admonition-todo admonition" id="id56">
 <p class="admonition-title">Todo</p>
@@ -2789,7 +2797,7 @@ families.</p></th>
 </table>
 </section>
 <section id="specification-of-algorithm-output-fpus">
-<h2><span class="section-number">2.45. </span>45 Specification of algorithm output FPUs<a class="headerlink" href="#specification-of-algorithm-output-fpus" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.6. </span>45 Specification of algorithm output FPUs<a class="headerlink" href="#specification-of-algorithm-output-fpus" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14706">DUNE STKH #90</a></p>
 <div class="admonition-todo admonition" id="id57">
 <p class="admonition-title">Todo</p>
@@ -2824,7 +2832,7 @@ the plugin level (perhaps by configuration).</p></td>
 </table>
 </section>
 <section id="algorithm-data-separability">
-<h2><span class="section-number">2.46. </span>46 Algorithm-Data Separability<a class="headerlink" href="#algorithm-data-separability" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.7. </span>46 Algorithm-Data Separability<a class="headerlink" href="#algorithm-data-separability" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14845">DUNE STKH #110</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a></div>
@@ -2851,7 +2859,7 @@ separable from those algorithms.</p></th>
 </table>
 </section>
 <section id="protodune-single-phase-raw-data">
-<h2><span class="section-number">2.47. </span>47 ProtoDUNE single-phase raw data<a class="headerlink" href="#protodune-single-phase-raw-data" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.8. </span>47 ProtoDUNE single-phase raw data<a class="headerlink" href="#protodune-single-phase-raw-data" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15239">DUNE STKH #116</a></p>
 <div class="admonition-todo admonition" id="id58">
 <p class="admonition-title">Todo</p>
@@ -2888,7 +2896,7 @@ data for reading within the framework).</p>
 </table>
 </section>
 <section id="protodune-dual-phase-raw-data">
-<h2><span class="section-number">2.48. </span>48 ProtoDUNE dual-phase raw data<a class="headerlink" href="#protodune-dual-phase-raw-data" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.9. </span>48 ProtoDUNE dual-phase raw data<a class="headerlink" href="#protodune-dual-phase-raw-data" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15240">DUNE STKH #117</a></p>
 <div class="admonition-todo admonition" id="id59">
 <p class="admonition-title">Todo</p>
@@ -2925,7 +2933,7 @@ data for reading within the framework).</p>
 </table>
 </section>
 <section id="protodune-ii-horizontal-drift-raw-data">
-<h2><span class="section-number">2.49. </span>49 ProtoDUNE II horizontal-drift raw data<a class="headerlink" href="#protodune-ii-horizontal-drift-raw-data" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.10. </span>49 ProtoDUNE II horizontal-drift raw data<a class="headerlink" href="#protodune-ii-horizontal-drift-raw-data" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15242">DUNE STKH #118</a></p>
 <div class="admonition-todo admonition" id="id60">
 <p class="admonition-title">Todo</p>
@@ -2953,7 +2961,7 @@ ProtoDUNE II horizontal-drift raw data.</p></th>
 </table>
 </section>
 <section id="protodune-ii-vertical-drift-raw-data">
-<h2><span class="section-number">2.50. </span>50 ProtoDUNE II vertical-drift raw data<a class="headerlink" href="#protodune-ii-vertical-drift-raw-data" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.11. </span>50 ProtoDUNE II vertical-drift raw data<a class="headerlink" href="#protodune-ii-vertical-drift-raw-data" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15244">DUNE STKH #119</a></p>
 <div class="admonition-todo admonition" id="id61">
 <p class="admonition-title">Todo</p>
@@ -2981,7 +2989,7 @@ ProtoDUNE II vertical-drift raw data.</p></th>
 </table>
 </section>
 <section id="provenance-discovery">
-<h2><span class="section-number">2.51. </span>51 Provenance discovery<a class="headerlink" href="#provenance-discovery" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.12. </span>51 Provenance discovery<a class="headerlink" href="#provenance-discovery" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15293">DUNE STKH #121</a></div>
 <div class="line">See <a class="reference internal" href="introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>, <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a>, <a class="reference internal" href="data_organization.html#data-product-management"><span class="std std-numref">Section 3.2.3</span></a>, <a class="reference internal" href="data_organization.html#data-product-identification"><span class="std std-numref">Section 3.2.4</span></a>.</div>
@@ -3007,10 +3015,10 @@ provenance of data products.</p></th>
 </tbody>
 </table>
 <section id="framework-configuration-persistency">
-<h3><span class="section-number">2.51.1. </span>51.1 Framework configuration persistency<a class="headerlink" href="#framework-configuration-persistency" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.12.1. </span>51.1 Framework configuration persistency<a class="headerlink" href="#framework-configuration-persistency" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14587">DUNE STKH #27</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3041,7 +3049,7 @@ reproducing previous results.</p>
 </table>
 </section>
 <section id="framework-recording-of-metadata-for-reproduction-of-output-data">
-<h3><span class="section-number">2.51.2. </span>51.2 Framework recording of metadata for reproduction of output data<a class="headerlink" href="#framework-recording-of-metadata-for-reproduction-of-output-data" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.12.2. </span>51.2 Framework recording of metadata for reproduction of output data<a class="headerlink" href="#framework-recording-of-metadata-for-reproduction-of-output-data" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14588">DUNE STKH #28</a></p>
 <div class="admonition-todo admonition" id="id62">
 <p class="admonition-title">Todo</p>
@@ -3074,7 +3082,7 @@ used to produce the data recorded in that output.</p></th>
 </section>
 </section>
 <section id="reproducibility-of-data-products">
-<h2><span class="section-number">2.52. </span>52 Reproducibility of data products<a class="headerlink" href="#reproducibility-of-data-products" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.13. </span>52 Reproducibility of data products<a class="headerlink" href="#reproducibility-of-data-products" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15294">DUNE STKH #122</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#data-product-identification"><span class="std std-numref">Section 3.2.4</span></a>.</div>
@@ -3104,7 +3112,7 @@ products from the provenance stored in the output.</p></th>
 </tbody>
 </table>
 <section id="reproducibility-with-pseudo-random-numbers">
-<h3><span class="section-number">2.52.1. </span>52.1 Reproducibility with pseudo-random numbers<a class="headerlink" href="#reproducibility-with-pseudo-random-numbers" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.13.1. </span>52.1 Reproducibility with pseudo-random numbers<a class="headerlink" href="#reproducibility-with-pseudo-random-numbers" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14596">DUNE STKH #36</a></p>
 <div class="admonition-todo admonition" id="id64">
 <p class="admonition-title">Todo</p>
@@ -3136,7 +3144,7 @@ reproducible data in concurrent contexts.</p></th>
 </table>
 </section>
 <section id="independence-from-unique-hardware-characteristics">
-<h3><span class="section-number">2.52.2. </span>52.2 Independence from unique hardware characteristics<a class="headerlink" href="#independence-from-unique-hardware-characteristics" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.13.2. </span>52.2 Independence from unique hardware characteristics<a class="headerlink" href="#independence-from-unique-hardware-characteristics" title="Link to this heading">¶</a></h4>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=14632">DUNE STKH #63</a></div>
 <div class="line">See <a class="reference internal" href="data_organization.html#conceptual-nature"><span class="std std-numref">Section 3.2.1.1</span></a></div>
@@ -3167,10 +3175,10 @@ characteristics of existing hardware.</p></th>
 </section>
 </section>
 <section id="command-line-interface-cli">
-<h2><span class="section-number">2.53. </span>53 Command line interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.14. </span>53 Command line interface (CLI)<a class="headerlink" href="#command-line-interface-cli" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15710">DUNE STKH #125</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3194,10 +3202,10 @@ that allows the setting of configuration parameters.</p></th>
 </table>
 </section>
 <section id="support-local-configuration-changes">
-<h2><span class="section-number">2.54. </span>54 Support local configuration changes<a class="headerlink" href="#support-local-configuration-changes" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.15. </span>54 Support local configuration changes<a class="headerlink" href="#support-local-configuration-changes" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15715">DUNE STKH #126</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3223,10 +3231,10 @@ program.</p></th>
 </table>
 </section>
 <section id="configuration-tracing">
-<h2><span class="section-number">2.55. </span>55 Configuration tracing<a class="headerlink" href="#configuration-tracing" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.16. </span>55 Configuration tracing<a class="headerlink" href="#configuration-tracing" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15718">DUNE STKH #127</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3252,10 +3260,10 @@ parameter values.</p></th>
 </table>
 </section>
 <section id="configuration-language-single-point-of-maintenance">
-<h2><span class="section-number">2.56. </span>56 Configuration language single point of maintenance<a class="headerlink" href="#configuration-language-single-point-of-maintenance" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.17. </span>56 Configuration language single point of maintenance<a class="headerlink" href="#configuration-language-single-point-of-maintenance" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15723">DUNE STKH #128</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3283,7 +3291,7 @@ configurations from a single point of maintenance.</p></th>
 </table>
 </section>
 <section id="enable-identification-of-data-sets-containing-chunked-data-products">
-<h2><span class="section-number">2.57. </span>57 Enable identification of data sets containing chunked data products<a class="headerlink" href="#enable-identification-of-data-sets-containing-chunked-data-products" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.18. </span>57 Enable identification of data sets containing chunked data products<a class="headerlink" href="#enable-identification-of-data-sets-containing-chunked-data-products" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15737">DUNE STKH #129</a></p>
 <div class="admonition-todo admonition" id="id65">
 <p class="admonition-title">Todo</p>
@@ -3312,7 +3320,7 @@ process data collections of unconstrained size.</p></th>
 </table>
 </section>
 <section id="thread-safe-design-for-algorithms">
-<h2><span class="section-number">2.58. </span>58 Thread-safe design for algorithms<a class="headerlink" href="#thread-safe-design-for-algorithms" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.19. </span>58 Thread-safe design for algorithms<a class="headerlink" href="#thread-safe-design-for-algorithms" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15742">DUNE STKH #130</a></div>
 <div class="line">See <a class="reference internal" href="functional_programming.html#functional-programming"><span class="std std-numref">Section 2.4</span></a>, <a class="reference internal" href="data_organization.html#data-product-management"><span class="std std-numref">Section 3.2.3</span></a></div>
@@ -3339,7 +3347,7 @@ thread-safe algorithms.</p></th>
 </table>
 </section>
 <section id="framework-build-flags">
-<h2><span class="section-number">2.59. </span>59 Framework build flags<a class="headerlink" href="#framework-build-flags" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.20. </span>59 Framework build flags<a class="headerlink" href="#framework-build-flags" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15744">DUNE STKH #131</a></p>
 <div class="admonition-todo admonition" id="id66">
 <p class="admonition-title">Todo</p>
@@ -3367,7 +3375,7 @@ enable debugging executed code.</p></th>
 </table>
 </section>
 <section id="floating-point-environment">
-<h2><span class="section-number">2.60. </span>60 Floating-point environment<a class="headerlink" href="#floating-point-environment" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.21. </span>60 Floating-point environment<a class="headerlink" href="#floating-point-environment" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15746">DUNE STKH #132</a></p>
 <div class="admonition-todo admonition" id="id67">
 <p class="admonition-title">Todo</p>
@@ -3396,10 +3404,10 @@ handling of IEEE floating-point exceptions.</p></th>
 </table>
 </section>
 <section id="composing-configurations-of-framework-components">
-<h2><span class="section-number">2.61. </span>61 Composing configurations of framework components<a class="headerlink" href="#composing-configurations-of-framework-components" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.22. </span>61 Composing configurations of framework components<a class="headerlink" href="#composing-configurations-of-framework-components" title="Link to this heading">¶</a></h3>
 <div class="line-block">
 <div class="line">Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15775">DUNE STKH #133</a></div>
-<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.11.1</span></a></div>
+<div class="line">See <a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification"><span class="std std-numref">Section 3.10.1</span></a></div>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3424,7 +3432,7 @@ components.</p></th>
 </table>
 </section>
 <section id="graceful-shutdown-of-framework-program">
-<h2><span class="section-number">2.62. </span>62 Graceful shutdown of framework program<a class="headerlink" href="#graceful-shutdown-of-framework-program" title="Link to this heading">¶</a></h2>
+<h3><span class="section-number">2.3.23. </span>62 Graceful shutdown of framework program<a class="headerlink" href="#graceful-shutdown-of-framework-program" title="Link to this heading">¶</a></h3>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15787">DUNE STKH #134</a></p>
 <div class="admonition-todo admonition" id="id68">
 <p class="admonition-title">Todo</p>
@@ -3465,7 +3473,7 @@ gracefully.</p>
 </tbody>
 </table>
 <section id="graceful-shutdown-for-uncaught-exception">
-<h3><span class="section-number">2.62.1. </span>62.1 Graceful shutdown for uncaught exception<a class="headerlink" href="#graceful-shutdown-for-uncaught-exception" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.23.1. </span>62.1 Graceful shutdown for uncaught exception<a class="headerlink" href="#graceful-shutdown-for-uncaught-exception" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15788">DUNE STKH #135</a></p>
 <div class="admonition-todo admonition" id="id69">
 <p class="admonition-title">Todo</p>
@@ -3494,7 +3502,7 @@ user algorithms.</p></th>
 </table>
 </section>
 <section id="graceful-shutdown-for-received-signal">
-<h3><span class="section-number">2.62.2. </span>62.2 Graceful shutdown for received signal<a class="headerlink" href="#graceful-shutdown-for-received-signal" title="Link to this heading">¶</a></h3>
+<h4><span class="section-number">2.3.23.2. </span>62.2 Graceful shutdown for received signal<a class="headerlink" href="#graceful-shutdown-for-received-signal" title="Link to this heading">¶</a></h4>
 <p>Jama Connect entry: <a class="reference external" href="https://fnal-prod.jamacloud.com/perspective.req?projectId=63&amp;docId=15789">DUNE STKH #136</a></p>
 <div class="admonition-todo admonition" id="id70">
 <p class="admonition-title">Todo</p>
@@ -3523,6 +3531,7 @@ shutdown when receiving a signal.</p></th>
 </section>
 </section>
 </section>
+</section>
 
 
             <div class="clearer"></div>
@@ -3538,161 +3547,166 @@ shutdown when receiving a signal.</p></th>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">2. Framework requirements</a><ul>
-<li><a class="reference internal" href="#algorithm-decomposability">2.1. 1 Algorithm Decomposability</a><ul>
-<li><a class="reference internal" href="#algorithm-communication-via-data-products">2.1.1. 1.1 Algorithm Communication Via Data Products</a></li>
+<li><a class="reference internal" href="#conceptual-requirements">2.1. Conceptual requirements</a><ul>
+<li><a class="reference internal" href="#algorithm-decomposability">2.1.1. 1 Algorithm Decomposability</a><ul>
+<li><a class="reference internal" href="#algorithm-communication-via-data-products">2.1.1.1. 1.1 Algorithm Communication Via Data Products</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-product-representation">2.2. 2 Data Product Representation</a></li>
-<li><a class="reference internal" href="#full-utilization-of-dune-computing-resources">2.3. 3 Full utilization of DUNE computing resources</a></li>
-<li><a class="reference internal" href="#algorithm-hardware-requirements">2.4. 4 Algorithm hardware requirements</a><ul>
-<li><a class="reference internal" href="#algorithms-can-use-a-gpu">2.4.1. 4.1 Algorithms can use a GPU</a></li>
-<li><a class="reference internal" href="#shut-down-upon-unmet-algorithm-hardware-requirements">2.4.2. 4.2 Shut down upon unmet algorithm hardware requirements</a></li>
-<li><a class="reference internal" href="#emit-diagnostic-upon-unmet-algorithm-hardware-requirements">2.4.3. 4.3 Emit diagnostic upon unmet algorithm hardware requirements</a></li>
+<li><a class="reference internal" href="#data-product-representation">2.1.2. 2 Data Product Representation</a></li>
+<li><a class="reference internal" href="#full-utilization-of-dune-computing-resources">2.1.3. 3 Full utilization of DUNE computing resources</a></li>
+<li><a class="reference internal" href="#algorithm-hardware-requirements">2.1.4. 4 Algorithm hardware requirements</a><ul>
+<li><a class="reference internal" href="#algorithms-can-use-a-gpu">2.1.4.1. 4.1 Algorithms can use a GPU</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#support-for-multiple-programming-languages">2.5. 5 Support for multiple programming languages</a><ul>
-<li><a class="reference internal" href="#support-c-algorithms">2.5.1. 5.1 Support C++ algorithms</a></li>
-<li><a class="reference internal" href="#support-python-algorithms">2.5.2. 5.2 Support Python algorithms</a></li>
+<li><a class="reference internal" href="#support-for-multiple-programming-languages">2.1.5. 5 Support for multiple programming languages</a><ul>
+<li><a class="reference internal" href="#support-c-algorithms">2.1.5.1. 5.1 Support C++ algorithms</a></li>
+<li><a class="reference internal" href="#support-python-algorithms">2.1.5.2. 5.2 Support Python algorithms</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#provide-instructions-for-writing-algorithms-in-supported-languages">2.6. 6 Provide instructions for writing algorithms in supported languages</a></li>
-<li><a class="reference internal" href="#persist-user-defined-metadata">2.7. 7 Persist user-defined metadata</a></li>
-<li><a class="reference internal" href="#framework-shall-read-its-own-output-files">2.8. 8 Framework shall read its own output files</a></li>
-<li><a class="reference internal" href="#presenting-data-to-subsequent-algorithms">2.9. 9 Presenting data to subsequent algorithms</a></li>
-<li><a class="reference internal" href="#mix-input-streams">2.10. 10 Mix input streams</a></li>
-<li><a class="reference internal" href="#flexible-data-units">2.11. 11 Flexible data units</a><ul>
-<li><a class="reference internal" href="#definition-of-data-products">2.11.1. 11.1 Definition of data products</a></li>
-<li><a class="reference internal" href="#creation-of-data-sets">2.11.2. 11.2 Creation of data sets</a></li>
-<li><a class="reference internal" href="#definition-of-data-families">2.11.3. 11.3 Definition of data families</a></li>
-<li><a class="reference internal" href="#definition-of-data-family-hierarchies">2.11.4. 11.4 Definition of data family hierarchies</a></li>
+<li><a class="reference internal" href="#persist-user-defined-metadata">2.1.6. 7 Persist user-defined metadata</a></li>
+<li><a class="reference internal" href="#framework-shall-read-its-own-output-files">2.1.7. 8 Framework shall read its own output files</a></li>
+<li><a class="reference internal" href="#presenting-data-to-subsequent-algorithms">2.1.8. 9 Presenting data to subsequent algorithms</a></li>
+<li><a class="reference internal" href="#mix-input-streams">2.1.9. 10 Mix input streams</a></li>
+<li><a class="reference internal" href="#flexible-data-units">2.1.10. 11 Flexible data units</a><ul>
+<li><a class="reference internal" href="#definition-of-data-products">2.1.10.1. 11.1 Definition of data products</a></li>
+<li><a class="reference internal" href="#creation-of-data-sets">2.1.10.2. 11.2 Creation of data sets</a></li>
+<li><a class="reference internal" href="#definition-of-data-families">2.1.10.3. 11.3 Definition of data families</a></li>
+<li><a class="reference internal" href="#definition-of-data-family-hierarchies">2.1.10.4. 11.4 Definition of data family hierarchies</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-product-i-o-independence">2.12. 12 Data product I/O independence</a></li>
-<li><a class="reference internal" href="#process-collections-of-unconstrained-size">2.13. 13 Process collections of unconstrained size</a><ul>
-<li><a class="reference internal" href="#read-collections-of-unconstrained-size">2.13.1. 13.1 Read collections of unconstrained size</a></li>
-<li><a class="reference internal" href="#write-collections-of-unconstrained-size">2.13.2. 13.2 Write collections of unconstrained size</a></li>
+<li><a class="reference internal" href="#process-collections-of-unconstrained-size">2.1.11. 13 Process collections of unconstrained size</a></li>
+<li><a class="reference internal" href="#unfolding-data-products">2.1.12. 17 Unfolding data products</a></li>
+<li><a class="reference internal" href="#access-to-external-data-sources">2.1.13. 18 Access to external data sources</a><ul>
+<li><a class="reference internal" href="#calibration-database-algorithms">2.1.13.1. 18.1 Calibration database algorithms</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configuration-comparison">2.14. 14 Configuration comparison</a></li>
-<li><a class="reference internal" href="#record-execution-environment">2.15. 15 Record execution environment</a><ul>
-<li><a class="reference internal" href="#user-selectable-list-of-recordable-execution-environment-components">2.15.1. 15.1 User-selectable list of recordable execution environment components</a></li>
-<li><a class="reference internal" href="#save-user-selected-execution-environment-components">2.15.2. 15.2 Save user-selected execution environment components</a><ul>
-<li><a class="reference internal" href="#record-user-selected-items-from-the-shell-environment">2.15.2.1. 15.2.1 Record user-selected items from the shell environment</a></li>
+<li><a class="reference internal" href="#algorithms-independent-of-framework-interface">2.1.14. 20 Algorithms independent of framework interface</a></li>
+<li><a class="reference internal" href="#safely-executing-thread-safe-and-non-thread-safe-algorithms">2.1.15. 21 Safely executing thread-safe and non-thread-safe algorithms</a></li>
+<li><a class="reference internal" href="#resource-specification-for-the-program">2.1.16. 23 Resource specification for the program</a><ul>
+<li><a class="reference internal" href="#specification-of-user-defined-resources">2.1.16.1. 23.4 Specification of user-defined resources</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#user-provided-execution-environment-information">2.15.3. 15.3 User-provided execution environment information</a></li>
+<li><a class="reference internal" href="#resource-specification-for-algorithms">2.1.17. 24 Resource specification for algorithms</a><ul>
+<li><a class="reference internal" href="#serial-access-to-a-thread-unsafe-resource">2.1.17.1. 24.1 Serial access to a thread-unsafe resource</a></li>
+<li><a class="reference internal" href="#specification-of-algorithm-s-user-defined-resources">2.1.17.2. 24.5 Specification of algorithm’s user-defined resources</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#maximum-memory-usage">2.16. 16 Maximum memory usage</a><ul>
-<li><a class="reference internal" href="#diagnostic-message-when-exceeding-memory-limit">2.16.1. 16.1 Diagnostic message when exceeding memory limit</a></li>
+<li><a class="reference internal" href="#resource-based-algorithm-concurrency">2.1.18. 26 Resource-based algorithm concurrency</a><ul>
+<li><a class="reference internal" href="#optimize-memory-management-for-data-products">2.1.18.1. 26.2 Optimize memory management for data products</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#unfolding-data-products">2.17. 17 Unfolding data products</a></li>
-<li><a class="reference internal" href="#access-to-external-data-sources">2.18. 18 Access to external data sources</a><ul>
-<li><a class="reference internal" href="#calibration-database-algorithms">2.18.1. 18.1 Calibration database algorithms</a></li>
+<li><a class="reference internal" href="#composable-workflows-using-gpu-algorithms-and-cpu-algorithms">2.1.19. 27 Composable workflows using GPU algorithms and CPU algorithms</a></li>
+<li><a class="reference internal" href="#specification-of-data-products-required-by-an-algorithm">2.1.20. 28 Specification of data products required by an algorithm</a></li>
+<li><a class="reference internal" href="#specification-of-data-products-created-by-an-algorithm">2.1.21. 29 Specification of data products created by an algorithm</a></li>
+<li><a class="reference internal" href="#one-configuration-per-framework-execution">2.1.22. 36 One configuration per framework execution</a></li>
+<li><a class="reference internal" href="#framework-configuration-language">2.1.23. 38 Framework configuration language</a></li>
+<li><a class="reference internal" href="#i-o-plugins">2.1.24. 39 I/O plugins</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#algorithm-code-versioning-and-build-information">2.19. 19 Algorithm code versioning and build information</a></li>
-<li><a class="reference internal" href="#algorithms-independent-of-framework-interface">2.20. 20 Algorithms independent of framework interface</a></li>
-<li><a class="reference internal" href="#safely-executing-thread-safe-and-non-thread-safe-algorithms">2.21. 21 Safely executing thread-safe and non-thread-safe algorithms</a></li>
-<li><a class="reference internal" href="#intra-algorithm-concurrency-and-multi-threading">2.22. 22 Intra-algorithm concurrency and multi-threading</a></li>
-<li><a class="reference internal" href="#resource-specification-for-the-program">2.23. 23 Resource specification for the program</a><ul>
-<li><a class="reference internal" href="#specification-of-maximum-number-of-cpu-threads">2.23.1. 23.1 Specification of maximum number of CPU threads</a></li>
-<li><a class="reference internal" href="#specification-of-maximum-allowed-cpu-memory">2.23.2. 23.2 Specification of maximum allowed CPU memory</a></li>
-<li><a class="reference internal" href="#specification-of-gpu-resources">2.23.3. 23.3 Specification of GPU resources</a></li>
-<li><a class="reference internal" href="#specification-of-user-defined-resources">2.23.4. 23.4 Specification of user-defined resources</a></li>
+<li><a class="reference internal" href="#technical-requirements">2.2. Technical requirements</a><ul>
+<li><a class="reference internal" href="#shut-down-upon-unmet-algorithm-hardware-requirements">2.2.1. 4.2 Shut down upon unmet algorithm hardware requirements</a></li>
+<li><a class="reference internal" href="#emit-diagnostic-upon-unmet-algorithm-hardware-requirements">2.2.2. 4.3 Emit diagnostic upon unmet algorithm hardware requirements</a></li>
+<li><a class="reference internal" href="#provide-instructions-for-writing-algorithms-in-supported-languages">2.2.3. 6 Provide instructions for writing algorithms in supported languages</a></li>
+<li><a class="reference internal" href="#data-product-i-o-independence">2.2.4. 12 Data product I/O independence</a></li>
+<li><a class="reference internal" href="#read-collections-of-unconstrained-size">2.2.5. 13.1 Read collections of unconstrained size</a></li>
+<li><a class="reference internal" href="#write-collections-of-unconstrained-size">2.2.6. 13.2 Write collections of unconstrained size</a></li>
+<li><a class="reference internal" href="#configuration-comparison">2.2.7. 14 Configuration comparison</a></li>
+<li><a class="reference internal" href="#record-execution-environment">2.2.8. 15 Record execution environment</a><ul>
+<li><a class="reference internal" href="#user-selectable-list-of-recordable-execution-environment-components">2.2.8.1. 15.1 User-selectable list of recordable execution environment components</a></li>
+<li><a class="reference internal" href="#save-user-selected-execution-environment-components">2.2.8.2. 15.2 Save user-selected execution environment components</a><ul>
+<li><a class="reference internal" href="#record-user-selected-items-from-the-shell-environment">2.2.8.2.1. 15.2.1 Record user-selected items from the shell environment</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#resource-specification-for-algorithms">2.24. 24 Resource specification for algorithms</a><ul>
-<li><a class="reference internal" href="#serial-access-to-a-thread-unsafe-resource">2.24.1. 24.1 Serial access to a thread-unsafe resource</a></li>
-<li><a class="reference internal" href="#specification-of-algorithm-s-maximum-number-of-cpu-threads">2.24.2. 24.2 Specification of algorithm’s maximum number of CPU threads</a></li>
-<li><a class="reference internal" href="#specification-of-algorithm-s-cpu-memory-usage">2.24.3. 24.3 Specification of algorithm’s CPU memory usage</a></li>
-<li><a class="reference internal" href="#specification-of-algorithm-s-gpu-resources">2.24.4. 24.4 Specification of algorithm’s GPU resources</a><ul>
-<li><a class="reference internal" href="#remote-gpu-algorithm-support">2.24.4.1. 24.4.1 Remote GPU algorithm support</a></li>
-<li><a class="reference internal" href="#local-gpu-algorithm-support">2.24.4.2. 24.4.2 Local GPU algorithm support</a></li>
+<li><a class="reference internal" href="#user-provided-execution-environment-information">2.2.8.3. 15.3 User-provided execution environment information</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#specification-of-algorithm-s-user-defined-resources">2.24.5. 24.5 Specification of algorithm’s user-defined resources</a></li>
+<li><a class="reference internal" href="#maximum-memory-usage">2.2.9. 16 Maximum memory usage</a><ul>
+<li><a class="reference internal" href="#diagnostic-message-when-exceeding-memory-limit">2.2.9.1. 16.1 Diagnostic message when exceeding memory limit</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#logging-resource-usage-per-algorithm-invocation">2.25. 25 Logging resource usage per algorithm invocation</a><ul>
-<li><a class="reference internal" href="#elapsed-time-information">2.25.1. 25.1 Elapsed time information</a></li>
+<li><a class="reference internal" href="#algorithm-code-versioning-and-build-information">2.2.10. 19 Algorithm code versioning and build information</a></li>
+<li><a class="reference internal" href="#intra-algorithm-concurrency-and-multi-threading">2.2.11. 22 Intra-algorithm concurrency and multi-threading</a></li>
+<li><a class="reference internal" href="#specification-of-maximum-number-of-cpu-threads">2.2.12. 23.1 Specification of maximum number of CPU threads</a></li>
+<li><a class="reference internal" href="#specification-of-maximum-allowed-cpu-memory">2.2.13. 23.2 Specification of maximum allowed CPU memory</a></li>
+<li><a class="reference internal" href="#specification-of-gpu-resources">2.2.14. 23.3 Specification of GPU resources</a></li>
+<li><a class="reference internal" href="#specification-of-algorithm-s-maximum-number-of-cpu-threads">2.2.15. 24.2 Specification of algorithm’s maximum number of CPU threads</a></li>
+<li><a class="reference internal" href="#specification-of-algorithm-s-cpu-memory-usage">2.2.16. 24.3 Specification of algorithm’s CPU memory usage</a></li>
+<li><a class="reference internal" href="#specification-of-algorithm-s-gpu-resources">2.2.17. 24.4 Specification of algorithm’s GPU resources</a><ul>
+<li><a class="reference internal" href="#remote-gpu-algorithm-support">2.2.17.1. 24.4.1 Remote GPU algorithm support</a></li>
+<li><a class="reference internal" href="#local-gpu-algorithm-support">2.2.17.2. 24.4.2 Local GPU algorithm support</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#resource-based-algorithm-concurrency">2.26. 26 Resource-based algorithm concurrency</a><ul>
-<li><a class="reference internal" href="#efficient-execution-of-algorithms-requiring-access-to-a-network-resource">2.26.1. 26.1 Efficient execution of algorithms requiring access to a network resource</a></li>
-<li><a class="reference internal" href="#optimize-memory-management-for-data-products">2.26.2. 26.2 Optimize memory management for data products</a></li>
-<li><a class="reference internal" href="#optimize-availability-of-external-resources">2.26.3. 26.3 Optimize availability of external resources</a></li>
-<li><a class="reference internal" href="#efficient-execution-of-algorithms-with-specific-cpu-memory-requirements">2.26.4. 26.4 Efficient execution of algorithms with specific CPU memory requirements</a></li>
-<li><a class="reference internal" href="#efficient-execution-of-algorithms-with-specific-gpu-memory-requirements">2.26.5. 26.5 Efficient execution of algorithms with specific GPU memory requirements</a></li>
+<li><a class="reference internal" href="#logging-resource-usage-per-algorithm-invocation">2.2.18. 25 Logging resource usage per algorithm invocation</a><ul>
+<li><a class="reference internal" href="#elapsed-time-information">2.2.18.1. 25.1 Elapsed time information</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#composable-workflows-using-gpu-algorithms-and-cpu-algorithms">2.27. 27 Composable workflows using GPU algorithms and CPU algorithms</a></li>
-<li><a class="reference internal" href="#specification-of-data-products-required-by-an-algorithm">2.28. 28 Specification of data products required by an algorithm</a></li>
-<li><a class="reference internal" href="#specification-of-data-products-created-by-an-algorithm">2.29. 29 Specification of data products created by an algorithm</a></li>
-<li><a class="reference internal" href="#emit-message-describing-data-flow-of-program">2.30. 30 Emit message describing data flow of program</a></li>
-<li><a class="reference internal" href="#emit-message-stating-algorithm-resource-requirements">2.31. 31 Emit message stating algorithm resource requirements</a></li>
-<li><a class="reference internal" href="#monitoring-global-memory-use">2.32. 32 Monitoring global memory use</a></li>
-<li><a class="reference internal" href="#framework-independent-message-logging">2.33. 33 Framework-independent message logging</a></li>
-<li><a class="reference internal" href="#configuration-validation">2.34. 34 Configuration validation</a></li>
-<li><a class="reference internal" href="#algorithm-configuration-schema-availability">2.35. 35 Algorithm configuration schema availability</a></li>
-<li><a class="reference internal" href="#one-configuration-per-framework-execution">2.36. 36 One configuration per framework execution</a></li>
-<li><a class="reference internal" href="#eager-validation-of-algorithm-configuration">2.37. 37 Eager validation of algorithm configuration</a></li>
-<li><a class="reference internal" href="#framework-configuration-language">2.38. 38 Framework configuration language</a></li>
-<li><a class="reference internal" href="#i-o-plugins">2.39. 39 I/O plugins</a><ul>
-<li><a class="reference internal" href="#i-o-backend-for-root">2.39.1. 39.1 I/O backend for ROOT</a></li>
-<li><a class="reference internal" href="#i-o-backend-for-hdf5">2.39.2. 39.2 I/O backend for HDF5</a></li>
+<li><a class="reference internal" href="#efficient-execution-of-algorithms-requiring-access-to-a-network-resource">2.2.19. 26.1 Efficient execution of algorithms requiring access to a network resource</a></li>
+<li><a class="reference internal" href="#optimize-availability-of-external-resources">2.2.20. 26.3 Optimize availability of external resources</a></li>
+<li><a class="reference internal" href="#efficient-execution-of-algorithms-with-specific-cpu-memory-requirements">2.2.21. 26.4 Efficient execution of algorithms with specific CPU memory requirements</a></li>
+<li><a class="reference internal" href="#efficient-execution-of-algorithms-with-specific-gpu-memory-requirements">2.2.22. 26.5 Efficient execution of algorithms with specific GPU memory requirements</a></li>
+<li><a class="reference internal" href="#emit-message-describing-data-flow-of-program">2.2.23. 30 Emit message describing data flow of program</a></li>
+<li><a class="reference internal" href="#emit-message-stating-algorithm-resource-requirements">2.2.24. 31 Emit message stating algorithm resource requirements</a></li>
+<li><a class="reference internal" href="#monitoring-global-memory-use">2.2.25. 32 Monitoring global memory use</a></li>
+<li><a class="reference internal" href="#framework-independent-message-logging">2.2.26. 33 Framework-independent message logging</a></li>
+<li><a class="reference internal" href="#configuration-validation">2.2.27. 34 Configuration validation</a></li>
+<li><a class="reference internal" href="#algorithm-configuration-schema-availability">2.2.28. 35 Algorithm configuration schema availability</a></li>
+<li><a class="reference internal" href="#eager-validation-of-algorithm-configuration">2.2.29. 37 Eager validation of algorithm configuration</a></li>
+<li><a class="reference internal" href="#i-o-backend-for-root">2.2.30. 39.1 I/O backend for ROOT</a></li>
+<li><a class="reference internal" href="#i-o-backend-for-hdf5">2.2.31. 39.2 I/O backend for HDF5</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#data-i-o-backward-compatibility">2.40. 40 Data I/O backward compatibility</a><ul>
-<li><a class="reference internal" href="#data-product-backward-compatibility">2.40.1. 40.1 Data product backward compatibility</a></li>
-<li><a class="reference internal" href="#metadata-backward-compatibility">2.40.2. 40.2 Metadata backward compatibility</a></li>
+<li><a class="reference internal" href="#unclassified-requirements">2.3. Unclassified requirements</a><ul>
+<li><a class="reference internal" href="#data-i-o-backward-compatibility">2.3.1. 40 Data I/O backward compatibility</a><ul>
+<li><a class="reference internal" href="#data-product-backward-compatibility">2.3.1.1. 40.1 Data product backward compatibility</a></li>
+<li><a class="reference internal" href="#metadata-backward-compatibility">2.3.1.2. 40.2 Metadata backward compatibility</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configurable-data-compression">2.41. 41 Configurable data compression</a></li>
-<li><a class="reference internal" href="#user-configurable-output-file-rollover">2.42. 42 User-configurable output file rollover</a><ul>
-<li><a class="reference internal" href="#output-file-rollover-due-to-number-of-data-sets-in-data-family">2.42.1. 42.1 Output file rollover due to number of data sets in data family</a></li>
-<li><a class="reference internal" href="#output-file-rollover-due-to-file-size">2.42.2. 42.2 Output file rollover due to file size</a></li>
-<li><a class="reference internal" href="#output-file-rollover-due-to-user-defined-quantities">2.42.3. 42.3 Output file rollover due to user-defined quantities</a></li>
-<li><a class="reference internal" href="#output-file-rollover-due-to-file-lifetime">2.42.4. 42.4 Output file rollover due to file lifetime</a></li>
+<li><a class="reference internal" href="#configurable-data-compression">2.3.2. 41 Configurable data compression</a></li>
+<li><a class="reference internal" href="#user-configurable-output-file-rollover">2.3.3. 42 User-configurable output file rollover</a><ul>
+<li><a class="reference internal" href="#output-file-rollover-due-to-number-of-data-sets-in-data-family">2.3.3.1. 42.1 Output file rollover due to number of data sets in data family</a></li>
+<li><a class="reference internal" href="#output-file-rollover-due-to-file-size">2.3.3.2. 42.2 Output file rollover due to file size</a></li>
+<li><a class="reference internal" href="#output-file-rollover-due-to-user-defined-quantities">2.3.3.3. 42.3 Output file rollover due to user-defined quantities</a></li>
+<li><a class="reference internal" href="#output-file-rollover-due-to-file-lifetime">2.3.3.4. 42.4 Output file rollover due to file lifetime</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-multiple-data-sets">2.43. 43 Algorithm invocation with data products from multiple data sets</a><ul>
-<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-adjacent-data-sets">2.43.1. 43.1 Algorithm invocation with data products from adjacent data sets</a><ul>
-<li><a class="reference internal" href="#user-defined-adjacency">2.43.1.1. 43.1.1 User-defined adjacency</a></li>
+<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-multiple-data-sets">2.3.4. 43 Algorithm invocation with data products from multiple data sets</a><ul>
+<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-adjacent-data-sets">2.3.4.1. 43.1 Algorithm invocation with data products from adjacent data sets</a><ul>
+<li><a class="reference internal" href="#user-defined-adjacency">2.3.4.1.1. 43.1.1 User-defined adjacency</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-multiple-data-families">2.44. 44 Algorithm invocation with data products from multiple data families</a></li>
-<li><a class="reference internal" href="#specification-of-algorithm-output-fpus">2.45. 45 Specification of algorithm output FPUs</a></li>
-<li><a class="reference internal" href="#algorithm-data-separability">2.46. 46 Algorithm-Data Separability</a></li>
-<li><a class="reference internal" href="#protodune-single-phase-raw-data">2.47. 47 ProtoDUNE single-phase raw data</a></li>
-<li><a class="reference internal" href="#protodune-dual-phase-raw-data">2.48. 48 ProtoDUNE dual-phase raw data</a></li>
-<li><a class="reference internal" href="#protodune-ii-horizontal-drift-raw-data">2.49. 49 ProtoDUNE II horizontal-drift raw data</a></li>
-<li><a class="reference internal" href="#protodune-ii-vertical-drift-raw-data">2.50. 50 ProtoDUNE II vertical-drift raw data</a></li>
-<li><a class="reference internal" href="#provenance-discovery">2.51. 51 Provenance discovery</a><ul>
-<li><a class="reference internal" href="#framework-configuration-persistency">2.51.1. 51.1 Framework configuration persistency</a></li>
-<li><a class="reference internal" href="#framework-recording-of-metadata-for-reproduction-of-output-data">2.51.2. 51.2 Framework recording of metadata for reproduction of output data</a></li>
+<li><a class="reference internal" href="#algorithm-invocation-with-data-products-from-multiple-data-families">2.3.5. 44 Algorithm invocation with data products from multiple data families</a></li>
+<li><a class="reference internal" href="#specification-of-algorithm-output-fpus">2.3.6. 45 Specification of algorithm output FPUs</a></li>
+<li><a class="reference internal" href="#algorithm-data-separability">2.3.7. 46 Algorithm-Data Separability</a></li>
+<li><a class="reference internal" href="#protodune-single-phase-raw-data">2.3.8. 47 ProtoDUNE single-phase raw data</a></li>
+<li><a class="reference internal" href="#protodune-dual-phase-raw-data">2.3.9. 48 ProtoDUNE dual-phase raw data</a></li>
+<li><a class="reference internal" href="#protodune-ii-horizontal-drift-raw-data">2.3.10. 49 ProtoDUNE II horizontal-drift raw data</a></li>
+<li><a class="reference internal" href="#protodune-ii-vertical-drift-raw-data">2.3.11. 50 ProtoDUNE II vertical-drift raw data</a></li>
+<li><a class="reference internal" href="#provenance-discovery">2.3.12. 51 Provenance discovery</a><ul>
+<li><a class="reference internal" href="#framework-configuration-persistency">2.3.12.1. 51.1 Framework configuration persistency</a></li>
+<li><a class="reference internal" href="#framework-recording-of-metadata-for-reproduction-of-output-data">2.3.12.2. 51.2 Framework recording of metadata for reproduction of output data</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#reproducibility-of-data-products">2.52. 52 Reproducibility of data products</a><ul>
-<li><a class="reference internal" href="#reproducibility-with-pseudo-random-numbers">2.52.1. 52.1 Reproducibility with pseudo-random numbers</a></li>
-<li><a class="reference internal" href="#independence-from-unique-hardware-characteristics">2.52.2. 52.2 Independence from unique hardware characteristics</a></li>
+<li><a class="reference internal" href="#reproducibility-of-data-products">2.3.13. 52 Reproducibility of data products</a><ul>
+<li><a class="reference internal" href="#reproducibility-with-pseudo-random-numbers">2.3.13.1. 52.1 Reproducibility with pseudo-random numbers</a></li>
+<li><a class="reference internal" href="#independence-from-unique-hardware-characteristics">2.3.13.2. 52.2 Independence from unique hardware characteristics</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#command-line-interface-cli">2.53. 53 Command line interface (CLI)</a></li>
-<li><a class="reference internal" href="#support-local-configuration-changes">2.54. 54 Support local configuration changes</a></li>
-<li><a class="reference internal" href="#configuration-tracing">2.55. 55 Configuration tracing</a></li>
-<li><a class="reference internal" href="#configuration-language-single-point-of-maintenance">2.56. 56 Configuration language single point of maintenance</a></li>
-<li><a class="reference internal" href="#enable-identification-of-data-sets-containing-chunked-data-products">2.57. 57 Enable identification of data sets containing chunked data products</a></li>
-<li><a class="reference internal" href="#thread-safe-design-for-algorithms">2.58. 58 Thread-safe design for algorithms</a></li>
-<li><a class="reference internal" href="#framework-build-flags">2.59. 59 Framework build flags</a></li>
-<li><a class="reference internal" href="#floating-point-environment">2.60. 60 Floating-point environment</a></li>
-<li><a class="reference internal" href="#composing-configurations-of-framework-components">2.61. 61 Composing configurations of framework components</a></li>
-<li><a class="reference internal" href="#graceful-shutdown-of-framework-program">2.62. 62 Graceful shutdown of framework program</a><ul>
-<li><a class="reference internal" href="#graceful-shutdown-for-uncaught-exception">2.62.1. 62.1 Graceful shutdown for uncaught exception</a></li>
-<li><a class="reference internal" href="#graceful-shutdown-for-received-signal">2.62.2. 62.2 Graceful shutdown for received signal</a></li>
+<li><a class="reference internal" href="#command-line-interface-cli">2.3.14. 53 Command line interface (CLI)</a></li>
+<li><a class="reference internal" href="#support-local-configuration-changes">2.3.15. 54 Support local configuration changes</a></li>
+<li><a class="reference internal" href="#configuration-tracing">2.3.16. 55 Configuration tracing</a></li>
+<li><a class="reference internal" href="#configuration-language-single-point-of-maintenance">2.3.17. 56 Configuration language single point of maintenance</a></li>
+<li><a class="reference internal" href="#enable-identification-of-data-sets-containing-chunked-data-products">2.3.18. 57 Enable identification of data sets containing chunked data products</a></li>
+<li><a class="reference internal" href="#thread-safe-design-for-algorithms">2.3.19. 58 Thread-safe design for algorithms</a></li>
+<li><a class="reference internal" href="#framework-build-flags">2.3.20. 59 Framework build flags</a></li>
+<li><a class="reference internal" href="#floating-point-environment">2.3.21. 60 Floating-point environment</a></li>
+<li><a class="reference internal" href="#composing-configurations-of-framework-components">2.3.22. 61 Composing configurations of framework components</a></li>
+<li><a class="reference internal" href="#graceful-shutdown-of-framework-program">2.3.23. 62 Graceful shutdown of framework program</a><ul>
+<li><a class="reference internal" href="#graceful-shutdown-for-uncaught-exception">2.3.23.1. 62.1 Graceful shutdown for uncaught exception</a></li>
+<li><a class="reference internal" href="#graceful-shutdown-for-received-signal">2.3.23.2. 62.2 Graceful shutdown for received signal</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -3743,7 +3757,7 @@ shutdown when receiving a signal.</p></th>
         <li class="right" >
           <a href="definitions.html" title="1. Definitions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Framework requirements</a></li> 
       </ul>
     </div>

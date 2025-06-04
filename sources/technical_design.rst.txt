@@ -10,6 +10,7 @@ The graph below depicts the relationships between the framework subsystems.
    :maxdepth: 2
 
    subsystems/task_management
+   sequence_spec
    subsystems/data_management
    subsystems/data_modeling
    subsystems/metadata_management

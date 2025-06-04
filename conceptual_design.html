@@ -6,12 +6,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (1b2e040) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (f407182) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=dfc18828"></script>
+    <script src="static/documentation_options.js?v=4b07ef6a"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -61,12 +61,12 @@ These algorithms then serve as operators to higher-order functions that operate 
 <ul class="simple">
 <li><p>the data-flow graph itself (see <a class="reference internal" href="scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>)</p></li>
 <li><p>data products and data-product sets as passed along graph edges (see <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>)</p></li>
-<li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.6</span></a> )</p></li>
-<li><p>the framework driver (see <a class="reference internal" href="sources_sinks.html#framework-driver"><span class="std std-numref">Section 3.7</span></a>)</p></li>
-<li><p>data sources (see <a class="reference internal" href="sources_sinks.html#data-sources"><span class="std std-numref">Section 3.8</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
-<li><p>data sinks (see <a class="reference internal" href="sources_sinks.html#data-sinks"><span class="std std-numref">Section 3.9</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
-<li><p>resources (see <a class="reference internal" href="resources.html#resources"><span class="std std-numref">Section 3.10</span></a>)</p></li>
-<li><p>program configuration (see <a class="reference internal" href="user_configuration.html#program-configuration"><span class="std std-numref">Section 3.11</span></a>)</p></li>
+<li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> )</p></li>
+<li><p>the framework driver (see <a class="reference internal" href="driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>)</p></li>
+<li><p>data-product providers (see <a class="reference internal" href="providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
+<li><p>data-product outputs (see <a class="reference internal" href="outputs.html#data-product-outputs"><span class="std std-numref">Section 3.8</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
+<li><p>resources (see <a class="reference internal" href="resources.html#resources"><span class="std std-numref">Section 3.9</span></a>)</p></li>
+<li><p>program configuration (see <a class="reference internal" href="user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
 </ul>
 <figure class="align-default" id="workflow">
 <div class="graphviz"><img src="images/graphviz-6f3254308b19e7445cd7a83b9b6f2c9f44ab694c.png" alt="digraph {
@@ -171,28 +171,27 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
 <li class="toctree-l2"><a class="reference internal" href="registration.html#overloaded-functions">3.4.4. Overloaded Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sequence_spec.html">3.5. Specifying Sequences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hof_operators.html">3.6. HOF Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#transforms">3.6.1. Transforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#filters-and-predicates">3.6.2. Filters and Predicates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#observers">3.6.3. Observers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-folds">3.6.4. Partitioned Folds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-unfolds">3.6.5. Partitioned Unfolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#composite-chofs">3.6.6. Composite CHOFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hof_operators.html">3.5. HOF Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#transforms">3.5.1. Transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#filters-and-predicates">3.5.2. Filters and Predicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#observers">3.5.3. Observers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-folds">3.5.4. Partitioned Folds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-unfolds">3.5.5. Partitioned Unfolds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#composite-chofs">3.5.6. Composite CHOFs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sources_sinks.html">3.7. Framework Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sources_sinks.html#data-sources">3.8. Data Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sources_sinks.html#data-sinks">3.9. Data Sinks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="resources.html">3.10. Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#limited-resources">3.10.1. Limited Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#gpus">3.10.2. GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="driver.html">3.6. Framework Driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="providers.html">3.7. Data-Product Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">3.8. Data-Product Outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">3.9. Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#limited-resources">3.9.1. Limited Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#gpus">3.9.2. GPUs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="user_configuration.html">3.11. Program Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification">3.11.1. Mechanics of Configuration Specification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration">3.11.2. Programmatic Access to the Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration">3.11.3. Semantic Structure of the Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_configuration.html">3.10. Program Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification">3.10.1. Mechanics of Configuration Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration">3.10.2. Programmatic Access to the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration">3.10.3. Semantic Structure of the Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -252,7 +251,7 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>

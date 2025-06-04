@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.1. Topology of the data-flow graph &#8212; Phlex 0 (f407182) documentation</title>
+    <title>3.6. Framework Driver &#8212; Phlex 0 (f407182) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -17,8 +17,8 @@
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3.2. Data Organization" href="data_organization.html" />
-    <link rel="prev" title="3. Conceptual Design" href="conceptual_design.html" />
+    <link rel="next" title="3.7. Data-Product Providers" href="providers.html" />
+    <link rel="prev" title="3.5. HOF Operators" href="hof_operators.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -31,14 +31,14 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="data_organization.html" title="3.2. Data Organization"
+          <a href="providers.html" title="3.7. Data-Product Providers"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="conceptual_design.html" title="3. Conceptual Design"
+          <a href="hof_operators.html" title="3.5. HOF Operators"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.1. </span>Topology of the data-flow graph</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.6. </span>Framework Driver</a></li> 
       </ul>
     </div>  
 
@@ -47,21 +47,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="topology-of-the-data-flow-graph">
-<h1><span class="section-number">3.1. </span>Topology of the data-flow graph<a class="headerlink" href="#topology-of-the-data-flow-graph" title="Link to this heading">¶</a></h1>
-<p>The pattern used for constructing the data-flow graph is described in detail in <a class="reference internal" href="subsystems/task_management.html#creating-the-data-flow-graph"><span class="std std-numref">Section 4.1.1</span></a>.
-Here we discuss the overall topology of the workflow, using the graph in <a class="reference internal" href="conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.</p>
-<p>The graph-node candidates are separated into various classifications:</p>
-<blockquote>
-<div><dl class="simple">
-<dt><em>creators</em></dt><dd><p>algorithms that create data (e.g <em>transforms</em>, <em>folds</em>, and <em>unfolds</em>)</p>
-</dd>
-<dt><em>predicates</em></dt><dd><p>algorithms that return a Boolean value upon each invocation; each predicate serves as the operator to a filter operation</p>
-</dd>
-<dt><em>observers</em></dt><dd><p>algorithms that accept data products as input arguments but do not create new data products</p>
-</dd>
-</dl>
-</div></blockquote>
+  <section id="framework-driver">
+<h1><span class="section-number">3.6. </span>Framework Driver<a class="headerlink" href="#framework-driver" title="Link to this heading">¶</a></h1>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_DRIVER</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 
 
@@ -76,18 +68,18 @@ Here we discuss the overall topology of the workflow, using the graph in <a clas
             </a></p>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="conceptual_design.html"
-                          title="previous chapter"><span class="section-number">3. </span>Conceptual Design</a></p>
+    <p class="topless"><a href="hof_operators.html"
+                          title="previous chapter"><span class="section-number">3.5. </span>HOF Operators</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="data_organization.html"
-                          title="next chapter"><span class="section-number">3.2. </span>Data Organization</a></p>
+    <p class="topless"><a href="providers.html"
+                          title="next chapter"><span class="section-number">3.7. </span>Data-Product Providers</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="sources/scheduling.rst.txt"
+      <li><a href="sources/driver.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -112,14 +104,14 @@ Here we discuss the overall topology of the workflow, using the graph in <a clas
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="data_organization.html" title="3.2. Data Organization"
+          <a href="providers.html" title="3.7. Data-Product Providers"
              >next</a> |</li>
         <li class="right" >
-          <a href="conceptual_design.html" title="3. Conceptual Design"
+          <a href="hof_operators.html" title="3.5. HOF Operators"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f407182) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.1. </span>Topology of the data-flow graph</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.6. </span>Framework Driver</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

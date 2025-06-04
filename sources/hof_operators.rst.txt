@@ -13,10 +13,76 @@ Transforms
 | :math:`b = \transform{f}\ a` | :math:`f: A \rightarrow B` | :math:`|b| = |a|`      |
 +------------------------------+----------------------------+------------------------+
 
+The transform is the simplest HOF whose algorithms create data products.
+Specifically, the algorithm :math:`f` is applied to each element of the input sequence :math:`a`, creating a corresponding data product in the output sequence :math:`b`:
+
+.. math::
+
+   \sequence{b}{a} = \sequence{f\ a} = \transform{f}\ \sequence{a}{a}
+
+where :math:`b_i = f\ a_i`.
+Note that the index set of the output sequence is the same as the index set of the input sequence.
+
+.. todo::
+
+   Allow for transforms where the output sequence is indexed by a different set—i.e. the number of elements remains the same as the input sequence, but the *label* of those elements changes.
+
+.. table::
+    :widths: 15 85
+
+    +--------------+------------------------------------------------------------------+
+    | **Operator** | **Allowed signature**                                            |
+    +==============+==================================================================+
+    | :math:`f`    | :cpp:`return_type function_name(P1, Pn..., Rm...) [qualifiers];` |
+    +--------------+------------------------------------------------------------------+
+
 **Return type**: A transform algorithm may create multiple data products by returning an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
+
+To illustrate the different ways a transform's algorithm can be registered with Phlex, we use the following classes and functions, which are presumably defined in some experiment libraries.
+
+.. code:: c++
+
+   class geometry { ... };
+   class hits { ... };
+   class tracks { ... };
+   class vertices { ... };
+
+   tracks make_tracks(hits const&) { ... }
+   vertices make_vertices(geometry const&, tracks const&) { ... }
+
+**Transform with one argument (default output product name)**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     transform("track_maker", make_tracks, concurrency::unlimited)
+       .sequence("good_hits"_in("spill"));
+   }
+
+**Transform with one argument (user-specified output product name)**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     products("good_tracks") =
+       transform("track_maker", make_tracks, concurrency::unlimited)
+       .sequence("good_hits"_in("spill"));
+   }
+
+**Transform with two arguments (default output product name)**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     transform("vertex_maker", make_vertices, concurrency::unlimited)
+       .sequence("geometry"_in("job"), "good_hits"_in("spill"));
+   }
 
 Filters and Predicates
 ----------------------
@@ -40,8 +106,34 @@ Phlex will not schedule a predicate for execution if it is not bound to a filter
 Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
 Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).
 
+.. table::
+    :widths: 15 85
+
+    +--------------+-----------------------------------------------------------+
+    | **Operator** | **Allowed signature**                                     |
+    +==============+===========================================================+
+    | :math:`p`    | :cpp:`bool function_name(P1, Pn..., Rm...) [qualifiers];` |
+    +--------------+-----------------------------------------------------------+
+
+
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: c++
+
+   class tracks { ... };
+
+   bool select_tracks(Tracks const& ts) { ... }
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     auto selected_data_scope = config.get<std::string>("data_scope");
+
+     predicate("good_tracks", select_tracks, concurrency::unlimited)
+       .sequence( <input_sequence_spec> );
+   }
 
 Observers
 ---------
@@ -62,8 +154,47 @@ An example of this is writing ROOT histograms or trees that are not intended to 
 
 Unlike filters and predicates, observers (by definition) are allowed to be the most downstream algorithms of the graph.
 
+.. table::
+    :widths: 15 85
+
+    +--------------+-----------------------------------------------------------+
+    | **Operator** | **Allowed signature**                                     |
+    +==============+===========================================================+
+    | :math:`f`    | :cpp:`void function_name(P1, Pn..., Rm...) [qualifiers];` |
+    +--------------+-----------------------------------------------------------+
+
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
+
+The following classes and functions are presumed to be experiment-defined and are used to demonstrate the registration interface for observers:
+
+.. code:: c++
+
+   class geometry { ... };
+   class tracks { ... };
+   void check_tracks(tracks const&) { ... }
+   void check_vertices(geometry const&, vertices const&) { ... }
+
+**Observer with one argument**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     observe(check_tracks, concurrency::unlimited)
+       .sequence("good_tracks"_in("spill"));
+   }
+
+**Observer with two arguments**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     observe(check_vertices, concurrency::unlimited)
+       .sequence("geometry"_in("job"), "good_tracks"_in("spill"));
+   }
+
 
 Partitioned Folds
 -----------------
@@ -154,6 +285,21 @@ Once all track multiplcity values in run :math:`i` have been processed by :math:
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
+
+**Result type**: A fold algorithm may create multiple data products through its result by specifying an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
+
+.. table::
+    :widths: 15 85
+
+    +-----------------------+-------------------------------------------------------------------------+
+    | **Operator**          | **Allowed signature**                                                   |
+    +=======================+=========================================================================+
+    | :math:`f`             | :cpp:`void function_name(result_type&, P1, Pn..., Rm...) [qualifiers];` |
+    +-----------------------+-------------------------------------------------------------------------+
+    | :math:`\textit{init}` | :cpp:`result_type{...}`                                                 |
+    +-----------------------+-------------------------------------------------------------------------+
+    | :math:`\textit{part}` | *Name of data-set category*                                             |
+    +-----------------------+-------------------------------------------------------------------------+
 
 Partitioned Unfolds
 -------------------
