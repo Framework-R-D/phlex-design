@@ -16,7 +16,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
 
 - the data-flow graph itself (see :numref:`scheduling:Topology of the data-flow graph`)
 - data products and data-product sets as passed along graph edges (see :numref:`data_organization:Data organization`)
-- user-provided algorithms such as transforms, folds, etc. (see :numref:`algorithms:Algorithms` and :numref:`registration:HOF operators` )
+- user-provided algorithms such as transforms, folds, etc. (see :numref:`algorithms:Algorithms` and :numref:`hof_operators:HOF operators` )
 - the framework driver (see :numref:`sources_sinks:Framework driver`)
 - data sources (see :numref:`sources_sinks:Data sources`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
 - data sinks (see :numref:`sources_sinks:Data sinks`), which are plugins that may write data products to an external entity (e.g. output files)
@@ -44,6 +44,8 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
    data_organization
    algorithms
    registration
+   sequence_spec
+   hof_operators
    sources_sinks
    resources
    user_configuration

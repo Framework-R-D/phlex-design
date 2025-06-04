@@ -66,7 +66,7 @@ Specifically, in the registration stanza above, we have the following:
      6. The specification(s) of data products that serve as input sequence elements :dune:`28 Specification of data products required by an algorithm`, and
      7. The data category where the input data products are found.
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`registration:HOF operators` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`hof_operators:HOF operators` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :dune:`1.1 Algorithm Communication Via Data Products` and the hardware resources required by the algorithm :dune:`4 Algorithm hardware requirements`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:
@@ -175,8 +175,6 @@ Instead, the code author can use the following [#f1]_:
    transform(..., [](double x){ return std::sqrt(x); }, ...);
 
 where the desired overload is selected based on the :cpp:`double` argument to the lambda expression.
-
-.. include:: hof_operators.rst
 
 .. rubric:: Footnotes
 

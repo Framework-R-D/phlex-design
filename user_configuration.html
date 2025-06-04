@@ -6,19 +6,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.10. Program Configuration &#8212; Phlex 0 (a133eb0) documentation</title>
+    <title>3.11. Program Configuration &#8212; Phlex 0 (1b2e040) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     
-    <script src="static/documentation_options.js?v=23a92b7f"></script>
+    <script src="static/documentation_options.js?v=dfc18828"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Technical Design" href="technical_design.html" />
-    <link rel="prev" title="3.9. Resources" href="resources.html" />
+    <link rel="prev" title="3.10. Resources" href="resources.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -34,11 +34,11 @@
           <a href="technical_design.html" title="4. Technical Design"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="resources.html" title="3.9. Resources"
+          <a href="resources.html" title="3.10. Resources"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a133eb0) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Program Configuration</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.11. </span>Program Configuration</a></li> 
       </ul>
     </div>  
 
@@ -48,7 +48,7 @@
           <div class="body" role="main">
             
   <section id="program-configuration">
-<h1><span class="section-number">3.10. </span>Program Configuration<a class="headerlink" href="#program-configuration" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">3.11. </span>Program Configuration<a class="headerlink" href="#program-configuration" title="Link to this heading">¶</a></h1>
 <p>The application of a specific configuration to a particular invocation of Phlex may be factorized into:</p>
 <ol class="arabic simple">
 <li><p>The mechanics of how the configuration is specified and evaluated</p></li>
@@ -56,7 +56,7 @@
 <li><p>The semantic structure of the configuration as it relates to the structure and operation of the application</p></li>
 </ol>
 <section id="mechanics-of-configuration-specification">
-<h2><span class="section-number">3.10.1. </span>Mechanics of Configuration Specification<a class="headerlink" href="#mechanics-of-configuration-specification" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.11.1. </span>Mechanics of Configuration Specification<a class="headerlink" href="#mechanics-of-configuration-specification" title="Link to this heading">¶</a></h2>
 <p>Configuration of the Phlex application may be effectuated by:</p>
 <ol class="arabic simple">
 <li><p>The ingestion of a configuration document in a specific language, and/or</p></li>
@@ -75,14 +75,14 @@
 </ul>
 </section>
 <section id="programmatic-access-to-the-configuration">
-<h2><span class="section-number">3.10.2. </span>Programmatic Access to the Configuration<a class="headerlink" href="#programmatic-access-to-the-configuration" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.11.2. </span>Programmatic Access to the Configuration<a class="headerlink" href="#programmatic-access-to-the-configuration" title="Link to this heading">¶</a></h2>
 <p>In order to preserve the framework-independent nature of user algorithms, the appropriate section of configuration will be made available to the appropriate algorithm’s registration code in the form of a hierarchical configuration object in the appropriate programming language (C++ or Python).
 The author of that registration code is then responsible for ensuring that relevant configuration information is passed to the user algorithm itself.</p>
 <p>Customizable facilities will exist to enable the presentation of configuration items not only as simple types, but as complex strucutres in the appropriate programming language.</p>
 <p>Users will not be able generally to access live configuration outside the scope of their own algorithm, although “framework-level” configuration will be viewable from registration code, as will configuration metadata attached to any input data registered for the algorithm.</p>
 </section>
 <section id="semantic-structure-of-the-configuration">
-<h2><span class="section-number">3.10.3. </span>Semantic Structure of the Configuration<a class="headerlink" href="#semantic-structure-of-the-configuration" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.11.3. </span>Semantic Structure of the Configuration<a class="headerlink" href="#semantic-structure-of-the-configuration" title="Link to this heading">¶</a></h2>
 <p>The semantic structure of the configuration is constrained by the common features of the permitted document languages, and of the C++ and Python programmatic representations.
 At the top level, the configuration document will be organized as a single associative array of key-value pairs, with the key being a scalar string identifier, and the value being either a scalar, a sequence of values, or a nested associative array.
 The configuration for a specific user algorithm or framework feature category will be represented by a (possibly empty) associative array.</p>
@@ -105,10 +105,10 @@ A human-readable representation of a specific validation schema will be provided
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">3.10. Program Configuration</a><ul>
-<li><a class="reference internal" href="#mechanics-of-configuration-specification">3.10.1. Mechanics of Configuration Specification</a></li>
-<li><a class="reference internal" href="#programmatic-access-to-the-configuration">3.10.2. Programmatic Access to the Configuration</a></li>
-<li><a class="reference internal" href="#semantic-structure-of-the-configuration">3.10.3. Semantic Structure of the Configuration</a></li>
+<li><a class="reference internal" href="#">3.11. Program Configuration</a><ul>
+<li><a class="reference internal" href="#mechanics-of-configuration-specification">3.11.1. Mechanics of Configuration Specification</a></li>
+<li><a class="reference internal" href="#programmatic-access-to-the-configuration">3.11.2. Programmatic Access to the Configuration</a></li>
+<li><a class="reference internal" href="#semantic-structure-of-the-configuration">3.11.3. Semantic Structure of the Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -117,7 +117,7 @@ A human-readable representation of a specific validation schema will be provided
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="resources.html"
-                          title="previous chapter"><span class="section-number">3.9. </span>Resources</a></p>
+                          title="previous chapter"><span class="section-number">3.10. </span>Resources</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -155,16 +155,16 @@ A human-readable representation of a specific validation schema will be provided
           <a href="technical_design.html" title="4. Technical Design"
              >next</a> |</li>
         <li class="right" >
-          <a href="resources.html" title="3.9. Resources"
+          <a href="resources.html" title="3.10. Resources"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a133eb0) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Program Configuration</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.11. </span>Program Configuration</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 03, 2025.
+      Last updated on Jun 04, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

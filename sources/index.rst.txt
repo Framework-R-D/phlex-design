@@ -11,7 +11,7 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
 
 .. only:: html and pdf_already_exists
 
-   .. note::
+   .. admonition:: PDF available
 
       A PDF rendering of this documentation is available `here`_.
 

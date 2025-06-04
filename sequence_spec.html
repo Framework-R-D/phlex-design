@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.5. Specifying Sequences &#8212; Phlex 0 (1b2e040) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    
+    <script src="static/documentation_options.js?v=dfc18828"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.6. HOF Operators" href="hof_operators.html" />
+    <link rel="prev" title="3.4. Framework Registration" href="registration.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="hof_operators.html" title="3.6. HOF Operators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="registration.html" title="3.4. Framework Registration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Specifying Sequences</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="specifying-sequences">
+<h1><span class="section-number">3.5. </span>Specifying Sequences<a class="headerlink" href="#specifying-sequences" title="Link to this heading">¶</a></h1>
+<p>As discussed in <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a>, the input sequence to a HOF is specified via a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code> clause, where the ellipsis is replaced by a <em>sequence specification</em>.
+One of the specifications provided is <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">)</span></code>, which indicates that a sequence should be formed from data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> from each <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data-set category.</p>
+<p>A sequence specification contains one or more <em>product specifications</em> and zero or more <em>resource specifications</em>, expressed in EBNF grammar <a class="reference internal" href="#wiki-ebnf" id="id1"><span>[Wiki-EBNF]</span></a> as:</p>
+<pre>
+<strong id="grammar-token-sequence_spec">&lt;sequence_spec&gt;</strong> ::= <a class="reference internal" href="#grammar-token-product_specs"><code class="xref docutils literal notranslate"><span class="pre">product_specs</span></code></a> | <a class="reference internal" href="#grammar-token-products"><code class="xref docutils literal notranslate"><span class="pre">products</span></code></a> &quot;,&quot; <a class="reference internal" href="#grammar-token-resource_specs"><code class="xref docutils literal notranslate"><span class="pre">resource_specs</span></code></a>
+<strong id="grammar-token-product_specs">product_specs</strong>   ::= Product | Product &quot;,&quot; (<a class="reference internal" href="#grammar-token-product_specs"><code class="xref docutils literal notranslate"><span class="pre">product_specs</span></code></a> | <a class="reference internal" href="#grammar-token-resource_specs"><code class="xref docutils literal notranslate"><span class="pre">resource_specs</span></code></a>)
+<strong id="grammar-token-resource_specs">resource_specs</strong>  ::= Resource | Resource &quot;,&quot; <a class="reference internal" href="#grammar-token-resource_specs"><code class="xref docutils literal notranslate"><span class="pre">resource_specs</span></code></a>
+<strong id="grammar-token-products">products</strong>        ::= Product | Product &quot;,&quot; <a class="reference internal" href="#grammar-token-products"><code class="xref docutils literal notranslate"><span class="pre">products</span></code></a>
+</pre>
+<p>where <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> specify a single product and a single resource, respectively.</p>
+<p>In the code examples that follow, the term <cite>&lt;sequence_spec&gt;</cite> refers to any specification allowed in the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code> clause.
+The specifications for <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> depend on the computing language of the algorithm and are defined elsewhere.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Where will be define the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> specifications, and what are they?</p>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-ebnf" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-EBNF</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Extended_Backus-Naur_form">https://en.wikipedia.org/wiki/Extended_Backus-Naur_form</a></p>
+</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="registration.html"
+                          title="previous chapter"><span class="section-number">3.4. </span>Framework Registration</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="hof_operators.html"
+                          title="next chapter"><span class="section-number">3.6. </span>HOF Operators</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/sequence_spec.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="hof_operators.html" title="3.6. HOF Operators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="registration.html" title="3.4. Framework Registration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (1b2e040) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Specifying Sequences</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 04, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
