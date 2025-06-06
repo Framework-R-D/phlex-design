@@ -44,9 +44,8 @@ The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Fr
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
 
 Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`conceptual_design:Conceptual design`.
-Some stakeholder requirements are referenced in the technical design in :numref:`technical_design:Technical design` if those requirements do not affect the conceptual framework model.
+Some stakeholder requirements are referenced in the supporting design in :numref:`supporting_design:Supporting design` if those requirements do not affect the conceptual framework model.
 No system requirements are currently referenced in this document.
-Should it become necessary to refer to the system requirements, such references will be limited to the technical design in :numref:`technical_design:Technical design`.
 
 ====================
 Framework Philosophy

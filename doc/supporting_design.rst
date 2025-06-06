@@ -1,6 +1,6 @@
-****************
-Technical Design
-****************
+*****************
+Supporting Design
+*****************
 
 The graph below depicts the relationships between the framework subsystems.
 

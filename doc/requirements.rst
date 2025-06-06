@@ -1086,9 +1086,9 @@ Jama Connect entry: `DUNE STKH #134 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Error handling                                        |
     +--------------+-------------------------------------------------------+
 
-======================
-Technical requirements
-======================
+=======================
+Supporting requirements
+=======================
 
 4.2 Shut down upon unmet algorithm hardware requirements
 --------------------------------------------------------
