@@ -27,7 +27,6 @@ release = f"0 ({git_commit})"
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
               'appendix',
-              'requirement',
               "sphinx_needs"]
 
 autosectionlabel_prefix_document = True
