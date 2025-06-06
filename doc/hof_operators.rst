@@ -314,7 +314,7 @@ Partitioned Unfolds
 |                                                         | :math:`\textit{label}: \mathbbm{1} \rightarrow L`  |                        |
 +---------------------------------------------------------+----------------------------------------------------+------------------------+
 
-Unfolds are the opposite of folds, where the output sequence is larger than the input sequence :dune:`17 Unfolding data products`.
+Unfolds are the opposite of folds, where the output sequence is larger than the input sequence :need:`DUNE 33`.
 An unfold can be used for parallelizing the processing of a data product in smaller chunks.
 
 Unfolding predicate

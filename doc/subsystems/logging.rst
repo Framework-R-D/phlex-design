@@ -1,4 +1,4 @@
 Logging
 =======
 
-Phlex is designed so that algorithms can log messages without explicitly depending on the framework :dune:`33 Framework-independent message logging`.
+Phlex is designed so that algorithms can log messages without explicitly depending on the framework :need:`DUNE 48`.

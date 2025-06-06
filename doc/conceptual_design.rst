@@ -9,7 +9,7 @@ Conceptual Design
    More detailed aspects of the design in support of the conceptual model are given in :numref:`supporting_design:Supporting design`.
 
 Phlex adopts the data-flow approach discussed in :numref:`data_flow:Data flow with sequences`.
-Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :dune:`1 Algorithm Decomposability,1.1 Algorithm Communication Via Data Products,9 Presenting data to subsequent algorithms`.
+Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
 These algorithms then serve as operators to higher-order functions that operate on *data-product sequences*.
 
 To guide the discussion of Phlex's conceptual model, we refer to the graph in  :numref:`workflow`, which illustrates various framework aspects:

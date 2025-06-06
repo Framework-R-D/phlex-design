@@ -27,7 +27,8 @@ release = f"0 ({git_commit})"
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
               'appendix',
-              'requirement']
+              'requirement',
+              "sphinx_needs"]
 
 autosectionlabel_prefix_document = True
 numfig = True
@@ -43,6 +44,19 @@ templates_path = ['_templates']
 extensions.append('sphinx.ext.todo')
 todo_include_todos = True
 todo_emit_warnings = True
+
+needs_id_regex = r"^DUNE\s+\d+"
+needs_role_need_template = "[{id}]"
+needs_extra_options = ["jama", "see", "notes"]
+needs_string_links = {
+    # Adds link to the Sphinx-Needs configuration page
+    'jama_link': {
+        'regex': r'^(?P<number>\d+)\s+(?P<jamaurl>.*)$',
+        'link_url': '{{ jamaurl }}',
+        'link_name': 'DUNE-DUNE_STKH-{{ number }}',
+        'options': ['jama']
+    },
+}
 
 # -- Rendering LaTeX math expressions-----------------------------------------
 
