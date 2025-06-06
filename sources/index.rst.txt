@@ -27,12 +27,11 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
 .. raw:: latex
 
    \appendix
-   \setcounter{secnumdepth}{0}
 
-.. toctree::
-   :titlesonly:
+.. appendix::
    :caption: Appendices:
    :numbered:
+   :maxdepth: 2
 
    definitions
    requirements
