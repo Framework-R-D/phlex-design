@@ -119,9 +119,6 @@ new_commands = r"""
                              \protect\footnotemark\fi}%
 \makeatother
 
-% Remove extra vertical space after line blocks
-\AtEndEnvironment{DUlineblock}{\vspace*{-1.5\baselineskip}}
-
 % Number subsubsections
 \setcounter{secnumdepth}{3}
 

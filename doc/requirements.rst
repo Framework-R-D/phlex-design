@@ -8,44 +8,48 @@ Framework requirements
 Conceptual requirements
 =======================
 
+
 .. req:: Algorithm Decomposability
     :collapse:
     :id: DUNE 1
-    :tags: General, Original
     :jama: 1 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14536
-    :status: Approved
-    :see: :numref:`scheduling:Topology of the data-flow graph`
     :notes: This is ID #01 from the original DUNE document.
+    :status: Approved
+    :tags: General, Original
 
     The framework shall allow the execution of multiple algorithms.
+
+- See :numref:`scheduling:Topology of the data-flow graph`
 
 .. req:: Algorithm Communication Via Data Products
     :collapse:
     :id: DUNE 111
+    :jama: 111 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847
     :status: Approved
     :tags: General, Reproducibility, Provenance
-    :jama: 111 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14847
-    :see: :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`registration:Framework registration`
 
     The framework shall mediate communication between algorithms via data products.
+
+- See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`registration:Framework registration`
 
 .. req:: Data Product Representation
     :collapse:
     :id: DUNE 2
-    :status: Approved
     :jama: 2 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14539
-    :see: :numref:`data_organization:Structure and Representation`
-    :tags: Original, General, Accelerators
     :notes: This is ID #02 from the original DUNE document.
+    :status: Approved
+    :tags: Original, General, Accelerators
 
     The framework shall separate the persistent representation of data products from their in-memory representations as seen by algorithms.
+
+- See :numref:`data_organization:Structure and Representation`
 
 .. req:: Full utilization of DUNE computing resources
     :collapse:
     :id: DUNE 8
-    :status: Approved
     :jama: 8 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14548
     :notes: This is ID #05 from the original DUNE document.
+    :status: Approved
     :tags: General, Original, Reproducibility
 
     The framework shall run on widely-used scientific computing systems in order to fully utilize DUNE computing resources.
@@ -53,19 +57,20 @@ Conceptual requirements
 .. req:: Algorithm hardware requirements
     :collapse:
     :id: DUNE 9
-    :status: Approved
     :jama: 9 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14549
-    :see: :numref:`registration:Framework registration`
     :notes: This is ID #06 from the original DUNE document.
+    :status: Approved
     :tags: General, Original, Reproducibility
 
     The framework shall provide an API that allows users to express hardware requirements of the algorithms.
 
+- See :numref:`registration:Framework registration`
+
 .. req:: Algorithms can use a GPU
     :collapse:
     :id: DUNE 11
-    :status: Approved
     :jama: 11 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14551
+    :status: Approved
     :tags: General, Accelerators, Reproducibility
 
     The framework shall support running algorithms that require a GPU.
@@ -73,40 +78,44 @@ Conceptual requirements
 .. req:: Support for multiple programming languages
     :collapse:
     :id: DUNE 14
-    :status: Approved
     :jama: 14 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14554
-    :see: :numref:`introduction:Programming languages`
-    :notes: This is ID #07 from the original DUNE document. If DUNE decides that additional languages should be supported in the future, a specific requirement can be added for that language as a sub-requirement.
+    :notes: This is ID #07 from the original DUNE document.
+            If DUNE decides that additional languages should be supported in the future, a specific requirement can be added for that language as a sub-requirement.
+    :status: Approved
     :tags: Original, General
 
     The framework shall support the invocation of algorithms written in multiple programming languages.
 
+- See :numref:`introduction:Programming languages`
+
 .. req:: Support C++ algorithms
     :collapse:
     :id: DUNE 81
-    :status: Approved
     :jama: 81 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14663
-    :see: :numref:`introduction:Programming languages`
+    :status: Approved
     :tags: General
 
     The framework shall support the invocation of algorithms written in C++.
 
+- See :numref:`introduction:Programming languages`
+
 .. req:: Support Python algorithms
     :collapse:
     :id: DUNE 82
-    :status: Approved
     :jama: 82 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14664
-    :see: :numref:`introduction:Programming languages`
+    :status: Approved
     :tags: General
 
     The framework shall support the invocation of algorithms written in Python.
 
+- See :numref:`introduction:Programming languages`
+
 .. req:: Persist user-defined metadata
     :collapse:
     :id: DUNE 17
-    :status: Approved
     :jama: 17 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14557
     :notes: This is ID #08 from the original DUNE document.
+    :status: Approved
     :tags: General, Original
 
     The framework shall provide user-accessible persistence of user-defined metadata.
@@ -114,9 +123,9 @@ Conceptual requirements
 .. req:: Framework shall read its own output files
     :collapse:
     :id: DUNE 19
-    :status: Approved
     :jama: 19 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14560
     :notes: This is ID #10 from the original DUNE document.
+    :status: Approved
     :tags: Physics Analysis, Original
 
     The framework shall provide the ability to read a framework-produced file as input to a subsequent framework job so that the physics data are equivalent to the physics data obtained from a single execution of the combined job.
@@ -124,19 +133,20 @@ Conceptual requirements
 .. req:: Presenting data to subsequent algorithms
     :collapse:
     :id: DUNE 20
+    :jama: 20 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562
     :status: Approved
     :tags: Physics Analysis
-    :jama: 20 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14562
-    :see: :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`
 
     The framework shall present data produced by an already executed algorithm to each subsequent, requesting algorithm.
+
+- See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`
 
 .. req:: Mix input streams
     :collapse:
     :id: DUNE 21
-    :status: Approved
     :jama: 21 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14563
     :notes: This is ID #11 from the original DUNE document.
+    :status: Approved
     :tags: Physics Analysis, Original
 
     The framework shall support the creation of data sets composed of data products derived from data originating from disparate input sources.
@@ -144,9 +154,9 @@ Conceptual requirements
 .. req:: Flexible data units
     :collapse:
     :id: DUNE 22
-    :status: Approved
     :jama: 22 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14580
     :notes: This is ID #12 from the original DUNE document.
+    :status: Approved
     :tags: Original, Flexible Processing Unit (FPU)
 
     The framework shall support flexibly defined, context-aware processing units to address the varying granularity necessary for processing different kinds of data.
@@ -154,71 +164,78 @@ Conceptual requirements
 .. req:: Definition of data products
     :collapse:
     :id: DUNE 85
-    :status: Approved
     :jama: 85 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14693
-    :see: :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Data categories, families, and data-product sets`
+    :status: Approved
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall provide the ability for user-level code to define data products.
 
+- See :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Data categories, families, and data-product sets`
+
 .. req:: Creation of data sets
     :collapse:
     :id: DUNE 86
-    :status: Approved
     :jama: 86 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696
-    :see: :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+    :status: Approved
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall provide the ability for user-level code to create new data sets.
 
+- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+
 .. req:: Definition of data families
     :collapse:
     :id: DUNE 87
-    :status: Approved
     :jama: 87 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697
-    :see: :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+    :status: Approved
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall provide the ability for user-level code to define data families.
 
+- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+
 .. req:: Definition of data family hierarchies
     :collapse:
     :id: DUNE 88
-    :status: Approved
     :jama: 88 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698
-    :see: :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+    :status: Approved
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
+- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+
 .. req:: Process collections of unconstrained size
     :collapse:
     :id: DUNE 25
-    :status: Approved
     :jama: 25 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14584
-    :see: :numref:`data_organization:Data categories, families, and data-product sets`
     :notes: This originates from ID #16 from the original DUNE document.
+    :status: Approved
     :tags: Original, Flexible Processing Unit (FPU)
 
     The framework shall support processing of collections that are too large to fit into memory at one time.
 
+- See :numref:`data_organization:Data categories, families, and data-product sets`
+
 .. req:: Unfolding data products
     :collapse:
     :id: DUNE 33
-    :status: Approved
     :jama: 33 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14593
-    :see: :numref:`hof_operators:Partitioned Unfolds`
     :notes: This is ID #58 from the original DUNE document.
+    :status: Approved
     :tags: Memory management, Original, Flexible Processing Unit (FPU)
 
     The framework shall allow the unfolding of data products into a sequence of finer-grained data products.
 
+- See :numref:`hof_operators:Partitioned Unfolds`
+
 .. req:: Access to external data sources
     :collapse:
     :id: DUNE 35
-    :status: Approved
     :jama: 35 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14595
-    :notes: This is ID #47 from the original DUNE document. By "external data sources," we mean "data sources **other than** framework-readable data files containing detector readout or simulated physics data."
+    :notes: This is ID #47 from the original DUNE document.
+            By "external data sources," we mean "data sources **other than** framework-readable data files containing detector readout or simulated physics data."
+    :status: Approved
     :tags: Original, Services
 
     The framework shall support access to external data sources.
@@ -228,22 +245,24 @@ Conceptual requirements
     :id: DUNE 40
     :status: Approved
     :jama: 40 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14600
-    :see: :numref:`data_organization:Data organization`.
     :notes: This is ID #68 as proposed to DUNE.
     :tags: Services
 
     The framework shall support algorithms that provide data from calibration databases.
+
+- See :numref:`data_organization:Data organization`.
 
 .. req:: Algorithms independent of framework interface
     :collapse:
     :id: DUNE 43
     :status: Approved
     :jama: 43 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14608
-    :see: :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
     :notes: This is ID #48 from the original DUNE document.
     :tags: Services, Original
 
     The framework shall support the registration of algorithms that are independent of framework interface.
+
+- See :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:
@@ -260,11 +279,12 @@ Conceptual requirements
     :id: DUNE 47
     :status: Approved
     :jama: 47 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14613
-    :see: :numref:`subsystems/configuration:Program resource specification`
     :notes: This is ID #28 from the original DUNE document.
     :tags: Original, Concurrency and multithreading, Resource management
 
     The framework shall enable the specification of resources required by the program.
+
+- See :numref:`subsystems/configuration:Program resource specification`
 
 .. req:: Specification of user-defined resources
     :collapse:
@@ -318,11 +338,13 @@ Conceptual requirements
     :id: DUNE 142
     :status: Approved
     :jama: 142 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15847
-    :see: :numref:`data_organization:Data product management`
-    :notes: Optimization means making the data products available for the shortest period of time possible for all algorithms that require them.  The framework, however, may need to run in series multiple algorithms requiring those data products if those algorithms would run out of resources if run concurrently.
+    :notes: Optimization means making the data products available for the shortest period of time possible for all algorithms that require them.
+            The framework, however, may need to run in series multiple algorithms requiring those data products if those algorithms would run out of resources if run concurrently.
     :tags: Resource management
 
     The framework shall optimize the memory management of data products.
+
+- See :numref:`data_organization:Data product management`
 
 .. req:: Composable workflows using GPU algorithms and CPU algorithms
     :collapse:
@@ -339,50 +361,56 @@ Conceptual requirements
     :id: DUNE 65
     :status: Approved
     :jama: 65 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14634
-    :see: :numref:`registration:Framework registration`
     :notes: This is ID #63 as proposed to DUNE.
     :tags: Registration
 
     The framework shall support the specification of data products required as input by an algorithm.
+
+- See :numref:`registration:Framework registration`
 
 .. req:: Specification of data products created by an algorithm
     :collapse:
     :id: DUNE 156
     :status: Approved
     :jama: 156 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15897
-    :see: :numref:`registration:Framework registration`
     :tags: Registration
 
     The framework shall support the specification of data products created as output by an algorithm.
+
+- See :numref:`registration:Framework registration`
 
 .. req:: One configuration per framework execution
     :collapse:
     :id: DUNE 69
     :status: Approved
     :jama: 69 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14638
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :notes: This is ID #44 from the original DUNE document.
     :tags: Original, Configuration
 
     The framework shall accept exactly one configuration per program execution.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Framework configuration language
     :collapse:
     :id: DUNE 72
     :status: Approved
     :jama: 72 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14641
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :notes: This is ID #60 as proposed to DUNE.
     :tags: Configuration
 
     The framework shall provide the ability to configure the execution of a framework program at runtime using a human-readable language.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: I/O plugins
     :collapse:
     :id: DUNE 73
     :status: Approved
     :jama: 73 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14642
-    :notes: This is ID #50 from the original DUNE document. Data includes physics data and metadata (both user-provided and framework metadata). The goal is to enable non-framework developers to implement an IO backend without needing to modify the framework itself.
+    :notes: This is ID #50 from the original DUNE document.
+            Data includes physics data and metadata (both user-provided and framework metadata).
+            The goal is to enable non-framework developers to implement an IO backend without needing to modify the framework itself.
     :tags: Data I/O layer, Original
 
     The framework shall provide a public API that enables the implementation of a concrete IO backend for a specific persistent storage format.
@@ -392,7 +420,8 @@ Conceptual requirements
     :id: DUNE 76
     :status: Approved
     :jama: 76 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14645
-    :notes: This is ID #54 from the original DUNE document. Backward compatibility means that new code is able to read data produced by older versions of the framework.
+    :notes: This is ID #54 from the original DUNE document.
+            Backward compatibility means that new code is able to read data produced by older versions of the framework.
     :tags: Original, Data I/O layer, Backwards compatibility
 
     The framework IO subsystem shall support backward compatibility across versions, subject to policy decisions on deprecation provided by DUNE.
@@ -448,20 +477,22 @@ Conceptual requirements
     :id: DUNE 110
     :status: Approved
     :jama: 110 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845
-    :see: :numref:`data_organization:Conceptual Nature`
     :tags: General
 
     The data objects exchanged among algorithms shall be separable from those algorithms.
+
+- See :numref:`data_organization:Conceptual Nature`
 
 .. req:: Provenance discovery
     :collapse:
     :id: DUNE 121
     :status: Approved
     :jama: 121 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293
-    :see: :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
     :tags: Provenance
 
     The framework shall enable users to discover the provenance of data products.
+
+- See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
 
 .. req:: Framework recording of metadata for reproduction of output data
     :collapse:
@@ -478,10 +509,11 @@ Conceptual requirements
     :id: DUNE 122
     :status: Approved
     :jama: 122 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294
-    :see: :numref:`data_organization:Data product identification`.
     :tags: Reproducibility, Provenance
 
     The framework shall support the reproduction of data products from the provenance stored in the output.
+
+- See :numref:`data_organization:Data product identification`.
 
 .. req:: Reproducibility with pseudo-random numbers
     :collapse:
@@ -498,27 +530,31 @@ Conceptual requirements
     :id: DUNE 130
     :status: Approved
     :jama: 130 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742
-    :see: :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
     :tags: Concurrency and multithreading
 
     The framework shall facilitate the development of thread-safe algorithms.
+
+- See :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
 
 .. req:: Composing configurations of framework components
     :collapse:
     :id: DUNE 133
     :status: Approved
     :jama: 133 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :tags: Configuration
 
     The framework shall support executing programs configured by composing configurations of separate components.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Graceful shutdown of framework program
     :collapse:
     :id: DUNE 134
     :status: Approved
     :jama: 134 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15787
-    :notes: A *graceful shutdown* refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (e.g. databases), etc. before the program ends.  This ensures that no resources are left in ill-defined states and that all output files are readable and valid. An important example of this is when a batch job exceeds a time limit and the grid system sends a signal to shutdown the job, which should end gracefully.
+    :notes: A *graceful shutdown* refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (e.g. databases), etc. before the program ends.
+            This ensures that no resources are left in ill-defined states and that all output files are readable and valid.
+            An important example of this is when a batch job exceeds a time limit and the grid system sends a signal to shutdown the job, which should end gracefully.
     :tags: Error handling
 
     The framework shall attempt a graceful shutdown by default.
@@ -569,7 +605,8 @@ Supporting requirements
     :id: DUNE 32
     :status: Approved
     :jama: 32 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14592
-    :notes: This is ID #57 from the original DUNE document. Very large data collections could be 10s of GBs in size, and the memory budget may be a maximum of a few GBs.
+    :notes: This is ID #57 from the original DUNE document.
+            Very large data collections could be 10s of GBs in size, and the memory budget may be a maximum of a few GBs.
     :tags: Original, Memory management
 
     The framework shall support the reading of collections too large to hold in memory.
@@ -588,10 +625,11 @@ Supporting requirements
     :id: DUNE 98
     :status: Approved
     :jama: 98 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14724
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :tags: Configuration
 
     The framework shall provide the ability to compare two configurations.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Record execution environment
     :collapse:
@@ -623,7 +661,6 @@ Supporting requirements
 
 .. req:: Record user-selected items from the shell environment
     :collapse:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     :id: DUNE 123
     :status: Approved
     :jama: 123 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15480
@@ -645,7 +682,9 @@ Supporting requirements
     :id: DUNE 31
     :status: Approved
     :jama: 31 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14591
-    :notes: This is ID #59 from the original DUNE document. The maximum memory available is a static quantity that can apply to (a) a job using an entire node with all of its available RSS, and (b) a job using a specific grid slot with a limit on the RSS.  It is assumed that the operating system and C++/Python runtimes are not already enforcing this limit.
+    :notes: This is ID #59 from the original DUNE document.
+            The maximum memory available is a static quantity that can apply to (a) a job using an entire node with all of its available RSS, and (b) a job using a specific grid slot with a limit on the RSS.
+            It is assumed that the operating system and C++/Python runtimes are not already enforcing this limit.
     :tags: Original, Memory management, Resource management
 
     The framework shall gracefully shut down if the program attempts to exceed a configured memory limit.
@@ -674,11 +713,13 @@ Supporting requirements
     :id: DUNE 46
     :status: Approved
     :jama: 46 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14612
-    :see: :numref:`subsystems/task_management:Task management`
-    :notes: This is ID #27 from the original DUNE document. It is the responsibility of the algorithm author to ensure that any parallelism libraries used can work compatibly with those used by the framework itself.
+    :notes: This is ID #27 from the original DUNE document.
+            It is the responsibility of the algorithm author to ensure that any parallelism libraries used can work compatibly with those used by the framework itself.
     :tags: Original, Concurrency and multithreading
 
     The framework shall allow algorithms to use the same parallelism mechanisms the framework uses to schedule the execution of algorithms.
+
+- See :numref:`subsystems/task_management:Task management`
 
 .. req:: Specification of maximum number of CPU threads
     :collapse:
@@ -712,20 +753,22 @@ Supporting requirements
     :id: DUNE 152
     :status: Approved
     :jama: 152 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15883
-    :see: :numref:`registration:Framework registration`
     :tags: Resource management
 
     The framework shall enable the specification of the maximum number of CPU threads permitted by the algorithm.
+
+- See :numref:`registration:Framework registration`
 
 .. req:: Specification of algorithm's CPU memory usage
     :collapse:
     :id: DUNE 154
     :status: Approved
     :jama: 154 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15889
-    :see: :numref:`data_organization:Structure and Representation`
     :tags: Resource management, Memory management
 
     The framework shall enable the specification of an algorithm's expected CPU memory usage.
+
+- See :numref:`data_organization:Structure and Representation`
 
 .. req:: Specification of algorithm's GPU resources
     :collapse:
@@ -771,11 +814,14 @@ Supporting requirements
     :id: DUNE 60
     :status: Approved
     :jama: 60 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14629
-    :see: :numref:`subsystems/monitoring:Monitoring and reporting`
-    :notes: This is ID #66 as proposed to DUNE. This option is intended to capture wall-clock time and not CPU time.  If more granular reporting of CPU vs. IO time is required, dedicated profiling tools like VTune or Linaro Forge should be used.
+    :notes: This is ID #66 as proposed to DUNE.
+            This option is intended to capture wall-clock time and not CPU time.
+            If more granular reporting of CPU vs. IO time is required, dedicated profiling tools like VTune or Linaro Forge should be used.
     :tags: General, Resource management
 
     The framework shall have an option to provide elapsed time information for each algorithm executed in a framework program.
+
+- See :numref:`subsystems/monitoring:Monitoring and reporting`
 
 .. req:: Efficient execution of algorithms requiring access to a network resource
     :collapse:
@@ -792,7 +838,9 @@ Supporting requirements
     :id: DUNE 143
     :status: Approved
     :jama: 143 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15848
-    :notes: Examples of external resources include local GPUs, remote inference servers, and databases. This requirement also serves as a replacement for a former requirement: "The framework MUST be able to broker/cache service replies that might be common to multiple instances of algorithms (reduce load on external service/disk/memory/network/...). E.g. a request for a calibration constant that is common among all FPUs in a run. Not every instance of an algorithm should trigger an actual request to the central database providing these."
+    :notes: Examples of external resources include local GPUs, remote inference servers, and databases.
+            This requirement also serves as a replacement for a former requirement: "The framework MUST be able to broker/cache service replies that might be common to multiple instances of algorithms (reduce load on external service/disk/memory/network/...). E.g. a request for a calibration constant that is common among all FPUs in a run.
+            Not every instance of an algorithm should trigger an actual request to the central database providing these."
     :tags: Resource management
 
     The framework shall optimize the availability of external resources.
@@ -840,86 +888,93 @@ Supporting requirements
     :id: DUNE 59
     :status: Approved
     :jama: 59 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14628
-    :see: :numref:`subsystems/monitoring:Monitoring and reporting`
     :notes: This is ID #67 as proposed to DUNE.
     :tags: General, Memory management, Resource management
 
     The framework shall be able to report the global memory use of the framework program at user-specified points in time.
+
+- See :numref:`subsystems/monitoring:Monitoring and reporting`
 
 .. req:: Framework-independent message logging
     :collapse:
     :id: DUNE 61
     :status: Approved
     :jama: 61 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14630
-    :see: :numref:`subsystems/logging:Logging`
     :notes: This is ID #65 as proposed to DUNE.
     :tags: General
 
     The framework shall support a logging solution that is usable in an algorithm without that algorithm explicitly relying on the framework.
+
+- See :numref:`subsystems/logging:Logging`
 
 .. req:: Configuration validation
     :collapse:
     :id: DUNE 64
     :status: Approved
     :jama: 64 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14633
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :notes: This is ID #42 from the original DUNE document.
     :tags: Original, Configuration
 
     The framework shall validate an algorithm's configuration against specifications provided at registration time.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Algorithm configuration schema availability
     :collapse:
     :id: DUNE 67
     :status: Approved
     :jama: 67 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14636
-    :see: :numref:`user_configuration:Semantic structure of the configuration`
     :notes: This is ID #43 from the original DUNE document.
     :tags: Original, Configuration
 
     The framework shall have an option to emit an algorithm's configuration schema in human-readable form.
+
+- See :numref:`user_configuration:Semantic structure of the configuration`
 
 .. req:: Eager validation of algorithm configuration
     :collapse:
     :id: DUNE 70
     :status: Approved
     :jama: 70 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14639
-    :see: :numref:`user_configuration:Mechanics of configuration specification`, :numref:`user_configuration:Semantic structure of the configuration`.
-    :notes: This is ID #45 from the original DUNE document. Validation includes any reading, parsing, canonicalizing, and checking against applicable schemata.
+    :notes: This is ID #45 from the original DUNE document.
+            Validation includes any reading, parsing, canonicalizing, and checking against applicable schemata.
     :tags: Original, Configuration
 
     The framework shall validate the configuration of each algorithm before that algorithm processes data.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`, :numref:`user_configuration:Semantic structure of the configuration`.
 
 .. req:: I/O backend for ROOT
     :collapse:
     :id: DUNE 74
     :status: Approved
     :jama: 74 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14643
-    :see: :numref:`data_organization:Conceptual Nature`.
     :notes: This is ID #51 from the original DUNE document.
     :tags: Data I/O layer, Original
 
     The framework ecosystem shall support a ROOT IO backend.
+
+- See :numref:`data_organization:Conceptual Nature`.
 
 .. req:: I/O backend for HDF5
     :collapse:
     :id: DUNE 141
     :status: Approved
     :jama: 141 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15838
-    :see: :numref:`data_organization:Conceptual Nature`.
     :tags: Data I/O layer, Original
 
     The framework ecosystem shall support an HDF5 IO backend.
+
+- See :numref:`data_organization:Conceptual Nature`.
 
 .. req:: Data product backward compatibility
     :collapse:
     :id: DUNE 106
     :status: Approved
     :jama: 106 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14796
+    :tags: Data I/O layer, Backwards compatibility
 
     The framework's IO subsystem shall support backward compatibility of data products.
-    | Status       | Approved
-    :tags: Data I/O layer, Backwards compatibility
 
 .. req:: Metadata backward compatibility
     :collapse:
@@ -956,7 +1011,7 @@ Supporting requirements
     :id: DUNE 109
     :status: Approved
     :jama: 109 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14806
-    :notes: Some examples include limiting the output file to contain data for: - 1 subrun ("subrun" is the user-specified family) - 100 spills ("spill" is the user-specified family) - 10 blobs ("blob" is the user-specified family)
+    :notes: Some examples include limiting the output file to contain data for: (a) 1 subrun ("subrun" is the user-specified family) (b) 100 spills ("spill" is the user-specified family) (c) 10 blobs ("blob" is the user-specified family)
     :tags: Data I/O layer
 
     The framework shall have an option to rollover output files according to a configurable limit on the number of data sets in a user-specified data family.
@@ -994,7 +1049,8 @@ Supporting requirements
     :id: DUNE 116
     :status: Deferred
     :jama: 116 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15239
-    :notes: ProtoDUNE single-phase was used in run 1. For this requirement, the framework *ecosystem* is responsible for processing run 1 data (e.g. the framework might not read the run 1 data directly, but a translation program might first prepare the run 1 data for reading within the framework).
+    :notes: ProtoDUNE single-phase was used in run 1.
+            For this requirement, the framework *ecosystem* is responsible for processing run 1 data (e.g. the framework might not read the run 1 data directly, but a translation program might first prepare the run 1 data for reading within the framework).
     :tags: Backwards compatibility, Data I/O layer
 
     The framework ecosystem shall support processing ProtoDUNE single-phase raw data.
@@ -1004,7 +1060,8 @@ Supporting requirements
     :id: DUNE 117
     :status: Deferred
     :jama: 117 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15240
-    :notes: ProtoDUNE dual-phase was used in run 1. For this requirement, the framework *ecosystem* is responsible for processing run 1 data (e.g. the framework might not read the run 1 data directly, but a translation program might first prepare the run 1 data for reading within the framework).
+    :notes: ProtoDUNE dual-phase was used in run 1.
+            For this requirement, the framework *ecosystem* is responsible for processing run 1 data (e.g. the framework might not read the run 1 data directly, but a translation program might first prepare the run 1 data for reading within the framework).
     :tags: Backwards compatibility, Data I/O layer
 
     The framework ecosystem shall support processing ProtoDUNE dual-phase raw data.
@@ -1032,63 +1089,70 @@ Supporting requirements
     :id: DUNE 27
     :status: Approved
     :jama: 27 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
-    :notes: This is ID #17 from the original DUNE document. This requirement is in support of documenting and reproducing previous results.
+    :notes: This is ID #17 from the original DUNE document.
+            This requirement is in support of documenting and reproducing previous results.
     :tags: Original, Configuration, Reproducibility, Provenance
 
     The framework shall provide an option to persist the configuration of each framework execution to the output of that execution.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Independence from unique hardware characteristics
     :collapse:
     :id: DUNE 63
     :status: Approved
     :jama: 63 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632
-    :see: :numref:`data_organization:Conceptual Nature`
     :notes: This is ID #62 as proposed to DUNE.
     :tags: Reproducibility, Provenance
 
     The framework shall operate independently of unique characteristics of existing hardware.
+
+- See :numref:`data_organization:Conceptual Nature`
 
 .. req:: Command line interface (CLI)
     :collapse:
     :id: DUNE 125
     :status: Approved
     :jama: 125 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15710
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :tags: Configuration
 
     The framework shall provide a command-line interface that allows the setting of configuration parameters.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Support local configuration changes
     :collapse:
     :id: DUNE 126
     :status: Approved
     :jama: 126 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15715
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :tags: Configuration
 
     The framework shall support the use of local configuration changes with respect to a separate complete configuration to modify the execution of a program.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Configuration tracing
     :collapse:
     :id: DUNE 127
     :status: Approved
     :jama: 127 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15718
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :tags: Configuration
 
     The framework configuration system shall have an option to provide diagnostic information for an evaluated configuration, including origins of final parameter values.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Configuration language single point of maintenance
     :collapse:
     :id: DUNE 128
     :status: Approved
     :jama: 128 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15723
-    :see: :numref:`user_configuration:Mechanics of configuration specification`
     :notes: This must be met by each configuration language.
     :tags: Configuration
 
     The language used for configuring a framework program shall include features for maintaining hierarchical configurations from a single point of maintenance.
+
+- See :numref:`user_configuration:Mechanics of configuration specification`
 
 .. req:: Enable identification of data sets containing chunked data products
     :collapse:
