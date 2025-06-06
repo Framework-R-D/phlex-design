@@ -13,24 +13,24 @@ Mechanics of Configuration Specification
 Configuration of the Phlex application may be effectuated by:
 
 #. The ingestion of a configuration document in a specific language, and/or
-#. The use of one or more command-line options to the invocation of Phlex :dune:`53 Command line interface (CLI)`
+#. The use of one or more command-line options to the invocation of Phlex :need:`DUNE 125`
 
 Command line options shall always be applied after—and with higher priority than—a configuration document.
 
-A given Phlex invocation shall be configured by no more than one configuration document :dune:`36 One configuration per framework execution`, although that document may be compiled from more than one source (such as included files).
+A given Phlex invocation shall be configured by no more than one configuration document :need:`DUNE 69`, although that document may be compiled from more than one source (such as included files).
 
-Phlex shall support configuration documents written in precisely one of the following languages: Jsonnet, YAML, JSON (as a strict subset of Jsonnet), or FHiCL :dune:`38 Framework configuration language`.
+Phlex shall support configuration documents written in precisely one of the following languages: Jsonnet, YAML, JSON (as a strict subset of Jsonnet), or FHiCL :need:`DUNE 72`.
 
-Phlex shall evaluate the entire configuration at program initialization time :dune:`37 Eager validation of algorithm configuration`, and configuration values shall be converted into a canonical form to facilitate meaningful comparison between two different evaluated configurations :dune:`14 Configuration comparison`.
+Phlex shall evaluate the entire configuration at program initialization time :need:`DUNE 70`, and configuration values shall be converted into a canonical form to facilitate meaningful comparison between two different evaluated configurations :need:`DUNE 98`.
 
-Where supported by the input language and requested by the user, Phlex shall provide tracing, and other diagnostic information about the evaluation of the configuration :dune:`55 Configuration tracing`.
+Where supported by the input language and requested by the user, Phlex shall provide tracing, and other diagnostic information about the evaluation of the configuration :need:`DUNE 127`.
 
-Phlex shall provide the option to persist its configuration to the execution's configured output data destination :dune:`51.1 Framework configuration persistency`.
+Phlex shall provide the option to persist its configuration to the execution's configured output data destination :need:`DUNE 27`.
 
-For each supported configuration input language, Phlex shall support facilities enabling a single point of maintenance for configuration documents :dune:`56 Configuration language single point of maintenance`, including (but not limited to):
+For each supported configuration input language, Phlex shall support facilities enabling a single point of maintenance for configuration documents :need:`DUNE 128`, including (but not limited to):
 
-* Specifically overriding configuration items specified earlier in the configuration document :dune:`54 Support local configuration changes`, and
-* The ability to compose a single configuration document from multiple distinct sources :dune:`61 Composing configurations of framework components`.
+* Specifically overriding configuration items specified earlier in the configuration document :need:`DUNE 126`, and
+* The ability to compose a single configuration document from multiple distinct sources :need:`DUNE 133`.
 
 Programmatic Access to the Configuration
 ----------------------------------------
@@ -51,5 +51,5 @@ The configuration for a specific user algorithm or framework feature category wi
 
 Neither sequences nor associative arrays are constrained to be homogeoneous.
 
-Facilities will exist to constrain and/or validate configurations for particular framework feature categories or user code by specifying a schema :dune:`34 Configuration validation`; when used, any issues with the validity of user-provided configuration will be flagged at the time of evaluation of the configuration :dune:`37 Eager validation of algorithm configuration`, rather than being left to the author of the registration code and/or algorithm.
-A human-readable representation of a specific validation schema will be provided by the framework upon request :dune:`35 Algorithm configuration schema availability`.
+Facilities will exist to constrain and/or validate configurations for particular framework feature categories or user code by specifying a schema :need:`DUNE 64`; when used, any issues with the validity of user-provided configuration will be flagged at the time of evaluation of the configuration :need:`DUNE 70`, rather than being left to the author of the registration code and/or algorithm.
+A human-readable representation of a specific validation schema will be provided by the framework upon request :need:`DUNE 67`.

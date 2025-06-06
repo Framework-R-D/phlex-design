@@ -6,14 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.4. Functional Programming &#8212; Phlex 0 (72d63b5) documentation</title>
+    <title>2.4. Functional Programming &#8212; Phlex 0 (2bb4afa) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
-    <script src="static/documentation_options.js?v=1149efc2"></script>
+    <script src="static/jquery.js?v=5d32c60e"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="static/documentation_options.js?v=cda7f5b0"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +51,7 @@
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
@@ -53,20 +68,20 @@
 The processing of data happens by using chained operations, where the output of one function serves as the input to other functions.</p>
 <p>For example, given two functions:</p>
 <div class="math">
-<p><img src="images/math/f43cdb9fc4ab7587367fc2b4922590f6774949fc.svg" alt="f: \mbox{Wires} \rightarrow \mbox{Hits}
+<p><img src="images/math/bfbd191051e662ec71e525e51d6ec209ad4f4627.svg" alt="f: \mbox{Wires} \rightarrow \mbox{Hits}
 
 g: \mbox{Hits} \rightarrow \mbox{Tracks}"/></p>
-</div><p>a composite function <img class="math" src="images/math/34f43f20e53529e6c185e078162aa1839176ff04.svg" alt="h: \mbox{Wires} \rightarrow \mbox{Tracks}"/> can be constructed such that:</p>
+</div><p>a composite function <img class="math" src="images/math/c8493e10bdb119ae955b653a5d8508e69357494b.svg" alt="h: \mbox{Wires} \rightarrow \mbox{Tracks}"/> can be constructed such that:</p>
 <div class="math">
-<p><img src="images/math/be867fdbe58b0c50c30a761f8a15a71057d0e455.svg" alt="ts = h\ ws = g\ (f\ ws) = (g \comp f)\ ws"/></p>
-</div><p>or <img class="math" src="images/math/c633b7765a1266d422c8666984f70a21b0a675d1.svg" alt="h = g \comp f"/>, where <img class="math" src="images/math/cf8e4ac2d0636ff55d86802a3e1045e3ef4dfbbb.svg" alt="ws \in \mbox{Wires}"/> and <img class="math" src="images/math/42b662b26c0d35908afd401bfea87bf9494aaa13.svg" alt="ts \in \mbox{Tracks}"/>.</p>
+<p><img src="images/math/042c873217af6eca11926d370e27175e2e67e205.svg" alt="ts = h\ ws = g\ (f\ ws) = (g \comp f)\ ws"/></p>
+</div><p>or <img class="math" src="images/math/868c8cb7eabfa9cc4692634f4d6865ce21a3b04c.svg" alt="h = g \comp f"/>, where <img class="math" src="images/math/a0a67401c016bf9674d0cd52cf75de5728f2c35f.svg" alt="ws \in \mbox{Wires}"/> and <img class="math" src="images/math/db949da24fa76081b6876895f762c401225a43ad.svg" alt="ts \in \mbox{Tracks}"/>.</p>
 <p>In reality, the creation of tracks from wire signals is much more complicated <a class="footnote-reference brackets" href="#graph" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 However, as seen above, functional programming permits a mathematical description of the data-processing to be performed.
 Expressing the processing needs according to mathematics enables:</p>
 <ul class="simple">
 <li><p>the use of mathematical rules to optimize the processing of the data,</p></li>
 <li><p>naturally reproducible results, assuming the functions are pure (see <a class="reference internal" href="#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>),</p></li>
-<li><p>parallel invocations of pure functions with no possibility of data races <a class="reference internal" href="requirements.html#thread-safe-design-for-algorithms"><span class="std std-ref">[DUNE 58]</span></a>.</p></li>
+<li><p>parallel invocations of pure functions with no possibility of data races <a class="reference internal" href="requirements.html#DUNE 130" title="DUNE 130"><em class="xref need">[DUNE 130]</em></a>.</p></li>
 </ul>
 <section id="pure-functions">
 <h2><span class="section-number">2.4.1. </span>Pure Functions<a class="headerlink" href="#pure-functions" title="Link to this heading">¶</a></h2>
@@ -76,7 +91,7 @@ Expressing the processing needs according to mathematics enables:</p>
 <li><p>the function has no side effects.</p></li>
 </ul>
 <p>The composition of pure functions is also a pure function.
-For example, assuming the functions <img class="math" src="images/math/95d26f24e2620ceacddb44be8e71dd9b69a478e1.svg" alt="f"/> and <img class="math" src="images/math/cb0bc9df53077a37b63629a3aa410743755f5519.svg" alt="g"/> above are pure, then the composite function <img class="math" src="images/math/b2ff69e6543265efa261dadac62a1f25f7f34e18.svg" alt="h"/> will also be pure.</p>
+For example, assuming the functions <img class="math" src="images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> above are pure, then the composite function <img class="math" src="images/math/64be857a88e5baa6fb6aa1e1739751dcb32256f2.svg" alt="h"/> will also be pure.</p>
 <p>Using pure functions to create data products ensures <a class="reference internal" href="definitions.html#term-Reproducible"><span class="xref std std-term">reproducibility</span></a>, as discussed in the framework philosophy in <a class="reference internal" href="introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>.</p>
 </section>
 <section id="difficulties-with-functional-programming">
@@ -95,30 +110,30 @@ The framework will simply schedule the algorithm as if it were a pure function w
 <h1><span class="section-number">2.5. </span>Sequences of Data and Higher-Order Functions<a class="headerlink" href="#sequences-of-data-and-higher-order-functions" title="Link to this heading">¶</a></h1>
 <p>Particle physics results are obtained by performing statistical analysis on sequences of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
-For example, a relatively simple result is calculating the arithmetic mean of <img class="math" src="images/math/fa6f20a3bd0fe7f264c60f819b7bc665955ae869.svg" alt="n"/> numbers:</p>
+For example, a relatively simple result is calculating the arithmetic mean of <img class="math" src="images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/> numbers:</p>
 <div class="math">
-<p><img src="images/math/aa10eb7383803875e34de589bd4b23ac833a395f.svg" alt="\overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i"/></p>
-</div><p>where the sum is over a sequence of numbers <img class="math" src="images/math/941dd95d659cd717a9000e4eb40d3b656b53437a.svg" alt="\sequence{c}"/>, and <img class="math" src="images/math/fa6f20a3bd0fe7f264c60f819b7bc665955ae869.svg" alt="n"/> is the size or <em>cardinality</em> of the index set <img class="math" src="images/math/6181d44aa2263ff67415cd945e46a96ecef3d210.svg" alt="\mathcal{I}"/> (e.g. <img class="math" src="images/math/125a0188fedd1720e15a2e6ac3defe31c1b996a4.svg" alt="\{1, 2, \dots, n\}"/>) used to identify each element of the sequence.</p>
+<p><img src="images/math/32c98a3b96d380c44bd92750d8128a9af59ea3cb.svg" alt="\overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i"/></p>
+</div><p>where the sum is over a sequence of numbers <img class="math" src="images/math/3d69d634468bf170c7dca4c2df69e35bad099c51.svg" alt="\sequence{c}"/>, and <img class="math" src="images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/> is the size or <em>cardinality</em> of the index set <img class="math" src="images/math/876fec22de67275cedac5a08e2b8e6eb693bd575.svg" alt="\mathcal{I}"/> (e.g. <img class="math" src="images/math/2d3f9527a7aa15dbf7d3b7447dea9a02cf348bad.svg" alt="\{1, 2, \dots, n\}"/>) used to identify each element of the sequence.</p>
 <p>The sum is an example of a data reduction or <em>fold</em>, where a sequence is collapsed into one result.
 In particular, the arithmetic mean above can be expressed as:</p>
 <div class="math">
-<p><img src="images/math/8287568a1f81095d6e40939e3182ddcd412b9702.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}"/></p>
-</div><p>where the fold accepts a binary operator (<img class="math" src="images/math/93932e985db43eead6b12f779669466676c66292.svg" alt="+"/> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.</p>
+<p><img src="images/math/5acbe90cfc8c5fdfbdb829d4995faff9a0729698.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}"/></p>
+</div><p>where the fold accepts a binary operator (<img class="math" src="images/math/ea389fb96afebf4688683ea4ec1d90690ce91b7b.svg" alt="+"/> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.</p>
 <p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-hof]</span></a> that accepts a sequence and an operator applied in some way to elements of that sequence.</p>
-<p>Additional HOFs exist—for example, suppose the sequence <img class="math" src="images/math/c345e6239340331491354e767c200048fa18ad13.svg" alt="[c_i]"/> was created by applying a function <img class="math" src="images/math/c1d94a6aedac62aac2c97c6eecbe4b61568ced04.svg" alt="w: E \rightarrow C"/> to each element of a sequence <img class="math" src="images/math/1e12b4135d1f3b50be0b09e504ec4c4a84c55555.svg" alt="[e_i]"/>.
+<p>Additional HOFs exist—for example, suppose the sequence <img class="math" src="images/math/4dc3a5074a2c5f91d8bf8fecd3545228d7a0569e.svg" alt="[c_i]"/> was created by applying a function <img class="math" src="images/math/08a20fb8d6144a4c33a66d0d843d0dd1bc93dafb.svg" alt="w: E \rightarrow C"/> to each element of a sequence <img class="math" src="images/math/3c600bf6991d0d6aab46b0e2dd8e83c77733f1ee.svg" alt="[e_i]"/>.
 Such a HOF is called a map or <em>transform</em>:</p>
 <div class="math">
-<p><img src="images/math/2059cc529cc68ec0616bb8394d7972fd5816e479.svg" alt="\sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}"/></p>
-</div><p>In such a scenario, the average <img class="math" src="images/math/6d89118303587e4e317df2af468e3a67e321dc84.svg" alt="\overline{c}"/> could be expressed as:</p>
+<p><img src="images/math/8b7f160534d185272c6857faa50e254ed6b5af8e.svg" alt="\sequence{c} = [w\ e_i]_{i \in \mathcal{I}} = \transform{w}\ \sequence{e}"/></p>
+</div><p>In such a scenario, the average <img class="math" src="images/math/6af713a609c4b68e27c329204cf7a4ca393101f2.svg" alt="\overline{c}"/> could be expressed as:</p>
 <div class="math">
-<p><img src="images/math/20d0018df86001c8615815297663e76c243c379f.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}"/></p>
-</div><p>The second equality holds by the fold-map fusion law <a class="reference internal" href="#bird" id="id4"><span>[Bird]</span></a>, which states that the application of a <img class="math" src="images/math/248b611b1dce081fa56de5a1407478d5d244a006.svg" alt="\text{transform}"/> followed by a <img class="math" src="images/math/325fe2b3f3eeca4a006b89bf18a212aba1768d5f.svg" alt="\text{fold}"/> can be reduced to a single <img class="math" src="images/math/325fe2b3f3eeca4a006b89bf18a212aba1768d5f.svg" alt="\text{fold}"/>.
-The operator to this single fold is ‘<img class="math" src="images/math/51b0cab9c709d4576918d19777f64d77d8ca5a2a.svg" alt="+ \comp w"/>’, indicating that the function <img class="math" src="images/math/ee2a7cb590f8565b1edd63d402c14e883d630659.svg" alt="w"/> should be applied first before invoking the <img class="math" src="images/math/93932e985db43eead6b12f779669466676c66292.svg" alt="+"/> operation.
+<p><img src="images/math/5dae26ff995385c2b8b8da14b32ec25af823a78d.svg" alt="\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}"/></p>
+</div><p>The second equality holds by the fold-map fusion law <a class="reference internal" href="#bird" id="id4"><span>[Bird]</span></a>, which states that the application of a <img class="math" src="images/math/6cf6f590d9263ad7ec2641ec0796062965134591.svg" alt="\text{transform}"/> followed by a <img class="math" src="images/math/0042b1d263855aea8f96f4d4aafb246d0cd04d15.svg" alt="\text{fold}"/> can be reduced to a single <img class="math" src="images/math/0042b1d263855aea8f96f4d4aafb246d0cd04d15.svg" alt="\text{fold}"/>.
+The operator to this single fold is ‘<img class="math" src="images/math/1ae84c2f2d59336b3b42a3b9b953ccb0394fdbf5.svg" alt="+ \comp w"/>’, indicating that the function <img class="math" src="images/math/0b89c353a604b0cf3d08bca4fd57734b0b84b0d7.svg" alt="w"/> should be applied first before invoking the <img class="math" src="images/math/ea389fb96afebf4688683ea4ec1d90690ce91b7b.svg" alt="+"/> operation.
 Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.</p>
 <p>A calculation is then generally expressed in terms of:</p>
 <ol class="arabic simple">
-<li><p>The HOFs to be used (<img class="math" src="images/math/c32143fb9e87bf53a35d2b0e28774d48f66b66e4.svg" alt="\mbox{fold}"/>, <img class="math" src="images/math/4500c65a8dca542ac5225588bbff42e8fcd5cbd2.svg" alt="\mbox{transform}"/>, etc.)</p></li>
-<li><p>The operation to be used by each HOF (<img class="math" src="images/math/93932e985db43eead6b12f779669466676c66292.svg" alt="+"/>, <img class="math" src="images/math/ee2a7cb590f8565b1edd63d402c14e883d630659.svg" alt="w"/>, etc.)</p></li>
+<li><p>The HOFs to be used (<img class="math" src="images/math/374822c59c7015ea1608d12740636bf3692cfadf.svg" alt="\mbox{fold}"/>, <img class="math" src="images/math/90c5dfc0aeb84e894ef52fc97f8ec2950f3e6fef.svg" alt="\mbox{transform}"/>, etc.)</p></li>
+<li><p>The operation to be used by each HOF (<img class="math" src="images/math/ea389fb96afebf4688683ea4ec1d90690ce91b7b.svg" alt="+"/>, <img class="math" src="images/math/0b89c353a604b0cf3d08bca4fd57734b0b84b0d7.svg" alt="w"/>, etc.)</p></li>
 <li><p>The sequence(s) of data on which the HOFs are to be applied.</p></li>
 </ol>
 <p>Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.</p>
@@ -126,9 +141,9 @@ Relying on such mathematical laws permits the replacement of chained calculation
 <h2><span class="section-number">2.5.1. </span>Higher-Order Functions Supported by Phlex<a class="headerlink" href="#higher-order-functions-supported-by-phlex" title="Link to this heading">¶</a></h2>
 <p>In general, HOFs transform one sequence to another:</p>
 <div class="math">
-<p><img src="images/math/d82a6086d7330f7ff70ec4981e1b4b00f99b75bf.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
-</div><p>where the functions <img class="math" src="images/math/0d992ef3a65579c9e4021bd0e7e825820adfa0f1.svg" alt="f_1, f_2, \ \dots"/> are <em>operators</em> required by the HOF.
-Note that the output index set <img class="math" src="images/math/7de6276f75fd9e595035a16f94d08a8f9bd5f32f.svg" alt="\iset{\text{output}}"/> is not necessarily the same as the input index set <img class="math" src="images/math/82177856dfd47395d63997e310f0fc61927ee54a.svg" alt="\iset{\text{input}}"/>.</p>
+<p><img src="images/math/c2c8b4be24940add8abd43ac7e36aefe0fb02e91.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
+</div><p>where the functions <img class="math" src="images/math/1aeb4c10c7a9f9440b18c0ec37e9e673f0bc18a1.svg" alt="f_1, f_2, \ \dots"/> are <em>operators</em> required by the HOF.
+Note that the output index set <img class="math" src="images/math/e5344fbaf059f93a179321fcb144052b34f6e568.svg" alt="\iset{\text{output}}"/> is not necessarily the same as the input index set <img class="math" src="images/math/3640cef80fdd784f1c8cdb4a8812a58a7914abf9.svg" alt="\iset{\text{input}}"/>.</p>
 <p>The following table lists the HOFs supported by Phlex.
 As discussed later, each HOF’s <em>operator</em> is an <a class="reference internal" href="definitions.html#term-Algorithm"><span class="xref std std-term">algorithm</span></a> registered with the framework.</p>
 <table class="docutils align-default">
@@ -146,37 +161,37 @@ As discussed later, each HOF’s <em>operator</em> is an <a class="reference int
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="hof_operators.html#transforms"><span class="std std-ref">Transform</span></a></p></td>
-<td><p><img class="math" src="images/math/36f6ca3b5c76fad1b5115e589d62cda27f9e3977.svg" alt="b = \transform{f}\ a"/></p></td>
-<td><p><img class="math" src="images/math/26a746d324731fb61a7f9577cb9cdc6115b3f00d.svg" alt="f: A \rightarrow B"/></p></td>
-<td><p><img class="math" src="images/math/c085a412fb2467ffdd0589fecdd3590f1de3c9c2.svg" alt="|b| = |a|"/></p></td>
+<td><p><img class="math" src="images/math/efb147feff6323ceb40165d2c3245f7e36e5a1b0.svg" alt="b = \transform{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/5955beb79bad85d1a34985194deca5dece0bb60a.svg" alt="f: A \rightarrow B"/></p></td>
+<td><p><img class="math" src="images/math/701509c5523a32b42288d3016558ef3a3b4b1a89.svg" alt="|b| = |a|"/></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="hof_operators.html#filters-and-predicates"><span class="std std-ref">Filter</span></a></p></td>
-<td><p><img class="math" src="images/math/c46105425a19066920ae3b488cad79eca80f7e71.svg" alt="a' = \filter{p}\ a"/></p></td>
-<td><p><img class="math" src="images/math/87b7be9802404db0544526036380e151b91bb901.svg" alt="p: A \rightarrow \text{Boolean}"/></p></td>
-<td><p><img class="math" src="images/math/03d30862720cdfbbfc49cbf94a19b63f7128f06a.svg" alt="|a'| \le |a|"/></p></td>
+<td><p><img class="math" src="images/math/c000991fc7e64166483801bb37600a2ef1e64d11.svg" alt="a' = \filter{p}\ a"/></p></td>
+<td><p><img class="math" src="images/math/79da9093e1b65396f54723d7609864c6f50d9f8c.svg" alt="p: A \rightarrow \text{Boolean}"/></p></td>
+<td><p><img class="math" src="images/math/62a3790ba735ee2c824c43007b2415f8bb913c5f.svg" alt="|a'| \le |a|"/></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="hof_operators.html#observers"><span class="std std-ref">Observer</span></a></p></td>
-<td><p><img class="math" src="images/math/b9d722bc4905d1910bc5cbc18a6848ce121505b7.svg" alt="[\ \ ] = \observe{f}\ a"/></p></td>
-<td><p><img class="math" src="images/math/4ce59a5cb5b3bcf00a888afb34ed7c7223f87a97.svg" alt="f: A \rightarrow \mathbbm{1}"/></p></td>
-<td><p><img class="math" src="images/math/9097070b80b36519ee7e6995cca6aac36e2bafca.svg" alt="0"/></p></td>
+<td><p><img class="math" src="images/math/d800b0532212e85aa74d613dfe60743fdcb62122.svg" alt="[\ \ ] = \observe{f}\ a"/></p></td>
+<td><p><img class="math" src="images/math/a78f1ef96aeca4aa7cdd7d6d949e1738a37aa9ce.svg" alt="f: A \rightarrow \mathbbm{1}"/></p></td>
+<td><p><img class="math" src="images/math/2717dfaa932b22a98bd59c8be487436bc46c86de.svg" alt="0"/></p></td>
 </tr>
 <tr class="row-odd"><td rowspan="3"><p><a class="reference internal" href="hof_operators.html#partitioned-folds"><span class="std std-ref">Fold</span></a></p></td>
-<td rowspan="3"><p><img class="math" src="images/math/f4e0272b257494f165511411d41110dd3a43dd7d.svg" alt="d = \fold{f}{init}{part}\ c"/></p></td>
-<td><p><img class="math" src="images/math/3538e03c003d4ebc5d0a49c10b5ac40959a87dc4.svg" alt="f: D \times C \rightarrow D"/></p></td>
-<td rowspan="3"><p><img class="math" src="images/math/f40eaf5698e32e2e20c028c857356b7e8c4405c6.svg" alt="|d| \le |c|"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/02a3f15c62e41d6f28c51558122828daf907d64b.svg" alt="d = \fold{f}{init}{part}\ c"/></p></td>
+<td><p><img class="math" src="images/math/3d98281a48d022281b238f9d7858a8586a0574a0.svg" alt="f: D \times C \rightarrow D"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/11bc42a662c7afaf5fd3f9b98d72c0dce523ad3c.svg" alt="|d| \le |c|"/></p></td>
 </tr>
-<tr class="row-even"><td><p><img class="math" src="images/math/de8a9af801f0e8bcd41cd3b5b2f34f43649365e0.svg" alt="init: \mathbbm{1} \rightarrow D"/></p></td>
+<tr class="row-even"><td><p><img class="math" src="images/math/c7ea446670656581a45753ba3f33f5d27e901438.svg" alt="init: \mathbbm{1} \rightarrow D"/></p></td>
 </tr>
-<tr class="row-odd"><td><p><img class="math" src="images/math/4473da1cb57448b0af8ae2b0e37668a972a8db37.svg" alt="part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})"/></p></td>
+<tr class="row-odd"><td><p><img class="math" src="images/math/a267c2f063729ee2447dd69abebf9fec4a3fabd9.svg" alt="part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})"/></p></td>
 </tr>
 <tr class="row-even"><td rowspan="3"><p><a class="reference internal" href="hof_operators.html#partitioned-unfolds"><span class="std std-ref">Unfold</span></a></p></td>
-<td rowspan="3"><p><img class="math" src="images/math/af8cd858eab7073a1a150dc4de7b152c0ecf1ee2.svg" alt="c = \unfold{p}{gen}{cat}\ d"/></p></td>
-<td><p><img class="math" src="images/math/e3e107a1160b1e05a413d59b1e4a7ba4f67b3077.svg" alt="p: D \rightarrow \mbox{Boolean}"/></p></td>
-<td rowspan="3"><p><img class="math" src="images/math/bfb3850ff508efbe2567d852d2afdf0a559c2455.svg" alt="|c| \ge |d|"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/673099a9f09c29efd90d2a3201482775dfcaebea.svg" alt="c = \unfold{p}{gen}{cat}\ d"/></p></td>
+<td><p><img class="math" src="images/math/0417049f20ffaea72adfad82da2de99c54421931.svg" alt="p: D \rightarrow \mbox{Boolean}"/></p></td>
+<td rowspan="3"><p><img class="math" src="images/math/91a8620bcc820b92374f935f168779c45377b765.svg" alt="|c| \ge |d|"/></p></td>
 </tr>
-<tr class="row-odd"><td><p><img class="math" src="images/math/21d01fb6ba31df63442dcddbcc8b1facb4a94d29.svg" alt="gen: D \rightarrow D \times C"/></p></td>
+<tr class="row-odd"><td><p><img class="math" src="images/math/766c501ca8b357866a55321e9af52372fb3c46a3.svg" alt="gen: D \rightarrow D \times C"/></p></td>
 </tr>
-<tr class="row-even"><td><p><img class="math" src="images/math/3c7bd950d4d61f4a737ec01a6d14d1019db232aa.svg" alt="cat: \mathbbm{1} \rightarrow L"/></p></td>
+<tr class="row-even"><td><p><img class="math" src="images/math/f4f72c5e9866cb768234da7ce76cb5582a34adad.svg" alt="cat: \mathbbm{1} \rightarrow L"/></p></td>
 </tr>
 </tbody>
 </table>
@@ -276,7 +291,7 @@ Note that the observer is a special case of the filter, where the predicate’s 
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>

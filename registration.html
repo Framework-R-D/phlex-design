@@ -6,14 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (72d63b5) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (2bb4afa) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
-    <script src="static/documentation_options.js?v=1149efc2"></script>
+    <script src="static/jquery.js?v=5d32c60e"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="static/documentation_options.js?v=cda7f5b0"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +51,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -85,32 +100,32 @@ This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
 <p>The stanza is introduced by an <em>opener</em>—e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span></code>—followed by a <em>registration block</em>, a block of code between two curly braces that contains one or more <em>registration statements</em>.
 A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a>:</p>
 <div class="math">
-<p><img src="images/math/d82a6086d7330f7ff70ec4981e1b4b00f99b75bf.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
+<p><img src="images/math/c2c8b4be24940add8abd43ac7e36aefe0fb02e91.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
 </div><p>Specifically, in the registration stanza above, we have the following:</p>
 <blockquote>
 <div><dl class="simple">
 <dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">products</span><span class="p">(...)</span></code></dt><dd><ol class="arabic simple">
-<li><p>This is the equivalent of the output sequence <img class="math" src="images/math/1ca7c68ed3eeb4f6f0d3d28e14e5e8f4dac08a47.svg" alt="\sequence{b}{\text{output}}"/>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="requirements.html#specification-of-data-products-created-by-an-algorithm"><span class="std std-ref">[DUNE 29]</span></a>.</p></li>
+<li><p>This is the equivalent of the output sequence <img class="math" src="images/math/e17b82be33ddc01c44ad63130fcc375c2b42449e.svg" alt="\sequence{b}{\text{output}}"/>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.</p></li>
 </ol>
 </dd>
-<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code></dt><dd><p>Fully specifying the mathematical expression <img class="math" src="images/math/2906f574d01bae44654666d26d347ac1da29dcb8.svg" alt="\text{HOF}(f_1,\ f_2,\ \dots)"/> requires several items:</p>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code></dt><dd><p>Fully specifying the mathematical expression <img class="math" src="images/math/f15128aa76b4af3ec635a602e37d46d015a0213e.svg" alt="\text{HOF}(f_1,\ f_2,\ \dots)"/> requires several items:</p>
 <ol class="arabic simple" start="2">
 <li><p>The HOF to be used,</p></li>
 <li><p>The name to assign to the configured HOF,</p></li>
-<li><p>The algorithm/HOF operator(s) to be used (i.e. <img class="math" src="images/math/928440d2d1a709143fcd55238100796d236e5e95.svg" alt="f_1,\ f_2,\ \dots"/>), and</p></li>
-<li><p>The maximum number of CPU threads the framework can use when invoking the algorithm <a class="reference internal" href="requirements.html#specification-of-algorithm-s-maximum-number-of-cpu-threads"><span class="std std-ref">[DUNE 24.2]</span></a>.</p></li>
+<li><p>The algorithm/HOF operator(s) to be used (i.e. <img class="math" src="images/math/47ff792bb03f347efab912ad3556f2eb5d350ce9.svg" alt="f_1,\ f_2,\ \dots"/>), and</p></li>
+<li><p>The maximum number of CPU threads the framework can use when invoking the algorithm <a class="reference internal" href="requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a>.</p></li>
 </ol>
 </dd>
-<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <img class="math" src="images/math/976a760a0329cd23b5d683e41768f19b29843f97.svg" alt="\sequence{a}{\text{input}}"/> requires:</p>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <img class="math" src="images/math/d496b2027e95210c1e2f349bffa75f9aabf99647.svg" alt="\sequence{a}{\text{input}}"/> requires:</p>
 <ol class="arabic simple" start="6">
-<li><p>The specification(s) of data products that serve as input sequence elements <a class="reference internal" href="requirements.html#specification-of-data-products-required-by-an-algorithm"><span class="std std-ref">[DUNE 28]</span></a>, and</p></li>
+<li><p>The specification(s) of data products that serve as input sequence elements <a class="reference internal" href="requirements.html#DUNE 65" title="DUNE 65"><em class="xref need">[DUNE 65]</em></a>.</p></li>
 <li><p>The data category where the input data products are found.</p></li>
 </ol>
 </dd>
 </dl>
 </div></blockquote>
 <p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> for specific interface).
-However, in general, the registration code will specify which data products are required/produced by the algorithm <a class="reference internal" href="requirements.html#algorithm-communication-via-data-products"><span class="std std-ref">[DUNE 1.1]</span></a> and the hardware resources required by the algorithm <a class="reference internal" href="requirements.html#algorithm-hardware-requirements"><span class="std std-ref">[DUNE 4]</span></a>.
+However, in general, the registration code will specify which data products are required/produced by the algorithm <a class="reference internal" href="requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a> and the hardware resources required by the algorithm <a class="reference internal" href="requirements.html#DUNE 9" title="DUNE 9"><em class="xref need">[DUNE 9]</em></a>.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm’s function signature.
 In other words:</p>
 <ul class="simple">
@@ -280,7 +295,7 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>

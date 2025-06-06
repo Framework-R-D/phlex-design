@@ -6,14 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.1. Task Management &#8212; Phlex 0 (72d63b5) documentation</title>
+    <title>4.1. Task Management &#8212; Phlex 0 (2bb4afa) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
-    <script src="../static/documentation_options.js?v=1149efc2"></script>
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=cda7f5b0"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,7 +51,7 @@
         <li class="right" >
           <a href="../supporting_design.html" title="4. Supporting Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Supporting Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.1. </span>Task Management</a></li> 
       </ul>
@@ -61,7 +76,7 @@
 <p>The execution of computational tasks will be managed by <a class="reference external" href="https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/flow_graph">oneTBB Flow Graph</a>.
 With oneTBB, the user does not explicitly manage threads but specifies tasks that should be scheduled by oneTBB for execution using its own thread pool.</p>
 <p>Depending on the need, oneTBB interface may be explicitly used in algorithm code to take advantage of intra-algorithm parallelism.
-Such use will integrate smoothly with Phlex’s scheduled tasks as both the framework and the algorithm will be using oneTBB’s shared thread pool <a class="reference internal" href="../requirements.html#intra-algorithm-concurrency-and-multi-threading"><span class="std std-ref">[DUNE 22]</span></a>.</p>
+Such use will integrate smoothly with Phlex’s scheduled tasks as both the framework and the algorithm will be using oneTBB’s shared thread pool <a class="reference internal" href="../requirements.html#DUNE 46" title="DUNE 46"><em class="xref need">[DUNE 46]</em></a>.</p>
 <section id="creating-the-data-flow-graph">
 <h2><span class="section-number">4.1.1. </span>Creating the Data-Flow Graph<a class="headerlink" href="#creating-the-data-flow-graph" title="Link to this heading">¶</a></h2>
 <p>The data-flow graph is constructed using the pattern described in the subsections below.</p>
@@ -158,7 +173,7 @@ This step is iterative so that all graph-node candidates from <a class="referenc
         <li class="right" >
           <a href="../supporting_design.html" title="4. Supporting Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Supporting Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.1. </span>Task Management</a></li> 
       </ul>

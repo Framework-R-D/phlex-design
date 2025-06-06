@@ -6,14 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.10. Program Configuration &#8212; Phlex 0 (72d63b5) documentation</title>
+    <title>3.10. Program Configuration &#8212; Phlex 0 (2bb4afa) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
-    <script src="static/documentation_options.js?v=1149efc2"></script>
+    <script src="static/jquery.js?v=5d32c60e"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="static/documentation_options.js?v=cda7f5b0"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +51,7 @@
         <li class="right" >
           <a href="resources.html" title="3.9. Resources"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Program Configuration</a></li> 
       </ul>
@@ -60,18 +75,18 @@
 <p>Configuration of the Phlex application may be effectuated by:</p>
 <ol class="arabic simple">
 <li><p>The ingestion of a configuration document in a specific language, and/or</p></li>
-<li><p>The use of one or more command-line options to the invocation of Phlex <a class="reference internal" href="requirements.html#command-line-interface-cli"><span class="std std-ref">[DUNE 53]</span></a></p></li>
+<li><p>The use of one or more command-line options to the invocation of Phlex <a class="reference internal" href="requirements.html#DUNE 125" title="DUNE 125"><em class="xref need">[DUNE 125]</em></a></p></li>
 </ol>
 <p>Command line options shall always be applied after—and with higher priority than—a configuration document.</p>
-<p>A given Phlex invocation shall be configured by no more than one configuration document <a class="reference internal" href="requirements.html#one-configuration-per-framework-execution"><span class="std std-ref">[DUNE 36]</span></a>, although that document may be compiled from more than one source (such as included files).</p>
-<p>Phlex shall support configuration documents written in precisely one of the following languages: Jsonnet, YAML, JSON (as a strict subset of Jsonnet), or FHiCL <a class="reference internal" href="requirements.html#framework-configuration-language"><span class="std std-ref">[DUNE 38]</span></a>.</p>
-<p>Phlex shall evaluate the entire configuration at program initialization time <a class="reference internal" href="requirements.html#eager-validation-of-algorithm-configuration"><span class="std std-ref">[DUNE 37]</span></a>, and configuration values shall be converted into a canonical form to facilitate meaningful comparison between two different evaluated configurations <a class="reference internal" href="requirements.html#configuration-comparison"><span class="std std-ref">[DUNE 14]</span></a>.</p>
-<p>Where supported by the input language and requested by the user, Phlex shall provide tracing, and other diagnostic information about the evaluation of the configuration <a class="reference internal" href="requirements.html#configuration-tracing"><span class="std std-ref">[DUNE 55]</span></a>.</p>
-<p>Phlex shall provide the option to persist its configuration to the execution’s configured output data destination <a class="reference internal" href="requirements.html#framework-configuration-persistency"><span class="std std-ref">[DUNE 51.1]</span></a>.</p>
-<p>For each supported configuration input language, Phlex shall support facilities enabling a single point of maintenance for configuration documents <a class="reference internal" href="requirements.html#configuration-language-single-point-of-maintenance"><span class="std std-ref">[DUNE 56]</span></a>, including (but not limited to):</p>
+<p>A given Phlex invocation shall be configured by no more than one configuration document <a class="reference internal" href="requirements.html#DUNE 69" title="DUNE 69"><em class="xref need">[DUNE 69]</em></a>, although that document may be compiled from more than one source (such as included files).</p>
+<p>Phlex shall support configuration documents written in precisely one of the following languages: Jsonnet, YAML, JSON (as a strict subset of Jsonnet), or FHiCL <a class="reference internal" href="requirements.html#DUNE 72" title="DUNE 72"><em class="xref need">[DUNE 72]</em></a>.</p>
+<p>Phlex shall evaluate the entire configuration at program initialization time <a class="reference internal" href="requirements.html#DUNE 70" title="DUNE 70"><em class="xref need">[DUNE 70]</em></a>, and configuration values shall be converted into a canonical form to facilitate meaningful comparison between two different evaluated configurations <a class="reference internal" href="requirements.html#DUNE 98" title="DUNE 98"><em class="xref need">[DUNE 98]</em></a>.</p>
+<p>Where supported by the input language and requested by the user, Phlex shall provide tracing, and other diagnostic information about the evaluation of the configuration <a class="reference internal" href="requirements.html#DUNE 127" title="DUNE 127"><em class="xref need">[DUNE 127]</em></a>.</p>
+<p>Phlex shall provide the option to persist its configuration to the execution’s configured output data destination <a class="reference internal" href="requirements.html#DUNE 27" title="DUNE 27"><em class="xref need">[DUNE 27]</em></a>.</p>
+<p>For each supported configuration input language, Phlex shall support facilities enabling a single point of maintenance for configuration documents <a class="reference internal" href="requirements.html#DUNE 128" title="DUNE 128"><em class="xref need">[DUNE 128]</em></a>, including (but not limited to):</p>
 <ul class="simple">
-<li><p>Specifically overriding configuration items specified earlier in the configuration document <a class="reference internal" href="requirements.html#support-local-configuration-changes"><span class="std std-ref">[DUNE 54]</span></a>, and</p></li>
-<li><p>The ability to compose a single configuration document from multiple distinct sources <a class="reference internal" href="requirements.html#composing-configurations-of-framework-components"><span class="std std-ref">[DUNE 61]</span></a>.</p></li>
+<li><p>Specifically overriding configuration items specified earlier in the configuration document <a class="reference internal" href="requirements.html#DUNE 126" title="DUNE 126"><em class="xref need">[DUNE 126]</em></a>, and</p></li>
+<li><p>The ability to compose a single configuration document from multiple distinct sources <a class="reference internal" href="requirements.html#DUNE 133" title="DUNE 133"><em class="xref need">[DUNE 133]</em></a>.</p></li>
 </ul>
 </section>
 <section id="programmatic-access-to-the-configuration">
@@ -87,8 +102,8 @@ The author of that registration code is then responsible for ensuring that relev
 At the top level, the configuration document will be organized as a single associative array of key-value pairs, with the key being a scalar string identifier, and the value being either a scalar, a sequence of values, or a nested associative array.
 The configuration for a specific user algorithm or framework feature category will be represented by a (possibly empty) associative array.</p>
 <p>Neither sequences nor associative arrays are constrained to be homogeoneous.</p>
-<p>Facilities will exist to constrain and/or validate configurations for particular framework feature categories or user code by specifying a schema <a class="reference internal" href="requirements.html#configuration-validation"><span class="std std-ref">[DUNE 34]</span></a>; when used, any issues with the validity of user-provided configuration will be flagged at the time of evaluation of the configuration <a class="reference internal" href="requirements.html#eager-validation-of-algorithm-configuration"><span class="std std-ref">[DUNE 37]</span></a>, rather than being left to the author of the registration code and/or algorithm.
-A human-readable representation of a specific validation schema will be provided by the framework upon request <a class="reference internal" href="requirements.html#algorithm-configuration-schema-availability"><span class="std std-ref">[DUNE 35]</span></a>.</p>
+<p>Facilities will exist to constrain and/or validate configurations for particular framework feature categories or user code by specifying a schema <a class="reference internal" href="requirements.html#DUNE 64" title="DUNE 64"><em class="xref need">[DUNE 64]</em></a>; when used, any issues with the validity of user-provided configuration will be flagged at the time of evaluation of the configuration <a class="reference internal" href="requirements.html#DUNE 70" title="DUNE 70"><em class="xref need">[DUNE 70]</em></a>, rather than being left to the author of the registration code and/or algorithm.
+A human-readable representation of a specific validation schema will be provided by the framework upon request <a class="reference internal" href="requirements.html#DUNE 67" title="DUNE 67"><em class="xref need">[DUNE 67]</em></a>.</p>
 </section>
 </section>
 
@@ -157,7 +172,7 @@ A human-readable representation of a specific validation schema will be provided
         <li class="right" >
           <a href="resources.html" title="3.9. Resources"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Program Configuration</a></li> 
       </ul>

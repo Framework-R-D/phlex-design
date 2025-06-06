@@ -11,7 +11,7 @@ The execution of computational tasks will be managed by `oneTBB Flow Graph <http
 With oneTBB, the user does not explicitly manage threads but specifies tasks that should be scheduled by oneTBB for execution using its own thread pool.
 
 Depending on the need, oneTBB interface may be explicitly used in algorithm code to take advantage of intra-algorithm parallelism.
-Such use will integrate smoothly with Phlex's scheduled tasks as both the framework and the algorithm will be using oneTBB's shared thread pool :dune:`22 Intra-algorithm concurrency and multi-threading`.
+Such use will integrate smoothly with Phlex's scheduled tasks as both the framework and the algorithm will be using oneTBB's shared thread pool :need:`DUNE 46`.
 
 Creating the Data-Flow Graph
 ----------------------------

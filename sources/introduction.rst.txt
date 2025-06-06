@@ -41,7 +41,7 @@ Requirements in This Document
 -----------------------------
 
 The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
-To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
+To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 1`).
 
 Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`conceptual_design:Conceptual design`.
 Some stakeholder requirements are referenced in the supporting design in :numref:`supporting_design:Supporting design` if those requirements do not affect the conceptual framework model.
@@ -56,14 +56,14 @@ Maintaining data integrity is therefore paramount, as is retaining an accounting
 The Phlex design therefore:
 
 - treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program's execution,
-- requires recording the :term:`provenance` of every created :term:`data product` :dune:`51 Provenance discovery`, and
+- requires recording the :term:`provenance` of every created :term:`data product` :need:`DUNE 121`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
 =====================
 Programming Languages
 =====================
 
-The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :dune:`5 Support for multiple programming languages`.  Specifically, an algorithm may be written in either C++ [#f2]_ :dune:`5.1 Support C++ algorithms` or Python [#f3]_ :dune:`5.2 Support Python algorithms`.
+The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :need:`DUNE 14`.  Specifically, an algorithm may be written in either C++ [#f2]_ :need:`DUNE 81` or Python [#f3]_ :need:`DUNE 82`.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.
 
 Note that the language is left unspecified for the implementation of the framework itself.
@@ -76,7 +76,7 @@ We define an algorithm as *framework-independent* if it contains no explicit dep
 For framework-independent C++ algorithms, this means there are no direct or transitive framework libraries that are either included as headers in the algorithm code or linked as run-time libraries.
 Similarly, framework-independent Python algorithms import no direct or transitive framework packages.
 
-Phlex is required to support the registration of user-defined, framework-independent algorithms :dune:`20 Algorithms independent of framework interface`.
+Phlex is required to support the registration of user-defined, framework-independent algorithms :need:`DUNE 43`.
 This does not mean that *all* framework-independent algorithms are suitable for registration, nor does it mean that all algorithms registered with the framework must be framework-independent.
 In fact, depending on what the algorithm is doing, some algorithms might require explicit framework dependencies.
 

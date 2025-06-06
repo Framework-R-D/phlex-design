@@ -6,14 +6,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex 0 (72d63b5) documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0 (2bb4afa) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
-    <script src="static/documentation_options.js?v=1149efc2"></script>
+    <script src="static/jquery.js?v=5d32c60e"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="static/documentation_options.js?v=cda7f5b0"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,7 +51,7 @@
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -49,9 +64,9 @@
             
   <section id="data-organization">
 <h1><span class="section-number">3.2. </span>Data Organization<a class="headerlink" href="#data-organization" title="Link to this heading">¶</a></h1>
-<p>This section provides a conceptual overview of <em>data products</em>, <em>data product sets</em>, <em>data set categories</em>, and <em>data set families</em>, as defined in <a class="reference internal" href="requirements.html#definition-of-data-products"><span class="std std-ref">[DUNE 11.1,</span></a><a class="reference internal" href="requirements.html#creation-of-data-sets"><span class="std std-ref"> DUNE 11.2,</span></a><a class="reference internal" href="requirements.html#definition-of-data-families"><span class="std std-ref"> DUNE 11.3,</span></a><a class="reference internal" href="requirements.html#definition-of-data-family-hierarchies"><span class="std std-ref"> DUNE 11.4]</span></a>.
+<p>This section provides a conceptual overview of <em>data products</em>, <em>data product sets</em>, <em>data set categories</em>, and <em>data set families</em>, as defined in <a class="reference internal" href="requirements.html#DUNE 85" title="DUNE 85"><em class="xref need">[DUNE 85]</em></a> <a class="reference internal" href="requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
 It aims to establish a mental model for how all of these facilitate scientific workflows without delving into implementation specifics.</p>
-<p>Data products represent things like raw detector readouts, calibration information, and derived physics quantities. <a class="reference internal" href="requirements.html#calibration-database-algorithms"><span class="std std-ref">[DUNE 18.1]</span></a>.
+<p>Data products represent things like raw detector readouts, calibration information, and derived physics quantities. <a class="reference internal" href="requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>.
 We call these kinds of things represented by data products <em>conceptual data products</em>.
 Data product types are the programming language representations of conceptual data products.
 A data set category is an experiment-defined level of aggregation of data products, e.g. run, subrun, spill, or an interval of validity for some flavor of calibration.
@@ -157,11 +172,11 @@ A data set family is a sequence of data product sets that are in the same catego
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">An example of some possible data product hierarchies.
-Three different user-defined data product set categories are shown: <img class="math" src="images/math/3897d7b3e17a920ea8f831d0797bef6555450bb3.svg" alt="\textsf{Run}"/>, <img class="math" src="images/math/1b2cd3836575409964a923d18090d9630763a51e.svg" alt="\textsf{Spill}"/>, and <img class="math" src="images/math/21a7915eddf2b3fb26424b9bbaa029522c3a2884.svg" alt="\textsf{APA}"/>.
-Rectangles with labels <img class="math" src="images/math/120b26cd51c2d61da1ef2305ba52cd0b76467bd8.svg" alt="\textsf{Run}_i"/>, <img class="math" src="images/math/2fffc43b5a3e4a516fd88d2cb99601b4494eeaaa.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="images/math/e89665467cce9a09ba6a714060865f6933abc130.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
+Three different user-defined data product set categories are shown: <img class="math" src="images/math/cc0f2633c8ba1cf954b378fd2e4e2e43425f4969.svg" alt="\textsf{Run}"/>, <img class="math" src="images/math/8596596a015560bf2c10c6e43cee5c91681b0964.svg" alt="\textsf{Spill}"/>, and <img class="math" src="images/math/300fc4ea9b8efafa72dbc267a249f8ccc766d201.svg" alt="\textsf{APA}"/>.
+Rectangles with labels <img class="math" src="images/math/580e836adb6c06dc97554077edbb11182bbad9a1.svg" alt="\textsf{Run}_i"/>, <img class="math" src="images/math/edce1de75ca2ab3bdc95edacfbc8b7fbf66dd025.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="images/math/00d3e2fa7fe860b8bdbda624116faaee30fb19c0.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
 The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in <a class="reference internal" href="conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 A solid line from a data product set to another data product set represents association between the two data product sets.
-The bottom rectangle shows that <img class="math" src="images/math/3959ae2950f9599910dd0197cc9a723cf06d9482.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="images/math/e6c9705c3c9c0493d4c1a30359ad29ac116cb600.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
+The bottom rectangle shows that <img class="math" src="images/math/a21ff99db181d59efc2bb35584e93b3a8f0db207.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="images/math/68b20408b7544aed4cce33bd6c3dbe6c4e5c0397.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
 Each pale purple rectangle indicates the data product sequence created by one call to the <em>unfold</em> higher order function described in <a class="reference internal" href="conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 The names of different data set categories are user defined, and not special to the Phlex framework.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -170,45 +185,45 @@ The names of different data set categories are user defined, and not special to 
 <h2><span class="section-number">3.2.1. </span>Data Products<a class="headerlink" href="#data-products" title="Link to this heading">¶</a></h2>
 <section id="conceptual-nature">
 <h3><span class="section-number">3.2.1.1. </span>Conceptual Nature<a class="headerlink" href="#conceptual-nature" title="Link to this heading">¶</a></h3>
-<p>Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them <a class="reference internal" href="requirements.html#algorithm-data-separability"><span class="std std-ref">[DUNE 46]</span></a>.
-They serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps <a class="reference internal" href="requirements.html#algorithm-communication-via-data-products"><span class="std std-ref">[DUNE 1.1]</span></a>.
-They are associated with (rather than containing) metadata and provenance information that describe how the data products were created <a class="reference internal" href="requirements.html#provenance-discovery"><span class="std std-ref">[DUNE 51]</span></a>.
-They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility <a class="reference internal" href="requirements.html#independence-from-unique-hardware-characteristics"><span class="std std-ref">[DUNE 52.2]</span></a>.
-They are also not tied to any specific IO back end, but must support reading and writing with both ROOT <a class="reference internal" href="requirements.html#i-o-backend-for-root"><span class="std std-ref">[DUNE 39.1]</span></a> and HDF5 <a class="reference internal" href="requirements.html#i-o-backend-for-hdf5"><span class="std std-ref">[DUNE 39.2]</span></a>.
-They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows <a class="reference internal" href="requirements.html#presenting-data-to-subsequent-algorithms"><span class="std std-ref">[DUNE 9]</span></a>.</p>
+<p>Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them <a class="reference internal" href="requirements.html#DUNE 110" title="DUNE 110"><em class="xref need">[DUNE 110]</em></a>.
+They serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps <a class="reference internal" href="requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>.
+They are associated with (rather than containing) metadata and provenance information that describe how the data products were created <a class="reference internal" href="requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.
+They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility <a class="reference internal" href="requirements.html#DUNE 63" title="DUNE 63"><em class="xref need">[DUNE 63]</em></a>.
+They are also not tied to any specific IO back end, but must support reading and writing with both ROOT <a class="reference internal" href="requirements.html#DUNE 74" title="DUNE 74"><em class="xref need">[DUNE 74]</em></a> and HDF5 <a class="reference internal" href="requirements.html#DUNE 141" title="DUNE 141"><em class="xref need">[DUNE 141]</em></a>.
+They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows <a class="reference internal" href="requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.</p>
 </section>
 <section id="structure-and-representation">
 <h3><span class="section-number">3.2.1.2. </span>Structure and Representation<a class="headerlink" href="#structure-and-representation" title="Link to this heading">¶</a></h3>
 <p>The in-memory layout of a data product is determined by its type in the specified programming language.
-Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation <a class="reference internal" href="requirements.html#data-product-representation"><span class="std std-ref">[DUNE 2]</span></a>.
+Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation <a class="reference internal" href="requirements.html#DUNE 2" title="DUNE 2"><em class="xref need">[DUNE 2]</em></a>.
 In general, a single conceptual data product can be represented in multiple data product types, including types for different supported programming languages.</p>
-<p>The framework provides the ability to determine the memory footprint of each data product <a class="reference internal" href="requirements.html#specification-of-algorithm-s-cpu-memory-usage"><span class="std std-ref">[DUNE 24.3]</span></a>.</p>
+<p>The framework provides the ability to determine the memory footprint of each data product <a class="reference internal" href="requirements.html#DUNE 154" title="DUNE 154"><em class="xref need">[DUNE 154]</em></a>.</p>
 </section>
 <section id="defining-data-product-types">
 <h3><span class="section-number">3.2.1.3. </span>Defining Data Product Types<a class="headerlink" href="#defining-data-product-types" title="Link to this heading">¶</a></h3>
 <p>Data product types are not defined by the framework.
-Framework users are expected to define their own data products <a class="reference internal" href="requirements.html#definition-of-data-products"><span class="std std-ref">[DUNE 11.1]</span></a>.</p>
+Framework users are expected to define their own data products <a class="reference internal" href="requirements.html#DUNE 85" title="DUNE 85"><em class="xref need">[DUNE 85]</em></a>.</p>
 </section>
 </section>
 <section id="data-categories-families-and-data-product-sets">
 <h2><span class="section-number">3.2.2. </span>Data Categories, Families, and Data-Product Sets<a class="headerlink" href="#data-categories-families-and-data-product-sets" title="Link to this heading">¶</a></h2>
-<p>Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) <a class="reference internal" href="requirements.html#definition-of-data-products"><span class="std std-ref">[DUNE 11.1,</span></a><a class="reference internal" href="requirements.html#creation-of-data-sets"><span class="std std-ref"> DUNE 11.2,</span></a><a class="reference internal" href="requirements.html#definition-of-data-families"><span class="std std-ref"> DUNE 11.3]</span></a>.
-They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales <a class="reference internal" href="requirements.html#algorithms-independent-of-framework-interface"><span class="std std-ref">[DUNE 20]</span></a>.
-This provides the ability to process data too large to fit into memory at one time <a class="reference internal" href="requirements.html#process-collections-of-unconstrained-size"><span class="std std-ref">[DUNE 13]</span></a>.</p>
+<p>Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) <a class="reference internal" href="requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
+They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales <a class="reference internal" href="requirements.html#DUNE 43" title="DUNE 43"><em class="xref need">[DUNE 43]</em></a>.
+This provides the ability to process data too large to fit into memory at one time <a class="reference internal" href="requirements.html#DUNE 25" title="DUNE 25"><em class="xref need">[DUNE 25]</em></a>.</p>
 </section>
 <section id="data-product-management">
 <h2><span class="section-number">3.2.3. </span>Data Product Management<a class="headerlink" href="#data-product-management" title="Link to this heading">¶</a></h2>
 <p>Management of the data products returned by an algorithm is taken over by the framework.
-Read-only access to input data products is provided to algorithms <a class="reference internal" href="requirements.html#provenance-discovery"><span class="std std-ref">[DUNE 51,</span></a><a class="reference internal" href="requirements.html#thread-safe-design-for-algorithms"><span class="std std-ref"> DUNE 58]</span></a>.
+Read-only access to input data products is provided to algorithms <a class="reference internal" href="requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a> <a class="reference internal" href="requirements.html#DUNE 130" title="DUNE 130"><em class="xref need">[DUNE 130]</em></a>.
 Read-only access to a data product must not mutate it.
-Data products that are intended to be written out are sent to the IO system as soon as they are created <a class="reference internal" href="requirements.html#optimize-memory-management-for-data-products"><span class="std std-ref">[DUNE 26.2]</span></a>.
-Data products are removed from memory as soon as they are no longer needed as input to another algorithm <a class="reference internal" href="requirements.html#optimize-memory-management-for-data-products"><span class="std std-ref">[DUNE 26.2]</span></a>.</p>
+Data products that are intended to be written out are sent to the IO system as soon as they are created <a class="reference internal" href="requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.
+Data products are removed from memory as soon as they are no longer needed as input to another algorithm <a class="reference internal" href="requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.</p>
 </section>
 <section id="data-product-identification">
 <h2><span class="section-number">3.2.4. </span>Data Product Identification<a class="headerlink" href="#data-product-identification" title="Link to this heading">¶</a></h2>
 <p>Each data product is associated with a specific set of metadata describing the algorithms and configurations used in their creation.
-These metadata allow that creation to be reproducible <a class="reference internal" href="requirements.html#reproducibility-of-data-products"><span class="std std-ref">[DUNE 52]</span></a>.
-The metadata are stored along with the data in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="requirements.html#provenance-discovery"><span class="std std-ref">[DUNE 51]</span></a>.</p>
+These metadata allow that creation to be reproducible <a class="reference internal" href="requirements.html#DUNE 122" title="DUNE 122"><em class="xref need">[DUNE 122]</em></a>.
+The metadata are stored along with the data in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.</p>
 <p>The data products created by an algorithm are associated with metadata that identify the algorithm that created them.
 Such metadata include:</p>
 <ul class="simple">
@@ -218,7 +233,7 @@ Such metadata include:</p>
 <li><p>an individual <em>name</em> for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.</p></li>
 </ul>
 <p>In addition to these metadata, a data product is also specified by its <em>type</em>.</p>
-<p>The metadata are stored in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="requirements.html#provenance-discovery"><span class="std std-ref">[DUNE 51]</span></a>.</p>
+<p>The metadata are stored in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.</p>
 <p>The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
 The algorithms are configured to identify the inputs in which they are interested by selecting on  any of the metadata defined above, as well as by the programming language types of their inputs.</p>
 </section>
@@ -295,7 +310,7 @@ The algorithms are configured to identify the inputs in which they are intereste
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (72d63b5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (2bb4afa) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
