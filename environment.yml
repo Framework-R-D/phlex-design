@@ -4,5 +4,6 @@ channels:
   - nodefaults
 dependencies:
   - sphinx[version='>=8.2']
+  - sphinx-needs
   - graphviz2drawio
   - graphviz[version='>=12']

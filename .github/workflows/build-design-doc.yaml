@@ -17,7 +17,7 @@ jobs:
       contents: write
 
     container:
-      image: ghcr.io/framework-r-d/phlexdoc:2025-05-01
+      image: ghcr.io/framework-r-d/phlexdoc:2025-06-06
 
     steps:
       - name: Check out repository code (main branch)
