@@ -785,6 +785,307 @@ Jama Connect entry: `DUNE STKH #73 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Data I/O layer, Original                              |
     +--------------+-------------------------------------------------------+
 
+40 Data I/O backward compatibility
+----------------------------------
+
+Jama Connect entry: `DUNE STKH #76 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14645>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework IO subsystem shall support backward     |
+    |              | compatibility across versions, subject to policy      |
+    |              | decisions on deprecation provided by DUNE.            |
+    +==============+=======================================================+
+    | Notes        | This is ID #54 from the original DUNE document.       |
+    |              |                                                       |
+    |              | Backward compatibility means that new code is able to |
+    |              | read data produced by older versions of the           |
+    |              | framework.                                            |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Data I/O layer, Backwards compatibility     |
+    +--------------+-------------------------------------------------------+
+
+43 Algorithm invocation with data products from multiple data sets
+------------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #89 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall allow a single invocation of an   |
+    |              | algorithm with data products from multiple data sets. |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Flexible Processing Unit (FPU)                        |
+    +--------------+-------------------------------------------------------+
+
+43.1 Algorithm invocation with data products from adjacent data sets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #91 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the invocation of an      |
+    |              | algorithm with data products belonging to adjacent    |
+    |              | data sets.                                            |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Flexible Processing Unit (FPU)                        |
+    +--------------+-------------------------------------------------------+
+
+43.1.1 User-defined adjacency
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Jama Connect entry: `DUNE STKH #92 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support user code that defines    |
+    |              | adjacency of data sets within a data family.          |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Flexible Processing Unit (FPU)                        |
+    +--------------+-------------------------------------------------------+
+
+44 Algorithm invocation with data products from multiple data families
+----------------------------------------------------------------------
+
+Jama Connect entry: `DUNE STKH #113 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall allow a single invocation of an   |
+    |              | algorithm with data products from multiple data       |
+    |              | families.                                             |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Flexible Processing Unit (FPU)                        |
+    +--------------+-------------------------------------------------------+
+
+45 Specification of algorithm output FPUs
+-----------------------------------------
+
+Jama Connect entry: `DUNE STKH #90 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the user specification of |
+    |              | which data family to place the data products created  |
+    |              | by an algorithm.                                      |
+    +==============+=======================================================+
+    | Notes        | To implement this requirement, the algorithm should   |
+    |              | not know where its created data products are          |
+    |              | going--that is something that will be specified at    |
+    |              | the plugin level (perhaps by configuration).          |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Flexible Processing Unit (FPU)                        |
+    +--------------+-------------------------------------------------------+
+
+46 Algorithm-Data Separability
+------------------------------
+
+| Jama Connect entry: `DUNE STKH #110 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
+| See :numref:`data_organization:Conceptual Nature`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The data objects exchanged among algorithms shall be  |
+    |              | separable from those algorithms.                      |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | General                                               |
+    +--------------+-------------------------------------------------------+
+
+
+
+51 Provenance discovery
+-----------------------
+
+| Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
+| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall enable users to discover the      |
+    |              | provenance of data products.                          |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Provenance                                            |
+    +--------------+-------------------------------------------------------+
+
+51.2 Framework recording of metadata for reproduction of output data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #28 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14588>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall record metadata to output         |
+    |              | enabling the reproduction of the processing steps     |
+    |              | used to produce the data recorded in that output.     |
+    +==============+=======================================================+
+    | Notes        | This is ID #18 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Reproducibility, Provenance                 |
+    +--------------+-------------------------------------------------------+
+
+52 Reproducibility of data products
+-----------------------------------
+
+| Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
+| See :numref:`data_organization:Data product identification`.
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support the reproduction of data  |
+    |              | products from the provenance stored in the output.    |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Reproducibility, Provenance                           |
+    +--------------+-------------------------------------------------------+
+
+52.1 Reproducibility with pseudo-random numbers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Jama Connect entry: `DUNE STKH #36 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14596>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall provide a facility to produce     |
+    |              | random numbers enabling algorithms to create          |
+    |              | reproducible data in concurrent contexts.             |
+    +==============+=======================================================+
+    | Notes        | This is ID #22 from the original DUNE document.       |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Original, Reproducibility, Provenance                 |
+    +--------------+-------------------------------------------------------+
+
+
+58 Thread-safe design for algorithms
+------------------------------------
+
+| Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
+| See :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall facilitate the development of     |
+    |              | thread-safe algorithms.                               |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Concurrency and multithreading                        |
+    +--------------+-------------------------------------------------------+
+
+61 Composing configurations of framework components
+---------------------------------------------------
+
+| Jama Connect entry: `DUNE STKH #133 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
+| See :numref:`user_configuration:Mechanics of configuration specification`
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall support executing programs        |
+    |              | configured by composing configurations of separate    |
+    |              | components.                                           |
+    +==============+=======================================================+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Configuration                                         |
+    +--------------+-------------------------------------------------------+
+
+62 Graceful shutdown of framework program
+-----------------------------------------
+
+Jama Connect entry: `DUNE STKH #134 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15787>`__
+
+.. todo:: Not yet referenced in design
+
+.. table::
+    :widths: 15 85
+
+    +--------------+-------------------------------------------------------+
+    | Requirement  | The framework shall attempt a graceful shutdown by    |
+    |              | default.                                              |
+    +==============+=======================================================+
+    | Notes        | A *graceful shutdown* refers to a framework program   |
+    |              | that completes the processing of all in-flight data,  |
+    |              | safely closes all open input and output files, cleans |
+    |              | up connections to external entities (e.g. databases), |
+    |              | etc. before the program ends.  This ensures that no   |
+    |              | resources are left in ill-defined states and that all |
+    |              | output files are readable and valid.                  |
+    |              |                                                       |
+    |              | An important example of this is when a batch job      |
+    |              | exceeds a time limit and the grid system sends a      |
+    |              | signal to shutdown the job, which should end          |
+    |              | gracefully.                                           |
+    +--------------+-------------------------------------------------------+
+    | Status       | Approved                                              |
+    +--------------+-------------------------------------------------------+
+    | Tags         | Error handling                                        |
+    +--------------+-------------------------------------------------------+
+
 ======================
 Technical requirements
 ======================
@@ -1617,38 +1918,8 @@ Jama Connect entry: `DUNE STKH #56 <https://fnal-prod.jamacloud.com/perspective.
     | Tags         | Data I/O layer, Original                              |
     +--------------+-------------------------------------------------------+
 
-=========================
-Unclassified requirements
-=========================
-
-40 Data I/O backward compatibility
-----------------------------------
-
-Jama Connect entry: `DUNE STKH #76 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14645>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework IO subsystem shall support backward     |
-    |              | compatibility across versions, subject to policy      |
-    |              | decisions on deprecation provided by DUNE.            |
-    +==============+=======================================================+
-    | Notes        | This is ID #54 from the original DUNE document.       |
-    |              |                                                       |
-    |              | Backward compatibility means that new code is able to |
-    |              | read data produced by older versions of the           |
-    |              | framework.                                            |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Data I/O layer, Backwards compatibility     |
-    +--------------+-------------------------------------------------------+
-
 40.1 Data product backward compatibility
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
 Jama Connect entry: `DUNE STKH #106 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14796>`__
 
@@ -1662,12 +1933,12 @@ Jama Connect entry: `DUNE STKH #106 <https://fnal-prod.jamacloud.com/perspective
     |              | compatibility of data products.                       |
     +==============+=======================================================+
     | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
+    +--------------+------------------------------------------------------+
     | Tags         | Data I/O layer, Backwards compatibility               |
     +--------------+-------------------------------------------------------+
 
 40.2 Metadata backward compatibility
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 Jama Connect entry: `DUNE STKH #107 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14797>`__
 
@@ -1825,127 +2096,6 @@ Jama Connect entry: `DUNE STKH #140 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Data I/O layer                                        |
     +--------------+-------------------------------------------------------+
 
-43 Algorithm invocation with data products from multiple data sets
-------------------------------------------------------------------
-
-Jama Connect entry: `DUNE STKH #89 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall allow a single invocation of an   |
-    |              | algorithm with data products from multiple data sets. |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Flexible Processing Unit (FPU)                        |
-    +--------------+-------------------------------------------------------+
-
-43.1 Algorithm invocation with data products from adjacent data sets
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #91 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the invocation of an      |
-    |              | algorithm with data products belonging to adjacent    |
-    |              | data sets.                                            |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Flexible Processing Unit (FPU)                        |
-    +--------------+-------------------------------------------------------+
-
-43.1.1 User-defined adjacency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Jama Connect entry: `DUNE STKH #92 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support user code that defines    |
-    |              | adjacency of data sets within a data family.          |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Flexible Processing Unit (FPU)                        |
-    +--------------+-------------------------------------------------------+
-
-44 Algorithm invocation with data products from multiple data families
-----------------------------------------------------------------------
-
-Jama Connect entry: `DUNE STKH #113 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall allow a single invocation of an   |
-    |              | algorithm with data products from multiple data       |
-    |              | families.                                             |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Flexible Processing Unit (FPU)                        |
-    +--------------+-------------------------------------------------------+
-
-45 Specification of algorithm output FPUs
------------------------------------------
-
-Jama Connect entry: `DUNE STKH #90 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the user specification of |
-    |              | which data family to place the data products created  |
-    |              | by an algorithm.                                      |
-    +==============+=======================================================+
-    | Notes        | To implement this requirement, the algorithm should   |
-    |              | not know where its created data products are          |
-    |              | going--that is something that will be specified at    |
-    |              | the plugin level (perhaps by configuration).          |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Flexible Processing Unit (FPU)                        |
-    +--------------+-------------------------------------------------------+
-
-46 Algorithm-Data Separability
-------------------------------
-
-| Jama Connect entry: `DUNE STKH #110 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14845>`__
-| See :numref:`data_organization:Conceptual Nature`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The data objects exchanged among algorithms shall be  |
-    |              | separable from those algorithms.                      |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | General                                               |
-    +--------------+-------------------------------------------------------+
-
 47 ProtoDUNE single-phase raw data
 ----------------------------------
 
@@ -2038,26 +2188,8 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Backwards compatibility, Data I/O layer               |
     +--------------+-------------------------------------------------------+
 
-51 Provenance discovery
------------------------
-
-| Jama Connect entry: `DUNE STKH #121 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15293>`__
-| See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall enable users to discover the      |
-    |              | provenance of data products.                          |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Provenance                                            |
-    +--------------+-------------------------------------------------------+
-
 51.1 Framework configuration persistency
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------
 
 | Jama Connect entry: `DUNE STKH #27 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14587>`__
 | See :numref:`user_configuration:Mechanics of configuration specification`
@@ -2080,72 +2212,8 @@ Jama Connect entry: `DUNE STKH #119 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Original, Configuration, Reproducibility, Provenance  |
     +--------------+-------------------------------------------------------+
 
-51.2 Framework recording of metadata for reproduction of output data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #28 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14588>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall record metadata to output         |
-    |              | enabling the reproduction of the processing steps     |
-    |              | used to produce the data recorded in that output.     |
-    +==============+=======================================================+
-    | Notes        | This is ID #18 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Reproducibility, Provenance                 |
-    +--------------+-------------------------------------------------------+
-
-52 Reproducibility of data products
------------------------------------
-
-| Jama Connect entry: `DUNE STKH #122 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15294>`__
-| See :numref:`data_organization:Data product identification`.
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support the reproduction of data  |
-    |              | products from the provenance stored in the output.    |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Reproducibility, Provenance                           |
-    +--------------+-------------------------------------------------------+
-
-52.1 Reproducibility with pseudo-random numbers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Jama Connect entry: `DUNE STKH #36 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14596>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall provide a facility to produce     |
-    |              | random numbers enabling algorithms to create          |
-    |              | reproducible data in concurrent contexts.             |
-    +==============+=======================================================+
-    | Notes        | This is ID #22 from the original DUNE document.       |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Original, Reproducibility, Provenance                 |
-    +--------------+-------------------------------------------------------+
-
 52.2 Independence from unique hardware characteristics
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------
 
 | Jama Connect entry: `DUNE STKH #63 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14632>`__
 | See :numref:`data_organization:Conceptual Nature`
@@ -2263,24 +2331,6 @@ Jama Connect entry: `DUNE STKH #129 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Provenance, Chunkification                            |
     +--------------+-------------------------------------------------------+
 
-58 Thread-safe design for algorithms
-------------------------------------
-
-| Jama Connect entry: `DUNE STKH #130 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15742>`__
-| See :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall facilitate the development of     |
-    |              | thread-safe algorithms.                               |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Concurrency and multithreading                        |
-    +--------------+-------------------------------------------------------+
-
 59 Framework build flags
 ------------------------
 
@@ -2320,59 +2370,8 @@ Jama Connect entry: `DUNE STKH #132 <https://fnal-prod.jamacloud.com/perspective
     | Tags         | Reproducibility, Error handling, Debugging            |
     +--------------+-------------------------------------------------------+
 
-61 Composing configurations of framework components
----------------------------------------------------
-
-| Jama Connect entry: `DUNE STKH #133 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15775>`__
-| See :numref:`user_configuration:Mechanics of configuration specification`
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall support executing programs        |
-    |              | configured by composing configurations of separate    |
-    |              | components.                                           |
-    +==============+=======================================================+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Configuration                                         |
-    +--------------+-------------------------------------------------------+
-
-62 Graceful shutdown of framework program
------------------------------------------
-
-Jama Connect entry: `DUNE STKH #134 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15787>`__
-
-.. todo:: Not yet referenced in design
-
-.. table::
-    :widths: 15 85
-
-    +--------------+-------------------------------------------------------+
-    | Requirement  | The framework shall attempt a graceful shutdown by    |
-    |              | default.                                              |
-    +==============+=======================================================+
-    | Notes        | A *graceful shutdown* refers to a framework program   |
-    |              | that completes the processing of all in-flight data,  |
-    |              | safely closes all open input and output files, cleans |
-    |              | up connections to external entities (e.g. databases), |
-    |              | etc. before the program ends.  This ensures that no   |
-    |              | resources are left in ill-defined states and that all |
-    |              | output files are readable and valid.                  |
-    |              |                                                       |
-    |              | An important example of this is when a batch job      |
-    |              | exceeds a time limit and the grid system sends a      |
-    |              | signal to shutdown the job, which should end          |
-    |              | gracefully.                                           |
-    +--------------+-------------------------------------------------------+
-    | Status       | Approved                                              |
-    +--------------+-------------------------------------------------------+
-    | Tags         | Error handling                                        |
-    +--------------+-------------------------------------------------------+
-
 62.1 Graceful shutdown for uncaught exception
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------
 
 Jama Connect entry: `DUNE STKH #135 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15788>`__
 
@@ -2392,7 +2391,7 @@ Jama Connect entry: `DUNE STKH #135 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 62.2 Graceful shutdown for received signal
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
 Jama Connect entry: `DUNE STKH #136 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15789>`__
 
