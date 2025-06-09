@@ -19,7 +19,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
 - user-provided algorithms such as transforms, folds, etc. (see :numref:`algorithms:Algorithms` and :numref:`hof_operators:HOF operators` )
 - the framework driver (see :numref:`driver:Framework Driver`)
 - data-product providers (see :numref:`providers:Data-Product Providers`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
-- data-product outputs (see :numref:`outputs:Data-Product outputs`), which are plugins that may write data products to an external entity (e.g. output files)
+- data-product writers (see :numref:`outputs:Data-Product outputs`), which are plugins that may write data products to an external entity (e.g. output files)
 - resources (see :numref:`resources:Resources`)
 - program configuration (see :numref:`user_configuration:Program configuration`)
 
@@ -47,6 +47,6 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
    hof_operators
    driver
    providers
-   outputs
+   writers
    resources
    user_configuration
