@@ -6,19 +6,14 @@
 
 from docutils import nodes
 import os
-import glob
-import re
-
-
-def exclude_patterns(app):
-    return [re.compile(glob.translate(p.removesuffix(".rst"))) for p in app.config.exclude_patterns]
+from pathlib import Path
 
 
 def missing_reference_handler(app, env, node, contnode):
     # Assume all excluded patterns correspond to the subsystem design
-    ex_patterns = exclude_patterns(app)
-    filestem = node["reftarget"].split(sep=":")[0]
-    matches = any(p.match(filestem) for p in ex_patterns)
+    ex_patterns = app.config.exclude_patterns
+    targetfile = Path(node["reftarget"].split(sep=":")[0]).with_suffix(".rst")
+    matches = any(targetfile.match(p) for p in ex_patterns)
     if matches:
         print(f"Replacing '{node['reftarget']}' with placeholder text")
         fallback = nodes.inline()
