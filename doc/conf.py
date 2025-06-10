@@ -27,6 +27,7 @@ release = f"0 ({git_commit})"
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
               'appendix',
+              "missing_references",
               "sphinx_needs"]
 
 autosectionlabel_prefix_document = True
@@ -149,7 +150,9 @@ rst_prolog ="""
 
 # -- When we only want the conceptual design
 if conceptual_design_only := os.environ.get("PHLEX_CONCEPTUAL_DESIGN_ONLY", False):
-    exclude_patterns = ["supporting_design.rst"]
+    exclude_patterns = ["supporting_design.rst",
+                        "subsystems/*",
+                        "sequence_spec.rst"]
 
 # -- Detect if PDF rendering is available and provide link to it in HTML rendering (see index.rst)
 if existing_pdf := os.environ.get("SPHINX_EXISTING_PDF"):

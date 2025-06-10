@@ -6,7 +6,7 @@ Conceptual Design
 
    The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see :numref:`Appendix %s <requirements:Framework requirements>`).
    The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
-   More detailed aspects of the design in support of the conceptual model are given in :numref:`supporting_design:Supporting design`.
+   More detailed design aspects in support of the conceptual model are given in :numref:`supporting_design:Supporting design`.
 
 Phlex adopts the data-flow approach discussed in :numref:`data_flow:Data flow with sequences`.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
@@ -19,7 +19,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
 - user-provided algorithms such as transforms, folds, etc. (see :numref:`algorithms:Algorithms` and :numref:`hof_operators:HOF operators` )
 - the framework driver (see :numref:`driver:Framework Driver`)
 - data-product providers (see :numref:`providers:Data-Product Providers`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
-- data-product writers (see :numref:`outputs:Data-Product outputs`), which are plugins that may write data products to an external entity (e.g. output files)
+- data-product writers (see :numref:`writers:Data-Product writers`), which are plugins that may write data products to an external entity (e.g. output files)
 - resources (see :numref:`resources:Resources`)
 - program configuration (see :numref:`user_configuration:Program configuration`)
 
