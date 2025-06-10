@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (6d68e04) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (a4000bb) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=953b80cd"></script>
+    <script src="static/documentation_options.js?v=7cdfcf63"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (6d68e04) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a4000bb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -67,7 +67,7 @@
 <p class="admonition-title">Purpose</p>
 <p>The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see <a class="reference internal" href="requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).
 The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
-More detailed aspects of the design in support of the conceptual model are given in <code class="xref std std-numref docutils literal notranslate"><span class="pre">supporting_design:Supporting</span> <span class="pre">design</span></code>.</p>
+More detailed design aspects in support of the conceptual model are given in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </div>
 <p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them <a class="reference internal" href="requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>, <a class="reference internal" href="requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>, <a class="reference internal" href="requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.
@@ -79,7 +79,7 @@ These algorithms then serve as operators to higher-order functions that operate 
 <li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> )</p></li>
 <li><p>the framework driver (see <a class="reference internal" href="driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>)</p></li>
 <li><p>data-product providers (see <a class="reference internal" href="providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
-<li><p>data-product writers (see <code class="xref std std-numref docutils literal notranslate"><span class="pre">outputs:Data-Product</span> <span class="pre">outputs</span></code>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
+<li><p>data-product writers (see <a class="reference internal" href="writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
 <li><p>resources (see <a class="reference internal" href="resources.html#resources"><span class="std std-numref">Section 3.9</span></a>)</p></li>
 <li><p>program configuration (see <a class="reference internal" href="user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
 </ul>
@@ -266,7 +266,7 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (6d68e04) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a4000bb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
