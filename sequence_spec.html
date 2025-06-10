@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.2. Specifying Sequences &#8212; Phlex 0 (7175761) documentation</title>
+    <title>Specifying Sequences &#8212; Phlex 0 (6d68e04) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=61816430"></script>
+    <script src="static/documentation_options.js?v=953b80cd"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -32,8 +32,6 @@
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4.3. Data Product Management" href="subsystems/data_management.html" />
-    <link rel="prev" title="4.1. Task Management" href="subsystems/task_management.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -45,15 +43,8 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="subsystems/data_management.html" title="4.3. Data Product Management"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="subsystems/task_management.html" title="4.1. Task Management"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (7175761) documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="supporting_design.html" accesskey="U"><span class="section-number">4. </span>Supporting Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.2. </span>Specifying Sequences</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (6d68e04) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Specifying Sequences</a></li> 
       </ul>
     </div>  
 
@@ -63,11 +54,11 @@
           <div class="body" role="main">
             
   <section id="specifying-sequences">
-<h1><span class="section-number">4.2. </span>Specifying Sequences<a class="headerlink" href="#specifying-sequences" title="Link to this heading">¶</a></h1>
+<h1>Specifying Sequences<a class="headerlink" href="#specifying-sequences" title="Link to this heading">¶</a></h1>
 <p>As discussed in <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a>, the input sequence to a HOF is specified via a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code> clause, where the ellipsis is replaced by a <em>sequence specification</em>.
 One of the specifications provided is <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">)</span></code>, which indicates that a sequence should be formed from data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> from each <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data-set category.</p>
 <section id="input-sequence-specification">
-<h2><span class="section-number">4.2.1. </span>Input sequence specification<a class="headerlink" href="#input-sequence-specification" title="Link to this heading">¶</a></h2>
+<h2>Input sequence specification<a class="headerlink" href="#input-sequence-specification" title="Link to this heading">¶</a></h2>
 <p>A sequence specification contains one or more <em>product specifications</em> and zero or more <em>resource specifications</em>, expressed in EBNF grammar <a class="reference internal" href="#wiki-ebnf" id="id1"><span>[Wiki-EBNF]</span></a> as:</p>
 <pre>
 <strong id="grammar-token-input_sequence_spec">input_sequence_spec</strong> ::= <a class="reference internal" href="#grammar-token-input_product_specs"><code class="xref docutils literal notranslate"><span class="pre">input_product_specs</span></code></a> | <a class="reference internal" href="#grammar-token-input_products"><code class="xref docutils literal notranslate"><span class="pre">input_products</span></code></a> &quot;,&quot; <a class="reference internal" href="#grammar-token-resources"><code class="xref docutils literal notranslate"><span class="pre">resources</span></code></a>
@@ -84,7 +75,7 @@ The specifications for <code class="code highlight c++ docutils literal highligh
 </div>
 </section>
 <section id="output-sequence-specification">
-<h2><span class="section-number">4.2.2. </span>Output sequence specification<a class="headerlink" href="#output-sequence-specification" title="Link to this heading">¶</a></h2>
+<h2>Output sequence specification<a class="headerlink" href="#output-sequence-specification" title="Link to this heading">¶</a></h2>
 <pre>
 <strong id="grammar-token-output_sequence_spec">output_sequence_spec</strong> ::= ProductOutputSpec | ProductOutputSpec &quot;,&quot; <a class="reference internal" href="#grammar-token-output_sequence_spec"><code class="xref docutils literal notranslate"><span class="pre">output_sequence_spec</span></code></a>
 </pre>
@@ -111,23 +102,13 @@ The specifications for <code class="code highlight c++ docutils literal highligh
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">4.2. Specifying Sequences</a><ul>
-<li><a class="reference internal" href="#input-sequence-specification">4.2.1. Input sequence specification</a></li>
-<li><a class="reference internal" href="#output-sequence-specification">4.2.2. Output sequence specification</a></li>
+<li><a class="reference internal" href="#">Specifying Sequences</a><ul>
+<li><a class="reference internal" href="#input-sequence-specification">Input sequence specification</a></li>
+<li><a class="reference internal" href="#output-sequence-specification">Output sequence specification</a></li>
 </ul>
 </li>
 </ul>
 
-  </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="subsystems/task_management.html"
-                          title="previous chapter"><span class="section-number">4.1. </span>Task Management</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="subsystems/data_management.html"
-                          title="next chapter"><span class="section-number">4.3. </span>Data Product Management</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -156,15 +137,8 @@ The specifications for <code class="code highlight c++ docutils literal highligh
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="right" >
-          <a href="subsystems/data_management.html" title="4.3. Data Product Management"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="subsystems/task_management.html" title="4.1. Task Management"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (7175761) documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="supporting_design.html" ><span class="section-number">4. </span>Supporting Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.2. </span>Specifying Sequences</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (6d68e04) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Specifying Sequences</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
