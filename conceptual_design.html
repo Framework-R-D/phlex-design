@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (a4000bb) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (f5ff2d5) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=7cdfcf63"></script>
+    <script src="static/documentation_options.js?v=62b6f737"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a4000bb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f5ff2d5) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -84,7 +84,7 @@ These algorithms then serve as operators to higher-order functions that operate 
 <li><p>program configuration (see <a class="reference internal" href="user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
 </ul>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-6f3254308b19e7445cd7a83b9b6f2c9f44ab694c.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-37d6e229235d26d9ffb2e449450f5d4258bb56ac.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -93,7 +93,7 @@ These algorithms then serve as operators to higher-order functions that operate 
   transform [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;clamp&lt;/font&gt;)&gt;]
   fold [label=&lt;fold(&lt;font color=&quot;blue&quot;&gt;sum_waveforms&lt;/font&gt;)&gt;]
   filter [label=&lt;filter(&lt;font color=&quot;blue&quot;&gt;high_energy&lt;/font&gt;)&gt;];
-  observer [label=&lt;observe(&lt;font color=&quot;blue&quot;&gt;high_energy_waveforms&lt;/font&gt;)&gt;];
+  observer [label=&lt;observe(&lt;font color=&quot;blue&quot;&gt;histogram_waveforms&lt;/font&gt;)&gt;];
   out [label=&quot;ROOT output file(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
 
   {
@@ -117,21 +117,22 @@ These algorithms then serve as operators to higher-order functions that operate 
 
   driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
 
+  // Providers
   {
     rank=same;
-    geometry [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-    sim_hits_provider [label=&lt;provide(SimHits)&gt;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
+    geometry_provider [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+    sim_hits_provider [label=&quot;provide(SimHits)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
   }
 
-  driver -&gt; geometry [label=&quot; [J]&quot;, fontcolor=&quot;darkorange&quot;];
+  driver -&gt; geometry_provider [label=&quot; [J]&quot;, fontcolor=&quot;darkorange&quot;];
   driver -&gt; sim_hits_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
 
-  geometry -&gt; gdml [style=&quot;dotted&quot;, arrowhead=none];
+  geometry_provider -&gt; gdml [style=&quot;dotted&quot;, arrowhead=none];
   resource -&gt; root [style=&quot;dotted&quot;, arrowhead=none];
 
   sim_hits_provider -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
   sim_hits_provider -&gt; unfold [label=&lt; [SimHits&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  geometry -&gt; unfold [label=&lt; [Geometry]&gt;];
+  geometry_provider -&gt; unfold [label=&lt; [Geometry]&gt;];
 
   unfold:s -&gt; transform [xlabel=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   transform:s -&gt; fold [taillabel=&lt;[ClampedWaveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;,
@@ -139,15 +140,24 @@ These algorithms then serve as operators to higher-order functions that operate 
                        labeldistance=7
                       ];
 
-  unfold:s -&gt; out [style=&quot;dotted&quot;, arrowhead=none, label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform:s -&gt; out [style=&quot;dotted&quot;, arrowhead=none];
+  // Writers
+  {
+    rank=same;
+    waveforms_writer [label=&quot;write(Waveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+    summed_waveforms_writer [label=&quot;write(SummedWaveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+    clamped_waveforms_writer [label=&quot;write(ClampedWaveforms)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
+  }
 
+  unfold:s -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform:s -&gt; clamped_waveforms_writer;
+  fold:s -&gt; summed_waveforms_writer [label=&lt; [SummedWaveforms&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+
+  {waveforms_writer, clamped_waveforms_writer, summed_waveforms_writer} -&gt; out [style=&quot;dotted&quot;, arrowhead=none]
 
   unfold:s -&gt; filter [label=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   filter:s -&gt; observer [label=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
   resource -&gt; observer [style=&quot;dashed&quot;];
 
-  fold:s -&gt; out [style=&quot;dotted&quot;, arrowhead=none, label=&lt; [SummedWaveforms&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing the different types of algorithm supported by Phlex (see <a class="reference internal" href="functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a> for a list of the supported algorithms).
@@ -266,7 +276,7 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
         <li class="right" >
           <a href="data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (a4000bb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f5ff2d5) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
