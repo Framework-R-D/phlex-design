@@ -19,7 +19,7 @@ Conceptual requirements
 
     The framework shall allow the execution of multiple algorithms.
 
-- See :numref:`scheduling:Topology of the data-flow graph`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`
 
 .. req:: Algorithm Communication Via Data Products
     :collapse:
@@ -30,7 +30,7 @@ Conceptual requirements
 
     The framework shall mediate communication between algorithms via data products.
 
-- See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`, :numref:`registration:Framework registration`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`, :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Data Product Representation
     :collapse:
@@ -42,7 +42,7 @@ Conceptual requirements
 
     The framework shall separate the persistent representation of data products from their in-memory representations as seen by algorithms.
 
-- See :numref:`data_organization:Structure and Representation`
+- See :numref:`ch_conceptual_design/data_organization:Structure and Representation`
 
 .. req:: Full utilization of DUNE computing resources
     :collapse:
@@ -64,7 +64,7 @@ Conceptual requirements
 
     The framework shall provide an API that allows users to express hardware requirements of the algorithms.
 
-- See :numref:`registration:Framework registration`
+- See :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Algorithms can use a GPU
     :collapse:
@@ -139,7 +139,7 @@ Conceptual requirements
 
     The framework shall present data produced by an already executed algorithm to each subsequent, requesting algorithm.
 
-- See :numref:`scheduling:Topology of the data-flow graph`, :numref:`data_organization:Conceptual Nature`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
 
 .. req:: Mix input streams
     :collapse:
@@ -170,7 +170,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data products.
 
-- See :numref:`data_organization:Data organization`, :numref:`data_organization:Defining Data Product Types`, :numref:`data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
 
 .. req:: Creation of data sets
     :collapse:
@@ -181,7 +181,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to create new data sets.
 
-- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
 
 .. req:: Definition of data families
     :collapse:
@@ -192,7 +192,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data families.
 
-- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
 
 .. req:: Definition of data family hierarchies
     :collapse:
@@ -203,7 +203,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
-- See :numref:`data_organization:Data organization`, :numref:`data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
 
 .. req:: Process collections of unconstrained size
     :collapse:
@@ -215,7 +215,7 @@ Conceptual requirements
 
     The framework shall support processing of collections that are too large to fit into memory at one time.
 
-- See :numref:`data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
 
 .. req:: Unfolding data products
     :collapse:
@@ -227,7 +227,7 @@ Conceptual requirements
 
     The framework shall allow the unfolding of data products into a sequence of finer-grained data products.
 
-- See :numref:`hof_operators:Partitioned Unfolds`
+- See :numref:`ch_conceptual_design/hof_operators:Partitioned Unfolds`
 
 .. req:: Access to external data sources
     :collapse:
@@ -250,7 +250,7 @@ Conceptual requirements
 
     The framework shall support algorithms that provide data from calibration databases.
 
-- See :numref:`data_organization:Data organization`.
+- See :numref:`ch_conceptual_design/data_organization:Data organization`.
 
 .. req:: Algorithms independent of framework interface
     :collapse:
@@ -262,7 +262,7 @@ Conceptual requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Framework Independence`, :numref:`data_organization:Data categories, families, and data-product sets`, :numref:`algorithms:Algorithms`
+- See :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`, :numref:`ch_conceptual_design/algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:
@@ -284,7 +284,7 @@ Conceptual requirements
 
     The framework shall enable the specification of resources required by the program.
 
-- See :numref:`subsystems/configuration:Program resource specification`
+- See :numref:`ch_subsystem_design/configuration:Program resource specification`
 
 .. req:: Specification of user-defined resources
     :collapse:
@@ -344,7 +344,7 @@ Conceptual requirements
 
     The framework shall optimize the memory management of data products.
 
-- See :numref:`data_organization:Data product management`
+- See :numref:`ch_conceptual_design/data_organization:Data product management`
 
 .. req:: Composable workflows using GPU algorithms and CPU algorithms
     :collapse:
@@ -366,7 +366,7 @@ Conceptual requirements
 
     The framework shall support the specification of data products required as input by an algorithm.
 
-- See :numref:`registration:Framework registration`
+- See :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Specification of data products created by an algorithm
     :collapse:
@@ -377,7 +377,7 @@ Conceptual requirements
 
     The framework shall support the specification of data products created as output by an algorithm.
 
-- See :numref:`registration:Framework registration`
+- See :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: One configuration per framework execution
     :collapse:
@@ -389,7 +389,7 @@ Conceptual requirements
 
     The framework shall accept exactly one configuration per program execution.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Framework configuration language
     :collapse:
@@ -401,7 +401,7 @@ Conceptual requirements
 
     The framework shall provide the ability to configure the execution of a framework program at runtime using a human-readable language.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: I/O plugins
     :collapse:
@@ -481,7 +481,7 @@ Conceptual requirements
 
     The data objects exchanged among algorithms shall be separable from those algorithms.
 
-- See :numref:`data_organization:Conceptual Nature`
+- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
 
 .. req:: Provenance discovery
     :collapse:
@@ -492,7 +492,7 @@ Conceptual requirements
 
     The framework shall enable users to discover the provenance of data products.
 
-- See :numref:`introduction:Framework philosophy`, :numref:`data_organization:Conceptual Nature`, :numref:`data_organization:Data product management`, :numref:`data_organization:Data product identification`.
+- See :numref:`introduction:Framework philosophy`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`, :numref:`ch_conceptual_design/data_organization:Data product management`, :numref:`ch_conceptual_design/data_organization:Data product identification`.
 
 .. req:: Framework recording of metadata for reproduction of output data
     :collapse:
@@ -513,7 +513,7 @@ Conceptual requirements
 
     The framework shall support the reproduction of data products from the provenance stored in the output.
 
-- See :numref:`data_organization:Data product identification`.
+- See :numref:`ch_conceptual_design/data_organization:Data product identification`.
 
 .. req:: Reproducibility with pseudo-random numbers
     :collapse:
@@ -534,7 +534,7 @@ Conceptual requirements
 
     The framework shall facilitate the development of thread-safe algorithms.
 
-- See :numref:`functional_programming:Functional programming`, :numref:`data_organization:Data product management`
+- See :numref:`ch_preliminaries/functional_programming:Functional programming`, :numref:`ch_conceptual_design/data_organization:Data product management`
 
 .. req:: Composing configurations of framework components
     :collapse:
@@ -545,7 +545,7 @@ Conceptual requirements
 
     The framework shall support executing programs configured by composing configurations of separate components.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Graceful shutdown of framework program
     :collapse:
@@ -629,7 +629,7 @@ Supporting requirements
 
     The framework shall provide the ability to compare two configurations.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Record execution environment
     :collapse:
@@ -719,7 +719,7 @@ Supporting requirements
 
     The framework shall allow algorithms to use the same parallelism mechanisms the framework uses to schedule the execution of algorithms.
 
-- See :numref:`subsystems/task_management:Task management`
+- See :numref:`ch_subsystem_design/task_management:Task management`
 
 .. req:: Specification of maximum number of CPU threads
     :collapse:
@@ -757,7 +757,7 @@ Supporting requirements
 
     The framework shall enable the specification of the maximum number of CPU threads permitted by the algorithm.
 
-- See :numref:`registration:Framework registration`
+- See :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Specification of algorithm's CPU memory usage
     :collapse:
@@ -768,7 +768,7 @@ Supporting requirements
 
     The framework shall enable the specification of an algorithm's expected CPU memory usage.
 
-- See :numref:`data_organization:Structure and Representation`
+- See :numref:`ch_conceptual_design/data_organization:Structure and Representation`
 
 .. req:: Specification of algorithm's GPU resources
     :collapse:
@@ -821,7 +821,7 @@ Supporting requirements
 
     The framework shall have an option to provide elapsed time information for each algorithm executed in a framework program.
 
-- See :numref:`subsystems/monitoring:Monitoring and reporting`
+- See :numref:`ch_subsystem_design/monitoring:Monitoring and reporting`
 
 .. req:: Efficient execution of algorithms requiring access to a network resource
     :collapse:
@@ -893,7 +893,7 @@ Supporting requirements
 
     The framework shall be able to report the global memory use of the framework program at user-specified points in time.
 
-- See :numref:`subsystems/monitoring:Monitoring and reporting`
+- See :numref:`ch_subsystem_design/monitoring:Monitoring and reporting`
 
 .. req:: Framework-independent message logging
     :collapse:
@@ -905,7 +905,7 @@ Supporting requirements
 
     The framework shall support a logging solution that is usable in an algorithm without that algorithm explicitly relying on the framework.
 
-- See :numref:`subsystems/logging:Logging`
+- See :numref:`ch_subsystem_design/logging:Logging`
 
 .. req:: Configuration validation
     :collapse:
@@ -917,7 +917,7 @@ Supporting requirements
 
     The framework shall validate an algorithm's configuration against specifications provided at registration time.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Algorithm configuration schema availability
     :collapse:
@@ -929,7 +929,7 @@ Supporting requirements
 
     The framework shall have an option to emit an algorithm's configuration schema in human-readable form.
 
-- See :numref:`user_configuration:Semantic structure of the configuration`
+- See :numref:`ch_conceptual_design/user_configuration:Semantic structure of the configuration`
 
 .. req:: Eager validation of algorithm configuration
     :collapse:
@@ -942,7 +942,7 @@ Supporting requirements
 
     The framework shall validate the configuration of each algorithm before that algorithm processes data.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`, :numref:`user_configuration:Semantic structure of the configuration`.
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`, :numref:`ch_conceptual_design/user_configuration:Semantic structure of the configuration`.
 
 .. req:: I/O backend for ROOT
     :collapse:
@@ -954,7 +954,7 @@ Supporting requirements
 
     The framework ecosystem shall support a ROOT IO backend.
 
-- See :numref:`data_organization:Conceptual Nature`.
+- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`.
 
 .. req:: I/O backend for HDF5
     :collapse:
@@ -965,7 +965,7 @@ Supporting requirements
 
     The framework ecosystem shall support an HDF5 IO backend.
 
-- See :numref:`data_organization:Conceptual Nature`.
+- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`.
 
 .. req:: Data product backward compatibility
     :collapse:
@@ -1095,7 +1095,7 @@ Supporting requirements
 
     The framework shall provide an option to persist the configuration of each framework execution to the output of that execution.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Independence from unique hardware characteristics
     :collapse:
@@ -1107,7 +1107,7 @@ Supporting requirements
 
     The framework shall operate independently of unique characteristics of existing hardware.
 
-- See :numref:`data_organization:Conceptual Nature`
+- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
 
 .. req:: Command line interface (CLI)
     :collapse:
@@ -1118,7 +1118,7 @@ Supporting requirements
 
     The framework shall provide a command-line interface that allows the setting of configuration parameters.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Support local configuration changes
     :collapse:
@@ -1129,7 +1129,7 @@ Supporting requirements
 
     The framework shall support the use of local configuration changes with respect to a separate complete configuration to modify the execution of a program.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Configuration tracing
     :collapse:
@@ -1140,7 +1140,7 @@ Supporting requirements
 
     The framework configuration system shall have an option to provide diagnostic information for an evaluated configuration, including origins of final parameter values.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Configuration language single point of maintenance
     :collapse:
@@ -1152,7 +1152,7 @@ Supporting requirements
 
     The language used for configuring a framework program shall include features for maintaining hierarchical configurations from a single point of maintenance.
 
-- See :numref:`user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
 
 .. req:: Enable identification of data sets containing chunked data products
     :collapse:

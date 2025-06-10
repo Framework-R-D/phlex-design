@@ -23,7 +23,7 @@ However, as seen above, functional programming permits a mathematical descriptio
 Expressing the processing needs according to mathematics enables:
 
 - the use of mathematical rules to optimize the processing of the data,
-- naturally reproducible results, assuming the functions are pure (see :numref:`functional_programming:Pure functions`),
+- naturally reproducible results, assuming the functions are pure (see :numref:`ch_preliminaries/functional_programming:Pure functions`),
 - parallel invocations of pure functions with no possibility of data races :need:`DUNE 130`.
 
 Pure Functions
@@ -48,7 +48,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see :numref:`functional_programming:Sequences of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
 
@@ -114,36 +114,36 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 .. table::
    :widths: 15 30 30 25
 
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
-   | **Higher-order function**                                                                  | Operator(s)                                                 | Output sequence length |
-   +======================================================+=====================================+=============================================================+========================+
-   | :ref:`Transform <hof_operators:Transforms>`          | :math:`b = \transform{f}\ a`        | :math:`f: A \rightarrow B`                                  | :math:`|b| = |a|`      |
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Filter <hof_operators:Filters and predicates>` | :math:`a' = \filter{p}\ a`          | :math:`p: A \rightarrow \text{Boolean}`                     | :math:`|a'| \le |a|`   |
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Observer <hof_operators:Observers>`            | :math:`[\ \ ] = \observe{f}\ a`     | :math:`f: A \rightarrow \mathbbm{1}`                        | :math:`0`              |
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Fold <hof_operators:Partitioned Folds>`        | :math:`d = \fold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                         | :math:`|d| \le |c|`    |
-   |                                                      |                                     +-------------------------------------------------------------+                        |
-   |                                                      |                                     | :math:`init: \mathbbm{1} \rightarrow D`                     |                        |
-   |                                                      |                                     +-------------------------------------------------------------+                        |
-   |                                                      |                                     | :math:`part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Unfold <hof_operators:Partitioned Unfolds>`    | :math:`c = \unfold{p}{gen}{cat}\ d` | :math:`p: D \rightarrow \mbox{Boolean}`                     | :math:`|c| \ge |d|`    |
-   |                                                      |                                     +-------------------------------------------------------------+                        |
-   |                                                      |                                     | :math:`gen: D \rightarrow D \times C`                       |                        |
-   |                                                      |                                     +-------------------------------------------------------------+                        |
-   |                                                      |                                     | :math:`cat: \mathbbm{1} \rightarrow L`                      |                        |
-   +------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   | **Higher-order function**                                                                                       | Operator(s)                                                 | Output sequence length |
+   +===========================================================================+=====================================+=============================================================+========================+
+   | :ref:`Transform <ch_conceptual_design/hof_operators:Transforms>`          | :math:`b = \transform{f}\ a`        | :math:`f: A \rightarrow B`                                  | :math:`|b| = |a|`      |
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Filter <ch_conceptual_design/hof_operators:Filters and predicates>` | :math:`a' = \filter{p}\ a`          | :math:`p: A \rightarrow \text{Boolean}`                     | :math:`|a'| \le |a|`   |
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Observer <ch_conceptual_design/hof_operators:Observers>`            | :math:`[\ \ ] = \observe{f}\ a`     | :math:`f: A \rightarrow \mathbbm{1}`                        | :math:`0`              |
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Fold <ch_conceptual_design/hof_operators:Partitioned Folds>`        | :math:`d = \fold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                         | :math:`|d| \le |c|`    |
+   |                                                                           |                                     +-------------------------------------------------------------+                        |
+   |                                                                           |                                     | :math:`init: \mathbbm{1} \rightarrow D`                     |                        |
+   |                                                                           |                                     +-------------------------------------------------------------+                        |
+   |                                                                           |                                     | :math:`part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Unfold <ch_conceptual_design/hof_operators:Partitioned Unfolds>`    | :math:`c = \unfold{p}{gen}{cat}\ d` | :math:`p: D \rightarrow \mbox{Boolean}`                     | :math:`|c| \ge |d|`    |
+   |                                                                           |                                     +-------------------------------------------------------------+                        |
+   |                                                                           |                                     | :math:`gen: D \rightarrow D \times C`                       |                        |
+   |                                                                           |                                     +-------------------------------------------------------------+                        |
+   |                                                                           |                                     | :math:`cat: \mathbbm{1} \rightarrow L`                      |                        |
+   +---------------------------------------------------------------------------+-------------------------------------+-------------------------------------------------------------+------------------------+
 
-:numref:`hof_operators:HOF operators` describes each of the operators in detail.
+:numref:`ch_conceptual_design/hof_operators:HOF operators` describes each of the operators in detail.
 Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
 
 Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes
 
-.. [#graph] As discussed in :numref:`data_flow:Data flow`, the general topology of a data-processing workflow is a *graph* of functions.
+.. [#graph] As discussed in :numref:`ch_preliminaries/data_flow:Data flow`, the general topology of a data-processing workflow is a *graph* of functions.
 
 .. only:: html
 

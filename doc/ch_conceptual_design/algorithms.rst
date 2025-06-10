@@ -1,8 +1,8 @@
 Algorithms
 ==========
 
-As mentioned in :numref:`functional_programming:Higher-order functions supported by Phlex`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`hof_operators:HOF operators`):
+As mentioned in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/hof_operators:HOF operators`):
 
 .. code:: c++
 
@@ -11,7 +11,7 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 where the types :cpp:`P1, Pn...` denote types of data products and the types :cpp:`Rm...` indicate :term:`resources <resource>`.
 Each registered function must accept at least one data product.
 
-We will first discuss the data-product and resource types in :numref:`algorithms:Input parameters`, followed by the return types in :numref:`algorithms:Return types`, and then the function name and optional qualifers in :numref:`algorithms:Function names and qualifiers`.
+We will first discuss the data-product and resource types in :numref:`ch_conceptual_design/algorithms:Input parameters`, followed by the return types in :numref:`ch_conceptual_design/algorithms:Return types`, and then the function name and optional qualifers in :numref:`ch_conceptual_design/algorithms:Function names and qualifiers`.
 
 Input Parameters
 ----------------
@@ -31,12 +31,12 @@ The following types are therefore supported:
 - :cpp:`R const&` — read-only access to a resource provided through a reference
 - :cpp:`R const*` — read-only access to a resource provided through a pointer
 
-Resources are described in more detail in :numref:`resources:Resources`.
+Resources are described in more detail in :numref:`ch_conceptual_design/resources:Resources`.
 
 Return Types
 ------------
 
-The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`hof_operators:HOF operators`.
+The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`ch_conceptual_design/hof_operators:HOF operators`.
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
 For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
 This means that the data products created by algorithms must have types that connote unique ownership.
@@ -53,7 +53,7 @@ The following types (or their equivalents) are forbidden as created data-product
 Function Names and Qualifiers
 -----------------------------
 
-The :cpp:`function_name` in :numref:`algorithms:Algorithms` above may be any function name supported by the C++ language.
+The :cpp:`function_name` in :numref:`ch_conceptual_design/algorithms:Algorithms` above may be any function name supported by the C++ language.
 Code authors should aim to implement algorithms as free functions.
 However, in some cases it may be necessary for class member functions to be used instead.
 When member functions are required, the qualifier :cpp:`const` should be specified to indicate that the class instance remains immutable during the execution of the member function [#f2]_.

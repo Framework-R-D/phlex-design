@@ -144,7 +144,7 @@ Observers
 | :math:`[\ \ ] = \observe{f}\ a` | :math:`f: A \rightarrow \mathbbm{1}` | :math:`0`              |
 +---------------------------------+--------------------------------------+------------------------+
 
-As mentioned in :numref:`functional_programming:Higher-order functions supported by Phlex`, observers are a special case of filters that always reject the data presented to them.
+As mentioned in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`, observers are a special case of filters that always reject the data presented to them.
 Because of this, in a purely functional approach, it is unnecessary to invoke an observer as no data will be produced by an observer.
 Additionally, any algorithms downstream of an always-rejecting filter will never be invoked.
 
@@ -209,7 +209,7 @@ Partitioned Folds
 |                                                       | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
 +-------------------------------------------------------+----------------------------------------------------------------------+------------------------+
 
-As mentioned in :numref:`functional_programming:Sequences of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a sequence of data to a single value:
+As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a sequence of data to a single value:
 
 .. math::
    d = \fold{f}{\textit{init}}\ \sequence{c}{c}

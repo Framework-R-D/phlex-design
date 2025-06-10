@@ -41,7 +41,7 @@ This can be achieved by in terms of the C++ *registration stanza*:
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
-A registration statement is a programming statement that closely follows the equation described in :numref:`functional_programming:Higher-order functions supported by Phlex`:
+A registration statement is a programming statement that closely follows the equation described in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`:
 
 .. math::
 
@@ -66,7 +66,7 @@ Specifically, in the registration stanza above, we have the following:
      6. The specification(s) of data products that serve as input sequence elements :need:`DUNE 65`.
      7. The data category where the input data products are found.
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`hof_operators:HOF operators` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/hof_operators:HOF operators` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:
@@ -103,7 +103,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. note::
 
-   As discussed in :numref:`user_configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
+   As discussed in :numref:`ch_conceptual_design/user_configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
 
 Except for the specification of :cpp:`make_tracks` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
 

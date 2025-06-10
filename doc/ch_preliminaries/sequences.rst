@@ -2,7 +2,7 @@
 Sequences
 *********
 
-A finite sequence can be represented as a list of objects, each of which are of the same set or *type* (see :numref:`types:Types`).
+A finite sequence can be represented as a list of objects, each of which are of the same set or *type* (see :numref:`ch_preliminaries/types:Types`).
 For example, the sequence :math:`a = [a_1, a_2, \dots, a_n]` is written as
 
 .. math::

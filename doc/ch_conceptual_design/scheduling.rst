@@ -2,7 +2,7 @@
 Topology of the data-flow graph
 ===============================
 
-The pattern used for constructing the data-flow graph is described in detail in :numref:`subsystems/task_management:Creating the data-flow graph`.
+The pattern used for constructing the data-flow graph is described in detail in :numref:`ch_subsystem_design/task_management:Creating the data-flow graph`.
 Here we discuss the overall topology of the workflow, using the graph in :numref:`workflow`.
 
 The graph-node candidates are separated into various classifications:

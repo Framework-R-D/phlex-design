@@ -1,7 +1,7 @@
 Data Flow
 =========
 
-In :numref:`functional_programming:Functional programming`, the example was given for creating tracks from wires.
+In :numref:`ch_preliminaries/functional_programming:Functional programming`, the example was given for creating tracks from wires.
 The simplified expression for doing this was the chained application of two functions :math:`f` and :math:`g` such that:
 
 .. math::
@@ -11,7 +11,7 @@ where :math:`ws` and :math:`ts` are the wires and tracks, respectively.
 
 An alternative representation to the equational form is a *directed graph*
 
-.. graphviz:: graphviz/functional-programming-data-flow.gv
+.. graphviz:: functional-programming-data-flow.gv
    :align: center
 
 where the functions :math:`f` and :math:`g` are vertices or *nodes* and the data :math:`ws` and :math:`ts` are passed along arrows or *edges* that connect the nodes [#f1]_.
@@ -23,7 +23,7 @@ Some observations:
   For the graph above, we explicitly label those hits as :math:`hs` to emphasize that data are always passed along edges.
   If, however, the hits are not needed by any other function in the graph, the two functions :math:`f` and :math:`g` can be replaced by their composition :math:`h=g \circ f`
 
-  .. graphviz:: graphviz/functional-programming-data-flow-optimized.gv
+  .. graphviz:: functional-programming-data-flow-optimized.gv
      :align: center
 
   resulting in potential performance improvements in computational efficiency and program memory usage.
@@ -35,16 +35,16 @@ Some observations:
 Data Flow with Sequences
 ------------------------
 
-As mentioned earlier in :numref:`functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.
+As mentioned earlier in :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of sequences.  Specifically [#f2]_:
 
 - Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`[ws_i]`, :math:`[hs_i]`, and :math:`[ts_i]` are passed.
 - The functions :math:`f` and :math:`g` map to :math:`\transform{f}` and :math:`\transform{g}`, respectively.
 
-.. graphviz:: graphviz/functional-programming-data-flow-hof.gv
+.. graphviz:: functional-programming-data-flow-hof.gv
    :align: center
 
-The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`functional_programming:Pure functions`), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
 Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.
 
 .. todo::
@@ -65,13 +65,13 @@ This calculation requires three separate steps:
 
 The data-flow graph of individual objects looks like:
 
-.. graphviz:: graphviz/unfold-transform-fold.gv
+.. graphviz:: unfold-transform-fold.gv
    :align: center
 
 where each number is passed along its own edge to the nodes performing the calculation.
 By adopting a sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:
 
-.. graphviz:: graphviz/unfold-transform-fold-hof.gv
+.. graphviz:: unfold-transform-fold-hof.gv
    :align: center
 
 In addition, the topology of the sequence-based graph remains the same regardless of the value of :math:`n`; the topology of the object-based graph becomes intractable as :math:`n` increases.

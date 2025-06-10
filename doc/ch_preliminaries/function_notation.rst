@@ -30,7 +30,7 @@ In mathematical expressions, parentheses are then reserved in this document to s
 
 1. The order of operations (e.g. :math:`f\ x` is to be evaluated first, and its output serves as input to the function :math:`g`).
 2. A tuple of arguments that serve as input to a single function invocation (e.g. :math:`power\ (1.5, 2)` above) [#apply]_.
-3. The binding of user-defined algorithms to higher-order functions (see :numref:`functional_programming:Sequences of data and higher-order functions`).
+3. The binding of user-defined algorithms to higher-order functions (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`).
 
 .. rubric:: Footnotes
 

@@ -12,7 +12,7 @@ A data product set is a collection of data products, associated with a data set 
 A data set family is a sequence of data product sets that are in the same category.
 :numref:`data-organization` illustrates the relationships between all of these.
 
-.. graphviz:: graphviz/data-organization.gv
+.. graphviz:: data-organization.gv
    :caption: An example of some possible data product hierarchies.
              Three different user-defined data product set categories are shown: :math:`\textsf{Run}`, :math:`\textsf{Spill}`, and :math:`\textsf{APA}`.
              Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data product sets.

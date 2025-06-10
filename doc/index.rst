@@ -33,7 +33,7 @@ This document gives a brief introduction to what Phlex aims to achieve, the conc
    :numbered:
    :maxdepth: 2
 
-   definitions
-   requirements
-   platforms
-   deployment
+   appendices/definitions
+   appendices/requirements
+   appendices/platforms
+   appendices/deployment

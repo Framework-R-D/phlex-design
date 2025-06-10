@@ -151,7 +151,7 @@ rst_prolog ="""
 # -- When we only want the conceptual design
 if conceptual_design_only := os.environ.get("PHLEX_CONCEPTUAL_DESIGN_ONLY", False):
     exclude_patterns = ["supporting_design.rst",
-                        "subsystems/*",
+                        "ch_subsystem_design/*",
                         "sequence_spec.rst"]
 
 # -- Detect if PDF rendering is available and provide link to it in HTML rendering (see index.rst)

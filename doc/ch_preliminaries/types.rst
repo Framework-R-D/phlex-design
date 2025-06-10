@@ -37,7 +37,7 @@ The above functions are thus represented in function notation as:
 
 This notation will be used as we discuss the operators required by Phlex's higher-order functions.
 
-The single element of the set :math:`\mathbbm{1}` can also be used to represent the value :cpp:`nullptr` for C++ pointers (see :numref:`types:Representing optional types`).
+The single element of the set :math:`\mathbbm{1}` can also be used to represent the value :cpp:`nullptr` for C++ pointers (see :numref:`ch_preliminaries/types:Representing optional types`).
 
 ---------------------------
 Representing optional types

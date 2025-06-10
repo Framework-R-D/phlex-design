@@ -2,7 +2,7 @@
 Specifying Sequences
 ====================
 
-As discussed in :numref:`registration:Framework Registration`, the input sequence to a HOF is specified via a :cpp:`sequence(...)` clause, where the ellipsis is replaced by a *sequence specification*.
+As discussed in :numref:`ch_conceptual_design/registration:Framework Registration`, the input sequence to a HOF is specified via a :cpp:`sequence(...)` clause, where the ellipsis is replaced by a *sequence specification*.
 One of the specifications provided is :cpp:`"good_hits"_in("spill")`, which indicates that a sequence should be formed from data products labeled :cpp:`"good_hits"` from each :cpp:`"spill"` data-set category.
 
 Input sequence specification
