@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.1. Function Notation &#8212; Phlex 0 (b0e6952) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=03f266e3"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2. Types" href="types.html" />
+    <link rel="prev" title="2. Preliminaries" href="../preliminaries.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="types.html" title="2.2. Types"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../preliminaries.html" title="2. Preliminaries"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="function-notation">
+<h1><span class="section-number">2.1. </span>Function Notation<a class="headerlink" href="#function-notation" title="Link to this heading">¶</a></h1>
+<p>We refer to the function <img class="math" src="../images/math/5955beb79bad85d1a34985194deca5dece0bb60a.svg" alt="f: A \rightarrow B"/> as the function <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> that takes an element of the set <img class="math" src="../images/math/5f87f7461552ce63093557273667bde826c2dd5e.svg" alt="A"/> to an element of the set <img class="math" src="../images/math/190e2dc87a1073e13bc0f3fe2081d42a3020ae5d.svg" alt="B"/>.
+For example, the function <img class="math" src="../images/math/0a5390b69e43656993b68369492dcdeb6b6cbf6d.svg" alt="flip: \mathbb{R} \rightarrow \mathbb{R}"/> accepts a real number (e.g. <img class="math" src="../images/math/199e5caf86b81cbba7e4353d90bc238ce5331795.svg" alt="3.14"/>) and multiplies it by <img class="math" src="../images/math/aedca9ec0f6ca04a0b862411e5a728dc85b6d535.svg" alt="-1"/>, returning another real number (e.g. <img class="math" src="../images/math/a260d1eb2eb93f9b9aa7c65c5da66ab96b717623.svg" alt="-3.14"/>).</p>
+<p>The types <img class="math" src="../images/math/5f87f7461552ce63093557273667bde826c2dd5e.svg" alt="A"/> and <img class="math" src="../images/math/190e2dc87a1073e13bc0f3fe2081d42a3020ae5d.svg" alt="B"/> are allowed to represent Cartesian products of sets (e.g. <img class="math" src="../images/math/d1e9b18bd4788cf1cca0632b023535b84af0c3b2.svg" alt="A = A_1 \times \dots \times A_n"/>), thus enabling multivariate functions.
+For example, the following are simple multivariate functions:</p>
+<div class="math">
+<p><img src="../images/math/693913584d96d6a71f9a64031bf6f7a1699a0efc.svg" alt="power : \mathbb{R} \times \mathbb{N} \rightarrow \mathbb{R}
+
+halve : \mathbb{N} \rightarrow \mathbb{N} \times \mathbb{N}"/></p>
+</div><p>where <img class="math" src="../images/math/c18a101efc459393b36ad7c64ad714f319ce83c1.svg" alt="\mathbb{N}"/> is the set of natural numbers.
+Invoking <img class="math" src="../images/math/b4d1b6f4c5576f57319e76d0ffd8cc4169009c26.svg" alt="power(1.5, 2)"/> results in the real number <img class="math" src="../images/math/cabf6f78784d284f6402374d5322341008a907fb.svg" alt="1.5^2 = 2.25"/>, whereas invoking <img class="math" src="../images/math/6c6f313ca36dbc3b0ce30479d4bac9269b6b4743.svg" alt="halve(5)"/> divides <img class="math" src="../images/math/4e60784fb68ad5e8545c9795db16b6385f071d01.svg" alt="5"/> by <img class="math" src="../images/math/8f6a7da91277ccb03a98673d38a10549d7725714.svg" alt="2"/>, returning the pair <img class="math" src="../images/math/e542052489d9de09a810692ec954fdfbec89b47a.svg" alt="(2, 1)"/>, where the first number is the quotient, and the second is the remainder.</p>
+<p>It is conventional to use parentheses to denote the application of the function <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> to an argument <img class="math" src="../images/math/c30ae5b6808c15f617fe3deea86fe10f7ed4946c.svg" alt="x"/> —i.e. <img class="math" src="../images/math/84fa4cb606e22a0eef612acbee8d2fae5cc6fe5d.svg" alt="f(x)"/>.
+To avoid cluttered expressions in this document, however, we adopt an alternative whereby the parentheses are omitted and whitespace is used to delimit the function and its argument(s):</p>
+<div class="math">
+<p><img src="../images/math/16b3716005789f990a3964f5a13c2faba03957a3.svg" alt="f(x) &amp;\Longrightarrow f\ x\
+
+g(f(x)) &amp;\Longrightarrow g\ (f\ x) = g\ f\ x \ ."/></p>
+</div><p>In mathematical expressions, parentheses are then reserved in this document to specify:</p>
+<ol class="arabic simple">
+<li><p>The order of operations (e.g. <img class="math" src="../images/math/0a168f5c0af01cb8118060eab20a33f2a6e2efa3.svg" alt="f\ x"/> is to be evaluated first, and its output serves as input to the function <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/>).</p></li>
+<li><p>A tuple of arguments that serve as input to a single function invocation (e.g. <img class="math" src="../images/math/13549a84b46eb720c87d846b77bceba93485f5e1.svg" alt="power\ (1.5, 2)"/> above) <a class="footnote-reference brackets" href="#apply" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+<li><p>The binding of user-defined algorithms to higher-order functions (see <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>).</p></li>
+</ol>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="apply" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The expression <img class="math" src="../images/math/0a168f5c0af01cb8118060eab20a33f2a6e2efa3.svg" alt="f\ x"/> can equivalently be written <img class="math" src="../images/math/d59d0cc7189d84a6c00f2f838bc26a871b842e00.svg" alt="f\ (x)"/>, where <img class="math" src="../images/math/b4551046e2fa0fa625eeb4b4f057501113765643.svg" alt="(x)"/> is a single-element tuple.
+With this interpretation, the conventional function-invocation notation can be recovered.</p>
+</aside>
+</aside>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../preliminaries.html"
+                          title="previous chapter"><span class="section-number">2. </span>Preliminaries</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="types.html"
+                          title="next chapter"><span class="section-number">2.2. </span>Types</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_preliminaries/function_notation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="types.html" title="2.2. Types"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../preliminaries.html" title="2. Preliminaries"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

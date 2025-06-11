@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.2. Data Organization &#8212; Phlex 0 (b0e6952) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=03f266e3"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.3. Algorithms" href="algorithms.html" />
+    <link rel="prev" title="3.1. Topology of the data-flow graph" href="scheduling.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="algorithms.html" title="3.3. Algorithms"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="data-organization">
+<h1><span class="section-number">3.2. </span>Data Organization<a class="headerlink" href="#data-organization" title="Link to this heading">¶</a></h1>
+<p>This section provides a conceptual overview of <em>data products</em>, <em>data product sets</em>, <em>data set categories</em>, and <em>data set families</em>, as defined in <a class="reference internal" href="../appendices/requirements.html#DUNE 85" title="DUNE 85"><em class="xref need">[DUNE 85]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
+It aims to establish a mental model for how all of these facilitate scientific workflows without delving into implementation specifics.</p>
+<p>Data products represent things like raw detector readouts, calibration information, and derived physics quantities. <a class="reference internal" href="../appendices/requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>.
+We call these kinds of things represented by data products <em>conceptual data products</em>.
+Data product types are the programming language representations of conceptual data products.
+A data set category is an experiment-defined level of aggregation of data products, e.g. run, subrun, spill, or an interval of validity for some flavor of calibration.
+A data product set is a collection of data products, associated with a data set category.
+A data set family is a sequence of data product sets that are in the same category.
+<a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.2</span></a> illustrates the relationships between all of these.</p>
+<figure class="align-default" id="id1">
+<div class="graphviz"><img src="../images/graphviz-40f26abe9bcaf81793e309498a0581159d3c5fb9.png" alt="digraph {
+
+  fontname=&quot;Helvetica,Arial&quot;
+  node [shape=&quot;plaintext&quot; fontname=&quot;Helvetica,Arial&quot;]
+  edge [arrowhead=&quot;none&quot;]
+  subgraph cluster_categories {
+    label=&lt;&lt;b&gt;Data product&lt;br/&gt;set categories&lt;/b&gt;&gt;
+    color=none
+
+    job_category [label=&lt;Job&gt; fontcolor=&quot;gray&quot;]
+    run_category [label=&lt;Run&gt;]
+    spill_category [label=&lt;Spill&gt;]
+    apa_category [label=&lt;APA&gt;]
+
+    job_category -&gt; run_category [color=&quot;gray&quot;]
+    run_category -&gt; spill_category -&gt; apa_category
+  }
+
+  node [shape=&quot;box&quot; style=&quot;filled,rounded&quot;]
+
+  job [label=&lt;Job&gt; fillcolor=&quot;gray98&quot; fontcolor=&quot;gray&quot; color=&quot;gray&quot;]
+  run1 [label=&lt;Run&lt;sub&gt;1&lt;/sub&gt;&gt; fillcolor=&quot;lightyellow&quot;]
+  run2 [label=&lt;Run&lt;sub&gt;2&lt;/sub&gt;&gt; fillcolor=&quot;lightyellow&quot;]
+  spill1 [label=&lt;Spill&lt;sub&gt;1,1&lt;/sub&gt;&gt; fillcolor=&quot;lightblue&quot;]
+  spill2 [label=&lt;Spill&lt;sub&gt;1,2&lt;/sub&gt;&gt; fillcolor=&quot;lightblue&quot;]
+  spill3 [label=&lt;Spill&lt;sub&gt;2,1&lt;/sub&gt;&gt; fillcolor=&quot;lightblue&quot;]
+  apa3 [label=&quot;...&quot; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot;]
+
+  job -&gt; {run1 run2} [color=gray]
+  run1 -&gt; {spill1 spill2}
+  run2 -&gt; spill3
+  spill3 -&gt; apa3
+
+  node [style=&quot;rounded,filled&quot; fillcolor=&quot;lightgreen&quot;]
+  subgraph cluster_apa_family_1 {
+     style=&quot;filled,rounded&quot;
+     fillcolor=&quot;#e6ffe6&quot;
+
+     family_label_1 [label=&lt;&lt;i&gt;APA family&lt;/i&gt;&gt; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot;]
+     apa11 [label=&lt;APA&lt;sub&gt;1,1,1&lt;/sub&gt;&gt;]
+     apa1Dots [label=&quot;...&quot; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot;]
+     apa1N [label=&lt;APA&lt;sub&gt;1,1,&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;&gt;]
+  }
+
+  spill1 -&gt; family_label_1 [style=invis]
+  spill1 -&gt; apa11
+  spill1 -&gt; apa1Dots [style=invis]
+  spill1 -&gt; apa1N
+
+  subgraph cluster_apa_family_2 {
+     style=&quot;filled,rounded&quot;
+     fillcolor=&quot;#e6ffe6&quot;
+
+     apa21 [label=&lt;APA&lt;sub&gt;1,2,1&lt;/sub&gt;&gt;]
+     apa2Dots [label=&quot;...&quot; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot;]
+     apa2N [label=&lt;APA&lt;sub&gt;1,2,&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;&gt;]
+     family_label_2 [label=&lt;&lt;i&gt;APA family&lt;/i&gt;&gt; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot;]
+  }
+
+  spill2 -&gt; apa21
+  spill2 -&gt; apa2Dots [style=invis]
+  spill2 -&gt; apa2N
+  spill2 -&gt; family_label_2 [style=invis]
+
+  node [shape=&quot;plaintext&quot; style=&quot;rounded&quot; margin=&quot;0&quot;]
+  subgraph cluster_product_sequence_1 {
+     style=&quot;filled,rounded&quot;
+     fillcolor=&quot;#eee2ee&quot;
+
+     sequence_label_1 [label=&lt;&lt;i&gt;Waveforms sequence&lt;/i&gt;&gt; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot; fontname=&quot;Helvetica,Arial&quot;]
+     t11 [label=&lt;Waveforms&lt;sub&gt;1,1,1&lt;/sub&gt;&gt; fontsize=11.5 fontcolor=&quot;purple&quot;]
+     t1Dots [label=&quot;...&quot; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot; fontname=&quot;Helvetica,Arial&quot;]
+     t1N [label=&lt;Waveforms&lt;sub&gt;1,1,&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;&gt; fontsize=11.5 fontcolor=&quot;purple&quot;]
+  }
+
+  edge [style=dotted]
+  family_label_1 -&gt; sequence_label_1 [style=invis]
+  apa11 -&gt; t11
+  apa1Dots -&gt; t1Dots [style=invis]
+  apa1N -&gt; t1N
+
+  subgraph cluster_product_sequence_2 {
+     style=&quot;filled,rounded&quot;
+     fillcolor=&quot;#eee2ee&quot;
+
+     sequence_label_2 [label=&lt;&lt;i&gt;Waveforms sequence&lt;/i&gt;&gt; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot; fontname=&quot;Helvetica,Arial&quot;]
+     t21 [label=&lt;Waveforms&lt;sub&gt;1,2,1&lt;/sub&gt;&gt; fontsize=11.5 fontcolor=&quot;purple&quot;]
+     t2Dots [label=&quot;...&quot; shape=&quot;plaintext&quot; margin=0 style=&quot;rounded&quot; fontname=&quot;Helvetica,Arial&quot;]
+     t2N [label=&lt;Waveforms&lt;sub&gt;1,2,&lt;i&gt;n&lt;/i&gt;&lt;/sub&gt;&gt; fontsize=11.5 fontcolor=&quot;purple&quot;]
+  }
+
+  family_label_2 -&gt; sequence_label_2 [style=invis]
+  apa21 -&gt; t21
+  apa2Dots -&gt; t2Dots [style=invis]
+  apa2N -&gt; t2N
+}" class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">An example of some possible data product hierarchies.
+Three different user-defined data product set categories are shown: <img class="math" src="../images/math/cc0f2633c8ba1cf954b378fd2e4e2e43425f4969.svg" alt="\textsf{Run}"/>, <img class="math" src="../images/math/8596596a015560bf2c10c6e43cee5c91681b0964.svg" alt="\textsf{Spill}"/>, and <img class="math" src="../images/math/300fc4ea9b8efafa72dbc267a249f8ccc766d201.svg" alt="\textsf{APA}"/>.
+Rectangles with labels <img class="math" src="../images/math/580e836adb6c06dc97554077edbb11182bbad9a1.svg" alt="\textsf{Run}_i"/>, <img class="math" src="../images/math/edce1de75ca2ab3bdc95edacfbc8b7fbf66dd025.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="../images/math/00d3e2fa7fe860b8bdbda624116faaee30fb19c0.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
+The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+A solid line from a data product set to another data product set represents association between the two data product sets.
+The bottom rectangle shows that <img class="math" src="../images/math/a21ff99db181d59efc2bb35584e93b3a8f0db207.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="../images/math/68b20408b7544aed4cce33bd6c3dbe6c4e5c0397.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
+Each pale purple rectangle indicates the data product sequence created by one call to the <em>unfold</em> higher order function described in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+The names of different data set categories are user defined, and not special to the Phlex framework.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="data-products">
+<h2><span class="section-number">3.2.1. </span>Data Products<a class="headerlink" href="#data-products" title="Link to this heading">¶</a></h2>
+<section id="conceptual-nature">
+<h3><span class="section-number">3.2.1.1. </span>Conceptual Nature<a class="headerlink" href="#conceptual-nature" title="Link to this heading">¶</a></h3>
+<p>Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them <a class="reference internal" href="../appendices/requirements.html#DUNE 110" title="DUNE 110"><em class="xref need">[DUNE 110]</em></a>.
+They serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps <a class="reference internal" href="../appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>.
+They are associated with (rather than containing) metadata and provenance information that describe how the data products were created <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.
+They are not tied to specific hardware or algorithm implementations, ensuring independence and reproducibility <a class="reference internal" href="../appendices/requirements.html#DUNE 63" title="DUNE 63"><em class="xref need">[DUNE 63]</em></a>.
+They are also not tied to any specific IO back end, but must support reading and writing with both ROOT <a class="reference internal" href="../appendices/requirements.html#DUNE 74" title="DUNE 74"><em class="xref need">[DUNE 74]</em></a> and HDF5 <a class="reference internal" href="../appendices/requirements.html#DUNE 141" title="DUNE 141"><em class="xref need">[DUNE 141]</em></a>.
+They enable the framework to present data produced by one algorithm to subsequent algorithms, supporting iterative and chained processing workflows <a class="reference internal" href="../appendices/requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.</p>
+</section>
+<section id="structure-and-representation">
+<h3><span class="section-number">3.2.1.2. </span>Structure and Representation<a class="headerlink" href="#structure-and-representation" title="Link to this heading">¶</a></h3>
+<p>The in-memory layout of a data product is determined by its type in the specified programming language.
+Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation <a class="reference internal" href="../appendices/requirements.html#DUNE 2" title="DUNE 2"><em class="xref need">[DUNE 2]</em></a>.
+In general, a single conceptual data product can be represented in multiple data product types, including types for different supported programming languages.</p>
+<p>The framework provides the ability to determine the memory footprint of each data product <a class="reference internal" href="../appendices/requirements.html#DUNE 154" title="DUNE 154"><em class="xref need">[DUNE 154]</em></a>.</p>
+</section>
+<section id="defining-data-product-types">
+<h3><span class="section-number">3.2.1.3. </span>Defining Data Product Types<a class="headerlink" href="#defining-data-product-types" title="Link to this heading">¶</a></h3>
+<p>Data product types are not defined by the framework.
+Framework users are expected to define their own data products <a class="reference internal" href="../appendices/requirements.html#DUNE 85" title="DUNE 85"><em class="xref need">[DUNE 85]</em></a>.</p>
+</section>
+</section>
+<section id="data-categories-families-and-data-product-sets">
+<h2><span class="section-number">3.2.2. </span>Data Categories, Families, and Data-Product Sets<a class="headerlink" href="#data-categories-families-and-data-product-sets" title="Link to this heading">¶</a></h2>
+<p>Data products are organized into user-defined datasets, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
+They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales <a class="reference internal" href="../appendices/requirements.html#DUNE 43" title="DUNE 43"><em class="xref need">[DUNE 43]</em></a>.
+This provides the ability to process data too large to fit into memory at one time <a class="reference internal" href="../appendices/requirements.html#DUNE 25" title="DUNE 25"><em class="xref need">[DUNE 25]</em></a>.</p>
+</section>
+<section id="data-product-management">
+<h2><span class="section-number">3.2.3. </span>Data Product Management<a class="headerlink" href="#data-product-management" title="Link to this heading">¶</a></h2>
+<p>Management of the data products returned by an algorithm is taken over by the framework.
+Read-only access to input data products is provided to algorithms <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 130" title="DUNE 130"><em class="xref need">[DUNE 130]</em></a>.
+Read-only access to a data product must not mutate it.
+Data products that are intended to be written out are sent to the IO system as soon as they are created <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.
+Data products are removed from memory as soon as they are no longer needed as input to another algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.</p>
+</section>
+<section id="data-product-identification">
+<h2><span class="section-number">3.2.4. </span>Data Product Identification<a class="headerlink" href="#data-product-identification" title="Link to this heading">¶</a></h2>
+<p>Each data product is associated with a specific set of metadata describing the algorithms and configurations used in their creation.
+These metadata allow that creation to be reproducible <a class="reference internal" href="../appendices/requirements.html#DUNE 122" title="DUNE 122"><em class="xref need">[DUNE 122]</em></a>.
+The metadata are stored along with the data in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.</p>
+<p>The data products created by an algorithm are associated with metadata that identify the algorithm that created them.
+Such metadata include:</p>
+<ul class="simple">
+<li><p>the <em>creator</em>, the name of the algorithm that created the data product</p></li>
+<li><p>and identifier for the <em>data product sets</em> with which the data product is associated (e.g. <em>spill</em>, <em>run</em>, <em>calibration interval</em>, or other experiment-defined category)</p></li>
+<li><p>the <em>processing phase</em>, an identifier for the job in which the data product was created</p></li>
+<li><p>an individual <em>name</em> for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.</p></li>
+</ul>
+<p>In addition to these metadata, a data product is also specified by its <em>type</em>.</p>
+<p>The metadata are stored in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.</p>
+<p>The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
+The algorithms are configured to identify the inputs in which they are interested by selecting on  any of the metadata defined above, as well as by the programming language types of their inputs.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3.2. Data Organization</a><ul>
+<li><a class="reference internal" href="#data-products">3.2.1. Data Products</a><ul>
+<li><a class="reference internal" href="#conceptual-nature">3.2.1.1. Conceptual Nature</a></li>
+<li><a class="reference internal" href="#structure-and-representation">3.2.1.2. Structure and Representation</a></li>
+<li><a class="reference internal" href="#defining-data-product-types">3.2.1.3. Defining Data Product Types</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-categories-families-and-data-product-sets">3.2.2. Data Categories, Families, and Data-Product Sets</a></li>
+<li><a class="reference internal" href="#data-product-management">3.2.3. Data Product Management</a></li>
+<li><a class="reference internal" href="#data-product-identification">3.2.4. Data Product Identification</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="scheduling.html"
+                          title="previous chapter"><span class="section-number">3.1. </span>Topology of the data-flow graph</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="algorithms.html"
+                          title="next chapter"><span class="section-number">3.3. </span>Algorithms</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_conceptual_design/data_organization.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="algorithms.html" title="3.3. Algorithms"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

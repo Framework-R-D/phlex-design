@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.4. Framework Registration &#8212; Phlex 0 (b0e6952) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=03f266e3"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.5. HOF Operators" href="hof_operators.html" />
+    <link rel="prev" title="3.3. Algorithms" href="algorithms.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="hof_operators.html" title="3.5. HOF Operators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="algorithms.html" title="3.3. Algorithms"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="framework-registration">
+<h1><span class="section-number">3.4. </span>Framework Registration<a class="headerlink" href="#framework-registration" title="Link to this heading">¶</a></h1>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The C++ interface below is illustrative and not intended to reflect the final registration interface.</p>
+</div>
+<p>To the extent possible, Phlex preserves data flow among data products and algorithms.
+This is indicated in the interface for registering algorithms.
+In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.</p>
+<p>Consider the following C++ classes and function:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">tracks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+
+<span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>where the implementations of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>, <code class="code highlight c++ docutils literal highlight-c++"><span class="n">tracks</span></code>, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> are unspecified.
+Suppose a physicist would like to use the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> to transform “good_hits” to “good_tracks” for each spill with unlimited concurrency.
+This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">  </span><span class="c1">// &lt;== Registration opener (w/o configuration object)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="c1">// 1. Specification of output data product from make_tracks</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="w">                </span><span class="c1">// 2. Higher-order function</span>
+<span class="w">      </span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w">          </span><span class="c1">// 3. Name assigned to HOF</span>
+<span class="w">      </span><span class="n">make_tracks</span><span class="p">,</span><span class="w">            </span><span class="c1">// 4. Algorithm/HOF operation</span>
+<span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">  </span><span class="c1">// 5. Allowed CPU concurrency</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;good_hits&quot;</span><span class="w">             </span><span class="c1">// 6. Specification of input data product to make_tracks</span>
+<span class="w">      </span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">)</span><span class="w">            </span><span class="c1">// 7. Data category to search for input data products</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The registration stanza is included in a C++ file that is compiled into a <a class="reference internal" href="../appendices/definitions.html#term-Module"><span class="xref std std-term">module</span></a>, a compiled library that is dynamically loadable by Phlex.</p>
+<p>The stanza is introduced by an <em>opener</em>—e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span></code>—followed by a <em>registration block</em>, a block of code between two curly braces that contains one or more <em>registration statements</em>.
+A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="../ch_preliminaries/functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a>:</p>
+<div class="math">
+<p><img src="../images/math/c2c8b4be24940add8abd43ac7e36aefe0fb02e91.svg" alt="\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}"/></p>
+</div><p>Specifically, in the registration stanza above, we have the following:</p>
+<blockquote>
+<div><dl class="simple">
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">products</span><span class="p">(...)</span></code></dt><dd><ol class="arabic simple">
+<li><p>This is the equivalent of the output sequence <img class="math" src="../images/math/e17b82be33ddc01c44ad63130fcc375c2b42449e.svg" alt="\sequence{b}{\text{output}}"/>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.</p></li>
+</ol>
+</dd>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code></dt><dd><p>Fully specifying the mathematical expression <img class="math" src="../images/math/f15128aa76b4af3ec635a602e37d46d015a0213e.svg" alt="\text{HOF}(f_1,\ f_2,\ \dots)"/> requires several items:</p>
+<ol class="arabic simple" start="2">
+<li><p>The HOF to be used,</p></li>
+<li><p>The name to assign to the configured HOF,</p></li>
+<li><p>The algorithm/HOF operator(s) to be used (i.e. <img class="math" src="../images/math/47ff792bb03f347efab912ad3556f2eb5d350ce9.svg" alt="f_1,\ f_2,\ \dots"/>), and</p></li>
+<li><p>The maximum number of CPU threads the framework can use when invoking the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a>.</p></li>
+</ol>
+</dd>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <img class="math" src="../images/math/d496b2027e95210c1e2f349bffa75f9aabf99647.svg" alt="\sequence{a}{\text{input}}"/> requires:</p>
+<ol class="arabic simple" start="6">
+<li><p>The specification(s) of data products that serve as input sequence elements <a class="reference internal" href="../appendices/requirements.html#DUNE 65" title="DUNE 65"><em class="xref need">[DUNE 65]</em></a>.</p></li>
+<li><p>The data category where the input data products are found.</p></li>
+</ol>
+</dd>
+</dl>
+</div></blockquote>
+<p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> for specific interface).
+However, in general, the registration code will specify which data products are required/produced by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a> and the hardware resources required by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 9" title="DUNE 9"><em class="xref need">[DUNE 9]</em></a>.
+Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm’s function signature.
+In other words:</p>
+<ul class="simple">
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>).</p></li>
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_tracks&quot;</span></code> specifies a data product whose C++ type is the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">tracks</span></code> return type of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code>.</p></li>
+</ul>
+<p>When executed, the above code creates a <a class="reference internal" href="../appendices/definitions.html#term-Configured-higher-order-function-CHOF"><span class="xref std std-term">configured higher-order function</span></a>, which serves as a node in the function-centric data-flow graph.</p>
+<p>The registration block may contain any code supported by C++.
+The block, however, must contain a registration statement to execute an algorithm.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A module must contain only one registration stanza.
+Note that multiple registration statements may be made in each stanza.</p>
+</div>
+<section id="accessing-configuration-information">
+<h2><span class="section-number">3.4.1. </span>Accessing Configuration Information<a class="headerlink" href="#accessing-configuration-information" title="Link to this heading">¶</a></h2>
+<p>Instead of hard-coding all pieces of registration information, it is desirable to specify a subset of such information through a program’s run-time configuration.
+To do this, an additional argument (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">config</span></code>) is passed to the registration opener:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_scope&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_scope</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As discussed in <a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration"><span class="std std-numref">Section 3.10.2</span></a>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
+</div>
+<p>Except for the specification of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> as the algorithm to be invoked, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span></code> as the HOF, all other pieces of information may be provided through the configuration.</p>
+</section>
+<section id="framework-dependence-in-registration-code">
+<h2><span class="section-number">3.4.2. </span>Framework Dependence in Registration Code<a class="headerlink" href="#framework-dependence-in-registration-code" title="Link to this heading">¶</a></h2>
+<p>Usually, classes like <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">tracks</span></code> and algorithms like <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> are framework-independent (see <a class="reference internal" href="../introduction.html#framework-independence"><span class="std std-numref">Section 1.4</span></a>).
+There may be scenarios, however, where dependence on framework interface is required, especially if framework-specific metadata types are used by the algorithm.
+In such cases, it is strongly encouraged to keep framework dependence within the module itself and, more specifically, within the registration stanza.
+This can be often achieved by registering closure objects that are generated by lambda expressions.</p>
+<p>For example, suppose a physicist would like to create an algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks_debug</span></code> that reports a spill number when making tracks.
+By specifying a lambda expression that takes a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">phlex</span><span class="o">::</span><span class="n">handle</span><span class="o">&lt;</span><span class="n">hits</span><span class="o">&gt;</span></code> object, the data product can be passed to the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks_debug</span></code> function, along with the spill number from the metadata accessed from the handle:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks_debug</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">spill_number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="p">[](</span><span class="n">phlex</span><span class="o">::</span><span class="n">handle</span><span class="o">&lt;</span><span class="n">hits</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">make_tracks_debug</span><span class="p">(</span><span class="o">*</span><span class="n">hs</span><span class="p">,</span><span class="w"> </span><span class="n">hs</span><span class="p">.</span><span class="n">id</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">number</span><span class="p">());</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The lambda expression <em>does</em> depend on framework interface; the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks_debug</span></code> function, however, retains its framework independence.</p>
+</section>
+<section id="member-functions-of-classes">
+<h2><span class="section-number">3.4.3. </span>Member Functions of Classes<a class="headerlink" href="#member-functions-of-classes" title="Link to this heading">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">track_maker</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">track_maker</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">track_seed</span><span class="p">);</span>
+<span class="w">  </span><span class="n">tracks</span><span class="w"> </span><span class="nf">make</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">};</span>
+
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">track_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;track_seed&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_scope&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">make</span><span class="o">&lt;</span><span class="n">track_maker</span><span class="o">&gt;</span><span class="p">(</span><span class="n">track_seed</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">track_maker</span><span class="o">::</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_scope</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="overloaded-functions">
+<h2><span class="section-number">3.4.4. </span>Overloaded Functions<a class="headerlink" href="#overloaded-functions" title="Link to this heading">¶</a></h2>
+<p>Phlex performs a substantial amount of type deduction through the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code> clause.
+This works well except in cases where the registered algorithms are overloaded functions.
+For example, suppose one wants to register C++’s overloaded <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(...)</span></code> function with the framework.
+Simply specifying <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">)</span></code> will fail at compile time as the compiler will not be able to determine which overload is desired.</p>
+<p>Instead, the code author can use the following <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="p">[](</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+<p>where the desired overload is selected based on the <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">double</span></code> argument to the lambda expression.</p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Equivalently, one can use the obscure syntax <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">),</span><span class="w"> </span><span class="p">...)</span></code>, where <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span></code> is cast to the desired overload.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3.4. Framework Registration</a><ul>
+<li><a class="reference internal" href="#accessing-configuration-information">3.4.1. Accessing Configuration Information</a></li>
+<li><a class="reference internal" href="#framework-dependence-in-registration-code">3.4.2. Framework Dependence in Registration Code</a></li>
+<li><a class="reference internal" href="#member-functions-of-classes">3.4.3. Member Functions of Classes</a></li>
+<li><a class="reference internal" href="#overloaded-functions">3.4.4. Overloaded Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="algorithms.html"
+                          title="previous chapter"><span class="section-number">3.3. </span>Algorithms</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="hof_operators.html"
+                          title="next chapter"><span class="section-number">3.5. </span>HOF Operators</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_conceptual_design/registration.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="hof_operators.html" title="3.5. HOF Operators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="algorithms.html" title="3.3. Algorithms"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

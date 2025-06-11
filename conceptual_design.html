@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (f5ff2d5) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (b0e6952) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=62b6f737"></script>
+    <script src="static/documentation_options.js?v=03f266e3"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -32,8 +32,8 @@
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3.1. Topology of the data-flow graph" href="scheduling.html" />
-    <link rel="prev" title="2.6. Data Flow" href="data_flow.html" />
+    <link rel="next" title="3.1. Topology of the data-flow graph" href="ch_conceptual_design/scheduling.html" />
+    <link rel="prev" title="2.6. Data Flow" href="ch_preliminaries/data_flow.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -46,12 +46,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
+          <a href="ch_conceptual_design/scheduling.html" title="3.1. Topology of the data-flow graph"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="data_flow.html" title="2.6. Data Flow"
+          <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f5ff2d5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -65,23 +65,23 @@
 <h1><span class="section-number">3. </span>Conceptual Design<a class="headerlink" href="#conceptual-design" title="Link to this heading">¶</a></h1>
 <div class="admonition-purpose admonition">
 <p class="admonition-title">Purpose</p>
-<p>The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see <a class="reference internal" href="requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).
+<p>The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see <code class="xref std std-numref docutils literal notranslate"><span class="pre">Appendix</span> <span class="pre">%s</span></code>).
 The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
 More detailed design aspects in support of the conceptual model are given in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </div>
-<p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>.
-Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them <a class="reference internal" href="requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>, <a class="reference internal" href="requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>, <a class="reference internal" href="requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.
+<p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>.
+Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them <a class="reference internal" href="appendices/requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.
 These algorithms then serve as operators to higher-order functions that operate on <em>data-product sequences</em>.</p>
 <p>To guide the discussion of Phlex’s conceptual model, we refer to the graph in  <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>, which illustrates various framework aspects:</p>
 <ul class="simple">
-<li><p>the data-flow graph itself (see <a class="reference internal" href="scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>)</p></li>
-<li><p>data products and data-product sets as passed along graph edges (see <a class="reference internal" href="data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>)</p></li>
-<li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> )</p></li>
-<li><p>the framework driver (see <a class="reference internal" href="driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>)</p></li>
-<li><p>data-product providers (see <a class="reference internal" href="providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
-<li><p>data-product writers (see <a class="reference internal" href="writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
-<li><p>resources (see <a class="reference internal" href="resources.html#resources"><span class="std std-numref">Section 3.9</span></a>)</p></li>
-<li><p>program configuration (see <a class="reference internal" href="user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
+<li><p>the data-flow graph itself (see <a class="reference internal" href="ch_conceptual_design/scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>)</p></li>
+<li><p>data products and data-product sets as passed along graph edges (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>)</p></li>
+<li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="ch_conceptual_design/hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> )</p></li>
+<li><p>the framework driver (see <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>)</p></li>
+<li><p>data-product providers (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
+<li><p>data-product writers (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
+<li><p>resources (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.9</span></a>)</p></li>
+<li><p>program configuration (see <a class="reference internal" href="ch_conceptual_design/user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
 </ul>
 <figure class="align-default" id="workflow">
 <div class="graphviz"><img src="images/graphviz-37d6e229235d26d9ffb2e449450f5d4258bb56ac.png" alt="digraph {
@@ -160,7 +160,7 @@ These algorithms then serve as operators to higher-order functions that operate 
 
 }" class="graphviz" /></div>
 <figcaption>
-<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing the different types of algorithm supported by Phlex (see <a class="reference internal" href="functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a> for a list of the supported algorithms).
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing the different types of algorithm supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a> for a list of the supported algorithms).
 Solid arrows show the flow of data through the graph.
 Dotted lines indicate communication of data through the IO system.
 The <em>Driver</em> is configured to process all <em>spills</em> in the specified ROOT input files.
@@ -175,48 +175,48 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
 </figure>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="scheduling.html">3.1. Topology of the data-flow graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_organization.html">3.2. Data Organization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_organization.html#data-products">3.2.1. Data Products</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_organization.html#data-categories-families-and-data-product-sets">3.2.2. Data Categories, Families, and Data-Product Sets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_organization.html#data-product-management">3.2.3. Data Product Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_organization.html#data-product-identification">3.2.4. Data Product Identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/scheduling.html">3.1. Topology of the data-flow graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/data_organization.html">3.2. Data Organization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-products">3.2.1. Data Products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-categories-families-and-data-product-sets">3.2.2. Data Categories, Families, and Data-Product Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-product-management">3.2.3. Data Product Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-product-identification">3.2.4. Data Product Identification</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="algorithms.html">3.3. Algorithms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="algorithms.html#input-parameters">3.3.1. Input Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algorithms.html#return-types">3.3.2. Return Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="algorithms.html#function-names-and-qualifiers">3.3.3. Function Names and Qualifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/algorithms.html">3.3. Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#input-parameters">3.3.1. Input Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#return-types">3.3.2. Return Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#function-names-and-qualifiers">3.3.3. Function Names and Qualifiers</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="registration.html">3.4. Framework Registration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="registration.html#accessing-configuration-information">3.4.1. Accessing Configuration Information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="registration.html#framework-dependence-in-registration-code">3.4.2. Framework Dependence in Registration Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="registration.html#member-functions-of-classes">3.4.3. Member Functions of Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="registration.html#overloaded-functions">3.4.4. Overloaded Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/registration.html">3.4. Framework Registration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/registration.html#accessing-configuration-information">3.4.1. Accessing Configuration Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/registration.html#framework-dependence-in-registration-code">3.4.2. Framework Dependence in Registration Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/registration.html#member-functions-of-classes">3.4.3. Member Functions of Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/registration.html#overloaded-functions">3.4.4. Overloaded Functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="hof_operators.html">3.5. HOF Operators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#transforms">3.5.1. Transforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#filters-and-predicates">3.5.2. Filters and Predicates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#observers">3.5.3. Observers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-folds">3.5.4. Partitioned Folds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#partitioned-unfolds">3.5.5. Partitioned Unfolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hof_operators.html#composite-chofs">3.5.6. Composite CHOFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/hof_operators.html">3.5. HOF Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#transforms">3.5.1. Transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#filters-and-predicates">3.5.2. Filters and Predicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#observers">3.5.3. Observers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#partitioned-folds">3.5.4. Partitioned Folds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#partitioned-unfolds">3.5.5. Partitioned Unfolds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hof_operators.html#composite-chofs">3.5.6. Composite CHOFs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="driver.html">3.6. Framework Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="providers.html">3.7. Data-Product Providers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="writers.html">3.8. Data-Product Writers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="resources.html">3.9. Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#limited-resources">3.9.1. Limited Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#gpus">3.9.2. GPUs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/driver.html">3.6. Framework Driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/providers.html">3.7. Data-Product Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/writers.html">3.8. Data-Product Writers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/resources.html">3.9. Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#limited-resources">3.9.1. Limited Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#gpus">3.9.2. GPUs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="user_configuration.html">3.10. Program Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#mechanics-of-configuration-specification">3.10.1. Mechanics of Configuration Specification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#programmatic-access-to-the-configuration">3.10.2. Programmatic Access to the Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_configuration.html#semantic-structure-of-the-configuration">3.10.3. Semantic Structure of the Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/user_configuration.html">3.10. Program Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/user_configuration.html#mechanics-of-configuration-specification">3.10.1. Mechanics of Configuration Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/user_configuration.html#programmatic-access-to-the-configuration">3.10.2. Programmatic Access to the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/user_configuration.html#semantic-structure-of-the-configuration">3.10.3. Semantic Structure of the Configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -235,12 +235,12 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
             </a></p>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="data_flow.html"
+    <p class="topless"><a href="ch_preliminaries/data_flow.html"
                           title="previous chapter"><span class="section-number">2.6. </span>Data Flow</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="scheduling.html"
+    <p class="topless"><a href="ch_conceptual_design/scheduling.html"
                           title="next chapter"><span class="section-number">3.1. </span>Topology of the data-flow graph</a></p>
   </div>
   <div role="note" aria-label="source link">
@@ -271,18 +271,18 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
+          <a href="ch_conceptual_design/scheduling.html" title="3.1. Topology of the data-flow graph"
              >next</a> |</li>
         <li class="right" >
-          <a href="data_flow.html" title="2.6. Data Flow"
+          <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (f5ff2d5) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 10, 2025.
+      Last updated on Jun 11, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

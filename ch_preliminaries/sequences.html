@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.3. Sequences &#8212; Phlex 0 (b0e6952) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=03f266e3"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.4. Functional Programming" href="functional_programming.html" />
+    <link rel="prev" title="2.2. Types" href="types.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="functional_programming.html" title="2.4. Functional Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="2.2. Types"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sequences">
+<h1><span class="section-number">2.3. </span>Sequences<a class="headerlink" href="#sequences" title="Link to this heading">¶</a></h1>
+<p>A finite sequence can be represented as a list of objects, each of which are of the same set or <em>type</em> (see <a class="reference internal" href="types.html#types"><span class="std std-numref">Section 2.2</span></a>).
+For example, the sequence <img class="math" src="../images/math/08a00036063cc9ca19615286a4f17bfd4303fe9a.svg" alt="a = [a_1, a_2, \dots, a_n]"/> is written as</p>
+<div class="math">
+<p><img src="../images/math/a2cf23acf908755b5a365afa301d57e5c45b7ddd.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}"/></p>
+</div><p>where each <img class="math" src="../images/math/c845d641b28f1dad2cbadd2b5f7ab6df23f532d3.svg" alt="a_i \in A"/>, and <img class="math" src="../images/math/a95922d44d2141464283672b3bff31ca2c20bf12.svg" alt="\mathcal{I}_a = \{1, 2, \dots, n\}"/> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/>.</p>
+<p>In general, an index set does not impose an order on the sequence elements—the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/> could thus be equivalently expressed as:</p>
+<div class="math">
+<p><img src="../images/math/277f8da427a9f219a60f32c93e2bac1ab5bd371f.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]"/></p>
+</div><p>or any of the <img class="math" src="../images/math/6ef254968904112131048f858c12530ac2ca9e2e.svg" alt="n!"/> orderings possible.
+The index set simply provides a mapping from an index to the data object itself.</p>
+<p>The <em>length</em> of the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/> above is denoted by <img class="math" src="../images/math/34b62cfa03330fd364799f0ff3ae84f1aa749625.svg" alt="|a|"/>, and it equals the <em>cardinality</em> of the index set: <img class="math" src="../images/math/86dbcdc6a6ed50e0873b2d81122045c5c38725c0.svg" alt="|a| = |\mathcal{I}_a| = n"/>.
+In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:</p>
+<div class="math">
+<p><img src="../images/math/924267f3ef6dccfea9fcf7c1f443b7b1ef74a388.svg" alt="[\ ] = [a_i]_{i \in \emptyset} \ ."/></p>
+</div></section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="types.html"
+                          title="previous chapter"><span class="section-number">2.2. </span>Types</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="functional_programming.html"
+                          title="next chapter"><span class="section-number">2.4. </span>Functional Programming</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_preliminaries/sequences.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="functional_programming.html" title="2.4. Functional Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="types.html" title="2.2. Types"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

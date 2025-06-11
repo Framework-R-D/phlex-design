@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Definitions &#8212; Phlex 0 (b0e6952) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=03f266e3"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Framework requirements" href="requirements.html" />
+    <link rel="prev" title="3.10. Program Configuration" href="../ch_conceptual_design/user_configuration.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="requirements.html" title="2. Framework requirements"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../ch_conceptual_design/user_configuration.html" title="3.10. Program Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Definitions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="definitions">
+<h1><span class="section-number">A. </span>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h1>
+<dl class="glossary">
+<dt id="term-Algorithm">Algorithm<a class="headerlink" href="#term-Algorithm" title="Link to this term">¶</a></dt><dd><p>A decomposed unit of processing; a user-defined function registered for execution by the framework.</p>
+</dd>
+<dt id="term-Algorithmic-origin">Algorithmic origin<a class="headerlink" href="#term-Algorithmic-origin" title="Link to this term">¶</a></dt><dd><p>The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.</p>
+</dd>
+<dt id="term-Ancestral-data">Ancestral data<a class="headerlink" href="#term-Ancestral-data" title="Link to this term">¶</a></dt><dd><p>The data used as input to the algorithm that produced the data at issue.</p>
+</dd>
+<dt id="term-APA">APA<a class="headerlink" href="#term-APA" title="Link to this term">¶</a></dt><dd><p>Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice</p>
+</dd>
+<dt id="term-Backward-compatibility-persisted-data">Backward compatibility (persisted data)<a class="headerlink" href="#term-Backward-compatibility-persisted-data" title="Link to this term">¶</a></dt><dd><p>The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.</p>
+</dd>
+<dt id="term-Configuration-canonical-form">Configuration canonical form<a class="headerlink" href="#term-Configuration-canonical-form" title="Link to this term">¶</a></dt><dd><p>The result of a transformation on a configuration that preserves the semantics of the configuration.
+All semantically identical configurations shall have the same canonical form.
+Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).</p>
+</dd>
+<dt id="term-Configured-higher-order-function-CHOF">Configured higher-order function (CHOF)<a class="headerlink" href="#term-Configured-higher-order-function-CHOF" title="Link to this term">¶</a></dt><dd><p>An entity created when registering an algorithm with the framework.
+The registration includes the algorithm’s input/output data product requirements, the algorithm’s resource requirements, and the higher-order function to which the algorithm serves as an operator.</p>
+</dd>
+<dt id="term-CRP">CRP<a class="headerlink" href="#term-CRP" title="Link to this term">¶</a></dt><dd><p>Charge Readout Plane: physical far-detector unit placed on either the top or bottom edge of an APA</p>
+</dd>
+<dt id="term-Data-family">Data family<a class="headerlink" href="#term-Data-family" title="Link to this term">¶</a></dt><dd><p>A collection of data sets (e.g.):</p>
+<ul class="simple">
+<li><p>examples of data families in art: collection of Runs, collection of Events, and collection of SubRuns</p></li>
+<li><p>other examples of data families: collection of calibration intervals of the same type, collection of geometry/alignment intervals of the same type, collection of APAs, collection of trigger primitives, collection of beam spills</p></li>
+</ul>
+<p>The type of an element in a data family is called a category.
+For example, the category of a family of Events is the type Event.
+An object of type Event is a data set.</p>
+</dd>
+<dt id="term-Data-family-hierarchy">Data family hierarchy<a class="headerlink" href="#term-Data-family-hierarchy" title="Link to this term">¶</a></dt><dd><p>A hierarchy of data families (e.g. run contains subrun contains event).</p>
+</dd>
+<dt id="term-Data-model">Data model<a class="headerlink" href="#term-Data-model" title="Link to this term">¶</a></dt><dd><p>A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
+The data model also specifies the mechanism for reading and writing persistable data products.</p>
+</dd>
+<dt id="term-Data-product">Data product<a class="headerlink" href="#term-Data-product" title="Link to this term">¶</a></dt><dd><p>An object of data the framework can provide as an input to a user-defined algorithm, or that can be produced as an output of an algorithm.</p>
+</dd>
+<dt id="term-Data-product-set">Data product set<a class="headerlink" href="#term-Data-product-set" title="Link to this term">¶</a></dt><dd><p>A mathematical set of data products that is identifiable by the framework and used to determine which data products serve as inputs to an algorithm.</p>
+</dd>
+<dt id="term-Deterministic">Deterministic<a class="headerlink" href="#term-Deterministic" title="Link to this term">¶</a></dt><dd><p>Identical inputs produce identical results via identical behavior.</p>
+</dd>
+<dt id="term-Framework-ecosystem">Framework ecosystem<a class="headerlink" href="#term-Framework-ecosystem" title="Link to this term">¶</a></dt><dd><p>Ensemble of software delivered with the application framework.</p>
+</dd>
+<dt id="term-Index-set">Index set<a class="headerlink" href="#term-Index-set" title="Link to this term">¶</a></dt><dd><p>A mathematical set used to identify elements of a sequence—e.g. in the expression <img class="math" src="../images/math/f58c21f32d4bb30afbdc0a6e87e2b72e0e63c29b.svg" alt="[a_1,\ a_2,\ \dots,\ a_n] = [a_i]_{i \in \iset}"/>, the index set <img class="math" src="../images/math/242fb1461a99b71bbf1afb6e7c966392610343fb.svg" alt="\iset"/> is the set <img class="math" src="../images/math/c449aa50d149f829a478b66fcf45ff2d769f35bd.svg" alt="\{1,\ 2,\ \dots,\ n\}"/>.</p>
+</dd>
+<dt id="term-Integration-test">Integration test<a class="headerlink" href="#term-Integration-test" title="Link to this term">¶</a></dt><dd><p>A test that verifies the behavior of multiple system components working in concert.</p>
+</dd>
+<dt id="term-Metadata">Metadata<a class="headerlink" href="#term-Metadata" title="Link to this term">¶</a></dt><dd><p>Data that is ancillary to physics data.</p>
+</dd>
+<dt id="term-Module">Module<a class="headerlink" href="#term-Module" title="Link to this term">¶</a></dt><dd><p>A compiled library that is dynamically loadable by the framework.</p>
+</dd>
+<dt id="term-Parentage">Parentage<a class="headerlink" href="#term-Parentage" title="Link to this term">¶</a></dt><dd><p>The set of unique identifiers of each ancestral datum.</p>
+</dd>
+<dt id="term-Persistable-data-product">Persistable data product<a class="headerlink" href="#term-Persistable-data-product" title="Link to this term">¶</a></dt><dd><p>A data product that can be read from and written to persistent storage.</p>
+</dd>
+<dt id="term-Provenance">Provenance<a class="headerlink" href="#term-Provenance" title="Link to this term">¶</a></dt><dd><p>A description of how the data at issue were produced (parentage, configuration, library versions, and other information as specified by requirements).</p>
+</dd>
+<dt id="term-Reproducible">Reproducible<a class="headerlink" href="#term-Reproducible" title="Link to this term">¶</a></dt><dd><p>Identical inputs produce identical results.</p>
+</dd>
+<dt id="term-Resource">Resource<a class="headerlink" href="#term-Resource" title="Link to this term">¶</a></dt><dd><p>A non-data software or hardware component managed by the program that can be required by algorithms.</p>
+<p>Examples include:</p>
+<ul class="simple">
+<li><p>CPU cores</p></li>
+<li><p>CPU memory</p></li>
+<li><p>GPUs</p></li>
+<li><p>Network</p></li>
+<li><p>Thread-unsafe utilities</p></li>
+<li><p>Inference servers</p></li>
+<li><p>Databases</p></li>
+</ul>
+</dd>
+<dt id="term-Unit-test">Unit test<a class="headerlink" href="#term-Unit-test" title="Link to this term">¶</a></dt><dd><p>A test that verifies the behavior of a small and self-contained system component in isolation from other system components.</p>
+</dd>
+<dt id="term-Validation">Validation<a class="headerlink" href="#term-Validation" title="Link to this term">¶</a></dt><dd><p>Did it do what we needed it to do (requirements)</p>
+</dd>
+<dt id="term-Verification">Verification<a class="headerlink" href="#term-Verification" title="Link to this term">¶</a></dt><dd><p>Did it do what we intended it to do (code)</p>
+</dd>
+</dl>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../ch_conceptual_design/user_configuration.html"
+                          title="previous chapter"><span class="section-number">3.10. </span>Program Configuration</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="requirements.html"
+                          title="next chapter"><span class="section-number">2. </span>Framework requirements</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/appendices/definitions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="requirements.html" title="2. Framework requirements"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../ch_conceptual_design/user_configuration.html" title="3.10. Program Configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b0e6952) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Definitions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

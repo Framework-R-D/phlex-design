@@ -9,8 +9,8 @@ With these ingredients, we are then able to discuss functional programming and h
 .. toctree::
    :maxdepth: 2
 
-   function_notation
-   types
-   sequences
-   functional_programming
-   data_flow
+   ch_preliminaries/function_notation
+   ch_preliminaries/types
+   ch_preliminaries/sequences
+   ch_preliminaries/functional_programming
+   ch_preliminaries/data_flow
