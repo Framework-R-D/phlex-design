@@ -40,7 +40,7 @@ System requirements, which are subservient to stakeholder requirements, are owne
 Requirements in This Document
 -----------------------------
 
-The stakeholder requirements are listed in :numref:`Appendix %s <requirements:Framework requirements>` for convenience.
+The stakeholder requirements are listed in :numref:`Appendix %s <appendices/requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 1`).
 
 Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`conceptual_design:Conceptual design`.
@@ -91,6 +91,6 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 
    .. rubric:: References
 
-.. [Wiki-framework] https://en.wikipedia.org/wiki/Software_framework
+.. [Wiki-framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
 .. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
 .. [SPEC-0] https://scientific-python.org/specs/spec-0000/
