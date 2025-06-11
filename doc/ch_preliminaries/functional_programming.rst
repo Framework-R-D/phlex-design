@@ -97,49 +97,38 @@ A calculation is then generally expressed in terms of:
 
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
 
-Higher-Order Functions Supported by Phlex
------------------------------------------
-
-In general, HOFs transform one sequence to another:
-
-.. math::
-    \isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}
-
-where the functions :math:`f_1, f_2, \ \dots` are *operators* required by the HOF.
-Note that the output index set :math:`\iset{\text{output}}` is not necessarily the same as the input index set :math:`\iset{\text{input}}`.
-
-The following table lists the HOFs supported by Phlex.
+:numref:`hofs_in_phlex` lists the HOFs supported by Phlex.
 As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
+Phlex will likely support other higher order functions as well.
 
-.. table::
+.. _hofs_in_phlex:
+
+.. table:: Higher-order functions supported by Phlex.
+           Each sequence is represented by a single variable (e.g. :math:`a`).
+           Details of each HOF and its operators are in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order functions`.
    :widths: 15 30 30 25
 
-   +------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+------------------------+
-   | **Higher-order function**                                                                                        | Operator(s)                                                 | Output sequence length |
-   +===========================================================================+======================================+=============================================================+========================+
-   | :ref:`Transform <ch_conceptual_design/hof_operators:Transforms>`          | :math:`b = \transform{f}\ a`         | :math:`f: A \rightarrow B`                                  | :math:`|b| = |a|`      |
-   +---------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Filter <ch_conceptual_design/hof_operators:Filters and predicates>` | :math:`a' = \filter{p}\ a`           | :math:`p: A \rightarrow \text{Boolean}`                     | :math:`|a'| \le |a|`   |
-   +---------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Observer <ch_conceptual_design/hof_operators:Observers>`            | :math:`[\ \ ] = \observe{f}\ a`      | :math:`f: A \rightarrow \one`                               | :math:`0`              |
-   +---------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Fold <ch_conceptual_design/hof_operators:Partitioned Folds>`        | :math:`d = \pfold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                         | :math:`|d| \le |c|`    |
-   |                                                                           |                                      +-------------------------------------------------------------+                        |
-   |                                                                           |                                      | :math:`init: \one \rightarrow D`                            |                        |
-   |                                                                           |                                      +-------------------------------------------------------------+                        |
-   |                                                                           |                                      | :math:`part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
-   +---------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
-   | :ref:`Unfold <ch_conceptual_design/hof_operators:Partitioned Unfolds>`    | :math:`c = \unfold{p}{gen}{cat}\ d`  | :math:`p: D \rightarrow \mbox{Boolean}`                     | :math:`|c| \ge |d|`    |
-   |                                                                           |                                      +-------------------------------------------------------------+                        |
-   |                                                                           |                                      | :math:`gen: D \rightarrow D \times C`                       |                        |
-   |                                                                           |                                      +-------------------------------------------------------------+                        |
-   |                                                                           |                                      | :math:`cat: \one \rightarrow L`                             |                        |
-   +---------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
-
-:numref:`ch_conceptual_design/hof_operators:HOF operators` describes each of the operators in detail.
-Note that the observer is a special case of the filter, where the predicate's Boolean return value is always `false`.
-
-Phlex will likely support other higher order functions as well.
+   +--------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+------------------------+
+   | **Higher-order function**                                                                                                | Operator(s)                                                 | Output sequence length |
+   +===================================================================================+======================================+=============================================================+========================+
+   | :ref:`Transform <ch_conceptual_design/hofs/transforms:Transforms>`                | :math:`b = \transform{f}\ a`         | :math:`f: A \rightarrow B`                                  | :math:`|b| = |a|`      |
+   +-----------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Filter <ch_conceptual_design/hofs/filters:Filters and predicates>`          | :math:`a' = \filter{p}\ a`           | :math:`p: A \rightarrow \text{Boolean}`                     | :math:`|a'| \le |a|`   |
+   +-----------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Observer <ch_conceptual_design/hofs/observers:Observers>`                   | :math:`[\ \ ] = \observe{f}\ a`      | :math:`f: A \rightarrow \one`                               | :math:`0`              |
+   +-----------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Fold <ch_conceptual_design/hofs/partitioned_folds:Partitioned Folds>`       | :math:`d = \pfold{f}{init}{part}\ c` | :math:`f: D \times C \rightarrow D`                         | :math:`|d| \le |c|`    |
+   |                                                                                   |                                      +-------------------------------------------------------------+                        |
+   |                                                                                   |                                      | :math:`init: \one \rightarrow D`                            |                        |
+   |                                                                                   |                                      +-------------------------------------------------------------+                        |
+   |                                                                                   |                                      | :math:`part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
+   +-----------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
+   | :ref:`Unfold <ch_conceptual_design/hofs/partitioned_unfolds:Partitioned Unfolds>` | :math:`c = \unfold{p}{gen}{cat}\ d`  | :math:`p: D \rightarrow \mbox{Boolean}`                     | :math:`|c| \ge |d|`    |
+   |                                                                                   |                                      +-------------------------------------------------------------+                        |
+   |                                                                                   |                                      | :math:`gen: D \rightarrow D \times C`                       |                        |
+   |                                                                                   |                                      +-------------------------------------------------------------+                        |
+   |                                                                                   |                                      | :math:`cat: \one \rightarrow L`                             |                        |
+   +-----------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------------------+------------------------+
 
 .. rubric:: Footnotes
 

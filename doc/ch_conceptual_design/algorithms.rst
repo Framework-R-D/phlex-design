@@ -1,8 +1,8 @@
 Algorithms
 ==========
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/hof_operators:HOF operators`):
+As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for a list of supported HOFs):
 
 .. code:: c++
 
@@ -36,7 +36,7 @@ Resources are described in more detail in :numref:`ch_conceptual_design/resource
 Return Types
 ------------
 
-The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`ch_conceptual_design/hof_operators:HOF operators`.
+The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`.
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
 For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
 This means that the data products created by algorithms must have types that connote unique ownership.

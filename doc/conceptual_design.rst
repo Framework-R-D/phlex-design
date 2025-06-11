@@ -16,7 +16,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
 
 - the data-flow graph itself (see :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`)
 - data products and data-product sets as passed along graph edges (see :numref:`ch_conceptual_design/data_organization:Data organization`)
-- user-provided algorithms such as transforms, folds, etc. (see :numref:`ch_conceptual_design/algorithms:Algorithms` and :numref:`ch_conceptual_design/hof_operators:HOF operators` )
+- user-provided algorithms such as transforms, folds, etc. (see :numref:`ch_conceptual_design/algorithms:Algorithms` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`)
 - the framework driver (see :numref:`ch_conceptual_design/driver:Framework Driver`)
 - data-product providers (see :numref:`ch_conceptual_design/providers:Data-Product Providers`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
 - data-product writers (see :numref:`ch_conceptual_design/writers:Data-Product writers`), which are plugins that may write data products to an external entity (e.g. output files)
@@ -24,7 +24,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
 - program configuration (see :numref:`ch_conceptual_design/user_configuration:Program configuration`)
 
 .. graphviz:: work-flow.gv
-   :caption: A sample workflow showing the different types of algorithm supported by Phlex (see :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex` for a list of the supported algorithms).
+   :caption: A sample workflow showing the different types of algorithm supported by Phlex (see :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions` for a list of the supported algorithms).
              Solid arrows show the flow of data through the graph.
              Dotted lines indicate communication of data through the IO system.
              The *SpillDriver* (see section :numref:`ch_conceptual_design/driver:Framework Driver`) is configured to process all *spills* in the specified ROOT input files.
@@ -45,7 +45,7 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
    ch_conceptual_design/data_organization
    ch_conceptual_design/algorithms
    ch_conceptual_design/registration
-   ch_conceptual_design/hof_operators
+   ch_conceptual_design/supported_hofs
    ch_conceptual_design/driver
    ch_conceptual_design/providers
    ch_conceptual_design/writers
