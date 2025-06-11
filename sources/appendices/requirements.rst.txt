@@ -151,6 +151,8 @@ Conceptual requirements
 
     The framework shall support the creation of data sets composed of data products derived from data originating from disparate input sources.
 
+- See :numref:`ch_conceptual_design/driver:Framework Driver`.
+
 .. req:: Flexible data units
     :collapse:
     :id: DUNE 22
@@ -250,7 +252,7 @@ Conceptual requirements
 
     The framework shall support algorithms that provide data from calibration databases.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`.
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/driver:Framework Driver`.
 
 .. req:: Algorithms independent of framework interface
     :collapse:

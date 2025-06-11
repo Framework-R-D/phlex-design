@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (87a7a67) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (45748cc) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=cb0da7ae"></script>
+    <script src="static/documentation_options.js?v=da94e5ab"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (87a7a67) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -84,7 +84,7 @@ These algorithms then serve as operators to higher-order functions that operate 
 <li><p>program configuration (see <a class="reference internal" href="ch_conceptual_design/user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
 </ul>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-37d6e229235d26d9ffb2e449450f5d4258bb56ac.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-ccf080aab7ff9aa52e90cdc3be708b6c739495ca.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -111,7 +111,7 @@ These algorithms then serve as operators to higher-order functions that operate 
   {
     rank=same;
     gdml [label=&quot;GDML file&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
-    driver [label=&quot;Driver&quot;];
+    driver [label=&quot;SpillDriver&quot;];
     input [label=&quot;ROOT input files(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
   }
 
@@ -163,12 +163,13 @@ These algorithms then serve as operators to higher-order functions that operate 
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing the different types of algorithm supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a> for a list of the supported algorithms).
 Solid arrows show the flow of data through the graph.
 Dotted lines indicate communication of data through the IO system.
-The <em>Driver</em> is configured to process all <em>spills</em> in the specified ROOT input files.
+The <em>SpillDriver</em> (see section <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>) is configured to process all <em>spills</em> in the specified ROOT input files.
 The <em>provide</em> algorithms are configured to read <em>SimHits</em> associated with <em>spills</em> from the ROOT input files and a single <em>Geometry</em> object from the GDML file.
 For each <em>spill</em>, an <em>unfold</em> algorithm is configured to create a sequence of <em>Waveforms</em> objects, creating one <em>Waveforms</em> object in each <em>APA</em>.
 A <em>transform</em> algorithm is run on each of the <em>Waveforms</em> objects to create a <em>ClampedWaveforms</em> object.
 A <em>fold</em> algorithm is run on each of the <em>ClampedWaveforms</em> objects in a <em>spill</em> to create a <em>SummedWaveforms</em> object for the <em>spill</em>.
-Each <em>Waveforms</em>, <em>ClampedWaveforms</em>, and <em>SummedWaveforms</em> objects are written to a ROOT output file, each one associated with the appropriate <em>spill</em> or <em>APA</em>.
+The <em>write</em> algorithms are configured to write the <em>Waveforms</em>, <em>ClampedWaveforms</em>, and <em>SummedWaveforms</em> objects to one or more ROOT output files.
+Each <em>Waveforms</em>, <em>ClampedWaveforms</em>, and <em>SummedWaveforms</em> object is associated with the appropriate <em>spill</em> or <em>APA</em>.
 This workflow also shows a <em>filter</em> algorithm selecting only “high energy” <em>Waveforms</em>, and an <em>observe</em> algorithm creating a histogram from them, which is written to a ROOT analysis file.
 Note that in this workflow the names <em>spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.</span><a class="headerlink" href="#workflow" title="Link to this image">¶</a></p>
 </figcaption>
@@ -276,7 +277,7 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (87a7a67) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
