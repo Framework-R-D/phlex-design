@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.5.4. Partitioned Folds &#8212; Phlex 0 (90c6dcd) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../../static/jquery.js?v=5d32c60e"></script>
+    <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../static/documentation_options.js?v=8bc85dac"></script>
+    <script src="../../static/doctools.js?v=9bcbadda"></script>
+    <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.5.5. Partitioned Unfolds" href="partitioned_unfolds.html" />
+    <link rel="prev" title="3.5.3. Observers" href="observers.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="partitioned_unfolds.html" title="3.5.5. Partitioned Unfolds"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="observers.html" title="3.5.3. Observers"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Partitioned Folds</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="partitioned-folds">
+<h1><span class="section-number">3.5.4. </span>Partitioned Folds<a class="headerlink" href="#partitioned-folds" title="Link to this heading">¶</a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Partitioned fold</strong></p></th>
+<th class="head"><p>Operators</p></th>
+<th class="head"><p>Output sequence length</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="3"><p><span class="math notranslate nohighlight">\(d = \pfold{f}{\textit{init}}{\textit{part}}\ c\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f: D \times C \rightarrow D\)</span></p></td>
+<td rowspan="3"><p><span class="math notranslate nohighlight">\(|d| \le |c|\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\textit{init}: \one \rightarrow D\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>As mentioned in <a class="reference internal" href="../../ch_preliminaries/functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, a <em>fold</em> can be defined as a transformation of a sequence of data to a single value:</p>
+<div class="math notranslate nohighlight">
+\[d = \fold{f}{\textit{init}}\ \isequence{c}{c}\]</div>
+<p>where the user-defined operation <span class="math notranslate nohighlight">\(f\)</span> is applied repeatedly between an accumulated value (initialized by <span class="math notranslate nohighlight">\(init\)</span>) and each element of the input sequence.</p>
+<p>In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
+For example, consider a program that processes <span class="math notranslate nohighlight">\(n\)</span> runs, each of which contains spills, identified by the tuple <span class="math notranslate nohighlight">\((R\ i, S\ j)\)</span>.
+The user may wish to create one histogram per run that contains the track multiplicity per spill.
+Instead of creating a single fold result, we thus use a <em>partitioned fold</em>:</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+[h_{(R\ 1)}&amp;,\ \dots,\ h_{(R\ n)}] \\
+           &amp;= \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
+\end{align*}</div><p>where <span class="math notranslate nohighlight">\(h_{(R\ i)}\)</span> denotes the histogram for run <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(m_{(R\ i,\ S\ j)}\)</span> is the track multiplicity for spill <span class="math notranslate nohighlight">\(j\)</span> in run <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>The above equation can be expressed more succinctly as:</p>
+<div class="math notranslate nohighlight">
+\[[h_j]_{j \in \iset{\text{out}}} = \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+\iset{\text{in}} &amp;= \{(R\ 1,\ S\ 1),\ (R\ 1,\ S\ 2),\ \dots,\ (R\ n,\ S\ 1),\ (R\ n,\ S\ 2), \dots\}, \text{and}\\
+\iset{\text{out}} &amp;= \{(R\ 1),\ \dots, (R\ n)\}\ .
+\end{align*}</div><section id="partitions">
+<h2><span class="section-number">3.5.4.1. </span>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">¶</a></h2>
+<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em>. <a class="reference internal" href="#wiki-partition" id="id1"><span>[Wiki-partition]</span></a>
+Each subset of the partition is called a <em>cell</em>.
+In the above example, the role of the <span class="math notranslate nohighlight">\(\textit{into\_runs}\)</span> operation is to partition the input sequence into runs so that there is one fold result per run.
+In general, however, the partitioning function is of the form <span class="math notranslate nohighlight">\(\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span>, where:</p>
+<ul class="simple">
+<li><p>the domain is the singleton set that contains only the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span> (i.e. <span class="math notranslate nohighlight">\(\textit{part}\)</span> can only be invoked on <span class="math notranslate nohighlight">\(\iset{c}\)</span>), and</p></li>
+<li><p>the codomain is the set of partitions of the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span>.</p></li>
+</ul>
+<p>The function <span class="math notranslate nohighlight">\(part\)</span> also establishes an equivalence relationship on the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span>, where each element of the index set is mapped to a cell of the partition.
+The number of elements in the output sequence <span class="math notranslate nohighlight">\(d\)</span> corresponds to the number of partition cells.</p>
+</section>
+<section id="initializing-the-accumulator">
+<h2><span class="section-number">3.5.4.2. </span>Initializing the Accumulator<a class="headerlink" href="#initializing-the-accumulator" title="Link to this heading">¶</a></h2>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Change the domain type of <span class="math notranslate nohighlight">\(\textit{init}\)</span>.</p>
+</div>
+<p>A crucial ingredient of the fold is the <em>accumulator</em>, which stores the fold result while it is being formed.
+Each accumulator is initialized by invoking a user-defined operation <span class="math notranslate nohighlight">\(\textit{init}: \one \rightarrow D\)</span>, which returns an object that has the same type <span class="math notranslate nohighlight">\(D\)</span> as the fold result. <a class="footnote-reference brackets" href="#finit" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
+Instead of invoking a function, an accumulator is often initialized with a value.
+However, in functional programming, a value can be represented by invoking a function that always returns the same result.
+Expressing an initializer as a function thus supports value-initialization while retaining the flexibility that may occasionally be required through functions.</p>
+</section>
+<section id="fold-operation">
+<h2><span class="section-number">3.5.4.3. </span>Fold Operation<a class="headerlink" href="#fold-operation" title="Link to this heading">¶</a></h2>
+<p>A cell’s fold result is obtained by repeatedly applying a fold operation to the cell’s accumulator and each element of that cell’s input sequence.
+The fold operation has the signature <span class="math notranslate nohighlight">\(f: D \times C \rightarrow D\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> represents the type of the accumulator/fold result, and <span class="math notranslate nohighlight">\(C\)</span> is the type of each element of the input sequence.</p>
+<p>In the above example, the function <span class="math notranslate nohighlight">\(\textit{fill}\)</span> receives a histogram <span class="math notranslate nohighlight">\(h_{(R\ i)}\)</span> as the accumulator for run <span class="math notranslate nohighlight">\(i\)</span> and “combines” it with a track multiplicity object <span class="math notranslate nohighlight">\(m_{(R\ i,\ S\ j)}\)</span> that belongs to spill <span class="math notranslate nohighlight">\(j\)</span> in run <span class="math notranslate nohighlight">\(i\)</span>.
+This “combined” value is then returned by <span class="math notranslate nohighlight">\(\textit{fill}\)</span> as the updated value of the accumulator.
+The function <span class="math notranslate nohighlight">\(\textit{fill}\)</span> is repeatedly invoked to update the accumulator with each track multiplicity value.
+Once all track multiplcity values in run <span class="math notranslate nohighlight">\(i\)</span> have been processed by <span class="math notranslate nohighlight">\(\textit{fill}\)</span>, the accumulator’s value becomes the fold result for that run.</p>
+</section>
+<section id="registration-interface">
+<h2><span class="section-number">3.5.4.4. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
+<p><strong>Result type</strong>: A fold algorithm may create multiple data products through its result by specifying an <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a data-product created type.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Operator</strong></p></th>
+<th class="head"><p><strong>Allowed signature</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">result_type</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\textit{init}\)</span></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span><span class="p">{...}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\textit{part}\)</span></p></td>
+<td><p><em>Name of data-set category</em></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="finit" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>It is acceptable for <span class="math notranslate nohighlight">\(\textit{init}\)</span> to return a type that is convertible to the accumulator’s type.</p>
+</aside>
+</aside>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-partition" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-partition</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Partition_of_a_set">https://en.wikipedia.org/wiki/Partition_of_a_set</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3.5.4. Partitioned Folds</a><ul>
+<li><a class="reference internal" href="#partitions">3.5.4.1. Partitions</a></li>
+<li><a class="reference internal" href="#initializing-the-accumulator">3.5.4.2. Initializing the Accumulator</a></li>
+<li><a class="reference internal" href="#fold-operation">3.5.4.3. Fold Operation</a></li>
+<li><a class="reference internal" href="#registration-interface">3.5.4.4. Registration interface</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="observers.html"
+                          title="previous chapter"><span class="section-number">3.5.3. </span>Observers</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="partitioned_unfolds.html"
+                          title="next chapter"><span class="section-number">3.5.5. </span>Partitioned Unfolds</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../sources/ch_conceptual_design/hofs/partitioned_folds.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="partitioned_unfolds.html" title="3.5.5. Partitioned Unfolds"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="observers.html" title="3.5.3. Observers"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Partitioned Folds</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Jun 11, 2025.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

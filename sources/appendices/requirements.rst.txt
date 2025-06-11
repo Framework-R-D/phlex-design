@@ -229,7 +229,7 @@ Conceptual requirements
 
     The framework shall allow the unfolding of data products into a sequence of finer-grained data products.
 
-- See :numref:`ch_conceptual_design/hof_operators:Partitioned Unfolds`
+- See :numref:`ch_conceptual_design/hofs/partitioned_unfolds:Partitioned Unfolds`
 
 .. req:: Access to external data sources
     :collapse:

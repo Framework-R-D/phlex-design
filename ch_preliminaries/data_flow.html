@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.6. Data Flow &#8212; Phlex 0 (7428a25) documentation</title>
+    <title>2.6. Data Flow &#8212; Phlex 0 (90c6dcd) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=20596ad0"></script>
+    <script src="../static/documentation_options.js?v=8bc85dac"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (7428a25) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
@@ -196,8 +196,11 @@ As an illustration, consider the calculation of a sum of squares for all integer
                       &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>where each number is passed along its own edge to the nodes performing the calculation.
-By adopting a sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:</p>
+<p>where each number is passed along its own edge to the nodes performing the calculation.</p>
+<p>The summation formula for <span class="math notranslate nohighlight">\(S(n)\)</span>, however, can be expressed in terms of higher-order functions that operate on sequences of data:</p>
+<div class="math notranslate nohighlight">
+\[S(n) = \sum_{i=1}^n i^2 = \fold{+}{0}\ \transform{square}\ \unfold{\ge 0}{decrement}\ n\]</div>
+<p>By adopting this sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:</p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-ee996a84b9e9795f93b1174786d84084819d3b00.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
@@ -305,7 +308,7 @@ It is also possible to invert the view of the graph such that the data are treat
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (7428a25) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>

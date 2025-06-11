@@ -41,16 +41,16 @@ This can be achieved by in terms of the C++ *registration stanza*:
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
-A registration statement is a programming statement that closely follows the equation described in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`:
+A registration statement is a programming statement that closely follows the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` and is used to register an algorithm with the framework.
 
 .. math::
 
-   \sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}
+   \isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}
 
 Specifically, in the registration stanza above, we have the following:
 
    :cpp:`products(...)`
-     1. This is the equivalent of the output sequence :math:`\sequence{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+     1. This is the equivalent of the output sequence :math:`\isequence{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
 
    :cpp:`transform(...)`
      Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
@@ -61,12 +61,12 @@ Specifically, in the registration stanza above, we have the following:
      5. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
 
    :cpp:`sequence(...)`
-     The specification of the input sequence :math:`\sequence{a}{\text{input}}` requires:
+     The specification of the input sequence :math:`\isequence{a}{\text{input}}` requires:
 
      6. The specification(s) of data products that serve as input sequence elements :need:`DUNE 65`.
      7. The data category where the input data products are found.
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/hof_operators:HOF operators` for specific interface).
+The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:

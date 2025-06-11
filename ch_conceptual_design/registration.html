@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (7428a25) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (90c6dcd) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=20596ad0"></script>
+    <script src="../static/documentation_options.js?v=8bc85dac"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -34,7 +34,7 @@
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.5. HOF Operators" href="hof_operators.html" />
+    <link rel="next" title="3.5. Supported Higher-Order Functions" href="supported_hofs.html" />
     <link rel="prev" title="3.3. Algorithms" href="algorithms.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -48,12 +48,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="hof_operators.html" title="3.5. HOF Operators"
+          <a href="supported_hofs.html" title="3.5. Supported Higher-Order Functions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (7428a25) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -100,14 +100,14 @@ This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
 </div>
 <p>The registration stanza is included in a C++ file that is compiled into a <a class="reference internal" href="../appendices/definitions.html#term-Module"><span class="xref std std-term">module</span></a>, a compiled library that is dynamically loadable by Phlex.</p>
 <p>The stanza is introduced by an <em>opener</em>—e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span></code>—followed by a <em>registration block</em>, a block of code between two curly braces that contains one or more <em>registration statements</em>.
-A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="../ch_preliminaries/functional_programming.html#higher-order-functions-supported-by-phlex"><span class="std std-numref">Section 2.5.1</span></a>:</p>
+A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> and is used to register an algorithm with the framework.</p>
 <div class="math notranslate nohighlight">
-\[\sequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \sequence{a}{\text{input}}\]</div>
+\[\isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}\]</div>
 <p>Specifically, in the registration stanza above, we have the following:</p>
 <blockquote>
 <div><dl class="simple">
 <dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">products</span><span class="p">(...)</span></code></dt><dd><ol class="arabic simple">
-<li><p>This is the equivalent of the output sequence <span class="math notranslate nohighlight">\(\sequence{b}{\text{output}}\)</span>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.</p></li>
+<li><p>This is the equivalent of the output sequence <span class="math notranslate nohighlight">\(\isequence{b}{\text{output}}\)</span>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.</p></li>
 </ol>
 </dd>
 <dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code></dt><dd><p>Fully specifying the mathematical expression <span class="math notranslate nohighlight">\(\text{HOF}(f_1,\ f_2,\ \dots)\)</span> requires several items:</p>
@@ -118,7 +118,7 @@ A registration statement is a programming statement that closely follows the equ
 <li><p>The maximum number of CPU threads the framework can use when invoking the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a>.</p></li>
 </ol>
 </dd>
-<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <span class="math notranslate nohighlight">\(\sequence{a}{\text{input}}\)</span> requires:</p>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <span class="math notranslate nohighlight">\(\isequence{a}{\text{input}}\)</span> requires:</p>
 <ol class="arabic simple" start="6">
 <li><p>The specification(s) of data products that serve as input sequence elements <a class="reference internal" href="../appendices/requirements.html#DUNE 65" title="DUNE 65"><em class="xref need">[DUNE 65]</em></a>.</p></li>
 <li><p>The data category where the input data products are found.</p></li>
@@ -126,7 +126,7 @@ A registration statement is a programming statement that closely follows the equ
 </dd>
 </dl>
 </div></blockquote>
-<p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="hof_operators.html#hof-operators"><span class="std std-numref">Section 3.5</span></a> for specific interface).
+<p>The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a> and the hardware resources required by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 9" title="DUNE 9"><em class="xref need">[DUNE 9]</em></a>.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm’s function signature.
 In other words:</p>
@@ -261,8 +261,8 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="hof_operators.html"
-                          title="next chapter"><span class="section-number">3.5. </span>HOF Operators</a></p>
+    <p class="topless"><a href="supported_hofs.html"
+                          title="next chapter"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -292,12 +292,12 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="hof_operators.html" title="3.5. HOF Operators"
+          <a href="supported_hofs.html" title="3.5. Supported Higher-Order Functions"
              >next</a> |</li>
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (7428a25) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (90c6dcd) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
