@@ -32,7 +32,8 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
              For each *spill*, an *unfold* algorithm is configured to create a sequence of *Waveforms* objects, creating one *Waveforms* object in each *APA*.
              A *transform* algorithm is run on each of the *Waveforms* objects to create a *ClampedWaveforms* object.
              A *fold* algorithm is run on each of the *ClampedWaveforms* objects in a *spill* to create a *SummedWaveforms* object for the *spill*.
-             Each *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* objects are written to a ROOT output file, each one associated with the appropriate *spill* or *APA*.
+             The *write* algorithms are configured to write the *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* objects to one or more ROOT output files.
+             Each *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* object is associated with the appropriate *spill* or *APA*.
              This workflow also shows a *filter* algorithm selecting only "high energy" *Waveforms*, and an *observe* algorithm creating a histogram from them, which is written to a ROOT analysis file.
              Note that in this workflow the names *spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
    :name: workflow
