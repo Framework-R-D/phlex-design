@@ -97,7 +97,8 @@ new_commands = r"""
 \newcommand\predicate[1]{\text{predicate}(#1)}
 \newcommand\filter[1]{\text{filter}(#1)}
 \newcommand\observe[1]{\text{observe}(#1)}
-\newcommand\unfold[3]{\text{unfold}(#1,\ #2,\ #3)}
+\newcommand\unfold[2]{\text{unfold}(#1,\ #2)}
+\newcommand\punfold[3]{\text{unfold}(#1,\ #2,\ #3)}
 
 % The following is needed to ensure consistent footnote ordering
 % within each LaTeX-rendered chapter:
@@ -128,7 +129,8 @@ mathjax3_config = {
           "predicate": ['\\textrm{predicate}(#1)', 1],
           "filter": ['\\textrm{filter}(#1)', 1],
           "observe": ['\\textrm{observe}(#1)', 1],
-          "unfold": ['\\textrm{unfold}(#1, #2, #3)', 3],
+          "unfold": ['\\textrm{unfold}(#1, #2)', 2],
+          "punfold": ['\\textrm{unfold}(#1, #2, #3)', 3],
           "fold": ['\\textrm{fold}(#1, #2)', 2],
           "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
           "iset": ['\\mathcal{I}_{#1}', 1],
