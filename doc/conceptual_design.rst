@@ -4,7 +4,7 @@ Conceptual Design
 
 .. admonition:: Purpose
 
-   The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see :numref:`Appendix %s <requirements:Framework requirements>`).
+   The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see :numref:`Appendix %s <appendices/requirements:Framework requirements>`).
    The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
    More detailed design aspects in support of the conceptual model are given in :numref:`supporting_design:Supporting design`.
 
