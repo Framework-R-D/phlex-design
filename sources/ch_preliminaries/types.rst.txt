@@ -26,25 +26,25 @@ In HEP, it is common to encounter C++ functions like:
 where the function either returns nothing (i.e. :cpp:`void`) or it accepts no argument.
 Python supports similar behavior for its functions and methods, but using the keyword :py:`None` instead of :cpp:`void`.
 
-The mathematical set that is used to represent C++'s :cpp:`void` and Python's :py:`NoneType` is the set :math:`\mathbbm{1}`, which contains only one element [#void]_.
+The mathematical set that is used to represent C++'s :cpp:`void` and Python's :py:`NoneType` is the set :math:`\one`, which contains only one element [#void]_.
 The above functions are thus represented in function notation as:
 
 .. math::
 
-   f&: \mathbb{Z} \rightarrow \mathbbm{1}\ , \text{ and}
+   f&: \mathbb{Z} \rightarrow \one\ , \text{ and}
 
-   g&: \mathbbm{1} \rightarrow \mathbb{R}\ .
+   g&: \one \rightarrow \mathbb{R}\ .
 
 This notation will be used as we discuss the operators required by Phlex's higher-order functions.
 
-The single element of the set :math:`\mathbbm{1}` can also be used to represent the value :cpp:`nullptr` for C++ pointers (see :numref:`ch_preliminaries/types:Representing optional types`).
+The single element of the set :math:`\one` can also be used to represent the value :cpp:`nullptr` for C++ pointers (see :numref:`ch_preliminaries/types:Representing optional types`).
 
 ---------------------------
 Representing optional types
 ---------------------------
 
 It is occasionally necessary to represent a "nullable" or "optional" type :math:`\text{Opt}(T)`, whose objects either contain a value type :math:`T` or are null.
-Mathematically, this is represented by the coproduct :math:`T \sqcup \mathbbm{1}`, where a null or *disengaged* object of type :math:`\text{Opt}(T)` has a value equal to the single element of the set :math:`\mathbbm{1}`.
+Mathematically, this is represented by the coproduct :math:`T \sqcup \one`, where a null or *disengaged* object of type :math:`\text{Opt}(T)` has a value equal to the single element of the set :math:`\one`.
 
 :numref:`optional-types` gives examples of programming types in various languages that can be mathematically represented by :math:`\text{Opt}(T)`.
 Although Phlex does not support algorithms written in Haskell, an example of the use of :haskell:`Maybe T` is given as an illustration of how :math:`\text{Opt}(T)` is supported outside of C++ and Python.

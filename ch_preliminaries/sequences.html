@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Sequences &#8212; Phlex 0 (45748cc) documentation</title>
+    <title>2.3. Sequences &#8212; Phlex 0 (0d52624) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=da94e5ab"></script>
+    <script src="../static/documentation_options.js?v=d0d85dc3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
       </ul>
@@ -65,20 +67,20 @@
   <section id="sequences">
 <h1><span class="section-number">2.3. </span>Sequences<a class="headerlink" href="#sequences" title="Link to this heading">¶</a></h1>
 <p>A finite sequence can be represented as a list of objects, each of which are of the same set or <em>type</em> (see <a class="reference internal" href="types.html#types"><span class="std std-numref">Section 2.2</span></a>).
-For example, the sequence <img class="math" src="../images/math/08a00036063cc9ca19615286a4f17bfd4303fe9a.svg" alt="a = [a_1, a_2, \dots, a_n]"/> is written as</p>
-<div class="math">
-<p><img src="../images/math/a2cf23acf908755b5a365afa301d57e5c45b7ddd.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}"/></p>
-</div><p>where each <img class="math" src="../images/math/c845d641b28f1dad2cbadd2b5f7ab6df23f532d3.svg" alt="a_i \in A"/>, and <img class="math" src="../images/math/a95922d44d2141464283672b3bff31ca2c20bf12.svg" alt="\mathcal{I}_a = \{1, 2, \dots, n\}"/> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/>.</p>
-<p>In general, an index set does not impose an order on the sequence elements—the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/> could thus be equivalently expressed as:</p>
-<div class="math">
-<p><img src="../images/math/277f8da427a9f219a60f32c93e2bac1ab5bd371f.svg" alt="a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]"/></p>
-</div><p>or any of the <img class="math" src="../images/math/6ef254968904112131048f858c12530ac2ca9e2e.svg" alt="n!"/> orderings possible.
+For example, the sequence <span class="math notranslate nohighlight">\(a = [a_1, a_2, \dots, a_n]\)</span> is written as</p>
+<div class="math notranslate nohighlight">
+\[a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}\]</div>
+<p>where each <span class="math notranslate nohighlight">\(a_i \in A\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{I}_a = \{1, 2, \dots, n\}\)</span> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>In general, an index set does not impose an order on the sequence elements—the sequence <span class="math notranslate nohighlight">\(a\)</span> could thus be equivalently expressed as:</p>
+<div class="math notranslate nohighlight">
+\[a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]\]</div>
+<p>or any of the <span class="math notranslate nohighlight">\(n!\)</span> orderings possible.
 The index set simply provides a mapping from an index to the data object itself.</p>
-<p>The <em>length</em> of the sequence <img class="math" src="../images/math/e8dfce2737492a7d8376cab53dce73e61970c203.svg" alt="a"/> above is denoted by <img class="math" src="../images/math/34b62cfa03330fd364799f0ff3ae84f1aa749625.svg" alt="|a|"/>, and it equals the <em>cardinality</em> of the index set: <img class="math" src="../images/math/86dbcdc6a6ed50e0873b2d81122045c5c38725c0.svg" alt="|a| = |\mathcal{I}_a| = n"/>.
+<p>The <em>length</em> of the sequence <span class="math notranslate nohighlight">\(a\)</span> above is denoted by <span class="math notranslate nohighlight">\(|a|\)</span>, and it equals the <em>cardinality</em> of the index set: <span class="math notranslate nohighlight">\(|a| = |\mathcal{I}_a| = n\)</span>.
 In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:</p>
-<div class="math">
-<p><img src="../images/math/924267f3ef6dccfea9fcf7c1f443b7b1ef74a388.svg" alt="[\ ] = [a_i]_{i \in \emptyset} \ ."/></p>
-</div></section>
+<div class="math notranslate nohighlight">
+\[[\ ] = [a_i]_{i \in \emptyset} \ .\]</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -133,7 +135,7 @@ In this document, we will have need of a list of length 0, or the empty list, wh
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
       </ul>

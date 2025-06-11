@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.2. Types &#8212; Phlex 0 (45748cc) documentation</title>
+    <title>2.2. Types &#8212; Phlex 0 (0d52624) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=da94e5ab"></script>
+    <script src="../static/documentation_options.js?v=d0d85dc3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="function_notation.html" title="2.1. Function Notation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
       </ul>
@@ -65,12 +67,12 @@
   <section id="types">
 <h1><span class="section-number">2.2. </span>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h1>
 <p>A reasonable description of a type is that it is a mathematical <em>set</em> of objects.
-For example, the type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> is an approximation to the mathematical set <img class="math" src="../images/math/16820c9a37674e74ec05ce19ccdbf41149d1c1c2.svg" alt="\mathbb{Z}"/>, although there may be technological limitations on what values an object of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> can take.</p>
-<p>Suppose, however, that an algorithm <img class="math" src="../images/math/3734c59fe7404e8b647162a4800ba5c7e02997cd.svg" alt="p(n_{\text{POT}})"/> is configured to operate on an integer <img class="math" src="../images/math/f6c5df4d54578eee41ba32f2951818ae7b301f8a.svg" alt="n_{\text{POT}}"/> that corresponds to the number of protons on target.
-In such a case, specifying the function <img class="math" src="../images/math/fc0e6c12abb058d542ca2f1fe0bdaf75feeee1ad.svg" alt="p"/> as <img class="math" src="../images/math/33333d68b947241b446ff990c20621a7d1330073.svg" alt="p: \mathbb{Z} \rightarrow R"/> (where <img class="math" src="../images/math/bf3e0f17523ee342e17fdfaef2792c8082efe823.svg" alt="R"/> is an arbitrary return type) is too permissive.
-In a framework context, not all data of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> (the equivalent to <img class="math" src="../images/math/16820c9a37674e74ec05ce19ccdbf41149d1c1c2.svg" alt="\mathbb{Z}"/>) are suitable for processing by the algorithm <img class="math" src="../images/math/fc0e6c12abb058d542ca2f1fe0bdaf75feeee1ad.svg" alt="p"/>.</p>
+For example, the type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> is an approximation to the mathematical set <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>, although there may be technological limitations on what values an object of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> can take.</p>
+<p>Suppose, however, that an algorithm <span class="math notranslate nohighlight">\(p(n_{\text{POT}})\)</span> is configured to operate on an integer <span class="math notranslate nohighlight">\(n_{\text{POT}}\)</span> that corresponds to the number of protons on target.
+In such a case, specifying the function <span class="math notranslate nohighlight">\(p\)</span> as <span class="math notranslate nohighlight">\(p: \mathbb{Z} \rightarrow R\)</span> (where <span class="math notranslate nohighlight">\(R\)</span> is an arbitrary return type) is too permissive.
+In a framework context, not all data of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> (the equivalent to <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>) are suitable for processing by the algorithm <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>In this document, the type therefore refers to a mathematical set that includes more than just the programming language’s type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code>; it can also include various labels that identify which kind of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code> is desired.
-When necessary, the type required to specify a data product will be expressed as <img class="math" src="../images/math/049b120b078eb4e05555bcfad6c8356898db60a8.svg" alt="\mathtt{T} \wedge L"/>, where the first set in typewriter style (e.g. <img class="math" src="../images/math/66dd0c9f80cea0cb06a608c141d2ca8adbf8b9f5.svg" alt="\mathtt{T}"/>) refers to the programming language’s type and the second set in math style (e.g. <img class="math" src="../images/math/ae15a408900fae4829d0634abf3edc682e6d7ebb.svg" alt="L"/>) represents a label associated with the data.</p>
+When necessary, the type required to specify a data product will be expressed as <span class="math notranslate nohighlight">\(\mathtt{T} \wedge L\)</span>, where the first set in typewriter style (e.g. <span class="math notranslate nohighlight">\(\mathtt{T}\)</span>) refers to the programming language’s type and the second set in math style (e.g. <span class="math notranslate nohighlight">\(L\)</span>) represents a label associated with the data.</p>
 <section id="representing-void-and-nonetype">
 <h2><span class="section-number">2.2.1. </span>Representing <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code><a class="headerlink" href="#representing-void-and-nonetype" title="Link to this heading">¶</a></h2>
 <p>In HEP, it is common to encounter C++ functions like:</p>
@@ -80,21 +82,19 @@ When necessary, the type required to specify a data product will be expressed as
 </div>
 <p>where the function either returns nothing (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code>) or it accepts no argument.
 Python supports similar behavior for its functions and methods, but using the keyword <code class="code highlight py docutils literal highlight-py"><span class="kc">None</span></code> instead of <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code>.</p>
-<p>The mathematical set that is used to represent C++’s <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and Python’s <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code> is the set <img class="math" src="../images/math/57d31f65fdf37f9ab0f7fd7df3054e041504be8d.svg" alt="\mathbbm{1}"/>, which contains only one element <a class="footnote-reference brackets" href="#void" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+<p>The mathematical set that is used to represent C++’s <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and Python’s <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code> is the set <span class="math notranslate nohighlight">\(\one\)</span>, which contains only one element <a class="footnote-reference brackets" href="#void" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 The above functions are thus represented in function notation as:</p>
-<div class="math">
-<p><img src="../images/math/b821f60560b13cf864f405415e0f126993b662d8.svg" alt="f&amp;: \mathbb{Z} \rightarrow \mathbbm{1}\ , \text{ and}
-
-g&amp;: \mathbbm{1} \rightarrow \mathbb{R}\ ."/></p>
-</div><p>This notation will be used as we discuss the operators required by Phlex’s higher-order functions.</p>
-<p>The single element of the set <img class="math" src="../images/math/57d31f65fdf37f9ab0f7fd7df3054e041504be8d.svg" alt="\mathbbm{1}"/> can also be used to represent the value <code class="code highlight c++ docutils literal highlight-c++"><span class="k">nullptr</span></code> for C++ pointers (see <a class="reference internal" href="#representing-optional-types"><span class="std std-numref">Section 2.2.2</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f&amp;: \mathbb{Z} \rightarrow \one\ , \text{ and}\\g&amp;: \one \rightarrow \mathbb{R}\ .\end{aligned}\end{align} \]</div>
+<p>This notation will be used as we discuss the operators required by Phlex’s higher-order functions.</p>
+<p>The single element of the set <span class="math notranslate nohighlight">\(\one\)</span> can also be used to represent the value <code class="code highlight c++ docutils literal highlight-c++"><span class="k">nullptr</span></code> for C++ pointers (see <a class="reference internal" href="#representing-optional-types"><span class="std std-numref">Section 2.2.2</span></a>).</p>
 </section>
 <section id="representing-optional-types">
 <h2><span class="section-number">2.2.2. </span>Representing optional types<a class="headerlink" href="#representing-optional-types" title="Link to this heading">¶</a></h2>
-<p>It is occasionally necessary to represent a “nullable” or “optional” type <img class="math" src="../images/math/d41eaf976b81a84fe6c2037ba7cf6c58ff4babf9.svg" alt="\text{Opt}(T)"/>, whose objects either contain a value type <img class="math" src="../images/math/192601972425b4547c4d2fa85f261f1423355804.svg" alt="T"/> or are null.
-Mathematically, this is represented by the coproduct <img class="math" src="../images/math/b2c80c08a2f5b9d91e70b1a31ff063e390e40e72.svg" alt="T \sqcup \mathbbm{1}"/>, where a null or <em>disengaged</em> object of type <img class="math" src="../images/math/d41eaf976b81a84fe6c2037ba7cf6c58ff4babf9.svg" alt="\text{Opt}(T)"/> has a value equal to the single element of the set <img class="math" src="../images/math/57d31f65fdf37f9ab0f7fd7df3054e041504be8d.svg" alt="\mathbbm{1}"/>.</p>
-<p><a class="reference internal" href="#optional-types"><span class="std std-numref">Table 2.1</span></a> gives examples of programming types in various languages that can be mathematically represented by <img class="math" src="../images/math/d41eaf976b81a84fe6c2037ba7cf6c58ff4babf9.svg" alt="\text{Opt}(T)"/>.
-Although Phlex does not support algorithms written in Haskell, an example of the use of <code class="code highlight haskell docutils literal highlight-haskell"><span class="kt">Maybe</span><span class="w"> </span><span class="kt">T</span></code> is given as an illustration of how <img class="math" src="../images/math/d41eaf976b81a84fe6c2037ba7cf6c58ff4babf9.svg" alt="\text{Opt}(T)"/> is supported outside of C++ and Python.</p>
+<p>It is occasionally necessary to represent a “nullable” or “optional” type <span class="math notranslate nohighlight">\(\text{Opt}(T)\)</span>, whose objects either contain a value type <span class="math notranslate nohighlight">\(T\)</span> or are null.
+Mathematically, this is represented by the coproduct <span class="math notranslate nohighlight">\(T \sqcup \one\)</span>, where a null or <em>disengaged</em> object of type <span class="math notranslate nohighlight">\(\text{Opt}(T)\)</span> has a value equal to the single element of the set <span class="math notranslate nohighlight">\(\one\)</span>.</p>
+<p><a class="reference internal" href="#optional-types"><span class="std std-numref">Table 2.1</span></a> gives examples of programming types in various languages that can be mathematically represented by <span class="math notranslate nohighlight">\(\text{Opt}(T)\)</span>.
+Although Phlex does not support algorithms written in Haskell, an example of the use of <code class="code highlight haskell docutils literal highlight-haskell"><span class="kt">Maybe</span><span class="w"> </span><span class="kt">T</span></code> is given as an illustration of how <span class="math notranslate nohighlight">\(\text{Opt}(T)\)</span> is supported outside of C++ and Python.</p>
 <span id="optional-types"></span><table class="docutils align-default" id="id2">
 <caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Optional types in Haskell, Python, and C++.
         Due to Python’s dynamic nature, a given name (e.g. <code class="code highlight py docutils literal highlight-py"><span class="n">k</span></code>) can be bound to any value, thus emulating an optional type.</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
@@ -107,8 +107,8 @@ Although Phlex does not support algorithms written in Haskell, an example of the
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Language</p></th>
-<th class="head"><p>Type <img class="math" src="../images/math/192601972425b4547c4d2fa85f261f1423355804.svg" alt="T"/></p></th>
-<th class="head"><p>Type <img class="math" src="../images/math/d41eaf976b81a84fe6c2037ba7cf6c58ff4babf9.svg" alt="\text{Opt}(T)"/></p></th>
+<th class="head"><p>Type <span class="math notranslate nohighlight">\(T\)</span></p></th>
+<th class="head"><p>Type <span class="math notranslate nohighlight">\(\text{Opt}(T)\)</span></p></th>
 <th class="head"><p>Engaged value</p></th>
 <th class="head"><p>Disengaged value</p></th>
 </tr>
@@ -142,7 +142,7 @@ Although Phlex does not support algorithms written in Haskell, an example of the
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="void" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>It is tempting to associate <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code> with the empty set <img class="math" src="../images/math/f3880559f62c65732ad4ac561867e11f42f3f611.svg" alt="\emptyset"/>.
+<p>It is tempting to associate <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code> with the empty set <span class="math notranslate nohighlight">\(\emptyset\)</span>.
 However, a function must always be invoked with at least one object, and it must return at least one object.
 The empty set contains no such objects that can be presented to (or returned from) a function.</p>
 </aside>
@@ -214,7 +214,7 @@ The empty set contains no such objects that can be presented to (or returned fro
         <li class="right" >
           <a href="function_notation.html" title="2.1. Function Notation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
       </ul>

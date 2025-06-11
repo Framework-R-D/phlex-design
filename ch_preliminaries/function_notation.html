@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.1. Function Notation &#8212; Phlex 0 (45748cc) documentation</title>
+    <title>2.1. Function Notation &#8212; Phlex 0 (0d52624) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=da94e5ab"></script>
+    <script src="../static/documentation_options.js?v=d0d85dc3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="../preliminaries.html" title="2. Preliminaries"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
       </ul>
@@ -64,33 +66,29 @@
             
   <section id="function-notation">
 <h1><span class="section-number">2.1. </span>Function Notation<a class="headerlink" href="#function-notation" title="Link to this heading">¶</a></h1>
-<p>We refer to the function <img class="math" src="../images/math/5955beb79bad85d1a34985194deca5dece0bb60a.svg" alt="f: A \rightarrow B"/> as the function <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> that takes an element of the set <img class="math" src="../images/math/5f87f7461552ce63093557273667bde826c2dd5e.svg" alt="A"/> to an element of the set <img class="math" src="../images/math/190e2dc87a1073e13bc0f3fe2081d42a3020ae5d.svg" alt="B"/>.
-For example, the function <img class="math" src="../images/math/0a5390b69e43656993b68369492dcdeb6b6cbf6d.svg" alt="flip: \mathbb{R} \rightarrow \mathbb{R}"/> accepts a real number (e.g. <img class="math" src="../images/math/199e5caf86b81cbba7e4353d90bc238ce5331795.svg" alt="3.14"/>) and multiplies it by <img class="math" src="../images/math/aedca9ec0f6ca04a0b862411e5a728dc85b6d535.svg" alt="-1"/>, returning another real number (e.g. <img class="math" src="../images/math/a260d1eb2eb93f9b9aa7c65c5da66ab96b717623.svg" alt="-3.14"/>).</p>
-<p>The types <img class="math" src="../images/math/5f87f7461552ce63093557273667bde826c2dd5e.svg" alt="A"/> and <img class="math" src="../images/math/190e2dc87a1073e13bc0f3fe2081d42a3020ae5d.svg" alt="B"/> are allowed to represent Cartesian products of sets (e.g. <img class="math" src="../images/math/d1e9b18bd4788cf1cca0632b023535b84af0c3b2.svg" alt="A = A_1 \times \dots \times A_n"/>), thus enabling multivariate functions.
+<p>The expression <span class="math notranslate nohighlight">\(f: A \rightarrow B\)</span> represents the function <span class="math notranslate nohighlight">\(f\)</span> that takes an element of the set <span class="math notranslate nohighlight">\(A\)</span> to an element of the set <span class="math notranslate nohighlight">\(B\)</span>.
+For example, the function <span class="math notranslate nohighlight">\(flip: \mathbb{R} \rightarrow \mathbb{R}\)</span> accepts a real number (e.g. <span class="math notranslate nohighlight">\(3.14\)</span>) and multiplies it by <span class="math notranslate nohighlight">\(-1\)</span>, returning another real number (e.g. <span class="math notranslate nohighlight">\(-3.14\)</span>).</p>
+<p>The types <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are allowed to represent Cartesian products of sets (e.g. <span class="math notranslate nohighlight">\(A = A_1 \times \dots \times A_n\)</span>), thus enabling multivariate functions.
 For example, the following are simple multivariate functions:</p>
-<div class="math">
-<p><img src="../images/math/693913584d96d6a71f9a64031bf6f7a1699a0efc.svg" alt="power : \mathbb{R} \times \mathbb{N} \rightarrow \mathbb{R}
-
-halve : \mathbb{N} \rightarrow \mathbb{N} \times \mathbb{N}"/></p>
-</div><p>where <img class="math" src="../images/math/c18a101efc459393b36ad7c64ad714f319ce83c1.svg" alt="\mathbb{N}"/> is the set of natural numbers.
-Invoking <img class="math" src="../images/math/b4d1b6f4c5576f57319e76d0ffd8cc4169009c26.svg" alt="power(1.5, 2)"/> results in the real number <img class="math" src="../images/math/cabf6f78784d284f6402374d5322341008a907fb.svg" alt="1.5^2 = 2.25"/>, whereas invoking <img class="math" src="../images/math/6c6f313ca36dbc3b0ce30479d4bac9269b6b4743.svg" alt="halve(5)"/> divides <img class="math" src="../images/math/4e60784fb68ad5e8545c9795db16b6385f071d01.svg" alt="5"/> by <img class="math" src="../images/math/8f6a7da91277ccb03a98673d38a10549d7725714.svg" alt="2"/>, returning the pair <img class="math" src="../images/math/e542052489d9de09a810692ec954fdfbec89b47a.svg" alt="(2, 1)"/>, where the first number is the quotient, and the second is the remainder.</p>
-<p>It is conventional to use parentheses to denote the application of the function <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> to an argument <img class="math" src="../images/math/c30ae5b6808c15f617fe3deea86fe10f7ed4946c.svg" alt="x"/> —i.e. <img class="math" src="../images/math/84fa4cb606e22a0eef612acbee8d2fae5cc6fe5d.svg" alt="f(x)"/>.
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}power : \mathbb{R} \times \mathbb{N} \rightarrow \mathbb{R}\\halve : \mathbb{N} \rightarrow \mathbb{N} \times \mathbb{N}\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> is the set of natural numbers.
+Invoking <span class="math notranslate nohighlight">\(power(1.5, 2)\)</span> results in the real number <span class="math notranslate nohighlight">\(1.5^2 = 2.25\)</span>, whereas invoking <span class="math notranslate nohighlight">\(halve(5)\)</span> divides <span class="math notranslate nohighlight">\(5\)</span> by <span class="math notranslate nohighlight">\(2\)</span>, returning the pair <span class="math notranslate nohighlight">\((2, 1)\)</span>, where the first number is the quotient, and the second is the remainder.</p>
+<p>It is conventional to use parentheses to denote the application of the function <span class="math notranslate nohighlight">\(f\)</span> to an argument <span class="math notranslate nohighlight">\(x\)</span> —i.e. <span class="math notranslate nohighlight">\(f(x)\)</span>.
 To avoid cluttered expressions in this document, however, we adopt an alternative whereby the parentheses are omitted and whitespace is used to delimit the function and its argument(s):</p>
-<div class="math">
-<p><img src="../images/math/16b3716005789f990a3964f5a13c2faba03957a3.svg" alt="f(x) &amp;\Longrightarrow f\ x\
-
-g(f(x)) &amp;\Longrightarrow g\ (f\ x) = g\ f\ x \ ."/></p>
-</div><p>In mathematical expressions, parentheses are then reserved in this document to specify:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f(x) &amp;\Longrightarrow f\ x\\g(f(x)) &amp;\Longrightarrow g\ (f\ x) = g\ f\ x \ .\end{aligned}\end{align} \]</div>
+<p>In mathematical expressions, parentheses are then reserved in this document to specify:</p>
 <ol class="arabic simple">
-<li><p>The order of operations (e.g. <img class="math" src="../images/math/0a168f5c0af01cb8118060eab20a33f2a6e2efa3.svg" alt="f\ x"/> is to be evaluated first, and its output serves as input to the function <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/>).</p></li>
-<li><p>A tuple of arguments that serve as input to a single function invocation (e.g. <img class="math" src="../images/math/13549a84b46eb720c87d846b77bceba93485f5e1.svg" alt="power\ (1.5, 2)"/> above) <a class="footnote-reference brackets" href="#apply" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
+<li><p>The order of operations (e.g. <span class="math notranslate nohighlight">\(f\ x\)</span> is to be evaluated first, and its output serves as input to the function <span class="math notranslate nohighlight">\(g\)</span>).</p></li>
+<li><p>A tuple of arguments that serve as input to a single function invocation (e.g. <span class="math notranslate nohighlight">\(power\ (1.5, 2)\)</span> above) <a class="footnote-reference brackets" href="#apply" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
 <li><p>The binding of user-defined algorithms to higher-order functions (see <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>).</p></li>
 </ol>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="apply" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The expression <img class="math" src="../images/math/0a168f5c0af01cb8118060eab20a33f2a6e2efa3.svg" alt="f\ x"/> can equivalently be written <img class="math" src="../images/math/d59d0cc7189d84a6c00f2f838bc26a871b842e00.svg" alt="f\ (x)"/>, where <img class="math" src="../images/math/b4551046e2fa0fa625eeb4b4f057501113765643.svg" alt="(x)"/> is a single-element tuple.
+<p>The expression <span class="math notranslate nohighlight">\(f\ x\)</span> can equivalently be written <span class="math notranslate nohighlight">\(f\ (x)\)</span>, where <span class="math notranslate nohighlight">\((x)\)</span> is a single-element tuple.
 With this interpretation, the conventional function-invocation notation can be recovered.</p>
 </aside>
 </aside>
@@ -149,7 +147,7 @@ With this interpretation, the conventional function-invocation notation can be r
         <li class="right" >
           <a href="../preliminaries.html" title="2. Preliminaries"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.1. </span>Function Notation</a></li> 
       </ul>

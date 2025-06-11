@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex 0 (45748cc) documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0 (0d52624) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=da94e5ab"></script>
+    <script src="../static/documentation_options.js?v=d0d85dc3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -172,11 +174,11 @@ A data set family is a sequence of data product sets that are in the same catego
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">An example of some possible data product hierarchies.
-Three different user-defined data product set categories are shown: <img class="math" src="../images/math/cc0f2633c8ba1cf954b378fd2e4e2e43425f4969.svg" alt="\textsf{Run}"/>, <img class="math" src="../images/math/8596596a015560bf2c10c6e43cee5c91681b0964.svg" alt="\textsf{Spill}"/>, and <img class="math" src="../images/math/300fc4ea9b8efafa72dbc267a249f8ccc766d201.svg" alt="\textsf{APA}"/>.
-Rectangles with labels <img class="math" src="../images/math/580e836adb6c06dc97554077edbb11182bbad9a1.svg" alt="\textsf{Run}_i"/>, <img class="math" src="../images/math/edce1de75ca2ab3bdc95edacfbc8b7fbf66dd025.svg" alt="\textsf{Spill}_{i,j}"/>, and <img class="math" src="../images/math/00d3e2fa7fe860b8bdbda624116faaee30fb19c0.svg" alt="\textsf{APA}_{i,j,k}"/> represent data product sets.
+Three different user-defined data product set categories are shown: <span class="math notranslate nohighlight">\(\textsf{Run}\)</span>, <span class="math notranslate nohighlight">\(\textsf{Spill}\)</span>, and <span class="math notranslate nohighlight">\(\textsf{APA}\)</span>.
+Rectangles with labels <span class="math notranslate nohighlight">\(\textsf{Run}_i\)</span>, <span class="math notranslate nohighlight">\(\textsf{Spill}_{i,j}\)</span>, and <span class="math notranslate nohighlight">\(\textsf{APA}_{i,j,k}\)</span> represent data product sets.
 The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 A solid line from a data product set to another data product set represents association between the two data product sets.
-The bottom rectangle shows that <img class="math" src="../images/math/a21ff99db181d59efc2bb35584e93b3a8f0db207.svg" alt="\textsf{Waveforms}_{1,1,1}"/> is in the data product set <img class="math" src="../images/math/68b20408b7544aed4cce33bd6c3dbe6c4e5c0397.svg" alt="\textsf{APA}_{1,1,1}"/>, etc.
+The bottom rectangle shows that <span class="math notranslate nohighlight">\(\textsf{Waveforms}_{1,1,1}\)</span> is in the data product set <span class="math notranslate nohighlight">\(\textsf{APA}_{1,1,1}\)</span>, etc.
 Each pale purple rectangle indicates the data product sequence created by one call to the <em>unfold</em> higher order function described in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 The names of different data set categories are user defined, and not special to the Phlex framework.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
@@ -310,7 +312,7 @@ The algorithms are configured to identify the inputs in which they are intereste
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the data-flow graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>

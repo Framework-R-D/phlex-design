@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.6. Data Flow &#8212; Phlex 0 (45748cc) documentation</title>
+    <title>2.6. Data Flow &#8212; Phlex 0 (0d52624) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=da94e5ab"></script>
+    <script src="../static/documentation_options.js?v=d0d85dc3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
@@ -65,10 +67,10 @@
   <section id="data-flow">
 <h1><span class="section-number">2.6. </span>Data Flow<a class="headerlink" href="#data-flow" title="Link to this heading">¶</a></h1>
 <p>In <a class="reference internal" href="functional_programming.html#functional-programming"><span class="std std-numref">Section 2.4</span></a>, the example was given for creating tracks from wires.
-The simplified expression for doing this was the chained application of two functions <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> such that:</p>
-<div class="math">
-<p><img src="../images/math/f3e1bae1054acbb03b7515744182ad9d55b56f56.svg" alt="ts = g\ (f\ ws) = (g \comp f)\ ws"/></p>
-</div><p>where <img class="math" src="../images/math/629700e10b537879acfad748fe8493f709c9cbc3.svg" alt="ws"/> and <img class="math" src="../images/math/a328852b9a1fcb944deebe5c43c442584dfcac2f.svg" alt="ts"/> are the wires and tracks, respectively.</p>
+The simplified expression for doing this was the chained application of two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> such that:</p>
+<div class="math notranslate nohighlight">
+\[ts = g\ (f\ ws) = (g \comp f)\ ws\]</div>
+<p>where <span class="math notranslate nohighlight">\(ws\)</span> and <span class="math notranslate nohighlight">\(ts\)</span> are the wires and tracks, respectively.</p>
 <p>An alternative representation to the equational form is a <em>directed graph</em></p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-fe8c7c243fe9dac597204549d0718d2c34d86b0b.png" alt="digraph {
   rankdir=LR
@@ -83,13 +85,13 @@ The simplified expression for doing this was the chained application of two func
   g -&gt; end [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ts&lt;/font&gt;&lt;/i&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>where the functions <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> are vertices or <em>nodes</em> and the data <img class="math" src="../images/math/629700e10b537879acfad748fe8493f709c9cbc3.svg" alt="ws"/> and <img class="math" src="../images/math/a328852b9a1fcb944deebe5c43c442584dfcac2f.svg" alt="ts"/> are passed along arrows or <em>edges</em> that connect the nodes <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+<p>where the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are vertices or <em>nodes</em> and the data <span class="math notranslate nohighlight">\(ws\)</span> and <span class="math notranslate nohighlight">\(ts\)</span> are passed along arrows or <em>edges</em> that connect the nodes <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 The arrows indicate the flow of the data (or <em>data flow</em>) through the graph.</p>
 <p>Some observations:</p>
 <ul>
-<li><p>The function <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> returns hits that are unlabeled in the equational form.
-For the graph above, we explicitly label those hits as <img class="math" src="../images/math/d3355d1146e2644cbdb9d4889620734fd6e59e0b.svg" alt="hs"/> to emphasize that data are always passed along edges.
-If, however, the hits are not needed by any other function in the graph, the two functions <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> can be replaced by their composition <img class="math" src="../images/math/8b10cb1cd85eb8133f4b5c49ac125abd058aff6e.svg" alt="h=g \circ f"/></p>
+<li><p>The function <span class="math notranslate nohighlight">\(f\)</span> returns hits that are unlabeled in the equational form.
+For the graph above, we explicitly label those hits as <span class="math notranslate nohighlight">\(hs\)</span> to emphasize that data are always passed along edges.
+If, however, the hits are not needed by any other function in the graph, the two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> can be replaced by their composition <span class="math notranslate nohighlight">\(h=g \circ f\)</span></p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-4a903f1e4c988fc30650e7fbcd9563213617c0f4.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
@@ -105,16 +107,16 @@ If, however, the hits are not needed by any other function in the graph, the two
 <p>resulting in potential performance improvements in computational efficiency and program memory usage.</p>
 </li>
 <li><p>A directed graph can have no unterminated edges—i.e. an edge must have a source (the tail of the arrow) and a target (the head of the arrow).
-This means that whereas the equation does not need to specify where the <img class="math" src="../images/math/629700e10b537879acfad748fe8493f709c9cbc3.svg" alt="ws"/> wires originate (or where the <img class="math" src="../images/math/a328852b9a1fcb944deebe5c43c442584dfcac2f.svg" alt="ts"/> tracks end up), such locations must be specified in the graph.
+This means that whereas the equation does not need to specify where the <span class="math notranslate nohighlight">\(ws\)</span> wires originate (or where the <span class="math notranslate nohighlight">\(ts\)</span> tracks end up), such locations must be specified in the graph.
 Any node that has only outgoing edges is called a <em>source</em> (denoted by a solid dot), and any node that has only incoming edges is a <em>sink</em> (denoted by an encircled solid dot).</p></li>
 </ul>
 <section id="data-flow-with-sequences">
 <h2><span class="section-number">2.6.1. </span>Data Flow with Sequences<a class="headerlink" href="#data-flow-with-sequences" title="Link to this heading">¶</a></h2>
 <p>As mentioned earlier in <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, processing sequences of data is a critical aspect of obtaining physics results.
-The data-flow discussion in the previous section naturally maps to applying the functions <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> to elements of sequences.  Specifically <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
+The data-flow discussion in the previous section naturally maps to applying the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> to elements of sequences.  Specifically <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
 <ul class="simple">
-<li><p>Instead of the individual objects <img class="math" src="../images/math/629700e10b537879acfad748fe8493f709c9cbc3.svg" alt="ws"/>, <img class="math" src="../images/math/d3355d1146e2644cbdb9d4889620734fd6e59e0b.svg" alt="hs"/>, and <img class="math" src="../images/math/a328852b9a1fcb944deebe5c43c442584dfcac2f.svg" alt="ts"/> being passed along the edges, the sequences <img class="math" src="../images/math/6da5e2f8f97e3d01d4693aaec08b5faeb521de95.svg" alt="[ws_i]"/>, <img class="math" src="../images/math/c70f0cb82393c053298d949120a05a3daa94eee7.svg" alt="[hs_i]"/>, and <img class="math" src="../images/math/079a3b5f6efdfec5671375247bd9d008bb3d98de.svg" alt="[ts_i]"/> are passed.</p></li>
-<li><p>The functions <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> map to <img class="math" src="../images/math/69cdd41c321f6ba0894ca13c49af2f9636f25aa3.svg" alt="\transform{f}"/> and <img class="math" src="../images/math/04df49bd04b9a99d2d69feceb50f64bedb52a9ba.svg" alt="\transform{g}"/>, respectively.</p></li>
+<li><p>Instead of the individual objects <span class="math notranslate nohighlight">\(ws\)</span>, <span class="math notranslate nohighlight">\(hs\)</span>, and <span class="math notranslate nohighlight">\(ts\)</span> being passed along the edges, the sequences <span class="math notranslate nohighlight">\([ws_i]\)</span>, <span class="math notranslate nohighlight">\([hs_i]\)</span>, and <span class="math notranslate nohighlight">\([ts_i]\)</span> are passed.</p></li>
+<li><p>The functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> map to <span class="math notranslate nohighlight">\(\transform{f}\)</span> and <span class="math notranslate nohighlight">\(\transform{g}\)</span>, respectively.</p></li>
 </ul>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-5f88bbb489d0643643a0d7c564bcb621d71bc1c8.png" alt="digraph {
   rankdir=LR
@@ -136,19 +138,19 @@ The data-flow discussion in the previous section naturally maps to applying the 
                     &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>The above graph does not specify an implementation—assuming <img class="math" src="../images/math/6519dfa946372781927bf5e8b67a63df8e7370f3.svg" alt="f"/> and <img class="math" src="../images/math/92be0c792b4f45bf86816bc6811a664772eda6be.svg" alt="g"/> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+<p>The above graph does not specify an implementation—assuming <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
 Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.</p>
 <div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
 <p>Determine whether the choice between (a) and (b) can be decided in user code, by user configuration, or by something else.</p>
 </div>
 <p>One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
-As an illustration, consider the calculation of a sum of squares for all integers from 1 through <img class="math" src="../images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/>:</p>
-<div class="math">
-<p><img src="../images/math/84b698110eb96547d1d32a2736ad604f2f6f02e1.svg" alt="S(n) = \sum_{i=1}^n i^2"/></p>
-</div><p>This calculation requires three separate steps:</p>
+As an illustration, consider the calculation of a sum of squares for all integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[S(n) = \sum_{i=1}^n i^2\]</div>
+<p>This calculation requires three separate steps:</p>
 <ol class="arabic simple">
-<li><p>an unfold called <em>iota</em> that, given an integer <img class="math" src="../images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/>, generates a sequence of integers from 1 through <img class="math" src="../images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/>,</p></li>
+<li><p>an unfold called <em>iota</em> that, given an integer <span class="math notranslate nohighlight">\(n\)</span>, generates a sequence of integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>,</p></li>
 <li><p>a transformation called <em>square</em> that squares each integer in the sequence, and</p></li>
 <li><p>a fold called <em>sum</em> that sums all squared integers.</p></li>
 </ol>
@@ -223,7 +225,7 @@ By adopting a sequence-based representation of the sum-of-squares problem, the d
                      &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>In addition, the topology of the sequence-based graph remains the same regardless of the value of <img class="math" src="../images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/>; the topology of the object-based graph becomes intractable as <img class="math" src="../images/math/ebbbf6abec68f21602202f39e0e20bcdd16591e9.svg" alt="n"/> increases.</p>
+<p>In addition, the topology of the sequence-based graph remains the same regardless of the value of <span class="math notranslate nohighlight">\(n\)</span>; the topology of the object-based graph becomes intractable as <span class="math notranslate nohighlight">\(n\)</span> increases.</p>
 <p>The vast majority of graphs included in this design document adopt the sequence-based data-flow representation.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
@@ -303,7 +305,7 @@ It is also possible to invert the view of the graph such that the data are treat
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (45748cc) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (0d52624) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>

@@ -2,7 +2,7 @@
 Function Notation
 =================
 
-We refer to the function :math:`f: A \rightarrow B` as the function :math:`f` that takes an element of the set :math:`A` to an element of the set :math:`B`.
+The expression :math:`f: A \rightarrow B` represents the function :math:`f` that takes an element of the set :math:`A` to an element of the set :math:`B`.
 For example, the function :math:`flip: \mathbb{R} \rightarrow \mathbb{R}` accepts a real number (e.g. :math:`3.14`) and multiplies it by :math:`-1`, returning another real number (e.g. :math:`-3.14`).
 
 The types :math:`A` and :math:`B` are allowed to represent Cartesian products of sets (e.g. :math:`A = A_1 \times \dots \times A_n`), thus enabling multivariate functions.
@@ -22,7 +22,7 @@ To avoid cluttered expressions in this document, however, we adopt an alternativ
 
 .. math::
 
-   f(x) &\Longrightarrow f\ x\
+   f(x) &\Longrightarrow f\ x
 
    g(f(x)) &\Longrightarrow g\ (f\ x) = g\ f\ x \ .
 
