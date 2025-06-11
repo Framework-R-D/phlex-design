@@ -91,6 +91,6 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 
    .. rubric:: References
 
-.. [Wiki-framework] https://en.wikipedia.org/wiki/Software_framework
+.. [Wiki-framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
 .. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
 .. [SPEC-0] https://scientific-python.org/specs/spec-0000/
