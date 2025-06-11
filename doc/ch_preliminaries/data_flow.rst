@@ -69,7 +69,13 @@ The data-flow graph of individual objects looks like:
    :align: center
 
 where each number is passed along its own edge to the nodes performing the calculation.
-By adopting a sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:
+
+The summation formula for :math:`S(n)`, however, can be expressed in terms of higher-order functions that operate on sequences of data:
+
+.. math::
+   S(n) = \sum_{i=1}^n i^2 = \fold{+}{0}\ \transform{square}\ \unfold{\ge 0}{decrement}\ n
+
+By adopting this sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:
 
 .. graphviz:: unfold-transform-fold-hof.gv
    :align: center
