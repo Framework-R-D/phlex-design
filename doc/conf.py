@@ -60,9 +60,12 @@ needs_string_links = {
 
 # -- Rendering LaTeX math expressions-----------------------------------------
 
-# To create both LaTeX and HTML documentation, it is simplest for math expressions
-# to be rendered using LaTeX and then used as images in the HTML.  This is done using
-# the sphinx.ext.imgmath extension.
+# Math expressions must be renderable in both LaTeX and HTML.  To do this, we define
+# TeX-like macros in both LaTeX and MathJax (which is used for HTML rendering).
+# The LaTeX macros are defined in the latex_elements['preamble'] section, while the
+# MathJax macros are defined in the mathjax3_config dictionary.  The macros are
+# defined in a way that they can be used in both LaTeX and MathJax, so that the
+# same source can be used for both PDF and HTML rendering.
 #
 # N.B. To the extent possible, multiline equations SHOULD NOT be used in tables.  Sphinx's
 #      rST-to-LaTeX conversion introduces the amsmath 'split' environment, which does not
@@ -73,9 +76,6 @@ needs_string_links = {
 
 extra_packages = r"""
 \usepackage{bbm}
-\usepackage{relsize}
-\usepackage{xparse}
-\usepackage{etoolbox}
 """
 
 preliminary_watermark = r"""
@@ -83,31 +83,21 @@ preliminary_watermark = r"""
 \backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
-\NewDocumentCommand{\iset}{g}{
-  \IfNoValueTF{#1}
-    {\mathcal{I}}
-    {\mathcal{I}_#1}
-}
-
+\newcommand\one[0]{\mathbbm{1}}
+\newcommand\iset[1]{\mathcal{I}_{#1}}
+\newcommand\isetdefault[0]{\mathcal{I}}
 \newcommand\comp[0]{\circ}
 
-\NewDocumentCommand{\sequence}{mg}{
-  \IfNoValueTF{#2}
-    {[#1_i]_{i \in \iset}}
-    {[#1_i]_{i \in \iset{#2}}}
-}
+\newcommand\sequence[1]{\left[#1_i\right]_{i \in \mathcal{I}}}
+\newcommand\isequence[2]{\left[#1_i\right]_{i \in \mathcal{I}_{#2}}}
+\newcommand\fold[2]{\text{fold}(#1,\ #2)}
+\newcommand\pfold[3]{\text{fold}(#1,\ #2,\ #3)}
 
 \newcommand\transform[1]{\text{transform}(#1)}
 \newcommand\predicate[1]{\text{predicate}(#1)}
 \newcommand\filter[1]{\text{filter}(#1)}
 \newcommand\observe[1]{\text{observe}(#1)}
 \newcommand\unfold[3]{\text{unfold}(#1,\ #2,\ #3)}
-
-\NewDocumentCommand{\fold}{mmg}{
-  \IfNoValueTF{#3}
-    {\text{fold}(#1,\ #2)}
-    {\text{fold}(#1,\ #2,\ #3)}
-}
 
 % The following is needed to ensure consistent footnote ordering
 % within each LaTeX-rendered chapter:
@@ -127,10 +117,27 @@ new_commands = r"""
 \usepackage[width=\textwidth]{caption}
 """
 
-extensions.append('sphinx.ext.imgmath')
-imgmath_image_format='svg'
-imgmath_font_size = 13
-imgmath_latex_preamble=extra_packages + r"\usepackage{fouriernc}" + new_commands
+extensions.append('sphinx.ext.mathjax')
+mathjax3_config = {
+  "loader": {"load": ['[tex]/newcommand', '[tex]/textmacros']},
+  "tex": {
+      "packages": {'[+]': ['newcommand', 'textmacros']},
+      "macros": {
+          "one": ['\\Bbb{1}', 0],
+          "transform": ['\\textrm{transform}(#1)', 1],
+          "predicate": ['\\textrm{predicate}(#1)', 1],
+          "filter": ['\\textrm{filter}(#1)', 1],
+          "observe": ['\\textrm{observe}(#1)', 1],
+          "unfold": ['\\textrm{unfold}(#1, #2, #3)', 3],
+          "fold": ['\\textrm{fold}(#1, #2)', 2],
+          "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
+          "iset": ['\\mathcal{I}_{#1}', 1],
+          "sequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
+          "isequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
+          "comp": ['\\circ', 0],
+      }
+      }
+}
 
 # -- Code-highlighting roles -------------------------------------------------
 

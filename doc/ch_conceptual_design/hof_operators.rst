@@ -141,7 +141,7 @@ Observers
 +---------------------------------+--------------------------------------+------------------------+
 | **Observer**                    | Operator                             | Output sequence length |
 +=================================+======================================+========================+
-| :math:`[\ \ ] = \observe{f}\ a` | :math:`f: A \rightarrow \mathbbm{1}` | :math:`0`              |
+| :math:`[\ \ ] = \observe{f}\ a` | :math:`f: A \rightarrow \one`        | :math:`0`              |
 +---------------------------------+--------------------------------------+------------------------+
 
 As mentioned in :numref:`ch_preliminaries/functional_programming:Higher-order functions supported by Phlex`, observers are a special case of filters that always reject the data presented to them.
@@ -199,15 +199,15 @@ The following classes and functions are presumed to be experiment-defined and ar
 Partitioned Folds
 -----------------
 
-+-------------------------------------------------------+----------------------------------------------------------------------+------------------------+
-| **Partitioned fold**                                  | Operators                                                            | Output sequence length |
-+=======================================================+======================================================================+========================+
-| :math:`d = \fold{f}{\textit{init}}{\textit{part}}\ c` | :math:`f: D \times C \rightarrow D`                                  | :math:`|d| \le |c|`    |
-|                                                       +----------------------------------------------------------------------+                        |
-|                                                       | :math:`\textit{init}: \mathbbm{1} \rightarrow D`                     |                        |
-|                                                       +----------------------------------------------------------------------+                        |
-|                                                       | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
-+-------------------------------------------------------+----------------------------------------------------------------------+------------------------+
++--------------------------------------------------------+----------------------------------------------------------------------+------------------------+
+| **Partitioned fold**                                   | Operators                                                            | Output sequence length |
++========================================================+======================================================================+========================+
+| :math:`d = \pfold{f}{\textit{init}}{\textit{part}}\ c` | :math:`f: D \times C \rightarrow D`                                  | :math:`|d| \le |c|`    |
+|                                                        +----------------------------------------------------------------------+                        |
+|                                                        | :math:`\textit{init}: \one \rightarrow D`                            |                        |
+|                                                        +----------------------------------------------------------------------+                        |
+|                                                        | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
++--------------------------------------------------------+----------------------------------------------------------------------+------------------------+
 
 As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a sequence of data to a single value:
 
@@ -226,7 +226,7 @@ Instead of creating a single fold result, we thus use a *partitioned fold*:
 
    \begin{align*}
    [h_{(R\ 1)}&,\ \dots,\ h_{(R\ n)}] \\
-              &= \fold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
+              &= \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
    \end{align*}
 
 where :math:`h_{(R\ i)}` denotes the histogram for run :math:`i`, and :math:`m_{(R\ i,\ S\ j)}` is the track multiplicity for spill :math:`j` in run :math:`i`.
@@ -234,7 +234,7 @@ where :math:`h_{(R\ i)}` denotes the histogram for run :math:`i`, and :math:`m_{
 The above equation can be expressed more succinctly as:
 
 .. math::
-   [h_j]_{j \in \iset{\text{out}}} = \fold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}
+   [h_j]_{j \in \iset{\text{out}}} = \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}
 
 where
 
@@ -267,7 +267,7 @@ Initializing the Accumulator
    Change the domain type of :math:`\textit{init}`.
 
 A crucial ingredient of the fold is the *accumulator*, which stores the fold result while it is being formed.
-Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \mathbbm{1} \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result. [#finit]_
+Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \one \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result. [#finit]_
 Instead of invoking a function, an accumulator is often initialized with a value.
 However, in functional programming, a value can be represented by invoking a function that always returns the same result.
 Expressing an initializer as a function thus supports value-initialization while retaining the flexibility that may occasionally be required through functions.
@@ -311,7 +311,7 @@ Partitioned Unfolds
 |                                                         +----------------------------------------------------+                        |
 |                                                         | :math:`\textit{gen}: D \rightarrow D \times C`     |                        |
 |                                                         +----------------------------------------------------+                        |
-|                                                         | :math:`\textit{label}: \mathbbm{1} \rightarrow L`  |                        |
+|                                                         | :math:`\textit{label}: \one \rightarrow L`  |                        |
 +---------------------------------------------------------+----------------------------------------------------+------------------------+
 
 Unfolds are the opposite of folds, where the output sequence is larger than the input sequence :need:`DUNE 33`.
