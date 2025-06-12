@@ -24,8 +24,16 @@ digraph g {
 
  # TR-level products are yellow
  node [fillcolor=lightyellow]
- depos [label=<Depos<sub>1</sub>>]
+ depos [label=<Depos<br/>index: tr1<br/>creator: Geant>]
  dw [label=<DigitizedWaveform<sub>1</sub>>];
+ 
+ subgraph cluster_unfold_timebins {
+  label="Timebinned Depos sequence";
+  node [fillcolor=palegreen1];
+  tbd1 [label=<Depos<br/>index: tr1,b1<br/>creator: timebin>];
+  tbdots [label="...", shape=plaintext, style=rounded, margin=0]
+  tbdn [label=<Depos<br/>index: tr1,bn<br/>creator: timebin>];
+ }
 
  depos -> tb2 [style=invis]
 
@@ -34,10 +42,11 @@ digraph g {
 
   subgraph cluster_unfold {
    label="DriftedDepos sequence";
-   dd1 [label=<DriftedDepos<sub>1,1</sub>>];
+   node [fillcolor="0.583,0.1,1.0"];
+   dd1 [label=<DriftedDepos<br/>index:t1,d1<br/>creator: drift>];
    ddots [label="...", shape=plaintext, style=rounded, margin=0]
-   ddn [label=<DriftedDepos<sub>1,n</sub>>];
- }
+   ddn [label=<DriftedDepos<br/>index:t1,d1<br/>creator: drift>];
+  }
 
   subgraph cluster_conv {
     label="ConvolvedDepos sequence";
@@ -56,17 +65,14 @@ digraph g {
  # Data products are connected with data product sets by dotted lines.
  edge [style=dotted, arrowhead=none];
  tr1 -> depos;
- tb1 -> dd1;
- tb2 -> ddn;
- tb1 -> cd1;
- tb2 -> cdn;
- tb1 -> ncd1;
- tb2 -> ncdn;
+ tb1 -> tbd1;
+ tb2 -> tbdn;
  tr1 -> dw;
 
  # Algorithms creating data products are indicated by arrows with solid lines.
  edge [style=solid, arrowhead=normal];
- depos -> dd1 [label="unfold(drift)", lhead=cluster_unfold];
+ depos -> tbd1 [label="unfold(timebin)", lhead=cluster_unfold_timebins];
+ tbd1 -> dd1 [label="window(drift)", lhead=cluster_unfold];
  dd1 -> cd1 [label="transform(convolve)", ltail=cluster_unfold, lhead=cluster_conv];
  cd1 -> ncd1 [label="transform(noise)", ltail=cluster_conv, lhead=cluster_noise];
  ncd1 -> dw [label="fold(digitize)", ltail=cluster_noise];
