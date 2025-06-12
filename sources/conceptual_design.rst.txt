@@ -27,8 +27,8 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
    :caption: A sample workflow showing the different types of algorithm supported by Phlex (see :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions` for a list of the supported algorithms).
              Solid arrows show the flow of data through the graph.
              Dotted lines indicate communication of data through the IO system.
-             The *SpillDriver* (see section :numref:`ch_conceptual_design/driver:Framework Driver`) is configured to process all *spills* in the specified ROOT input files.
-             The *provide* algorithms are configured to read *SimHits* associated with *spills* from the ROOT input files and a single *Geometry* object from the GDML file.
+             The *driver* algorithm (see section :numref:`ch_conceptual_design/driver:Framework Driver`) is configured to process all *spills* in the specified ROOT input files.
+             One *provide* algorithm is configured to read *SimHits* associated with *spills* from the ROOT input files and the other reads a single *Geometry* object from the GDML file.
              For each *spill*, an *unfold* algorithm is configured to create a sequence of *Waveforms* objects, creating one *Waveforms* object in each *APA*.
              A *transform* algorithm is run on each of the *Waveforms* objects to create a *ClampedWaveforms* object.
              A *fold* algorithm is run on each of the *ClampedWaveforms* objects in a *spill* to create a *SummedWaveforms* object for the *spill*.
