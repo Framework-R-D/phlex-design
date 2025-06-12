@@ -12,7 +12,7 @@ In Phlex, a framework *driver* is a higher-order function that provides the cont
 Phlex provides a variety of framework drivers and also allows users to register their own drivers with the framework, to support different processing needs, e.g. :need:`DUNE 21` and :need:`DUNE 40`.
 
 The workflow shown in :numref:`workflow` is driven by a *driver(Spill)* that is configured to process all the *spills* in the specified ROOT input files.
-The *driver(Spill)* communicates with the IO system to to determine what *spills* are available for processing.
+The *driver(Spill)* communicates with the IO system to determine what *spills* are available for processing.
 All *driver* algorithms know about the single *job*-level data product set that corresponds to the entirety of the framework program execution (the job).
 The *driver* emits the single *job* object, and a sequence of *spill* objects, which cause the *provide* algorithms to create their products, thus starting the data flow through the graph.
 
