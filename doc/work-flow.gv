@@ -25,7 +25,7 @@ digraph {
   {
     rank=same;
     gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
-    driver [label="SpillDriver"];
+    driver [label="driver(Spill)", style="rounded,filled",fillcolor="palegreen1"];
     input [label="ROOT input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
   }
 
