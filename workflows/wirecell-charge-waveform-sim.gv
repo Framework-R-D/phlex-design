@@ -31,7 +31,7 @@ digraph g {
   label="Timebinned Depos sequence";
   node [fillcolor=palegreen1];
   tbd1 [label=<Depos<br/>index: tr1,b1<br/>creator: timebin>];
-  tbdots [label="...", shape=plaintext, style=rounded, margin=0]
+  tbddots [label="...", shape=plaintext, style=rounded, margin=0]
   tbdn [label=<Depos<br/>index: tr1,bn<br/>creator: timebin>];
  }
 
@@ -40,13 +40,26 @@ digraph g {
  # TB-level products are palegreen1
  node [fillcolor=palegreen1]
 
+
+ subgraph cluster_db {
+  peripheries=0
+  node [fillcolor="0.583,0.1,1.0", shape=box, style=filled];
+  db1 [label=<DriftBin<sub>1,1</sub>>];
+  dbdots [label="...", shape=plaintext, style=rounded, margin=0]
+  dbm [label=<DriftBin<sub>1,m</sub>>];
+ }
+
+ tr1 -> db1;
+ tr1 -> dbm;
+
   subgraph cluster_unfold {
    label="DriftedDepos sequence";
    node [fillcolor="0.583,0.1,1.0"];
    dd1 [label=<DriftedDepos<br/>index:t1,d1<br/>creator: drift>];
    ddots [label="...", shape=plaintext, style=rounded, margin=0]
-   ddn [label=<DriftedDepos<br/>index:t1,d1<br/>creator: drift>];
+   ddm [label=<DriftedDepos<br/>index:t1,dm<br/>creator: drift>];
   }
+
 
   subgraph cluster_conv {
     label="ConvolvedDepos sequence";
@@ -68,11 +81,13 @@ digraph g {
  tb1 -> tbd1;
  tb2 -> tbdn;
  tr1 -> dw;
+ db1 -> dd1;
+ dbm -> ddm;
 
  # Algorithms creating data products are indicated by arrows with solid lines.
  edge [style=solid, arrowhead=normal];
  depos -> tbd1 [label="unfold(timebin)", lhead=cluster_unfold_timebins];
- tbd1 -> dd1 [label="window(drift)", lhead=cluster_unfold];
+ tbd1 -> dd1 [label="window(drift)", ltail=cluster_unfold_timebins, lhead=cluster_unfold];
  dd1 -> cd1 [label="transform(convolve)", ltail=cluster_unfold, lhead=cluster_conv];
  cd1 -> ncd1 [label="transform(noise)", ltail=cluster_conv, lhead=cluster_noise];
  ncd1 -> dw [label="fold(digitize)", ltail=cluster_noise];
