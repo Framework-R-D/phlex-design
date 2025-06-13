@@ -8,17 +8,21 @@ digraph g {
     label=<<b>[sim]</b>>
     labeljust=left
     margin=45
-    unfold [label="unfold(drift)"]
+    unfold [label="unfold(timebin)"]
     noise [label="transform(noise)"]
     convolve [label="transform(convolve)"]
     fold[label="fold(digitize)"]
+    window1 [label="window(drift)"]
+    window2 [label="window(normalize)"]
   }
   sink [label="output", shape=point, style=filled]
 
   source -> unfold [label=< Depos<sub>i</sub>>]
-  unfold -> convolve [label=< DriftedDepos<sub>i,j</sub>>]
-  convolve -> noise [label=< ConvolvedDepos<sub>i,j</sub>>]
-  noise -> fold [label=< NoisyConvolvedDepos<sub>i,j</sub>>]
+  unfold -> window1 [label=< Depos<sub>i,j</sub>>]
+  window1 -> convolve [label=< Depos<sub>i,j</sub>>]
+  convolve -> window2 [label=< ConvolvedDepos<sub>i,j</sub>>]
+  window2 -> noise [label=< Corrected <br/>Convolved<br/>Depos<sub>i,j</sub><br/>>]
+  noise -> fold [label=< Noisy<br/>Convolved<br/>Depos<sub>i,j</sub><br/>>]
   fold -> sink [label=< DigitizedWaveform<sub>i</sub>>]
 
 }

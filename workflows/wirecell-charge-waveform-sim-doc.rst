@@ -21,7 +21,7 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
              The labels on the solid arrows denote the data products.
              The indices on the names of the data products imply the hierarchy of data product sets to which the data products belong.
              A single index denotes a data product that belongs to a *TriggerRecord*.
-             A double index denotes one that belongs to a *TimeBin*, created by the *unfold*, and associated with a *TriggerRecord*
+             A double index for *Depos* denotes one that belongs to a specific kind of binning  *TimeBin*, created by the *unfold*, and associated with a *TriggerRecord*
    :name: fig-wirecell-func
    :align: center
 
@@ -30,6 +30,7 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
              Shaded rectangles denote data product sets.
              Solid lines without an arrow show the relationship between hierarchical data product sets.
              Shaded rounded rectangles denote data products.
+             Different colors represent different hierarchies of data products.
              Dotted lines show the data product set to which each data product belongs.
              Unshaded rectangles denote data product sequences; the sequence consists of the data products within the rectangle.
              Solid lines with arrows show a higher order function (HOF) that creates the data product, or the data product sequence, to which the arrow points.

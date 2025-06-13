@@ -53,26 +53,48 @@ digraph g {
  tr1 -> dbm;
 
   subgraph cluster_unfold {
-   label="DriftedDepos sequence";
+   label="Drifted Depos sequence";
    node [fillcolor="0.583,0.1,1.0"];
-   dd1 [label=<DriftedDepos<br/>index:t1,d1<br/>creator: drift>];
+   dd1 [label=<Depos<br/>index:t1,d1<br/>creator: drift>];
    ddots [label="...", shape=plaintext, style=rounded, margin=0]
-   ddm [label=<DriftedDepos<br/>index:t1,dm<br/>creator: drift>];
+   ddm [label=<Depos<br/>index:t1,dm<br/>creator: drift>];
   }
 
 
   subgraph cluster_conv {
     label="ConvolvedDepos sequence";
-    cd1 [label=<ConvolvedDepos<sub>1,1</sub>>];
+    node [fillcolor="0.583,0.1,1.0"];
+    cd1 [label=<ConvolvedDepos<br/>index:t1,d1<br/>creator: convolve>];
     cdots [label="...", shape=plaintext, style=rounded, margin=0]
-    cdn [label=<ConvolvedDepos<sub>1,n</sub>>];
+    cdm [label=<ConvolvedDepos<br/>index:t1,dm<br/>creator: convolve>];
+  }
+
+ 
+
+subgraph cluster_cb {
+  peripheries=0
+  node [fillcolor="0.720,0.1,1.0", shape=box, style=filled];
+  cb1 [label=<ConvolutionBin<sub>1,1</sub>>];
+  cbdots [label="...", shape=plaintext, style=rounded, margin=0]
+  cbq [label=<ConvolutionBin<sub>1,q</sub>>];
+ }
+ tr1 -> cb1;
+ tr1 -> cbq;
+
+  subgraph cluster_conv_2 {
+    label="Corrected ConvolvedDepos sequence";
+    node [fillcolor="0.720,0.1,1.0"];
+    ccd1 [label=<ConvolvedDepos<br/>index:t1,c1<br/>creator: normalize>];
+    ccdots [label="...", shape=plaintext, style=rounded, margin=0]
+    ccdq [label=<ConvolvedDepos<br/>index:t1,cq<br/>creator: normalize>];
   }
 
  subgraph cluster_noise {
    label="NoisyConvolvedDepos sequence";
-   ncd1 [label=<NoisyConvolvedDepos<sub>1,1</sub>>];
+   node [fillcolor="0.720,0.1,1.0"];
+   ncd1 [label=<NoisyConvolvedDepos<br/>index:t1,c1<br/>creator: noise>];
    ndots [label="...", shape=plaintext, style=rounded, margin=0]
-   ncdn [label=<NoisyConvolvedDepos<sub>1,n</sub>>];
+   ncdq [label=<NoisyConvolvedDepos<br/>index:t1,cq<br/>creator: noise>];
  }
 
  # Data products are connected with data product sets by dotted lines.
@@ -83,12 +105,17 @@ digraph g {
  tr1 -> dw;
  db1 -> dd1;
  dbm -> ddm;
+ db1 -> cd1;
+ dbm -> cdm;
+ cb1 -> ccd1;
+ cbq -> ccdq; 
 
  # Algorithms creating data products are indicated by arrows with solid lines.
  edge [style=solid, arrowhead=normal];
  depos -> tbd1 [label="unfold(timebin)", lhead=cluster_unfold_timebins];
  tbd1 -> dd1 [label="window(drift)", ltail=cluster_unfold_timebins, lhead=cluster_unfold];
  dd1 -> cd1 [label="transform(convolve)", ltail=cluster_unfold, lhead=cluster_conv];
- cd1 -> ncd1 [label="transform(noise)", ltail=cluster_conv, lhead=cluster_noise];
+ cd1 -> ccd1 [label="window(normalize)", ltail=cluster_conv, lhead=cluster_conv_2];
+ ccd1 -> ncd1 [label="transform(noise)", ltail=cluster_conv_2, lhead=cluster_noise];
  ncd1 -> dw [label="fold(digitize)", ltail=cluster_noise];
 }
