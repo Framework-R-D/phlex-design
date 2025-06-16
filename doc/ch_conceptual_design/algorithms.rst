@@ -11,6 +11,13 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 where the types :cpp:`P1, Pn...` denote types of data products and the types :cpp:`Rm...` indicate :term:`resources <resource>`.
 Each registered function must accept at least one data product.
 
+The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.
+The latter is good practice regardless and commonly required by Python coding conventions:
+
+.. code:: python
+
+   def function_name(p1: P1, pn: Pn..., rm: Rm) -> return_type:
+
 We will first discuss the data-product and resource types in :numref:`ch_conceptual_design/algorithms:Input parameters`, followed by the return types in :numref:`ch_conceptual_design/algorithms:Return types`, and then the function name and optional qualifers in :numref:`ch_conceptual_design/algorithms:Function names and qualifiers`.
 
 Input Parameters
@@ -24,6 +31,8 @@ A data product of type :cpp:`P` may be presented to a C++ algorithm if the corre
 - :cpp:`phlex::handle<P>` — a lightweight object that provides read-only access to a data product as well as any metadata associated with it
 
 For each of these cases, the data product itself remains immutable.
+A Python algorithm can receive a `phlex::handle` or a direct reference to the data product.
+There is no equivalent language support for read-only access, but it will be enforced where possible.
 
 Whereas data products may to be copied, resources of type :cpp:`R` may not.
 The following types are therefore supported:
@@ -44,6 +53,8 @@ An algorithm's returned object must therefore model a created data-product type,
 
 - a *value* of type :cpp:`T`, or
 - a :cpp:`std::unique_ptr<T>`, where the created object is non-null.
+
+For Python, this means that an algorithm should not retain any external hard references to a returned object.
 
 The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:
 

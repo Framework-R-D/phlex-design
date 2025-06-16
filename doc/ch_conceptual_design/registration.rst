@@ -40,6 +40,9 @@ This can be achieved by in terms of the C++ *registration stanza*:
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
+A Python algorithm can be registered with its own companion C++ module or through the Python import helpers that make use of a pre-built, configurable, Phlex module.
+For the sake of consistency and ease of understaning, the helpers have the same naming and follow the same conventions as the C++ registration.
+
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement is a programming statement that closely follows the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` and is used to register an algorithm with the framework.
 
