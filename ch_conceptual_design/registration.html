@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (969751d) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (e6ac565) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=4615b4fa"></script>
+    <script src="../static/documentation_options.js?v=f50a041d"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (969751d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -99,6 +99,8 @@ This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
 </pre></div>
 </div>
 <p>The registration stanza is included in a C++ file that is compiled into a <a class="reference internal" href="../appendices/definitions.html#term-Module"><span class="xref std std-term">module</span></a>, a compiled library that is dynamically loadable by Phlex.</p>
+<p>A Python algorithm can be registered with its own companion C++ module or through the Python import helpers that make use of a pre-built, configurable, Phlex module.
+For the sake of consistency and ease of understaning, the helpers have the same naming and follow the same conventions as the C++ registration.</p>
 <p>The stanza is introduced by an <em>opener</em>—e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span></code>—followed by a <em>registration block</em>, a block of code between two curly braces that contains one or more <em>registration statements</em>.
 A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> and is used to register an algorithm with the framework.</p>
 <div class="math notranslate nohighlight">
@@ -297,14 +299,14 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (969751d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 12, 2025.
+      Last updated on Jun 16, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

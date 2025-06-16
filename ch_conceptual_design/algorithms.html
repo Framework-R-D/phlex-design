@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Algorithms &#8212; Phlex 0 (969751d) documentation</title>
+    <title>3.3. Algorithms &#8212; Phlex 0 (e6ac565) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=4615b4fa"></script>
+    <script src="../static/documentation_options.js?v=f50a041d"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (969751d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
@@ -71,6 +71,11 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 </div>
 <p>where the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...</span></code> denote types of data products and the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code> indicate <a class="reference internal" href="../appendices/definitions.html#term-Resource"><span class="xref std std-term">resources</span></a>.
 Each registered function must accept at least one data product.</p>
+<p>The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with <cite>Numba</cite>), bound (e.g. with <cite>ctypes</cite>), or annotated.
+The latter is good practice regardless and commonly required by Python coding conventions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">P1</span><span class="p">,</span> <span class="n">pn</span><span class="p">:</span> <span class="n">Pn</span><span class="o">...</span><span class="p">,</span> <span class="n">rm</span><span class="p">:</span> <span class="n">Rm</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">return_type</span><span class="p">:</span>
+</pre></div>
+</div>
 <p>We will first discuss the data-product and resource types in <a class="reference internal" href="#input-parameters"><span class="std std-numref">Section 3.3.1</span></a>, followed by the return types in <a class="reference internal" href="#return-types"><span class="std std-numref">Section 3.3.2</span></a>, and then the function name and optional qualifers in <a class="reference internal" href="#function-names-and-qualifiers"><span class="std std-numref">Section 3.3.3</span></a>.</p>
 <section id="input-parameters">
 <h2><span class="section-number">3.3.1. </span>Input Parameters<a class="headerlink" href="#input-parameters" title="Link to this heading">¶</a></h2>
@@ -81,7 +86,9 @@ Each registered function must accept at least one data product.</p>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">P</span></code> — the data product is copied into an object (assumes data product is copyable) <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">phlex</span><span class="o">::</span><span class="n">handle</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span></code> — a lightweight object that provides read-only access to a data product as well as any metadata associated with it</p></li>
 </ul>
-<p>For each of these cases, the data product itself remains immutable.</p>
+<p>For each of these cases, the data product itself remains immutable.
+A Python algorithm can receive a <cite>phlex::handle</cite> or a direct reference to the data product.
+There is no equivalent language support for read-only access, but it will be enforced where possible.</p>
 <p>Whereas data products may to be copied, resources of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span></code> may not.
 The following types are therefore supported:</p>
 <ul class="simple">
@@ -101,6 +108,7 @@ An algorithm’s returned object must therefore model a created data-product typ
 <li><p>a <em>value</em> of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code>, or</p></li>
 <li><p>a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code>, where the created object is non-null.</p></li>
 </ul>
+<p>For Python, this means that an algorithm should not retain any external hard references to a returned object.</p>
 <p>The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:</p>
 <ul class="simple">
 <li><p><em>bare pointer types</em>, such as <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span><span class="o">*</span></code> or <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span><span class="w"> </span><span class="k">const</span><span class="o">*</span></code></p></li>
@@ -201,14 +209,14 @@ However, using such functions is highly discouraged as it indicates a class inst
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (969751d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 12, 2025.
+      Last updated on Jun 16, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
