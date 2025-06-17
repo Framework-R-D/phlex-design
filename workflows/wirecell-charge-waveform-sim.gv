@@ -1,6 +1,7 @@
 digraph g {
  fontname="sans-serif";
  compound=true;
+ scale="5%";
 
  # All data product sets are in rectangular nodes
  node [shape=box, style=filled];
@@ -24,15 +25,15 @@ digraph g {
 
  # TR-level products are yellow
  node [fillcolor=lightyellow]
- depos [label=<Depos<br/>index: tr1<br/>creator: Geant>]
+ depos [label=<Depos<br/>index: t1<br/>creator: Geant>]
  dw [label=<DigitizedWaveform<sub>1</sub>>];
  
  subgraph cluster_unfold_timebins {
   label="Timebinned Depos sequence";
   node [fillcolor=palegreen1];
-  tbd1 [label=<Depos<br/>index: tr1,b1<br/>creator: timebin>];
+  tbd1 [label=<Depos<br/>index: t1,b1<br/>creator: timebin>];
   tbddots [label="...", shape=plaintext, style=rounded, margin=0]
-  tbdn [label=<Depos<br/>index: tr1,bn<br/>creator: timebin>];
+  tbdn [label=<Depos<br/>index: t1,bn<br/>creator: timebin>];
  }
 
  depos -> tb2 [style=invis]

@@ -1,28 +1,28 @@
 digraph g {
   size="8,5.5"
-  node [shape=rounded, style=filled, fillcolor=lightyellow];
+  node [shape=rounded, style=filled];
 
-  source [label="input", shape=point, style=filled]
+  source [label="input", shape=circle, fillcolor=lightyellow]
 
   subgraph cluster_sim {
     label=<<b>[sim]</b>>
     labeljust=left
     margin=45
-    unfold [label="unfold(timebin)"]
-    noise [label="transform(noise)"]
-    convolve [label="transform(convolve)"]
-    fold[label="fold(digitize)"]
-    window1 [label="window(drift)"]
-    window2 [label="window(normalize)"]
+    unfold [label="unfold(timebin)", fillcolor=palegreen1]
+    window1 [label="window(drift)", fillcolor="0.583,0.1,1.0"]
+    convolve [label="transform(convolve)", fillcolor="0.583,0.1,1.0"]
+    window2 [label="window(normalize)", fillcolor="0.720,0.1,1.0"]
+    noise [label="transform(noise)", fillcolor="0.720,0.1,1.0"]
+    fold[label="fold(digitize)", fillcolor=lightyellow]
   }
   sink [label="output", shape=point, style=filled]
 
-  source -> unfold [label=< Depos<sub>i</sub>>]
-  unfold -> window1 [label=< Depos<sub>i,j</sub>>]
-  window1 -> convolve [label=< Depos<sub>i,j</sub>>]
-  convolve -> window2 [label=< ConvolvedDepos<sub>i,j</sub>>]
-  window2 -> noise [label=< Corrected <br/>Convolved<br/>Depos<sub>i,j</sub><br/>>]
-  noise -> fold [label=< Noisy<br/>Convolved<br/>Depos<sub>i,j</sub><br/>>]
-  fold -> sink [label=< DigitizedWaveform<sub>i</sub>>]
+  source -> unfold [label=< Depos<sub>ti</sub>>]
+  unfold -> window1 [label=< Depos<sub>ti,bj</sub>>]
+  window1 -> convolve [label=< Depos<sub>ti,dj</sub>>]
+  convolve -> window2 [label=< ConvolvedDepos<sub>ti,dj</sub>>]
+  window2 -> noise [label=< Corrected <br/>Convolved<br/>Depos<sub>ti,cj</sub><br/>>]
+  noise -> fold [label=< Noisy<br/>Convolved<br/>Depos<sub>ti,cj</sub><br/>>]
+  fold -> sink [label=< DigitizedWaveform<sub>ti</sub>>]
 
 }

@@ -14,23 +14,22 @@ Each diagram shows the workflow as a graph.
 Because the processing we show does not need to span (or, equivalently, *fold over*) multiple trigger records, we show only one trigger record in the diagrams.
 
 .. graphviz:: wirecell-charge-waveform-sim-func.gv
-   :caption: A possible Wire-Cell charged waveform simulation workflow, in the function-centric view.
+   :caption: A possible Wire-Cell charged waveform simulation workflow in the function-centric view.
              The outer box encloses all of the higher order functions (HOFs) that make up the *sim* workflow.
-             Shaded rectangles denote the HOFs and the user-supplied algorithms used in them.
+             Colored rectangles denote the HOFs and the user-supplied algorithms used in them.
              The solid arrow shows the data flow from one HOF to the next one in the workflow.
              The labels on the solid arrows denote the data products.
-             The indices on the names of the data products imply the hierarchy of data product sets to which the data products belong.
-             A single index denotes a data product that belongs to a *TriggerRecord*.
-             A double index for *Depos* denotes one that belongs to a specific kind of binning  *TimeBin*, created by the *unfold*, and associated with a *TriggerRecord*
+             The subscripts on the data product names show the index metadata that associate the product with the correct data product sets.
    :name: fig-wirecell-func
    :align: center
 
 .. graphviz:: wirecell-charge-waveform-sim.gv
-   :caption: A possible Wire-Cell charged waveform simulation workflow, in the data-centric view.
-             Shaded rectangles denote data product sets.
+   :caption: A possible Wire-Cell charged waveform simulation workflow in the data-centric view.
+             Colored rectangles denote data product sets.
              Solid lines without an arrow show the relationship between hierarchical data product sets.
-             Shaded rounded rectangles denote data products.
-             Different colors represent different hierarchies of data products.
+             Colored rounded rectangles denote data products.
+             The label of the rounded rectangle show the programming language data type of the data product, the index metadata that associate the product with the correct data product sets, and the algorithm that was the creator of the product.
+             Different colors represent different hierarchies of data product sets.
              Dotted lines show the data product set to which each data product belongs.
              Unshaded rectangles denote data product sequences; the sequence consists of the data products within the rectangle.
              Solid lines with arrows show a higher order function (HOF) that creates the data product, or the data product sequence, to which the arrow points.
@@ -38,7 +37,17 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
    :name: fig-wirecell
    :align: center
 
+Both diagrams use colors to indicate different levels in data product set hierarchies.
+There are three hierarchies represented.
+Each has *TriggerRecord* as the top level.
+The other three data product sets (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different hierarchy, below *TriggerRecord*.
+
 The *sim* workflow (comprising the *drift*, *convolve*, *noise* and *digitize* steps) begins with the simulated *Depos* for a trigger record.
+There is one such *Depos* object in each *TriggerRecord*; these objects is indicated by an index of the form *ti*  indicating the *it* *TriggerRecord*.
+This *Depos* object is also associated with its "creator" algorithm, here called *Geant*.
+
+
+
 The *Depos* object is the input to an algorithm that deals with the drift of the charge, creating *DriftedDepos* information.
 It is the assumption of this analysis that the generated information from this algorithm is too large to hold in memory at one time, so an *unfold* higher order function (HOF) is used to create a sequence of *DriftedDepos* objects, one for each *time bin* that the unfold creates.
 This unfold defines both the time bins themselves, and the *DriftedDepos* object that is put into each of the generated time bins.

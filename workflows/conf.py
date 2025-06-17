@@ -23,6 +23,8 @@ latex_elements = {
     'fontpkg': r'\usepackage{bookman}',
     'preamble': r'''
        \usepackage{microtype}
+       \usepackage{caption}
+       \captionsetup{font=footnotesize}
        \usepackage{hyperref}
        ''',
 }
