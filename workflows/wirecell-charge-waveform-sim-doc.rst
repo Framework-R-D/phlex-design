@@ -50,6 +50,7 @@ This *Depos* object is passed as input to the *unfold* higher order function (HO
 This HOF employs a user-written *timebin* algorithm to make smaller *Depos* objects (chunks), one in each time bin.
 The output of the *unfold* is a sequence of *Depos* objects, each labeled with a two-part index, *ti* and *bj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* time bin in that *TriggerRecord*.
 This sequence is labeled "Timebinned Depos".
+The *Depos* object in this sequence is also associated with its metadata that indicates which algorithm created them, in this case an algorithm called *timebin*.
 
 The time-binned *Depos* sequence is then passed to another HOF, in this case a *window* function.
 The *window* function applies a user-supplied *drift* algorithm to each consecutive pair of *Depos*  objects in the time-binned *Depos* sequence, yielding a new *Depos* object.
@@ -57,12 +58,14 @@ Each pair of consecutive time bins specifies a new *drift bin*, each of which co
 Note that each *drift bin* represents some span of time, but a different one than is represented by the *time bins* created by the earlier *unfold*.
 The output of the *window* is a sequence of *Depos* objects, each labeled with a two-part index, *ti* and *dj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* drift bin in that *TriggerRecord*.
 This new sequence is labeled "Drifted Depos".
+The *Depos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *drift*.
 
 The drifted *Depos* sequence is then passed to another HOF, in this case a *transform*.
 The *transform* applies a user-supplied *convolve* algorithm to each *Depos* object in the drifted *Depos* sequence, yielding a new *ConvolvedDepos* object for each time bin.
 Each *ConvolvedDepos* object is associated with its metadata that indicates which algorithm created it, in this case an algorithm called *convolve*.
 They are labeled with the same two-part index, *ti* and *dj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* drift bin in that *TriggerRecord*.
 The new sequence is labeled "Convolved Depos".
+The *ConvolvedDepos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *convolve*.
 
 The convolved *Depos* sequence is then passed to the next HOF, which is another *window*.
 This *window* function applies a user-supplied *normalize* algorithm to each consecutive pair of *ConvolvedDepos* objects in the convolved *Depos* sequence, yielding a new *ConvolvedDepos* object.
@@ -70,35 +73,19 @@ Each pair of consecutive convolved *Depos* objects specifies a new *convolution 
 Note that each *convolution bin* also represents some span of time, but a different one than is represented by the *time bins* or *drift bins*  created by the earlier *unfolds*.
 The output of the *window* is a sequence of *ConvolvedDepos* objects, each labeled with a two-part index, *ti* and *cj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* convolution bin in that *TriggerRecord*.
 This new sequence is labeled "Corrected ConvolvedDepos".
+The *ConvolvedDepos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *normalize*.
+
 
 The corrected *ConvolvedDepos* sequence is then passed to another HOF, in this case a *transform* function.
 The *transform* applies a user-supplied *noise* algorithm to each *ConvolvedDepos* object in the corrected *ConvolvedDepos* sequence, yielding a new *NoisyConvolvedDepos* object for each convolution bin.
 Each *NoisyConvolvedDepos* object is associated with its metadata that indicates which algorithm created it, in this case an algorithm called *noise*.
 They are labeled with the same two-part index, *ti* and *cj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* convolution bin in that *TriggerRecord*.
 The new sequence is labeled "Noisy ConvolvedDepos".
+The *NoisyConvolvedDepos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *noise*.
 
-The final step of 
-
-
-
-
-
-
-
-The *Depos* object is the input to an algorithm that deals with the drift of the charge, creating *DriftedDepos* information.
-It is the assumption of this analysis that the generated information from this algorithm is too large to hold in memory at one time, so an *unfold* higher order function (HOF) is used to create a sequence of *DriftedDepos* objects, one for each *time bin* that the unfold creates.
-This unfold defines both the time bins themselves, and the *DriftedDepos* object that is put into each of the generated time bins.
-The period of time covered by each time bin, and the number of time bins, and the contents of the *DriftedDepos* object put into each time bin, are under the control of the user-specified *drift* algorithm that is given to the unfold function.
-
-Each of the *DriftedDepos* objects is then passed as input to another HOF, in this case a *transform*.
-The transform applies the user-supplied *convolve* algorithm to each of the *DriftedDepos* objects in the *DriftedDepos* sequence, yielding a *ConvolvedDepos* object for each time bin.
-
-Next, another transform is applied to the *ConvolvedDepos* sequence, in this case applying a user-supplied *noise* algorithm, yielding a *NoisyConvolvedDepos* object for each time bin.
-
-Finally, a *fold* HOF is applied to the *NoisyConvolvedDepos* data product sequence corresponding to each trigger record, to create a single *DigitizedWaveform* object associated with the trigger record.
-This fold employs a user-written *digitize* algorithm, which is presented with one *NoisyConvolvedDepos* object, and a *DigitizedWaveform* object to be updated, each time it is called.
-The *digitize* algorithm is called one for each *NoisyConvolvedDepos* object in the sequence.
-When the fold is complete, the then-finalized *DigitizedWaveform* object is put into the trigger record, where it is available to downstream algorithms.
+The final step of workflow is to apply a *fold* higher order function (HOF) to the *NoisyConvolvedDepos* sequence.
+This *fold* employs a user-written *digitize* algorithm, which produces a single *DigitizedWaveform* object for each trigger record.
+There is one such *DigitizedWaveform* object in each *TriggerRecord*; this object is indicated by an index of the form *i*  indicating the *ith* *TriggerRecord*.
 
 .. rubric:: Footnotes
 
