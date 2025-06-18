@@ -43,8 +43,45 @@ Each has *TriggerRecord* as the top level.
 The other three data product sets (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different hierarchy, below *TriggerRecord*.
 
 The *sim* workflow (comprising the *drift*, *convolve*, *noise* and *digitize* steps) begins with the simulated *Depos* for a trigger record.
-There is one such *Depos* object in each *TriggerRecord*; these objects is indicated by an index of the form *ti*  indicating the *it* *TriggerRecord*.
-This *Depos* object is also associated with its "creator" algorithm, here called *Geant*.
+There is one such *Depos* object in each *TriggerRecord*; this object is indicated by an index of the form *ti*  indicating the *ith* *TriggerRecord*.
+This *Depos* object is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *Geant*.
+
+This *Depos* object is passed as input to the *unfold* higher order function (HOF).
+This HOF employs a user-written *timebin* algorithm to make smaller *Depos* objects (chunks), one in each time bin.
+The output of the *unfold* is a sequence of *Depos* objects, each labeled with a two-part index, *ti* and *bj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* time bin in that *TriggerRecord*.
+This sequence is labeled "Timebinned Depos".
+
+The time-binned *Depos* sequence is then passed to another HOF, in this case a *window* function.
+The *window* function applies a user-supplied *drift* algorithm to each consecutive pair of *Depos*  objects in the time-binned *Depos* sequence, yielding a new *Depos* object.
+Each pair of consecutive time bins specifies a new *drift bin*, each of which contains a single (drifted) *Depos* object.
+Note that each *drift bin* represents some span of time, but a different one than is represented by the *time bins* created by the earlier *unfold*.
+The output of the *window* is a sequence of *Depos* objects, each labeled with a two-part index, *ti* and *dj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* drift bin in that *TriggerRecord*.
+This new sequence is labeled "Drifted Depos".
+
+The drifted *Depos* sequence is then passed to another HOF, in this case a *transform*.
+The *transform* applies a user-supplied *convolve* algorithm to each *Depos* object in the drifted *Depos* sequence, yielding a new *ConvolvedDepos* object for each time bin.
+Each *ConvolvedDepos* object is associated with its metadata that indicates which algorithm created it, in this case an algorithm called *convolve*.
+They are labeled with the same two-part index, *ti* and *dj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* drift bin in that *TriggerRecord*.
+The new sequence is labeled "Convolved Depos".
+
+The convolved *Depos* sequence is then passed to the next HOF, which is another *window*.
+This *window* function applies a user-supplied *normalize* algorithm to each consecutive pair of *ConvolvedDepos* objects in the convolved *Depos* sequence, yielding a new *ConvolvedDepos* object.
+Each pair of consecutive convolved *Depos* objects specifies a new *convolution bin*, each of which contains a single (convolved) *ConvolvedDepos* object.
+Note that each *convolution bin* also represents some span of time, but a different one than is represented by the *time bins* or *drift bins*  created by the earlier *unfolds*.
+The output of the *window* is a sequence of *ConvolvedDepos* objects, each labeled with a two-part index, *ti* and *cj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* convolution bin in that *TriggerRecord*.
+This new sequence is labeled "Corrected ConvolvedDepos".
+
+The corrected *ConvolvedDepos* sequence is then passed to another HOF, in this case a *transform* function.
+The *transform* applies a user-supplied *noise* algorithm to each *ConvolvedDepos* object in the corrected *ConvolvedDepos* sequence, yielding a new *NoisyConvolvedDepos* object for each convolution bin.
+Each *NoisyConvolvedDepos* object is associated with its metadata that indicates which algorithm created it, in this case an algorithm called *noise*.
+They are labeled with the same two-part index, *ti* and *cj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* convolution bin in that *TriggerRecord*.
+The new sequence is labeled "Noisy ConvolvedDepos".
+
+The final step of 
+
+
+
+
 
 
 
