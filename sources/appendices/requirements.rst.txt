@@ -54,6 +54,8 @@ Conceptual requirements
 
     The framework shall run on widely-used scientific computing systems in order to fully utilize DUNE computing resources.
 
+- See :numref:`introduction:Portability`
+
 .. req:: Algorithm hardware requirements
     :collapse:
     :id: DUNE 9
@@ -74,6 +76,8 @@ Conceptual requirements
     :tags: General, Accelerators, Reproducibility
 
     The framework shall support running algorithms that require a GPU.
+
+- See :numref:`introduction:Portability`
 
 .. req:: Support for multiple programming languages
     :collapse:
@@ -264,7 +268,7 @@ Conceptual requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`, :numref:`ch_conceptual_design/algorithms:Algorithms`
+- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`, :numref:`ch_conceptual_design/algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:
@@ -560,6 +564,8 @@ Conceptual requirements
     :tags: Error handling
 
     The framework shall attempt a graceful shutdown by default.
+
+- See :numref:`introduction:Usability`
 
 =======================
 Supporting requirements
@@ -1109,7 +1115,7 @@ Supporting requirements
 
     The framework shall operate independently of unique characteristics of existing hardware.
 
-- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
+- See :numref:`introduction:Portability`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
 
 .. req:: Command line interface (CLI)
     :collapse:
