@@ -59,6 +59,44 @@ The Phlex design therefore:
 - requires recording the :term:`provenance` of every created :term:`data product` :need:`DUNE 121`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
+-----------
+Portability
+-----------
+
+Phlex is intended to be used on a variety of computing systems to take advantage of the disparate computing resources available to each stakeholder :need:`DUNE 8`.
+This means the framework:
+
+- must support data-processing by algorithms that execute on GPUs :need:`DUNE 11`, in addition to those that execute on CPUs,
+- may not generally rely on hardware characteristics unique to a particular platform :need:`DUNE 63`,
+- must favor standardized programming-language features.
+
+---------
+Usability
+---------
+
+Although usability is not a formal stakeholder requirement, physicists expect various behaviors and features that ease one's interaction with a data-processing framework.
+Phlex strives to meet this expectation in various ways:
+
+    *minimizing boilerplate code*
+        Some data-processing frameworks in HEP adopt an object-oriented design, where stateful framework-dependent objects are required to register inherently framework-agnostic algorithms with a framework program.
+        Phlex does not generally require physics algorithms to depend on any framework libraries :need:`DUNE 43`.
+        This design, therefore, substantially reduces the amount of code required for the interface between physics algorithms and the framework itself (see :numref:`introduction:Framework Independence`).
+
+    *failing early*
+        To avoid needless computation, Phlex will fail as early as possible in the presence of an error.
+        This means that, for C++ usage, compile-time failures will be favored over run-time exceptions.
+
+    *meaningful error messages*
+        When failures within the scope of the framework occur [#errors]_, the reported error messages will be as descriptive as possible.
+        Messages will typically include diagnostic information about the data being processed when the error occurred as well as the algorithms that were executed on that data.
+
+    *graceful shutdown*
+        For run-time errors, the default behavior of Phlex is to end the framework program gracefully :need:`DUNE 134`.
+        A graceful shutdown refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (such as databases), etc. before the program ends.
+        This ensures that no resources are left in ill-defined states and that all output files are readable and valid.
+
+
+
 =====================
 Programming Languages
 =====================
@@ -84,6 +122,7 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.
          In such a case, the stakeholder requirements of one experiment may not negate those of another (particularly DUNE).
+.. [#errors] Any errors that occur within an algorithm must be handled by the algorithm itself, unless the intention of the algorithm author is to allow the error to propagate up to the code that invokes the algorithm.
 .. [#f2] As of this writing, Phlex supports the C++23 standard.
 .. [#f3] Phlex adheres to SPEC 0 [SPEC-0]_ in supporting Python versions and core package dependencies.
 
