@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.6. Data Flow &#8212; Phlex 0 (e6ac565) documentation</title>
+    <title>2.6. Data Flow &#8212; Phlex 0 (6f329b4) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=f50a041d"></script>
+    <script src="../static/documentation_options.js?v=5725bef1"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (6f329b4) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
@@ -151,11 +151,11 @@ As an illustration, consider the calculation of a sum of squares for all integer
 <p>This calculation requires three separate steps:</p>
 <ol class="arabic simple">
 <li><p>an unfold called <em>iota</em> that, given an integer <span class="math notranslate nohighlight">\(n\)</span>, generates a sequence of integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>,</p></li>
-<li><p>a transformation called <em>square</em> that squares each integer in the sequence, and</p></li>
+<li><p>a transformation that squares each integer in the sequence using an algorithm called <em>square</em> , and</p></li>
 <li><p>a fold called <em>sum</em> that sums all squared integers.</p></li>
 </ol>
 <p>The data-flow graph of individual objects looks like:</p>
-<div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-65ff28bd41cf52b82260fbc7c9ba5177b211c942.png" alt="digraph {
+<div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-e5ade7b0e86ddd51a9456d39243a607e81745b72.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
 
@@ -192,16 +192,18 @@ As an illustration, consider the calculation of a sum of squares for all integer
                            &lt;/table&gt;&gt;]
 
   sum -&gt; end [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
-                        &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S(n)&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                        &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S&amp;thinsp;&lt;/i&gt;(&lt;i&gt;n&lt;/i&gt;)&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
                       &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
 <p>where each number is passed along its own edge to the nodes performing the calculation.</p>
-<p>The summation formula for <span class="math notranslate nohighlight">\(S(n)\)</span>, however, can be expressed in terms of higher-order functions that operate on sequences of data:</p>
+<p>The summation formula for <span class="math notranslate nohighlight">\(S(n)\)</span>, however, can be expressed in terms of higher-order functions that reflect the three steps above:</p>
 <div class="math notranslate nohighlight">
-\[S(n) = \sum_{i=1}^n i^2 = \fold{+}{0}\ \transform{square}\ \unfold{\ge 0}{decrement}\ n\]</div>
-<p>By adopting this sequence-based representation of the sum-of-squares problem, the data-flow graph is considerably simplified:</p>
-<div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-ee996a84b9e9795f93b1174786d84084819d3b00.png" alt="digraph {
+\[S(n) = \sum_{i=1}^n i^2 = \underbrace{\fold{+}{0}}_{3.\ \textcolor{blue}{\textit{sum}}}\ \underbrace{\transform{\textcolor{blue}{\textit{square}}}}_{2.}\ \underbrace{\unfold{\ge 0}{\textit{decrement}}}_{1.\ \textcolor{blue}{\textit{iota}}}\ n\]</div>
+<p>Note that the unfold <span class="math notranslate nohighlight">\(\textit{iota}\)</span> takes two operators: the predicate <span class="math notranslate nohighlight">\(\ge 0\)</span>, which tests whether the next generated number is greater than or equal to zero, and the <span class="math notranslate nohighlight">\(\textit{decrement}\)</span> operator, which decrements the next generated number by 1. <a class="footnote-reference brackets" href="#f3" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>
+Once the predicate returns false, the unfold stops generating numbers.</p>
+<p>By adopting the HOF representation of the sum-of-squares problem, the data-flow graph is simplified:</p>
+<div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-1529c272d3b9128faaf5830cf5dd1f201b918686.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
 
@@ -224,7 +226,7 @@ As an illustration, consider the calculation of a sum of squares for all integer
                            &lt;/table&gt;&gt;]
 
   sum -&gt; end [label=&lt;&lt;table cellpadding=&quot;1&quot; border=&quot;0&quot; cellborder=&quot;0&quot;&gt;
-                       &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S(n)&lt;/i&gt;&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
+                       &lt;tr&gt;&lt;td&gt;&lt;font color=&quot;red&quot;&gt;&lt;i&gt;S&amp;thinsp;&lt;/i&gt;(&lt;i&gt;n&lt;/i&gt;)&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;
                      &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
@@ -240,6 +242,11 @@ It is also possible to invert the view of the graph such that the data are treat
 <aside class="footnote brackets" id="f2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <p>In Haskell (and, similarly, in category theory), this transformation is achieved through the <cite>List/fmap</cite> functor.</p>
+</aside>
+<aside class="footnote brackets" id="f3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>The same data-flow can equivalently be represented with an unfold that uses the predicate <span class="math notranslate nohighlight">\(\le n\)</span> and the operator <span class="math notranslate nohighlight">\(\textit{increment}\)</span>, but starts with an initial value of 0.
+This alternative representation, however, requires an unfold that depends on the value of <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </aside>
 </aside>
 </section>
@@ -308,14 +315,14 @@ It is also possible to invert the view of the graph such that the data are treat
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (e6ac565) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (6f329b4) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 16, 2025.
+      Last updated on Jun 20, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
