@@ -21,6 +21,6 @@ digraph {
                            </table>>]
 
   sum -> end [label=<<table cellpadding="1" border="0" cellborder="0">
-                       <tr><td><font color="red"><i>S(n)</i></font></td></tr>
+                       <tr><td><font color="red"><i>S&thinsp;</i>(<i>n</i>)</font></td></tr>
                      </table>>]
 }
