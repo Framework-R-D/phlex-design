@@ -66,8 +66,10 @@ Each *ConvolvedDepos* object is associated with its metadata that indicates whic
 They are labeled with the same two-part index, *ti* and *dj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* drift bin in that *TriggerRecord*.
 The new sequence is labeled "Convolved Depos".
 The *ConvolvedDepos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *convolve*.
+The *ConvolvedDepos* objects in this sequence need adjustment to correctly take into account some "leakage" between adjacent (in time) *ConvolvedDepos* objects.
 
-The convolved *Depos* sequence is then passed to the next HOF, which is another *window*.
+This correction is done by the next step.
+The convolved *Depos* sequence is passed to the next HOF, which is another *window*.
 This *window* function applies a user-supplied *normalize* algorithm to each consecutive pair of *ConvolvedDepos* objects in the convolved *Depos* sequence, yielding a new *ConvolvedDepos* object.
 Each pair of consecutive convolved *Depos* objects specifies a new *convolution bin*, each of which contains a single (convolved) *ConvolvedDepos* object.
 Note that each *convolution bin* also represents some span of time, but a different one than is represented by the *time bins* or *drift bins*  created by the earlier *unfolds*.
@@ -83,9 +85,9 @@ They are labeled with the same two-part index, *ti* and *cj*, which indicates an
 The new sequence is labeled "Noisy ConvolvedDepos".
 The *NoisyConvolvedDepos* object in this sequence is also associated with its metadata that indicates which algorithm created it, in this case an algorithm called *noise*.
 
-The final step of workflow is to apply a *fold* higher order function (HOF) to the *NoisyConvolvedDepos* sequence.
+The final step of the workflow is to apply a *fold* higher order function (HOF) to the *NoisyConvolvedDepos* sequence.
 This *fold* employs a user-written *digitize* algorithm, which produces a single *DigitizedWaveform* object for each trigger record.
-There is one such *DigitizedWaveform* object in each *TriggerRecord*; this object is indicated by an index of the form *i*  indicating the *ith* *TriggerRecord*.
+There is one such *DigitizedWaveform* object in each *TriggerRecord*; this object is indicated by an index of the form *ti*  indicating the *ith* *TriggerRecord*.
 
 .. rubric:: Footnotes
 
