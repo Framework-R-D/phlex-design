@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.2. Filters and Predicates &#8212; Phlex 0 (1fe45f3) documentation</title>
+    <title>3.5.6. Windows &#8212; Phlex 0 (1fe45f3) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -34,8 +34,8 @@
     <script src="../../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.5.3. Observers" href="observers.html" />
-    <link rel="prev" title="3.5.1. Transforms" href="transforms.html" />
+    <link rel="next" title="3.5.7. Composite CHOFs" href="composite_chofs.html" />
+    <link rel="prev" title="3.5.5. Partitioned Unfolds" href="partitioned_unfolds.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -48,15 +48,15 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="observers.html" title="3.5.3. Observers"
+          <a href="composite_chofs.html" title="3.5.7. Composite CHOFs"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="transforms.html" title="3.5.1. Transforms"
+          <a href="partitioned_unfolds.html" title="3.5.5. Partitioned Unfolds"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (1fe45f3) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.2. </span>Filters and Predicates</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Windows</a></li> 
       </ul>
     </div>  
 
@@ -65,66 +65,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="filters-and-predicates">
-<h1><span class="section-number">3.5.2. </span>Filters and Predicates<a class="headerlink" href="#filters-and-predicates" title="Link to this heading">¶</a></h1>
+  <section id="windows">
+<h1><span class="section-number">3.5.6. </span>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h1>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p><strong>Filter</strong></p></th>
-<th class="head"><p>Operator (predicate)</p></th>
+<tr class="row-odd"><th class="head"><p><strong>Window</strong></p></th>
+<th class="head"><p>Operators</p></th>
 <th class="head"><p>Output sequence length</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(a' = \filter{p}\ a\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(p: A \rightarrow \text{Boolean}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(|a'| \le |a|\)</span></p></td>
+<tr class="row-even"><td rowspan="2"><p><span class="math notranslate nohighlight">\(y = \window{f}{label}\ x\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f: X \times \textrm{Opt}(X) \rightarrow Y\)</span></p></td>
+<td rowspan="2"><p><span class="math notranslate nohighlight">\(|y| = |x|\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
 </tr>
 </tbody>
 </table>
-<p>Any user-defined algorithm or output sink may be configured to operate on data that satisfy a Boolean condition or <em>predicate</em>.
-The act of restricting the invocation of a function to data that satisfy a predicate is known as <em>filtering</em>.
-To filter data as presented to a given algorithm, one or more predicates must be specified in a <em>filter clause</em>.
-Phlex will not schedule a predicate for execution if it is not bound to a filter.</p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Define filter clause.
-Many algorithms can specify the same predicate in their filter clauses without executing the predicate multiple times.</p>
-</div>
-<p>Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
-Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 15.0%" />
-<col style="width: 85.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Operator</strong></p></th>
-<th class="head"><p><strong>Allowed signature</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p\)</span></p></td>
-<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">bool</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
-</tr>
-</tbody>
-</table>
-<section id="registration-interface">
-<h2><span class="section-number">3.5.2.1. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">tracks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
-
-<span class="kt">bool</span><span class="w"> </span><span class="nf">select_tracks</span><span class="p">(</span><span class="n">Tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_scope&quot;</span><span class="p">);</span>
-
-<span class="w">  </span><span class="n">predicate</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">select_tracks</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="w"> </span><span class="o">&lt;</span><span class="n">input_sequence_spec</span><span class="o">&gt;</span><span class="w"> </span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
 </section>
 
 
@@ -138,29 +96,19 @@ Predicates can be evaluated on (e.g.) run-level data-product sets and applied to
               <img class="logo" src="../../static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
   <div>
-    <h3><a href="../../index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">3.5.2. Filters and Predicates</a><ul>
-<li><a class="reference internal" href="#registration-interface">3.5.2.1. Registration interface</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-  <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="transforms.html"
-                          title="previous chapter"><span class="section-number">3.5.1. </span>Transforms</a></p>
+    <p class="topless"><a href="partitioned_unfolds.html"
+                          title="previous chapter"><span class="section-number">3.5.5. </span>Partitioned Unfolds</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="observers.html"
-                          title="next chapter"><span class="section-number">3.5.3. </span>Observers</a></p>
+    <p class="topless"><a href="composite_chofs.html"
+                          title="next chapter"><span class="section-number">3.5.7. </span>Composite CHOFs</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../sources/ch_conceptual_design/hofs/filters.rst.txt"
+      <li><a href="../../sources/ch_conceptual_design/hofs/windows.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -185,15 +133,15 @@ Predicates can be evaluated on (e.g.) run-level data-product sets and applied to
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="observers.html" title="3.5.3. Observers"
+          <a href="composite_chofs.html" title="3.5.7. Composite CHOFs"
              >next</a> |</li>
         <li class="right" >
-          <a href="transforms.html" title="3.5.1. Transforms"
+          <a href="partitioned_unfolds.html" title="3.5.5. Partitioned Unfolds"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (1fe45f3) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.2. </span>Filters and Predicates</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Windows</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

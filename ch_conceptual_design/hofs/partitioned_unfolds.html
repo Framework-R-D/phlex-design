@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.5. Partitioned Unfolds &#8212; Phlex 0 (60d5329) documentation</title>
+    <title>3.5.5. Partitioned Unfolds &#8212; Phlex 0 (1fe45f3) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=d0378a82" />
+    <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=209ff22c"></script>
+    <script src="../../static/documentation_options.js?v=d97ff5c9"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,12 +29,12 @@
     <script src="../../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2)", 2], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.5.6. Composite CHOFs" href="composite_chofs.html" />
+    <link rel="next" title="3.5.6. Windows" href="windows.html" />
     <link rel="prev" title="3.5.4. Partitioned Folds" href="partitioned_folds.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -48,12 +48,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="composite_chofs.html" title="3.5.6. Composite CHOFs"
+          <a href="windows.html" title="3.5.6. Windows"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.4. Partitioned Folds"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (60d5329) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (1fe45f3) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Unfolds</a></li> 
@@ -123,8 +123,8 @@ An unfold can be used for parallelizing the processing of a data product in smal
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="composite_chofs.html"
-                          title="next chapter"><span class="section-number">3.5.6. </span>Composite CHOFs</a></p>
+    <p class="topless"><a href="windows.html"
+                          title="next chapter"><span class="section-number">3.5.6. </span>Windows</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -154,12 +154,12 @@ An unfold can be used for parallelizing the processing of a data product in smal
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="composite_chofs.html" title="3.5.6. Composite CHOFs"
+          <a href="windows.html" title="3.5.6. Windows"
              >next</a> |</li>
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.4. Partitioned Folds"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (60d5329) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (1fe45f3) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Unfolds</a></li> 
