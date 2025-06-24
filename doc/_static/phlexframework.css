@@ -10,6 +10,11 @@ figure p {
     text-align: left;
 }
 
+
+table.docutils caption {
+    text-align: left;
+}
+
 .body {
     background-image: url("preliminary-watermark.png");
     background-repeat: repeat;
