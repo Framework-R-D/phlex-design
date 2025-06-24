@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; Phlex 0 (bef4c73) documentation</title>
+    <title>1. Introduction &#8212; Phlex 0 (60d5329) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=d0378a82" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=b5adda65"></script>
+    <script src="static/documentation_options.js?v=209ff22c"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (bef4c73) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (60d5329) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>  
@@ -125,7 +125,7 @@ System requirements, which are subservient to stakeholder requirements, are owne
 <h3><span class="section-number">1.1.2. </span>Requirements in This Document<a class="headerlink" href="#requirements-in-this-document" title="Link to this heading">¶</a></h3>
 <p>The stakeholder requirements are listed in <a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a> for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. <a class="reference internal" href="appendices/requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>).</p>
-<p>Where possible, we limit references to stakeholder requirements to the conceptual design in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Section 3</span></a>.
+<p>Where possible, we limit references to stakeholder requirements to the conceptual design in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>.
 Some stakeholder requirements are referenced in <span>the subsystem design <em>(under preparation)</em></span> if those requirements do not affect the conceptual framework model.
 No system requirements are currently referenced in this document.</p>
 </section>
@@ -140,8 +140,31 @@ The Phlex design therefore:</p>
 <li><p>requires recording the <a class="reference internal" href="appendices/definitions.html#term-Provenance"><span class="xref std std-term">provenance</span></a> of every created <a class="reference internal" href="appendices/definitions.html#term-Data-product"><span class="xref std std-term">data product</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>, and</p></li>
 <li><p>enables, and—to the extent possible—ensures the <a class="reference internal" href="appendices/definitions.html#term-Reproducible"><span class="xref std std-term">reproducible</span></a> creation of data products.</p></li>
 </ul>
+<section id="flexibility">
+<h3><span class="section-number">1.2.1. </span>Flexibility<a class="headerlink" href="#flexibility" title="Link to this heading">¶</a></h3>
+<p>Physics results in HEP are obtained by processing sequences of data and making statistical statements from them.
+Each element of a sequence generally contains the data corresponding to one readout of the detector.
+The sequence elements are often termed “events”, which are treated as statistically independent observations of physics processes.
+It is common for experiments to define larger aggregations of data by grouping events into subruns (or, for LHC experiments, luminosity blocks), and by further grouping subruns into runs.
+These larger aggregations are typically defined according to when certain detector calibrations or accelerator beam parameters were applied.</p>
+<p>Although frameworks supporting the <em>run-subrun-event</em> (RSE) hierarchy have proved effective and flexible enough for collider-based experiments, the RSE hierarchy is not always appropriate:</p>
+<ul class="simple">
+<li><p>simulated data often do not need to be processed with an RSE hierarchy; a flat hierarchy (e.g. only the “event”) is usually sufficient,</p></li>
+<li><p>framework interface is often explicitly couched in RSE terminology, making it difficult to apply to non-collider contexts, where a different data-grouping may be more appropriate (e.g. time slices for extended readout windows, each of which correspond to one “event”),</p></li>
+<li><p>calibration data is often described independently from an RSE hierarchy, requiring other means of accounting for systematic corrections that must be applied to the data.</p></li>
+</ul>
+<p>Phlex does not prescribe an RSE hierarchy—it only requires that the hierarchy be representable as a directed acyclic graph (DAG) at run-time, with each grouping of data represented as a node in the graph, and the relationships between data-groupings represented as edges.
+This expression of the hierarchy greatly relaxes the constraints placed on experiments while still supporting the collider-based RSE hierarchy (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a>).</p>
+<p>The hierarchy graph and its nodes (i.e. the data-groupings) are definable at run-time, thus allowing the specification of data organizations that are appropriate for the workflow <a class="reference internal" href="appendices/requirements.html#DUNE 22" title="DUNE 22"><em class="xref need">[DUNE 22]</em></a>.</p>
+<p>The flexibility in defining data-groupings and how they relate to each other necessitates further flexibility:</p>
+<ol class="arabic simple">
+<li><p>user-defined algorithms are not bound to statically-typed classes representing data-groupings—e.g. there is no direct dependency on a C++ “event” class, and</p></li>
+<li><p>a framework program must be “driven” by a user-provided entity that expresses the hierarchy graph desired by the user, not a hierarchy that is prescribed by the framework.</p></li>
+</ol>
+<p>These concepts are discussed more fully in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>.</p>
+</section>
 <section id="portability">
-<h3><span class="section-number">1.2.1. </span>Portability<a class="headerlink" href="#portability" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">1.2.2. </span>Portability<a class="headerlink" href="#portability" title="Link to this heading">¶</a></h3>
 <p>Phlex is intended to be used on a variety of computing systems to take advantage of the disparate computing resources available to each stakeholder <a class="reference internal" href="appendices/requirements.html#DUNE 8" title="DUNE 8"><em class="xref need">[DUNE 8]</em></a>.
 This means the framework:</p>
 <ul class="simple">
@@ -151,7 +174,7 @@ This means the framework:</p>
 </ul>
 </section>
 <section id="usability">
-<h3><span class="section-number">1.2.2. </span>Usability<a class="headerlink" href="#usability" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">1.2.3. </span>Usability<a class="headerlink" href="#usability" title="Link to this heading">¶</a></h3>
 <p>Although usability is not a formal stakeholder requirement, physicists expect various behaviors and features that ease one’s interaction with a data-processing framework.
 Phlex strives to meet this expectation in various ways:</p>
 <blockquote>
@@ -246,8 +269,9 @@ In such a case, the stakeholder requirements of one experiment may not negate th
 </ul>
 </li>
 <li><a class="reference internal" href="#framework-philosophy">1.2. Framework Philosophy</a><ul>
-<li><a class="reference internal" href="#portability">1.2.1. Portability</a></li>
-<li><a class="reference internal" href="#usability">1.2.2. Usability</a></li>
+<li><a class="reference internal" href="#flexibility">1.2.1. Flexibility</a></li>
+<li><a class="reference internal" href="#portability">1.2.2. Portability</a></li>
+<li><a class="reference internal" href="#usability">1.2.3. Usability</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#programming-languages">1.3. Programming Languages</a></li>
@@ -300,13 +324,13 @@ In such a case, the stakeholder requirements of one experiment may not negate th
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (bef4c73) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (60d5329) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 20, 2025.
+      Last updated on Jun 24, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

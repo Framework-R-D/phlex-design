@@ -6,7 +6,7 @@ Conceptual Design
 
    The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see :numref:`Appendix %s <appendices/requirements:Framework requirements>`).
    The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
-   More detailed design aspects in support of the conceptual model are given in :numref:`supporting_design:Supporting design`.
+   More detailed design aspects in support of the conceptual model are given in :numref:`Chapter %s <supporting_design:Supporting design>`.
 
 Phlex adopts the data-flow approach discussed in :numref:`ch_preliminaries/data_flow:Data flow with sequences`.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
