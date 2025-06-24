@@ -43,8 +43,8 @@ Requirements in This Document
 The stakeholder requirements are listed in :numref:`Appendix %s <appendices/requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 1`).
 
-Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`conceptual_design:Conceptual design`.
-Some stakeholder requirements are referenced in :numref:`supporting_design:Supporting design` if those requirements do not affect the conceptual framework model.
+Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`.
+Some stakeholder requirements are referenced in :numref:`Chapter %s <supporting_design:Supporting design>` if those requirements do not affect the conceptual framework model.
 No system requirements are currently referenced in this document.
 
 ====================
@@ -58,6 +58,34 @@ The Phlex design therefore:
 - treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program's execution,
 - requires recording the :term:`provenance` of every created :term:`data product` :need:`DUNE 121`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
+
+-----------
+Flexibility
+-----------
+
+Physics results in HEP are obtained by processing sequences of data and making statistical statements from them.
+Each element of a sequence generally contains the data corresponding to one readout of the detector.
+The sequence elements are often termed "events", which are treated as statistically independent observations of physics processes.
+It is common for experiments to define larger aggregations of data by grouping events into subruns (or, for LHC experiments, luminosity blocks), and by further grouping subruns into runs.
+These larger aggregations are typically defined according to when certain detector calibrations or accelerator beam parameters were applied.
+
+Although frameworks supporting the *run-subrun-event* (RSE) hierarchy have proved effective and flexible enough for collider-based experiments, the RSE hierarchy is not always appropriate:
+
+- simulated data often do not need to be processed with an RSE hierarchy; a flat hierarchy (e.g. only the "event") is usually sufficient,
+- framework interface is often explicitly couched in RSE terminology, making it difficult to apply to non-collider contexts, where a different data-grouping may be more appropriate (e.g. time slices for extended readout windows, each of which correspond to one "event"),
+- calibration data is often described independently from an RSE hierarchy, requiring other means of accounting for systematic corrections that must be applied to the data.
+
+Phlex does not prescribe an RSE hierarchy—it only requires that the hierarchy be representable as a directed acyclic graph (DAG) at run-time, with each grouping of data represented as a node in the graph, and the relationships between data-groupings represented as edges.
+This expression of the hierarchy greatly relaxes the constraints placed on experiments while still supporting the collider-based RSE hierarchy (see :numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data-Product Sets`).
+
+The hierarchy graph and its nodes (i.e. the data-groupings) are definable at run-time, thus allowing the specification of data organizations that are appropriate for the workflow :need:`DUNE 22`.
+
+The flexibility in defining data-groupings and how they relate to each other necessitates further flexibility:
+
+1. user-defined algorithms are not bound to statically-typed classes representing data-groupings—e.g. there is no direct dependency on a C++ "event" class, and
+2. a framework program must be "driven" by a user-provided entity that expresses the hierarchy graph desired by the user, not a hierarchy that is prescribed by the framework.
+
+These concepts are discussed more fully in :numref:`Chapter %s <conceptual_design:Conceptual design>`.
 
 -----------
 Portability
