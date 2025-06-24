@@ -99,6 +99,7 @@ new_commands = r"""
 \newcommand\observe[1]{\text{observe}(#1)}
 \newcommand\unfold[2]{\text{unfold}(#1,\ #2)}
 \newcommand\punfold[3]{\text{unfold}(#1,\ #2,\ #3)}
+\newcommand\window[2]{\text{window}(#1,\ #2)}
 
 % The following is needed to ensure consistent footnote ordering
 % within each LaTeX-rendered chapter:
@@ -133,6 +134,7 @@ mathjax3_config = {
           "punfold": ['\\textrm{unfold}(#1, #2, #3)', 3],
           "fold": ['\\textrm{fold}(#1, #2)', 2],
           "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
+          "window": ['\\textrm{window}(#1, #2)', 2],
           "iset": ['\\mathcal{I}_{#1}', 1],
           "sequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
           "isequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
