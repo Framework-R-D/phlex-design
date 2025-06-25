@@ -42,3 +42,6 @@ Connecting Algorithms
 The data product lists recorded in :numref:`ch_subsystem_design/task_management:Required data products` and :numref:`ch_subsystem_design/task_management:Created data products` are compared.
 Edges are created between the nodes in :numref:`ch_subsystem_design/task_management:Created data products` that create data products and those that match what is required by those in :numref:`ch_subsystem_design/task_management:Required data products`.
 This step is iterative so that all graph-node candidates from :numref:`ch_subsystem_design/task_management:Program configuration`.
+
+Data-Marshaling
+---------------
