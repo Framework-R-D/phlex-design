@@ -54,6 +54,8 @@ Specifically, in the registration stanza above, we have the following:
 
    :cpp:`products(...)`
      1. This is the equivalent of the output sequence :math:`\isequence{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+        One of the fields of the data-product specification is the data-product set category to which the data products will belong :need:`DUNE 90`.
+        Phlex does not require the output and input categories to be the same.
 
    :cpp:`transform(...)`
      Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
@@ -86,6 +88,27 @@ The block, however, must contain a registration statement to execute an algorith
 
    A module must contain only one registration stanza.
    Note that multiple registration statements may be made in each stanza.
+
+Algorithms with Multiple Input Data Products
+--------------------------------------------
+
+.. todo::
+
+  Refer to :need:`DUNE 89`
+
+Data Products from Different Data Families
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+  Refer to :need:`DUNE 113`
+
+Data Products from Adjacent Data-Product Sets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. todo::
+
+  Refer to :need:`DUNE 91`, :need:`DUNE 92`
 
 Accessing Configuration Information
 -----------------------------------

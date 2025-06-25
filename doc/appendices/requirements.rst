@@ -124,6 +124,8 @@ Conceptual requirements
 
     The framework shall provide user-accessible persistence of user-defined metadata.
 
+- See :numref:`ch_conceptual_design/writers:Data-Product Writers`
+
 .. req:: Framework shall read its own output files
     :collapse:
     :id: DUNE 19
@@ -133,6 +135,8 @@ Conceptual requirements
     :tags: Physics Analysis, Original
 
     The framework shall provide the ability to read a framework-produced file as input to a subsequent framework job so that the physics data are equivalent to the physics data obtained from a single execution of the combined job.
+
+- See :numref:`ch_conceptual_design/writers:Data-Product Writers`
 
 .. req:: Presenting data to subsequent algorithms
     :collapse:
@@ -248,6 +252,8 @@ Conceptual requirements
 
     The framework shall support access to external data sources.
 
+- See :numref:`ch_conceptual_design/resources:Resources`
+
 .. req:: Calibration database algorithms
     :collapse:
     :id: DUNE 40
@@ -258,7 +264,7 @@ Conceptual requirements
 
     The framework shall support algorithms that provide data from calibration databases.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/driver:Framework Driver`.
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/driver:Framework Driver`, :numref:`ch_conceptual_design/resources:Resources`.
 
 .. req:: Algorithms independent of framework interface
     :collapse:
@@ -282,6 +288,8 @@ Conceptual requirements
 
     The framework shall safely execute user algorithms declared to be non-thread-safe along with those declared to be thread-safe.
 
+- See :numref:`ch_conceptual_design/resources:Limited Resources`
+
 .. req:: Resource specification for the program
     :collapse:
     :id: DUNE 47
@@ -291,6 +299,10 @@ Conceptual requirements
     :tags: Original, Concurrency and multithreading, Resource management
 
     The framework shall enable the specification of resources required by the program.
+
+.. todo::
+
+    Find a different reference for this than the subsystem design.
 
 - See :numref:`ch_subsystem_design/configuration:Program resource specification`
 
@@ -303,6 +315,8 @@ Conceptual requirements
 
     The framework shall enable the specification of user-defined resources required by the program.
 
+- See :numref:`ch_conceptual_design/resources:User-defined Resources`
+
 .. req:: Resource specification for algorithms
     :collapse:
     :id: DUNE 52
@@ -313,6 +327,8 @@ Conceptual requirements
 
     The framework shall enable the specification of resources required by each algorithm.
 
+- See :numref:`ch_conceptual_design/resources:Resources`
+
 .. req:: Serial access to a thread-unsafe resource
     :collapse:
     :id: DUNE 145
@@ -321,6 +337,8 @@ Conceptual requirements
     :tags: Concurrency and multithreading, Original, Resource management
 
     The framework shall permit algorithm authors to specify that the algorithm requires serial access to a thread-unsafe resource.
+
+- See :numref:`ch_conceptual_design/resources:Limited Resources`
 
 .. req:: Specification of algorithm's user-defined resources
     :collapse:
@@ -331,6 +349,8 @@ Conceptual requirements
 
     The framework shall enable the specification of user-defined resources required by the algorithm.
 
+- See :numref:`ch_conceptual_design/resources:User-defined Resources`
+
 .. req:: Resource-based algorithm concurrency
     :collapse:
     :id: DUNE 50
@@ -340,6 +360,8 @@ Conceptual requirements
     :tags: Original, Concurrency and multithreading, Resource management
 
     The framework shall dynamically schedule algorithms to execute efficiently according to the availability of each algorithm's required resources.
+
+- See :numref:`ch_conceptual_design/resources:Resources`
 
 .. req:: Optimize memory management for data products
     :collapse:
@@ -363,6 +385,8 @@ Conceptual requirements
     :tags: Original, Concurrency and multithreading, Resource management
 
     The framework shall support composable workflows that use GPU algorithms along with CPU algorithms.
+
+- See :numref:`ch_conceptual_design/resources:GPUs`
 
 .. req:: Specification of data products required by an algorithm
     :collapse:
@@ -423,6 +447,8 @@ Conceptual requirements
 
     The framework shall provide a public API that enables the implementation of a concrete IO backend for a specific persistent storage format.
 
+- See :numref:`ch_conceptual_design/providers:Data-Product Providers`, :numref:`ch_conceptual_design/writers:Data-Product Writers`
+
 .. req:: Data I/O backward compatibility
     :collapse:
     :id: DUNE 76
@@ -434,6 +460,8 @@ Conceptual requirements
 
     The framework IO subsystem shall support backward compatibility across versions, subject to policy decisions on deprecation provided by DUNE.
 
+- See :numref:`ch_conceptual_design/providers:Data-Product Providers`
+
 .. req:: Algorithm invocation with data products from multiple data sets
     :collapse:
     :id: DUNE 89
@@ -442,6 +470,8 @@ Conceptual requirements
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data sets.
+
+- See :numref:`ch_conceptual_design/registration:Algorithms with Multiple Input Data Products`
 
 .. req:: Algorithm invocation with data products from adjacent data sets
     :collapse:
@@ -452,6 +482,8 @@ Conceptual requirements
 
     The framework shall support the invocation of an algorithm with data products belonging to adjacent data sets.
 
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
+
 .. req:: User-defined adjacency
     :collapse:
     :id: DUNE 92
@@ -460,6 +492,8 @@ Conceptual requirements
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall support user code that defines adjacency of data sets within a data family.
+
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
 
 .. req:: Algorithm invocation with data products from multiple data families
     :collapse:
@@ -470,6 +504,8 @@ Conceptual requirements
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data families.
 
+- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Families`
+
 .. req:: Specification of algorithm output FPUs
     :collapse:
     :id: DUNE 90
@@ -479,6 +515,8 @@ Conceptual requirements
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall support the user specification of which data family to place the data products created by an algorithm.
+
+- See :numref:`ch_conceptual_design/registration:Framework Registration`
 
 .. req:: Algorithm-Data Separability
     :collapse:
@@ -512,6 +550,8 @@ Conceptual requirements
 
     The framework shall record metadata to output enabling the reproduction of the processing steps used to produce the data recorded in that output.
 
+- See :numref:`ch_conceptual_design/writers:Data-Product Writers`
+
 .. req:: Reproducibility of data products
     :collapse:
     :id: DUNE 122
@@ -532,6 +572,8 @@ Conceptual requirements
     :tags: Original, Reproducibility, Provenance
 
     The framework shall provide a facility to produce random numbers enabling algorithms to create reproducible data in concurrent contexts.
+
+- See :numref:`ch_conceptual_design/resources:Random Number Resource`
 
 .. req:: Thread-safe design for algorithms
     :collapse:
