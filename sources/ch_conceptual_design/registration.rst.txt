@@ -92,23 +92,56 @@ The block, however, must contain a registration statement to execute an algorith
 Algorithms with Multiple Input Data Products
 --------------------------------------------
 
-.. todo::
+The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output sequence by applying a one-parameter algorithm :cpp:`make_tracks` to each element of the input sequence, as specified by :cpp:`sequence("good_hits"_in("spill"))`.
+In many cases, however, the algorithm will require more than one data product.
+Suppose another algorithm :cpp:`make_tracks_loose` can form tracks from both the :cpp:`"good_hits"` data product and the :cpp:`"bad_hits"` data product for each spill.
+The interface of the algorithm and its registration would look like:
 
-  Refer to :need:`DUNE 89`
+.. code:: c++
 
-Data Products from Different Data Families
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  tracks make_tracks_loose(hits const& good, hits const& bad) {...}
 
-.. todo::
+  products("loose_tracks") =
+    transform("loose_track_maker", make_tracks_loose, concurrency::unlimited)
+    .sequence("good_hits"_in("spill"), "bad_hits"_in("spill"));
 
-  Refer to :need:`DUNE 113`
+The elements of the input sequence are thus pairs of the data products labeled :cpp:`"good_hits"` and :cpp:`"bad_hits"` in each spill. [#zip]_
+In this case, the data-product set for both data products is the same—i.e. for a given invocation of :cpp:`make_tracks_loose`, both data products will be associated with the same spill.
+
+There are cases, however, where an algorithm needs to operate on data products from *different* data-product sets :need:`DUNE 89`.
+
+Data Products from Different Data Categories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Consider an algorithm :cpp:`make_vertices` that requires two arguments: the :cpp:`"good_tracks"` collection for each spill (data category :cpp:`"spill"`), and the detector :cpp:`"geometry"` that applies for the entire job (data category :cpp:`"job"`) [#job]_.
+This would be expressed in C++ as:
+
+.. code:: c++
+
+   vertices make_vertices(tracks const&, geometry const&) { ... }
+
+   PHLEX_REGISTER_ALGORITHMS(m, config)
+   {
+     products("good_vertices") =
+       transform("vertex_maker", make_vertices, concurrency::unlimited)
+       .sequence("good_hits"_in("spill"), "geometry"_in("job"));
+   }
+
+where the categories are explicit in the sequence statement.
+
+Phlex supports such uses cases :need:`DUNE 113`, even if the specified categories are unrelated to each other.
+For example, suppose an algorithm needed to access a data product from a spill, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
+Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. :cpp:`"calibration"`) whose data-product sets corresponded to intervals of validity.
+So long as a relation can be defined between a specific :cpp:`"spill"` data-product sets and a specific :cpp:`"calibration"` data-product sets, the framework can use that relation to form the input sequence of spill-calibration pairs that are presented to the algorithm.
+How the relation between data-product sets is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
 Data Products from Adjacent Data-Product Sets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
+In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets :need:`DUNE 91`, where *adjacency* is defined by the user :need:`DUNE 92`.
+The notion of adjacency can be critical for (e.g.) time-windowed processing (see :numref:`ch_conceptual_design/hofs/windows:Windows`), where the details of the "next" time bin are needed to accurately calculate properties of the "current" time bin.
 
-  Refer to :need:`DUNE 91`, :need:`DUNE 92`
+Supporting the processing of adjacent data-product sets is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
 Accessing Configuration Information
 -----------------------------------
@@ -204,4 +237,6 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
+.. [#zip] The operation that forms the sequence :math:`\isequence{(\texttt{"good\_hits"}, \texttt{"bad\_hits"})}{\text{spill}}` from the separate sequences :math:`\isequence{\texttt{"good\_hits"}}{\text{spill}}` and :math:`\isequence{\texttt{"bad\_hits"}}{\text{spill}}` is called *zip*.
+.. [#job] As shown in :numref:`data-organization`, there is a "Job" data category , to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (9050249) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (22f9353) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=81d7caac"></script>
+    <script src="../static/documentation_options.js?v=df9dcdf2"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (9050249) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -148,23 +148,46 @@ Note that multiple registration statements may be made in each stanza.</p>
 </div>
 <section id="algorithms-with-multiple-input-data-products">
 <h2><span class="section-number">3.4.1. </span>Algorithms with Multiple Input Data Products<a class="headerlink" href="#algorithms-with-multiple-input-data-products" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 89" title="DUNE 89"><em class="xref need">[DUNE 89]</em></a></p>
+<p>The registration example given above in <a class="reference internal" href="#framework-registration"><span class="std std-numref">Section 3.4</span></a> creates an output sequence by applying a one-parameter algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> to each element of the input sequence, as specified by <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">))</span></code>.
+In many cases, however, the algorithm will require more than one data product.
+Suppose another algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks_loose</span></code> can form tracks from both the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> data product and the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;bad_hits&quot;</span></code> data product for each spill.
+The interface of the algorithm and its registration would look like:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks_loose</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">good</span><span class="p">,</span><span class="w"> </span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bad</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
+
+<span class="n">products</span><span class="p">(</span><span class="s">&quot;loose_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;loose_track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks_loose</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bad_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+</pre></div>
 </div>
-<section id="data-products-from-different-data-families">
-<h3><span class="section-number">3.4.1.1. </span>Data Products from Different Data Families<a class="headerlink" href="#data-products-from-different-data-families" title="Link to this heading">¶</a></h3>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 113" title="DUNE 113"><em class="xref need">[DUNE 113]</em></a></p>
+<p>The elements of the input sequence are thus pairs of the data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;bad_hits&quot;</span></code> in each spill. <a class="footnote-reference brackets" href="#zip" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
+In this case, the data-product set for both data products is the same—i.e. for a given invocation of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks_loose</span></code>, both data products will be associated with the same spill.</p>
+<p>There are cases, however, where an algorithm needs to operate on data products from <em>different</em> data-product sets <a class="reference internal" href="../appendices/requirements.html#DUNE 89" title="DUNE 89"><em class="xref need">[DUNE 89]</em></a>.</p>
+<section id="data-products-from-different-data-categories">
+<h3><span class="section-number">3.4.1.1. </span>Data Products from Different Data Categories<a class="headerlink" href="#data-products-from-different-data-categories" title="Link to this heading">¶</a></h3>
+<p>Consider an algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_vertices</span></code> that requires two arguments: the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_tracks&quot;</span></code> collection for each spill (data category <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code>), and the detector <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;geometry&quot;</span></code> that applies for the entire job (data category <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;job&quot;</span></code>) <a class="footnote-reference brackets" href="#job" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+This would be expressed in C++ as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span><span class="w"> </span><span class="nf">make_vertices</span><span class="p">(</span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_vertices&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;vertex_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_vertices</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;geometry&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;job&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p>where the categories are explicit in the sequence statement.</p>
+<p>Phlex supports such uses cases <a class="reference internal" href="../appendices/requirements.html#DUNE 113" title="DUNE 113"><em class="xref need">[DUNE 113]</em></a>, even if the specified categories are unrelated to each other.
+For example, suppose an algorithm needed to access a data product from a spill, and it also required a calibration offset provided from an external database table <a class="reference internal" href="../appendices/requirements.html#DUNE 35" title="DUNE 35"><em class="xref need">[DUNE 35]</em></a>.
+Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;calibration&quot;</span></code>) whose data-product sets corresponded to intervals of validity.
+So long as a relation can be defined between a specific <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data-product sets and a specific <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;calibration&quot;</span></code> data-product sets, the framework can use that relation to form the input sequence of spill-calibration pairs that are presented to the algorithm.
+How the relation between data-product sets is defined is referred to as <em>data marshaling</em>, and it is described further in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </section>
 <section id="data-products-from-adjacent-data-product-sets">
 <h3><span class="section-number">3.4.1.2. </span>Data Products from Adjacent Data-Product Sets<a class="headerlink" href="#data-products-from-adjacent-data-product-sets" title="Link to this heading">¶</a></h3>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 91" title="DUNE 91"><em class="xref need">[DUNE 91]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 92" title="DUNE 92"><em class="xref need">[DUNE 92]</em></a></p>
-</div>
+<p>In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets <a class="reference internal" href="../appendices/requirements.html#DUNE 91" title="DUNE 91"><em class="xref need">[DUNE 91]</em></a>, where <em>adjacency</em> is defined by the user <a class="reference internal" href="../appendices/requirements.html#DUNE 92" title="DUNE 92"><em class="xref need">[DUNE 92]</em></a>.
+The notion of adjacency can be critical for (e.g.) time-windowed processing (see <a class="reference internal" href="hofs/windows.html#windows"><span class="std std-numref">Section 3.5.6</span></a>), where the details of the “next” time bin are needed to accurately calculate properties of the “current” time bin.</p>
+<p>Supporting the processing of adjacent data-product sets is described further in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </section>
 </section>
 <section id="accessing-configuration-information">
@@ -241,15 +264,23 @@ By specifying a lambda expression that takes a <code class="code highlight c++ d
 This works well except in cases where the registered algorithms are overloaded functions.
 For example, suppose one wants to register C++’s overloaded <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(...)</span></code> function with the framework.
 Simply specifying <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">)</span></code> will fail at compile time as the compiler will not be able to determine which overload is desired.</p>
-<p>Instead, the code author can use the following <a class="footnote-reference brackets" href="#f1" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<p>Instead, the code author can use the following <a class="footnote-reference brackets" href="#f1" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="p">[](</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
 </div>
 <p>where the desired overload is selected based on the <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">double</span></code> argument to the lambda expression.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
+<aside class="footnote brackets" id="zip" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>The operation that forms the sequence <span class="math notranslate nohighlight">\(\isequence{(\texttt{&quot;good\_hits&quot;}, \texttt{&quot;bad\_hits&quot;})}{\text{spill}}\)</span> from the separate sequences <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;good\_hits&quot;}}{\text{spill}}\)</span> and <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;bad\_hits&quot;}}{\text{spill}}\)</span> is called <em>zip</em>.</p>
+</aside>
+<aside class="footnote brackets" id="job" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>As shown in <a class="reference internal" href="data_organization.html#id1"><span class="std std-numref">Fig. 3.2</span></a>, there is a “Job” data category , to which job-level data products may belong.</p>
+</aside>
 <aside class="footnote brackets" id="f1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p>Equivalently, one can use the obscure syntax <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">),</span><span class="w"> </span><span class="p">...)</span></code>, where <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span></code> is cast to the desired overload.</p>
 </aside>
 </aside>
@@ -271,7 +302,7 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
     <ul>
 <li><a class="reference internal" href="#">3.4. Framework Registration</a><ul>
 <li><a class="reference internal" href="#algorithms-with-multiple-input-data-products">3.4.1. Algorithms with Multiple Input Data Products</a><ul>
-<li><a class="reference internal" href="#data-products-from-different-data-families">3.4.1.1. Data Products from Different Data Families</a></li>
+<li><a class="reference internal" href="#data-products-from-different-data-categories">3.4.1.1. Data Products from Different Data Categories</a></li>
 <li><a class="reference internal" href="#data-products-from-adjacent-data-product-sets">3.4.1.2. Data Products from Adjacent Data-Product Sets</a></li>
 </ul>
 </li>
@@ -327,7 +358,7 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (9050249) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
