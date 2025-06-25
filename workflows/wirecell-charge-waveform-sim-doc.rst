@@ -70,8 +70,7 @@ The *ConvolvedDepos* objects in this sequence need adjustment to correctly take 
 
 This correction is done by the next step.
 The convolved *Depos* sequence is passed to the next HOF, which is another *window*.
-This *window* function applies a user-supplied *normalize* algorithm to each consecutive pair of *ConvolvedDepos* objects in the convolved *Depos* sequence, yielding a new *ConvolvedDepos* object.
-Each pair of consecutive convolved *Depos* objects specifies a new *convolution bin*, each of which contains a single (convolved) *ConvolvedDepos* object.
+This *window* function applies a user-supplied *normalize* algorithm to each consecutive pair of *ConvolvedDepos* objects in the convolved *Depos* sequence, yielding a single new, leakage-corrected *ConvolvedDepos* object contained by a new convolution bin.
 Note that each *convolution bin* also represents some span of time, but a different one than is represented by the *time bins* or *drift bins*  created by the earlier *unfolds*.
 The output of the *window* is a sequence of *ConvolvedDepos* objects, each labeled with a two-part index, *ti* and *cj*, which indicates an association with the *ith* *TriggerRecord* and with the *jth* convolution bin in that *TriggerRecord*.
 This new sequence is labeled "Corrected ConvolvedDepos".
