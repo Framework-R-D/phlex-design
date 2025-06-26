@@ -2,6 +2,10 @@
 Topology of the data-flow graph
 ===============================
 
+.. todo::
+
+  Include something about program configuration (see :numref:`ch_conceptual_design/user_configuration:Program configuration`)
+
 The pattern used for constructing the data-flow graph is described in detail in :numref:`ch_subsystem_design/task_management:Creating the data-flow graph`.
 Here we discuss the overall topology of the workflow, using the graph in :numref:`workflow`.
 

@@ -21,4 +21,3 @@ Whether a variable name (e.g. :math:`a`) represents a sequence or an operation t
    hofs/partitioned_folds
    hofs/partitioned_unfolds
    hofs/windows
-   hofs/composite_chofs

@@ -41,9 +41,13 @@ GPUs
 Random Number Resource
 ----------------------
 
-.. todo::
+The generation of pseudorandom numbers (hereafter just *random numbers*) is a critical aspect of obtaining physics results, especially when simulating data.
+Although multiple random-number generation techniques exists, the vast majority of random-number implementations used in HEP rely on stateful random-number engines, which are subject to data races in multi-threaded contexts.
+To ensure reproducible data and to ensure thread-safe access to stateful random-number engines, HEP frameworks impose idiosyncratic constraints on their use.
 
-   Refer to :need:`DUNE 36`
+DUNE has similar requirements on reproducibility of random numbers in a concurrent context :need:`DUNE 36`.
+However, instead of working around the limitations of stateful random-number engines, Phlex supports a random-number generation technique specifically designed to reproduce random-numbers in a concurrent program.
+Counter-based random number generators (CBRNGs) [Wiki-CBRNG]_ each contain one internal counter.
 
 User-defined Resources
 ----------------------
@@ -57,3 +61,9 @@ User-defined Resources
    PHLEX_REGISTER_RESOURCE(config)
    {
    }
+
+.. only:: html
+
+   .. rubric:: References
+
+.. [Wiki-CBRNG] https://en.wikipedia.org/wiki/Counter-based_random_number_generator

@@ -2,74 +2,85 @@ digraph {
   node [shape="box", style="rounded"]
   edge [fontcolor="red"];
 
-  start [shape="point", width=0.1]
-  unfold [label=<unfold(<font color="blue">into_apas</font>)>]
-  transform [label=<transform(<font color="blue">clamp</font>)>]
-  fold [label=<fold(<font color="blue">sum_waveforms</font>)>]
-  filter [label=<filter(<font color="blue">high_energy</font>)>];
-  observer [label=<observe(<font color="blue">histogram_waveforms</font>)>];
-  out [label="ROOT output file(s)", shape="cylinder", style="filled", fillcolor="lightgray"]
+  start [shape="point", width=0.1];
+  unfold_into_apas [label=<unfold(<font color="blue">into_apas</font>)>];
+  transform_make_hits [label=<transform(<font color="blue">make_hits</font>)>];
+  filter_high_energy [label=<filter(<font color="blue">high_energy</font>)>];
+  window_make_tracks [label=<window(<font color="blue">make_tracks</font>)>];
+  out [label="ROOT output file(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
 
-  {
-    rank=same;
-    resource [label=<Histogram<br/> resource>,
-              shape=hexagon,
-              style=filled,
-              fillcolor=thistle,
-              margin=0];
-    root [label="ROOT analysis file", style=filled, shape=cylinder];
-  }
+  observe_histogram_hits [label=<observe(<font color="blue">histogram_hits</font>)>];
+  transform_make_vertices [label=<transform(<font color="blue">make_vertices</font>)>];
+  fold_total_energy [label=<fold(<font color="blue">sum_energy</font>)>];
 
-  start -> driver [label=" Configuration", fontcolor="forestgreen"];
+  // Histogram resource
+  resource [label=<Histogram<br/> resource>,
+            shape=hexagon,
+            style=filled,
+            fillcolor=thistle,
+            margin=0];
+  root [label=<ROOT<br/> analysis file>, style=filled, shape=cylinder];
 
-  {
-    rank=same;
-    gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
-    driver [label="driver(Spill)", style="rounded,filled",fillcolor="palegreen1"];
-    input [label="ROOT input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
-  }
-
-  driver -> input [style="dotted", arrowhead=none];
+  gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
+  driver [label="driver(Spill)", style="rounded,filled",fillcolor="palegreen1"];
+  input [label="ROOT input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
 
   // Providers
-  {
-    rank=same;
-    geometry_provider [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
-    sim_hits_provider [label="provide(SimHits)", style="filled,rounded" fillcolor="lightblue"];
-  }
-
-  driver -> geometry_provider [label=" [J]", fontcolor="darkorange"];
-  driver -> sim_hits_provider [label=< [Spill<sub><i>j</i></sub>]>, fontcolor="darkorange"];
-
-  geometry_provider -> gdml [style="dotted", arrowhead=none];
-  resource -> root [style="dotted", arrowhead=none];
-
-  sim_hits_provider -> input [style="dotted", arrowhead=none];
-  sim_hits_provider -> unfold [label=< [SimHits<sub><i>j</i></sub>]>];
-  geometry_provider -> unfold [label=< [Geometry]>];
-
-  unfold:s -> transform [xlabel=< [Waveforms<sub><i>j k</i></sub>]>];
-  transform:s -> fold [taillabel=<[ClampedWaveforms<sub><i>j k</i></sub>] >,
-                       labelangle=-80,
-                       labeldistance=7
-                      ];
+  geometry_provider [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
+  sim_depos_provider [label="provide(SimDepos)", style="filled,rounded" fillcolor="lightblue"];
 
   // Writers
-  {
-    rank=same;
-    waveforms_writer [label="write(Waveforms)", style="filled,rounded", fillcolor="lightblue"];
-    summed_waveforms_writer [label="write(SummedWaveforms)", style="filled,rounded", fillcolor="lightblue"];
-    clamped_waveforms_writer [label="write(ClampedWaveforms)", style="filled,rounded" fillcolor="lightblue"];
-  }
+  waveforms_writer [label="write(Waveforms)", style="filled,rounded", fillcolor="lightblue"];
+  total_energy_writer [label="write(TotalHitEnergy)", style="filled,rounded", fillcolor="lightblue"];
+  tracks_writer [label="write(GoodTracks)", style="filled,rounded", fillcolor="lightblue"];
+  vertices_writer [label="write(Vertices)", style="filled,rounded", fillcolor="lightblue"];
+  hits_writer [label="write(GoodHits)", style="filled,rounded" fillcolor="lightblue"];
 
-  unfold:s -> waveforms_writer [label=<[Waveforms<sub><i>j k</i></sub>]>];
-  transform:s -> clamped_waveforms_writer;
-  fold:s -> summed_waveforms_writer [label=< [SummedWaveforms<sub><i>j</i></sub>]>];
+  start -> driver [label=" Configuration", fontcolor="forestgreen"];
+  driver -> input [style="dotted", arrowhead=none];
+  driver -> geometry_provider [label=" [Job]", fontcolor="darkorange"];
+  driver -> sim_depos_provider [label=< [Spill<sub><i>j</i></sub>]>, fontcolor="darkorange"];
 
-  {waveforms_writer, clamped_waveforms_writer, summed_waveforms_writer} -> out [style="dotted", arrowhead=none]
+  gdml -> geometry_provider [arrowhead=none, style="dotted", color="black:invis:black"];
+  resource -> root [arrowhead=none, style="dotted", color="black:invis:black"];
 
-  unfold:s -> filter [label=< [Waveforms<sub><i>j k</i></sub>]>];
-  filter:s -> observer [label=< [Waveforms<sub><i>j k</i> '</sub>]>];
-  resource -> observer [style="dashed"];
+  sim_depos_provider -> input [style="dotted", arrowhead=none];
+  sim_depos_provider -> unfold_into_apas [label=< [SimDepos<sub><i>j</i></sub>]>];
 
+  geometry_provider -> unfold_into_apas [label=<[Geometry]>];
+  geometry_provider -> transform_make_vertices;
+
+  unfold_into_apas -> transform_make_hits [xlabel=<[Waveforms<sub><i>j k</i></sub>] >];
+  unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>j k</i></sub>]>];
+
+  transform_make_hits -> filter_high_energy [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_make_hits -> hits_writer;
+  transform_make_hits -> window_make_tracks [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_make_hits -> fold_total_energy;
+
+  window_make_tracks -> transform_make_vertices [label=< [GoodTracks<sub><i>j k</i></sub>]>];
+  window_make_tracks -> tracks_writer;
+
+  transform_make_vertices -> vertices_writer [label=< [Vertices<sub><i>j k</i></sub>]>];
+
+  fold_total_energy -> total_energy_writer [label=< [TotalHitEnergy<sub><i>j</i></sub>]>];
+
+  filter_high_energy -> observe_histogram_hits [label=<[GoodHits<sub><i>j k</i> '</sub>]>];
+
+  resource -> observe_histogram_hits [style="dashed"];
+
+  { total_energy_writer, waveforms_writer, hits_writer, tracks_writer, vertices_writer } -> out [style="dotted", arrowhead=none]
+
+  // Making the graph layout better
+  { rank=same; driver; input; }
+  { rank=same; resource; root; }
+  { rank=same; gdml; geometry_provider; sim_depos_provider; }
+  { rank=same; window_make_tracks; hits_writer; fold_total_energy; filter_high_energy; }
+  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_writer; total_energy_writer; }
+
+  // The following edges do not denote any formal relationships; they are intended for influencing the layout.
+  edge [style="invis"]
+  input -> waveforms_writer;
+  filter_high_energy -> resource;
+  transform_make_hits -> waveforms_writer [constraint="false"];
 }

@@ -10,32 +10,65 @@ Conceptual Design
 
 Phlex adopts the data-flow approach discussed in :numref:`ch_preliminaries/data_flow:Data flow with sequences`.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
-These algorithms then serve as operators to higher-order functions that operate on *data-product sequences*.
+These algorithms then serve as operators to higher-order functions (HOFs) that operate on *data-product sequences*.
 
-To guide the discussion of Phlex's conceptual model, we refer to the graph in  :numref:`workflow`, which illustrates various framework aspects:
+To guide the discussion of Phlex's conceptual model, we refer to :numref:`workflow`, which shows a fictitious workflow that creates vertices from simulated energy deposits.
+Various framework aspects are demonstrated by that figure:
 
-- the data-flow graph itself (see :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`)
-- data products and data-product sets as passed along graph edges (see :numref:`ch_conceptual_design/data_organization:Data organization`)
-- user-provided algorithms such as transforms, folds, etc. (see :numref:`ch_conceptual_design/algorithms:Algorithms` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`)
-- the framework driver (see :numref:`ch_conceptual_design/driver:Framework Driver`)
-- data-product providers (see :numref:`ch_conceptual_design/providers:Data-Product Providers`), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)
-- data-product writers (see :numref:`ch_conceptual_design/writers:Data-Product writers`), which are plugins that may write data products to an external entity (e.g. output files)
-- resources (see :numref:`ch_conceptual_design/resources:Resources`)
-- program configuration (see :numref:`ch_conceptual_design/user_configuration:Program configuration`)
+   *data-flow graph*
+      The data-flow graph is formed by ingesting the configuration file and recording the data-product dependencies required of each algorithm (see :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`).
+
+   *data-product flow*
+      Data products and data-product sets (see :numref:`ch_conceptual_design/data_organization:Data organization`) are passed along graph edges.
+      As mentioned in :numref:`ch_preliminaries/data_flow:Data Flow with Sequences`, the data passed between HOFs are expressed as sequences.
+      :numref:`workflow` thus formally passes sequences (e.g. :math:`[\text{GoodHits}_{jk}]`) between nodes [#flow]_.
+
+   *framework driver*
+      The driver instructs the framework what to process (see :numref:`ch_conceptual_design/driver:Framework Driver`).
+
+      The driver in :numref:`workflow` is configured so that all `Spill`\ s in the specified ROOT input files are processed.
+
+   *data-product providers*
+      Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see :numref:`ch_conceptual_design/providers:Data-Product Providers`).
+      From a functional-programming perspective, they are transforms that map a data-product set to the data product within that set.
+
+      In the workflow, one provider reads a :cpp:`SimDepos` data product from each `Spill` in the ROOT input files, and the other reads a single :cpp:`Geometry` corresponding to the `Job` from a GDML file.
+
+   *HOFs and user-provided algorithms*
+      Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see :numref:`ch_conceptual_design/algorithms:Algorithms`, :numref:`ch_conceptual_design/registration:Framework Registration` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`).
+
+      All six HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
+      For the main processing chain of creating vertices:
+
+      - An *unfold* algorithm is configured to create a sequence of :cpp:`Waveforms` objects—creating one :cpp:`Waveforms` object per *APA*—from one :cpp:`SimDeps` data product in each `Spill`.
+      - A *transform* algorithm is run on each :cpp:`Waveforms` objects to create a :cpp:`GoodHits` object.
+      - To make a :cpp:`GoodTracks` data product, a *window* algorithm is applied to pairs of :cpp:`GoodHits` objects that come from adjacent *APA*\ s.
+      - Lastly, another *transform* algorithm operates on the :cpp:`GoodTracks` data products to produce vertices.
+
+      There are additional parts of the graph that are not directly related to creating vertices:
+
+      - A *fold* algorithm is executed over the :cpp:`GoodHits` data products to sum the hit energy (i.e. :cpp:`TotalHitEnergy`) across all `APA`\ s for a given `Spill`.
+      - After a *filter* has been applied, an *observe* algorithm is used to fill a histogram with hit-related information from the :cpp:`GoodHits` data products.
+
+   *data-product writers*
+      Data-product writers are plugins that write data products to framework outputs (see :numref:`ch_conceptual_design/writers:Data-Product writers`)
+
+      Each of the five writers in :numref:`workflow` is responsible for writing to one or more output files.
+
+   *resources*
+      Most workflows require access to some external resource (see :numref:`ch_conceptual_design/resources:Resources`).
+
+      The histogramming resource in :numref:`workflow` enables the *observe* algorithm to fill and write histograms to a ROOT analysis file.
+
+Note that in this workflow, the names *Spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
+Each data product is also indexed, thus associating it with a particular data-product set (e.g. :math:`\text{GoodHits}_{mn}` denotes the :cpp:`GoodHits` data product belonging to `APA` :math:`n` of `Spill` :math:`m`).
 
 .. graphviz:: work-flow.gv
-   :caption: A sample workflow showing the different types of algorithm supported by Phlex (see :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions` for a list of the supported algorithms).
-             Solid arrows show the flow of data through the graph.
-             Dotted lines indicate communication of data through the IO system.
-             The *driver* algorithm (see section :numref:`ch_conceptual_design/driver:Framework Driver`) is configured to process all *spills* in the specified ROOT input files.
-             One *provide* algorithm is configured to read *SimHits* associated with *spills* from the ROOT input files and the other reads a single *Geometry* object from the GDML file.
-             For each *spill*, an *unfold* algorithm is configured to create a sequence of *Waveforms* objects, creating one *Waveforms* object in each *APA*.
-             A *transform* algorithm is run on each of the *Waveforms* objects to create a *ClampedWaveforms* object.
-             A *fold* algorithm is run on each of the *ClampedWaveforms* objects in a *spill* to create a *SummedWaveforms* object for the *spill*.
-             The *write* algorithms are configured to write the *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* objects to one or more ROOT output files.
-             Each *Waveforms*, *ClampedWaveforms*, and *SummedWaveforms* object is associated with the appropriate *spill* or *APA*.
-             This workflow also shows a *filter* algorithm selecting only "high energy" *Waveforms*, and an *observe* algorithm creating a histogram from them, which is written to a ROOT analysis file.
-             Note that in this workflow the names *spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
+   :caption: A sample workflow showing how HOFs are used in a Phlex program.
+             Each unshaded node represent a HOF bound to a user-defined algorithm, whose name is shaded in blue.
+             Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.
+             Whereas single-dotted lines indicate communication of data through the framework's IO system, double-dotted lines denote communication of data with entities not directly related to the framework.
+             See text for workflow details.
    :name: workflow
 
 .. toctree::
@@ -51,3 +84,8 @@ To guide the discussion of Phlex's conceptual model, we refer to the graph in  :
    ch_conceptual_design/writers
    ch_conceptual_design/resources
    ch_conceptual_design/user_configuration
+
+.. rubric:: Footnotes
+
+.. [#flow] In practice, elements of the sequence, not the full sequence itself, will be passed from one node to another.
+           For memory purposes, it is also likely that each element of the sequence is a lightweight reference (in C++, a pointer) to the data of relevance.

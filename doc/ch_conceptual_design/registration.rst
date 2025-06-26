@@ -10,27 +10,27 @@ Consider the following C++ classes and function:
 .. code:: c++
 
    class hits { ... };
-   class tracks { ... };
+   class waveforms { ... };
 
-   tracks make_tracks(hits const& hs) { ... }
+   hits make_hits(waveforms const& ws) { ... }
 
-where the implementations of :cpp:`hits`, :cpp:`tracks`, and :cpp:`make_tracks` are unspecified.
-Suppose a physicist would like to use the function :cpp:`make_tracks` to transform "good_hits" to "good_tracks" for each spill with unlimited concurrency.
+where the implementations of :cpp:`waveforms`, :cpp:`hits`, and :cpp:`make_hits` are unspecified.
+Suppose a physicist would like to use the function :cpp:`make_hits` to transform "waveforms" to "good_hits" for each spill with unlimited concurrency.
 This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m)  // <== Registration opener (w/o configuration object)
+   PHLEX_REGISTER_ALGORITHMS() // <== Registration opener (w/o configuration object)
    {
-     products("good_tracks") =   // 1. Specification of output data product from make_tracks
+     products("GoodHits") =      // 1. Specification of output data product from make_tracks
        transform(                // 2. Higher-order function
-         "track_maker",          // 3. Name assigned to HOF
-         make_tracks,            // 4. Algorithm/HOF operation
+         "hit_maker",            // 3. Name assigned to HOF
+         make_hits,              // 4. Algorithm/HOF operation
          concurrency::unlimited  // 5. Allowed CPU concurrency
        )
        .sequence(
-         "good_hits"             // 6. Specification of input data product to make_tracks
-         _in("spill")            // 7. Data category to search for input data products
+         "Waveforms"             // 6. Specification of input data product to make_tracks
+         _in("APA")              // 7. Data category to search for input data products
        );
    }
 
@@ -72,8 +72,8 @@ However, in general, the registration code will specify which data products are 
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
 In other words:
 
-- :cpp:`"good_hits"` specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to :cpp:`make_tracks` (i.e. :cpp:`hits`).
-- :cpp:`"good_tracks"` specifies a data product whose C++ type is the :cpp:`tracks` return type of :cpp:`make_tracks`.
+- :cpp:`"Waveforms"` specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to :cpp:`make_hits` (i.e. :cpp:`waveforms`).
+- :cpp:`"GoodHits"` specifies a data product whose C++ type is the :cpp:`hits` return type of :cpp:`make_hits`.
 
 When executed, the above code creates a :term:`configured higher-order function <Configured higher-order function (CHOF)>`, which serves as a node in the function-centric data-flow graph.
 
@@ -97,7 +97,7 @@ The interface of the algorithm and its registration would look like:
 
   tracks make_tracks_loose(hits const& good, hits const& bad) {...}
 
-  PHLEX_REGISTER_ALGORITHMS(m, config)
+  PHLEX_REGISTER_ALGORITHMS(config)
   {
     products("loose_tracks") =
       transform("loose_track_maker", make_tracks_loose, concurrency::unlimited)
@@ -119,7 +119,7 @@ This would be expressed in C++ as:
 
    vertices make_vertices(tracks const&, geometry const&) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
      products("good_vertices") =
        transform("vertex_maker", make_vertices, concurrency::unlimited)
@@ -150,7 +150,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
      auto selected_data_scope = config.get<std::string>("data_scope");
 
@@ -207,13 +207,13 @@ Member Functions of Classes
      ...
    };
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
      auto track_seed = config.get<std::size_t>("track_seed");
      auto selected_data_scope = config.get<std::string>("data_scope");
 
      products("good_tracks") =
-       m.make<track_maker>(track_seed)
+       make<track_maker>(track_seed)
          .transform("track_maker", &track_maker::make, concurrency::unlimited)
          .sequence("good_hits"_in(selected_data_scope));
    }
