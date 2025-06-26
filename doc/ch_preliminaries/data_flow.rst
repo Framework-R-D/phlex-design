@@ -45,11 +45,7 @@ The data-flow discussion in the previous section naturally maps to applying the 
    :align: center
 
 The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
-Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.
-
-.. todo::
-
-   Determine whether the choice between (a) and (b) can be decided in user code, by user configuration, or by something else.
+Determining whether option (a) or (b) is more efficient depends on the data passed between the nodes and the overall constraints on the program.
 
 One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
 As an illustration, consider the calculation of a sum of squares for all integers from 1 through :math:`n`:

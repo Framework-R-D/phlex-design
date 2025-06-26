@@ -1,10 +1,6 @@
 Framework Registration
 ======================
 
-.. attention::
-
-   The C++ interface below is illustrative and not intended to reflect the final registration interface.
-
 To the extent possible, Phlex preserves data flow among data products and algorithms.
 This is indicated in the interface for registering algorithms.
 In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.
@@ -101,9 +97,12 @@ The interface of the algorithm and its registration would look like:
 
   tracks make_tracks_loose(hits const& good, hits const& bad) {...}
 
-  products("loose_tracks") =
-    transform("loose_track_maker", make_tracks_loose, concurrency::unlimited)
-    .sequence("good_hits"_in("spill"), "bad_hits"_in("spill"));
+  PHLEX_REGISTER_ALGORITHMS(m, config)
+  {
+    products("loose_tracks") =
+      transform("loose_track_maker", make_tracks_loose, concurrency::unlimited)
+      .sequence("good_hits"_in("spill"), "bad_hits"_in("spill"));
+  }
 
 The elements of the input sequence are thus pairs of the data products labeled :cpp:`"good_hits"` and :cpp:`"bad_hits"` in each spill. [#zip]_
 In this case, the data-product set for both data products is the same—i.e. for a given invocation of :cpp:`make_tracks_loose`, both data products will be associated with the same spill.
