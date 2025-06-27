@@ -398,7 +398,7 @@ Conceptual requirements
 
     The framework shall support the specification of data products required as input by an algorithm.
 
-- See :numref:`ch_conceptual_design/registration:Framework registration`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Specification of data products created by an algorithm
     :collapse:
@@ -409,7 +409,7 @@ Conceptual requirements
 
     The framework shall support the specification of data products created as output by an algorithm.
 
-- See :numref:`ch_conceptual_design/registration:Framework registration`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: One configuration per framework execution
     :collapse:
