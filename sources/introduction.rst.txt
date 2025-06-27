@@ -146,6 +146,18 @@ Phlex is required to support the registration of user-defined, framework-indepen
 This does not mean that *all* framework-independent algorithms are suitable for registration, nor does it mean that all algorithms registered with the framework must be framework-independent.
 In fact, depending on what the algorithm is doing, some algorithms might require explicit framework dependencies.
 
+==============================
+Guide to Reading This Document
+==============================
+
+This document is intended to convey Phlex's conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`, with supporting material in :numref:`Chapter %s <supporting_design:Supporting design>`.
+Preliminary remarks are presented in  :numref:`Chapter %s <preliminaries:Preliminaries>`, in which we discuss the formal ingredients to the conceptual design.
+Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
+
+.. attention::
+
+   Any C++ or Python framework interface presented in this document is illustrative and not intended to reflect the final framework interface.
+
 .. rubric:: Footnotes
 
 .. [#f1] It is possible for additional experiments to become stakeholders of the Phlex framework.

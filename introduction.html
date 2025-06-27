@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; Phlex 0 (22f9353) documentation</title>
+    <title>1. Introduction &#8212; Phlex 0 (71d70fb) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=df9dcdf2"></script>
+    <script src="static/documentation_options.js?v=b70cbed3"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>  
@@ -211,6 +211,16 @@ Similarly, framework-independent Python algorithms import no direct or transitiv
 <p>Phlex is required to support the registration of user-defined, framework-independent algorithms <a class="reference internal" href="appendices/requirements.html#DUNE 43" title="DUNE 43"><em class="xref need">[DUNE 43]</em></a>.
 This does not mean that <em>all</em> framework-independent algorithms are suitable for registration, nor does it mean that all algorithms registered with the framework must be framework-independent.
 In fact, depending on what the algorithm is doing, some algorithms might require explicit framework dependencies.</p>
+</section>
+<section id="guide-to-reading-this-document">
+<h2><span class="section-number">1.5. </span>Guide to Reading This Document<a class="headerlink" href="#guide-to-reading-this-document" title="Link to this heading">¶</a></h2>
+<p>This document is intended to convey Phlex’s conceptual design in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>, with supporting material in <span>the subsystem design <em>(under preparation)</em></span>.
+Preliminary remarks are presented in  <a class="reference internal" href="preliminaries.html#preliminaries"><span class="std std-numref">Chapter 2</span></a>, in which we discuss the formal ingredients to the conceptual design.
+Appendices are provided that give definitions (<a class="reference internal" href="appendices/definitions.html#definitions"><span class="std std-numref">Appendix A</span></a>), list stakeholder requirements (<a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>), present supported platforms (<a class="reference internal" href="appendices/platforms.html#supported-platforms"><span class="std std-numref">Appendix C</span></a>), and discuss Phlex deployment (<a class="reference internal" href="appendices/deployment.html#deployment"><span class="std std-numref">Appendix D</span></a>).</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Any C++ or Python framework interface presented in this document is illustrative and not intended to reflect the final framework interface.</p>
+</div>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="f1" role="doc-footnote">
@@ -276,6 +286,7 @@ In such a case, the stakeholder requirements of one experiment may not negate th
 </li>
 <li><a class="reference internal" href="#programming-languages">1.3. Programming Languages</a></li>
 <li><a class="reference internal" href="#framework-independence">1.4. Framework Independence</a></li>
+<li><a class="reference internal" href="#guide-to-reading-this-document">1.5. Guide to Reading This Document</a></li>
 </ul>
 </li>
 </ul>
@@ -324,13 +335,13 @@ In such a case, the stakeholder requirements of one experiment may not negate th
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 25, 2025.
+      Last updated on Jun 27, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

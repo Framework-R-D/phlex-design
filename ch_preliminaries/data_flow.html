@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.6. Data Flow &#8212; Phlex 0 (22f9353) documentation</title>
+    <title>2.6. Data Flow &#8212; Phlex 0 (71d70fb) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=df9dcdf2"></script>
+    <script src="../static/documentation_options.js?v=b70cbed3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
@@ -139,11 +139,7 @@ The data-flow discussion in the previous section naturally maps to applying the 
 }" class="graphviz" /></div>
 </div>
 <p>The above graph does not specify an implementation—assuming <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
-Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.</p>
-<div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
-<p>Determine whether the choice between (a) and (b) can be decided in user code, by user configuration, or by something else.</p>
-</div>
+Determining whether option (a) or (b) is more efficient depends on the data passed between the nodes and the overall constraints on the program.</p>
 <p>One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
 As an illustration, consider the calculation of a sum of squares for all integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -200,7 +196,7 @@ As an illustration, consider the calculation of a sum of squares for all integer
 <p>The summation formula for <span class="math notranslate nohighlight">\(S(n)\)</span>, however, can be expressed in terms of higher-order functions that reflect the three steps above:</p>
 <div class="math notranslate nohighlight">
 \[S(n) = \sum_{i=1}^n i^2 = \underbrace{\fold{+}{0}}_{3.\ \textcolor{blue}{\textit{sum}}}\ \underbrace{\transform{\textcolor{blue}{\textit{square}}}}_{2.}\ \underbrace{\unfold{\ge 0}{\textit{decrement}}}_{1.\ \textcolor{blue}{\textit{iota}}}\ n\]</div>
-<p>Note that the unfold <span class="math notranslate nohighlight">\(\textit{iota}\)</span> takes two operators: the predicate <span class="math notranslate nohighlight">\(\ge 0\)</span>, which tests whether the next generated number is greater than or equal to zero, and the <span class="math notranslate nohighlight">\(\textit{decrement}\)</span> operator, which decrements the next generated number by 1. <a class="footnote-reference brackets" href="#f3" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>
+<p>Note that the unfold <span class="math notranslate nohighlight">\(\textit{iota}\)</span> takes two operators: the predicate <span class="math notranslate nohighlight">\(\ge 0\)</span>, which tests whether the next generated number is greater than or equal to zero, and the <span class="math notranslate nohighlight">\(\textit{decrement}\)</span> operator, which decrements the next generated number by 1. <a class="footnote-reference brackets" href="#f3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>
 Once the predicate returns false, the unfold stops generating numbers.</p>
 <p>By adopting the HOF representation of the sum-of-squares problem, the data-flow graph is simplified:</p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-1529c272d3b9128faaf5830cf5dd1f201b918686.png" alt="digraph {
@@ -244,7 +240,7 @@ It is also possible to invert the view of the graph such that the data are treat
 <p>In Haskell (and, similarly, in category theory), this transformation is achieved through the <cite>List/fmap</cite> functor.</p>
 </aside>
 <aside class="footnote brackets" id="f3" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p>The same data-flow can equivalently be represented with an unfold that uses the predicate <span class="math notranslate nohighlight">\(\le n\)</span> and the operator <span class="math notranslate nohighlight">\(\textit{increment}\)</span>, but starts with an initial value of 0.
 This alternative representation, however, requires an unfold that depends on the value of <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </aside>
@@ -315,14 +311,14 @@ This alternative representation, however, requires an unfold that depends on the
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 25, 2025.
+      Last updated on Jun 27, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

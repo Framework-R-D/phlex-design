@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (22f9353) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (71d70fb) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=df9dcdf2"></script>
+    <script src="static/documentation_options.js?v=b70cbed3"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2)", 2], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -71,107 +73,142 @@ More detailed design aspects in support of the conceptual model are given in <sp
 </div>
 <p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them <a class="reference internal" href="appendices/requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.
-These algorithms then serve as operators to higher-order functions that operate on <em>data-product sequences</em>.</p>
-<p>To guide the discussion of Phlex’s conceptual model, we refer to the graph in  <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>, which illustrates various framework aspects:</p>
+These algorithms then serve as operators to higher-order functions (HOFs) that operate on <em>data-product sequences</em>.</p>
+<p>To guide the discussion of Phlex’s conceptual model, we refer to <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>, which shows a fictitious workflow that creates vertices from simulated energy deposits.
+Various framework aspects are demonstrated by that figure:</p>
+<blockquote>
+<div><dl>
+<dt><em>data-flow graph</em></dt><dd><p>The data-flow graph is formed by ingesting the configuration file and recording the data-product dependencies required of each algorithm (see <a class="reference internal" href="ch_conceptual_design/scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>).</p>
+</dd>
+<dt><em>data-product flow</em></dt><dd><p>Data products and data-product sets (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>) are passed along graph edges.
+As mentioned in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>, the data passed between HOFs are expressed as sequences.
+<a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> thus formally passes sequences (e.g. <span class="math notranslate nohighlight">\([\text{GoodHits}_{jk}]\)</span>) between nodes <a class="footnote-reference brackets" href="#flow" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+</dd>
+<dt><em>framework driver</em></dt><dd><p>The driver instructs the framework what to process (see <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>).</p>
+<p>The driver in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is configured so that all <cite>Spill</cite>s in the specified ROOT input files are processed.</p>
+</dd>
+<dt><em>data-product providers</em></dt><dd><p>Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>).
+From a functional-programming perspective, they are transforms that map a data-product set to the data product within that set.</p>
+<p>In the workflow, one provider reads a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDepos</span></code> data product from each <cite>Spill</cite> in the ROOT input files, and the other reads a single <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Geometry</span></code> corresponding to the <cite>Job</cite> from a GDML file.</p>
+</dd>
+<dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
+<p>All six HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+For the main processing chain of creating vertices:</p>
 <ul class="simple">
-<li><p>the data-flow graph itself (see <a class="reference internal" href="ch_conceptual_design/scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>)</p></li>
-<li><p>data products and data-product sets as passed along graph edges (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>)</p></li>
-<li><p>user-provided algorithms such as transforms, folds, etc. (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>)</p></li>
-<li><p>the framework driver (see <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>)</p></li>
-<li><p>data-product providers (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>), which are plugins that provide data products from external entities to downstream user algorithms (e.g. input from ROOT files)</p></li>
-<li><p>data-product writers (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>), which are plugins that may write data products to an external entity (e.g. output files)</p></li>
-<li><p>resources (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.9</span></a>)</p></li>
-<li><p>program configuration (see <a class="reference internal" href="ch_conceptual_design/user_configuration.html#program-configuration"><span class="std std-numref">Section 3.10</span></a>)</p></li>
+<li><p>An <em>unfold</em> algorithm is configured to create a sequence of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> objects—creating one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> object per <em>APA</em>—from one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDeps</span></code> data product in each <cite>Spill</cite>.</p></li>
+<li><p>A <em>transform</em> algorithm is run on each <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> objects to create a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> object.</p></li>
+<li><p>To make a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodTracks</span></code> data product, a <em>window</em> algorithm is applied to pairs of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> objects that come from adjacent <em>APA</em>s.</p></li>
+<li><p>Lastly, another <em>transform</em> algorithm operates on the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodTracks</span></code> data products to produce vertices.</p></li>
 </ul>
+<p>There are additional parts of the graph that are not directly related to creating vertices:</p>
+<ul class="simple">
+<li><p>A <em>fold</em> algorithm is executed over the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products to sum the hit energy (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">TotalHitEnergy</span></code>) across all <cite>APA</cite>s for a given <cite>Spill</cite>.</p></li>
+<li><p>After a <em>filter</em> has been applied, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products.</p></li>
+</ul>
+</dd>
+<dt><em>data-product writers</em></dt><dd><p>Data-product writers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>)</p>
+<p>Each of the five writers in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is responsible for writing to one or more output files.</p>
+</dd>
+<dt><em>resources</em></dt><dd><p>Most workflows require access to some external resource (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.9</span></a>).</p>
+<p>The histogramming resource in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> enables the <em>observe</em> algorithm to fill and write histograms to a ROOT analysis file.</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Note that in this workflow, the names <em>Spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
+Each data product is also indexed, thus associating it with a particular data-product set (e.g. <span class="math notranslate nohighlight">\(\text{GoodHits}_{mn}\)</span> denotes the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(n\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(m\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-4c309e1ee92468d78b617d95285b6446377c2874.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-65d31fd24f68e9ae234a731617b9f9038b4e521c.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
-  start [shape=&quot;point&quot;, width=0.1]
-  unfold [label=&lt;unfold(&lt;font color=&quot;blue&quot;&gt;into_apas&lt;/font&gt;)&gt;]
-  transform [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;clamp&lt;/font&gt;)&gt;]
-  fold [label=&lt;fold(&lt;font color=&quot;blue&quot;&gt;sum_waveforms&lt;/font&gt;)&gt;]
-  filter [label=&lt;filter(&lt;font color=&quot;blue&quot;&gt;high_energy&lt;/font&gt;)&gt;];
-  observer [label=&lt;observe(&lt;font color=&quot;blue&quot;&gt;histogram_waveforms&lt;/font&gt;)&gt;];
-  out [label=&quot;ROOT output file(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
+  start [shape=&quot;point&quot;, width=0.1];
+  unfold_into_apas [label=&lt;unfold(&lt;font color=&quot;blue&quot;&gt;into_apas&lt;/font&gt;)&gt;];
+  transform_make_hits [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;make_hits&lt;/font&gt;)&gt;];
+  filter_high_energy [label=&lt;filter(&lt;font color=&quot;blue&quot;&gt;high_energy&lt;/font&gt;)&gt;];
+  window_make_tracks [label=&lt;window(&lt;font color=&quot;blue&quot;&gt;make_tracks&lt;/font&gt;)&gt;];
+  out [label=&quot;ROOT output file(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
 
-  {
-    rank=same;
-    resource [label=&lt;Histogram&lt;br/&gt; resource&gt;,
-              shape=hexagon,
-              style=filled,
-              fillcolor=thistle,
-              margin=0];
-    root [label=&quot;ROOT analysis file&quot;, style=filled, shape=cylinder];
-  }
+  observe_histogram_hits [label=&lt;observe(&lt;font color=&quot;blue&quot;&gt;histogram_hits&lt;/font&gt;)&gt;];
+  transform_make_vertices [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;make_vertices&lt;/font&gt;)&gt;];
+  fold_total_energy [label=&lt;fold(&lt;font color=&quot;blue&quot;&gt;sum_energy&lt;/font&gt;)&gt;];
 
-  start -&gt; driver [label=&quot; Configuration&quot;, fontcolor=&quot;forestgreen&quot;];
+  // Histogram resource
+  resource [label=&lt;Histogram&lt;br/&gt; resource&gt;,
+            shape=hexagon,
+            style=filled,
+            fillcolor=thistle,
+            margin=0];
+  root [label=&lt;ROOT&lt;br/&gt; analysis file&gt;, style=filled, shape=cylinder];
 
-  {
-    rank=same;
-    gdml [label=&quot;GDML file&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
-    driver [label=&quot;driver(Spill)&quot;, style=&quot;rounded,filled&quot;,fillcolor=&quot;palegreen1&quot;];
-    input [label=&quot;ROOT input files(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
-  }
-
-  driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
+  gdml [label=&quot;GDML file&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
+  driver [label=&quot;driver(Spill)&quot;, style=&quot;rounded,filled&quot;,fillcolor=&quot;palegreen1&quot;];
+  input [label=&quot;ROOT input files(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
 
   // Providers
-  {
-    rank=same;
-    geometry_provider [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-    sim_hits_provider [label=&quot;provide(SimHits)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
-  }
-
-  driver -&gt; geometry_provider [label=&quot; [J]&quot;, fontcolor=&quot;darkorange&quot;];
-  driver -&gt; sim_hits_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
-
-  geometry_provider -&gt; gdml [style=&quot;dotted&quot;, arrowhead=none];
-  resource -&gt; root [style=&quot;dotted&quot;, arrowhead=none];
-
-  sim_hits_provider -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
-  sim_hits_provider -&gt; unfold [label=&lt; [SimHits&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  geometry_provider -&gt; unfold [label=&lt; [Geometry]&gt;];
-
-  unfold:s -&gt; transform [xlabel=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform:s -&gt; fold [taillabel=&lt;[ClampedWaveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;,
-                       labelangle=-80,
-                       labeldistance=7
-                      ];
+  geometry_provider [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  sim_depos_provider [label=&quot;provide(SimDepos)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
 
   // Writers
-  {
-    rank=same;
-    waveforms_writer [label=&quot;write(Waveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-    summed_waveforms_writer [label=&quot;write(SummedWaveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-    clamped_waveforms_writer [label=&quot;write(ClampedWaveforms)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
-  }
+  waveforms_writer [label=&quot;write(Waveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  total_energy_writer [label=&quot;write(TotalHitEnergy)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  tracks_writer [label=&quot;write(GoodTracks)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  vertices_writer [label=&quot;write(Vertices)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  hits_writer [label=&quot;write(GoodHits)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
 
-  unfold:s -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform:s -&gt; clamped_waveforms_writer;
-  fold:s -&gt; summed_waveforms_writer [label=&lt; [SummedWaveforms&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  start -&gt; driver [label=&quot; Configuration&quot;, fontcolor=&quot;forestgreen&quot;];
+  driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
+  driver -&gt; geometry_provider [label=&quot; [Job]&quot;, fontcolor=&quot;darkorange&quot;];
+  driver -&gt; sim_depos_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
 
-  {waveforms_writer, clamped_waveforms_writer, summed_waveforms_writer} -&gt; out [style=&quot;dotted&quot;, arrowhead=none]
+  gdml -&gt; geometry_provider [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
+  resource -&gt; root [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
 
-  unfold:s -&gt; filter [label=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  filter:s -&gt; observer [label=&lt; [Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
-  resource -&gt; observer [style=&quot;dashed&quot;];
+  sim_depos_provider -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
+  sim_depos_provider -&gt; unfold_into_apas [label=&lt; [SimDepos&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
+  geometry_provider -&gt; unfold_into_apas [label=&lt;[Geometry]&gt;];
+  geometry_provider -&gt; transform_make_vertices;
+
+  unfold_into_apas -&gt; transform_make_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
+  unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+
+  transform_make_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_make_hits -&gt; hits_writer;
+  transform_make_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_make_hits -&gt; fold_total_energy;
+
+  window_make_tracks -&gt; transform_make_vertices [label=&lt; [GoodTracks&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  window_make_tracks -&gt; tracks_writer;
+
+  transform_make_vertices -&gt; vertices_writer [label=&lt; [Vertices&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+
+  fold_total_energy -&gt; total_energy_writer [label=&lt; [TotalHitEnergy&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+
+  filter_high_energy -&gt; observe_histogram_hits [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
+
+  resource -&gt; observe_histogram_hits [style=&quot;dashed&quot;];
+
+  { total_energy_writer, waveforms_writer, hits_writer, tracks_writer, vertices_writer } -&gt; out [style=&quot;dotted&quot;, arrowhead=none]
+
+  // Making the graph layout better
+  { rank=same; driver; input; }
+  { rank=same; resource; root; }
+  { rank=same; gdml; geometry_provider; sim_depos_provider; }
+  { rank=same; window_make_tracks; hits_writer; fold_total_energy; filter_high_energy; }
+  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_writer; total_energy_writer; }
+
+  // The following edges do not denote any formal relationships; they are intended for influencing the layout.
+  edge [style=&quot;invis&quot;]
+  input -&gt; waveforms_writer;
+  filter_high_energy -&gt; resource;
+  transform_make_hits -&gt; waveforms_writer [constraint=&quot;false&quot;];
 }" class="graphviz" /></div>
 <figcaption>
-<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing the different types of algorithm supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a> for a list of the supported algorithms).
-Solid arrows show the flow of data through the graph.
-Dotted lines indicate communication of data through the IO system.
-The <em>driver</em> algorithm (see section <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>) is configured to process all <em>spills</em> in the specified ROOT input files.
-One <em>provide</em> algorithm is configured to read <em>SimHits</em> associated with <em>spills</em> from the ROOT input files and the other reads a single <em>Geometry</em> object from the GDML file.
-For each <em>spill</em>, an <em>unfold</em> algorithm is configured to create a sequence of <em>Waveforms</em> objects, creating one <em>Waveforms</em> object in each <em>APA</em>.
-A <em>transform</em> algorithm is run on each of the <em>Waveforms</em> objects to create a <em>ClampedWaveforms</em> object.
-A <em>fold</em> algorithm is run on each of the <em>ClampedWaveforms</em> objects in a <em>spill</em> to create a <em>SummedWaveforms</em> object for the <em>spill</em>.
-The <em>write</em> algorithms are configured to write the <em>Waveforms</em>, <em>ClampedWaveforms</em>, and <em>SummedWaveforms</em> objects to one or more ROOT output files.
-Each <em>Waveforms</em>, <em>ClampedWaveforms</em>, and <em>SummedWaveforms</em> object is associated with the appropriate <em>spill</em> or <em>APA</em>.
-This workflow also shows a <em>filter</em> algorithm selecting only “high energy” <em>Waveforms</em>, and an <em>observe</em> algorithm creating a histogram from them, which is written to a ROOT analysis file.
-Note that in this workflow the names <em>spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.</span><a class="headerlink" href="#workflow" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing how HOFs are used in a Phlex program.
+Each unshaded node represent a HOF bound to a user-defined algorithm, whose name is shaded in blue.
+Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.
+Whereas single-dotted lines indicate communication of data through the framework’s IO system, double-dotted lines denote communication of data with entities not directly related to the framework.
+See text for workflow details.</span><a class="headerlink" href="#workflow" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <div class="toctree-wrapper compound">
@@ -205,7 +242,6 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_folds.html">3.5.4. Partitioned Folds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_unfolds.html">3.5.5. Partitioned Unfolds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/windows.html">3.5.6. Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/composite_chofs.html">3.5.7. Composite CHOFs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/driver.html">3.6. Framework Driver</a></li>
@@ -226,6 +262,14 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
 </li>
 </ul>
 </div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="flow" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In practice, elements of the sequence, not the full sequence itself, will be passed from one node to another.
+For memory purposes, it is also likely that each element of the sequence is a lightweight reference (in C++, a pointer) to the data of relevance.</p>
+</aside>
+</aside>
 </section>
 
 
@@ -281,13 +325,13 @@ Note that in this workflow the names <em>spill</em> and <em>APA</em> are not spe
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 25, 2025.
+      Last updated on Jun 27, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

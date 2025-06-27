@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (22f9353) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (71d70fb) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=df9dcdf2"></script>
+    <script src="../static/documentation_options.js?v=b70cbed3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -66,34 +66,30 @@
             
   <section id="framework-registration">
 <h1><span class="section-number">3.4. </span>Framework Registration<a class="headerlink" href="#framework-registration" title="Link to this heading">¶</a></h1>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>The C++ interface below is illustrative and not intended to reflect the final registration interface.</p>
-</div>
 <p>To the extent possible, Phlex preserves data flow among data products and algorithms.
 This is indicated in the interface for registering algorithms.
 In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.</p>
 <p>Consider the following C++ classes and function:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">tracks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">waveforms</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 
-<span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="n">hits</span><span class="w"> </span><span class="nf">make_hits</span><span class="p">(</span><span class="n">waveforms</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ws</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>where the implementations of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>, <code class="code highlight c++ docutils literal highlight-c++"><span class="n">tracks</span></code>, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> are unspecified.
-Suppose a physicist would like to use the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> to transform “good_hits” to “good_tracks” for each spill with unlimited concurrency.
+<p>where the implementations of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">waveforms</span></code>, <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_hits</span></code> are unspecified.
+Suppose a physicist would like to use the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_hits</span></code> to transform “waveforms” to “good_hits” for each spill with unlimited concurrency.
 This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w">  </span><span class="c1">// &lt;== Registration opener (w/o configuration object)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span><span class="w"> </span><span class="c1">// &lt;== Registration opener (w/o configuration object)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="c1">// 1. Specification of output data product from make_tracks</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="c1">// 1. Specification of output data product from make_tracks</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="w">                </span><span class="c1">// 2. Higher-order function</span>
-<span class="w">      </span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w">          </span><span class="c1">// 3. Name assigned to HOF</span>
-<span class="w">      </span><span class="n">make_tracks</span><span class="p">,</span><span class="w">            </span><span class="c1">// 4. Algorithm/HOF operation</span>
+<span class="w">      </span><span class="s">&quot;hit_maker&quot;</span><span class="p">,</span><span class="w">            </span><span class="c1">// 3. Name assigned to HOF</span>
+<span class="w">      </span><span class="n">make_hits</span><span class="p">,</span><span class="w">              </span><span class="c1">// 4. Algorithm/HOF operation</span>
 <span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">  </span><span class="c1">// 5. Allowed CPU concurrency</span>
 <span class="w">    </span><span class="p">)</span>
 <span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span>
-<span class="w">      </span><span class="s">&quot;good_hits&quot;</span><span class="w">             </span><span class="c1">// 6. Specification of input data product to make_tracks</span>
-<span class="w">      </span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">)</span><span class="w">            </span><span class="c1">// 7. Data category to search for input data products</span>
+<span class="w">      </span><span class="s">&quot;Waveforms&quot;</span><span class="w">             </span><span class="c1">// 6. Specification of input data product to make_tracks</span>
+<span class="w">      </span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">)</span><span class="w">              </span><span class="c1">// 7. Data category to search for input data products</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -135,8 +131,8 @@ However, in general, the registration code will specify which data products are 
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm’s function signature.
 In other words:</p>
 <ul class="simple">
-<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>).</p></li>
-<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_tracks&quot;</span></code> specifies a data product whose C++ type is the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">tracks</span></code> return type of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code>.</p></li>
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_hits</span></code> (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">waveforms</span></code>).</p></li>
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> specifies a data product whose C++ type is the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code> return type of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_hits</span></code>.</p></li>
 </ul>
 <p>When executed, the above code creates a <a class="reference internal" href="../appendices/definitions.html#term-Configured-higher-order-function-CHOF"><span class="xref std std-term">configured higher-order function</span></a>, which serves as a node in the function-centric data-flow graph.</p>
 <p>The registration block may contain any code supported by C++.
@@ -154,9 +150,12 @@ Suppose another algorithm <code class="code highlight c++ docutils literal highl
 The interface of the algorithm and its registration would look like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks_loose</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">good</span><span class="p">,</span><span class="w"> </span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bad</span><span class="p">)</span><span class="w"> </span><span class="p">{...}</span>
 
-<span class="n">products</span><span class="p">(</span><span class="s">&quot;loose_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
-<span class="w">  </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;loose_track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks_loose</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">  </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bad_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;loose_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;loose_track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks_loose</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bad_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The elements of the input sequence are thus pairs of the data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;bad_hits&quot;</span></code> in each spill. <a class="footnote-reference brackets" href="#zip" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
@@ -168,7 +167,7 @@ In this case, the data-product set for both data products is the same—i.e. for
 This would be expressed in C++ as:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span><span class="w"> </span><span class="nf">make_vertices</span><span class="p">(</span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 
-<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_vertices&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;vertex_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_vertices</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
@@ -194,7 +193,7 @@ The notion of adjacency can be critical for (e.g.) time-windowed processing (see
 <h2><span class="section-number">3.4.2. </span>Accessing Configuration Information<a class="headerlink" href="#accessing-configuration-information" title="Link to this heading">¶</a></h2>
 <p>Instead of hard-coding all pieces of registration information, it is desirable to specify a subset of such information through a program’s run-time configuration.
 To do this, an additional argument (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">config</span></code>) is passed to the registration opener:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_scope&quot;</span><span class="p">);</span>
 
@@ -245,13 +244,13 @@ By specifying a lambda expression that takes a <code class="code highlight c++ d
 <span class="w">  </span><span class="p">...</span>
 <span class="p">};</span>
 
-<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">track_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;track_seed&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_scope&quot;</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">m</span><span class="p">.</span><span class="n">make</span><span class="o">&lt;</span><span class="n">track_maker</span><span class="o">&gt;</span><span class="p">(</span><span class="n">track_seed</span><span class="p">)</span>
+<span class="w">    </span><span class="n">make</span><span class="o">&lt;</span><span class="n">track_maker</span><span class="o">&gt;</span><span class="p">(</span><span class="n">track_seed</span><span class="p">)</span>
 <span class="w">      </span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">track_maker</span><span class="o">::</span><span class="n">make</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
 <span class="w">      </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_scope</span><span class="p">));</span>
 <span class="p">}</span>
@@ -358,14 +357,14 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 25, 2025.
+      Last updated on Jun 27, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.9. Resources &#8212; Phlex 0 (22f9353) documentation</title>
+    <title>3.9. Resources &#8212; Phlex 0 (71d70fb) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=df9dcdf2"></script>
+    <script src="../static/documentation_options.js?v=b70cbed3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
@@ -99,10 +99,12 @@ Examples of resources include:</p>
 </section>
 <section id="random-number-resource">
 <h2><span class="section-number">3.9.3. </span>Random Number Resource<a class="headerlink" href="#random-number-resource" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 36" title="DUNE 36"><em class="xref need">[DUNE 36]</em></a></p>
-</div>
+<p>The generation of pseudorandom numbers (hereafter just <em>random numbers</em>) is a critical aspect of obtaining physics results, especially when simulating data.
+Although multiple random-number generation techniques exists, the vast majority of random-number implementations used in HEP rely on stateful random-number engines, which are subject to data races in multi-threaded contexts.
+To ensure reproducible data and to ensure thread-safe access to stateful random-number engines, HEP frameworks impose idiosyncratic constraints on their use.</p>
+<p>DUNE has similar requirements on reproducibility of random numbers in a concurrent context <a class="reference internal" href="../appendices/requirements.html#DUNE 36" title="DUNE 36"><em class="xref need">[DUNE 36]</em></a>.
+However, instead of working around the limitations of stateful random-number engines, Phlex supports a random-number generation technique specifically designed to reproduce random-numbers in a concurrent program.
+Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id4"><span>[Wiki-CBRNG]</span></a> each contain one internal counter.</p>
 </section>
 <section id="user-defined-resources">
 <h2><span class="section-number">3.9.4. </span>User-defined Resources<a class="headerlink" href="#user-defined-resources" title="Link to this heading">¶</a></h2>
@@ -114,6 +116,13 @@ Examples of resources include:</p>
 <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-cbrng" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Wiki-CBRNG</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Counter-based_random_number_generator">https://en.wikipedia.org/wiki/Counter-based_random_number_generator</a></p>
+</div>
 </div>
 </section>
 </section>
@@ -184,14 +193,14 @@ Examples of resources include:</p>
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (22f9353) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 25, 2025.
+      Last updated on Jun 27, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
