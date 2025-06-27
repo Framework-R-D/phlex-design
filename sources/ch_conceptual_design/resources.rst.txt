@@ -24,6 +24,10 @@ Whereas data products have provenance associated with them, resources do not.
 
    Refer to :need:`DUNE 35`, :need:`DUNE 40`, :need:`DUNE 50`, :need:`DUNE 52`
 
+.. todo::
+
+   Mention that resources are directly integrated into the framework scheduler.
+
 Limited Resources
 -----------------
 

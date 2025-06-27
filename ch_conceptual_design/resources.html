@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.9. Resources &#8212; Phlex 0 (71d70fb) documentation</title>
+    <title>3.9. Resources &#8212; Phlex 0 (8e7ee77) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=b70cbed3"></script>
+    <script src="../static/documentation_options.js?v=be8eede5"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (8e7ee77) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
@@ -83,16 +83,20 @@ Examples of resources include:</p>
 <p class="admonition-title">Todo</p>
 <p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 35" title="DUNE 35"><em class="xref need">[DUNE 35]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 50" title="DUNE 50"><em class="xref need">[DUNE 50]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 52" title="DUNE 52"><em class="xref need">[DUNE 52]</em></a></p>
 </div>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Mention that resources are directly integrated into the framework scheduler.</p>
+</div>
 <section id="limited-resources">
 <h2><span class="section-number">3.9.1. </span>Limited Resources<a class="headerlink" href="#limited-resources" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id2">
+<div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
 <p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 45" title="DUNE 45"><em class="xref need">[DUNE 45]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 145" title="DUNE 145"><em class="xref need">[DUNE 145]</em></a></p>
 </div>
 </section>
 <section id="gpus">
 <h2><span class="section-number">3.9.2. </span>GPUs<a class="headerlink" href="#gpus" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id3">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Todo</p>
 <p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 54" title="DUNE 54"><em class="xref need">[DUNE 54]</em></a></p>
 </div>
@@ -104,11 +108,11 @@ Although multiple random-number generation techniques exists, the vast majority 
 To ensure reproducible data and to ensure thread-safe access to stateful random-number engines, HEP frameworks impose idiosyncratic constraints on their use.</p>
 <p>DUNE has similar requirements on reproducibility of random numbers in a concurrent context <a class="reference internal" href="../appendices/requirements.html#DUNE 36" title="DUNE 36"><em class="xref need">[DUNE 36]</em></a>.
 However, instead of working around the limitations of stateful random-number engines, Phlex supports a random-number generation technique specifically designed to reproduce random-numbers in a concurrent program.
-Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id4"><span>[Wiki-CBRNG]</span></a> each contain one internal counter.</p>
+Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id5"><span>[Wiki-CBRNG]</span></a> each contain one internal counter.</p>
 </section>
 <section id="user-defined-resources">
 <h2><span class="section-number">3.9.4. </span>User-defined Resources<a class="headerlink" href="#user-defined-resources" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id5">
+<div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">Todo</p>
 <p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 149" title="DUNE 149"><em class="xref need">[DUNE 149]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a></p>
 </div>
@@ -120,7 +124,7 @@ Counter-based random number generators (CBRNGs) <a class="reference internal" hr
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-cbrng" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Wiki-CBRNG</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Wiki-CBRNG</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Counter-based_random_number_generator">https://en.wikipedia.org/wiki/Counter-based_random_number_generator</a></p>
 </div>
 </div>
@@ -193,7 +197,7 @@ Counter-based random number generators (CBRNGs) <a class="reference internal" hr
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (71d70fb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (8e7ee77) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
