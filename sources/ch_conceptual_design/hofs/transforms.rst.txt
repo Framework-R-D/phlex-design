@@ -13,14 +13,13 @@ Specifically, the algorithm :math:`f` is applied to each element of the input se
 
 .. math::
 
-   \isequence{b}{a} = \isequence{f\ a}{a} = \transform{f}\ \isequence{a}{a}
+   b = \isequence{b}{a} = \isequence{f\ a}{a} = \transform{f}\ \isequence{a}{a}
 
 where :math:`b_i = f\ a_i`.
 Note that the index set of the output sequence is the same as the index set of the input sequence.
 
-.. todo::
-
-   Allow for transforms where the output sequence is indexed by a different set—i.e. the number of elements remains the same as the input sequence, but the *label* of those elements changes.
+Operator signature
+^^^^^^^^^^^^^^^^^^
 
 .. table::
     :widths: 15 85
@@ -31,7 +30,8 @@ Note that the index set of the output sequence is the same as the index set of t
     | :math:`f`    | :cpp:`return_type function_name(P1, Pn..., Rm...) [qualifiers];` |
     +--------------+------------------------------------------------------------------+
 
-**Return type**: A transform algorithm may create multiple data products by returning an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
+- The :cpp:`return_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
+  An algorithm may also create multiple data products by returning a :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -44,37 +44,58 @@ To illustrate the different ways a transform's algorithm can be registered with 
    class hits { ... };
    class tracks { ... };
    class vertices { ... };
+   class waveforms { ... };
 
-   tracks make_tracks(hits const&) { ... }
+   hits find_hits(waveforms const&) { ... }
    vertices make_vertices(geometry const&, tracks const&) { ... }
+
+   std::tuple<int, int> count_good_hits(hits const&) { ... }
+   // Return type: first number = number of good hits
+   //              second number = number of all hits
 
 **Transform with one argument (default output product name)**
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
-     transform("track_maker", make_tracks, concurrency::unlimited)
-       .sequence("good_hits"_in("spill"));
+     transform("hit_finder", find_hits, concurrency::unlimited)
+       .sequence("Waveforms"_in("APA"));
    }
 
 **Transform with one argument (user-specified output product name)**
 
+*As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Framework Registration`
+
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("good_tracks") =
-       transform("track_maker", make_tracks, concurrency::unlimited)
-       .sequence("good_hits"_in("spill"));
+     products("GoodHits") =
+       transform("hit_finder", find_hits, concurrency::unlimited)
+       .sequence("Waveforms"_in("APA"));
    }
 
 **Transform with two arguments (default output product name)**
 
+*As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`
+
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(m, config)
+   PHLEX_REGISTER_ALGORITHMS(config)
    {
-     transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .sequence("geometry"_in("job"), "good_hits"_in("spill"));
+     products("Vertices") =
+       transform("vertex_maker", make_vertices, concurrency::unlimited)
+       .sequence("Geometry"_in("Job"), "GoodTracks"_in("APA"));
+   }
+
+**Transform creating two data products (user-specified output product names)**
+
+.. code:: c++
+
+   PHLEX_REGISTER_ALGORITHMS(config)
+   {
+     products("NumGoodHits", "NumAllHits") =  // <= One name per tuple slot of return type
+       transform("hit_counter", count_good_hits, concurrency::unlimited)
+       .sequence("GoodHits"_in("APA"));
    }

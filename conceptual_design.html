@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (705c320) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (cf07512) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=fb8339da"></script>
+    <script src="static/documentation_options.js?v=28cdd0d8"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -92,7 +92,7 @@ From a functional-programming perspective, they are transforms that map a data-p
 <p>In the workflow, one provider reads a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDepos</span></code> data product from each <cite>Spill</cite> in the ROOT input files, and the other reads a single <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Geometry</span></code> corresponding to the <cite>Job</cite> from a GDML file.</p>
 </dd>
 <dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
-<p>All six HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+<p>All seven HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 For the main processing chain of creating vertices:</p>
 <ul class="simple">
 <li><p>An <em>unfold</em> algorithm is configured to create a sequence of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> objects—creating one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> object per <em>APA</em>—from one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDeps</span></code> data product in each <cite>Spill</cite>.</p></li>
@@ -103,7 +103,7 @@ For the main processing chain of creating vertices:</p>
 <p>There are additional parts of the graph that are not directly related to creating vertices:</p>
 <ul class="simple">
 <li><p>A <em>fold</em> algorithm is executed over the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products to sum the hit energy (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">TotalHitEnergy</span></code>) across all <cite>APA</cite>s for a given <cite>Spill</cite>.</p></li>
-<li><p>After a <em>filter</em> has been applied, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products.</p></li>
+<li><p>After a <em>filter</em> has been applied with the <em>predicate</em> <code class="code highlight c++ docutils literal highlight-c++"><span class="n">high_energy</span></code>, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products.</p></li>
 </ul>
 </dd>
 <dt><em>data-product writers</em></dt><dd><p>Data-product writers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>)</p>
@@ -117,7 +117,7 @@ For the main processing chain of creating vertices:</p>
 <p>Note that in this workflow, the names <em>Spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data-product set (e.g. <span class="math notranslate nohighlight">\(\text{GoodHits}_{mn}\)</span> denotes the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(n\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(m\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-ee6384850677c062736f13a43069c2721d8ad1b6.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-c0313ab959e747d16be70fd2dc4e5825e4948e52.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -167,7 +167,7 @@ Each data product is also indexed, thus associating it with a particular data-pr
   sim_depos_provider -&gt; unfold_into_apas [label=&lt; [SimDepos&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
   geometry_provider -&gt; unfold_into_apas [label=&lt;[Geometry]&gt;];
-  geometry_provider -&gt; transform_make_vertices;
+  geometry_provider -&gt; transform_make_vertices [taillabel=&lt;[Geometry]&gt;, labeldistance=4.7, labelangle=20];
 
   unfold_into_apas -&gt; transform_find_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
   unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
@@ -237,11 +237,12 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/supported_hofs.html">3.5. Supported Higher-Order Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/transforms.html">3.5.1. Transforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/filters.html">3.5.2. Filters and Predicates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/observers.html">3.5.3. Observers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_folds.html">3.5.4. Partitioned Folds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_unfolds.html">3.5.5. Partitioned Unfolds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/windows.html">3.5.6. Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/predicates.html">3.5.2. Predicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/filters.html">3.5.3. Filters and Predicates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/observers.html">3.5.4. Observers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_folds.html">3.5.5. Partitioned Folds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/partitioned_unfolds.html">3.5.6. Partitioned Unfolds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/hofs/windows.html">3.5.7. Windows</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/driver.html">3.6. Framework Driver</a></li>
@@ -325,7 +326,7 @@ For memory purposes, it is also likely that each element of the sequence is a li
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>

@@ -37,7 +37,7 @@ Various framework aspects are demonstrated by that figure:
    *HOFs and user-provided algorithms*
       Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see :numref:`ch_conceptual_design/algorithms:Algorithms`, :numref:`ch_conceptual_design/registration:Framework Registration` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`).
 
-      All six HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
+      All seven HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
       For the main processing chain of creating vertices:
 
       - An *unfold* algorithm is configured to create a sequence of :cpp:`Waveforms` objects—creating one :cpp:`Waveforms` object per *APA*—from one :cpp:`SimDeps` data product in each `Spill`.
@@ -48,7 +48,7 @@ Various framework aspects are demonstrated by that figure:
       There are additional parts of the graph that are not directly related to creating vertices:
 
       - A *fold* algorithm is executed over the :cpp:`GoodHits` data products to sum the hit energy (i.e. :cpp:`TotalHitEnergy`) across all `APA`\ s for a given `Spill`.
-      - After a *filter* has been applied, an *observe* algorithm is used to fill a histogram with hit-related information from the :cpp:`GoodHits` data products.
+      - After a *filter* has been applied with the *predicate* :cpp:`high_energy`, an *observe* algorithm is used to fill a histogram with hit-related information from the :cpp:`GoodHits` data products.
 
    *data-product writers*
       Data-product writers are plugins that write data products to framework outputs (see :numref:`ch_conceptual_design/writers:Data-Product writers`)

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.1. Transforms &#8212; Phlex 0 (705c320) documentation</title>
+    <title>3.5.1. Transforms &#8212; Phlex 0 (cf07512) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=fb8339da"></script>
+    <script src="../../static/documentation_options.js?v=28cdd0d8"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -34,7 +34,7 @@
     <script src="../../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.5.2. Filters and Predicates" href="filters.html" />
+    <link rel="next" title="3.5.2. Predicates" href="predicates.html" />
     <link rel="prev" title="3.5. Supported Higher-Order Functions" href="../supported_hofs.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -48,12 +48,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="filters.html" title="3.5.2. Filters and Predicates"
+          <a href="predicates.html" title="3.5.2. Predicates"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../supported_hofs.html" title="3.5. Supported Higher-Order Functions"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.1. </span>Transforms</a></li> 
@@ -84,13 +84,11 @@
 <p>The transform is the simplest HOF whose algorithms create data products.
 Specifically, the algorithm <span class="math notranslate nohighlight">\(f\)</span> is applied to each element of the input sequence <span class="math notranslate nohighlight">\(a\)</span>, creating a corresponding data product in the output sequence <span class="math notranslate nohighlight">\(b\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\isequence{b}{a} = \isequence{f\ a}{a} = \transform{f}\ \isequence{a}{a}\]</div>
+\[b = \isequence{b}{a} = \isequence{f\ a}{a} = \transform{f}\ \isequence{a}{a}\]</div>
 <p>where <span class="math notranslate nohighlight">\(b_i = f\ a_i\)</span>.
 Note that the index set of the output sequence is the same as the index set of the input sequence.</p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Allow for transforms where the output sequence is indexed by a different set—i.e. the number of elements remains the same as the input sequence, but the <em>label</em> of those elements changes.</p>
-</div>
+<section id="operator-signature">
+<h2><span class="section-number">3.5.1.1. </span>Operator signature<a class="headerlink" href="#operator-signature" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 15.0%" />
@@ -107,41 +105,62 @@ Note that the index set of the output sequence is the same as the index set of t
 </tr>
 </tbody>
 </table>
-<p><strong>Return type</strong>: A transform algorithm may create multiple data products by returning an <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a data-product created type.</p>
+<ul class="simple">
+<li><p>The <code class="code highlight c++ docutils literal highlight-c++"><span class="n">return_type</span></code> must model the created data-product type described in <a class="reference internal" href="../algorithms.html#return-types"><span class="std std-numref">Section 3.3.2</span></a>.
+An algorithm may also create multiple data products by returning a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a created data-product type.</p></li>
+</ul>
+</section>
 <section id="registration-interface">
-<h2><span class="section-number">3.5.1.1. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.5.1.2. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
 <p>To illustrate the different ways a transform’s algorithm can be registered with Phlex, we use the following classes and functions, which are presumably defined in some experiment libraries.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">geometry</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">tracks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">vertices</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">waveforms</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 
-<span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="n">hits</span><span class="w"> </span><span class="nf">find_hits</span><span class="p">(</span><span class="n">waveforms</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 <span class="n">vertices</span><span class="w"> </span><span class="nf">make_vertices</span><span class="p">(</span><span class="n">geometry</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">count_good_hits</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// Return type: first number = number of good hits</span>
+<span class="c1">//              second number = number of all hits</span>
 </pre></div>
 </div>
 <p><strong>Transform with one argument (default output product name)</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;hit_finder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">find_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Transform with one argument (user-specified output product name)</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<p><em>As shown in</em> <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> <em>and described in</em> <a class="reference internal" href="../registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;good_tracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_tracks</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;hit_finder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">find_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Transform with two arguments (default output product name)</strong></p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">)</span>
+<p><em>As shown in</em> <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> <em>and described in</em> <a class="reference internal" href="../registration.html#data-products-from-different-data-categories"><span class="std std-numref">Section 3.4.1.1</span></a></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;vertex_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_vertices</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;geometry&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;job&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;good_hits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;spill&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;Vertices&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;vertex_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_vertices</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Geometry&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;Job&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;GoodTracks&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Transform creating two data products (user-specified output product names)</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;NumGoodHits&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NumAllHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="c1">// &lt;= One name per tuple slot of return type</span>
+<span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;hit_counter&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count_good_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -162,7 +181,8 @@ Note that the index set of the output sequence is the same as the index set of t
     <h3><a href="../../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">3.5.1. Transforms</a><ul>
-<li><a class="reference internal" href="#registration-interface">3.5.1.1. Registration interface</a></li>
+<li><a class="reference internal" href="#operator-signature">3.5.1.1. Operator signature</a></li>
+<li><a class="reference internal" href="#registration-interface">3.5.1.2. Registration interface</a></li>
 </ul>
 </li>
 </ul>
@@ -175,8 +195,8 @@ Note that the index set of the output sequence is the same as the index set of t
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="filters.html"
-                          title="next chapter"><span class="section-number">3.5.2. </span>Filters and Predicates</a></p>
+    <p class="topless"><a href="predicates.html"
+                          title="next chapter"><span class="section-number">3.5.2. </span>Predicates</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -206,12 +226,12 @@ Note that the index set of the output sequence is the same as the index set of t
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="filters.html" title="3.5.2. Filters and Predicates"
+          <a href="predicates.html" title="3.5.2. Predicates"
              >next</a> |</li>
         <li class="right" >
           <a href="../supported_hofs.html" title="3.5. Supported Higher-Order Functions"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.1. </span>Transforms</a></li> 

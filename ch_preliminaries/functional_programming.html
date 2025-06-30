@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.4. Functional Programming &#8212; Phlex 0 (705c320) documentation</title>
+    <title>2.4. Functional Programming &#8212; Phlex 0 (cf07512) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=fb8339da"></script>
+    <script src="../static/documentation_options.js?v=28cdd0d8"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
@@ -162,40 +162,45 @@ Phlex will likely support other higher order functions as well.</p>
 <td><p><span class="math notranslate nohighlight">\(f: A \rightarrow B\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(|b| = |a|\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../ch_conceptual_design/hofs/filters.html#filters-and-predicates"><span class="std std-ref">Filter</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../ch_conceptual_design/hofs/predicates.html#predicates"><span class="std std-ref">Predicate</span></a></p></td>
+<td><p><span class="math notranslate nohighlight">\(\tilde{b} = \predicate{f}\ a\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(f: A \rightarrow \text{Boolean}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|\tilde{b}| = |a|\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-ref">Filter</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(a' = \filter{p}\ a\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(p: A \rightarrow \text{Boolean}\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(|a'| \le |a|\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../ch_conceptual_design/hofs/observers.html#observers"><span class="std std-ref">Observer</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../ch_conceptual_design/hofs/observers.html#observers"><span class="std std-ref">Observer</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\([\ \ ] = \observe{f}\ a\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(f: A \rightarrow \one\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><p><a class="reference internal" href="../ch_conceptual_design/hofs/partitioned_folds.html#partitioned-folds"><span class="std std-ref">Fold</span></a></p></td>
+<tr class="row-even"><td rowspan="3"><p><a class="reference internal" href="../ch_conceptual_design/hofs/partitioned_folds.html#partitioned-folds"><span class="std std-ref">Fold</span></a></p></td>
 <td rowspan="3"><p><span class="math notranslate nohighlight">\(d = \pfold{f}{init}{part}\ c\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(f: D \times C \rightarrow D\)</span></p></td>
 <td rowspan="3"><p><span class="math notranslate nohighlight">\(|d| \le |c|\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(init: \one \rightarrow D\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(init: \one \rightarrow D\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(part: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span></p></td>
 </tr>
-<tr class="row-even"><td rowspan="3"><p><a class="reference internal" href="../ch_conceptual_design/hofs/partitioned_unfolds.html#partitioned-unfolds"><span class="std std-ref">Unfold</span></a></p></td>
+<tr class="row-odd"><td rowspan="3"><p><a class="reference internal" href="../ch_conceptual_design/hofs/partitioned_unfolds.html#partitioned-unfolds"><span class="std std-ref">Unfold</span></a></p></td>
 <td rowspan="3"><p><span class="math notranslate nohighlight">\(c = \punfold{p}{gen}{label}\ d\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(p: D \rightarrow \mbox{Boolean}\)</span></p></td>
 <td rowspan="3"><p><span class="math notranslate nohighlight">\(|c| \ge |d|\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(gen: D \rightarrow D \times C\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(gen: D \rightarrow D \times C\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><p><a class="reference internal" href="../ch_conceptual_design/hofs/windows.html#windows"><span class="std std-ref">Window</span></a></p></td>
+<tr class="row-even"><td rowspan="2"><p><a class="reference internal" href="../ch_conceptual_design/hofs/windows.html#windows"><span class="std std-ref">Window</span></a></p></td>
 <td rowspan="2"><p><span class="math notranslate nohighlight">\(y = \window{f}{label}\ x\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(f: X \times \textrm{Opt}(X) \rightarrow Y\)</span></p></td>
 <td rowspan="2"><p><span class="math notranslate nohighlight">\(|y| = |x|\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -288,7 +293,7 @@ Phlex will likely support other higher order functions as well.</p>
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>

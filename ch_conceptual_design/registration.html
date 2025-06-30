@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0 (705c320) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0 (cf07512) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=fb8339da"></script>
+    <script src="../static/documentation_options.js?v=28cdd0d8"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -188,7 +188,7 @@ How the relation between data-product sets is defined is referred to as <em>data
 <section id="data-products-from-adjacent-data-product-sets">
 <h3><span class="section-number">3.4.1.2. </span>Data Products from Adjacent Data-Product Sets<a class="headerlink" href="#data-products-from-adjacent-data-product-sets" title="Link to this heading">¶</a></h3>
 <p>In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets <a class="reference internal" href="../appendices/requirements.html#DUNE 91" title="DUNE 91"><em class="xref need">[DUNE 91]</em></a>, where <em>adjacency</em> is defined by the user <a class="reference internal" href="../appendices/requirements.html#DUNE 92" title="DUNE 92"><em class="xref need">[DUNE 92]</em></a>.
-The notion of adjacency can be critical for (e.g.) time-windowed processing (see <a class="reference internal" href="hofs/windows.html#windows"><span class="std std-numref">Section 3.5.6</span></a>), where the details of the “next” time bin are needed to accurately calculate properties of the “current” time bin.</p>
+The notion of adjacency can be critical for (e.g.) time-windowed processing (see <a class="reference internal" href="hofs/windows.html#windows"><span class="std std-numref">Section 3.5.7</span></a>), where the details of the “next” time bin are needed to accurately calculate properties of the “current” time bin.</p>
 <p>Supporting the processing of adjacent data-product sets is described further in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </section>
 </section>
@@ -288,7 +288,7 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="zip" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The operation that forms the sequence <span class="math notranslate nohighlight">\(\isequence{(\texttt{&quot;Waveforms&quot;}, \texttt{&quot;Pedestals&quot;})}{\text{APA}}\)</span> from the separate sequences <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Waveforms&quot;}}{\text{APA}}\)</span> and <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Pedestals&quot;}}{\text{APA}}\)</span> is called <em>zip</em>.</p>
+<p>The operation that forms the sequence <span class="math notranslate nohighlight">\(\left[(\texttt{&quot;Waveforms&quot;}_i, \texttt{&quot;Pedestals&quot;}_i)\right]_{i \in \mathcal{I}_{\text{APA}}}\)</span> from the separate sequences <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Waveforms&quot;}}{\text{APA}}\)</span> and <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Pedestals&quot;}}{\text{APA}}\)</span> is called <em>zip</em>.</p>
 </aside>
 <aside class="footnote brackets" id="job" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
@@ -373,7 +373,7 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (705c320) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (cf07512) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
