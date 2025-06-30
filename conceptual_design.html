@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0 (8e7ee77) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0 (19510df) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=be8eede5"></script>
+    <script src="static/documentation_options.js?v=226ba1b3"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (8e7ee77) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (19510df) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -117,13 +117,13 @@ For the main processing chain of creating vertices:</p>
 <p>Note that in this workflow, the names <em>Spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data-product set (e.g. <span class="math notranslate nohighlight">\(\text{GoodHits}_{mn}\)</span> denotes the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(n\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(m\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-65d31fd24f68e9ae234a731617b9f9038b4e521c.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-ee6384850677c062736f13a43069c2721d8ad1b6.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
   start [shape=&quot;point&quot;, width=0.1];
   unfold_into_apas [label=&lt;unfold(&lt;font color=&quot;blue&quot;&gt;into_apas&lt;/font&gt;)&gt;];
-  transform_make_hits [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;make_hits&lt;/font&gt;)&gt;];
+  transform_find_hits [label=&lt;transform(&lt;font color=&quot;blue&quot;&gt;find_hits&lt;/font&gt;)&gt;];
   filter_high_energy [label=&lt;filter(&lt;font color=&quot;blue&quot;&gt;high_energy&lt;/font&gt;)&gt;];
   window_make_tracks [label=&lt;window(&lt;font color=&quot;blue&quot;&gt;make_tracks&lt;/font&gt;)&gt;];
   out [label=&quot;ROOT output file(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
@@ -169,13 +169,13 @@ Each data product is also indexed, thus associating it with a particular data-pr
   geometry_provider -&gt; unfold_into_apas [label=&lt;[Geometry]&gt;];
   geometry_provider -&gt; transform_make_vertices;
 
-  unfold_into_apas -&gt; transform_make_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
+  unfold_into_apas -&gt; transform_find_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
   unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
-  transform_make_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform_make_hits -&gt; hits_writer;
-  transform_make_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform_make_hits -&gt; fold_total_energy;
+  transform_find_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_find_hits -&gt; hits_writer;
+  transform_find_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_find_hits -&gt; fold_total_energy;
 
   window_make_tracks -&gt; transform_make_vertices [label=&lt; [GoodTracks&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   window_make_tracks -&gt; tracks_writer;
@@ -201,7 +201,7 @@ Each data product is also indexed, thus associating it with a particular data-pr
   edge [style=&quot;invis&quot;]
   input -&gt; waveforms_writer;
   filter_high_energy -&gt; resource;
-  transform_make_hits -&gt; waveforms_writer [constraint=&quot;false&quot;];
+  transform_find_hits -&gt; waveforms_writer [constraint=&quot;false&quot;];
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A sample workflow showing how HOFs are used in a Phlex program.
@@ -325,13 +325,13 @@ For memory purposes, it is also likely that each element of the sequence is a li
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (8e7ee77) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0 (19510df) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 27, 2025.
+      Last updated on Jun 30, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
