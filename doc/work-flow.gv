@@ -4,7 +4,7 @@ digraph {
 
   start [shape="point", width=0.1];
   unfold_into_apas [label=<unfold(<font color="blue">into_apas</font>)>];
-  transform_make_hits [label=<transform(<font color="blue">make_hits</font>)>];
+  transform_find_hits [label=<transform(<font color="blue">find_hits</font>)>];
   filter_high_energy [label=<filter(<font color="blue">high_energy</font>)>];
   window_make_tracks [label=<window(<font color="blue">make_tracks</font>)>];
   out [label="ROOT output file(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
@@ -50,13 +50,13 @@ digraph {
   geometry_provider -> unfold_into_apas [label=<[Geometry]>];
   geometry_provider -> transform_make_vertices;
 
-  unfold_into_apas -> transform_make_hits [xlabel=<[Waveforms<sub><i>j k</i></sub>] >];
+  unfold_into_apas -> transform_find_hits [xlabel=<[Waveforms<sub><i>j k</i></sub>] >];
   unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>j k</i></sub>]>];
 
-  transform_make_hits -> filter_high_energy [label=<[GoodHits<sub><i>j k</i></sub>]>];
-  transform_make_hits -> hits_writer;
-  transform_make_hits -> window_make_tracks [label=<[GoodHits<sub><i>j k</i></sub>]>];
-  transform_make_hits -> fold_total_energy;
+  transform_find_hits -> filter_high_energy [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_find_hits -> hits_writer;
+  transform_find_hits -> window_make_tracks [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_find_hits -> fold_total_energy;
 
   window_make_tracks -> transform_make_vertices [label=< [GoodTracks<sub><i>j k</i></sub>]>];
   window_make_tracks -> tracks_writer;
@@ -82,5 +82,5 @@ digraph {
   edge [style="invis"]
   input -> waveforms_writer;
   filter_high_energy -> resource;
-  transform_make_hits -> waveforms_writer [constraint="false"];
+  transform_find_hits -> waveforms_writer [constraint="false"];
 }
