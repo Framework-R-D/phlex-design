@@ -80,4 +80,4 @@ When member functions are required, the qualifier :cpp:`const` should be specifi
 
    .. rubric:: References
 
-.. [CppFunctionDecl] https://en.cppreference.com/w/cpp/language/function
+.. [CppFunctionDecl] https://en.cppreference.com/w/cpp/language/function.html
