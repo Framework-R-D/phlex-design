@@ -8,4 +8,5 @@ This means means that, for example, the full configuration of the framework exec
 
 Writers use the same IO API as providers, ensuring that the only communication with the IO system is through the IO API.
 This allows the framework to support multiple IO back ends, including ROOT :need:`DUNE 74` and HDF5 :need:`DUNE 141`, and ensure that new back-ends can be added without modifying the framework code :need:`DUNE 73`.
+The workflow shown in :numref:`workflow` shows an example with the *write* algorithm writing data products to a ROOT back end.
 

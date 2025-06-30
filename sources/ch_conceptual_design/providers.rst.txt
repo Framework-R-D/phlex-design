@@ -10,3 +10,5 @@ This allows the framework to support multiple IO back ends, including ROOT :need
 Providers are responsible for being able to read data written by earlier code versions,  subject to policy decisions made by the experiment :need:`DUNE 76`.
 
 Providers are also responsible for be able to read some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
+The workflow shown in :numref:`workflow` shows an example of two such *provide* algorithms.
+The first one is responsible for reading data *spills* from the IO system, and the second one is responsible for reading the data from GDML files.
