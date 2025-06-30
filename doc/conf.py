@@ -135,6 +135,7 @@ mathjax3_config = {
           "fold": ['\\textrm{fold}(#1, #2)', 2],
           "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
           "window": ['\\textrm{window}(#1, #2)', 2],
+          "isetdefault": ['\\mathcal{I}', 0],
           "iset": ['\\mathcal{I}_{#1}', 1],
           "sequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
           "isequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
@@ -167,6 +168,8 @@ if conceptual_design_only := os.environ.get("PHLEX_CONCEPTUAL_DESIGN_ONLY", Fals
 if existing_pdf := os.environ.get("SPHINX_EXISTING_PDF"):
     tags.add("pdf_already_exists")  # pyright: ignore[reportUndefinedVariable]
     rst_epilog = f".. _here: {existing_pdf}"
+else:
+    rst_epilog = ".. _here: here"  # So Sphinx will stop complaining that "here" is not defined
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
