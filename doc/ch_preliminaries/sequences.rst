@@ -23,3 +23,5 @@ In this document, we will have need of a list of length 0, or the empty list, wh
 
 .. math::
     [\ ] = [a_i]_{i \in \emptyset} \ .
+
+We also use the notation :math:`\tilde{a}` to denote a sequence whose elements are either Boolean `true` (:math:`\textsf{T}`) or `false` (:math:`\textsf{F}`), such as :math:`\tilde{a} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]`.

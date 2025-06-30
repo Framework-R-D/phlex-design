@@ -48,7 +48,7 @@ digraph {
   sim_depos_provider -> unfold_into_apas [label=< [SimDepos<sub><i>j</i></sub>]>];
 
   geometry_provider -> unfold_into_apas [label=<[Geometry]>];
-  geometry_provider -> transform_make_vertices;
+  geometry_provider -> transform_make_vertices [taillabel=<[Geometry]>, labeldistance=4.7, labelangle=20];
 
   unfold_into_apas -> transform_find_hits [xlabel=<[Waveforms<sub><i>j k</i></sub>] >];
   unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>j k</i></sub>]>];
