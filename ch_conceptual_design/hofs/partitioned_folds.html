@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.5. Partitioned Folds &#8212; Phlex 0 (eb0023d) documentation</title>
+    <title>3.5.5. Partitioned Folds &#8212; Phlex 0 (bd5cea8) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=9c63c02c"></script>
+    <script src="../../static/documentation_options.js?v=2b9a4827"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2)", 2], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros"]}, "macros": {"one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2)", 2], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="observers.html" title="3.5.4. Observers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (eb0023d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bd5cea8) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Folds</a></li> 
@@ -79,7 +79,7 @@
 <td><p><span class="math notranslate nohighlight">\(f: D \times C \rightarrow D\)</span></p></td>
 <td rowspan="3"><p><span class="math notranslate nohighlight">\(|d| \le |c|\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\textit{init}: \one \rightarrow D\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\textit{init}: \opt{\iset{d}} \rightarrow D\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span></p></td>
 </tr>
@@ -90,86 +90,136 @@
 \[d = \fold{f}{\textit{init}}\ \isequence{c}{c}\]</div>
 <p>where the user-defined operation <span class="math notranslate nohighlight">\(f\)</span> is applied repeatedly between an accumulated value (initialized by <span class="math notranslate nohighlight">\(init\)</span>) and each element of the input sequence.</p>
 <p>In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
-For example, consider a program that processes <span class="math notranslate nohighlight">\(n\)</span> runs, each of which contains spills, identified by the tuple <span class="math notranslate nohighlight">\((R\ i, S\ j)\)</span>.
-The user may wish to create one histogram per run that contains the track multiplicity per spill.
-Instead of creating a single fold result, we thus use a <em>partitioned fold</em>:</p>
+Consider the workflow in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>, which processes <cite>Spill</cite>s, identified by the index <span class="math notranslate nohighlight">\(j\)</span> or, more specifically, the tuple <span class="math notranslate nohighlight">\((S\ j)\)</span>.
+Each <cite>Spill</cite> is unfolded into a sequence of <cite>APA</cite>s, which are identified by the pair of indices <span class="math notranslate nohighlight">\(jk\)</span> or, more specifically, the tuple <span class="math notranslate nohighlight">\((S\ j, A\ k)\)</span>.
+The energies of the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> are summed across <cite>APA</cite>s per <cite>Spill</cite> using the <span class="math notranslate nohighlight">\(\textit{fold(sum\_energy)}\)</span> node.</p>
+<p>Instead of creating one fold result, we thus use a <em>partitioned fold</em> to create one summed energy data-product per <cite>Spill</cite>:</p>
 <div class="math notranslate nohighlight">
 \begin{align*}
-[h_{(R\ 1)}&amp;,\ \dots,\ h_{(R\ n)}] \\
-           &amp;= \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
-\end{align*}</div><p>where <span class="math notranslate nohighlight">\(h_{(R\ i)}\)</span> denotes the histogram for run <span class="math notranslate nohighlight">\(i\)</span>, and <span class="math notranslate nohighlight">\(m_{(R\ i,\ S\ j)}\)</span> is the track multiplicity for spill <span class="math notranslate nohighlight">\(j\)</span> in run <span class="math notranslate nohighlight">\(i\)</span>.</p>
+[E_{(S\ 1)}&amp;,\ \dots,\ E_{(S\ n)}] \\
+           &amp;= \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_spills}}\ [hs_{(S\ 1,\ A\ 1)},\ hs_{(S\ 1,\ A\ 2)},\ \dots,\ hs_{(S\ n,\ A\ 1)},\ hs_{(S\ n,\ A\ 2)},\ \dots]
+\end{align*}</div><p>where <span class="math notranslate nohighlight">\(E_{(S\ j)}\)</span> denotes the summed good-hits energy for <cite>Spill</cite> <span class="math notranslate nohighlight">\(j\)</span>, and <span class="math notranslate nohighlight">\(hs_{(S\ j,\ A\ k)}\)</span> is the good-hits data product <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> for <cite>APA</cite> <span class="math notranslate nohighlight">\(k\)</span> in <cite>Spill</cite> <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The above equation can be expressed more succinctly as:</p>
 <div class="math notranslate nohighlight">
-\[[h_j]_{j \in \iset{\text{out}}} = \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}\]</div>
+\[[E_j]_{j \in \iset{\text{out}}} = \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_runs}}\ [hs_i]_{i \in \iset{\text{in}}}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \begin{align*}
-\iset{\text{in}} &amp;= \{(R\ 1,\ S\ 1),\ (R\ 1,\ S\ 2),\ \dots,\ (R\ n,\ S\ 1),\ (R\ n,\ S\ 2), \dots\}, \text{and}\\
-\iset{\text{out}} &amp;= \{(R\ 1),\ \dots, (R\ n)\}\ .
+\iset{\text{in}} &amp;= \{(S\ 1,\ A\ 1),\ (S\ 1,\ A\ 2),\ \dots,\ (S\ n,\ A\ 1),\ (S\ n,\ A\ 2), \dots\}, \text{and}\\
+\iset{\text{out}} &amp;= \{(S\ 1),\ \dots, (S\ n)\}\ .
 \end{align*}</div><section id="partitions">
 <h2><span class="section-number">3.5.5.1. </span>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">¶</a></h2>
-<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em>. <a class="reference internal" href="#wiki-partition" id="id1"><span>[Wiki-partition]</span></a>
+<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em> <a class="reference internal" href="#wiki-partition" id="id1"><span>[Wiki-partition]</span></a>.
 Each subset of the partition is called a <em>cell</em>.
-In the above example, the role of the <span class="math notranslate nohighlight">\(\textit{into\_runs}\)</span> operation is to partition the input sequence into runs so that there is one fold result per run.
+In the above example, the role of the <span class="math notranslate nohighlight">\(\textit{into\_spills}\)</span> operation is to partition the input sequence into <cite>Spill</cite>s so that there is one fold result per <cite>Spill</cite>.
 In general, however, the partitioning function is of the form <span class="math notranslate nohighlight">\(\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span>, where:</p>
 <ul class="simple">
 <li><p>the domain is the singleton set that contains only the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span> (i.e. <span class="math notranslate nohighlight">\(\textit{part}\)</span> can only be invoked on <span class="math notranslate nohighlight">\(\iset{c}\)</span>), and</p></li>
-<li><p>the codomain is the set of partitions of the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span>.</p></li>
+<li><p>the codomain is the set of partitions of <span class="math notranslate nohighlight">\(\iset{c}\)</span> or <span class="math notranslate nohighlight">\(\mathbb{P}(\iset{c})\)</span>; note that the output index set <span class="math notranslate nohighlight">\(\iset{d} \in \mathbb{P}(\iset{c})\)</span>.</p></li>
 </ul>
 <p>The function <span class="math notranslate nohighlight">\(part\)</span> also establishes an equivalence relationship on the index set <span class="math notranslate nohighlight">\(\iset{c}\)</span>, where each element of the index set is mapped to a cell of the partition.
 The number of elements in the output sequence <span class="math notranslate nohighlight">\(d\)</span> corresponds to the number of partition cells.</p>
+<p>As of this writing, the only partitions supported are those that correspond to the names of data-product set categories.
+The partition <span class="math notranslate nohighlight">\(\textit{into\_spills}\)</span> can thus be represented by the string <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Spill&quot;</span></code>, which denotes that there is one partition spell per <cite>Spill</cite>.</p>
 </section>
 <section id="initializing-the-accumulator">
 <h2><span class="section-number">3.5.5.2. </span>Initializing the Accumulator<a class="headerlink" href="#initializing-the-accumulator" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<p>Change the domain type of <span class="math notranslate nohighlight">\(\textit{init}\)</span>.</p>
-</div>
 <p>A crucial ingredient of the fold is the <em>accumulator</em>, which stores the fold result while it is being formed.
-Each accumulator is initialized by invoking a user-defined operation <span class="math notranslate nohighlight">\(\textit{init}: \one \rightarrow D\)</span>, which returns an object that has the same type <span class="math notranslate nohighlight">\(D\)</span> as the fold result. <a class="footnote-reference brackets" href="#finit" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
-Instead of invoking a function, an accumulator is often initialized with a value.
-However, in functional programming, a value can be represented by invoking a function that always returns the same result.
-Expressing an initializer as a function thus supports value-initialization while retaining the flexibility that may occasionally be required through functions.</p>
+Each accumulator is initialized by invoking a user-defined operation <span class="math notranslate nohighlight">\(\textit{init}: \opt{\iset{d}} \rightarrow D\)</span>, which returns an object that has the same type <span class="math notranslate nohighlight">\(D\)</span> as the fold result <a class="footnote-reference brackets" href="#finit" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+The <span class="math notranslate nohighlight">\(\opt{\iset{d}}\)</span> domain means that:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\textit{init}\)</span> can receive an argument corresponding to the identifier of a cell, which is a member of the output index set <span class="math notranslate nohighlight">\(\mathcal{I}_d\)</span>.
+In the example above, the relevant identifier would be that of the <cite>Spill</cite>–i.e. <span class="math notranslate nohighlight">\((S\ j)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textit{init}\)</span> can be invoked with no arguments, thus producing the same value each time the accumulator is initialized.
+This is equivalent to initializing the accumulator with a constant value.</p></li>
+</ol>
+<p>The implementation of <span class="math notranslate nohighlight">\(\textit{init}\)</span> for the total good-hits energy fold results is to return the constant <span class="math notranslate nohighlight">\(0\)</span>.</p>
 </section>
 <section id="fold-operation">
 <h2><span class="section-number">3.5.5.3. </span>Fold Operation<a class="headerlink" href="#fold-operation" title="Link to this heading">¶</a></h2>
 <p>A cell’s fold result is obtained by repeatedly applying a fold operation to the cell’s accumulator and each element of that cell’s input sequence.
 The fold operation has the signature <span class="math notranslate nohighlight">\(f: D \times C \rightarrow D\)</span>, where <span class="math notranslate nohighlight">\(D\)</span> represents the type of the accumulator/fold result, and <span class="math notranslate nohighlight">\(C\)</span> is the type of each element of the input sequence.</p>
-<p>In the above example, the function <span class="math notranslate nohighlight">\(\textit{fill}\)</span> receives a histogram <span class="math notranslate nohighlight">\(h_{(R\ i)}\)</span> as the accumulator for run <span class="math notranslate nohighlight">\(i\)</span> and “combines” it with a track multiplicity object <span class="math notranslate nohighlight">\(m_{(R\ i,\ S\ j)}\)</span> that belongs to spill <span class="math notranslate nohighlight">\(j\)</span> in run <span class="math notranslate nohighlight">\(i\)</span>.
-This “combined” value is then returned by <span class="math notranslate nohighlight">\(\textit{fill}\)</span> as the updated value of the accumulator.
-The function <span class="math notranslate nohighlight">\(\textit{fill}\)</span> is repeatedly invoked to update the accumulator with each track multiplicity value.
-Once all track multiplcity values in run <span class="math notranslate nohighlight">\(i\)</span> have been processed by <span class="math notranslate nohighlight">\(\textit{fill}\)</span>, the accumulator’s value becomes the fold result for that run.</p>
+<p>In the above example, the function <span class="math notranslate nohighlight">\(\textit{sum\_energy}\)</span> receives a floating-point number <span class="math notranslate nohighlight">\(E_{(S\ i)}\)</span>, representing the accumulated good-hits energy for <cite>Spill</cite> <span class="math notranslate nohighlight">\(j\)</span> and “combines” it with the good-hits object <span class="math notranslate nohighlight">\(hs_{(S\ j,\ A\ k)}\)</span> that belongs to <cite>APA</cite> <span class="math notranslate nohighlight">\(k\)</span> in spill <span class="math notranslate nohighlight">\(j\)</span>.
+This combination involves calculating the energy represented by the good-hits data product <span class="math notranslate nohighlight">\(hs_{(S\ j,\ A\ k)}\)</span> and adding that to the accumulated value.
+This “combined” value is then returned by <span class="math notranslate nohighlight">\(\textit{sum\_energy}\)</span> as the updated value of the accumulator <a class="footnote-reference brackets" href="#feff" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+The function <span class="math notranslate nohighlight">\(\textit{sum\_energy}\)</span> is repeatedly invoked to update the accumulator with good-hits data product.
+Once all <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products in <cite>Spill</cite> <span class="math notranslate nohighlight">\(j\)</span> have been processed by <span class="math notranslate nohighlight">\(\textit{sum\_energy}\)</span>, the accumulator’s value becomes the fold result for that <cite>Spill</cite>.</p>
 </section>
-<section id="registration-interface">
-<h2><span class="section-number">3.5.5.4. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
-<p><strong>Result type</strong>: A fold algorithm may create multiple data products through its result by specifying an <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a data-product created type.</p>
+<section id="operator-signatures">
+<h2><span class="section-number">3.5.5.4. </span>Operator signatures<a class="headerlink" href="#operator-signatures" title="Link to this heading">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 15.0%" />
-<col style="width: 85.0%" />
+<col style="width: 13.0%" />
+<col style="width: 72.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Operator</strong></p></th>
-<th class="head"><p><strong>Allowed signature</strong></p></th>
+<th class="head" colspan="2"><p><strong>Allowed signature</strong></p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
-<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">result_type</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
+<td colspan="2"><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">result_type</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\textit{init}\)</span></p></td>
+<tr class="row-odd"><td rowspan="3"><p><span class="math notranslate nohighlight">\(\textit{init}\)</span></p></td>
+<td><p><em>as constant:</em></p></td>
 <td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span><span class="p">{...}</span></code></p></td>
 </tr>
+<tr class="row-even"><td><p><em>as function:</em></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">()</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><em>as function:</em></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="w"> </span><span class="o">&lt;</span><span class="n">cell</span><span class="w"> </span><span class="n">identifier</span><span class="o">&gt;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span></code></p></td>
+</tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\textit{part}\)</span></p></td>
-<td><p><em>Name of data-set category</em></p></td>
+<td colspan="2"><p><em>Name of data-set category</em></p></td>
 </tr>
 </tbody>
 </table>
+<p>The fold’s <code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span></code> must model the created data-product type described in <a class="reference internal" href="../algorithms.html#return-types"><span class="std std-numref">Section 3.3.2</span></a>.
+A fold algorithm may also create multiple data products by using a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">result_type</span></code> of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a created data-product type.</p>
+</section>
+<section id="registration-interface">
+<h2><span class="section-number">3.5.5.5. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
+<p>The <span class="math notranslate nohighlight">\(\textit{fold(sum\_energies)}\)</span> node in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> would be represented in C++ as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">sum_energy</span><span class="p">(</span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">total_hit_energy</span><span class="p">,</span><span class="w"> </span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+
+<span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;TotalHitEnergy&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">fold</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;sum_hit_energy&quot;</span><span class="p">,</span><span class="w">       </span><span class="c1">// &lt;= Node name for framework</span>
+<span class="w">      </span><span class="n">sum_energy</span><span class="p">,</span><span class="w">             </span><span class="c1">// &lt;= Fold operation</span>
+<span class="w">      </span><span class="mf">0.</span><span class="p">,</span><span class="w">                     </span><span class="c1">// &lt;= Initializer for each fold result</span>
+<span class="w">      </span><span class="s">&quot;Spill&quot;</span><span class="p">,</span><span class="w">                </span><span class="c1">// &lt;= Partition level (one fold result per Spill)</span>
+<span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">  </span><span class="c1">// &lt;= Allowed concurrency</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In order for the user-defined algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sum_energy</span></code> algorithm to be safely executed concurrently, protections must be in place to avoid data races when updating the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">total_hit_energy</span></code> result object from multiple threads.
+Possible solutions include using <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">atomic_ref</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span></code> <a class="footnote-reference brackets" href="#fatomicref" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, placing a lock around the operation that updates <code class="code highlight c++ docutils literal highlight-c++"><span class="n">total_hit_energy</span></code> (less desirable due to inefficiencies), or perhaps using <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span></code> <a class="footnote-reference brackets" href="#fatomic" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> instead of  <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">double</span></code> to represent the data product.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="finit" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p>It is acceptable for <span class="math notranslate nohighlight">\(\textit{init}\)</span> to return a type that is convertible to the accumulator’s type.</p>
+</aside>
+<aside class="footnote brackets" id="feff" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>Returning an updated accumulated value is generally not the most memory-efficient approach as it requires at least two copies of an accumulated value to be in memory at one time.
+The approach adopted by Phlex is to include a reference to the accumulated value as part of the fold operator’s signature.
+The accumulator can then be updated in place, thus avoiding the extra copies of the data.</p>
+</aside>
+<aside class="footnote brackets" id="fatomicref" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.cppreference.com/w/cpp/atomic/atomic_ref.html">https://en.cppreference.com/w/cpp/atomic/atomic_ref.html</a></p>
+</aside>
+<aside class="footnote brackets" id="fatomic" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.cppreference.com/w/cpp/atomic/atomic.html">https://en.cppreference.com/w/cpp/atomic/atomic.html</a></p>
 </aside>
 </aside>
 <p class="rubric">References</p>
@@ -199,7 +249,8 @@ Once all track multiplcity values in run <span class="math notranslate nohighlig
 <li><a class="reference internal" href="#partitions">3.5.5.1. Partitions</a></li>
 <li><a class="reference internal" href="#initializing-the-accumulator">3.5.5.2. Initializing the Accumulator</a></li>
 <li><a class="reference internal" href="#fold-operation">3.5.5.3. Fold Operation</a></li>
-<li><a class="reference internal" href="#registration-interface">3.5.5.4. Registration interface</a></li>
+<li><a class="reference internal" href="#operator-signatures">3.5.5.4. Operator signatures</a></li>
+<li><a class="reference internal" href="#registration-interface">3.5.5.5. Registration interface</a></li>
 </ul>
 </li>
 </ul>
@@ -248,7 +299,7 @@ Once all track multiplcity values in run <span class="math notranslate nohighlig
         <li class="right" >
           <a href="observers.html" title="3.5.4. Observers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (eb0023d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bd5cea8) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Folds</a></li> 
@@ -256,7 +307,7 @@ Once all track multiplcity values in run <span class="math notranslate nohighlig
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 30, 2025.
+      Last updated on Jul 01, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

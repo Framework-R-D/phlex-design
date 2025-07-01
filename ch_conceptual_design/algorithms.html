@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Algorithms &#8212; Phlex 0 (eb0023d) documentation</title>
+    <title>3.3. Algorithms &#8212; Phlex 0 (bd5cea8) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=9c63c02c"></script>
+    <script src="../static/documentation_options.js?v=2b9a4827"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (eb0023d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (bd5cea8) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
@@ -89,11 +89,13 @@ The latter is good practice regardless and commonly required by Python coding co
 <p>For each of these cases, the data product itself remains immutable.
 A Python algorithm can receive a <cite>phlex::handle</cite> or a direct reference to the data product.
 There is no equivalent language support for read-only access, but it will be enforced where possible.</p>
-<p>Whereas data products may to be copied, resources of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span></code> may not.
+<p>Whereas data products may be copied, resources of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span></code> may not.
 The following types are therefore supported:</p>
 <ul class="simple">
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span></code> — read-only access to a resource provided through a reference</p></li>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span><span class="w"> </span><span class="k">const</span><span class="o">*</span></code> — read-only access to a resource provided through a pointer</p></li>
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span><span class="o">&amp;</span></code> — read-and-write access to a resource provided through a reference (if supported by resource)</p></li>
+<li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span><span class="o">*</span></code> — read-and-write access to a resource provided through a pointer (if supported by resource)</p></li>
 </ul>
 <p>Resources are described in more detail in <a class="reference internal" href="resources.html#resources"><span class="std std-numref">Section 3.9</span></a>.</p>
 </section>
@@ -209,14 +211,14 @@ However, using such functions is highly discouraged as it indicates a class inst
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (eb0023d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (bd5cea8) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 30, 2025.
+      Last updated on Jul 01, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
