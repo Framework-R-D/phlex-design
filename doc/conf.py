@@ -83,6 +83,7 @@ preliminary_watermark = r"""
 \backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
+\newcommand\bool{\mathbb{B}}
 \newcommand\one[0]{\mathbbm{1}}
 \newcommand\opt[1]{\text{Opt}(#1)}
 \newcommand\iset[1]{\mathcal{I}_{#1}}
@@ -126,6 +127,7 @@ mathjax3_config = {
   "tex": {
       "packages": {'[+]': ['newcommand', 'textmacros']},
       "macros": {
+          "bool": ['\\mathbb{B}', 0],
           "one": ['\\Bbb{1}', 0],
           "opt": ['\\text{Opt}(#1)', 1],
           "transform": ['\\textrm{transform}(#1)', 1],

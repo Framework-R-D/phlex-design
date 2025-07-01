@@ -7,7 +7,7 @@ As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typica
 
    return_type function_name(P1, Pn..., Rm...) [qualifiers];
 
-where the type :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
+where the types :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
 
 Resources are used by algorithms that require access to a shared entity that is not semantically related to the data-product set hierarchy.
 Examples of resources include:

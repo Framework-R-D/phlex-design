@@ -19,9 +19,9 @@ The :math:`\textit{label}` operator is explicitly mentioned only for those HOFs 
    :maxdepth: 1
 
    hofs/transforms
+   hofs/observers
    hofs/predicates
    hofs/filters
-   hofs/observers
    hofs/partitioned_folds
    hofs/partitioned_unfolds
    hofs/windows

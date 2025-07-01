@@ -112,6 +112,11 @@ In this case, the data-product set for both data products is the same—i.e. for
 
 There are cases, however, where an algorithm needs to operate on data products from *different* data-product sets :need:`DUNE 89`.
 
+.. note::
+
+   The number of arguments presented to the :cpp:`sequence(...)` must match the number of input parameters to the registered algorithm.
+   The order of the :cpp:`sequence(...)` arguments also corresponds to the order of the algorithm's input parameters.
+
 Data Products from Different Data Categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

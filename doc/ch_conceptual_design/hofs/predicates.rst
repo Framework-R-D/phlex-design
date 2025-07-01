@@ -2,11 +2,11 @@
 Predicates
 ----------
 
-+--------------------------------------+-----------------------------------------+---------------------------+
-| **Predicate**                        | Operator                                | Output sequence length    |
-+======================================+=========================================+===========================+
-| :math:`\tilde{b} = \predicate{f}\ a` | :math:`f: A \rightarrow \text{Boolean}` | :math:`|\tilde{b}| = |a|` |
-+--------------------------------------+-----------------------------------------+---------------------------+
++--------------------------------------+--------------------------------+---------------------------+
+| **Predicate**                        | Operator                       | Output sequence length    |
++======================================+================================+===========================+
+| :math:`\tilde{b} = \predicate{f}\ a` | :math:`f: A \rightarrow \bool` | :math:`|\tilde{b}| = |a|` |
++--------------------------------------+--------------------------------+---------------------------+
 
 The predicate HOF is a transform (see :numref:`ch_conceptual_design/hofs/transforms:Transforms`) whose operator returns Boolean `true` or `false`.
 However, instead of the framework interpreting the Boolean result as a data product, the return value is used to short-circuit the processing of the data-flow graph for data products that do not meet the specified criteria.
