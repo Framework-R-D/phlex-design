@@ -2,50 +2,51 @@
 Filtering
 ---------
 
-+----------------------------+-----------------------------------------+------------------------+
-| **Filter**                 | Operator (predicate)                    | Output sequence length |
-+============================+=========================================+========================+
-| :math:`a' = \filter{p}\ a` | :math:`p: A \rightarrow \text{Boolean}` | :math:`|a'| \le |a|`   |
-+----------------------------+-----------------------------------------+------------------------+
++-------------------------------+-----------------------------------------+------------------------+
+| **Filter**                    | Operator                                | Output sequence length |
++===============================+=========================================+========================+
+| :math:`a' = \filter{\phi}\ a` | :math:`\phi: \bool^n \rightarrow \bool` | :math:`|a'| \le |a|`   |
++-------------------------------+-----------------------------------------+------------------------+
 
-Any user-defined algorithm or output sink may be configured to operate on data that satisfy a Boolean condition or *predicate*.
-The act of restricting the invocation of a function to data that satisfy a predicate is known as *filtering*.
-To filter data as presented to a given algorithm, one or more predicates must be specified in a *filter clause*.
-Phlex will not schedule a predicate for execution if it is not bound to a filter.
+As mentioned in :numref:`ch_conceptual_design/hofs/predicates:Predicates`, the execution of workflow graph can be short-circuited if data products do not meet specified criteria.
+This process, known as *filtering*, effectively shortens the input sequence :math:`a` by retaining only those entries that satisfy a predicate :math:`\phi`, thus creating a different sequence :math:`a'` composed of elements from :math:`a`.
 
-.. todo::
+Filtering is of interest only when there is a downstream node that can receive the filtered sequence.
+Therefore, Phlex will not schedule a filter for execution if the only nodes downstream of it are other filters or predicates.
 
-   Define filter clause.
-   Many algorithms can specify the same predicate in their filter clauses without executing the predicate multiple times.
+Filtering, however, can be applied to the input data-product sequences of any HOFs without explicitly registering a filter HOF.
+This is done through a *filter clause*, which is a stringized form of the predicate :math:`\phi` that will be applied to the input data sequence, only retaining elements that satisfy the predicate.
 
-Phlex will only schedule a filter for execution if there is at least one non-filter algorithm or output sink downstream of it.
-Predicates can be evaluated on (e.g.) run-level data-product sets and applied to algorithms that process data from data-product sets that are subsets of the run (e.g. events).
+Filter clause
+^^^^^^^^^^^^^
 
-.. table::
-    :widths: 15 85
+The predicate :math:`\phi` is Boolean expression whose arguments correspond to the Boolean results of *explicitly registered* predicates.
+For example, in :numref:`workflow`, the predicate in :math:`\textit{filter(high\_energy)}` is :math:`\textit{high\_energy}`, which was an explicitly registered predicate, as presented in :numref:`ch_conceptual_design/hofs/predicates:Registration interface`.
 
-    +--------------+-----------------------------------------------------------+
-    | **Operator** | **Allowed signature**                                     |
-    +==============+===========================================================+
-    | :math:`p`    | :cpp:`bool function_name(P1, Pn..., Rm...) [qualifiers];` |
-    +--------------+-----------------------------------------------------------+
+It is possible for one filter named :cpp:`"only_high_energy"` to use as its predicate :math:`\textit{high\_energy}`, whereas another filter named :cpp:`"not_high_energy"` could use the negation :math:`\textit{filter}(\neg \textit{high\_energy})`.
+In this case, the predicate :math:`\textit{high\_energy}` is executed only once, but its value can be used in different ways in the filter clause.
 
+Note that it is possible to specify a filter clause that can be evaluated on a higher-level data-product set than the data-product sequence in question.
+For example, suppose none of the :cpp:`"GoodHits"` data products in a given `Spill` were suitable for processing.
+It is possible to create a filter that would reject all :cpp:`"GoodHits"` data products from that `Spill` even though the predicate itself interrogated only the `Spill` information and not the lower-level good-hits information from the `APA`.
+
+The supported grammar of the filter is discussed in :numref:`ch_subsystem_design/task_management:Task Management`.
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: c++
-
-   class tracks { ... };
-
-   bool select_tracks(Tracks const& ts) { ... }
+The following example shows the complete registration for histogramming the filtered :cpp:`"GoodHits"` data products shown in :numref:`workflow`.
 
 .. code:: c++
+
+   class hits { ... };
+   void histogram_hits(hits const&, TH1F&) { ... }
 
    PHLEX_REGISTER_ALGORITHMS(m, config)
    {
-     auto selected_data_scope = config.get<std::string>("data_scope");
+     auto h_resource = m.resource<histogramming>();
 
-     predicate("good_tracks", select_tracks, concurrency::unlimited)
-       .sequence( <input_sequence_spec> );
+     observe(histogram_hits, concurrency::serial)
+       .sequence("GoodHits"_in("APA"), h_resource->make<TH1F>(...))
+       .when("high_energy");  // <= filter clause within the when(...) call
    }

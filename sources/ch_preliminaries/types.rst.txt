@@ -10,7 +10,20 @@ In such a case, specifying the function :math:`p` as :math:`p: \mathbb{Z} \right
 In a framework context, not all data of type :cpp:`int` (the equivalent to :math:`\mathbb{Z}`) are suitable for processing by the algorithm :math:`p`.
 
 In this document, the type therefore refers to a mathematical set that includes more than just the programming language's type :cpp:`T`; it can also include various labels that identify which kind of :cpp:`T` is desired.
-When necessary, the type required to specify a data product will be expressed as :math:`\mathtt{T} \wedge L`, where the first set in typewriter style (e.g. :math:`\mathtt{T}`) refers to the programming language's type and the second set in math style (e.g. :math:`L`) represents a label associated with the data.
+
+-----------
+Boolean set
+-----------
+
+The Boolean values `true` (:math:`\textsf{T}`) and `false` (:math:`\textsf{F}`) are used frequently in computing.
+It is convenient to denote a set that contains both values:
+
+.. math::
+
+   \bool = \{\textsf{T}, \textsf{F}\}
+
+Although `true` and `false` are often represented by :math:`1` and :math:`0`, respectively, we use the symbols :math:`\textsf{T}` and :math:`\textsf{F}` to avoid implicit comparisons between the members of the set :math:`\bool` and (e.g.) :math:`\mathbb{Z}`.
+With this convention, :math:`\bool \cap \mathbb{Z} = \emptyset`.
 
 -------------------------------------------
 Representing :cpp:`void` and :py:`NoneType`
