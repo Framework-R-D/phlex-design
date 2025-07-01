@@ -7,7 +7,7 @@ Partitioned Folds
 +========================================================+======================================================================+========================+
 | :math:`d = \pfold{f}{\textit{init}}{\textit{part}}\ c` | :math:`f: D \times C \rightarrow D`                                  | :math:`|d| \le |c|`    |
 |                                                        +----------------------------------------------------------------------+                        |
-|                                                        | :math:`\textit{init}: \one \rightarrow D`                            |                        |
+|                                                        | :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`                  |                        |
 |                                                        +----------------------------------------------------------------------+                        |
 |                                                        | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
 +--------------------------------------------------------+----------------------------------------------------------------------+------------------------+
@@ -20,24 +20,26 @@ As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Da
 where the user-defined operation :math:`f` is applied repeatedly between an accumulated value (initialized by :math:`init`) and each element of the input sequence.
 
 In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
-For example, consider a program that processes :math:`n` runs, each of which contains spills, identified by the tuple :math:`(R\ i, S\ j)`.
-The user may wish to create one histogram per run that contains the track multiplicity per spill.
-Instead of creating a single fold result, we thus use a *partitioned fold*:
+Consider the workflow in :numref:`workflow`, which processes `Spill`\ s, identified by the index :math:`j` or, more specifically, the tuple :math:`(S\ j)`.
+Each `Spill` is unfolded into a sequence of `APA`\ s, which are identified by the pair of indices :math:`jk` or, more specifically, the tuple :math:`(S\ j, A\ k)`.
+The energies of the :cpp:`"GoodHits"` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :math:`\textit{fold(sum\_energy)}` node.
+
+Instead of creating one fold result, we thus use a *partitioned fold* to create one summed energy data-product per `Spill`:
 
 .. math::
    :no-wrap:
 
    \begin{align*}
-   [h_{(R\ 1)}&,\ \dots,\ h_{(R\ n)}] \\
-              &= \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_{(R\ 1, S\ 1)},\ m_{(R\ 1, S\ 2)},\ \dots,\ m_{(R\ n, S\ 1)},\ m_{(R\ n, S\ 2)},\ \dots]
+   [E_{(S\ 1)}&,\ \dots,\ E_{(S\ n)}] \\
+              &= \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_spills}}\ [hs_{(S\ 1,\ A\ 1)},\ hs_{(S\ 1,\ A\ 2)},\ \dots,\ hs_{(S\ n,\ A\ 1)},\ hs_{(S\ n,\ A\ 2)},\ \dots]
    \end{align*}
 
-where :math:`h_{(R\ i)}` denotes the histogram for run :math:`i`, and :math:`m_{(R\ i,\ S\ j)}` is the track multiplicity for spill :math:`j` in run :math:`i`.
+where :math:`E_{(S\ j)}` denotes the summed good-hits energy for `Spill` :math:`j`, and :math:`hs_{(S\ j,\ A\ k)}` is the good-hits data product :cpp:`"GoodHits"` for `APA` :math:`k` in `Spill` :math:`j`.
 
 The above equation can be expressed more succinctly as:
 
 .. math::
-   [h_j]_{j \in \iset{\text{out}}} = \pfold{\textit{fill}}{\textit{init}}{\textit{into\_runs}}\ [m_i]_{i \in \iset{\text{in}}}
+   [E_j]_{j \in \iset{\text{out}}} = \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_runs}}\ [hs_i]_{i \in \iset{\text{in}}}
 
 where
 
@@ -45,35 +47,40 @@ where
    :no-wrap:
 
    \begin{align*}
-   \iset{\text{in}} &= \{(R\ 1,\ S\ 1),\ (R\ 1,\ S\ 2),\ \dots,\ (R\ n,\ S\ 1),\ (R\ n,\ S\ 2), \dots\}, \text{and}\\
-   \iset{\text{out}} &= \{(R\ 1),\ \dots, (R\ n)\}\ .
+   \iset{\text{in}} &= \{(S\ 1,\ A\ 1),\ (S\ 1,\ A\ 2),\ \dots,\ (S\ n,\ A\ 1),\ (S\ n,\ A\ 2), \dots\}, \text{and}\\
+   \iset{\text{out}} &= \{(S\ 1),\ \dots, (S\ n)\}\ .
    \end{align*}
 
 Partitions
 ^^^^^^^^^^
 
-Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition*. [Wiki-partition]_
+Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-partition]_.
 Each subset of the partition is called a *cell*.
-In the above example, the role of the :math:`\textit{into\_runs}` operation is to partition the input sequence into runs so that there is one fold result per run.
+In the above example, the role of the :math:`\textit{into\_spills}` operation is to partition the input sequence into `Spill`\ s so that there is one fold result per `Spill`.
 In general, however, the partitioning function is of the form :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})`, where:
 
 - the domain is the singleton set that contains only the index set :math:`\iset{c}` (i.e. :math:`\textit{part}` can only be invoked on :math:`\iset{c}`), and
-- the codomain is the set of partitions of the index set :math:`\iset{c}`.
+- the codomain is the set of partitions of :math:`\iset{c}` or :math:`\mathbb{P}(\iset{c})`; note that the output index set :math:`\iset{d} \in \mathbb{P}(\iset{c})`.
 
 The function :math:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
 The number of elements in the output sequence :math:`d` corresponds to the number of partition cells.
 
+As of this writing, the only partitions supported are those that correspond to the names of data-product set categories.
+The partition :math:`\textit{into\_spills}` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
+
 Initializing the Accumulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. todo::
-   Change the domain type of :math:`\textit{init}`.
-
 A crucial ingredient of the fold is the *accumulator*, which stores the fold result while it is being formed.
-Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \one \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result. [#finit]_
-Instead of invoking a function, an accumulator is often initialized with a value.
-However, in functional programming, a value can be represented by invoking a function that always returns the same result.
-Expressing an initializer as a function thus supports value-initialization while retaining the flexibility that may occasionally be required through functions.
+Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result [#finit]_.
+The :math:`\opt{\iset{d}}` domain means that:
+
+1. :math:`\textit{init}` can receive an argument corresponding to the identifier of a cell, which is a member of the output index set :math:`\mathcal{I}_d`.
+   In the example above, the relevant identifier would be that of the `Spill`–i.e. :math:`(S\ j)`.
+2. :math:`\textit{init}` can be invoked with no arguments, thus producing the same value each time the accumulator is initialized.
+   This is equivalent to initializing the accumulator with a constant value.
+
+The implementation of :math:`\textit{init}` for the total good-hits energy fold results is to return the constant :math:`0`.
 
 Fold Operation
 ^^^^^^^^^^^^^^
@@ -81,32 +88,70 @@ Fold Operation
 A cell's fold result is obtained by repeatedly applying a fold operation to the cell's accumulator and each element of that cell's input sequence.
 The fold operation has the signature :math:`f: D \times C \rightarrow D`, where :math:`D` represents the type of the accumulator/fold result, and :math:`C` is the type of each element of the input sequence.
 
-In the above example, the function :math:`\textit{fill}` receives a histogram :math:`h_{(R\ i)}` as the accumulator for run :math:`i` and "combines" it with a track multiplicity object :math:`m_{(R\ i,\ S\ j)}` that belongs to spill :math:`j` in run :math:`i`.
-This "combined" value is then returned by :math:`\textit{fill}` as the updated value of the accumulator.
-The function :math:`\textit{fill}` is repeatedly invoked to update the accumulator with each track multiplicity value.
-Once all track multiplcity values in run :math:`i` have been processed by :math:`\textit{fill}`, the accumulator's value becomes the fold result for that run.
+In the above example, the function :math:`\textit{sum\_energy}` receives a floating-point number :math:`E_{(S\ i)}`, representing the accumulated good-hits energy for `Spill` :math:`j` and "combines" it with the good-hits object :math:`hs_{(S\ j,\ A\ k)}` that belongs to `APA` :math:`k` in spill :math:`j`.
+This combination involves calculating the energy represented by the good-hits data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.
+This "combined" value is then returned by :math:`\textit{sum\_energy}` as the updated value of the accumulator [#feff]_.
+The function :math:`\textit{sum\_energy}` is repeatedly invoked to update the accumulator with good-hits data product.
+Once all :cpp:`"GoodHits"` data products in `Spill` :math:`j` have been processed by :math:`\textit{sum\_energy}`, the accumulator's value becomes the fold result for that `Spill`.
+
+Operator signatures
+^^^^^^^^^^^^^^^^^^^
+
+.. table::
+    :widths: 15 13 72
+
+    +-----------------------+--------------------------------------------------------------------------------------+
+    | **Operator**          | **Allowed signature**                                                                |
+    +=======================+======================================================================================+
+    | :math:`f`             | :cpp:`void function_name(result_type&, P1, Pn..., Rm...) [qualifiers];`              |
+    +-----------------------+----------------+---------------------------------------------------------------------+
+    | :math:`\textit{init}` | *as constant:* | :cpp:`result_type{...}`                                             |
+    |                       +----------------+---------------------------------------------------------------------+
+    |                       | *as function:* | :cpp:`result_type function_name() [qualifiers];`                    |
+    |                       +----------------+---------------------------------------------------------------------+
+    |                       | *as function:* | :cpp:`result_type function_name( <cell identifier> ) [qualifiers];` |
+    +-----------------------+----------------+---------------------------------------------------------------------+
+    | :math:`\textit{part}` | *Name of data-set category*                                                          |
+    +-----------------------+--------------------------------------------------------------------------------------+
+
+The fold's :cpp:`result_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
+A fold algorithm may also create multiple data products by using a :cpp:`result_type` of :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
+
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-**Result type**: A fold algorithm may create multiple data products through its result by specifying an :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a data-product created type.
+The :math:`\textit{fold(sum\_energies)}` node in :numref:`workflow` would be represented in C++ as:
 
-.. table::
-    :widths: 15 85
+.. code:: c++
 
-    +-----------------------+-------------------------------------------------------------------------+
-    | **Operator**          | **Allowed signature**                                                   |
-    +=======================+=========================================================================+
-    | :math:`f`             | :cpp:`void function_name(result_type&, P1, Pn..., Rm...) [qualifiers];` |
-    +-----------------------+-------------------------------------------------------------------------+
-    | :math:`\textit{init}` | :cpp:`result_type{...}`                                                 |
-    +-----------------------+-------------------------------------------------------------------------+
-    | :math:`\textit{part}` | *Name of data-set category*                                             |
-    +-----------------------+-------------------------------------------------------------------------+
+   void sum_energy(double& total_hit_energy, hits const& hs) { ... }
+
+   PHLEX_REGISTER_ALGORITHMS(config)
+   {
+     products("TotalHitEnergy") =
+       fold(
+         "sum_hit_energy",       // <= Node name for framework
+         sum_energy,             // <= Fold operation
+         0.,                     // <= Initializer for each fold result
+         "Spill",                // <= Partition level (one fold result per Spill)
+         concurrency::unlimited  // <= Allowed concurrency
+       )
+       .sequence("GoodHits"_in("APA"));
+   }
+
+In order for the user-defined algorithm :cpp:`sum_energy` algorithm to be safely executed concurrently, protections must be in place to avoid data races when updating the :cpp:`total_hit_energy` result object from multiple threads.
+Possible solutions include using :cpp:`std::atomic_ref<double>` [#fatomicref]_, placing a lock around the operation that updates :cpp:`total_hit_energy` (less desirable due to inefficiencies), or perhaps using :cpp:`std::atomic<double>` [#fatomic]_ instead of  :cpp:`double` to represent the data product.
 
 .. rubric:: Footnotes
 
 .. [#finit] It is acceptable for :math:`\textit{init}` to return a type that is convertible to the accumulator's type.
+.. [#feff] Returning an updated accumulated value is generally not the most memory-efficient approach as it requires at least two copies of an accumulated value to be in memory at one time.
+           The approach adopted by Phlex is to include a reference to the accumulated value as part of the fold operator's signature.
+           The accumulator can then be updated in place, thus avoiding the extra copies of the data.
+.. [#fatomicref] https://en.cppreference.com/w/cpp/atomic/atomic_ref.html
+.. [#fatomic] https://en.cppreference.com/w/cpp/atomic/atomic.html
+
 
 .. only:: html
 

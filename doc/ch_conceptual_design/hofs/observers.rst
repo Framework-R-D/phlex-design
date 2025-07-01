@@ -32,17 +32,19 @@ Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The below shows how the :cpp:`histogram_hits` operator in :numref:`workflow` would be registered in C++.
-It uses the :cpp:`phlex::resource<histogramming>` interface to provide access to a putative histogramming resource (see :numref:`ch_conceptual_design/resources:Resources`).
+It uses the :cpp:`resource<histogramming>` interface to provide access to a putative histogramming resource (see :numref:`ch_conceptual_design/resources:Resources`).
 
 .. code:: c++
 
    class hits { ... };
-   void histogram_hits(hits const&) { ... }
+   void histogram_hits(hits const&, TH1F&) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m, config)
    {
-     observe(histogram_hits, concurrency::unlimited)
-       .sequence("GoodHits"_in("APA"), phlex::resource<histogramming>());
+     auto h_resource = m.resource<histogramming>();
+
+     observe(histogram_hits, concurrency::serial)
+       .sequence("GoodHits"_in("APA"), h_resource->make<TH1F>(...));
    }
 
 .. rubric:: Footnotes

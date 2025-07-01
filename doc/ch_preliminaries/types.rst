@@ -43,11 +43,11 @@ The single element of the set :math:`\one` can also be used to represent the val
 Representing optional types
 ---------------------------
 
-It is occasionally necessary to represent a "nullable" or "optional" type :math:`\text{Opt}(T)`, whose objects either contain a value type :math:`T` or are null.
-Mathematically, this is represented by the coproduct :math:`T \sqcup \one`, where a null or *disengaged* object of type :math:`\text{Opt}(T)` has a value equal to the single element of the set :math:`\one`.
+It is occasionally necessary to represent a "nullable" or "optional" type :math:`\opt{T}`, whose objects either contain a value type :math:`T` or are null.
+Mathematically, this is represented by the coproduct :math:`T \sqcup \one`, where a null or *disengaged* object of type :math:`\opt{T}` has a value equal to the single element of the set :math:`\one`.
 
-:numref:`optional-types` gives examples of programming types in various languages that can be mathematically represented by :math:`\text{Opt}(T)`.
-Although Phlex does not support algorithms written in Haskell, an example of the use of :haskell:`Maybe T` is given as an illustration of how :math:`\text{Opt}(T)` is supported outside of C++ and Python.
+:numref:`optional-types` gives examples of programming types in various languages that can be mathematically represented by :math:`\opt{T}`.
+Although Phlex does not support algorithms written in Haskell, an example of the use of :haskell:`Maybe T` is given as an illustration of how :math:`\opt{T}` is supported outside of C++ and Python.
 
 .. _optional-types:
 
@@ -56,7 +56,7 @@ Although Phlex does not support algorithms written in Haskell, an example of the
    :widths: 15 10 27 23 25
 
    +-----------+----------------+------------------------------+-----------------------+--------------------------+
-   | Language  | Type :math:`T` | Type :math:`\text{Opt}(T)`   | Engaged value         | Disengaged value         |
+   | Language  | Type :math:`T` | Type :math:`\opt{T}`         | Engaged value         | Disengaged value         |
    +===========+================+==============================+=======================+==========================+
    | Haskell   | :haskell:`Int` | :haskell:`m :: Maybe Int`    | :haskell:`m = Just 6` | :haskell:`m = Nothing`   |
    +-----------+----------------+------------------------------+-----------------------+--------------------------+

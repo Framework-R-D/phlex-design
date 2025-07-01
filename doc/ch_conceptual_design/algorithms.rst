@@ -34,11 +34,13 @@ For each of these cases, the data product itself remains immutable.
 A Python algorithm can receive a `phlex::handle` or a direct reference to the data product.
 There is no equivalent language support for read-only access, but it will be enforced where possible.
 
-Whereas data products may to be copied, resources of type :cpp:`R` may not.
+Whereas data products may be copied, resources of type :cpp:`R` may not.
 The following types are therefore supported:
 
 - :cpp:`R const&` — read-only access to a resource provided through a reference
 - :cpp:`R const*` — read-only access to a resource provided through a pointer
+- :cpp:`R&` — read-and-write access to a resource provided through a reference (if supported by resource)
+- :cpp:`R*` — read-and-write access to a resource provided through a pointer (if supported by resource)
 
 Resources are described in more detail in :numref:`ch_conceptual_design/resources:Resources`.
 

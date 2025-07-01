@@ -84,6 +84,7 @@ preliminary_watermark = r"""
 
 new_commands = r"""
 \newcommand\one[0]{\mathbbm{1}}
+\newcommand\opt[1]{\text{Opt}(#1)}
 \newcommand\iset[1]{\mathcal{I}_{#1}}
 \newcommand\isetdefault[0]{\mathcal{I}}
 \newcommand\comp[0]{\circ}
@@ -126,6 +127,7 @@ mathjax3_config = {
       "packages": {'[+]': ['newcommand', 'textmacros']},
       "macros": {
           "one": ['\\Bbb{1}', 0],
+          "opt": ['\\text{Opt}(#1)', 1],
           "transform": ['\\textrm{transform}(#1)', 1],
           "predicate": ['\\textrm{predicate}(#1)', 1],
           "filter": ['\\textrm{filter}(#1)', 1],
