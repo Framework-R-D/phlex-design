@@ -81,15 +81,18 @@ Operator signatures
 .. table::
     :widths: 12 88
 
-    +------------------------+-----------------------------------------------------------------------------------+
-    | **Operator**           | **Allowed signature**                                                             |
-    +========================+===================================================================================+
-    | :math:`p`              | :cpp:`bool function_name(next_type) [quals];`                                     |
-    +------------------------+-----------------------------------------------------------------------------------+
-    | :math:`\textit{gen}`   | :cpp:`std::pair<next_type, return_type> function_name(next_type, Rm...) [quals];` |
-    +------------------------+-----------------------------------------------------------------------------------+
-    | :math:`\textit{label}` | *Name of data-set category of output data products*                               |
-    +------------------------+-----------------------------------------------------------------------------------+
+    +------------------------+------------------------------------------------------------------------------------+
+    | **Operator**           | **Allowed signature**                                                              |
+    +========================+====================================================================================+
+    | :math:`p`              | :cpp:`bool function_name(next_type) [quals];`                                      |
+    +------------------------+------------------------------------------------------------------------------------+
+    | :math:`\textit{gen}`   | :cpp:`std::pair<next_type, product_type> function_name(next_type, Rm...) [quals];` |
+    +------------------------+------------------------------------------------------------------------------------+
+    | :math:`\textit{label}` | *Name of data-set category of output data products*                                |
+    +------------------------+------------------------------------------------------------------------------------+
+
+The unfold's :cpp:`product_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
+An unfold's :math:`\textit{gen}` algorithm may also create multiple data products by returning an object of type :cpp:`std::tuple<next_type, T1, ..., Tn>`, where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
 
 Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
