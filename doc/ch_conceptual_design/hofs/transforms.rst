@@ -24,11 +24,11 @@ Operator signature
 .. table::
     :widths: 15 85
 
-    +--------------+------------------------------------------------------------------+
-    | **Operator** | **Allowed signature**                                            |
-    +==============+==================================================================+
-    | :math:`f`    | :cpp:`return_type function_name(P1, Pn..., Rm...) [qualifiers];` |
-    +--------------+------------------------------------------------------------------+
+    +--------------+-------------------------------------------------------------+
+    | **Operator** | **Allowed signature**                                       |
+    +==============+=============================================================+
+    | :math:`f`    | :cpp:`return_type function_name(P1, Pn..., Rm...) [quals];` |
+    +--------------+-------------------------------------------------------------+
 
 The :cpp:`return_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
 An algorithm may also create multiple data products by returning a :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
