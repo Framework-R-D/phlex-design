@@ -6,9 +6,10 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 
 .. code:: c++
 
-   return_type function_name(P1, Pn..., Rm...) [qualifiers];
+   return_type function_name(P1, Pn..., Rm...) [quals];
 
 where the types :cpp:`P1, Pn...` denote types of data products and the types :cpp:`Rm...` indicate :term:`resources <resource>`.
+The bracketed :cpp:`[quals]` term indicates that Phlex allows for class member functions that have trailing qualifiers (e.g. :cpp:`const`).
 Each registered function must accept at least one data product.
 
 The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.

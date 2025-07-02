@@ -100,19 +100,19 @@ Operator signatures
 .. table::
     :widths: 15 13 72
 
-    +-----------------------+--------------------------------------------------------------------------------------+
-    | **Operator**          | **Allowed signature**                                                                |
-    +=======================+======================================================================================+
-    | :math:`f`             | :cpp:`void function_name(result_type&, P1, Pn..., Rm...) [qualifiers];`              |
-    +-----------------------+----------------+---------------------------------------------------------------------+
-    | :math:`\textit{init}` | *as constant:* | :cpp:`result_type{...}`                                             |
-    |                       +----------------+---------------------------------------------------------------------+
-    |                       | *as function:* | :cpp:`result_type function_name() [qualifiers];`                    |
-    |                       +----------------+---------------------------------------------------------------------+
-    |                       | *as function:* | :cpp:`result_type function_name( <cell identifier> ) [qualifiers];` |
-    +-----------------------+----------------+---------------------------------------------------------------------+
-    | :math:`\textit{part}` | *Name of data-set category*                                                          |
-    +-----------------------+--------------------------------------------------------------------------------------+
+    +-----------------------+---------------------------------------------------------------------------------+
+    | **Operator**          | **Allowed signature**                                                           |
+    +=======================+=================================================================================+
+    | :math:`f`             | :cpp:`void function_name(result_type&, P1, Pn..., Rm...) [quals];`              |
+    +-----------------------+----------------+----------------------------------------------------------------+
+    | :math:`\textit{init}` | *as constant:* | :cpp:`result_type{...}`                                        |
+    |                       +----------------+----------------------------------------------------------------+
+    |                       | *as function:* | :cpp:`result_type function_name() [quals];`                    |
+    |                       +----------------+----------------------------------------------------------------+
+    |                       | *as function:* | :cpp:`result_type function_name( <cell identifier> ) [quals];` |
+    +-----------------------+----------------+----------------------------------------------------------------+
+    | :math:`\textit{part}` | *Name of data-set category for output data product*                             |
+    +-----------------------+---------------------------------------------------------------------------------+
 
 The fold's :cpp:`result_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
 A fold algorithm may also create multiple data products by using a :cpp:`result_type` of :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.

@@ -5,7 +5,7 @@ As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typica
 
 .. code:: c++
 
-   return_type function_name(P1, Pn..., Rm...) [qualifiers];
+   return_type function_name(P1, Pn..., Rm...) [quals];
 
 where the types :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
 

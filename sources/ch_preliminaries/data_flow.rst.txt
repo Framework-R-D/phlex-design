@@ -55,9 +55,9 @@ As an illustration, consider the calculation of a sum of squares for all integer
 
 This calculation requires three separate steps:
 
-1. an unfold called *iota* that, given an integer :math:`n`, generates a sequence of integers from 1 through :math:`n`,
-2. a transformation that squares each integer in the sequence using an algorithm called *square* , and
-3. a fold called *sum* that sums all squared integers.
+1. an unfold called :math:`\textit{iota}` that, given an integer :math:`n`, generates a sequence of integers from 1 through :math:`n`,
+2. a transformation that squares each integer in the sequence using an algorithm called :math:`\textit{square}` , and
+3. a fold called :math:`\textit{sum}` that sums all squared integers.
 
 The data-flow graph of individual objects looks like:
 
@@ -69,9 +69,9 @@ where each number is passed along its own edge to the nodes performing the calcu
 The summation formula for :math:`S(n)`, however, can be expressed in terms of higher-order functions that reflect the three steps above:
 
 .. math::
-   S(n) = \sum_{i=1}^n i^2 = \underbrace{\fold{+}{0}}_{3.\ \textcolor{blue}{\textit{sum}}}\ \underbrace{\transform{\textcolor{blue}{\textit{square}}}}_{2.}\ \underbrace{\unfold{\ge 0}{\textit{decrement}}}_{1.\ \textcolor{blue}{\textit{iota}}}\ n
+   S(n) = \sum_{i=1}^n i^2 = \underbrace{\fold{+}{0}}_{3.\ \textcolor{blue}{\textit{sum}}}\ \underbrace{\transform{\textcolor{blue}{\textit{square}}}}_{2.}\ \underbrace{\unfold{\gt 0}{\textit{decrement}}}_{1.\ \textcolor{blue}{\textit{iota}}}\ n
 
-Note that the unfold :math:`\textit{iota}` takes two operators: the predicate :math:`\ge 0`, which tests whether the next generated number is greater than or equal to zero, and the :math:`\textit{decrement}` operator, which decrements the next generated number by 1. [#f3]_
+Note that the unfold :math:`\textit{iota}` takes two operators: the predicate :math:`\gt 0`, which tests whether the next generated number is greater than zero, and the :math:`\textit{decrement}` operator, which decrements the next generated number by 1. [#f3]_
 Once the predicate returns false, the unfold stops generating numbers.
 
 By adopting the HOF representation of the sum-of-squares problem, the data-flow graph is simplified:
@@ -88,5 +88,5 @@ The vast majority of graphs included in this design document adopt the sequence-
 .. [#f1] Treating functions as nodes and data as edges is a function-centric view of the graph.
          It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the *line digraph* of the function-centric graph.
 .. [#f2] In Haskell (and, similarly, in category theory), this transformation is achieved through the `List/fmap` functor.
-.. [#f3] The same data-flow can equivalently be represented with an unfold that uses the predicate :math:`\le n` and the operator :math:`\textit{increment}`, but starts with an initial value of 0.
+.. [#f3] The same data-flow can equivalently be represented with an unfold that uses the predicate :math:`\le n` and the operator :math:`\textit{increment}`, but starts with an initial value of :math:`1`.
          This alternative representation, however, requires an unfold that depends on the value of :math:`n`.

@@ -374,7 +374,7 @@ Conceptual requirements
 
     The framework shall optimize the memory management of data products.
 
-- See :numref:`ch_conceptual_design/data_organization:Data product management`
+- See :numref:`ch_conceptual_design/data_organization:Data product management`, :numref:`ch_conceptual_design/hofs/partitioned_unfolds:Registration Interface`
 
 .. req:: Composable workflows using GPU algorithms and CPU algorithms
     :collapse:

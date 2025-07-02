@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Algorithms &#8212; Phlex 0 (33d7101) documentation</title>
+    <title>3.3. Algorithms &#8212; Phlex 0 (b223471) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=33f4a765"></script>
+    <script src="../static/documentation_options.js?v=e6911c66"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (33d7101) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b223471) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
@@ -66,10 +66,11 @@
 <h1><span class="section-number">3.3. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h1>
 <p>As mentioned in <a class="reference internal" href="../ch_preliminaries/functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
 In general, Phlex supports the registration of C++ algorithms with function signatures like (see <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> for a list of supported HOFs):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">qualifiers</span><span class="p">];</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>where the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...</span></code> denote types of data products and the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code> indicate <a class="reference internal" href="../appendices/definitions.html#term-Resource"><span class="xref std std-term">resources</span></a>.
+The bracketed <code class="code highlight c++ docutils literal highlight-c++"><span class="p">[</span><span class="n">quals</span><span class="p">]</span></code> term indicates that Phlex allows for class member functions that have trailing qualifiers (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="k">const</span></code>).
 Each registered function must accept at least one data product.</p>
 <p>The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with <cite>Numba</cite>), bound (e.g. with <cite>ctypes</cite>), or annotated.
 The latter is good practice regardless and commonly required by Python coding conventions:</p>
@@ -211,7 +212,7 @@ However, using such functions is highly discouraged as it indicates a class inst
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (33d7101) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b223471) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
       </ul>
