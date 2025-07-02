@@ -76,6 +76,7 @@ needs_string_links = {
 
 extra_packages = r"""
 \usepackage{bbm}
+\usepackage{mathtools}
 """
 
 preliminary_watermark = r"""
@@ -102,7 +103,7 @@ new_commands = r"""
 \newcommand\observe[1]{\text{observe}(#1)}
 \newcommand\unfold[2]{\text{unfold}(#1,\ #2)}
 \newcommand\punfold[3]{\text{unfold}(#1,\ #2,\ #3)}
-\newcommand\window[2]{\text{window}(#1,\ #2)}
+\newcommand\window[3]{\text{window}(#1,\ #2,\ #3)}
 
 % The following is needed to ensure consistent footnote ordering
 % within each LaTeX-rendered chapter:
@@ -124,9 +125,9 @@ new_commands = r"""
 
 extensions.append('sphinx.ext.mathjax')
 mathjax3_config = {
-  "loader": {"load": ['[tex]/newcommand', '[tex]/textmacros']},
+  "loader": {"load": ['[tex]/newcommand', '[tex]/textmacros', '[tex]/mathtools']},
   "tex": {
-      "packages": {'[+]': ['newcommand', 'textmacros']},
+      "packages": {'[+]': ['newcommand', 'textmacros', 'mathtools']},
       "macros": {
           "bool": ['\\mathbb{B}', 0],
           "one": ['\\Bbb{1}', 0],
@@ -139,7 +140,7 @@ mathjax3_config = {
           "punfold": ['\\textrm{unfold}(#1, #2, #3)', 3],
           "fold": ['\\textrm{fold}(#1, #2)', 2],
           "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
-          "window": ['\\textrm{window}(#1, #2)', 2],
+          "window": ['\\textrm{window}(#1, #2, #3)', 3],
           "isetdefault": ['\\mathcal{I}', 0],
           "iset": ['\\mathcal{I}_{#1}', 1],
           "sequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],

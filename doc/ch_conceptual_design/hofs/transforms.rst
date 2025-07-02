@@ -18,7 +18,7 @@ Specifically, the algorithm :math:`f` is applied to each element of the input se
 where :math:`b_i = f\ a_i`.
 Note that the index set of the output sequence is the same as the index set of the input sequence.
 
-Operator signature
+Operator Signature
 ^^^^^^^^^^^^^^^^^^
 
 .. table::
@@ -33,7 +33,7 @@ Operator signature
 The :cpp:`return_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
 An algorithm may also create multiple data products by returning a :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
 
-Registration interface
+Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 To illustrate the different ways a transform's algorithm can be registered with Phlex, we use the following classes and functions, which are presumably defined in some experiment libraries.

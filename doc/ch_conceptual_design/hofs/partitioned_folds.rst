@@ -94,7 +94,7 @@ This "combined" value is then returned by :math:`\textit{sum\_energy}` as the up
 The function :math:`\textit{sum\_energy}` is repeatedly invoked to update the accumulator with good-hits data product.
 Once all :cpp:`"GoodHits"` data products in `Spill` :math:`j` have been processed by :math:`\textit{sum\_energy}`, the accumulator's value becomes the fold result for that `Spill`.
 
-Operator signatures
+Operator Signatures
 ^^^^^^^^^^^^^^^^^^^
 
 .. table::
@@ -118,7 +118,7 @@ The fold's :cpp:`result_type` must model the created data-product type described
 A fold algorithm may also create multiple data products by using a :cpp:`result_type` of :cpp:`std::tuple<T1, ..., Tn>`  where each of the types :cpp:`T1, ..., Tn` models a created data-product type.
 
 
-Registration interface
+Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The :math:`\textit{fold(sum\_energies)}` node in :numref:`workflow` would be represented in C++ as:

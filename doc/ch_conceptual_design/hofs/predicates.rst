@@ -19,7 +19,7 @@ It is not until the predicate results are used by the filter that an input seque
 
    Phlex will schedule a predicate HOF for execution only if it is included in a predicate expression (see :numref:`ch_conceptual_design/hofs/filters:Filtering`).
 
-Operator signature
+Operator Signature
 ^^^^^^^^^^^^^^^^^^
 
 .. table::
@@ -32,7 +32,7 @@ Operator signature
     +--------------+------------------------------------------------------+
 
 
-Registration interface
+Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The workflow in :numref:`workflow` demonstrates a use of a predicate in the :math:`filter(high\_energy)` node, where the predicate is :cpp:`high\_energy` that operates on each :cpp:`GoodHits` object.
