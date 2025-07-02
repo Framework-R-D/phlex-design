@@ -75,7 +75,7 @@ The generator would thus return a pair with an advanced iterator and a :cpp:`"Wa
 
 The choice of the next type :math:`N` thus depends on the use case and is not prescribed by Phlex.
 
-Operator signatures
+Operator Signatures
 ^^^^^^^^^^^^^^^^^^^
 
 .. table::

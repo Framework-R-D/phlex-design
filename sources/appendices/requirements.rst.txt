@@ -300,11 +300,7 @@ Conceptual requirements
 
     The framework shall enable the specification of resources required by the program.
 
-.. todo::
-
-    Find a different reference for this than the subsystem design.
-
-- See :numref:`ch_subsystem_design/configuration:Program resource specification`
+- See :numref:`ch_conceptual_design/resources:Resources`
 
 .. req:: Specification of user-defined resources
     :collapse:

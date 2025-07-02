@@ -16,7 +16,7 @@ Phlex, however, supports observers as physicists rely on the ability to induce s
 
 Unlike filters and predicates, observers (by definition) are allowed to be the most downstream algorithms of the graph.
 
-Operator signature
+Operator Signature
 ^^^^^^^^^^^^^^^^^^
 
 .. table::
@@ -28,7 +28,7 @@ Operator signature
     | :math:`f`    | :cpp:`void function_name(P1, Pn..., Rm...) [quals];` |
     +--------------+------------------------------------------------------+
 
-Registration interface
+Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The below shows how the :cpp:`histogram_hits` operator in :numref:`workflow` would be registered in C++ [#ffilter]_.
