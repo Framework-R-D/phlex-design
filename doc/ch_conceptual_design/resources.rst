@@ -10,23 +10,23 @@ As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typica
 where the types :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
 
 Resources are used by algorithms that require access to a shared entity that is not semantically related to the data-product set hierarchy.
+An example registration of an algorithm that requires both a data product and a resource is found in :numref:`ch_conceptual_design/hofs/observers:Observers`.
+The details of the registration code express to the framework which arguments correspond to data products and which correspond to resources :need:`DUNE 52`.
+They may be stateless objects (e.g. a resource that denotes that an algorithm requires the use of a specific thread-unsafe library) or stateful objects (e.g. a resource that denotes access to a GPU, when the platform on which the framework program is running contains several GPUs).
+Neither of these examples contain mutable state.
+Resources (unlike data products) may have mutable state accessible to the algorithm (e.g. a histogram instance that could be shared across multiple algorithms).
+For resources that are mutable, the framework ensures that two algorithms are not interacting with the resource at the same time.
+The framework is responsible for efficiently scheduling algorithms based, in part, upon the availability of resources :need:`DUNE 50`.
+
 Examples of resources include:
 
 - GPUs
 - Network connections
 - Thread-unsafe utilities
 - Inference servers
-- Database handles
+- Database handles :need:`DUNE 35`, :need:`DUNE 40`
 
 Whereas data products have provenance associated with them, resources do not.
-
-.. todo::
-
-   Refer to :need:`DUNE 35`, :need:`DUNE 40`, :need:`DUNE 50`, :need:`DUNE 52`
-
-.. todo::
-
-   Mention that resources are directly integrated into the framework scheduler.
 
 Limited Resources
 -----------------
@@ -35,12 +35,16 @@ Limited Resources
 
    Refer to :need:`DUNE 45`, :need:`DUNE 145`
 
+Explain what a limited resource is and why it is useful.
+
 GPUs
 ----
 
 .. todo::
 
    Refer to :need:`DUNE 54`
+
+Say what access to the GPU resource provides (perhaps sole access to the GPU hardware for the time the resource is in scope).
 
 Random Number Resource
 ----------------------
