@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.9. Resources &#8212; Phlex 0 (a8c89b3) documentation</title>
+    <title>3.9. Resources &#8212; Phlex 0 (33d7101) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=96222bb0"></script>
+    <script src="../static/documentation_options.js?v=33f4a765"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (a8c89b3) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (33d7101) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
@@ -69,8 +69,10 @@
 </pre></div>
 </div>
 <p>where the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...</span></code> represent data products, and the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code> represent resources.</p>
-<p>Resources are used by algorithms that require access to a shared entity that is not semantically related to the data-product set hierarchy.
-An example registration of an algorithm that requires both a data product and a resource is found in <a class="reference internal" href="hofs/observers.html#observers"><span class="std std-numref">Section 3.5.2</span></a>.
+<p>Phlex calls <em>resources</em> the object that can be used by an algorithm to let the framework know that the algorithm requires access to a shared entity which is not semantically related to the data-product set hierarchy.
+Note that in the requirements that the word “resource” is sometimes used in a more general sense.
+In this section we are only referring to the specific kind of resource described above.</p>
+<p>An example registration of an algorithm that requires both a data product and a resource is found in <a class="reference internal" href="hofs/observers.html#observers"><span class="std std-numref">Section 3.5.2</span></a>.
 The details of the registration code express to the framework which arguments correspond to data products and which correspond to resources <a class="reference internal" href="../appendices/requirements.html#DUNE 52" title="DUNE 52"><em class="xref need">[DUNE 52]</em></a>.
 They may be stateless objects (e.g. a resource that denotes that an algorithm requires the use of a specific thread-unsafe library) or stateful objects (e.g. a resource that denotes access to a GPU, when the platform on which the framework program is running contains several GPUs).
 Neither of these examples contain mutable state.
@@ -198,7 +200,7 @@ Counter-based random number generators (CBRNGs) <a class="reference internal" hr
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (a8c89b3) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (33d7101) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
