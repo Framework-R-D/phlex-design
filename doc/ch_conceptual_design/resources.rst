@@ -9,7 +9,10 @@ As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typica
 
 where the types :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
 
-Resources are used by algorithms that require access to a shared entity that is not semantically related to the data-product set hierarchy.
+Phlex calls *resources* the object that can be used by an algorithm to let the framework know that the algorithm requires access to a shared entity which is not semantically related to the data-product set hierarchy.
+Note that in the requirements that the word "resource" is sometimes used in a more general sense.
+In this section we are only referring to the specific kind of resource described above.
+
 An example registration of an algorithm that requires both a data product and a resource is found in :numref:`ch_conceptual_design/hofs/observers:Observers`.
 The details of the registration code express to the framework which arguments correspond to data products and which correspond to resources :need:`DUNE 52`.
 They may be stateless objects (e.g. a resource that denotes that an algorithm requires the use of a specific thread-unsafe library) or stateful objects (e.g. a resource that denotes access to a GPU, when the platform on which the framework program is running contains several GPUs).
