@@ -17,7 +17,7 @@ It is not until the predicate results are used by the filter that an input seque
 
 .. note::
 
-   Phlex will not schedule a predicate HOF for execution unless it is bound to a filter via a filter clause (see :numref:`ch_conceptual_design/hofs/filters:Filtering`).
+   Phlex will schedule a predicate HOF for execution only if it is included in a predicate expression (see :numref:`ch_conceptual_design/hofs/filters:Filtering`).
 
 Operator signature
 ^^^^^^^^^^^^^^^^^^
@@ -36,7 +36,7 @@ Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The workflow in :numref:`workflow` demonstrates a use of a predicate in the :math:`filter(high\_energy)` node, where the predicate is :cpp:`high\_energy` that operates on each :cpp:`GoodHits` object.
-Although :numref:`workflow` does not include an explicit node for the :cpp:`high\_energy` predicate (for reasons of exposition), the predicate HOF *does* have its own node, which is then bound to one or more filters.
+Although :numref:`workflow` does not include an explicit node for the :cpp:`high\_energy` predicate (for reasons of exposition), the predicate HOF *does* have its own node, which is then bound to one or more filters via predicate expressions.
 The registration for the predicate node in :numref:`workflow` would look like:
 
 .. code:: c++

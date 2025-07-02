@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.3. Predicates &#8212; Phlex 0 (9568349) documentation</title>
+    <title>3.5.3. Predicates &#8212; Phlex 0 (6ee2ba7) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=3eb3759b"></script>
+    <script src="../../static/documentation_options.js?v=01e9b01e"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="observers.html" title="3.5.2. Observers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (9568349) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (6ee2ba7) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.3. </span>Predicates</a></li> 
@@ -88,7 +88,7 @@ This short-circuiting behavior is known as <em>filtering</em> and is described i
 It is not until the predicate results are used by the filter that an input sequence is potentially reduced in length.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Phlex will not schedule a predicate HOF for execution unless it is bound to a filter via a filter clause (see <a class="reference internal" href="filters.html#filtering"><span class="std std-numref">Section 3.5.4</span></a>).</p>
+<p>Phlex will schedule a predicate HOF for execution only if it is included in a predicate expression (see <a class="reference internal" href="filters.html#filtering"><span class="std std-numref">Section 3.5.4</span></a>).</p>
 </div>
 <section id="operator-signature">
 <h2><span class="section-number">3.5.3.1. </span>Operator signature<a class="headerlink" href="#operator-signature" title="Link to this heading">¶</a></h2>
@@ -112,7 +112,7 @@ It is not until the predicate results are used by the filter that an input seque
 <section id="registration-interface">
 <h2><span class="section-number">3.5.3.2. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
 <p>The workflow in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> demonstrates a use of a predicate in the <span class="math notranslate nohighlight">\(filter(high\_energy)\)</span> node, where the predicate is <code class="code highlight c++ docutils literal highlight-c++"><span class="n">high_energy</span></code> that operates on each <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> object.
-Although <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> does not include an explicit node for the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">high_energy</span></code> predicate (for reasons of exposition), the predicate HOF <em>does</em> have its own node, which is then bound to one or more filters.
+Although <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> does not include an explicit node for the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">high_energy</span></code> predicate (for reasons of exposition), the predicate HOF <em>does</em> have its own node, which is then bound to one or more filters via predicate expressions.
 The registration for the predicate node in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> would look like:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="kt">bool</span><span class="w"> </span><span class="nf">high_energy</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
@@ -191,7 +191,7 @@ The registration for the predicate node in <a class="reference internal" href=".
         <li class="right" >
           <a href="observers.html" title="3.5.2. Observers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (9568349) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (6ee2ba7) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.3. </span>Predicates</a></li> 
@@ -199,7 +199,7 @@ The registration for the predicate node in <a class="reference internal" href=".
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 01, 2025.
+      Last updated on Jul 02, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

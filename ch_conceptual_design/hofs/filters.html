@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.4. Filtering &#8212; Phlex 0 (9568349) documentation</title>
+    <title>3.5.4. Filtering &#8212; Phlex 0 (6ee2ba7) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=3eb3759b"></script>
+    <script src="../../static/documentation_options.js?v=01e9b01e"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="predicates.html" title="3.5.3. Predicates"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (9568349) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (6ee2ba7) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Filtering</a></li> 
@@ -85,18 +85,18 @@
 This process, known as <em>filtering</em>, effectively shortens the input sequence <span class="math notranslate nohighlight">\(a\)</span> by retaining only those entries that satisfy a predicate <span class="math notranslate nohighlight">\(\phi\)</span>, thus creating a different sequence <span class="math notranslate nohighlight">\(a'\)</span> composed of elements from <span class="math notranslate nohighlight">\(a\)</span>.</p>
 <p>Filtering is of interest only when there is a downstream node that can receive the filtered sequence.
 Therefore, Phlex will not schedule a filter for execution if the only nodes downstream of it are other filters or predicates.</p>
-<p>Filtering, however, can be applied to the input data-product sequences of any HOFs without explicitly registering a filter HOF.
-This is done through a <em>filter clause</em>, which is a stringized form of the predicate <span class="math notranslate nohighlight">\(\phi\)</span> that will be applied to the input data sequence, only retaining elements that satisfy the predicate.</p>
-<section id="filter-clause">
-<h2><span class="section-number">3.5.4.1. </span>Filter clause<a class="headerlink" href="#filter-clause" title="Link to this heading">¶</a></h2>
-<p>The predicate <span class="math notranslate nohighlight">\(\phi\)</span> is Boolean expression whose arguments correspond to the Boolean results of <em>explicitly registered</em> predicates.
-For example, in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>, the predicate in <span class="math notranslate nohighlight">\(\textit{filter(high\_energy)}\)</span> is <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, which was an explicitly registered predicate, as presented in <a class="reference internal" href="predicates.html#registration-interface"><span class="std std-numref">Section 3.5.3.2</span></a>.</p>
+<p>Filtering can be applied to the input data-product sequences of any HOFs without explicitly registering a filter HOF.
+This is done through a <em>predicate expression</em>, which is a stringized form of the predicate <span class="math notranslate nohighlight">\(\phi\)</span> that is applied to the input data sequence, retaining only the elements that satisfy the predicate.</p>
+<section id="predicate-expression">
+<h2><span class="section-number">3.5.4.1. </span>Predicate Expression<a class="headerlink" href="#predicate-expression" title="Link to this heading">¶</a></h2>
+<p>The predicate <span class="math notranslate nohighlight">\(\phi\)</span> is Boolean expression whose input arguments correspond to the Boolean results of <em>explicitly registered</em> predicates.
+For example, in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>, the predicate in <span class="math notranslate nohighlight">\(\textit{filter(high\_energy)}\)</span> is <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, which is an explicitly registered predicate, as presented in <a class="reference internal" href="predicates.html#registration-interface"><span class="std std-numref">Section 3.5.3.2</span></a>.</p>
 <p>It is possible for one filter named <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;only_high_energy&quot;</span></code> to use as its predicate <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, whereas another filter named <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;not_high_energy&quot;</span></code> could use the negation <span class="math notranslate nohighlight">\(\textit{filter}(\neg \textit{high\_energy})\)</span>.
-In this case, the predicate <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span> is executed only once, but its value can be used in different ways in the filter clause.</p>
-<p>Note that it is possible to specify a filter clause that can be evaluated on a higher-level data-product set than the data-product sequence in question.
+In this case, the predicate <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span> is executed only once, but its value can be used in different ways in the predicate expression.</p>
+<p>A predicate expression can be evaluated on a higher-level data-product set than the data-product sequence in question.
 For example, suppose none of the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products in a given <cite>Spill</cite> were suitable for processing.
 It is possible to create a filter that would reject all <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products from that <cite>Spill</cite> even though the predicate itself interrogated only the <cite>Spill</cite> information and not the lower-level good-hits information from the <cite>APA</cite>.</p>
-<p>The supported grammar of the filter is discussed in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+<p>The supported grammar of the predicate expression is discussed in <span>the subsystem design <em>(under preparation)</em></span>.</p>
 </section>
 <section id="registration-interface">
 <h2><span class="section-number">3.5.4.2. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
@@ -110,10 +110,25 @@ It is possible to create a filter that would reject all <code class="code highli
 
 <span class="w">  </span><span class="n">observe</span><span class="p">(</span><span class="n">histogram_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">serial</span><span class="p">)</span>
 <span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">h_resource</span><span class="o">-&gt;</span><span class="n">make</span><span class="o">&lt;</span><span class="n">TH1F</span><span class="o">&gt;</span><span class="p">(...))</span>
-<span class="w">    </span><span class="p">.</span><span class="n">when</span><span class="p">(</span><span class="s">&quot;high_energy&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &lt;= filter clause within the when(...) call</span>
+<span class="w">    </span><span class="p">.</span><span class="n">when</span><span class="p">(</span><span class="s">&quot;high_energy&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &lt;= predicate expression within the when(...) call</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>In practice, it is convenient to specify a predicate expression as part of a Phlex program’s run-time configuration instead of hard-coded into a compiled library.
+Phlex allows users to specify predicate expressions in a program configuration:</p>
+<div class="highlight-jsonnet notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Speculative configurations for two observer nodes that use the same module library</span>
+<span class="w">  </span><span class="nv">histogram_high_energy_hits</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">plugin</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;histogram_hits.so&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nv">histogram_low_energy_hits</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">plugin</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;histogram_hits.so&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">when</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;!high_energy&quot;</span><span class="w">  </span><span class="c1"># Negate filter, overriding compiled when(...) clause</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that specifying a predicate expression via the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">when</span></code> configuration parameter overrides whatever predicate expression may have been hard-coded into the compiled module.</p>
 </section>
 </section>
 
@@ -131,7 +146,7 @@ It is possible to create a filter that would reject all <code class="code highli
     <h3><a href="../../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">3.5.4. Filtering</a><ul>
-<li><a class="reference internal" href="#filter-clause">3.5.4.1. Filter clause</a></li>
+<li><a class="reference internal" href="#predicate-expression">3.5.4.1. Predicate Expression</a></li>
 <li><a class="reference internal" href="#registration-interface">3.5.4.2. Registration interface</a></li>
 </ul>
 </li>
@@ -181,7 +196,7 @@ It is possible to create a filter that would reject all <code class="code highli
         <li class="right" >
           <a href="predicates.html" title="3.5.3. Predicates"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (9568349) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (6ee2ba7) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Filtering</a></li> 
@@ -189,7 +204,7 @@ It is possible to create a filter that would reject all <code class="code highli
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 01, 2025.
+      Last updated on Jul 02, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
