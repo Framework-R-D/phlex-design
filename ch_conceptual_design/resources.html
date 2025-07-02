@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.9. Resources &#8212; Phlex 0 (a9d24f0) documentation</title>
+    <title>3.9. Resources &#8212; Phlex 0 (3df1493) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=35071888"></script>
+    <script src="../static/documentation_options.js?v=09fe7f63"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (a9d24f0) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (3df1493) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
@@ -69,15 +69,18 @@
 </pre></div>
 </div>
 <p>where the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...</span></code> represent data products, and the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code> represent resources.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Phlex calls <em>resources</em> the object that can be used by an algorithm to let the framework know that the algorithm requires access to a shared entity which is not semantically related to the data-product set hierarchy.
 Note that in the requirements that the word “resource” is sometimes used in a more general sense.
 In this section we are only referring to the specific kind of resource described above.</p>
+</div>
 <p>An example registration of an algorithm that requires both a data product and a resource is found in <a class="reference internal" href="hofs/observers.html#observers"><span class="std std-numref">Section 3.5.2</span></a>.
 The details of the registration code express to the framework which arguments correspond to data products and which correspond to resources <a class="reference internal" href="../appendices/requirements.html#DUNE 52" title="DUNE 52"><em class="xref need">[DUNE 52]</em></a>.
 They may be stateless objects (e.g. a resource that denotes that an algorithm requires the use of a specific thread-unsafe library) or stateful objects (e.g. a resource that denotes access to a GPU, when the platform on which the framework program is running contains several GPUs).
 Neither of these examples contain mutable state.
 Resources (unlike data products) may have mutable state accessible to the algorithm (e.g. a histogram instance that could be shared across multiple algorithms).
-For resources that are mutable, the framework ensures that two algorithms are not interacting with the resource at the same time.
+For resources that are thread-unsafe, the framework ensures that two algorithms are not interacting with the resource at the same time.
 The framework is responsible for efficiently scheduling algorithms based, in part, upon the availability of resources <a class="reference internal" href="../appendices/requirements.html#DUNE 50" title="DUNE 50"><em class="xref need">[DUNE 50]</em></a>.</p>
 <p>Examples of resources include:</p>
 <ul class="simple">
@@ -90,19 +93,21 @@ The framework is responsible for efficiently scheduling algorithms based, in par
 <p>Whereas data products have provenance associated with them, resources do not.</p>
 <section id="limited-resources">
 <h2><span class="section-number">3.9.1. </span>Limited Resources<a class="headerlink" href="#limited-resources" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 45" title="DUNE 45"><em class="xref need">[DUNE 45]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 145" title="DUNE 145"><em class="xref need">[DUNE 145]</em></a></p>
-</div>
-<p>Explain what a limited resource is and why it is useful.</p>
+<p>Some resources are used to indicate that an algorithm requires sole use of some program entity.
+One example of such an entity is a thread-unsafe library, where the framework must ensure that only one algorithm is interacting with that library at any time <a class="reference internal" href="../appendices/requirements.html#DUNE 45" title="DUNE 45"><em class="xref need">[DUNE 45]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 145" title="DUNE 145"><em class="xref need">[DUNE 145]</em></a>.
+A second example of a limited resource is a fixed number of GPUs present on a particular platform, where Phlex must ensure that each algorithm requiring the use of a GPU has sole access to the GPU it is running on for the duration of the algorithm’s execution.
+A third example of a limited resource could be an algorithm’s declaration that it requires spawning some number of threads for it execution (rather than using the framework’s task-based execution model).
+Such an algorithm could declare the need for the reservation of some number of threads by requiing that number of thread resources <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a>.
+The framework would then ensure that only as many threads as the configuration has provided can be used by algoirthms at any one time.
+These resources are called <em>limited resources</em>, because the framework is responsible for limiting the access to the resource to one algorithm at a time.</p>
+<p>An algorithm to be used by Phlex indicates that it requires a limited resource by requiring an argument that denotes such a resource.</p>
 </section>
 <section id="gpus">
 <h2><span class="section-number">3.9.2. </span>GPUs<a class="headerlink" href="#gpus" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 54" title="DUNE 54"><em class="xref need">[DUNE 54]</em></a></p>
-</div>
-<p>Say what access to the GPU resource provides (perhaps sole access to the GPU hardware for the time the resource is in scope).</p>
+<p>In order to allow algorithms to make use of GPUs, and to allow the composition of workflows that involve both CPU-based and GPU-based algorithms, Phlex provides a mechanism for an algorithm that requires access to a GPU to declare that fact <a class="reference internal" href="../appendices/requirements.html#DUNE 54" title="DUNE 54"><em class="xref need">[DUNE 54]</em></a>.
+This is done by making the algorithm accept a resource that denotes the GPU.
+Phlex can support running on platforms that provide access to more than one GPU while ensuring that a given algorithm has sole access to the GPU it requires while it is executing.
+Phlex also provides, through the same mechanism, the ability for an algorithm to specify that it requires remote access to a GPU.</p>
 </section>
 <section id="random-number-resource">
 <h2><span class="section-number">3.9.3. </span>Random Number Resource<a class="headerlink" href="#random-number-resource" title="Link to this heading">¶</a></h2>
@@ -111,23 +116,16 @@ Although multiple random-number generation techniques exists, the vast majority 
 To ensure reproducible data and to ensure thread-safe access to stateful random-number engines, HEP frameworks impose idiosyncratic constraints on their use.</p>
 <p>DUNE has similar requirements on reproducibility of random numbers in a concurrent context <a class="reference internal" href="../appendices/requirements.html#DUNE 36" title="DUNE 36"><em class="xref need">[DUNE 36]</em></a>.
 However, instead of working around the limitations of stateful random-number engines, Phlex supports a random-number generation technique specifically designed to reproduce random-numbers in a concurrent program.
-Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id3"><span>[Wiki-CBRNG]</span></a> each contain one internal counter.</p>
+Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id1"><span>[Wiki-CBRNG]</span></a> each contain one internal counter.</p>
 </section>
 <section id="user-defined-resources">
 <h2><span class="section-number">3.9.4. </span>User-defined Resources<a class="headerlink" href="#user-defined-resources" title="Link to this heading">¶</a></h2>
-<div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<p>Refer to <a class="reference internal" href="../appendices/requirements.html#DUNE 149" title="DUNE 149"><em class="xref need">[DUNE 149]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a></p>
-</div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_RESOURCE</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<p>While Phlex will provide some commonly-used types to represent resources, it will also be possible for users to create new types to represent a new type of resouce, with no modifications to the Phlex framework code <a class="reference internal" href="../appendices/requirements.html#DUNE 149" title="DUNE 149"><em class="xref need">[DUNE 149]</em></a>.
+Such resource types have no dependency on Phlex, so that a user algorithm employing such a resource does not thereby incur any dependency on the framework.</p>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-cbrng" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Wiki-CBRNG</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-CBRNG</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Counter-based_random_number_generator">https://en.wikipedia.org/wiki/Counter-based_random_number_generator</a></p>
 </div>
 </div>
@@ -200,7 +198,7 @@ Counter-based random number generators (CBRNGs) <a class="reference internal" hr
         <li class="right" >
           <a href="writers.html" title="3.8. Data-Product Writers"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (a9d24f0) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (3df1493) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
       </ul>
