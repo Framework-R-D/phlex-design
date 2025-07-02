@@ -6,7 +6,7 @@ Task Management
    - Includes scheduling of tasks as well as any relevant task priorities or concurrency constraints
    - Respecting data-marshaling demands
    - Relates to algorithms and data (product) sets
-   - Is this where the grammar goes for the filter clause (:numref:`ch_conceptual_design/hofs/filters:Filter clause`)?
+   - Is this where the grammar goes for the predicate expression (:numref:`ch_conceptual_design/hofs/filters:Predicate Expression`)?
 
 The execution of computational tasks will be managed by `oneTBB Flow Graph <https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/flow_graph>`_.
 With oneTBB, the user does not explicitly manage threads but specifies tasks that should be scheduled by oneTBB for execution using its own thread pool.
