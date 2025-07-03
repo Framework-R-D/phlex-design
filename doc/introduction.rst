@@ -6,7 +6,7 @@ The following diagram illustrates three high-level computing stages commonly use
 
 .. graphviz:: framework-scope.gv
 
-Wikipedia decently defines a software framework as [Wiki-framework]_:
+Wikipedia decently defines a software framework as [Wiki-Framework]_:
 
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
@@ -26,7 +26,7 @@ Requirements Process
 
 Phlex provides facilities and behaviors intended to support the physics goals of its stakeholders, notably the DUNE experiment [#f1]_.
 DUNE has established a set of high-level requirements or *stakeholder requirements*, which constrain the design of the framework in support of DUNE's needs.
-A dedicated tool [Jama-connect]_ is used to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
+A dedicated tool [Jama-Connect]_ is used to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
 As the design matures, *system requirements* are then created to guide implementation in support of the stakeholder requirements.
 
 ----------------------
@@ -170,6 +170,6 @@ Appendices are provided that give definitions (:numref:`Appendix %s <appendices/
 
    .. rubric:: References
 
-.. [Wiki-framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
-.. [Jama-connect] https://www.jamasoftware.com/platform/jama-connect/
+.. [Wiki-Framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
+.. [Jama-Connect] https://www.jamasoftware.com/platform/jama-connect/
 .. [SPEC-0] https://scientific-python.org/specs/spec-0000/

@@ -24,13 +24,13 @@ To avoid cluttered expressions in this document, however, we adopt an alternativ
 
    f(x) &\Longrightarrow f\ x
 
-   g(f(x)) &\Longrightarrow g\ (f\ x) = g\ f\ x \ .
+   h(g(y)) &\Longrightarrow h\ (g\ y) = h\ g\ y
 
-In mathematical expressions, parentheses are then reserved in this document to specify:
+In mathematical expressions, parentheses are then reserved in this document to specify (in order precedence):
 
-1. The order of operations (e.g. :math:`f\ x` is to be evaluated first, and its output serves as input to the function :math:`g`).
-2. A tuple of arguments that serve as input to a single function invocation (e.g. :math:`power\ (1.5, 2)` above) [#apply]_.
-3. The binding of user-defined algorithms to higher-order functions (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`).
+1. A tuple of arguments that serve as input to a single function invocation (e.g. :math:`power\ (1.5, 2)` above) [#apply]_.
+2. The binding of user-defined algorithms to higher-order functions (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`).
+3. The order of operations (e.g. :math:`g\ y` is to be evaluated first, and its output serves as input to the function :math:`h`).
 
 .. rubric:: Footnotes
 

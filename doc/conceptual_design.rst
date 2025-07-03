@@ -12,7 +12,7 @@ Phlex adopts the data-flow approach discussed in :numref:`ch_preliminaries/data_
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
 These algorithms then serve as operators to higher-order functions (HOFs) that operate on *data-product sequences*.
 
-To guide the discussion of Phlex's conceptual model, we refer to :numref:`workflow`, which shows a fictitious workflow that creates vertices from simulated energy deposits.
+To guide the discussion of Phlex's conceptual model, we refer to :numref:`workflow`, which shows a small fictitious workflow that creates vertices from simulated energy deposits.
 Various framework aspects are demonstrated by that figure:
 
    *data-flow graph*
@@ -64,7 +64,7 @@ Note that in this workflow, the names *Spill* and *APA* are not special to the P
 Each data product is also indexed, thus associating it with a particular data-product set (e.g. :math:`\text{GoodHits}_{mn}` denotes the :cpp:`GoodHits` data product belonging to `APA` :math:`n` of `Spill` :math:`m`).
 
 .. graphviz:: work-flow.gv
-   :caption: A sample workflow showing how HOFs are used in a Phlex program.
+   :caption: A fictitious workflow showing how HOFs are used in a Phlex program.
              Each unshaded node represent a HOF bound to a user-defined algorithm, whose name is shaded in blue.
              Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.
              Whereas single-dotted lines indicate communication of data through the framework's IO system, double-dotted lines denote communication of data with entities not directly related to the framework.
@@ -83,7 +83,7 @@ Each data product is also indexed, thus associating it with a particular data-pr
    ch_conceptual_design/providers
    ch_conceptual_design/writers
    ch_conceptual_design/resources
-   ch_conceptual_design/user_configuration
+   ch_conceptual_design/program_configuration
 
 .. rubric:: Footnotes
 

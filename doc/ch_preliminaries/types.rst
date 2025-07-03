@@ -51,7 +51,7 @@ The above functions are thus represented in function notation as:
 This notation will be used as we discuss the operators required by Phlex's higher-order functions.
 
 The single element of the set :math:`\one` can also be used to represent the value :cpp:`nullptr` for C++ pointers (see :numref:`ch_preliminaries/types:Representing optional types`).
-When necessary we will refer to that single element as the *unit element*, or simply the open-closed parentheses :cpp:`()`.
+When necessary we will refer to that single element as the *null value*, or simply the open-closed parentheses :cpp:`()`.
 
 ---------------------------
 Representing optional types

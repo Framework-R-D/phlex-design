@@ -84,7 +84,7 @@ preliminary_watermark = r"""
 \backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
-\newcommand\gt[0]{>}
+\newcommand\lt[0]{<}
 \newcommand\bool[0]{\mathbb{B}}
 \newcommand\one[0]{\mathbbm{1}}
 \newcommand\opt[1]{\text{Opt}(#1)}

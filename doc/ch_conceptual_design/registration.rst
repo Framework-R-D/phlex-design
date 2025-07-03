@@ -169,7 +169,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. note::
 
-   As discussed in :numref:`ch_conceptual_design/user_configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
+   As discussed in :numref:`ch_subsystem_design/configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
 
 Except for the specification of :cpp:`find_hits` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
 

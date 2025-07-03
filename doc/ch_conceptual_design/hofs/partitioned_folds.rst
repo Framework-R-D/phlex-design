@@ -54,7 +54,7 @@ where
 Partitions
 ^^^^^^^^^^
 
-Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-partition]_.
+Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-Partition]_.
 Each subset of the partition is called a *cell*.
 In the above example, the role of the :math:`\textit{into\_spills}` operation is to partition the input sequence into `Spill`\ s so that there is one fold result per `Spill`.
 In general, however, the partitioning function is of the form :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})`, where:
@@ -157,4 +157,4 @@ Possible solutions include using :cpp:`std::atomic_ref<double>` [#fatomicref]_, 
 
    .. rubric:: References
 
-.. [Wiki-partition] https://en.wikipedia.org/wiki/Partition_of_a_set
+.. [Wiki-Partition] https://en.wikipedia.org/wiki/Partition_of_a_set

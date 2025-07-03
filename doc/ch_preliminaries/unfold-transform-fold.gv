@@ -4,9 +4,9 @@ digraph {
 
   start [shape="point", width=0.1]
   end [shape="point", width=0.1, peripheries=2]
-  iota [label=<<i><font color="blue">iota</font></i>>];
+  iota [label=<iota>];
   transform [label=<<i><font color="blue">square</font></i>>];
-  sum [label=<<i><font color="blue">sum</font></i>>];
+  sum [label=<sum>];
 
   start -> iota [label=<<table cellpadding="1" border="0" cellborder="0">
                           <tr><td><font color="red"><i>n</i></font></td></tr>
