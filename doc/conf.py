@@ -19,7 +19,15 @@ author = ''
 git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
 
 version = "0"
-release = f"0 ({git_commit})"
+
+# For releases for circulation use:
+release = "0.1"
+latex_filename = f"phlex-design-v{release}.tex"
+
+# For development use
+# latex_filename = f"phlex-design-v{version}-{git_commit}.tex"
+# release = f"0.1 ({git_commit})"
+
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -81,7 +89,7 @@ extra_packages = r"""
 
 preliminary_watermark = r"""
 \usepackage[angle=30,color=lightgray]{background}
-\backgroundsetup{contents={Preliminary}}"""
+\backgroundsetup{scale=7, contents={For DUNE Review}}"""
 
 new_commands = r"""
 \newcommand\lt[0]{<}
@@ -195,7 +203,7 @@ latex_elements = {
     "preamble": extra_packages + preliminary_watermark + new_commands,
 }
 latex_documents = [("index",
-                    f"phlex-design-v{version}-{git_commit}.tex",
+                    latex_filename,
                     project,
                     author,
                     "manual",
