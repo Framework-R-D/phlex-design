@@ -13,24 +13,24 @@ Partitioned Unfolds
 +----------------------------------------------------------+------------------------------------------------+------------------------+
 
 As discussed in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, the opposite of a fold is an *unfold*, where a sequence of objects is generated from a single object.
-The example given in :numref:`ch_preliminaries/data_flow:Data Flow with Sequences` is :math:`\textit{iota}`, which generates a sequence of contiguous integers given one input number:
+The example given in :numref:`ch_preliminaries/data_flow:Data Flow with Sequences` is :math:`\text{iota}`, which generates a sequence of contiguous integers given one input number:
 
 .. math::
 
-    c = [1,\ 2,\ 3,\ \dots,\ n] = \textit{iota}\ n = \unfold{\gt 0}{\textit{decrement}}\ n
+    c = [1,\ 2,\ 3,\ \dots,\ n] = \text{iota}\ n = \unfold{greater\_than\_zero}{decrement}\ n
 
-where :math:`\textit{iota}` has been expressed in terms of an unfold HOF that receives the predicate :math:`\gt 0` and a generator called :math:`\textit{decrement}`.
+where :math:`\text{iota}` has been expressed in terms of an unfold HOF that receives the predicate :math:`greater\_than\_zero` and a generator called :math:`decrement`.
 
-The unfold operation is recursively called until the predicate returns `false`, whereby it emits an empty list :math:`[\ ]`:
+The unfold operation is repeatedly called until the predicate returns `false`, whereby it emits an empty list :math:`[\ ]`:
 
 .. math::
    :no-wrap:
 
     \begin{align*}
-    c &= \unfold{\gt 0}{\textit{decrement}}\ n \\
-      &= \unfold{\gt 0}{\textit{decrement}}\ n-1\ \boldsymbol{+}\ [n] \\
+    c &= \unfold{greater\_than\_zero}{decrement}\ n \\
+      &= \unfold{greater\_than\_zero}{decrement}\ n-1\ \boldsymbol{+}\ [n] \\
       &\quad\quad \vdots \\
-      &= \unfold{\gt 0}{\textit{decrement}}\ 0\ \boldsymbol{+}\ [1, 2, \dots, n-1, n] \\
+      &= \unfold{greater\_than\_zero}{decrement}\ 0\ \boldsymbol{+}\ [1, 2, \dots, n-1, n] \\
       &=[\ ]\ \boldsymbol{+}\ [1, 2, \dots, n-1, n]
     \end{align*}
 
@@ -46,7 +46,7 @@ Heuristically, this can be thought of as executing the function:
        while predicate(next_value):
            # generator returns a new value for next_value
            next_value, sequence_element = generator(next_value)
-           result.append(sequence_element)
+           result.prepend(sequence_element)
        return result
 
 where the user supplies the :py:`predicate` (:math:`p`) and :py:`generator` (:math:`\textit{gen}`) algorithms.
@@ -66,7 +66,7 @@ Next Type
 
 The signatures for the operators :math:`p` and :math:`\textit{gen}` have the curious type :math:`N`, which seems unrelated to the input sequence :math:`d`, whose elements are of type :math:`D`, or the output sequence :math:`c`, whose elements are of type :math:`C`.
 The type :math:`N` refers to the type of the *next* value on which the unfold operates.
-In the :math:`\textit{iota}` example above, the type :math:`N` is the same as the input argument :math:`n`, which is an integer, and it is the same as that of the output sequence elements, which are also integers.
+In the :math:`\text{iota}` example above, the type :math:`N` is the same as the input argument :math:`n`, which is an integer, and it is the same as that of the output sequence elements, which are also integers.
 
 The unfold in :numref:`workflow`, however, demonstrates an example where :math:`N` is equal to neither :math:`D` nor :math:`C`.
 Whereas the input type :math:`D` corresponds to the :cpp:`"SimDepos"` data product in each `Spill`, the output type :math:`C` represents the :cpp:`"Waveforms"` data products produced for each `APA`.

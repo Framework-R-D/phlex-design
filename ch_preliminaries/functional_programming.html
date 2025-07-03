@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.4. Functional Programming &#8212; Phlex 0 (bc69b38) documentation</title>
+    <title>2.4. Functional Programming &#8212; Phlex 0 (b5dbf2f) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=4f8b6625"></script>
+    <script src="../static/documentation_options.js?v=a4775967"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
@@ -85,7 +85,7 @@ Expressing the processing needs according to mathematics enables:</p>
 </ul>
 <section id="pure-functions">
 <h2><span class="section-number">2.4.1. </span>Pure Functions<a class="headerlink" href="#pure-functions" title="Link to this heading">¶</a></h2>
-<p>According to Wikipedia <a class="reference internal" href="#wiki-pure" id="id2"><span>[Wiki-pure]</span></a>, a pure function has the following properties:</p>
+<p>According to Wikipedia <a class="reference internal" href="#wiki-pure" id="id2"><span>[Wiki-Pure]</span></a>, a pure function has the following properties:</p>
 <ul class="simple">
 <li><p>the function return values are identical for identical arguments, and</p></li>
 <li><p>the function has no side effects.</p></li>
@@ -94,8 +94,8 @@ Expressing the processing needs according to mathematics enables:</p>
 For example, assuming the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> above are pure, then the composite function <span class="math notranslate nohighlight">\(h\)</span> will also be pure.</p>
 <p>Using pure functions to create data products ensures <a class="reference internal" href="../appendices/definitions.html#term-Reproducible"><span class="xref std std-term">reproducibility</span></a>, as discussed in the framework philosophy in <a class="reference internal" href="../introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>.</p>
 </section>
-<section id="difficulties-with-functional-programming">
-<h2><span class="section-number">2.4.2. </span>Difficulties with Functional Programming<a class="headerlink" href="#difficulties-with-functional-programming" title="Link to this heading">¶</a></h2>
+<section id="challenges-with-functional-programming">
+<h2><span class="section-number">2.4.2. </span>Challenges with Functional Programming<a class="headerlink" href="#challenges-with-functional-programming" title="Link to this heading">¶</a></h2>
 <p>One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
 We argue, though, that physicists often think in terms of functional programming when developing the high-level processing steps of a workflow.
@@ -119,7 +119,7 @@ In particular, the arithmetic mean above can be expressed as:</p>
 <div class="math notranslate nohighlight">
 \[\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}\]</div>
 <p>where the fold accepts a binary operator (<span class="math notranslate nohighlight">\(+\)</span> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.</p>
-<p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-hof]</span></a> that accepts a sequence and an operator applied in some way to elements of that sequence.</p>
+<p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-HOF]</span></a> that accepts a sequence and an operator applied in some way to elements of that sequence.</p>
 <p>Additional HOFs exist—for example, suppose the sequence <span class="math notranslate nohighlight">\([c_i]\)</span> was created by applying a function <span class="math notranslate nohighlight">\(w: E \rightarrow C\)</span> to each element of a sequence <span class="math notranslate nohighlight">\([e_i]\)</span>.
 Such a HOF is called a map or <em>transform</em>:</p>
 <div class="math notranslate nohighlight">
@@ -216,11 +216,11 @@ Phlex will likely support other higher order functions as well.</p>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-pure" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Wiki-pure</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Wiki-Pure</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Pure_function">https://en.wikipedia.org/wiki/Pure_function</a></p>
 </div>
 <div class="citation" id="wiki-hof" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Wiki-hof</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Wiki-HOF</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Higher-order_function">https://en.wikipedia.org/wiki/Higher-order_function</a></p>
 </div>
 <div class="citation" id="bird" role="doc-biblioentry">
@@ -245,7 +245,7 @@ Phlex will likely support other higher order functions as well.</p>
     <ul>
 <li><a class="reference internal" href="#">2.4. Functional Programming</a><ul>
 <li><a class="reference internal" href="#pure-functions">2.4.1. Pure Functions</a></li>
-<li><a class="reference internal" href="#difficulties-with-functional-programming">2.4.2. Difficulties with Functional Programming</a></li>
+<li><a class="reference internal" href="#challenges-with-functional-programming">2.4.2. Challenges with Functional Programming</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sequences-of-data-and-higher-order-functions">2.5. Sequences of Data and Higher-Order Functions</a></li>
@@ -295,14 +295,14 @@ Phlex will likely support other higher order functions as well.</p>
         <li class="right" >
           <a href="sequences.html" title="2.3. Sequences"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 02, 2025.
+      Last updated on Jul 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

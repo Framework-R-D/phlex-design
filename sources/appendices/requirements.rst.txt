@@ -417,7 +417,7 @@ Conceptual requirements
 
     The framework shall accept exactly one configuration per program execution.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/program_configuration:Program Configuration`
 
 .. req:: Framework configuration language
     :collapse:
@@ -429,7 +429,7 @@ Conceptual requirements
 
     The framework shall provide the ability to configure the execution of a framework program at runtime using a human-readable language.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_conceptual_design/program_configuration:Program Configuration`
 
 .. req:: I/O plugins
     :collapse:
@@ -591,7 +591,7 @@ Conceptual requirements
 
     The framework shall support executing programs configured by composing configurations of separate components.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Graceful shutdown of framework program
     :collapse:
@@ -677,7 +677,7 @@ Supporting requirements
 
     The framework shall provide the ability to compare two configurations.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Record execution environment
     :collapse:
@@ -965,7 +965,7 @@ Supporting requirements
 
     The framework shall validate an algorithm's configuration against specifications provided at registration time.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Algorithm configuration schema availability
     :collapse:
@@ -977,7 +977,7 @@ Supporting requirements
 
     The framework shall have an option to emit an algorithm's configuration schema in human-readable form.
 
-- See :numref:`ch_conceptual_design/user_configuration:Semantic structure of the configuration`
+- See :numref:`ch_subsystem_design/configuration:Semantic structure of the configuration`
 
 .. req:: Eager validation of algorithm configuration
     :collapse:
@@ -990,7 +990,7 @@ Supporting requirements
 
     The framework shall validate the configuration of each algorithm before that algorithm processes data.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`, :numref:`ch_conceptual_design/user_configuration:Semantic structure of the configuration`.
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`, :numref:`ch_subsystem_design/configuration:Semantic structure of the configuration`.
 
 .. req:: I/O backend for ROOT
     :collapse:
@@ -1143,7 +1143,7 @@ Supporting requirements
 
     The framework shall provide an option to persist the configuration of each framework execution to the output of that execution.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Independence from unique hardware characteristics
     :collapse:
@@ -1166,7 +1166,7 @@ Supporting requirements
 
     The framework shall provide a command-line interface that allows the setting of configuration parameters.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Support local configuration changes
     :collapse:
@@ -1177,7 +1177,7 @@ Supporting requirements
 
     The framework shall support the use of local configuration changes with respect to a separate complete configuration to modify the execution of a program.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Configuration tracing
     :collapse:
@@ -1188,7 +1188,7 @@ Supporting requirements
 
     The framework configuration system shall have an option to provide diagnostic information for an evaluated configuration, including origins of final parameter values.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Configuration language single point of maintenance
     :collapse:
@@ -1200,7 +1200,7 @@ Supporting requirements
 
     The language used for configuring a framework program shall include features for maintaining hierarchical configurations from a single point of maintenance.
 
-- See :numref:`ch_conceptual_design/user_configuration:Mechanics of configuration specification`
+- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Enable identification of data sets containing chunked data products
     :collapse:

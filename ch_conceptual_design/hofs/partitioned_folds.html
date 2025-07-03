@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.5. Partitioned Folds &#8212; Phlex 0 (bc69b38) documentation</title>
+    <title>3.5.5. Partitioned Folds &#8212; Phlex 0 (b5dbf2f) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=4f8b6625"></script>
+    <script src="../../static/documentation_options.js?v=a4775967"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="filters.html" title="3.5.4. Filtering"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Folds</a></li> 
@@ -109,7 +109,7 @@ The energies of the <code class="code highlight c++ docutils literal highlight-c
 \iset{\text{out}} &amp;= \{(S\ 1),\ \dots, (S\ n)\}\ .
 \end{align*}</div><section id="partitions">
 <h2><span class="section-number">3.5.5.1. </span>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">¶</a></h2>
-<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em> <a class="reference internal" href="#wiki-partition" id="id1"><span>[Wiki-partition]</span></a>.
+<p>Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set <em>partition</em> <a class="reference internal" href="#wiki-partition" id="id1"><span>[Wiki-Partition]</span></a>.
 Each subset of the partition is called a <em>cell</em>.
 In the above example, the role of the <span class="math notranslate nohighlight">\(\textit{into\_spills}\)</span> operation is to partition the input sequence into <cite>Spill</cite>s so that there is one fold result per <cite>Spill</cite>.
 In general, however, the partitioning function is of the form <span class="math notranslate nohighlight">\(\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})\)</span>, where:</p>
@@ -225,7 +225,7 @@ The accumulator can then be updated in place, thus avoiding the extra copies of 
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-partition" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-partition</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Wiki-Partition</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Partition_of_a_set">https://en.wikipedia.org/wiki/Partition_of_a_set</a></p>
 </div>
 </div>
@@ -299,7 +299,7 @@ The accumulator can then be updated in place, thus avoiding the extra copies of 
         <li class="right" >
           <a href="filters.html" title="3.5.4. Filtering"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.5. </span>Partitioned Folds</a></li> 
@@ -307,7 +307,7 @@ The accumulator can then be updated in place, thus avoiding the extra copies of 
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 02, 2025.
+      Last updated on Jul 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

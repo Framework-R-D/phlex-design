@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.7. Windows &#8212; Phlex 0 (bc69b38) documentation</title>
+    <title>3.5.7. Windows &#8212; Phlex 0 (b5dbf2f) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=4f8b6625"></script>
+    <script src="../../static/documentation_options.js?v=a4775967"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="partitioned_unfolds.html" title="3.5.6. Partitioned Unfolds"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.7. </span>Windows</a></li> 
@@ -67,24 +67,6 @@
             
   <section id="windows">
 <h1><span class="section-number">3.5.7. </span>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h1>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Window</strong></p></th>
-<th class="head"><p>Operators</p></th>
-<th class="head"><p>Output sequence length</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td rowspan="3"><p><span class="math notranslate nohighlight">\(y = \window{f}{adj}{label}\ x\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(f': X \times \opt{X} \rightarrow Y\)</span></p></td>
-<td rowspan="3"><p><span class="math notranslate nohighlight">\(|y| = |x|\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(adj: \iset{x} \times \iset{x} \rightarrow \bool\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(label: \one \rightarrow L\)</span></p></td>
-</tr>
-</tbody>
-</table>
 <p>One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data-product sets (see <a class="reference internal" href="../registration.html#data-products-from-adjacent-data-product-sets"><span class="std std-numref">Section 3.4.1.2</span></a>).
 The workflow in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> shows a such a node <span class="math notranslate nohighlight">\(\textit{window(make\_tracks)}\)</span>, which is presented with pairs of <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products, with each data product in the pair belonging to adjacent <cite>APA</cite>s.
 It is the user-provided <span class="math notranslate nohighlight">\(adj\)</span> function which determines whether two data-product sets are adjacent.</p>
@@ -92,25 +74,26 @@ It is the user-provided <span class="math notranslate nohighlight">\(adj\)</span
 A straightforward <span class="math notranslate nohighlight">\(adj\)</span> implementation might be to group the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products from <cite>APA</cite>s with consecutive numbers:</p>
 <div class="math notranslate nohighlight">
 \[\isequence{hs}{\text{APA}} = [\ \rlap{\overbracket{\phantom{hs_1 \ \ hs_2}}^{a}\ \ \overbracket{\phantom{hs_3\ \ hs_4}}^{c}}hs_1, \underbracket{hs_2,\  hs_3}_{b},\ hs_4,\ \dots,\ \underbracket{hs_{n-1},\ hs_n}_{m}\ ]\]</div>
-<p>The data products corresponding to windows <span class="math notranslate nohighlight">\(a\)</span> through <span class="math notranslate nohighlight">\(m\)</span> are grouped into pairs and presented to the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> algorithm, which has the signature <span class="math notranslate nohighlight">\(\text{Hits} \times \text{Hits} \rightarrow \text{Tracks}\)</span>.
-There are, at most, <span class="math notranslate nohighlight">\(n-1\)</span> unique pairs that can be presented to the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> such that:</p>
+<p>The data products corresponding to windows <span class="math notranslate nohighlight">\(a\)</span> through <span class="math notranslate nohighlight">\(m\)</span> are grouped into pairs and presented to an algorithm <span class="math notranslate nohighlight">\(make\_tracks'\)</span>, which has the signature <span class="math notranslate nohighlight">\(\text{Hits} \times \text{Hits} \rightarrow \text{Tracks}\)</span>.
+There are, at most, <span class="math notranslate nohighlight">\(n-1\)</span> unique pairs that can be presented to the function <span class="math notranslate nohighlight">\(make\_tracks'\)</span> such that:</p>
 <div class="math notranslate nohighlight">
-\[\left[ts_i\right]_{i \in \iset{\text{APA}}'} = \left[make\_tracks(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} = \window{make\_tracks}{adj}{\text{APA}} \isequence{hs}{\text{APA}}\]</div>
+\[\left[ts_i\right]_{i \in \iset{\text{APA}}'} = \left[make\_tracks'(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} = \window{make\_tracks'}{adj}{\text{APA}} \isequence{hs}{\text{APA}}\]</div>
 <p>where the index set <span class="math notranslate nohighlight">\(\iset{\text{APA}}'\)</span> is <span class="math notranslate nohighlight">\(\iset{\text{APA}}\)</span> without the last identifier <span class="math notranslate nohighlight">\(n\)</span> <a class="footnote-reference brackets" href="#flast" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
 In this example, the identifier of the first <span class="math notranslate nohighlight">\(hs\)</span> object in the pair is used to identify the tracks collection <span class="math notranslate nohighlight">\(ts\)</span>.
 But Phlex does not mandate this choice, and a different data category could be specified by the <span class="math notranslate nohighlight">\(label\)</span> operator for the data products of the output sequence.</p>
 <section id="operator-signatures">
 <h2><span class="section-number">3.5.7.1. </span>Operator Signatures<a class="headerlink" href="#operator-signatures" title="Link to this heading">¶</a></h2>
 <p>One limitation of the above formulation is that index sets of the input and output sequences are not the same.
-To address this infelicity, the function signature of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> can be adjusted such that the second argument receives an optional type:</p>
+To address this infelicity, the function signature of <span class="math notranslate nohighlight">\(make\_tracks'\)</span> can be adjusted such that the second argument receives an optional type.
+We call this new algorithm <span class="math notranslate nohighlight">\(make\_tracks\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[make\_tracks': \text{Hits} \times \opt{\text{Hits}} \rightarrow \text{Tracks}\]</div>
+\[make\_tracks: \text{Hits} \times \opt{\text{Hits}} \rightarrow \text{Tracks}\]</div>
 <p>thus permitting symmetry between the input and output data-product sequences:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\isequence{ts}{\text{APA}} &amp;= \left[make\_tracks'(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} \boldsymbol{+}\ \left[make\_tracks'(hs_n, ())\right] \\
-&amp;= \window{make\_tracks'}{adj}{\text{APA}} \isequence{hs}{\text{APA}}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{+}\)</span> is the list-concatenation operator, and <span class="math notranslate nohighlight">\(()\)</span> is the unit element.
-Phlex supports the function signature whose second argument is an optional type <span class="math notranslate nohighlight">\(\opt{X}\)</span>; the prime following the function name (e.g. <span class="math notranslate nohighlight">\(f'\)</span>) is a reminder that the second argument is an optional type.</p>
+\[\begin{split}\isequence{ts}{\text{APA}} &amp;= \window{make\_tracks}{adj}{label} \isequence{hs}{\text{APA}} \\
+&amp;=\left[make\_tracks(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} \boldsymbol{+}\ \left[make\_tracks(hs_n, ())\right]\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(label\)</span> returns the value of <cite>APA</cite>, <span class="math notranslate nohighlight">\(\boldsymbol{+}\)</span> is the list-concatenation operator, and <span class="math notranslate nohighlight">\(()\)</span> is the null value.
+Phlex supports the function signature whose second argument is an optional type <span class="math notranslate nohighlight">\(\opt{X}\)</span>.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 12.0%" />
@@ -122,8 +105,8 @@ Phlex supports the function signature whose second argument is an optional type 
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f'\)</span></p></td>
-<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">P2</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span></code></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Opt</span><span class="o">&lt;</span><span class="n">P2</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(adj\)</span></p></td>
 <td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">bool</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="o">&lt;</span><span class="n">P1</span><span class="w"> </span><span class="n">identifier</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">P2</span><span class="w"> </span><span class="n">identifier</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span></code></p></td>
@@ -134,9 +117,9 @@ Phlex supports the function signature whose second argument is an optional type 
 </tbody>
 </table>
 <p>The <code class="code highlight c++ docutils literal highlight-c++"><span class="n">return_type</span></code> must model the created data-product type described in <a class="reference internal" href="../algorithms.html#return-types"><span class="std std-numref">Section 3.3.2</span></a>.
-The algorithm <span class="math notranslate nohighlight">\(f'\)</span> may also create multiple data products by returning a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a created data-product type.</p>
-<p>The second argument <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P2</span><span class="o">*</span></code> indicates that an optional type is passed to the algorithm.
-It is permitted to use resources (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code>) in the function <span class="math notranslate nohighlight">\(f'\)</span>.
+The algorithm <span class="math notranslate nohighlight">\(f\)</span> may also create multiple data products by returning a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span><span class="o">&gt;</span></code>  where each of the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Tn</span></code> models a created data-product type.</p>
+<p>The second argument <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Opt</span><span class="o">&lt;</span><span class="n">P2</span><span class="o">&gt;</span></code> indicates that an optional type is passed to the algorithm.
+It is permitted to use resources (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code>) in the function <span class="math notranslate nohighlight">\(f\)</span>.
 The data-product set identifers of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P2</span></code> are used to determine whether two data-products reside in adjacent data-product sets.</p>
 </section>
 <section id="registration-interface">
@@ -144,15 +127,16 @@ The data-product set identifers of <code class="code highlight c++ docutils lite
 <p>The <span class="math notranslate nohighlight">\(\textit{window(make\_tracks)}\)</span> node in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> would be represented in C++ as:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">tracks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">id</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="n">tracks</span><span class="w"> </span><span class="nf">make_tracks</span><span class="p">(</span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ts</span><span class="p">,</span><span class="w"> </span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">next_ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-<span class="kt">bool</span><span class="w"> </span><span class="nf">are_adjacent</span><span class="p">(</span><span class="n">phlex</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">phlex</span><span class="o">::</span><span class="n">id</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">are_adjacent</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 
 <span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodTracks&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">window</span><span class="p">(</span>
 <span class="w">      </span><span class="s">&quot;track_maker&quot;</span><span class="p">,</span><span class="w">          </span><span class="c1">// &lt;= Node name for framework</span>
-<span class="w">      </span><span class="n">make_tracks</span><span class="p">,</span><span class="w">            </span><span class="c1">// &lt;= Window algorithm (f&#39;)</span>
+<span class="w">      </span><span class="n">make_tracks</span><span class="p">,</span><span class="w">            </span><span class="c1">// &lt;= Window algorithm (f)</span>
 <span class="w">      </span><span class="n">are_adjacent</span><span class="w">            </span><span class="c1">// &lt;= Adjacency criterion</span>
 <span class="w">      </span><span class="s">&quot;APA&quot;</span><span class="p">,</span><span class="w">                  </span><span class="c1">// &lt;= Output data-product category</span>
 <span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">  </span><span class="c1">// &lt;= Allowed concurrency</span>
@@ -162,7 +146,7 @@ The data-product set identifers of <code class="code highlight c++ docutils lite
 </pre></div>
 </div>
 <p>Note that the second input parameter for <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_tracks</span></code> is an optional type.
-The type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">phlex</span><span class="o">::</span><span class="n">id</span></code> is a putative type that enables the comparison of data-product set identifiers for establishing adjacency.</p>
+The type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">id</span></code> is a metadata type (possibly defined by the experiment) that enables the comparison of data-product identifiers for establishing adjacency.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="flast" role="doc-footnote">
@@ -237,7 +221,7 @@ The type <code class="code highlight c++ docutils literal highlight-c++"><span c
         <li class="right" >
           <a href="partitioned_unfolds.html" title="3.5.6. Partitioned Unfolds"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.7. </span>Windows</a></li> 
@@ -245,7 +229,7 @@ The type <code class="code highlight c++ docutils literal highlight-c++"><span c
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 02, 2025.
+      Last updated on Jul 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.6. Partitioned Unfolds &#8212; Phlex 0 (bc69b38) documentation</title>
+    <title>3.5.6. Partitioned Unfolds &#8212; Phlex 0 (b5dbf2f) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=c39e41a1" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=4f8b6625"></script>
+    <script src="../../static/documentation_options.js?v=a4775967"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.5. Partitioned Folds"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Partitioned Unfolds</a></li> 
@@ -86,17 +86,17 @@
 </tbody>
 </table>
 <p>As discussed in <a class="reference internal" href="../../ch_preliminaries/functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, the opposite of a fold is an <em>unfold</em>, where a sequence of objects is generated from a single object.
-The example given in <a class="reference internal" href="../../ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a> is <span class="math notranslate nohighlight">\(\textit{iota}\)</span>, which generates a sequence of contiguous integers given one input number:</p>
+The example given in <a class="reference internal" href="../../ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a> is <span class="math notranslate nohighlight">\(\text{iota}\)</span>, which generates a sequence of contiguous integers given one input number:</p>
 <div class="math notranslate nohighlight">
-\[c = [1,\ 2,\ 3,\ \dots,\ n] = \textit{iota}\ n = \unfold{\gt 0}{\textit{decrement}}\ n\]</div>
-<p>where <span class="math notranslate nohighlight">\(\textit{iota}\)</span> has been expressed in terms of an unfold HOF that receives the predicate <span class="math notranslate nohighlight">\(\gt 0\)</span> and a generator called <span class="math notranslate nohighlight">\(\textit{decrement}\)</span>.</p>
-<p>The unfold operation is recursively called until the predicate returns <cite>false</cite>, whereby it emits an empty list <span class="math notranslate nohighlight">\([\ ]\)</span>:</p>
+\[c = [1,\ 2,\ 3,\ \dots,\ n] = \text{iota}\ n = \unfold{greater\_than\_zero}{decrement}\ n\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{iota}\)</span> has been expressed in terms of an unfold HOF that receives the predicate <span class="math notranslate nohighlight">\(greater\_than\_zero\)</span> and a generator called <span class="math notranslate nohighlight">\(decrement\)</span>.</p>
+<p>The unfold operation is repeatedly called until the predicate returns <cite>false</cite>, whereby it emits an empty list <span class="math notranslate nohighlight">\([\ ]\)</span>:</p>
 <div class="math notranslate nohighlight">
  \begin{align*}
- c &amp;= \unfold{\gt 0}{\textit{decrement}}\ n \\
-   &amp;= \unfold{\gt 0}{\textit{decrement}}\ n-1\ \boldsymbol{+}\ [n] \\
+ c &amp;= \unfold{greater\_than\_zero}{decrement}\ n \\
+   &amp;= \unfold{greater\_than\_zero}{decrement}\ n-1\ \boldsymbol{+}\ [n] \\
    &amp;\quad\quad \vdots \\
-   &amp;= \unfold{\gt 0}{\textit{decrement}}\ 0\ \boldsymbol{+}\ [1, 2, \dots, n-1, n] \\
+   &amp;= \unfold{greater\_than\_zero}{decrement}\ 0\ \boldsymbol{+}\ [1, 2, \dots, n-1, n] \\
    &amp;=[\ ]\ \boldsymbol{+}\ [1, 2, \dots, n-1, n]
  \end{align*}</div><p>where <span class="math notranslate nohighlight">\(\boldsymbol{+}\)</span> in this example denotes an operator that concatenates two lists.</p>
 <p>Heuristically, this can be thought of as executing the function:</p>
@@ -106,7 +106,7 @@ The example given in <a class="reference internal" href="../../ch_preliminaries/
     <span class="k">while</span> <span class="n">predicate</span><span class="p">(</span><span class="n">next_value</span><span class="p">):</span>
         <span class="c1"># generator returns a new value for next_value</span>
         <span class="n">next_value</span><span class="p">,</span> <span class="n">sequence_element</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">next_value</span><span class="p">)</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence_element</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">prepend</span><span class="p">(</span><span class="n">sequence_element</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
@@ -123,7 +123,7 @@ Breaking up the processing of a data product can also be an important ingredient
 <h2><span class="section-number">3.5.6.1. </span>Next Type<a class="headerlink" href="#next-type" title="Link to this heading">¶</a></h2>
 <p>The signatures for the operators <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(\textit{gen}\)</span> have the curious type <span class="math notranslate nohighlight">\(N\)</span>, which seems unrelated to the input sequence <span class="math notranslate nohighlight">\(d\)</span>, whose elements are of type <span class="math notranslate nohighlight">\(D\)</span>, or the output sequence <span class="math notranslate nohighlight">\(c\)</span>, whose elements are of type <span class="math notranslate nohighlight">\(C\)</span>.
 The type <span class="math notranslate nohighlight">\(N\)</span> refers to the type of the <em>next</em> value on which the unfold operates.
-In the <span class="math notranslate nohighlight">\(\textit{iota}\)</span> example above, the type <span class="math notranslate nohighlight">\(N\)</span> is the same as the input argument <span class="math notranslate nohighlight">\(n\)</span>, which is an integer, and it is the same as that of the output sequence elements, which are also integers.</p>
+In the <span class="math notranslate nohighlight">\(\text{iota}\)</span> example above, the type <span class="math notranslate nohighlight">\(N\)</span> is the same as the input argument <span class="math notranslate nohighlight">\(n\)</span>, which is an integer, and it is the same as that of the output sequence elements, which are also integers.</p>
 <p>The unfold in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>, however, demonstrates an example where <span class="math notranslate nohighlight">\(N\)</span> is equal to neither <span class="math notranslate nohighlight">\(D\)</span> nor <span class="math notranslate nohighlight">\(C\)</span>.
 Whereas the input type <span class="math notranslate nohighlight">\(D\)</span> corresponds to the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;SimDepos&quot;</span></code> data product in each <cite>Spill</cite>, the output type <span class="math notranslate nohighlight">\(C\)</span> represents the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> data products produced for each <cite>APA</cite>.
 Assuming <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;SimDepos&quot;</span></code> is represented as a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SimDepo</span><span class="o">&gt;</span></code> object, a reasonable type for <span class="math notranslate nohighlight">\(N\)</span> might be <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">SimDepo</span><span class="o">&gt;::</span><span class="n">const_iterator</span></code>, thus permitting the comparison of iterators in the predicate <span class="math notranslate nohighlight">\(p\)</span> and using it in the generator <span class="math notranslate nohighlight">\(\textit{gen}\)</span> for processing portions of the initial data product.
@@ -271,7 +271,7 @@ The framework ensures that all data products remain in memory for as long as the
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.5. Partitioned Folds"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (bc69b38) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0 (b5dbf2f) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Partitioned Unfolds</a></li> 
@@ -279,7 +279,7 @@ The framework ensures that all data products remain in memory for as long as the
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 02, 2025.
+      Last updated on Jul 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

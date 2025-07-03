@@ -29,7 +29,7 @@ Expressing the processing needs according to mathematics enables:
 Pure Functions
 --------------
 
-According to Wikipedia [Wiki-pure]_, a pure function has the following properties:
+According to Wikipedia [Wiki-Pure]_, a pure function has the following properties:
 
 - the function return values are identical for identical arguments, and
 - the function has no side effects.
@@ -39,8 +39,8 @@ For example, assuming the functions :math:`f` and :math:`g` above are pure, then
 
 Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the framework philosophy in :numref:`introduction:Framework philosophy`.
 
-Difficulties with Functional Programming
-----------------------------------------
+Challenges with Functional Programming
+--------------------------------------
 
 One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
@@ -72,7 +72,7 @@ In particular, the arithmetic mean above can be expressed as:
 
 where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
 
-The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
+The fold is an example of a *higher-order function* (HOF) [Wiki-HOF]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
 
 Additional HOFs exist---for example, suppose the sequence :math:`[c_i]` was created by applying a function :math:`w: E \rightarrow C` to each element of a sequence :math:`[e_i]`.
 Such a HOF is called a map or *transform*:
@@ -146,6 +146,6 @@ Phlex will likely support other higher order functions as well.
 
    .. rubric:: References
 
-.. [Wiki-pure] https://en.wikipedia.org/wiki/Pure_function
-.. [Wiki-hof] https://en.wikipedia.org/wiki/Higher-order_function
+.. [Wiki-Pure] https://en.wikipedia.org/wiki/Pure_function
+.. [Wiki-HOF] https://en.wikipedia.org/wiki/Higher-order_function
 .. [Bird] Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132
