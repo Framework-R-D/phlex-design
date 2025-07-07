@@ -2,11 +2,7 @@
 Introduction
 ************
 
-The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.
-
-.. graphviz:: framework-scope.gv
-
-Wikipedia decently defines a software framework as [Wiki-Framework]_:
+A resonable definition of a software framework is [Wiki-Framework]_:
 
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
@@ -14,6 +10,10 @@ The framework orchestrates data flow, resource management, and parallel executio
 It enables a scientific collaboration to write standardized workflows where physicists can insert their own algorithms.
 In a HEP context, this insertion often occurs by the framework dynamically loading libraries called *plugins*.
 Although not required, a framework often provides a program's `main(...)` function, which (directly or indirectly) invokes user code within the plugins as configured at appropriate points in the program's execution.
+
+The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.
+
+.. graphviz:: framework-scope.gv
 
 Frameworks are typically used in a high-level trigger environment, for reconstructing physics objects from detector signals, or for simulating physics processes.
 Many analysis needs can also be met by a data-processing framework.
@@ -152,7 +152,14 @@ Guide to Reading This Document
 
 This document is intended to convey Phlex's conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`, with supporting material in :numref:`Chapter %s <supporting_design:Supporting design>`.
 Preliminary remarks are presented in  :numref:`Chapter %s <preliminaries:Preliminaries>`, in which we discuss the formal ingredients to the conceptual design.
-Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
+
+.. only:: conceptual_design_only
+
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
+
+.. only:: not conceptual_design_only
+
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
 
 .. attention::
 

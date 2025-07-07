@@ -25,7 +25,7 @@ The index set simply provides a mapping from an index to the data object itself.
 
    The order in which elements are presented to algorithms is not guaranteed in concurrent contexts.
    Phlex, therefore, formally processes indexed families of data, and not sequences.
-   To avoid confusion with data families (:numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data-Product Sets`), we hereafter use the term *sequence* to refer to indexed families.
+   To avoid confusion with families of data-product sets (:numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data-Product Sets`), we hereafter use the term *sequence* to refer to indexed families.
    When necessary, we will use the term *ordered sequence* to denote a formal mathematical sequence.
 
 The *length* of the sequence :math:`a` above is denoted by :math:`|a|`, and it equals the *cardinality* of the index set: :math:`|a| = |\mathcal{I}_a| = n`.
