@@ -44,10 +44,10 @@ It uses the :cpp:`resource<histogramming>` interface to provide access to a puta
      auto h_resource = m.resource<histogramming>();
 
      observe(histogram_hits, concurrency::serial)
-       .sequence("GoodHits"_in("APA"), h_resource->make<TH1F>(...));
+       .family("GoodHits"_in("APA"), h_resource->make<TH1F>(...));
    }
 
-Note that the number of arguments presented to the :cpp:`sequence(...)` call matches the number of input parameters of the registered algorithm :cpp:`histogram_hits`.
+Note that the number of arguments presented to the :cpp:`family(...)` call matches the number of input parameters of the registered algorithm :cpp:`histogram_hits`.
 This indicates that each invocation of :cpp:`histogram_hits` will be presented with one :cpp:`"GoodHits"` data product and the :cpp:`TH1F` resource.
 
 .. rubric:: Footnotes

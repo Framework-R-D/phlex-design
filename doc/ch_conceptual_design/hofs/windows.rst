@@ -106,7 +106,7 @@ The :math:`\textit{window(make\_tracks)}` node in :numref:`workflow` would be re
          "APA",                  // <= Output data-product category
          concurrency::unlimited  // <= Allowed concurrency
        )
-       .sequence("GoodHits"_in("APA"));
+       .family("GoodHits"_in("APA"));
    }
 
 Note that the second input parameter for :cpp:`make_tracks` is an optional type.

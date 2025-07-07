@@ -93,11 +93,11 @@ A calculation is then generally expressed in terms of:
 
 1. The HOFs to be used (:math:`\mbox{fold}`, :math:`\mbox{transform}`, etc.)
 2. The operation to be used by each HOF (:math:`+`, :math:`w`, etc.)
-3. The sequence(s) of data on which the HOFs are to be applied.
+3. The family(s) of data on which the HOFs are to be applied.
 
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
 
-:numref:`hofs_in_phlex` lists the HOFs supported by Phlex.
+Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
 As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
 Phlex will likely support other higher order functions as well.
 

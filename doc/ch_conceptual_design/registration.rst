@@ -28,7 +28,7 @@ This can be achieved by in terms of the C++ *registration stanza*:
          find_hits,              // 4. Algorithm/HOF operation
          concurrency::unlimited  // 5. Allowed CPU concurrency
        )
-       .sequence(
+       .family(
          "Waveforms"             // 6. Specification of input data product to make_tracks
          _in("APA")              // 7. Data category to search for input data products
        );
@@ -61,7 +61,7 @@ Specifically, in the registration stanza above, we have the following:
      4. The algorithm/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
      5. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
 
-   :cpp:`sequence(...)`
+   :cpp:`family(...)`
      The specification of the input sequence :math:`\isequence{a}{\text{input}}` requires:
 
      6. The specification(s) of data products that serve as input sequence elements :need:`DUNE 65`.
@@ -88,7 +88,7 @@ The block, however, must contain a registration statement to execute an algorith
 Algorithms with Multiple Input Data Products
 --------------------------------------------
 
-The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output sequence by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input sequence, as specified by :cpp:`sequence("Waveforms"_in("APA"))`.
+The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output sequence by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input sequence, as specified by :cpp:`family("Waveforms"_in("APA"))`.
 In many cases, however, the algorithm will require more than one data product.
 Consider another algorithm :cpp:`find_hits_subtract_pedestals`, which forms hits by first subtracting pedestal values from the waveforms, both of which are presented to the algorithm as data products from the `APA`.
 The interface of the algorithm and its registration would look like:
@@ -104,7 +104,7 @@ The interface of the algorithm and its registration would look like:
   {
     products("GoodHits") =
       transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
-      .sequence("Waveforms"_in("APA"), "Pedestals"_in("APA"));
+      .family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
   }
 
 The elements of the input sequence are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
@@ -114,8 +114,8 @@ There are cases, however, where an algorithm needs to operate on data products f
 
 .. note::
 
-   The number of arguments presented to the :cpp:`sequence(...)` must match the number of input parameters to the registered algorithm.
-   The order of the :cpp:`sequence(...)` arguments also corresponds to the order of the algorithm's input parameters.
+   The number of arguments presented to the :cpp:`family(...)` must match the number of input parameters to the registered algorithm.
+   The order of the :cpp:`family(...)` arguments also corresponds to the order of the algorithm's input parameters.
 
 Data Products from Different Data Categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,7 +131,7 @@ This would be expressed in C++ as:
    {
      products("Vertices") =
        transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .sequence("GoodHits"_in("APA"), "Geometry"_in("Job"));
+       .family("GoodHits"_in("APA"), "Geometry"_in("Job"));
    }
 
 where the categories are explicit in the sequence statement.
@@ -164,7 +164,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
      products("GoodHits") =
        transform("hit_finder", find_hits, concurrency::unlimited)
-       .sequence("Waveforms"_in(selected_data_category));
+       .family("Waveforms"_in(selected_data_category));
    }
 
 .. note::
@@ -196,7 +196,7 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
          [](phlex::handle<waveforms> ws) { return find_hits_debug(*ws, ws.id().number()); },
          concurrency::unlimited
        )
-       .sequence("Waveforms"_in("APA"));
+       .family("Waveforms"_in("APA"));
    }
 
 The lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` function, however, retains its framework independence.
@@ -225,7 +225,7 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
      products("GoodHits") =
        make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
          .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
-         .sequence("Waveforms"_in(selected_data_scope));
+         .family("Waveforms"_in(selected_data_scope));
    }
 
 Note that the :cpp:`hit_finder` instance created in the code above is *owned by the framework*.

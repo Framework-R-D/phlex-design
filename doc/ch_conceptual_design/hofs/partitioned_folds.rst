@@ -137,7 +137,7 @@ The :math:`\textit{fold(sum\_energies)}` node in :numref:`workflow` would be rep
          "Spill",                // <= Partition level (one fold result per Spill)
          concurrency::unlimited  // <= Allowed concurrency
        )
-       .sequence("GoodHits"_in("APA"));
+       .family("GoodHits"_in("APA"));
    }
 
 In order for the user-defined algorithm :cpp:`sum_energy` algorithm to be safely executed concurrently, protections must be in place to avoid data races when updating the :cpp:`total_hit_energy` result object from multiple threads.

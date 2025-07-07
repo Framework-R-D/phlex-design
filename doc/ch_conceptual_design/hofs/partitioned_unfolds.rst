@@ -141,7 +141,7 @@ The class is then registered with Phlex via:
          "APA",                     // <= Data category for output data products
          concurrency::unlimited     // <= Allowed concurrency
        )
-       .sequence("SimDepos"_in("Spill"));
+       .family("SimDepos"_in("Spill"));
    }
 
 Note that the template argument in :cpp:`unfold<to_apas>` is an indication that the framework will create an object of type :cpp:`to_apas` each time it receives a :cpp:`"SimDepos"` data product.

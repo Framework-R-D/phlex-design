@@ -2,7 +2,7 @@
 Specifying Sequences
 ====================
 
-As discussed in :numref:`ch_conceptual_design/registration:Framework Registration`, the input sequence to a HOF is specified via a :cpp:`sequence(...)` clause, where the ellipsis is replaced by a *sequence specification*.
+As discussed in :numref:`ch_conceptual_design/registration:Framework Registration`, the input sequence to a HOF is specified via a :cpp:`family(...)` clause, where the ellipsis is replaced by a *sequence specification*.
 One of the specifications provided is :cpp:`"good_hits"_in("spill")`, which indicates that a sequence should be formed from data products labeled :cpp:`"good_hits"` from each :cpp:`"spill"` data-set category.
 
 Input sequence specification
@@ -18,7 +18,7 @@ A sequence specification contains one or more *product specifications* and zero 
 
 where :cpp:`Product` and :cpp:`Resource` specify a single product and a single resource, respectively.
 
-In the code examples that follow, the bracketed term `<input_sequence_spec>` will refer to any specification allowed in the :cpp:`sequence(...)` clause.
+In the code examples that follow, the bracketed term `<input_sequence_spec>` will refer to any specification allowed in the :cpp:`family(...)` clause.
 The specifications for :cpp:`Product` and :cpp:`Resource` depend on the computing language of the algorithm and are defined elsewhere.
 
 .. todo::
