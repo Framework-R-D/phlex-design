@@ -179,10 +179,12 @@ rst_prolog ="""
 
 # -- When we only want the conceptual design
 if conceptual_design_only := os.environ.get("PHLEX_CONCEPTUAL_DESIGN_ONLY", False):
+    tags.add("conceptual_design_only")  # pyright: ignore[reportUndefinedVariable]
     exclude_patterns = ["supporting_design.rst",
                         "ch_subsystem_design/*",
                         "appendices/deployment.rst",
                         "appendices/platforms.rst"]
+    suppress_warnings = ["toc.excluded"]
 
 # -- Detect if PDF rendering is available and provide link to it in HTML rendering (see index.rst)
 if existing_pdf := os.environ.get("SPHINX_EXISTING_PDF"):
