@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; Phlex 0.2.alpha (f93facb) documentation</title>
+    <title>1. Introduction &#8212; Phlex 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=1372b6f5" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=a5795f51"></script>
+    <script src="static/documentation_options.js?v=2709fde1"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2.alpha (f93facb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>  
@@ -63,14 +63,6 @@
             
   <section id="introduction">
 <h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
-<p>A resonable definition of a software framework is <a class="reference internal" href="#wiki-framework" id="id1"><span>[Wiki-Framework]</span></a>:</p>
-<blockquote>
-<div><p><em>an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.</em></p>
-</div></blockquote>
-<p>The framework orchestrates data flow, resource management, and parallel execution.
-It enables a scientific collaboration to write standardized workflows where physicists can insert their own algorithms.
-In a HEP context, this insertion often occurs by the framework dynamically loading libraries called <em>plugins</em>.
-Although not required, a framework often provides a program’s <cite>main(…)</cite> function, which (directly or indirectly) invokes user code within the plugins as configured at appropriate points in the program’s execution.</p>
 <p>The following diagram illustrates three high-level computing stages commonly used in HEP to obtain physics results from detector signals.</p>
 <div class="graphviz"><img src="images/graphviz-3da1e75f9b74aab2b7de1954c7b57d577eb35840.png" alt="digraph {
   rankdir=LR
@@ -106,6 +98,14 @@ Although not required, a framework often provides a program’s <cite>main(…)<
   Analysis -&gt; results [arrowhead=none, minlen=3]
   results -&gt; endlabel [style=invis]
 }" class="graphviz" /></div>
+<p>Wikipedia decently defines a software framework as <a class="reference internal" href="#wiki-framework" id="id1"><span>[Wiki-Framework]</span></a>:</p>
+<blockquote>
+<div><p><em>an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.</em></p>
+</div></blockquote>
+<p>The framework orchestrates data flow, resource management, and parallel execution.
+It enables a scientific collaboration to write standardized workflows where physicists can insert their own algorithms.
+In a HEP context, this insertion often occurs by the framework dynamically loading libraries called <em>plugins</em>.
+Although not required, a framework often provides a program’s <cite>main(…)</cite> function, which (directly or indirectly) invokes user code within the plugins as configured at appropriate points in the program’s execution.</p>
 <p>Frameworks are typically used in a high-level trigger environment, for reconstructing physics objects from detector signals, or for simulating physics processes.
 Many analysis needs can also be met by a data-processing framework.
 However, the HEP community tends to perform final-stage analysis using standalone applications.
@@ -215,8 +215,8 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 <section id="guide-to-reading-this-document">
 <h2><span class="section-number">1.5. </span>Guide to Reading This Document<a class="headerlink" href="#guide-to-reading-this-document" title="Link to this heading">¶</a></h2>
 <p>This document is intended to convey Phlex’s conceptual design in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>, with supporting material in <span>the subsystem design <em>(under preparation)</em></span>.
-Preliminary remarks are presented in  <a class="reference internal" href="preliminaries.html#preliminaries"><span class="std std-numref">Chapter 2</span></a>, in which we discuss the formal ingredients to the conceptual design.</p>
-<p>Appendices are provided that give definitions (<a class="reference internal" href="appendices/definitions.html#definitions"><span class="std std-numref">Appendix A</span></a>) and list stakeholder requirements (<a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).</p>
+Preliminary remarks are presented in  <a class="reference internal" href="preliminaries.html#preliminaries"><span class="std std-numref">Chapter 2</span></a>, in which we discuss the formal ingredients to the conceptual design.
+Appendices are provided that give definitions (<a class="reference internal" href="appendices/definitions.html#definitions"><span class="std std-numref">Appendix A</span></a>), list stakeholder requirements (<a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>), present supported platforms (<span>the subsystem design <em>(under preparation)</em></span>), and discuss Phlex deployment (<span>the subsystem design <em>(under preparation)</em></span>).</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Any C++ or Python framework interface presented in this document is illustrative and not intended to reflect the final framework interface.</p>
@@ -335,13 +335,13 @@ In such a case, the stakeholder requirements of one experiment may not negate th
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2.alpha (f93facb) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 07, 2025.
+      Last updated on Jul 03, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
