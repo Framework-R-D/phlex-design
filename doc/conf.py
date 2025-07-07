@@ -21,12 +21,13 @@ git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).de
 version = "0"
 
 # For releases for circulation use:
-release = "0.1"
-latex_filename = f"phlex-design-v{release}.tex"
+# release = "0.1"
+# latex_filename = f"phlex-design-v{release}.tex"
 
 # For development use
-# latex_filename = f"phlex-design-v{version}-{git_commit}.tex"
-# release = f"0.1 ({git_commit})"
+release_base = "0.2.alpha"
+latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
+release = f"{release_base} ({git_commit})"
 
 
 # -- General configuration ---------------------------------------------------
@@ -87,9 +88,11 @@ extra_packages = r"""
 \usepackage{mathtools}
 """
 
+# "For DUNE Review", use scale=7 for watermark
+
 preliminary_watermark = r"""
 \usepackage[angle=30,color=lightgray]{background}
-\backgroundsetup{scale=7, contents={For DUNE Review}}"""
+\backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
 \newcommand\lt[0]{<}
