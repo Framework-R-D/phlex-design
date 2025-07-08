@@ -258,6 +258,6 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
-.. [#zip] The operation that forms the family :math:`\left[(\texttt{"Waveforms"}_i, \texttt{"Pedestals"}_i)\right]_{i \in \mathcal{I}_{\text{APA}}}` from the separate families :math:`\ifamily{\texttt{"Waveforms"}}{\text{APA}}` and :math:`\ifamily{\texttt{"Pedestals"}}{\text{APA}}` is called *zip*.
+.. [#zip] The operation that forms the family :math:`\left[(\texttt{"Waveforms"}_i, \texttt{"Pedestals"}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\texttt{"Waveforms"}}{\text{APA}}` and :math:`\ifamily{\texttt{"Pedestals"}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data category , to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

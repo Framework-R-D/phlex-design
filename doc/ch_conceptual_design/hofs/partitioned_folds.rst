@@ -75,7 +75,7 @@ A crucial ingredient of the fold is the *accumulator*, which stores the fold res
 Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result [#finit]_.
 The :math:`\opt{\iset{d}}` domain means that:
 
-1. :math:`\textit{init}` can receive an argument corresponding to the identifier of a cell, which is a member of the output index set :math:`\mathcal{I}_d`.
+1. :math:`\textit{init}` can receive an argument corresponding to the identifier of a cell, which is a member of the output index set :math:`\iset{d}`.
    In the example above, the relevant identifier would be that of the `Spill`–i.e. :math:`(S\ j)`.
 2. :math:`\textit{init}` can be invoked with no arguments, thus producing the same value each time the accumulator is initialized.
    This is equivalent to initializing the accumulator with a constant value.

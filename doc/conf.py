@@ -99,13 +99,13 @@ new_commands = r"""
 \newcommand\bool[0]{\mathbb{B}}
 \newcommand\one[0]{\mathbbm{1}}
 \newcommand\opt[1]{\text{Opt}(#1)}
-\newcommand\iset[1]{\mathcal{I}_{#1}}
 \newcommand\isetdefault[0]{\mathcal{I}}
+\newcommand\iset[1]{\isetdefault_{#1}}
 \newcommand\comp[0]{\circ}
 
 \newcommand\fami[1]{\left[#1_i\right]}
-\newcommand\family[1]{\left[#1_i\right]_{i \in \mathcal{I}}}
-\newcommand\ifamily[2]{\left[#1_i\right]_{i \in \mathcal{I}_{#2}}}
+\newcommand\family[1]{\left[#1_i\right]_{i \in \isetdefault}}
+\newcommand\ifamily[2]{\left[#1_i\right]_{i \in \iset{#2}}}
 \newcommand\fold[2]{\text{fold}(#1,\ #2)}
 \newcommand\pfold[3]{\text{fold}(#1,\ #2,\ #3)}
 
@@ -154,10 +154,10 @@ mathjax3_config = {
           "pfold": ['\\textrm{fold}(#1, #2, #3)', 3],
           "window": ['\\textrm{window}(#1, #2, #3)', 3],
           "isetdefault": ['\\mathcal{I}', 0],
-          "iset": ['\\mathcal{I}_{#1}', 1],
+          "iset": ['\\isetdefault_{#1}', 1],
           "fami": ['\\left[#1_i\\right]', 1],
-          "family": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
-          "ifamily": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
+          "family": ['\\left[#1_i\\right]_{i \\in \\isetdefault', 1],
+          "ifamily": ['\\left[#1_i\\right]_{i \\in \\iset{#2}}', 2],
           "comp": ['\\circ', 0],
       }
       }
