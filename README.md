@@ -17,7 +17,7 @@ To build the document:
     - [Graphviz](https://graphviz.org/download/)
     - If you do not already have all the necessary software installed, you might install [Conda](https://conda-forge.org/download/), and use Conda to install the required products. Full documentation for Conda is available at https://docs.conda.io/en/latest/.  Assuming you already have a LaTeX installation, the following Conda command will install everything else you need into an environment named `for-dune-framework-docs`.
 ```
-        conda create -n for-dune-framework-docs sphinx plantuml doxygen pandoc
+        conda create -n for-dune-framework-docs sphinx plantuml doxygen pandoc sphinx-needs
 ```
 
 3. Navigate to the `doc` subdirectory and type `make latexpdf`.
