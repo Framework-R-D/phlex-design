@@ -23,3 +23,45 @@ To build the document:
       ```
 
 1. Navigate to the `doc` subdirectory and type `make latexpdf`.
+
+## Developing the design document in VSCode
+
+If you wish to develop documentation in VSCode, we make the following suggestions:
+
+1. Add the **reStructuredText** extension to your VSCode installation.
+
+1. Ensure the availability of the following Python packages (e.g. via conda):
+
+   ```console
+   conda install -n for-dune-framework-docs doc8 esbonio rstcheck
+   ```
+
+1. Make the following additions to `.vscode/settings.json`, adjusting paths as necessary:
+
+   ```json
+   {
+     // ...existing settings...
+     "restructuredtext.linter.doc8.extraArgs": ["--ignore", "D001"],
+     "restructuredtext.sphinxBuild.pythonPath": "~/miniforge3/envs/for-dune-framework-docs/bin/python",
+     "restructuredtext.languageServer.enabled": true
+   }
+   ```
+
+1. Make the following additions to `.vscode/tasks.json`, adjusting paths as necessary:
+
+   ```json
+   {
+     "version": "2.0.0",
+     "tasks": [
+       {
+         "type": "shell",
+         "label": "Build Sphinx PDF (latexpdf)",
+         "command": "~/miniforge3/bin/conda run -n for-dune-framework-docs make latexpdf",
+         "args": [],
+         "group": "build",
+         "problemMatcher": [],
+         "isBackground": false
+       }
+    ]
+   }
+   ```
