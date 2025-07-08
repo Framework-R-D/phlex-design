@@ -2,21 +2,21 @@
 Transforms
 ----------
 
-+------------------------------+----------------------------+------------------------+
-| **Transform**                | Operator                   | Output sequence length |
-+==============================+============================+========================+
-| :math:`b = \transform{f}\ a` | :math:`f: A \rightarrow B` | :math:`|b| = |a|`      |
-+------------------------------+----------------------------+------------------------+
++------------------------------+----------------------------+----------------------+
+| **Transform**                | Operator                   | Output family length |
++==============================+============================+======================+
+| :math:`b = \transform{f}\ a` | :math:`f: A \rightarrow B` | :math:`|b| = |a|`    |
++------------------------------+----------------------------+----------------------+
 
 The transform is the simplest HOF whose algorithms create data products.
-Specifically, the algorithm :math:`f` is applied to each element of the input sequence :math:`a`, creating a corresponding data product in the output sequence :math:`b`:
+Specifically, the algorithm :math:`f` is applied to each element of the input family :math:`a`, creating a corresponding data product in the output family :math:`b`:
 
 .. math::
 
-   b = \isequence{b}{a} = \isequence{f\ a}{a} = \transform{f}\ \isequence{a}{a}
+   b = \ifamily{b}{a} = \ifamily{f\ a}{a} = \transform{f}\ \ifamily{a}{a}
 
 where :math:`b_i = f\ a_i`.
-Note that the index set of the output sequence is the same as the index set of the input sequence.
+Note that the index set of the output family is the same as the index set of the input family.
 
 Operator Signature
 ^^^^^^^^^^^^^^^^^^

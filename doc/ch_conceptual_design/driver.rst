@@ -14,9 +14,8 @@ Phlex provides a variety of framework drivers and also allows users to register 
 The workflow shown in :numref:`workflow` is driven by a *driver(Spill)* that is configured to process all the *spills* in the specified ROOT input files.
 The *driver(Spill)* communicates with the IO system to determine what *spills* are available for processing.
 All *driver* algorithms know about the single *job*-level data product set that corresponds to the entirety of the framework program execution (the job).
-The *driver* emits the single *job* object, and a sequence of *spill* objects, which cause the *provide* algorithms to create their products, thus starting the data flow through the graph.
+The *driver* emits the single *job* object, and a family of *spill* objects, which cause the *provide* algorithms to create their products, thus starting the data flow through the graph.
 
 Other *driver* algorithms support different processing workflows.
 In one example workflow a single *spill* is reconstructed multiple times with different calibration objects used in the reconstruction, thus allowing a calibration study for a single spill to be performed in one framework execution.
 In another example a different *driver* algorithm could be used to drive the framework to process the Cartesian product of a set of *spills* and a set of *calibration* objects, to perform a different calibration study.
-

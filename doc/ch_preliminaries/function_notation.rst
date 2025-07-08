@@ -29,7 +29,7 @@ To avoid cluttered expressions in this document, however, we adopt an alternativ
 In mathematical expressions, parentheses are then reserved in this document to specify:
 
 1. A tuple of arguments that serve as input to a single function invocation (e.g. :math:`power\ (1.5, 2)` above) [#apply]_.
-2. The binding of user-defined algorithms to higher-order functions (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`).
+2. The binding of user-defined algorithms to higher-order functions (see :numref:`ch_preliminaries/functional_programming:families of data and higher-order functions`).
 
 .. rubric:: Footnotes
 

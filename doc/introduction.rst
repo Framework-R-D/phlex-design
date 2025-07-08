@@ -63,7 +63,7 @@ The Phlex design therefore:
 Flexibility
 -----------
 
-Physics results in HEP are obtained by processing sequences of data and making statistical statements from them.
+Physics results in HEP are obtained by processing families of data and making statistical statements from them.
 Each element of a sequence generally contains the data corresponding to one readout of the detector.
 The sequence elements are often termed "events", which are treated as statistically independent observations of physics processes.
 It is common for experiments to define larger aggregations of data by grouping events into subruns (or, for LHC experiments, luminosity blocks), and by further grouping subruns into runs.

@@ -9,7 +9,7 @@ We call these kinds of things represented by data products *conceptual data prod
 Data product types are the programming language representations of conceptual data products.
 A data set category is an experiment-defined level of aggregation of data products, e.g. run, subrun, spill, or an interval of validity for some flavor of calibration.
 A data product set is a collection of data products, associated with a data set category.
-A data set family is a sequence of data product sets that are in the same category.
+A data set family is a family of data product sets that are in the same category.
 :numref:`data-organization` illustrates the relationships between all of these.
 
 .. graphviz:: data-organization.gv
@@ -19,7 +19,7 @@ A data set family is a sequence of data product sets that are in the same catego
              The pale green rectangles show two data product set families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
              A solid line from a data product set to another data product set represents association between the two data product sets.
              The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data product set :math:`\textsf{APA}_{1,1,1}`, etc.
-             Each pale purple rectangle indicates the data product sequence created by one call to the *unfold* higher order function described in :numref:`workflow`.
+             Each pale purple rectangle indicates the data product family created by one call to the *unfold* higher order function described in :numref:`workflow`.
              The names of different data set categories are user defined, and not special to the Phlex framework.
    :name: data-organization
 

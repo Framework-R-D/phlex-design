@@ -44,12 +44,12 @@ A registration statement is a programming statement that closely follows the equ
 
 .. math::
 
-   \isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}
+   \ifamily{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \ifamily{a}{\text{input}}
 
 Specifically, in the registration stanza above, we have the following:
 
    :cpp:`products(...)`
-     1. This is the equivalent of the output sequence :math:`\isequence{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+     1. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
         One of the fields of the data-product specification is the data-product set category to which the data products will belong :need:`DUNE 90`.
         Phlex does not require the output and input categories to be the same.
 
@@ -62,9 +62,9 @@ Specifically, in the registration stanza above, we have the following:
      5. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
 
    :cpp:`family(...)`
-     The specification of the input sequence :math:`\isequence{a}{\text{input}}` requires:
+     The specification of the input family :math:`\ifamily{a}{\text{input}}` requires:
 
-     6. The specification(s) of data products that serve as input sequence elements :need:`DUNE 65`.
+     6. The specification(s) of data products that serve as input family elements :need:`DUNE 65`.
      7. The data category where the input data products are found.
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
@@ -88,7 +88,7 @@ The block, however, must contain a registration statement to execute an algorith
 Algorithms with Multiple Input Data Products
 --------------------------------------------
 
-The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output sequence by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input sequence, as specified by :cpp:`family("Waveforms"_in("APA"))`.
+The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output family by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input family, as specified by :cpp:`family("Waveforms"_in("APA"))`.
 In many cases, however, the algorithm will require more than one data product.
 Consider another algorithm :cpp:`find_hits_subtract_pedestals`, which forms hits by first subtracting pedestal values from the waveforms, both of which are presented to the algorithm as data products from the `APA`.
 The interface of the algorithm and its registration would look like:
@@ -107,7 +107,7 @@ The interface of the algorithm and its registration would look like:
       .family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
   }
 
-The elements of the input sequence are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
+The elements of the input family are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
 In this case, the data-product set for both data products is the same—i.e. for a given invocation of :cpp:`find_hits_subtract_pedestals`, both data products will be associated with the same APA.
 
 There are cases, however, where an algorithm needs to operate on data products from *different* data-product sets :need:`DUNE 89`.
@@ -134,12 +134,12 @@ This would be expressed in C++ as:
        .family("GoodHits"_in("APA"), "Geometry"_in("Job"));
    }
 
-where the categories are explicit in the sequence statement.
+where the categories are explicit in the family statement.
 
 Phlex supports such uses cases :need:`DUNE 113`, even if the specified categories are unrelated to each other.
 For example, suppose an algorithm needed to access a data product from a `Spill`, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
 Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. `Calibration`) whose data-product sets corresponded to intervals of validity.
-So long as a relation can be defined between specific `Spill` data-product sets and specific `Calibration` data-product sets, the framework can use that relation to form the input sequence of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
+So long as a relation can be defined between specific `Spill` data-product sets and specific `Calibration` data-product sets, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
 How the relation between data-product sets is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
 Data Products from Adjacent Data-Product Sets
@@ -258,6 +258,6 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
-.. [#zip] The operation that forms the sequence :math:`\left[(\texttt{"Waveforms"}_i, \texttt{"Pedestals"}_i)\right]_{i \in \mathcal{I}_{\text{APA}}}` from the separate sequences :math:`\isequence{\texttt{"Waveforms"}}{\text{APA}}` and :math:`\isequence{\texttt{"Pedestals"}}{\text{APA}}` is called *zip*.
+.. [#zip] The operation that forms the family :math:`\left[(\texttt{"Waveforms"}_i, \texttt{"Pedestals"}_i)\right]_{i \in \mathcal{I}_{\text{APA}}}` from the separate families :math:`\ifamily{\texttt{"Waveforms"}}{\text{APA}}` and :math:`\ifamily{\texttt{"Pedestals"}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data category , to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

@@ -1,11 +1,11 @@
 Observers
 ---------
 
-+---------------------------------+--------------------------------------+------------------------+
-| **Observer**                    | Operator                             | Output sequence length |
-+=================================+======================================+========================+
-| :math:`[\ \ ] = \observe{f}\ a` | :math:`f: A \rightarrow \one`        | :math:`0`              |
-+---------------------------------+--------------------------------------+------------------------+
++---------------------------------+--------------------------------------+----------------------+
+| **Observer**                    | Operator                             | Output family length |
++=================================+======================================+======================+
+| :math:`[\ \ ] = \observe{f}\ a` | :math:`f: A \rightarrow \one`        | :math:`0`            |
++---------------------------------+--------------------------------------+----------------------+
 
 There are cases where a user may wish to inspect a data product without adjusting the data flow of the program.
 This is done by creating an algorithm called an *observer*, which may access a data product but create no data products.

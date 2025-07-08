@@ -2,15 +2,15 @@
 Windows
 -------
 
-+---------------------------------------+---------------------------------------------------------+------------------------+
-| **Window**                            | Operators                                               | Output sequence length |
-+=======================================+=========================================================+========================+
-| :math:`y = \window{f}{adj}{label}\ x` | :math:`f: X \times \opt{X} \rightarrow Y`               | :math:`|y| = |x|`      |
-|                                       +---------------------------------------------------------+                        |
-|                                       | :math:`adj: \iset{x} \times \iset{x} \rightarrow \bool` |                        |
-|                                       +---------------------------------------------------------+                        |
-|                                       | :math:`label: \one \rightarrow L`                       |                        |
-+---------------------------------------+---------------------------------------------------------+------------------------+
++---------------------------------------+---------------------------------------------------------+----------------------+
+| **Window**                            | Operators                                               | Output family length |
++=======================================+=========================================================+======================+
+| :math:`y = \window{f}{adj}{label}\ x` | :math:`f: X \times \opt{X} \rightarrow Y`               | :math:`|y| = |x|`    |
+|                                       +---------------------------------------------------------+                      |
+|                                       | :math:`adj: \iset{x} \times \iset{x} \rightarrow \bool` |                      |
+|                                       +---------------------------------------------------------+                      |
+|                                       | :math:`label: \one \rightarrow L`                       |                      |
++---------------------------------------+---------------------------------------------------------+----------------------+
 
 One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data-product sets (see :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`).
 The workflow in :numref:`workflow` shows a such a node :math:`\textit{window(make\_tracks)}`, which is presented with pairs of :cpp:`"GoodHits"` data products, with each data product in the pair belonging to adjacent `APA`\ s.
@@ -23,29 +23,29 @@ A straightforward :math:`adj` implementation might be to group the :cpp:`"GoodHi
 
      .. math::
 
-         \isequence{hs}{\text{APA}} = [\ \rlap{\overbracket{\phantom{hs_1 \ \ hs_2}}^{a}\ \ \overbracket{\phantom{hs_3\ \ hs_4}}^{c}}hs_1, \underbracket{hs_2,\  hs_3}_{b},\ hs_4,\ \dots,\ \underbracket{hs_{n-1},\ hs_n}_{m}\ ]
+         \ifamily{hs}{\text{APA}} = [\ \rlap{\overbracket{\phantom{hs_1 \ \ hs_2}}^{a}\ \ \overbracket{\phantom{hs_3\ \ hs_4}}^{c}}hs_1, \underbracket{hs_2,\  hs_3}_{b},\ hs_4,\ \dots,\ \underbracket{hs_{n-1},\ hs_n}_{m}\ ]
 
 .. only:: latex
 
      .. math::
 
-         \isequence{hs}{\text{APA}} = [\ \rlap{$\overbracket{\phantom{hs_1 \ \ hs_2}}^{a}\ \ \overbracket{\phantom{hs_3\ \ hs_4}}^{c}$}hs_1, \underbracket{hs_2,\  hs_3}_{b},\ hs_4,\ \dots,\ \underbracket{hs_{n-1},\ hs_n}_{m}\ ]
+         \ifamily{hs}{\text{APA}} = [\ \rlap{$\overbracket{\phantom{hs_1 \ \ hs_2}}^{a}\ \ \overbracket{\phantom{hs_3\ \ hs_4}}^{c}$}hs_1, \underbracket{hs_2,\  hs_3}_{b},\ hs_4,\ \dots,\ \underbracket{hs_{n-1},\ hs_n}_{m}\ ]
 
 The data products corresponding to windows :math:`a` through :math:`m` are grouped into pairs and presented to an algorithm :math:`make\_tracks'`, which has the signature :math:`\text{Hits} \times \text{Hits} \rightarrow \text{Tracks}`.
 There are, at most, :math:`n-1` unique pairs that can be presented to the function :math:`make\_tracks'` such that:
 
 .. math::
 
-    \left[ts_i\right]_{i \in \iset{\text{APA}}'} = \left[make\_tracks'(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} = \window{make\_tracks'}{adj}{\text{APA}} \isequence{hs}{\text{APA}}
+    \left[ts_i\right]_{i \in \iset{\text{APA}}'} = \left[make\_tracks'(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} = \window{make\_tracks'}{adj}{\text{APA}} \ifamily{hs}{\text{APA}}
 
 where the index set :math:`\iset{\text{APA}}'` is :math:`\iset{\text{APA}}` without the last identifier :math:`n` [#flast]_.
 In this example, the identifier of the first :math:`hs` object in the pair is used to identify the tracks collection :math:`ts`.
-But Phlex does not mandate this choice, and a different data category could be specified by the :math:`label` operator for the data products of the output sequence.
+But Phlex does not mandate this choice, and a different data category could be specified by the :math:`label` operator for the data products of the output family.
 
 Operator Signatures
 ^^^^^^^^^^^^^^^^^^^
 
-One limitation of the above formulation is that index sets of the input and output sequences are not the same.
+One limitation of the above formulation is that index sets of the input and output families are not the same.
 To address this infelicity, the function signature of :math:`make\_tracks'` can be adjusted such that the second argument receives an optional type.
 We call this new algorithm :math:`make\_tracks`:
 
@@ -53,11 +53,11 @@ We call this new algorithm :math:`make\_tracks`:
 
    make\_tracks: \text{Hits} \times \opt{\text{Hits}} \rightarrow \text{Tracks}
 
-thus permitting symmetry between the input and output data-product sequences:
+thus permitting symmetry between the input and output data-product families:
 
 .. math::
 
-   \isequence{ts}{\text{APA}} &= \window{make\_tracks}{adj}{label} \isequence{hs}{\text{APA}} \\
+   \ifamily{ts}{\text{APA}} &= \window{make\_tracks}{adj}{label} \ifamily{hs}{\text{APA}} \\
    &=\left[make\_tracks(hs_i, hs_{i+1})\right]_{i \in \iset{\text{APA}}'} \boldsymbol{+}\ \left[make\_tracks(hs_n, ())\right]
 
 where :math:`label` returns the value of `APA`, :math:`\boldsymbol{+}` is the list-concatenation operator, and :math:`()` is the null value.

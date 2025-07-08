@@ -61,7 +61,10 @@ Definitions
         Ensemble of software delivered with the application framework.
 
     Index set
-        A mathematical set used to identify elements of a sequence—e.g. in the expression :math:`[a_1,\ a_2,\ \dots,\ a_n] = \sequence{a}`, where the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
+        A mathematical set used to identify elements of an indexed family—e.g. in the expression :math:`[a_1, a_2, \dots, a_n] = \family{a}`, the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
+
+    Indexed family
+        A collection of elements identified by an index from an index set.
 
     Integration test
         A test that verifies the behavior of multiple system components working in concert.

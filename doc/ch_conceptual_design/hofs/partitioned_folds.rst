@@ -2,26 +2,26 @@
 Partitioned Folds
 -----------------
 
-+--------------------------------------------------------+----------------------------------------------------------------------+------------------------+
-| **Partitioned fold**                                   | Operators                                                            | Output sequence length |
-+========================================================+======================================================================+========================+
-| :math:`d = \pfold{f}{\textit{init}}{\textit{part}}\ c` | :math:`f: D \times C \rightarrow D`                                  | :math:`|d| \le |c|`    |
-|                                                        +----------------------------------------------------------------------+                        |
-|                                                        | :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`                  |                        |
-|                                                        +----------------------------------------------------------------------+                        |
-|                                                        | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                        |
-+--------------------------------------------------------+----------------------------------------------------------------------+------------------------+
++--------------------------------------------------------+----------------------------------------------------------------------+----------------------+
+| **Partitioned fold**                                   | Operators                                                            | Output family length |
++========================================================+======================================================================+======================+
+| :math:`d = \pfold{f}{\textit{init}}{\textit{part}}\ c` | :math:`f: D \times C \rightarrow D`                                  | :math:`|d| \le |c|`  |
+|                                                        +----------------------------------------------------------------------+                      |
+|                                                        | :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`                  |                      |
+|                                                        +----------------------------------------------------------------------+                      |
+|                                                        | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                      |
++--------------------------------------------------------+----------------------------------------------------------------------+----------------------+
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a sequence of data to a single value:
+As mentioned in :numref:`ch_preliminaries/functional_programming:families of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a family of data to a single value:
 
 .. math::
-   d = \fold{f}{\textit{init}}\ \isequence{c}{c}
+   d = \fold{f}{\textit{init}}\ \ifamily{c}{c}
 
-where the user-defined operation :math:`f` is applied repeatedly between an accumulated value (initialized by :math:`init`) and each element of the input sequence.
+where the user-defined operation :math:`f` is applied repeatedly between an accumulated value (initialized by :math:`init`) and each element of the input family.
 
 In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
 Consider the workflow in :numref:`workflow`, which processes `Spill`\ s, identified by the index :math:`j` or, more specifically, the tuple :math:`(S\ j)`.
-Each `Spill` is unfolded into a sequence of `APA`\ s, which are identified by the pair of indices :math:`jk` or, more specifically, the tuple :math:`(S\ j, A\ k)`.
+Each `Spill` is unfolded into a family of `APA`\ s, which are identified by the pair of indices :math:`jk` or, more specifically, the tuple :math:`(S\ j, A\ k)`.
 The energies of the :cpp:`"GoodHits"` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :math:`\textit{fold(sum\_energy)}` node.
 
 Instead of creating one fold result, we thus use a *partitioned fold* to create one summed energy data-product per `Spill`:
@@ -56,14 +56,14 @@ Partitions
 
 Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-Partition]_.
 Each subset of the partition is called a *cell*.
-In the above example, the role of the :math:`\textit{into\_spills}` operation is to partition the input sequence into `Spill`\ s so that there is one fold result per `Spill`.
+In the above example, the role of the :math:`\textit{into\_spills}` operation is to partition the input family into `Spill`\ s so that there is one fold result per `Spill`.
 In general, however, the partitioning function is of the form :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})`, where:
 
 - the domain is the singleton set that contains only the index set :math:`\iset{c}` (i.e. :math:`\textit{part}` can only be invoked on :math:`\iset{c}`), and
 - the codomain is the set of partitions of :math:`\iset{c}` or :math:`\mathbb{P}(\iset{c})`; note that the output index set :math:`\iset{d} \in \mathbb{P}(\iset{c})`.
 
 The function :math:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
-The number of elements in the output sequence :math:`d` corresponds to the number of partition cells.
+The number of elements in the output family :math:`d` corresponds to the number of partition cells.
 
 As of this writing, the only partitions supported are those that correspond to the names of data-product set categories.
 The partition :math:`\textit{into\_spills}` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
@@ -85,8 +85,8 @@ The implementation of :math:`\textit{init}` for the total good-hits energy fold 
 Fold Operation
 ^^^^^^^^^^^^^^
 
-A cell's fold result is obtained by repeatedly applying a fold operation to the cell's accumulator and each element of that cell's input sequence.
-The fold operation has the signature :math:`f: D \times C \rightarrow D`, where :math:`D` represents the type of the accumulator/fold result, and :math:`C` is the type of each element of the input sequence.
+A cell's fold result is obtained by repeatedly applying a fold operation to the cell's accumulator and each element of that cell's input family.
+The fold operation has the signature :math:`f: D \times C \rightarrow D`, where :math:`D` represents the type of the accumulator/fold result, and :math:`C` is the type of each element of the input family.
 
 In the above example, the function :math:`\textit{sum\_energy}` receives a floating-point number :math:`E_{(S\ i)}`, representing the accumulated good-hits energy for `Spill` :math:`j` and "combines" it with the good-hits object :math:`hs_{(S\ j,\ A\ k)}` that belongs to `APA` :math:`k` in spill :math:`j`.
 This combination involves calculating the energy represented by the good-hits data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.

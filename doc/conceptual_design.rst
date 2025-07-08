@@ -8,9 +8,9 @@ Conceptual Design
    The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
    More detailed design aspects in support of the conceptual model are given in :numref:`Chapter %s <supporting_design:Supporting design>`.
 
-Phlex adopts the data-flow approach discussed in :numref:`ch_preliminaries/data_flow:Data flow with sequences`.
+Phlex adopts the data-flow approach discussed in :numref:`ch_preliminaries/data_flow:Data flow with families`.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them :need:`DUNE 1`, :need:`DUNE 111`, :need:`DUNE 20`.
-These algorithms then serve as operators to higher-order functions (HOFs) that operate on *data-product sequences*.
+These algorithms then serve as operators to higher-order functions (HOFs) that operate on *data-product families*.
 
 To guide the discussion of Phlex's conceptual model, we refer to :numref:`workflow`, which shows a small fictitious workflow that creates vertices from simulated energy deposits.
 Various framework aspects are demonstrated by that figure:
@@ -20,8 +20,8 @@ Various framework aspects are demonstrated by that figure:
 
    *data-product flow*
       Data products and data-product sets (see :numref:`ch_conceptual_design/data_organization:Data organization`) are passed along graph edges.
-      As mentioned in :numref:`ch_preliminaries/data_flow:Data Flow with Sequences`, the data passed between HOFs are expressed as sequences.
-      :numref:`workflow` thus formally passes sequences (e.g. :math:`[\text{GoodHits}_{jk}]`) between nodes [#flow]_.
+      As mentioned in :numref:`ch_preliminaries/data_flow:Data Flow with families`, the data passed between HOFs are expressed as families.
+      :numref:`workflow` thus formally passes families (e.g. :math:`[\text{GoodHits}_{jk}]`) between nodes [#flow]_.
 
    *framework driver*
       The driver instructs the framework what to process (see :numref:`ch_conceptual_design/driver:Framework Driver`).
@@ -40,7 +40,7 @@ Various framework aspects are demonstrated by that figure:
       All seven HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
       For the main processing chain of creating vertices:
 
-      - An *unfold* algorithm is configured to create a sequence of :cpp:`Waveforms` objects—creating one :cpp:`Waveforms` object per *APA*—from one :cpp:`SimDeps` data product in each `Spill`.
+      - An *unfold* algorithm is configured to create a family of :cpp:`Waveforms` objects—creating one :cpp:`Waveforms` object per *APA*—from one :cpp:`SimDeps` data product in each `Spill`.
       - A *transform* algorithm is run on each :cpp:`Waveforms` objects to create a :cpp:`GoodHits` object.
       - To make a :cpp:`GoodTracks` data product, a *window* algorithm is applied to pairs of :cpp:`GoodHits` objects that come from adjacent *APA*\ s.
       - Lastly, another *transform* algorithm operates on the :cpp:`GoodTracks` data products to produce vertices.
@@ -87,5 +87,5 @@ Each data product is also indexed, thus associating it with a particular data-pr
 
 .. rubric:: Footnotes
 
-.. [#flow] In practice, elements of the sequence, not the full sequence itself, will be passed from one node to another.
-           For memory purposes, it is also likely that each element of the sequence is a lightweight reference (in C++, a pointer) to the data of relevance.
+.. [#flow] In practice, elements of the family, not the full family itself, will be passed from one node to another.
+           For memory purposes, it is also likely that each element of the family is a lightweight reference (in C++, a pointer) to the data of relevance.

@@ -2,18 +2,18 @@
 Partitioned Unfolds
 -------------------
 
-+----------------------------------------------------------+------------------------------------------------+------------------------+
-| **Partitioned unfold**                                   | Operators                                      | Output sequence length |
-+==========================================================+================================================+========================+
-| :math:`c = \punfold{p}{\textit{gen}}{\textit{label}}\ d` | :math:`p: N \rightarrow \bool`                 | :math:`|c| \ge |d|`    |
-|                                                          +------------------------------------------------+                        |
-|                                                          | :math:`\textit{gen}: N \rightarrow N \times C` |                        |
-|                                                          +------------------------------------------------+                        |
-|                                                          | :math:`\textit{label}: \one \rightarrow L`     |                        |
-+----------------------------------------------------------+------------------------------------------------+------------------------+
++----------------------------------------------------------+------------------------------------------------+----------------------+
+| **Partitioned unfold**                                   | Operators                                      | Output family length |
++==========================================================+================================================+======================+
+| :math:`c = \punfold{p}{\textit{gen}}{\textit{label}}\ d` | :math:`p: N \rightarrow \bool`                 | :math:`|c| \ge |d|`  |
+|                                                          +------------------------------------------------+                      |
+|                                                          | :math:`\textit{gen}: N \rightarrow N \times C` |                      |
+|                                                          +------------------------------------------------+                      |
+|                                                          | :math:`\textit{label}: \one \rightarrow L`     |                      |
++----------------------------------------------------------+------------------------------------------------+----------------------+
 
-As discussed in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, the opposite of a fold is an *unfold*, where a sequence of objects is generated from a single object.
-The example given in :numref:`ch_preliminaries/data_flow:Data Flow with Sequences` is :math:`\text{iota}`, which generates a sequence of contiguous integers given one input number:
+As discussed in :numref:`ch_preliminaries/functional_programming:families of Data and Higher-Order Functions`, the opposite of a fold is an *unfold*, where a family of objects is generated from a single object.
+The example given in :numref:`ch_preliminaries/data_flow:Data Flow with families` is :math:`\text{iota}`, which generates a sequence of contiguous integers given one input number:
 
 .. math::
 
@@ -45,14 +45,14 @@ Heuristically, this can be thought of as executing the function:
        next_value = n
        while predicate(next_value):
            # generator returns a new value for next_value
-           next_value, sequence_element = generator(next_value)
-           result.prepend(sequence_element)
+           next_value, family_element = generator(next_value)
+           result.prepend(family_element)
        return result
 
 where the user supplies the :py:`predicate` (:math:`p`) and :py:`generator` (:math:`\textit{gen}`) algorithms.
 
-Phlex expands the concept of an unfold by allowing it to operate on a sequence of data products corresponding to a set partition :need:`DUNE 33`.
-This *partitioned unfold* is shown in :numref:`workflow`, where the :math:`\textit{unfold(into\_apas)}` node transforms a flat sequence of :cpp:`"SimDepos"` data products (each of which belong to a cell within the `Spill` partition) into a sequence of sequences, with each nested sequence containing the :cpp:`"Waveforms"` data products for all `APA`\ s within a given `Spill`.
+Phlex expands the concept of an unfold by allowing it to operate on a family of data products corresponding to a set partition :need:`DUNE 33`.
+This *partitioned unfold* is shown in :numref:`workflow`, where the :math:`\textit{unfold(into\_apas)}` node transforms a flat family of :cpp:`"SimDepos"` data products (each of which belong to a cell within the `Spill` partition) into a family of families, with each nested family containing the :cpp:`"Waveforms"` data products for all `APA`\ s within a given `Spill`.
 
 Unfolding in this way can be used for parallelizing the processing of a data product in smaller chunks.
 Breaking up the processing of a data product can also be an important ingredient in controlling the memory use of a Phlex program.
@@ -64,9 +64,9 @@ Breaking up the processing of a data product can also be an important ingredient
 Next Type
 ^^^^^^^^^
 
-The signatures for the operators :math:`p` and :math:`\textit{gen}` have the curious type :math:`N`, which seems unrelated to the input sequence :math:`d`, whose elements are of type :math:`D`, or the output sequence :math:`c`, whose elements are of type :math:`C`.
+The signatures for the operators :math:`p` and :math:`\textit{gen}` have the curious type :math:`N`, which seems unrelated to the input family :math:`d`, whose elements are of type :math:`D`, or the output family :math:`c`, whose elements are of type :math:`C`.
 The type :math:`N` refers to the type of the *next* value on which the unfold operates.
-In the :math:`\text{iota}` example above, the type :math:`N` is the same as the input argument :math:`n`, which is an integer, and it is the same as that of the output sequence elements, which are also integers.
+In the :math:`\text{iota}` example above, the type :math:`N` is the same as the input argument :math:`n`, which is an integer, and it is the same as that of the output family elements, which are also integers.
 
 The unfold in :numref:`workflow`, however, demonstrates an example where :math:`N` is equal to neither :math:`D` nor :math:`C`.
 Whereas the input type :math:`D` corresponds to the :cpp:`"SimDepos"` data product in each `Spill`, the output type :math:`C` represents the :cpp:`"Waveforms"` data products produced for each `APA`.

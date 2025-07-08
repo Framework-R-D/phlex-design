@@ -48,42 +48,42 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:families of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
 
-Sequences of Data and Higher-Order Functions
+Families of Data and Higher-Order Functions
 ============================================
 
-Particle physics results are obtained by performing statistical analysis on sequences of data.
+Particle physics results are obtained by performing statistical analysis on families of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
 For example, a relatively simple result is calculating the arithmetic mean of :math:`n` numbers:
 
 .. math::
    \overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i
 
-where the sum is over a sequence of numbers :math:`\sequence{c}`, and :math:`n` is the size or *cardinality* of the index set :math:`\mathcal{I}` (e.g. :math:`\{1, 2, \dots, n\}`) used to identify each element of the sequence.
+where the sum is over the numbers :math:`\family{c}`, and :math:`n` is the cardinality of the index set :math:`\mathcal{I}`.
 
-The sum is an example of a data reduction or *fold*, where a sequence is collapsed into one result.
+The sum is an example of a data reduction or *fold*, where a family is collapsed into one result.
 In particular, the arithmetic mean above can be expressed as:
 
 .. math::
-   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}
+   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \family{c}
 
-where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.
+where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the family.
 
-The fold is an example of a *higher-order function* (HOF) [Wiki-HOF]_ that accepts a sequence and an operator applied in some way to elements of that sequence.
+The fold is an example of a *higher-order function* (HOF) [Wiki-HOF]_ that accepts a family and an operator applied in some way to elements of that family.
 
-Additional HOFs exist---for example, suppose the sequence :math:`[c_i]` was created by applying a function :math:`w: E \rightarrow C` to each element of a sequence :math:`[e_i]`.
+Additional HOFs exist---for example, suppose the family :math:`\fami{c}` was created by applying a function :math:`w: E \rightarrow C` to each element of a family :math:`\fami{e}`.
 Such a HOF is called a map or *transform*:
 
 .. math::
-   \sequence{c} = \sequence{w\ e} = \transform{w}\ \sequence{e}
+   \fami{c} = \fami{w\ e} = \transform{w}\ \fami{e}
 
 In such a scenario, the average :math:`\overline{c}` could be expressed as:
 
 .. math::
-   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}
+   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \fami{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \fami{e}
 
 The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
 The operator to this single fold is ':math:`+ \comp w`', indicating that the function :math:`w` should be applied first before invoking the :math:`+` operation.
@@ -104,12 +104,12 @@ Phlex will likely support other higher order functions as well.
 .. _hofs_in_phlex:
 
 .. table:: Higher-order functions supported by Phlex.
-           Each sequence is represented by a single variable (e.g. :math:`a`).
+           Each family is represented by a single variable (e.g. :math:`a`).
            Details of each HOF and its operators are in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order functions`.
    :widths: 15 30 30 25
 
    +----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+---------------------------+
-   | **Higher-order function**                                                                                                  | Operator(s)                                                 | Output sequence length    |
+   | **Higher-order function**                                                                                                  | Operator(s)                                                 | Output family length      |
    +===================================================================================+========================================+=============================================================+===========================+
    | :ref:`Transform <ch_conceptual_design/hofs/transforms:Transforms>`                | :math:`b = \transform{f}\ a`           | :math:`f: A \rightarrow B`                                  | :math:`|b| = |a|`         |
    +-----------------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------------+---------------------------+

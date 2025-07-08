@@ -1,8 +1,8 @@
-*********
-Sequences
-*********
+**********************
+Sequences and Families
+**********************
 
-A finite sequence can be represented as a list of objects, each of which are of the same set or *type* (see :numref:`ch_preliminaries/types:Types`).
+A finite sequence can be represented as an ordered list of objects, all of which are from the same set or *type* (see :numref:`ch_preliminaries/types:Types`).
 For example, the sequence :math:`a = [a_1, a_2, \dots, a_n]` is written as
 
 .. math::
@@ -10,28 +10,29 @@ For example, the sequence :math:`a = [a_1, a_2, \dots, a_n]` is written as
 
 where each :math:`a_i \in A`, and :math:`\mathcal{I}_a = \{1, 2, \dots, n\}` is the :term:`index set` whose elements are used to identify objects within the sequence :math:`a`.
 
-In general, an index set can impose an order on the sequence elements only if the index set itself is ordered.
-Because the elements of the set :math:`\mathbb{N}` respect the order :math:`1 \lt 2 \lt 3 \lt \cdots` , the sequence elements are listed in that order.
-However, if the index set is assumed to have no ordering associated with it, then instead of :math:`a` representing a sequence, it represents an *indexed family*, where the ordering of elements is irrelevant.
-Specifically, an indexed family :math:`a` can be equivalently represented as:
+The elements :math:`a_i` can be ordered only if the index set itself is ordered [#strict]_—e.g because the elements of the set :math:`\mathbb{N}` respect the order :math:`1 \lt 2 \lt 3 \lt \cdots` , the elements of :math:`a` are listed in that order, and :math:`a` is, therefore, a sequence.
+However, if the index set has no ordering associated with it, then instead of :math:`a` representing a sequence, it represents an :term:`indexed family`, where the ordering of elements is not meaningful.
+Specifically, an indexed family :math:`b` can be equivalently represented as:
 
 .. math::
-    a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]
+    b = [b_1, b_2, \dots, b_n] = [b_n, \dots, b_2, b_1] = \ifamily{b}{b}
 
 or any of the :math:`n!` orderings possible.
-The index set simply provides a mapping from an index to the data object itself.
+The index set :math:`\mathcal{I}_b` simply provides a mapping from an index to the data object itself.
 
-.. note::
+.. important::
 
    The order in which elements are presented to algorithms is not guaranteed in concurrent contexts.
-   Phlex, therefore, formally processes indexed families of data, and not sequences.
-   To avoid confusion with families of data-product sets (:numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data-Product Sets`), we hereafter use the term *sequence* to refer to indexed families.
-   When necessary, we will use the term *ordered sequence* to denote a formal mathematical sequence.
+   Phlex, therefore, processes indexed families of data and not sequences.
 
-The *length* of the sequence :math:`a` above is denoted by :math:`|a|`, and it equals the *cardinality* of the index set: :math:`|a| = |\mathcal{I}_a| = n`.
-In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:
+The *length* of the family :math:`b` above is denoted by :math:`|b|`, and it equals the *cardinality* of the index set: :math:`|b| = |\mathcal{I}_b|`.
+In this document, we also use the *empty family*, which has length 0, and whose elements can be indexed by the empty set:
 
 .. math::
-    [\ ] = [a_i]_{i \in \emptyset} \ .
+    [\ ] = [b_i]_{i \in \emptyset} \ .
 
-We also use the notation :math:`\tilde{a}` to denote a sequence whose elements are either Boolean `true` (:math:`\textsf{T}`) or `false` (:math:`\textsf{F}`), such as :math:`\tilde{a} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]`.
+We also use the notation :math:`\tilde{b}` to denote a sequence whose elements are either Boolean `true` (:math:`\textsf{T}`) or `false` (:math:`\textsf{F}`), such as :math:`\tilde{b} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]`.
+
+.. rubric:: Footnotes
+
+.. [#strict] Specifically, the index set must be equipped with a strict total order.

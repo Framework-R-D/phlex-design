@@ -103,8 +103,9 @@ new_commands = r"""
 \newcommand\isetdefault[0]{\mathcal{I}}
 \newcommand\comp[0]{\circ}
 
-\newcommand\sequence[1]{\left[#1_i\right]_{i \in \mathcal{I}}}
-\newcommand\isequence[2]{\left[#1_i\right]_{i \in \mathcal{I}_{#2}}}
+\newcommand\fami[1]{\left[#1_i\right]}
+\newcommand\family[1]{\left[#1_i\right]_{i \in \mathcal{I}}}
+\newcommand\ifamily[2]{\left[#1_i\right]_{i \in \mathcal{I}_{#2}}}
 \newcommand\fold[2]{\text{fold}(#1,\ #2)}
 \newcommand\pfold[3]{\text{fold}(#1,\ #2,\ #3)}
 
@@ -154,8 +155,9 @@ mathjax3_config = {
           "window": ['\\textrm{window}(#1, #2, #3)', 3],
           "isetdefault": ['\\mathcal{I}', 0],
           "iset": ['\\mathcal{I}_{#1}', 1],
-          "sequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
-          "isequence": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
+          "fami": ['\\left[#1_i\\right]', 1],
+          "family": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}}', 1],
+          "ifamily": ['\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}', 2],
           "comp": ['\\circ', 0],
       }
       }

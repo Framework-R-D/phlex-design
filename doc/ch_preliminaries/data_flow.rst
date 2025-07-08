@@ -32,22 +32,22 @@ Some observations:
   This means that whereas the equation does not need to specify where the :math:`ws` wires originate (or where the :math:`ts` tracks end up), such locations must be specified in the graph.
   Any node that has only outgoing edges is called a *source* (denoted by a solid dot), and any node that has only incoming edges is a *sink* (denoted by an encircled solid dot).
 
-Data Flow with Sequences
+Data Flow with Families
 ------------------------
 
-As mentioned earlier in :numref:`ch_preliminaries/functional_programming:Sequences of data and higher-order functions`, processing sequences of data is a critical aspect of obtaining physics results.
-The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of sequences.  Specifically [#f2]_:
+As mentioned earlier in :numref:`ch_preliminaries/functional_programming:families of data and higher-order functions`, processing families of data is a critical aspect of obtaining physics results.
+The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of families.  Specifically [#f2]_:
 
-- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the sequences :math:`[ws_i]`, :math:`[hs_i]`, and :math:`[ts_i]` are passed.
+- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the families :math:`[ws_i]`, :math:`[hs_i]`, and :math:`[ts_i]` are passed.
 - The functions :math:`f` and :math:`g` map to :math:`\transform{f}` and :math:`\transform{g}`, respectively.
 
 .. graphviz:: functional-programming-data-flow-hof.gv
    :align: center
 
-The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are pure functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`), the same result is obtained if (a) full families are passed between the nodes, or (b) one element per family is passed at a time.
 Determining whether option (a) or (b) is more efficient depends on the data passed between the nodes and the overall constraints on the program.
 
-One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
+One benefit to using a graph representation using data families and higher-order functions is the ability to easily express folds and unfolds.
 As an illustration, consider the calculation of a sum of squares for all integers from 1 through :math:`n`:
 
 .. math::
@@ -85,9 +85,9 @@ By adopting the HOF representation of the sum-of-squares problem, the data-flow 
 .. graphviz:: unfold-transform-fold-hof.gv
    :align: center
 
-In addition, the topology of the sequence-based graph remains the same regardless of the value of :math:`n`; the topology of the object-based graph becomes intractable as :math:`n` increases.
+In addition, the topology of the family-based graph remains the same regardless of the value of :math:`n`; the topology of the object-based graph becomes intractable as :math:`n` increases.
 
-The vast majority of graphs included in this design document adopt the sequence-based data-flow representation.
+The vast majority of graphs included in this design document adopt the family-based data-flow representation.
 
 .. rubric:: Footnotes
 
