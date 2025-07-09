@@ -15,6 +15,7 @@ Each registered function must accept at least one data product.
 The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.
 The latter is good practice regardless and commonly required by Python coding conventions:
 
+.. rstcheck: ignore-next-code-block
 .. code:: python
 
    def function_name(p1: P1, pn: Pn..., rm: Rm) -> return_type:
