@@ -15,7 +15,7 @@ Consider the following C++ classes and function:
    hits find_hits(waveforms const& ws) { ... }
 
 where the implementations of :cpp:`waveforms`, :cpp:`hits`, and :cpp:`find_hits` are unspecified.
-Suppose a physicist would like to use the function :cpp:`find_hits` to transform "waveforms" to "GoodHits" for each spill with unlimited concurrency.
+Suppose a physicist would like to use the function :cpp:`find_hits` to transform a data product labeled :cpp:`"Waveforms"` to one labeled :cpp:`"GoodHits"` for each spill with unlimited concurrency.
 This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code:: c++
@@ -114,13 +114,13 @@ There are cases, however, where an algorithm needs to operate on data products f
 
 .. note::
 
-   The number of arguments presented to the :cpp:`family(...)` must match the number of input parameters to the registered algorithm.
+   The number of arguments presented to the :cpp:`family(...)` clause must match the number of input parameters to the registered algorithm.
    The order of the :cpp:`family(...)` arguments also corresponds to the order of the algorithm's input parameters.
 
 Data Products from Different Data Categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Consider the algorithm :cpp:`make_vertices` in :numref:`workflow` that requires two arguments: the :cpp:`"GoodTracks"` collection for each APA (data category `APA`), and the detector :cpp:`"Geometry"` that applies for the entire job (data category `Job`) [#job]_.
+Consider the operator :math:`\textit{make\_vertices}` in :numref:`workflow` that requires two arguments: the :math:`\textit{GoodTracks}` collection for each APA (data category `APA`), and the detector :math:`\textit{Geometry}` that applies for the entire job (data category `Job`) [#job]_.
 This would be expressed in C++ as:
 
 .. code:: c++
@@ -258,6 +258,6 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
-.. [#zip] The operation that forms the family :math:`\left[(\texttt{"Waveforms"}_i, \texttt{"Pedestals"}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\texttt{"Waveforms"}}{\text{APA}}` and :math:`\ifamily{\texttt{"Pedestals"}}{\text{APA}}` is called *zip*.
+.. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data category , to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

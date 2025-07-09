@@ -13,11 +13,11 @@ Windows
 +---------------------------------------+---------------------------------------------------------+----------------------+
 
 One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data-product sets (see :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`).
-The workflow in :numref:`workflow` shows a such a node :math:`\textit{window(make\_tracks)}`, which is presented with pairs of :cpp:`"GoodHits"` data products, with each data product in the pair belonging to adjacent `APA`\ s.
+The workflow in :numref:`workflow` shows a such a node :math:`\textit{window(make\_tracks)}`, which is presented with pairs of :math:`\textit{GoodHits}` data products, with each data product in the pair belonging to adjacent `APA`\ s.
 It is the user-provided :math:`adj` function which determines whether two data-product sets are adjacent.
 
 For simplicity, imagine that each `APA` identifier (i.e. member of the set :math:`\iset{\text{APA}}`) can be represented as an integer.
-A straightforward :math:`adj` implementation might be to group the :cpp:`"GoodHits"` data products from `APA`\ s with consecutive numbers:
+A straightforward :math:`adj` implementation might be to group the :math:`\textit{GoodHits}` data products from `APA`\ s with consecutive numbers:
 
 .. only:: html
 

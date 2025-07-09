@@ -22,7 +22,7 @@ where the user-defined operation :math:`f` is applied repeatedly between an accu
 In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
 Consider the workflow in :numref:`workflow`, which processes `Spill`\ s, identified by the index :math:`j` or, more specifically, the tuple :math:`(S\ j)`.
 Each `Spill` is unfolded into a family of `APA`\ s, which are identified by the pair of indices :math:`jk` or, more specifically, the tuple :math:`(S\ j, A\ k)`.
-The energies of the :cpp:`"GoodHits"` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :math:`\textit{fold(sum\_energy)}` node.
+The energies of the :math:`\textit{GoodHits}` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :math:`\textit{fold(sum\_energy)}` node.
 
 Instead of creating one fold result, we thus use a *partitioned fold* to create one summed energy data-product per `Spill`:
 
@@ -34,7 +34,7 @@ Instead of creating one fold result, we thus use a *partitioned fold* to create 
               &= \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_spills}}\ [hs_{(S\ 1,\ A\ 1)},\ hs_{(S\ 1,\ A\ 2)},\ \dots,\ hs_{(S\ n,\ A\ 1)},\ hs_{(S\ n,\ A\ 2)},\ \dots]
    \end{align*}
 
-where :math:`E_{(S\ j)}` denotes the summed good-hits energy for `Spill` :math:`j`, and :math:`hs_{(S\ j,\ A\ k)}` is the good-hits data product :cpp:`"GoodHits"` for `APA` :math:`k` in `Spill` :math:`j`.
+where :math:`E_{(S\ j)}` denotes the :math:`\textit{TotalHitEnergy}` data product for `Spill` :math:`j`, and :math:`hs_{(S\ j,\ A\ k)}` is the :math:`\text{GoodHits}` data product for `APA` :math:`k` in `Spill` :math:`j`.
 
 The above equation can be expressed more succinctly as:
 
@@ -89,10 +89,10 @@ A cell's fold result is obtained by repeatedly applying a fold operation to the 
 The fold operation has the signature :math:`f: D \times C \rightarrow D`, where :math:`D` represents the type of the accumulator/fold result, and :math:`C` is the type of each element of the input family.
 
 In the above example, the function :math:`\textit{sum\_energy}` receives a floating-point number :math:`E_{(S\ i)}`, representing the accumulated good-hits energy for `Spill` :math:`j` and "combines" it with the good-hits object :math:`hs_{(S\ j,\ A\ k)}` that belongs to `APA` :math:`k` in spill :math:`j`.
-This combination involves calculating the energy represented by the good-hits data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.
+This combination involves calculating the energy represented by the :math:`\textit{GoodHits}` data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.
 This "combined" value is then returned by :math:`\textit{sum\_energy}` as the updated value of the accumulator [#feff]_.
-The function :math:`\textit{sum\_energy}` is repeatedly invoked to update the accumulator with good-hits data product.
-Once all :cpp:`"GoodHits"` data products in `Spill` :math:`j` have been processed by :math:`\textit{sum\_energy}`, the accumulator's value becomes the fold result for that `Spill`.
+The function :math:`\textit{sum\_energy}` is repeatedly invoked to update the accumulator with the :math:`\textit{GoodHits}` data product.
+Once all :math:`\textit{GoodHits}` data products in `Spill` :math:`j` have been processed by :math:`\textit{sum\_energy}`, the accumulator's value becomes the fold result for that `Spill`.
 
 Operator Signatures
 ^^^^^^^^^^^^^^^^^^^

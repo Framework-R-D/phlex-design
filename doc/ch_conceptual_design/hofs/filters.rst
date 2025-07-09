@@ -27,15 +27,15 @@ It is possible for one filter named :cpp:`"only_high_energy"` to use as its pred
 In this case, the predicate :math:`\textit{high\_energy}` is executed only once, but its value can be used in different ways in the predicate expression.
 
 A predicate expression can be evaluated on a higher-level data-product set than the data-product family in question.
-For example, suppose none of the :cpp:`"GoodHits"` data products in a given `Spill` were suitable for processing.
-It is possible to create a filter that would reject all :cpp:`"GoodHits"` data products from that `Spill` even though the predicate itself interrogated only the `Spill` information and not the lower-level good-hits information from the `APA`.
+For example, suppose none of the :math:`\textit{GoodHits}` data products in a given `Spill` were suitable for processing.
+It is possible to create a filter that would reject all :math:`\textit{GoodHits}` data products from that `Spill` even though the predicate itself interrogated only the `Spill` information and not the lower-level good-hits information from the `APA`.
 
 The supported grammar of the predicate expression is discussed in :numref:`ch_subsystem_design/task_management:Task Management`.
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows the complete registration for histogramming the filtered :cpp:`"GoodHits"` data products shown in :numref:`workflow`.
+The following example shows the complete registration for histogramming the filtered :math:`\textit{GoodHits}` data products shown in :numref:`workflow`.
 
 .. code:: c++
 

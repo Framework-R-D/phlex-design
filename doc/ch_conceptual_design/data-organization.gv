@@ -83,7 +83,7 @@ digraph {
      style="filled,rounded"
      fillcolor="#eee2ee"
 
-     sequence_label_2 [label=<<i>Waveforms sequence</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
+     sequence_label_2 [label=<<i>Waveforms family</i>> shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t21 [label=<Waveforms<sub>1,2,1</sub>> fontsize=11.5 fontcolor="purple"]
      t2Dots [label="..." shape="plaintext" margin=0 style="rounded" fontname="Helvetica,Arial"]
      t2N [label=<Waveforms<sub>1,2,<i>n</i></sub>> fontsize=11.5 fontcolor="purple"]

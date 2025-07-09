@@ -123,8 +123,6 @@ Phlex strives to meet this expectation in various ways:
         A graceful shutdown refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (such as databases), etc. before the program ends.
         This ensures that no resources are left in ill-defined states and that all output files are readable and valid.
 
-
-
 =====================
 Programming Languages
 =====================

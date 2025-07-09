@@ -87,5 +87,5 @@ In addition to these metadata, a data product is also specified by its *type*.
 
 The metadata are stored in the framework output file, and the IO interface allows access to the metadata :need:`DUNE 121`.
 
-The metadata are also used in data product lookup, to specificy which data products are to be provided as inputs to an algorithm.
+The metadata are also used in data product lookup, to specify which data products are to be provided as inputs to an algorithm.
 The algorithms are configured to identify the inputs in which they are interested by selecting on  any of the metadata defined above, as well as by the programming language types of their inputs.

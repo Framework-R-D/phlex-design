@@ -52,7 +52,7 @@ Heuristically, this can be thought of as executing the function:
 where the user supplies the :py:`predicate` (:math:`p`) and :py:`generator` (:math:`\textit{gen}`) algorithms.
 
 Phlex expands the concept of an unfold by allowing it to operate on a family of data products corresponding to a set partition :need:`DUNE 33`.
-This *partitioned unfold* is shown in :numref:`workflow`, where the :math:`\textit{unfold(into\_apas)}` node transforms a flat family of :cpp:`"SimDepos"` data products (each of which belong to a cell within the `Spill` partition) into a family of families, with each nested family containing the :cpp:`"Waveforms"` data products for all `APA`\ s within a given `Spill`.
+This *partitioned unfold* is shown in :numref:`workflow`, where the :math:`\textit{unfold(into\_apas)}` node transforms a flat family of :math:`\textit{SimDepos}` data products (each of which belong to a cell within the `Spill` partition) into a family of families, with each nested family containing the :math:`\textit{Waveforms}` data products for all `APA`\ s within a given `Spill`.
 
 Unfolding in this way can be used for parallelizing the processing of a data product in smaller chunks.
 Breaking up the processing of a data product can also be an important ingredient in controlling the memory use of a Phlex program.
@@ -69,9 +69,9 @@ The type :math:`N` refers to the type of the *next* value on which the unfold op
 In the :math:`\text{iota}` example above, the type :math:`N` is the same as the input argument :math:`n`, which is an integer, and it is the same as that of the output family elements, which are also integers.
 
 The unfold in :numref:`workflow`, however, demonstrates an example where :math:`N` is equal to neither :math:`D` nor :math:`C`.
-Whereas the input type :math:`D` corresponds to the :cpp:`"SimDepos"` data product in each `Spill`, the output type :math:`C` represents the :cpp:`"Waveforms"` data products produced for each `APA`.
-Assuming :cpp:`"SimDepos"` is represented as a :cpp:`std::vector<SimDepo>` object, a reasonable type for :math:`N` might be :cpp:`std::vector<SimDepo>::const_iterator`, thus permitting the comparison of iterators in the predicate :math:`p` and using it in the generator :math:`\textit{gen}` for processing portions of the initial data product.
-The generator would thus return a pair with an advanced iterator and a :cpp:`"Waveforms"` object corresponding to one `APA`.
+Whereas the input type :math:`D` corresponds to the :math:`\textit{SimDepos}` data product in each `Spill`, the output type :math:`C` represents the :math:`\textit{Waveforms}` data products produced for each `APA`.
+Assuming :math:`\textit{SimDepos}` is represented as a :cpp:`std::vector<SimDepo>` object, a reasonable type for :math:`N` might be :cpp:`std::vector<SimDepo>::const_iterator`, thus permitting the comparison of iterators in the predicate :math:`p` and using it in the generator :math:`\textit{gen}` for processing portions of the initial data product.
+The generator would thus return a pair with an advanced iterator and a :math:`\textit{Waveforms}` object corresponding to one `APA`.
 
 The choice of the next type :math:`N` thus depends on the use case and is not prescribed by Phlex.
 
