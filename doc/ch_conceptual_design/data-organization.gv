@@ -4,7 +4,7 @@ digraph {
   node [shape="plaintext" fontname="Helvetica,Arial"]
   edge [arrowhead="none"]
   subgraph cluster_categories {
-    label=<<b>Data product<br/>set categories</b>>
+    label=<<b>Data layers</b>>
     color=none
 
     job_category [label=<Job> fontcolor="gray"]

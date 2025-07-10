@@ -4,17 +4,18 @@ Definitions
 .. glossary::
     :sorted:
 
-    APA
-        Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
-
     Algorithm
-        A decomposed unit of processing; a user-defined function registered for execution by the framework.
+        A user-defined function registered for execution by the framework.
+        Algorithms often serve as operators in a higher-order function.
 
     Algorithmic origin
         The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
 
     Ancestral data
         The data used as input to the algorithm that produced the data at issue.
+
+    APA
+        Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
 
     Backward compatibility (persisted data)
         The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
@@ -31,28 +32,35 @@ Definitions
         An entity created when registering an algorithm with the framework.
         The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
 
-    Data family
-        A collection of data sets (e.g.):
+    Data layer
+        A label that denotes a group of data cells which are all of the same type.
 
-        - examples of data families in art: collection of Runs, collection of Events, and collection of SubRuns
-        - other examples of data families: collection of calibration intervals of the same type, collection of geometry/alignment intervals of the same type, collection of APAs, collection of trigger primitives, collection of beam spills
+        A label is one node in a data layer hierarchy.
+        The top layer of the graph is always the *Job*.
+        All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
 
-        The type of an element in a data family is called a category.
-        For example, the category of a family of Events is the type Event.
-        An object of type Event is a data set.
+    Data layer hierarchy
+        A hierarchy of data layers.
 
-    Data family hierarchy
-        A hierarchy of data families (e.g. run contains subrun contains event).
+        A data layer hierarchy is an acyclic graph of relationships of logical containment.
+        The top layer of the hierarchy is always the *Job*.
+        All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
 
     Data model
         A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
         The data model also specifies the mechanism for reading and writing persistable data products.
 
     Data product
-        An object of data the framework can provide as an input to a user-defined algorithm, or that can be produced as an output of an algorithm.
+        An object managed by the framework and for which provenance information is recorded.
 
-    Data product set
-        A mathematical set of data products that is identifiable by the framework and used to determine which data products serve as inputs to an algorithm.
+        A data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
+        Data products determine the flow of execution of the graph of CHOFs configured in a framework program.
+
+    Data cell [#data-set]_
+        A grouping of data products that is identifiable by the framework.
+
+        All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
+        In *art*, individual *Run* objects, *SubRun* objects and *Event* objects are examples of data cells.
 
     Deterministic
         Identical inputs produce identical results via identical behavior.
@@ -65,6 +73,12 @@ Definitions
 
     Indexed family
         A collection of elements identified by an index from an index set.
+
+        The term family is often used as a shorthand for indexed family.
+        In *art* there was no direct representation of families.
+        However, the sequence of *Events* processed by a given job is an example of a family of data cells.
+        In a single *art* module, the sequence of event data products looked up by the module across all events is an example of a family of data products.
+    
 
     Integration test
         A test that verifies the behavior of multiple system components working in concert.
@@ -108,3 +122,7 @@ Definitions
 
     Verification
         Did it do what we intended it to do (code)
+
+.. rubric:: Footnotes
+
+.. [#data-set] In earlier documentation, the term *data product set* was used for this concept.
