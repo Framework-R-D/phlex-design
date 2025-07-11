@@ -19,7 +19,7 @@ Various framework aspects are demonstrated by that figure:
       The data-flow graph is formed by ingesting the configuration file and recording the data-product dependencies required of each algorithm (see :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`).
 
    *data-product flow*
-      Data products and data-product sets (see :numref:`ch_conceptual_design/data_organization:Data organization`) are passed along graph edges.
+      Data products (see :numref:`ch_conceptual_design/data_organization:Data organization`) are passed along graph edges.
       As mentioned in :numref:`ch_preliminaries/data_flow:Data Flow with families`, the data passed between HOFs are expressed as families.
       :numref:`workflow` thus formally passes families (e.g. :math:`[\textit{GoodHits}_{jk}]`) between nodes [#flow]_.
 
@@ -30,7 +30,7 @@ Various framework aspects are demonstrated by that figure:
 
    *data-product providers*
       Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see :numref:`ch_conceptual_design/providers:Data-Product Providers`).
-      From a functional-programming perspective, they are transforms that map a data-product set to the data product within that set.
+      From a functional programming perspective they are transforms that map a data cell to one of the data products within that data cell.
 
       In the workflow, one provider reads a :math:`\textit{SimDepos}` data product from each `Spill` in the ROOT input files, and the other reads a single :math:`\textit{Geometry}` corresponding to the `Job` from a GDML file.
 
@@ -40,8 +40,8 @@ Various framework aspects are demonstrated by that figure:
       All seven HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
       For the main processing chain of creating vertices:
 
-      - An *unfold* algorithm is configured to create a family of :math:`\textit{Waveforms}` objects—creating one :math:`\textit{Waveforms}` object per `APA`—from one :math:`\textit{SimDeps}` data product in each `Spill`.
-      - A *transform* algorithm is run on each :math:`\textit{Waveforms}` objects to create a :math:`\textit{GoodHits}` object.
+      - An *unfold* HOF is configured to create a family of :math:`\textit{Waveforms}` objects—creating one :math:`\textit{Waveforms}` object per `APA`—from one :math:`\textit{SimDeps}` data product in each `Spill`.
+      - A configured *transform* HOF is run on the family of :math:`\textit{Waveforms}` objects to create a family of :math:`\textit{GoodHits}` objects.
       - To make a :math:`\textit{GoodTracks}` data product, a *window* algorithm is applied to pairs of :math:`\textit{GoodHits}` objects that come from adjacent *APA*\ s.
       - Lastly, another *transform* algorithm operates on the :math:`\textit{GoodTracks}` data products to produce vertices.
 
