@@ -21,11 +21,12 @@ Definitions
         The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
 
     Data layer
-        A label that denotes a group of data cells which are all of the same type.
+        A group of data cells each of which has the same data layer label.
 
-        A label is one node in a data layer hierarchy.
+        A data layer is one node in a data layer hierarchy.
         The top layer of the graph is always the *Job*.
         All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
+        By contrast, in *art* the data layers are *Run*, *SubRun*, and *Event*; new data layers can not be added without modifying the *art* framework code.
 
     Data layer hierarchy
         A hierarchy of data layers.
@@ -33,6 +34,7 @@ Definitions
         A data layer hierarchy is an acyclic graph of relationships of logical containment.
         The top layer of the hierarchy is always the *Job*.
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
+        In *art*, the data layer hierarchy is *Run*-*SubRun*-*Event*, and new data layers can not be added without modifying the *art* framework code.
 
     Data product
         An object managed by the framework and for which provenance information is recorded.
@@ -43,6 +45,8 @@ Definitions
     Data cell [#data-set]_
         A grouping of data products that is identifiable by the framework.
 
+        Each data cell has has a data layer label, which indicates the type of the data cell.
+        All the data cells of a given data layer are of the same type.
         All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
         In *art*, individual *Run* objects, *SubRun* objects and *Event* objects are examples of data cells.
 
