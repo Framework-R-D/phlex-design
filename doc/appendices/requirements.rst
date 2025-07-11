@@ -4,6 +4,11 @@ Framework requirements
 
 **Requirements norm**: Baseline 1 (created March 03, 2025)
 
+.. important::
+
+    All stakeholder requirements approved by DUNE are listed here for convenience.
+    However, the requirements recorded in the `DUNE framework Jama Connect project <https://fnal-prod.jamacloud.com/perspective.req#/projects/63/dashboard/63>`_ are authoritative and take precedence over any unintentional variations below.
+
 =======================
 Conceptual requirements
 =======================
