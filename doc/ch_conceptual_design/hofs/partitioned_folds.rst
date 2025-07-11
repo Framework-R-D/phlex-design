@@ -12,7 +12,7 @@ Partitioned Folds
 |                                                        | :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})` |                      |
 +--------------------------------------------------------+----------------------------------------------------------------------+----------------------+
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:families of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a family of data to a single value:
+As mentioned in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, a *fold* can be defined as a transformation of a family of data to a single value:
 
 .. math::
    d = \fold{f}{\textit{init}}\ \ifamily{c}{c}

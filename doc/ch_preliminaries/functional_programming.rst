@@ -48,7 +48,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:families of data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:Families of Data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 The framework also does not place constraints on the algorithm *implementations*---algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.
 
@@ -96,6 +96,8 @@ A calculation is then generally expressed in terms of:
 3. The family(s) of data on which the HOFs are to be applied.
 
 Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
+
+.. index:: Algorithm
 
 Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
 As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.

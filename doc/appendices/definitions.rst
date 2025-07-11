@@ -6,30 +6,18 @@ Definitions
 
     Algorithm
         A user-defined function registered for execution by the framework.
+
         Algorithms often serve as operators in a higher-order function.
 
-    Algorithmic origin
-        The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
-
-    Ancestral data
-        The data used as input to the algorithm that produced the data at issue.
-
     APA
-        Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
+        **A**\ node **P**\ lane **A**\ ssembly, a physical far-detector unit comprising thousands of wires as a planar slice.
 
     Backward compatibility (persisted data)
         The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
 
-    CRP
-        Charge Readout Plane: physical far-detector unit placed on either the top or bottom edge of an APA
-
-    Configuration canonical form
-        The result of a transformation on a configuration that preserves the semantics of the configuration.
-        All semantically identical configurations shall have the same canonical form.
-        Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
-
     Configured higher-order function (CHOF)
         An entity created when registering an algorithm with the framework.
+
         The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
 
     Data layer
@@ -46,10 +34,6 @@ Definitions
         The top layer of the hierarchy is always the *Job*.
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
 
-    Data model
-        A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
-        The data model also specifies the mechanism for reading and writing persistable data products.
-
     Data product
         An object managed by the framework and for which provenance information is recorded.
 
@@ -62,8 +46,7 @@ Definitions
         All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
         In *art*, individual *Run* objects, *SubRun* objects and *Event* objects are examples of data cells.
 
-    Deterministic
-        Identical inputs produce identical results via identical behavior.
+    .. The framework ecosystem is referenced in one of the requirements, so it's included in the glossary for even the conceptual design
 
     Framework ecosystem
         Ensemble of software delivered with the application framework.
@@ -78,10 +61,6 @@ Definitions
         In *art* there was no direct representation of families.
         However, the sequence of *Events* processed by a given job is an example of a family of data cells.
         In a single *art* module, the sequence of event data products looked up by the module across all events is an example of a family of data products.
-    
-
-    Integration test
-        A test that verifies the behavior of multiple system components working in concert.
 
     Metadata
         Data that is ancillary to physics data.
@@ -114,14 +93,27 @@ Definitions
         - Inference servers
         - Databases
 
-    Unit test
-        A test that verifies the behavior of a small and self-contained system component in isolation from other system components.
 
-    Validation
-        Did it do what we needed it to do (requirements)
+    .. The following definitions are needed for the supporting/subsystem design
 
-    Verification
-        Did it do what we intended it to do (code)
+    .. only:: not conceptual_design_only
+
+        Algorithmic origin
+            The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
+
+        Ancestral data
+            The data used as input to the algorithm that produced the data at issue.
+
+        Configuration canonical form
+            The result of a transformation on a configuration that preserves the semantics of the configuration.
+
+            All semantically identical configurations shall have the same canonical form.
+            Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
+
+        Data model
+            A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
+
+            The data model also specifies the mechanism for reading and writing persistable data products.
 
 .. rubric:: Footnotes
 

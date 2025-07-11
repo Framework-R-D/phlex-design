@@ -1,7 +1,7 @@
 Algorithms
 ==========
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:families of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+As mentioned in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
 In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for a list of supported HOFs):
 
 .. code:: c++

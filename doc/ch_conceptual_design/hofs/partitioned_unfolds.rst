@@ -12,7 +12,7 @@ Partitioned Unfolds
 |                                                          | :math:`\textit{label}: \one \rightarrow L`     |                      |
 +----------------------------------------------------------+------------------------------------------------+----------------------+
 
-As discussed in :numref:`ch_preliminaries/functional_programming:families of Data and Higher-Order Functions`, the opposite of a fold is an *unfold*, where a family of objects is generated from a single object.
+As discussed in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, the opposite of a fold is an *unfold*, where a family of objects is generated from a single object.
 The example given in :numref:`ch_preliminaries/data_flow:Data Flow with families` is :math:`\text{iota}`, which generates a sequence of contiguous integers given one input number:
 
 .. math::

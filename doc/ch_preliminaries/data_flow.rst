@@ -35,7 +35,7 @@ Some observations:
 Data Flow with Families
 ------------------------
 
-As mentioned earlier in :numref:`ch_preliminaries/functional_programming:families of data and higher-order functions`, processing families of data is a critical aspect of obtaining physics results.
+As mentioned earlier in :numref:`ch_preliminaries/functional_programming:Families of Data and higher-order functions`, processing families of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of families.  Specifically [#f2]_:
 
 - Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the families :math:`\fami{ws}`, :math:`\fami{hs}`, and :math:`\fami{ts}` are passed.
