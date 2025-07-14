@@ -1,10 +1,6 @@
 Framework Registration
 ======================
 
-To the extent possible, Phlex preserves data flow among data products and algorithms.
-This is indicated in the interface for registering algorithms.
-In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.
-
 Consider the following C++ classes and function:
 
 .. code:: c++
@@ -18,19 +14,20 @@ where the implementations of :cpp:`waveforms`, :cpp:`hits`, and :cpp:`find_hits`
 Suppose a physicist would like to use the function :cpp:`find_hits` to transform a data product labeled :cpp:`"Waveforms"` to one labeled :cpp:`"GoodHits"` for each spill with unlimited concurrency.
 This can be achieved by in terms of the C++ *registration stanza*:
 
-.. code:: c++
+.. code-block:: c++
+   :caption: Please work
+   :name: register_transform
 
    PHLEX_REGISTER_ALGORITHMS()   // <== Registration opener (w/o configuration object)
    {
-     products("GoodHits") =      // 1. Specification of output data product from make_tracks
+     products("GoodHits") =      // 1. Specification of output data product from find_hits
        transform(                // 2. Higher-order function
          "hit_finder",           // 3. Name assigned to HOF
          find_hits,              // 4. Algorithm/HOF operation
          concurrency::unlimited  // 5. Allowed CPU concurrency
        )
        .family(
-         "Waveforms"             // 6. Specification of input data product to make_tracks
-         _in("APA")              // 7. Data category to search for input data products
+         "Waveforms"_in("APA")   // 6. Specification of input data-product family (see text)
        );
    }
 
@@ -62,10 +59,7 @@ Specifically, in the registration stanza above, we have the following:
      5. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
 
    :cpp:`family(...)`
-     The specification of the input family :math:`\ifamily{a}{\text{input}}` requires:
-
-     6. The specification(s) of data products that serve as input family elements :need:`DUNE 65`.
-     7. The data category where the input data products are found.
+     6. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
@@ -259,5 +253,5 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 .. rubric:: Footnotes
 
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
-.. [#job] As shown in :numref:`data-organization`, there is a `Job` data category , to which job-level data products may belong.
+.. [#job] As shown in :numref:`data-organization`, there is a `Job` data category, to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

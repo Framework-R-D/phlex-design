@@ -20,45 +20,29 @@ Many analysis needs can also be met by a data-processing framework.
 However, the HEP community tends to perform final-stage analysis using standalone applications.
 Phlex, therefore, aims to satisfy the data-processing needs of only physics reconstruction and simulation.
 
-================================
-Requirements Process and Outcome
-================================
+============================================
+Requirements Process and Framework Selection
+============================================
 
-Phlex provides facilities and behaviors intended to support the physics goals of its stakeholders, notably the DUNE experiment [#f1]_.
-DUNE has established a set of high-level requirements or *stakeholder requirements*, which constrain the design of the framework in support of DUNE's needs.
-A dedicated tool [Jama-Connect]_ is used to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
-As the design matures, *system requirements* are then created to guide implementation in support of the stakeholder requirements.
+Phlex provides facilities and behaviors that support the physics goals of its stakeholders, notably the DUNE experiment [#f1]_.
+In a concerted effort in 2023 and 2024, DUNE established a set of high-level requirements or *stakeholder requirements*, which constrain the design of a framework in support of DUNE's needs.
+A dedicated tool [Jama-Connect]_ was subsequently selected to manage such stakeholder requirements, tracking them in a version-controlled manner, and creating logical dependencies among them.
+Additionally, *system requirements* were created to guide implementation in support of the stakeholder requirements.
 
--------
-Outcome
--------
+After formulating its stakeholder requirements, DUNE evaluated whether existing HEP frameworks could also satisfy DUNE's needs.
+The frameworks considered included the *Gaudi* framework [Gaudi]_ (used by ATLAS and LHCb), *CMSSW*'s framework [CMSSW]_, ALICE's *O2* framework [O2]_, as well as the *art* framework [art]_, which is used by many of the intensity-frontier experiments at Fermi National Accelerator Laboratory.
+Over time, each framework has undergone substantial adjustments to take advantage of hardware and software developments (multi-threading, multi-processing, GPU usage, etc.), resulting in more efficient data-processing, and (in some cases) making possible some data-processing that may have been infeasible without adjustment.
 
-The first step in pursuing a framework technology is to evaluate existing HEP frameworks.
-Existing frameworks considered by DUNE included the *Gaudi* framework [Gaudi]_ (used by ATLAS and LHCb), *CMSSW*'s framework [CMSSW]_, ALICE's *O2* framework [O2]_, as well as the *art* framework [art]_, which is used by many of the intensity-frontier experiments at Fermi National Accelerator Laboratory.
-Over time, each framework has undergone substantial adjustments to take advantage of hardware and software developments (multi-threading, multi-processing, GPU usage, etc.), resulting in more efficient data-processing, and (in some cases) making *possible* some data-processing that may have been infeasible without adjustment.
-
-Despite such advances, each framework considered above is designed according to event-centric collider-physics concepts.
-Even *art*, the framework used by the ProtoDUNE experiments, forces users to adopt awkward workarounds to process the relatively slow-evolving signatures of neutrino interactions (as compared to the very fast beam interactions of collider experiments).
-The DUNE stakeholder requirements thus demand that any event-centric collider-based assumptions be relaxed to permit more flexible data organizations (see :numref:`introduction:Flexibility`).
+Each framework considered above, however, is designed according to event-centric, collider-physics concepts.
+The DUNE stakeholder requirements demand that any event-centric assumptions must be relaxed to permit more flexible data organizations (see :numref:`introduction:Flexibility`).
+Specifically, the data groupings of interest must not be rigidly defined by the framework itself, but specifiable by the user :need:`DUNE 22`.
+Even *art*, the framework used by the ProtoDUNE experiments, forces users to adopt awkward workarounds to process the relatively slow-evolving detector signatures of neutrino interactions (as compared to the very fast beam interactions of collider experiments).
 
 To be sure, an existing HEP framework can be modified to eventually meet the needs of DUNE.
 However, such modification does not exist in a vacuum, and in DUNE's determination, adjusting an existing HEP framework to satisfy DUNE's stakeholder requirements was impractical.
 Significant changes would be required for any of the frameworks, and it is unclear the manner and extent to which such changes would be accepted by already operational experiments using the framework in question.
+DUNE thus decided to develop a new framework designed to directly support DUNE's framework requirements.
 Establishing a new framework also provides an opportunity to shed legacy coding patterns that have been problematic in achieving efficient data-processing.
-
-------------------------
-Reusing Prior Experience
-------------------------
-
-The decision to create a new framework is appropriately met with skepticism.
-However, many ideas already explored in existing frameworks and the HEP community, in general, have a ready home in Phlex:
-
-- Existing parallel-processing libraries will be used (e.g. Intel's oneTBB)
-- ROOT IO mechanisms will be in place for persisting data
-- The HEP-CCE experience on portability technologies will inform how CPU/GPU source-code portability is achieved
-
-In addition to the experience gained by extant HEP frameworks, Phlex leverages the knowledge of the broader computing community by applying already-known mathematical principles to the framework's conceptual model (see :numref:`Chapter %s <preliminaries:Preliminaries>`).
-These formal ingredients provide crisp descriptions of the data-processing concepts at play, allowing more direct connections between user-defined algorithms, and the physics such algorithms are intended to represent.
 
 ----------------------
 Requirements Ownership
@@ -72,7 +56,7 @@ Requirements in This Document
 -----------------------------
 
 The stakeholder requirements are listed in :numref:`Appendix %s <appendices/requirements:Framework requirements>` for convenience.
-To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 1`).
+To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 22`).
 
 Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`.
 Some stakeholder requirements are referenced in :numref:`Chapter %s <supporting_design:Supporting design>` if those requirements do not affect the conceptual framework model.
@@ -154,6 +138,21 @@ Phlex strives to meet this expectation in various ways:
         A graceful shutdown refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (such as databases), etc. before the program ends.
         This ensures that no resources are left in ill-defined states and that all output files are readable and valid.
 
+---------------------------
+Leveraging Prior Experience
+---------------------------
+
+The decision to create a new framework is appropriately met with skepticism.
+However, the selection of which framework design to pursue was strongly guided by past R\&D efforts specifically targeted to explore DUNE's framework needs [Meld]_.
+In addition, many ideas already represented in existing production-quality frameworks have their home in Phlex:
+
+- Existing parallel-processing libraries will be used (e.g. Intel's oneTBB),
+- ROOT IO mechanisms will be in place for persisting data,
+- The HEP-CCE experience on portability technologies will inform how CPU/GPU source-code portability is achieved.
+
+The chance to develop a new framework also necessitates a re-examination of the knowledge acquired by the broader computing community, and how that knowledge can be applied to data-processing in HEP.
+Consequently, part of the Phlex design is simply a summary of prior research that has a ready application to DUNE's data-processing needs (e.g. see :numref:`Chapter %s <preliminaries:High-Level Abstractions>`).
+
 =====================
 Programming Languages
 =====================
@@ -179,14 +178,18 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 Guide to Reading This Document
 ==============================
 
-This document is intended to convey Phlex's conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`, with supporting material in :numref:`Chapter %s <supporting_design:Supporting design>`.
-Preliminary remarks are presented in :numref:`Chapter %s <preliminaries:Preliminaries>`, in which we discuss the formal ingredients to the conceptual design.
+This document is intended to convey Phlex's conceptual design without delving into implementation specifics.
+We therefore adopt a set of high-level abstractions that model the data-processing the framework will perform.
+These ideas are discussed in :numref:`Chapter %s <preliminaries:High-Level Abstractions>`, which summarizes well-known mathematical concepts already used in the computing industry.
+From there, we discuss the conceptual design itself in :numref:`Chapter %s <conceptual_design:Conceptual design>`.
 
 .. only:: conceptual_design_only
 
    Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
 
 .. only:: not conceptual_design_only
+
+   Supporting material is presented in :numref:`Chapter %s<supporting_design:Supporting design>`.
 
    Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
 
@@ -206,10 +209,11 @@ Preliminary remarks are presented in :numref:`Chapter %s <preliminaries:Prelimin
 
    .. rubric:: References
 
+.. [Wiki-Framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
+.. [Jama-Connect] https://www.jamasoftware.com/platform/jama-connect/
 .. [Gaudi] Charles Leggett, *et al*, J. Phys. Conf. Ser. **898**, 042009 (2017)
 .. [CMSSW] E. Sexton-Kennedy, *et al*, J. Phys. Conf. Ser. **608**, 012034 (2015)
 .. [O2] J. Adam, *et al* [ALICE Collaboration], “Technical Design Report for the Upgrade of the Online-Offline Computing System”, CERN-LHCC-2015-006, ALICE-TDR-019 (2015)
 .. [art] C. Green, *et al*, J. Phys. Conf. Ser. **396**, 022020 (2012)
-.. [Wiki-Framework] https://en.wikipedia.org/w/index.php?title=Software_framework&oldid=1285034658
-.. [Jama-Connect] https://www.jamasoftware.com/platform/jama-connect/
+.. [Meld] K. Knoepfel, EPJ Web of Conferences **295**, 05014 (2024)
 .. [SPEC-0] https://scientific-python.org/specs/spec-0000/

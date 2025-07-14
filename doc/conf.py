@@ -120,6 +120,8 @@ new_commands = r"""
 % The following is needed to ensure consistent footnote ordering
 % within each LaTeX-rendered chapter:
 %  (see https://github.com/sphinx-doc/sphinx/issues/3652#issuecomment-303195583)
+% and then to never reset the counter at the chapter level
+%  (https://texfaq.org/FAQ-run-fn-nos)
 \makeatletter
 \def\FNH@footnoteenv@i[#1]{\FNH@footnoteenv}
 \def\FNH@footnotetextenv@i[#1]{\FNH@footnotetextenv}
@@ -127,6 +129,7 @@ new_commands = r"""
    {\ifx\thepage\relax\else\protect\spx@opt@BeforeFootnote
                              \protect\footnotemark\fi}%
 \makeatother
+\counterwithout*{footnote}{chapter}
 
 % Number subsubsections
 \setcounter{secnumdepth}{3}
@@ -156,7 +159,7 @@ mathjax3_config = {
           "isetdefault": ['\\mathcal{I}', 0],
           "iset": ['\\isetdefault_{#1}', 1],
           "fami": ['\\left[#1_i\\right]', 1],
-          "family": ['\\left[#1_i\\right]_{i \\in \\isetdefault', 1],
+          "family": ['\\left[#1_i\\right]_{i \\in \\isetdefault}', 1],
           "ifamily": ['\\left[#1_i\\right]_{i \\in \\iset{#2}}', 2],
           "comp": ['\\circ', 0],
       }

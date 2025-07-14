@@ -176,7 +176,7 @@ Conceptual requirements
 
     The framework shall support flexibly defined, context-aware processing units to address the varying granularity necessary for processing different kinds of data.
 
-- See :numref:`introduction:Flexibility`
+- See :numref:`introduction:Requirements Process and Framework Selection`, :numref:`introduction:Flexibility`
 
 .. req:: Definition of data products
     :collapse:

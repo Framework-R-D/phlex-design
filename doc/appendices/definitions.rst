@@ -59,7 +59,9 @@ Definitions
         Ensemble of software delivered with the application framework.
 
     Index set
-        A mathematical set used to identify elements of an indexed family—e.g. in the expression :math:`[a_1, a_2, \dots, a_n] = \family{a}`, the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
+        A mathematical set that provides the indexes of an indexed family.
+
+        For the family :math:`a = [a_1, a_2, \dots, a_n] = \family{a}`, the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
 
     Indexed family
         A collection of elements identified by an index from an index set.
