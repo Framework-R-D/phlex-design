@@ -15,7 +15,10 @@ Definitions
     Backward compatibility (persisted data)
         The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
 
-    Configured higher-order function (CHOF)
+    CHOF
+        *See* :term:`Configured higher-order function`
+
+    Configured higher-order function
         An entity created when registering an algorithm with the framework.
 
         The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
@@ -26,7 +29,7 @@ Definitions
         A data layer is one node in a data layer hierarchy.
         The top layer of the graph is always the *Job*.
         All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
-        By contrast, in *art* the data layers are *Run*, *SubRun*, and *Event*; new data layers can not be added without modifying the *art* framework code.
+        By contrast, in *art* the data layers are *Run*, *SubRun*, and *Event*.
 
     Data layer hierarchy
         A hierarchy of data layers.
@@ -34,7 +37,7 @@ Definitions
         A data layer hierarchy is an acyclic graph of relationships of logical containment.
         The top layer of the hierarchy is always the *Job*.
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
-        In *art*, the data layer hierarchy is *Run*-*SubRun*-*Event*, and new data layers can not be added without modifying the *art* framework code.
+        In *art*, the data layer hierarchy is *Run*-*SubRun*-*Event*.
 
     Data product
         An object managed by the framework and for which provenance information is recorded.

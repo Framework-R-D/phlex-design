@@ -34,7 +34,7 @@ Outcome
 -------
 
 The first step in pursuing a framework technology is to evaluate existing HEP frameworks.
-Existing frameworks considered that included the *Gaudi* framework [Gaudi]_ (used by ATLAS and LHCb), *CMSSW*'s framework [CMSSW]_, ALICE's *O2* framework [O2]_, as well as the *art* framework [art]_, which is used by many of the intensity-frontier experiments at Fermi National Accelerator Laboratory.
+Existing frameworks considered by DUNE included the *Gaudi* framework [Gaudi]_ (used by ATLAS and LHCb), *CMSSW*'s framework [CMSSW]_, ALICE's *O2* framework [O2]_, as well as the *art* framework [art]_, which is used by many of the intensity-frontier experiments at Fermi National Accelerator Laboratory.
 Over time, each framework has undergone substantial adjustments to take advantage of hardware and software developments (multi-threading, multi-processing, GPU usage, etc.), resulting in more efficient data-processing, and (in some cases) making *possible* some data-processing that may have been infeasible without adjustment.
 
 Despite such advances, each framework considered above is designed according to event-centric collider-physics concepts.
@@ -44,8 +44,7 @@ The DUNE stakeholder requirements thus demand that any event-centric collider-ba
 To be sure, an existing HEP framework can be modified to eventually meet the needs of DUNE.
 However, such modification does not exist in a vacuum, and in DUNE's determination, adjusting an existing HEP framework to satisfy DUNE's stakeholder requirements was impractical.
 Significant changes would be required for any of the frameworks, and it is unclear the manner and extent to which such changes would be accepted by already operational experiments using the framework in question.
-Additionally, some aspects of existing frameworks are based on design idioms that are no longer considered best practice.
-Establishing a new framework thus provides an opportunity to shed legacy coding patterns that have been problematic in achieving efficient data-processing.
+Establishing a new framework also provides an opportunity to shed legacy coding patterns that have been problematic in achieving efficient data-processing.
 
 ------------------------
 Reusing Prior Experience

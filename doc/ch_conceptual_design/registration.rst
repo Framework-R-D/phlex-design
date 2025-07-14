@@ -75,7 +75,7 @@ In other words:
 - :cpp:`"Waveforms"` specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to :cpp:`find_hits` (i.e. :cpp:`waveforms`).
 - :cpp:`"GoodHits"` specifies a data product whose C++ type is the :cpp:`hits` return type of :cpp:`find_hits`.
 
-When executed, the above code creates a :term:`configured higher-order function <Configured higher-order function (CHOF)>`, which serves as a node in the function-centric data-flow graph.
+When executed, the above code creates a :term:`configured higher-order function`, which serves as a node in the function-centric data-flow graph.
 
 The registration block may contain any code supported by C++.
 The block, however, must contain a registration statement to execute an algorithm.
