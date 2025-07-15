@@ -187,7 +187,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data products.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Creation of data sets
     :collapse:
@@ -199,7 +199,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to create new data sets.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Definition of data families
     :collapse:
@@ -211,7 +211,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Definition of data family hierarchies
     :collapse:
@@ -223,7 +223,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Process collections of unconstrained size
     :collapse:
@@ -235,7 +235,7 @@ Conceptual requirements
 
     The framework shall support processing of collections that are too large to fit into memory at one time.
 
-- See :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
+- See :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Unfolding data products
     :collapse:
@@ -284,7 +284,7 @@ Conceptual requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`, :numref:`ch_conceptual_design/algorithms:Algorithms`
+- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`, :numref:`ch_conceptual_design/algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:

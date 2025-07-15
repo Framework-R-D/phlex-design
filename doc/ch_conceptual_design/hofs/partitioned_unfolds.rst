@@ -88,7 +88,7 @@ Operator Signatures
     +------------------------+------------------------------------------------------------------------------------+
     | :math:`\textit{gen}`   | :cpp:`std::pair<next_type, product_type> function_name(next_type, Rm...) [quals];` |
     +------------------------+------------------------------------------------------------------------------------+
-    | :math:`\textit{label}` | *Name of data layer of output data products*                                |
+    | :math:`\textit{label}` | *Name of data layer of output data products*                                       |
     +------------------------+------------------------------------------------------------------------------------+
 
 The unfold's :cpp:`product_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.

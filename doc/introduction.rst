@@ -91,7 +91,7 @@ Although frameworks supporting the *run-subrun-event* (RSE) hierarchy have prove
 - calibration data is often described independently from an RSE hierarchy, requiring other means of accounting for systematic corrections that must be applied to the data.
 
 Phlex does not prescribe an RSE hierarchy—it only requires that the hierarchy be representable as a directed acyclic graph (DAG) at run-time, with each grouping of data represented as a node in the graph, and the relationships between data-groupings represented as edges.
-This expression of the hierarchy greatly relaxes the constraints placed on experiments while still supporting the collider-based RSE hierarchy (see :numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data Cells`).
+This expression of the hierarchy greatly relaxes the constraints placed on experiments while still supporting the collider-based RSE hierarchy (see :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`).
 
 The hierarchy graph and its nodes (i.e. the data-groupings) are definable at run-time, thus allowing the specification of data organizations that are appropriate for the workflow :need:`DUNE 22`.
 

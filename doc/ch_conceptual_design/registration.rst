@@ -15,8 +15,6 @@ Suppose a physicist would like to use the function :cpp:`find_hits` to transform
 This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code-block:: c++
-   :caption: Please work
-   :name: register_transform
 
    PHLEX_REGISTER_ALGORITHMS()   // <== Registration opener (w/o configuration object)
    {
@@ -60,6 +58,7 @@ Specifically, in the registration stanza above, we have the following:
 
    :cpp:`family(...)`
      6. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
+        In the registration code above, this is achieved by providing the expression :cpp:`"Waveforms"_in("APA")`, which instructs the framework to create a family of waveforms that reside in `APA`\ s [#user_defined]_.
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
@@ -252,6 +251,14 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
+.. [#user_defined] The token :cpp:`_in` is a suffix that is part of a user-defined literal [Cpp-UserLiteral]_, which permits an expression like :cpp:`"Waveforms"_in("APA")`.
+                   The type returned by the expression is implementation-defined and has no public interface needed by the user.
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data layer, to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.
+
+.. only:: html
+
+  .. rubric:: References
+
+.. [Cpp-UserLiteral] https://en.cppreference.com/w/cpp/language/user_literal.html

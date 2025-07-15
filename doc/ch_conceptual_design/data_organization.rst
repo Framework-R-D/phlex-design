@@ -55,10 +55,10 @@ Data product types are not defined by the framework.
 Framework users are expected to define their own data product types :need:`DUNE 85`.
 
 
-Data Categories, Families, and Data Cells
-------------------------------------------------
+Data Layers, Data Cells, and Families
+-------------------------------------
 
-As illustrated in :numref:`data-organization`, data products are organized into user-defined data cells, families, and hierarchies, supporting varying levels of granularity (e.g., tracks, raw data, calibration outputs) :need:`DUNE 86` :need:`DUNE 87` :need:`DUNE 88`.
+As illustrated in :numref:`data-organization`, data products are organized into user-defined data cells, families, layers, and hierarchies, supporting varying levels of granularity :need:`DUNE 86` :need:`DUNE 87` :need:`DUNE 88`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :need:`DUNE 43`.
 This provides the ability to process data too large to fit into memory at one time :need:`DUNE 25`.
 

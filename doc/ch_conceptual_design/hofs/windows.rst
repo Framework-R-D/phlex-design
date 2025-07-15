@@ -73,7 +73,7 @@ Phlex supports the function signature whose second argument is an optional type 
     +---------------+------------------------------------------------------------------------------------+
     | :math:`adj`   | :cpp:`bool function_name(<P1 identifier>, <P2 identifier>) [quals];`               |
     +---------------+------------------------------------------------------------------------------------+
-    | :math:`label` | *Name of data layer of output data products*                                |
+    | :math:`label` | *Name of data layer of output data products*                                       |
     +---------------+------------------------------------------------------------------------------------+
 
 The :cpp:`return_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.

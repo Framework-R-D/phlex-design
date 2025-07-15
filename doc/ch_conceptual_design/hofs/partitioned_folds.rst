@@ -111,7 +111,7 @@ Operator Signatures
     |                       +----------------+----------------------------------------------------------------+
     |                       | *as function:* | :cpp:`result_type function_name( <cell identifier> ) [quals];` |
     +-----------------------+----------------+----------------------------------------------------------------+
-    | :math:`\textit{part}` | *Name of data layer for output data product*                             |
+    | :math:`\textit{part}` | *Name of data layer for output data product*                                    |
     +-----------------------+---------------------------------------------------------------------------------+
 
 The fold's :cpp:`result_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.

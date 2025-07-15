@@ -150,4 +150,4 @@ Phlex will likely support other higher order functions as well.
 
 .. [Wiki-Pure] https://en.wikipedia.org/wiki/Pure_function
 .. [Wiki-HOF] https://en.wikipedia.org/wiki/Higher-order_function
-.. [Bird] Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132
+.. [Bird] R. Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132
