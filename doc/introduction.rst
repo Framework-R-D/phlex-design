@@ -144,7 +144,7 @@ Leveraging Prior Experience
 
 The decision to create a new framework is appropriately met with skepticism.
 However, the selection of which framework design to pursue was strongly guided by past R\&D efforts specifically targeted to explore DUNE's framework needs [Meld]_.
-In addition, many ideas already represented in existing production-quality frameworks have their home in Phlex:
+In addition, many ideas already represented in existing production-quality frameworks are also integrated into Phlex's subsystem design (*under preparation*):
 
 - Existing parallel-processing libraries will be used (e.g. Intel's oneTBB),
 - ROOT IO mechanisms will be in place for persisting data,
