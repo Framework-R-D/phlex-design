@@ -38,10 +38,10 @@ Phlex therefore encourages the use of pure functions for creating of :term:`repr
 
 .. admonition:: Favor free functions
 
-    Functions can additionally be classified as *free functions* or *member functions* (or *instance methods*).
-    Whereas free functions have only explicit input parameters, member functions are bound to objects with internal state that is accessible as an implicit function parameter.
+    Functions can additionally be classified as *free functions* or *member functions* (or *methods*).
+    Whereas a free function has only explicit input parameters, a member function called on an object has access to the internal state of the object as well as the explicit function parameters.
     Both kinds of functions can be useful, but authors of classes must exercise special care to ensure that a class instance's member functions can be safely invoked in concurrent contexts.
-    For this reason, framework users should favor the use of free functions over classes and their member functions.
+    For this reason, framework users should favor free functions over classes and their member functions.
 
 Challenges with Functional Programming
 --------------------------------------

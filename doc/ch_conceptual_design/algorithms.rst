@@ -18,7 +18,7 @@ The latter is good practice regardless and commonly required by Python coding co
 .. rstcheck: ignore-next-code-block
 .. code:: python
 
-   def function_name(p1: P1, pn: Pn..., rm: Rm) -> return_type:
+   def function_name(p1: P1, pn: Pn..., rm: Rm...) -> return_type:
 
 We will first discuss the data-product and resource types in :numref:`ch_conceptual_design/algorithms:Input parameters`, followed by the return types in :numref:`ch_conceptual_design/algorithms:Return types`, and then the function name and optional qualifers in :numref:`ch_conceptual_design/algorithms:Function names and qualifiers`.
 

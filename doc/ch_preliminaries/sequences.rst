@@ -29,7 +29,7 @@ In some cases, it is convenient to represent a family's index as a tuple of numb
 As an illustration, to use the RSE hierarchy from :numref:`introduction:Flexibility` one could specify
 
 .. math::
-    c = [c_{rse}]_{(r,s,e) \in \iset{\text{RSE}}}
+    c = \ifamily{c}{\text{RSE}} = [c_{rse}]_{(r,s,e) \in \iset{\text{RSE}}}
 
 to refer to a family of data products :product:`c`, where the variables :math:`r`, :math:`s`, and :math:`e` correspond to the identifiers for specific `Run`\ s, `Subrun`\ s, and `Event`\ s.
 The values :math:`r`, :math:`s`, and :math:`e` are permitted to take are determined by the members of the index set :math:`\iset{\text{RSE}}`, which contains triplets of numbers.

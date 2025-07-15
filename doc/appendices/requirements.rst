@@ -158,7 +158,7 @@ Conceptual requirements
     :collapse:
     :id: DUNE 21
     :jama: 21 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14563
-    :notes: This is ID #11 from the original DUNE document.
+    :notes: This is ID #11 from the original DUNE document.  This document uses "data cells" rather than "data sets".
     :status: Approved
     :tags: Physics Analysis, Original
 
@@ -472,6 +472,7 @@ Conceptual requirements
     :status: Approved
     :jama: 89 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data sets.
 
@@ -483,6 +484,7 @@ Conceptual requirements
     :status: Approved
     :jama: 91 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall support the invocation of an algorithm with data products belonging to adjacent data sets.
 
@@ -494,6 +496,7 @@ Conceptual requirements
     :status: Approved
     :jama: 92 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall support user code that defines adjacency of data sets within a data family.
 
@@ -505,6 +508,7 @@ Conceptual requirements
     :status: Approved
     :jama: 113 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data layers" rather than (this use) of "data families".
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data families.
 
@@ -516,6 +520,7 @@ Conceptual requirements
     :status: Approved
     :jama: 90 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706
     :notes: To implement this requirement, the algorithm should not know where its created data products are going--that is something that will be specified at the plugin level (perhaps by configuration).
+            This document uses "data layer" rather than (this use) of "data family".
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall support the user specification of which data family to place the data products created by an algorithm.
@@ -1068,6 +1073,7 @@ Supporting requirements
     :status: Approved
     :jama: 109 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14806
     :notes: Some examples include limiting the output file to contain data for: (a) 1 subrun ("subrun" is the user-specified family) (b) 100 spills ("spill" is the user-specified family) (c) 10 blobs ("blob" is the user-specified family)
+            This document uses "data cells" rather than "data sets", and "data layer" rather than (this use) of "data family".
     :tags: Data I/O layer
 
     The framework shall have an option to rollover output files according to a configurable limit on the number of data sets in a user-specified data family.
@@ -1216,6 +1222,7 @@ Supporting requirements
     :status: Approved
     :jama: 129 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15737
     :tags: Provenance, Chunkification
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall record metadata identifying data sets where the framework took special measures to process data collections of unconstrained size.
 
