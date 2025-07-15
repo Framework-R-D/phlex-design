@@ -17,20 +17,19 @@ The `Job` layer always includes a single data cell.
 :numref:`data-organization` illustrates the relationships between all of these.
 
 .. graphviz:: data-organization.gv
-   :caption: An example of a possible data organization.
-             The obligatory `Job` and three different user-defined (not special to the Phlex framework) data layers are shown: :math:`\textsf{Run}`, :math:`\textsf{Spill}`, and :math:`\textsf{APA}`.
+   :caption: The data organization corresponding to part of :numref:`workflow`.
+             The framework-provided `Job` data layer and three different user-defined (not special to the Phlex framework) data layers are shown: `Run`, `Spill`, and `APA`.
              Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data cells.
-             The pale green rectangles show two data cell families; these are identified as families because they are used to define the unfold and fold algorithms used in :numref:`workflow`.
-             A solid line from a data cell to another data cell represents association between the two data cells.
+             The pale green rectangles show two data cell families; these are identified as families because they are the result of executing the :mathfunc:`unfold(into_apas)` node shown in :numref:`workflow`.
+             A solid line from one data cell to another data cell represents a logical association between the two data cells.
              The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data cell :math:`\textsf{APA}_{1,1,1}`, etc.
-             Each pale purple rectangle indicates the data product family created by one call to the *unfold* higher order function described in :numref:`workflow`.
+             Each pale purple rectangle indicates the data product family created by unfolding each :product:`SimDepos` object as shown in :numref:`workflow`.
    :name: data-organization
+
+In :numref:`data-organization`, the `Run` data layer exists, but as no algorithm in :numref:`workflow` requires any data products from a `Run` data cell, the framework does not create any data-cell families corresponding to the `Run`.
 
 Data Products
 -------------
-
-Conceptual Nature
-^^^^^^^^^^^^^^^^^
 
 Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them :need:`DUNE 110`.
 They serve as the primary medium for communication between algorithms, ensuring seamless data exchange across processing steps :need:`DUNE 111`.
