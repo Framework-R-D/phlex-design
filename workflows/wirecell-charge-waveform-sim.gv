@@ -3,7 +3,7 @@ digraph g {
  compound=true;
  scale="5%";
 
- # All data product sets are in rectangular nodes
+ # All data cells are in rectangular nodes
  node [shape=box, style=filled];
  tr1 [label=<TriggerRecord<sub>1</sub>>, fillcolor=lightyellow];
 
@@ -14,7 +14,7 @@ digraph g {
   tb2 [label=<TimeBin<sub>1,n</sub>>, fillcolor=palegreen1];
  }
 
- # Data product sets are connected with data products by solid lines.
+ # Data cells are connected with data products by solid lines.
  edge [style=solid, arrowhead=none];
  tr1 -> tb1;
  tr1 -> tb2;
@@ -98,7 +98,7 @@ subgraph cluster_cb {
    ncdq [label=<NoisyConvolvedDepos<br/>index:t1,cq<br/>creator: noise>];
  }
 
- # Data products are connected with data product sets by dotted lines.
+ # Data products are connected with data cells by dotted lines.
  edge [style=dotted, arrowhead=none];
  tr1 -> depos;
  tb1 -> tbd1;

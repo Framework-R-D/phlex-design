@@ -26,7 +26,7 @@ For example, in :numref:`workflow`, the predicate in :math:`\textit{filter(high\
 It is possible for one filter named :cpp:`"only_high_energy"` to use as its predicate :math:`\textit{high\_energy}`, whereas another filter named :cpp:`"not_high_energy"` could use the negation :math:`\textit{filter}(\neg \textit{high\_energy})`.
 In this case, the predicate :math:`\textit{high\_energy}` is executed only once, but its value can be used in different ways in the predicate expression.
 
-A predicate expression can be evaluated on a higher-level data-product set than the data-product family in question.
+A predicate expression can be evaluated on a higher-level data cell than the data-product family in question.
 For example, suppose none of the :math:`\textit{GoodHits}` data products in a given `Spill` were suitable for processing.
 It is possible to create a filter that would reject all :math:`\textit{GoodHits}` data products from that `Spill` even though the predicate itself interrogated only the `Spill` information and not the lower-level good-hits information from the `APA`.
 

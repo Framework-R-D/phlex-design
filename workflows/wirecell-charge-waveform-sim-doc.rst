@@ -19,28 +19,28 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
              Colored rectangles denote the HOFs and the user-supplied algorithms used in them.
              The solid arrow shows the data flow from one HOF to the next one in the workflow.
              The labels on the solid arrows denote the data products.
-             The subscripts on the data product names show the index metadata that associate the product with the correct data product sets.
+             The subscripts on the data product names show the index metadata that associate the product with the correct data cells.
    :name: fig-wirecell-func
    :align: center
 
 .. graphviz:: wirecell-charge-waveform-sim.gv
    :caption: A possible Wire-Cell charged waveform simulation workflow in the data-centric view.
-             Colored rectangles denote data product sets.
-             Solid lines without an arrow show the relationship between hierarchical data product sets.
+             Colored rectangles denote data cells.
+             Solid lines without an arrow show the relationship between hierarchical data cells.
              Colored rounded rectangles denote data products.
-             The label of the rounded rectangle show the programming language data type of the data product, the index metadata that associate the product with the correct data product sets, and the algorithm that was the creator of the product.
-             Different colors represent different hierarchies of data product sets.
-             Dotted lines show the data product set to which each data product belongs.
+             The label of the rounded rectangle show the programming language data type of the data product, the index metadata that associate the product with the correct data cells, and the algorithm that was the creator of the product.
+             Different colors represent different hierarchies of data cells.
+             Dotted lines show the data cell to which each data product belongs.
              Unshaded rectangles denote data product sequences; the sequence consists of the data products within the rectangle.
              Solid lines with arrows show a higher order function (HOF) that creates the data product, or the data product sequence, to which the arrow points.
              The label on the line shows both the HOF being used  and the user-supplied algorithm used by that HOF.
    :name: fig-wirecell
    :align: center
 
-Both diagrams use colors to indicate different levels in data product set hierarchies.
+Both diagrams use colors to indicate different levels in data cell hierarchies.
 There are three hierarchies represented.
 Each has *TriggerRecord* as the top level.
-The other three data product sets (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different hierarchy, below *TriggerRecord*.
+The other three data cells (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different hierarchy, below *TriggerRecord*.
 
 The *sim* workflow (comprising the *drift*, *convolve*, *noise* and *digitize* steps) begins with the simulated *Depos* for a trigger record.
 There is one such *Depos* object in each *TriggerRecord*; this object is indicated by an index of the form *ti*  indicating the *ith* *TriggerRecord*.

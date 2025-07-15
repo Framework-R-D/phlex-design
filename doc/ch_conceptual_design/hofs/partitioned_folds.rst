@@ -65,7 +65,7 @@ In general, however, the partitioning function is of the form :math:`\textit{par
 The function :math:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
 The number of elements in the output family :math:`d` corresponds to the number of partition cells.
 
-As of this writing, the only partitions supported are those that correspond to the names of data-product set categories.
+As of this writing, the only partitions supported are those that correspond to the names of data cell categories.
 The partition :math:`\textit{into\_spills}` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
 
 Initializing the Accumulator

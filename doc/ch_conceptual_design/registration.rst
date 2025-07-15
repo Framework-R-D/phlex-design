@@ -47,7 +47,7 @@ Specifically, in the registration stanza above, we have the following:
 
    :cpp:`products(...)`
      1. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
-        One of the fields of the data-product specification is the data-product set category to which the data products will belong :need:`DUNE 90`.
+        One of the fields of the data-product specification is the data cell category to which the data products will belong :need:`DUNE 90`.
         Phlex does not require the output and input categories to be the same.
 
    :cpp:`transform(...)`
@@ -102,9 +102,9 @@ The interface of the algorithm and its registration would look like:
   }
 
 The elements of the input family are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
-In this case, the data-product set for both data products is the same—i.e. for a given invocation of :cpp:`find_hits_subtract_pedestals`, both data products will be associated with the same APA.
+In this case, the data cell for both data products is the same—i.e. for a given invocation of :cpp:`find_hits_subtract_pedestals`, both data products will be associated with the same APA.
 
-There are cases, however, where an algorithm needs to operate on data products from *different* data-product sets :need:`DUNE 89`.
+There are cases, however, where an algorithm needs to operate on data products from *different* data cells :need:`DUNE 89`.
 
 .. note::
 
@@ -132,17 +132,17 @@ where the categories are explicit in the family statement.
 
 Phlex supports such uses cases :need:`DUNE 113`, even if the specified categories are unrelated to each other.
 For example, suppose an algorithm needed to access a data product from a `Spill`, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
-Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. `Calibration`) whose data-product sets corresponded to intervals of validity.
-So long as a relation can be defined between specific `Spill` data-product sets and specific `Calibration` data-product sets, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
-How the relation between data-product sets is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
+Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. `Calibration`) whose data cells corresponded to intervals of validity.
+So long as a relation can be defined between specific `Spill` data cells and specific `Calibration` data cells, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
+How the relation between data cells is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
-Data Products from Adjacent Data-Product Sets
+Data Products from Adjacent Data Cells
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets :need:`DUNE 91`, where *adjacency* is defined by the user :need:`DUNE 92`.
 The notion of adjacency can be critical for (e.g.) time-windowed processing (see :numref:`ch_conceptual_design/hofs/windows:Windows`), where the details of the "next" time bin are needed to accurately calculate properties of the "current" time bin.
 
-Supporting the processing of adjacent data-product sets is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
+Supporting the processing of adjacent data cells is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
 Accessing Configuration Information
 -----------------------------------

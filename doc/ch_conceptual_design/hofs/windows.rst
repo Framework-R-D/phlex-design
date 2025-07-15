@@ -12,9 +12,9 @@ Windows
 |                                       | :math:`label: \one \rightarrow L`                       |                      |
 +---------------------------------------+---------------------------------------------------------+----------------------+
 
-One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data-product sets (see :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`).
+One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data cells (see :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`).
 The workflow in :numref:`workflow` shows a such a node :math:`\textit{window(make\_tracks)}`, which is presented with pairs of :math:`\textit{GoodHits}` data products, with each data product in the pair belonging to adjacent `APA`\ s.
-It is the user-provided :math:`adj` function which determines whether two data-product sets are adjacent.
+It is the user-provided :math:`adj` function which determines whether two data cells are adjacent.
 
 For simplicity, imagine that each `APA` identifier (i.e. member of the set :math:`\iset{\text{APA}}`) can be represented as an integer.
 A straightforward :math:`adj` implementation might be to group the :math:`\textit{GoodHits}` data products from `APA`\ s with consecutive numbers:
@@ -81,7 +81,7 @@ The algorithm :math:`f` may also create multiple data products by returning a :c
 
 The second argument :cpp:`Opt<P2>` indicates that an optional type is passed to the algorithm.
 It is permitted to use resources (i.e. :cpp:`Rm...`) in the function :math:`f`.
-The data-product set identifers of :cpp:`P1` and :cpp:`P2` are used to determine whether two data-products reside in adjacent data-product sets.
+The data cell identifers of :cpp:`P1` and :cpp:`P2` are used to determine whether two data-products reside in adjacent data cells.
 
 Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^

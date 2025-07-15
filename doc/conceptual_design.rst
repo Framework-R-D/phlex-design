@@ -61,7 +61,7 @@ Various framework aspects are demonstrated by that figure:
       The histogramming resource in :numref:`workflow` enables the *observe* algorithm to fill and write histograms to a ROOT analysis file.
 
 Note that in this workflow, the names *Spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
-Each data product is also indexed, thus associating it with a particular data-product set (e.g. :math:`\textit{GoodHits}_{3,7}` denotes the :math:`\textit{GoodHits}` data product belonging to `APA` :math:`7` of `Spill` :math:`3`).
+Each data product is also indexed, thus associating it with a particular data cell (e.g. :math:`\textit{GoodHits}_{3,7}` denotes the :math:`\textit{GoodHits}` data product belonging to `APA` :math:`7` of `Spill` :math:`3`).
 
 .. graphviz:: work-flow.gv
    :caption: A fictitious workflow showing how HOFs are used in a Phlex program.

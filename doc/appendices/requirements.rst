@@ -187,7 +187,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data products.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
 
 .. req:: Creation of data sets
     :collapse:
@@ -195,10 +195,11 @@ Conceptual requirements
     :jama: 86 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall provide the ability for user-level code to create new data sets.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
 
 .. req:: Definition of data families
     :collapse:
@@ -206,10 +207,11 @@ Conceptual requirements
     :jama: 87 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data layers" rather than (this use) of "data families".
 
     The framework shall provide the ability for user-level code to define data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
 
 .. req:: Definition of data family hierarchies
     :collapse:
@@ -217,10 +219,11 @@ Conceptual requirements
     :jama: 88 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data layer hierarchies" rather than "data family hierarchies".
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
 
 .. req:: Process collections of unconstrained size
     :collapse:
@@ -232,7 +235,7 @@ Conceptual requirements
 
     The framework shall support processing of collections that are too large to fit into memory at one time.
 
-- See :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`
 
 .. req:: Unfolding data products
     :collapse:
@@ -281,7 +284,7 @@ Conceptual requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`, :numref:`ch_conceptual_design/algorithms:Algorithms`
+- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data cells`, :numref:`ch_conceptual_design/algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:
@@ -483,7 +486,7 @@ Conceptual requirements
 
     The framework shall support the invocation of an algorithm with data products belonging to adjacent data sets.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`
 
 .. req:: User-defined adjacency
     :collapse:
@@ -494,7 +497,7 @@ Conceptual requirements
 
     The framework shall support user code that defines adjacency of data sets within a data family.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`
 
 .. req:: Algorithm invocation with data products from multiple data families
     :collapse:
