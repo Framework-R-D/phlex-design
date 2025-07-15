@@ -7,26 +7,39 @@ digraph {
     label=<<b>Data layers</b>>
     color=none
 
-    job_category [label=<Job> fontcolor="gray"]
-    run_category [label=<Run>]
+    job_category [label=<Job>]
+    run_category [label=<Run> fontcolor="gray"]
     spill_category [label=<Spill>]
     apa_category [label=<APA>]
 
-    job_category -> run_category [color="gray"]
-    run_category -> spill_category -> apa_category
+    job_category -> run_category -> spill_category -> apa_category
   }
 
   node [shape="box" style="filled,rounded"]
 
-  job [label=<Job> fillcolor="gray98" fontcolor="gray" color="gray"]
-  run1 [label=<Run<sub>1</sub>> fillcolor="lightyellow"]
-  run2 [label=<Run<sub>2</sub>> fillcolor="lightyellow"]
-  spill1 [label=<Spill<sub>1,1</sub>> fillcolor="lightblue"]
-  spill2 [label=<Spill<sub>1,2</sub>> fillcolor="lightblue"]
-  spill3 [label=<Spill<sub>2,1</sub>> fillcolor="lightblue"]
+  subgraph cluster_job_family {
+    style="filled,rounded"
+    fillcolor="white"
+
+    job_family_label [label=<<i>Job family</i>> shape="plaintext" margin=0 style="rounded"]
+    job [label=<Job> fillcolor="lightyellow"]
+  }
+  run1 [label=<Run<sub>1</sub>> fillcolor="gray98" fontcolor="gray" color="gray"]
+  run2 [label=<Run<sub>2</sub>> fillcolor="gray98" fontcolor="gray" color="gray"]
+
+  subgraph cluster_spill_family {
+     style="filled,rounded"
+     fillcolor="lightcyan"
+
+     family_label_0 [label=<<i>Spill family</i>> shape="plaintext" margin=0 style="rounded"]
+     spill1 [label=<Spill<sub>1,1</sub>> fillcolor="lightblue"]
+     spill2 [label=<Spill<sub>1,2</sub>> fillcolor="lightblue"]
+     spill3 [label=<Spill<sub>2,1</sub>> fillcolor="lightblue"]
+  }
+
   apa3 [label="..." shape="plaintext" margin=0 style="rounded"]
 
-  job -> {run1 run2} [color=gray]
+  job -> {run1 run2}
   run1 -> {spill1 spill2}
   run2 -> spill3
   spill3 -> apa3

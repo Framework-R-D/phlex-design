@@ -23,7 +23,7 @@ digraph {
 
   gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
   driver [label="driver(Spill)", style="rounded,filled",fillcolor="palegreen1"];
-  input [label="ROOT input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
+  input [label="HDF5 input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
 
   // Providers
   geometry_provider [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
@@ -39,33 +39,33 @@ digraph {
   start -> driver [label=" Configuration", fontcolor="forestgreen"];
   driver -> input [style="dotted", arrowhead=none];
   driver -> geometry_provider [label=" [Job]", fontcolor="darkorange"];
-  driver -> sim_depos_provider [label=< [Spill<sub><i>j</i></sub>]>, fontcolor="darkorange"];
+  driver -> sim_depos_provider [label=< [Spill<sub><i>i j</i></sub>]>, fontcolor="darkorange"];
 
   gdml -> geometry_provider [arrowhead=none, style="dotted", color="black:invis:black"];
   resource -> root [arrowhead=none, style="dotted", color="black:invis:black"];
 
   sim_depos_provider -> input [style="dotted", arrowhead=none];
-  sim_depos_provider -> unfold_into_apas [label=< [SimDepos<sub><i>j</i></sub>]>];
+  sim_depos_provider -> unfold_into_apas [label=< [SimDepos<sub><i>i j</i></sub>]>];
 
   geometry_provider -> unfold_into_apas [label=<[Geometry]>];
   geometry_provider -> transform_make_vertices [taillabel=<[Geometry]>, labeldistance=4.7, labelangle=20];
 
-  unfold_into_apas -> transform_find_hits [xlabel=<[Waveforms<sub><i>j k</i></sub>] >];
-  unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>j k</i></sub>]>];
+  unfold_into_apas -> transform_find_hits [xlabel=<[Waveforms<sub><i>i j k</i></sub>] >];
+  unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>i j k</i></sub>]>];
 
-  transform_find_hits -> filter_high_energy [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_find_hits -> filter_high_energy [label=<[GoodHits<sub><i>i j k</i></sub>]>];
   transform_find_hits -> hits_writer;
-  transform_find_hits -> window_make_tracks [label=<[GoodHits<sub><i>j k</i></sub>]>];
+  transform_find_hits -> window_make_tracks [label=<[GoodHits<sub><i>i j k</i></sub>]>];
   transform_find_hits -> fold_total_energy;
 
-  window_make_tracks -> transform_make_vertices [label=< [GoodTracks<sub><i>j k</i></sub>]>];
+  window_make_tracks -> transform_make_vertices [label=< [GoodTracks<sub><i>i j k</i></sub>]>];
   window_make_tracks -> tracks_writer;
 
-  transform_make_vertices -> vertices_writer [label=< [Vertices<sub><i>j k</i></sub>]>];
+  transform_make_vertices -> vertices_writer [label=< [Vertices<sub><i>i j k</i></sub>]>];
 
-  fold_total_energy -> total_energy_writer [label=< [TotalHitEnergy<sub><i>j</i></sub>]>];
+  fold_total_energy -> total_energy_writer [label=< [TotalHitEnergy<sub><i>i j</i></sub>]>];
 
-  filter_high_energy -> observe_histogram_hits [label=<[GoodHits<sub><i>j k</i> '</sub>]>];
+  filter_high_energy -> observe_histogram_hits [label=<[GoodHits<sub><i>i j k</i> '</sub>]>];
 
   resource -> observe_histogram_hits [style="dashed"];
 
