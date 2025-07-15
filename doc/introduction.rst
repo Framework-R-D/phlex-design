@@ -59,7 +59,7 @@ The stakeholder requirements are listed in :numref:`Appendix %s <appendices/requ
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :need:`DUNE 22`).
 
 Where possible, we limit references to stakeholder requirements to the conceptual design in :numref:`Chapter %s <conceptual_design:Conceptual design>`.
-Some stakeholder requirements are referenced in :numref:`Chapter %s <supporting_design:Supporting design>` if those requirements do not affect the conceptual framework model.
+Some stakeholder requirements are referenced in :numref:`Chapter %s <supporting_design:technical design>` if those requirements do not affect the conceptual framework model.
 No system requirements are currently referenced in this document.
 
 ====================
@@ -138,13 +138,13 @@ Phlex strives to meet this expectation in various ways:
         A graceful shutdown refers to a framework program that completes the processing of all in-flight data, safely closes all open input and output files, cleans up connections to external entities (such as databases), etc. before the program ends.
         This ensures that no resources are left in ill-defined states and that all output files are readable and valid.
 
----------------------------
-Leveraging Prior Experience
----------------------------
+-----------
+Reusability
+-----------
 
 The decision to create a new framework is appropriately met with skepticism.
 However, the selection of which framework design to pursue was strongly guided by past R\&D efforts specifically targeted to explore DUNE's framework needs [Meld]_.
-In addition, many ideas already represented in existing production-quality frameworks are also integrated into Phlex's subsystem design (*under preparation*):
+In addition, many ideas already represented in existing production-quality frameworks are also integrated into Phlex's technical design (*under preparation*):
 
 - Existing parallel-processing libraries will be used (e.g. Intel's oneTBB),
 - ROOT IO mechanisms will be in place for persisting data,
@@ -189,7 +189,7 @@ From there, we discuss the conceptual design itself in :numref:`Chapter %s <conc
 
 .. only:: not conceptual_design_only
 
-   Supporting material is presented in :numref:`Chapter %s<supporting_design:Supporting design>`.
+   Supporting material is presented in :numref:`Chapter %s<supporting_design:technical design>`.
 
    Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
 

@@ -17,7 +17,7 @@ def missing_reference_handler(app, env, node, contnode):
     if matches:
         print(f"Replacing '{node['reftarget']}' with placeholder text")
         fallback = nodes.inline()
-        fallback += nodes.Text("the subsystem design ")
+        fallback += nodes.Text("the technical design ")
         fallback += nodes.emphasis(text="(under preparation)")
         return fallback
 

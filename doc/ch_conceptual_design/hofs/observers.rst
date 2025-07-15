@@ -31,7 +31,7 @@ Operator Signature
 Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The below shows how the :math:`\textit{histogram\_hits}` operator in :numref:`workflow` would be registered in C++ [#ffilter]_.
+The below shows how the :mathfunc:`histogram_hits` operator in :numref:`workflow` would be registered in C++ [#ffilter]_.
 It uses the :cpp:`resource<histogramming>` interface to provide access to a putative histogramming resource (see :numref:`ch_conceptual_design/resources:Resources`).
 
 .. code:: c++

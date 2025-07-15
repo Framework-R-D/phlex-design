@@ -13,11 +13,11 @@ Windows
 +---------------------------------------+---------------------------------------------------------+----------------------+
 
 One of the unique capabilities of Phlex is to execute an algorithm on data products that belong to adjacent data cells (see :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`).
-The workflow in :numref:`workflow` shows a such a node :math:`\textit{window(make\_tracks)}`, which is presented with pairs of :math:`\textit{GoodHits}` data products, with each data product in the pair belonging to adjacent `APA`\ s.
+The workflow in :numref:`workflow` shows a such a node :mathfunc:`window(make_tracks)`, which is presented with pairs of :product:`GoodHits` data products, with each data product in the pair belonging to adjacent `APA`\ s.
 It is the user-provided :math:`adj` function which determines whether two data cells are adjacent.
 
 For simplicity, imagine that each `APA` identifier (i.e. member of the set :math:`\iset{\text{APA}}`) can be represented as an integer.
-A straightforward :math:`adj` implementation might be to group the :math:`\textit{GoodHits}` data products from `APA`\ s with consecutive numbers:
+A straightforward :math:`adj` implementation might be to group the :product:`GoodHits` data products from `APA`\ s with consecutive numbers:
 
 .. only:: html
 
@@ -86,7 +86,7 @@ The data cell identifers of :cpp:`P1` and :cpp:`P2` are used to determine whethe
 Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The :math:`\textit{window(make\_tracks)}` node in :numref:`workflow` would be represented in C++ as:
+The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represented in C++ as:
 
 .. code:: c++
 

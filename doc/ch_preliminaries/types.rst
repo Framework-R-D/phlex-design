@@ -12,7 +12,7 @@ In a framework context, not all data of type :cpp:`int` (the equivalent to :math
 In this document, the type therefore refers to a mathematical set that includes more than just the programming language's type :cpp:`T`; it can also include various labels that identify which kind of :cpp:`T` is desired.
 
 -----------
-Boolean set
+Boolean Set
 -----------
 
 The Boolean values `true` (:math:`\textsf{T}`) and `false` (:math:`\textsf{F}`) are used frequently in computing.
@@ -54,7 +54,7 @@ The single element of the set :math:`\one` can also be used to represent the val
 When necessary we will refer to that single element as the *null value*, or simply the open-closed parentheses :cpp:`()`.
 
 ---------------------------
-Representing optional types
+Representing Optional Types
 ---------------------------
 
 It is occasionally necessary to represent a "nullable" or "optional" type :math:`\opt{T}`, whose objects either contain a value type :math:`T` or are null.

@@ -22,7 +22,7 @@ where the user-defined operation :math:`f` is applied repeatedly between an accu
 In a framework context, however, multiple fold results are often desired in the same program for the same kind of computation.
 Consider the workflow in :numref:`workflow`, which processes `Spill`\ s, identified by the index :math:`j` or, more specifically, the tuple :math:`(S\ j)`.
 Each `Spill` is unfolded into a family of `APA`\ s, which are identified by the pair of indices :math:`jk` or, more specifically, the tuple :math:`(S\ j, A\ k)`.
-The energies of the :math:`\textit{GoodHits}` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :math:`\textit{fold(sum\_energy)}` node.
+The energies of the :product:`GoodHits` data products in :numref:`workflow` are summed across `APA`\ s per `Spill` using the :mathfunc:`fold(sum_energy)` node.
 
 Instead of creating one fold result, we thus use a *partitioned fold* to create one summed energy data-product per `Spill`:
 
@@ -34,7 +34,7 @@ Instead of creating one fold result, we thus use a *partitioned fold* to create 
               &= \pfold{\textit{sum\_energy}}{\textit{init}}{\textit{into\_spills}}\ [hs_{(S\ 1,\ A\ 1)},\ hs_{(S\ 1,\ A\ 2)},\ \dots,\ hs_{(S\ n,\ A\ 1)},\ hs_{(S\ n,\ A\ 2)},\ \dots]
    \end{align*}
 
-where :math:`E_{(S\ j)}` denotes the :math:`\textit{TotalHitEnergy}` data product for `Spill` :math:`j`, and :math:`hs_{(S\ j,\ A\ k)}` is the :math:`\text{GoodHits}` data product for `APA` :math:`k` in `Spill` :math:`j`.
+where :math:`E_{(S\ j)}` denotes the :product:`TotalHitEnergy` data product for `Spill` :math:`j`, and :math:`hs_{(S\ j,\ A\ k)}` is the :product:`GoodHits` data product for `APA` :math:`k` in `Spill` :math:`j`.
 
 The above equation can be expressed more succinctly as:
 
@@ -56,17 +56,17 @@ Partitions
 
 Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-Partition]_.
 Each subset of the partition is called a *cell*.
-In the above example, the role of the :math:`\textit{into\_spills}` operation is to partition the input family into `Spill`\ s so that there is one fold result per `Spill`.
+In the above example, the role of the :mathfunc:`into_spills` operation is to partition the input family into `Spill`\ s so that there is one fold result per `Spill`.
 In general, however, the partitioning function is of the form :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})`, where:
 
-- the domain is the singleton set that contains only the index set :math:`\iset{c}` (i.e. :math:`\textit{part}` can only be invoked on :math:`\iset{c}`), and
+- the domain is the singleton set that contains only the index set :math:`\iset{c}` (i.e. :mathfunc:`part` can only be invoked on :math:`\iset{c}`), and
 - the codomain is the set of partitions of :math:`\iset{c}` or :math:`\mathbb{P}(\iset{c})`; note that the output index set :math:`\iset{d} \in \mathbb{P}(\iset{c})`.
 
-The function :math:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
+The function :mathfunc:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
 The number of elements in the output family :math:`d` corresponds to the number of partition cells.
 
 As of this writing, the only partitions supported are those that correspond to the names of data cell categories.
-The partition :math:`\textit{into\_spills}` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
+The partition :mathfunc:`into_spills` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
 
 Initializing the Accumulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,12 +75,12 @@ A crucial ingredient of the fold is the *accumulator*, which stores the fold res
 Each accumulator is initialized by invoking a user-defined operation :math:`\textit{init}: \opt{\iset{d}} \rightarrow D`, which returns an object that has the same type :math:`D` as the fold result [#finit]_.
 The :math:`\opt{\iset{d}}` domain means that:
 
-1. :math:`\textit{init}` can receive an argument corresponding to the identifier of a cell, which is a member of the output index set :math:`\iset{d}`.
+1. :mathfunc:`init` can receive an argument corresponding to the identifier of a cell, which is a member of the output index set :math:`\iset{d}`.
    In the example above, the relevant identifier would be that of the `Spill`–i.e. :math:`(S\ j)`.
-2. :math:`\textit{init}` can be invoked with no arguments, thus producing the same value each time the accumulator is initialized.
+2. :mathfunc:`init` can be invoked with no arguments, thus producing the same value each time the accumulator is initialized.
    This is equivalent to initializing the accumulator with a constant value.
 
-The implementation of :math:`\textit{init}` for the total good-hits energy fold results is to return the constant :math:`0`.
+The implementation of :mathfunc:`init` for the total good-hits energy fold results is to return the constant :math:`0`.
 
 Fold Operation
 ^^^^^^^^^^^^^^
@@ -88,11 +88,11 @@ Fold Operation
 A cell's fold result is obtained by repeatedly applying a fold operation to the cell's accumulator and each element of that cell's input family.
 The fold operation has the signature :math:`f: D \times C \rightarrow D`, where :math:`D` represents the type of the accumulator/fold result, and :math:`C` is the type of each element of the input family.
 
-In the above example, the function :math:`\textit{sum\_energy}` receives a floating-point number :math:`E_{(S\ i)}`, representing the accumulated good-hits energy for `Spill` :math:`j` and "combines" it with the good-hits object :math:`hs_{(S\ j,\ A\ k)}` that belongs to `APA` :math:`k` in spill :math:`j`.
-This combination involves calculating the energy represented by the :math:`\textit{GoodHits}` data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.
-This "combined" value is then returned by :math:`\textit{sum\_energy}` as the updated value of the accumulator [#feff]_.
-The function :math:`\textit{sum\_energy}` is repeatedly invoked to update the accumulator with the :math:`\textit{GoodHits}` data product.
-Once all :math:`\textit{GoodHits}` data products in `Spill` :math:`j` have been processed by :math:`\textit{sum\_energy}`, the accumulator's value becomes the fold result for that `Spill`.
+In the above example, the function :mathfunc:`sum_energy` receives a floating-point number :math:`E_{(S\ i)}`, representing the accumulated good-hits energy for `Spill` :math:`j` and "combines" it with the good-hits object :math:`hs_{(S\ j,\ A\ k)}` that belongs to `APA` :math:`k` in spill :math:`j`.
+This combination involves calculating the energy represented by the :product:`GoodHits` data product :math:`hs_{(S\ j,\ A\ k)}` and adding that to the accumulated value.
+This "combined" value is then returned by :mathfunc:`sum_energy` as the updated value of the accumulator [#feff]_.
+The function :mathfunc:`sum_energy` is repeatedly invoked to update the accumulator with the :product:`GoodHits` data product.
+Once all :product:`GoodHits` data products in `Spill` :math:`j` have been processed by :mathfunc:`sum_energy`, the accumulator's value becomes the fold result for that `Spill`.
 
 Operator Signatures
 ^^^^^^^^^^^^^^^^^^^
@@ -121,7 +121,7 @@ A fold algorithm may also create multiple data products by using a :cpp:`result_
 Registration Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The :math:`\textit{fold(sum\_energies)}` node in :numref:`workflow` would be represented in C++ as:
+The :mathfunc:`fold(sum_energies)` node in :numref:`workflow` would be represented in C++ as:
 
 .. code:: c++
 
@@ -145,7 +145,7 @@ Possible solutions include using :cpp:`std::atomic_ref<double>` [#fatomicref]_, 
 
 .. rubric:: Footnotes
 
-.. [#finit] It is acceptable for :math:`\textit{init}` to return a type that is convertible to the accumulator's type.
+.. [#finit] It is acceptable for :mathfunc:`init` to return a type that is convertible to the accumulator's type.
 .. [#feff] Returning an updated accumulated value is generally not the most memory-efficient approach as it requires at least two copies of an accumulated value to be in memory at one time.
            The approach adopted by Phlex is to include a reference to the accumulated value as part of the fold operator's signature.
            The accumulator can then be updated in place, thus avoiding the extra copies of the data.

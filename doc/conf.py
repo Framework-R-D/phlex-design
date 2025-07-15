@@ -37,7 +37,8 @@ extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
               'appendix',
               "missing_references",
-              "sphinx_needs"]
+              "sphinx_needs",
+              "terminology"]
 
 autosectionlabel_prefix_document = True
 numfig = True
