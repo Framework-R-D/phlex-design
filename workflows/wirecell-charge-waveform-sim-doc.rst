@@ -37,10 +37,10 @@ Because the processing we show does not need to span (or, equivalently, *fold ov
    :name: fig-wirecell
    :align: center
 
-Both diagrams use colors to indicate different levels in data cell hierarchies.
-There are three hierarchies represented.
-Each has *TriggerRecord* as the top level.
-The other three data cells (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different hierarchy, below *TriggerRecord*.
+Both diagrams use colors to indicate different levels in the data layer hierarchy.
+The top level of the hierarchy is the *TriggerRecord*.
+Each of the other layers below the *TriggerRecord* is indicated by a different color.
+The three created data cells (*TimeBin*, *DriftBin*, and *ConvolutionBin*) are each in a different layer, below *TriggerRecord*.
 
 The *sim* workflow (comprising the *drift*, *convolve*, *noise* and *digitize* steps) begins with the simulated *Depos* for a trigger record.
 There is one such *Depos* object in each *TriggerRecord*; this object is indicated by an index of the form *ti*  indicating the *ith* *TriggerRecord*.

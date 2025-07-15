@@ -125,7 +125,7 @@ The index set chosen for the sequence depends on the processing needs.
 
 # Data products and sequences
 
-The last concept we will introduce is the *data-product scope*, which refers to the a level in the data hierarchy to which the data-product set belongs (e.g. the "spill").
+The last concept we will introduce is the *data-product scope*, which refers to the a level in the data layer hierarchy to which the data cell belongs (e.g. the "spill").
 
 With these concepts, we can discuss how data products and sequences work together.
 We start by discussing the transform.
@@ -146,7 +146,7 @@ $$
 where each $ts_i \in$ `Tracks` $\wedge$ `"good_tracks"`, each $vs_i \in$ `Vertices` $\wedge$ `"good_vertices"`, and $\iset{\text{spills}}$ as defined above is the index set for both the input and output.
 
 In this case, the *scopes* of the input and output data products are the same--namely, the "spill".
-That is, the data products in question are either retrieved from or inserted into the "spill" level of the data hierarchy.
+That is, the data products in question are either retrieved from or inserted into the "spill" level of the data layer hierarchy.
 
 To fully specify the transform, we thus need:
 
