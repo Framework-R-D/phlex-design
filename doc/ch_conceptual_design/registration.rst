@@ -47,7 +47,7 @@ Specifically, in the registration stanza above, we have the following:
 
    :cpp:`products(...)`
      1. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
-        One of the fields of the data-product specification is the data cell category to which the data products will belong :need:`DUNE 90`.
+        One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
         Phlex does not require the output and input categories to be the same.
 
    :cpp:`transform(...)`
@@ -114,7 +114,7 @@ There are cases, however, where an algorithm needs to operate on data products f
 Data Products from Different Data Categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Consider the operator :math:`\textit{make\_vertices}` in :numref:`workflow` that requires two arguments: the :math:`\textit{GoodTracks}` collection for each APA (data category `APA`), and the detector :math:`\textit{Geometry}` that applies for the entire job (data category `Job`) [#job]_.
+Consider the operator :math:`\textit{make\_vertices}` in :numref:`workflow` that requires two arguments: the :math:`\textit{GoodTracks}` collection for each APA (data layer `APA`), and the detector :math:`\textit{Geometry}` that applies for the entire job (data layer `Job`) [#job]_.
 This would be expressed in C++ as:
 
 .. code:: c++
@@ -132,7 +132,7 @@ where the categories are explicit in the family statement.
 
 Phlex supports such uses cases :need:`DUNE 113`, even if the specified categories are unrelated to each other.
 For example, suppose an algorithm needed to access a data product from a `Spill`, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
-Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. `Calibration`) whose data cells corresponded to intervals of validity.
+Instead of providing a separate mechanism for handling calibration constants, a separate layer could be invented (e.g. `Calibration`) whose data cells corresponded to intervals of validity.
 So long as a relation can be defined between specific `Spill` data cells and specific `Calibration` data cells, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
 How the relation between data cells is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
 
@@ -154,11 +154,11 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     auto selected_data_category = config.get<std::string>("data_category");
+     auto selected_data_layer = config.get<std::string>("data_layer");
 
      products("GoodHits") =
        transform("hit_finder", find_hits, concurrency::unlimited)
-       .family("Waveforms"_in(selected_data_category));
+       .family("Waveforms"_in(selected_data_layer));
    }
 
 .. note::
@@ -214,7 +214,7 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
      auto sigma_threshold = config.get<float>("sigma_threshold");
-     auto selected_data_category = config.get<std::string>("data_category");
+     auto selected_data_layer = config.get<std::string>("data_layer");
 
      products("GoodHits") =
        make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
@@ -253,5 +253,5 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 .. rubric:: Footnotes
 
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
-.. [#job] As shown in :numref:`data-organization`, there is a `Job` data category, to which job-level data products may belong.
+.. [#job] As shown in :numref:`data-organization`, there is a `Job` data layer, to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.

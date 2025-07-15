@@ -88,7 +88,7 @@ Operator Signatures
     +------------------------+------------------------------------------------------------------------------------+
     | :math:`\textit{gen}`   | :cpp:`std::pair<next_type, product_type> function_name(next_type, Rm...) [quals];` |
     +------------------------+------------------------------------------------------------------------------------+
-    | :math:`\textit{label}` | *Name of data-set category of output data products*                                |
+    | :math:`\textit{label}` | *Name of data layer of output data products*                                |
     +------------------------+------------------------------------------------------------------------------------+
 
 The unfold's :cpp:`product_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
@@ -138,7 +138,7 @@ The class is then registered with Phlex via:
          "to_apas",                 // <= Node name for framework
          &to_apas::keep_going,      // <= Unfold predicate
          &to_apas::make_waveforms,  // <= Unfold generator
-         "APA",                     // <= Data category for output data products
+         "APA",                     // <= Data layer for output data products
          concurrency::unlimited     // <= Allowed concurrency
        )
        .family("SimDepos"_in("Spill"));

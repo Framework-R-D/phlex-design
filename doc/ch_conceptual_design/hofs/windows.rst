@@ -40,7 +40,7 @@ There are, at most, :math:`n-1` unique pairs that can be presented to the functi
 
 where the index set :math:`\iset{\text{APA}}'` is :math:`\iset{\text{APA}}` without the last identifier :math:`n` [#flast]_.
 In this example, the identifier of the first :math:`hs` object in the pair is used to identify the tracks collection :math:`ts`.
-But Phlex does not mandate this choice, and a different data category could be specified by the :math:`label` operator for the data products of the output family.
+But Phlex does not mandate this choice, and a different data layer could be specified by the :math:`label` operator for the data products of the output family.
 
 Operator Signatures
 ^^^^^^^^^^^^^^^^^^^
@@ -73,7 +73,7 @@ Phlex supports the function signature whose second argument is an optional type 
     +---------------+------------------------------------------------------------------------------------+
     | :math:`adj`   | :cpp:`bool function_name(<P1 identifier>, <P2 identifier>) [quals];`               |
     +---------------+------------------------------------------------------------------------------------+
-    | :math:`label` | *Name of data-set category of output data products*                                |
+    | :math:`label` | *Name of data layer of output data products*                                |
     +---------------+------------------------------------------------------------------------------------+
 
 The :cpp:`return_type` must model the created data-product type described in :numref:`ch_conceptual_design/algorithms:Return Types`.
@@ -103,7 +103,7 @@ The :math:`\textit{window(make\_tracks)}` node in :numref:`workflow` would be re
          "track_maker",          // <= Node name for framework
          make_tracks,            // <= Window algorithm (f)
          are_adjacent            // <= Adjacency criterion
-         "APA",                  // <= Output data-product category
+         "APA",                  // <= Output data layer
          concurrency::unlimited  // <= Allowed concurrency
        )
        .family("GoodHits"_in("APA"));

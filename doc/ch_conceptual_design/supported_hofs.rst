@@ -12,7 +12,7 @@ Note that the output index set :math:`\iset{\text{output}}` is not necessarily t
 In what follows, a family :math:`[a_i]_{i \in \iset{a}}` will often be represented by a single variable :math:`a`.
 Whether a variable name (e.g. :math:`a`) represents a family or an operation to a higher-order function will be apparent based on context.
 
-Each HOF below also supports the :math:`\textit{label}:\one \rightarrow L` operator, where the output data cell category is user-specifiable.
+Each HOF below also supports the :math:`\textit{label}:\one \rightarrow L` operator, where the output data layer is user-specifiable.
 The :math:`\textit{label}` operator is explicitly mentioned only for those HOFs that require it–i.e. :math:`\text{unfold}` and :math:`\text{window}` [#label]_.
 
 .. toctree::

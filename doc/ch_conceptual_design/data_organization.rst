@@ -11,7 +11,7 @@ Data product types are the programming language representations of conceptual da
 A data layer is an experiment-defined level of aggregation of data products.
 Some example data layers are run, subrun, spill, and an interval of validity for some flavor of calibration.
 Each Phlex job includes a `Job` data layer at the top of the data layer hierarchy.
-A data cell is a collection of data products, associated with a data set category.
+A data cell is a collection of data products, associated with a data layer.
 A data cell family is a family of data cells that are in the same data layer.
 The `Job` layer always includes a single data cell.
 :numref:`data-organization` illustrates the relationships between all of these.
@@ -83,7 +83,7 @@ The data products created by an algorithm are associated with metadata that iden
 Such metadata include:
 
 - the *creator*, the name of the algorithm that created the data product
-- an identifier for the *data cells* with which the data product is associated (e.g. *spill*, *run*, *calibration interval*, or other experiment-defined category)
+- an identifier for the *data cells* with which the data product is associated (e.g. *spill*, *run*, *calibration interval*, or other experiment-defined layer)
 - the *processing phase*, an identifier for the job in which the data product was created
 - an individual *name* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
 
