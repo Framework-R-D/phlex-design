@@ -78,7 +78,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
 **Transform with two arguments (default output product name)**
 
-*As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`
+*As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`
 
 .. code:: c++
 

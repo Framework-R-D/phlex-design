@@ -21,14 +21,13 @@ git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).de
 version = "0"
 
 # For releases for circulation use:
-# release = "0.1"
+# release = "0.2"
 # latex_filename = f"phlex-design-v{release}.tex"
 
 # For development use
 release_base = "0.2.alpha"
 latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
 release = f"{release_base} ({git_commit})"
-
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -40,6 +39,8 @@ extensions = ['sphinx.ext.graphviz',
               "sphinx_needs",
               "terminology"]
 
+# Unfortunately, using 'svg' as the graphviz output format creates oddly placed subscripts in the graphs.
+# graphviz_output_format = "svg"
 autosectionlabel_prefix_document = True
 numfig = True
 numfig_format = {

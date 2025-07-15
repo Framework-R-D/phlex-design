@@ -78,7 +78,7 @@ When member functions are required, the qualifier :cpp:`const` should be specifi
 .. [#f1] In C++, the function signature corresponds to the function *declaration* [Cpp-Function]_, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
          However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
-         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
+         However, using such member functions is highly discouraged as it indicates that a class instance is modifiable during member-function execution, thus placing significant demands on the code author to ensure thread-safe code execution (see :numref:`ch_preliminaries/functional_programming:Pure Functions`).
 
 .. only:: html
 

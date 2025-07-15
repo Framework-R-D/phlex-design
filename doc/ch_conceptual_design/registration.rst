@@ -46,7 +46,7 @@ Specifically, in the registration stanza above, we have the following:
    :cpp:`products(...)`
      1. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
         One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
-        Phlex does not require the output and input categories to be the same.
+        Phlex does not require the output and input data layers to be the same.
 
    :cpp:`transform(...)`
      Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
@@ -110,8 +110,8 @@ There are cases, however, where an algorithm needs to operate on data products f
    The number of arguments presented to the :cpp:`family(...)` clause must match the number of input parameters to the registered algorithm.
    The order of the :cpp:`family(...)` arguments also corresponds to the order of the algorithm's input parameters.
 
-Data Products from Different Data Categories
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Data Products from Different Data Layers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Consider the operator :math:`\textit{make\_vertices}` in :numref:`workflow` that requires two arguments: the :math:`\textit{GoodTracks}` collection for each APA (data layer `APA`), and the detector :math:`\textit{Geometry}` that applies for the entire job (data layer `Job`) [#job]_.
 This would be expressed in C++ as:
@@ -127,9 +127,9 @@ This would be expressed in C++ as:
        .family("GoodHits"_in("APA"), "Geometry"_in("Job"));
    }
 
-where the categories are explicit in the family statement.
+where the data layers are explicit in the family statement.
 
-Phlex supports such uses cases :need:`DUNE 113`, even if the specified categories are unrelated to each other.
+Phlex supports such uses cases :need:`DUNE 113`, even if the specified data layers are unrelated to each other.
 For example, suppose an algorithm needed to access a data product from a `Spill`, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
 Instead of providing a separate mechanism for handling calibration constants, a separate layer could be invented (e.g. `Calibration`) whose data cells corresponded to intervals of validity.
 So long as a relation can be defined between specific `Spill` data cells and specific `Calibration` data cells, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
@@ -227,7 +227,7 @@ The :cpp:`hit_finder::find` member function's address is registered in the :cpp:
 
 .. note::
 
-  Algorithm authors should first attempt to implement algorithms as free functions.
+  Algorithm authors should first attempt to implement algorithms as free functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`).
   Registering class instances and their member functions with the framework should only be considered when:
 
   - multiple processing steps must work together, relying on shared internal data, or

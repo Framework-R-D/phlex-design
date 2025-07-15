@@ -45,8 +45,8 @@ Definitions
         A data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
         Data products determine the flow of execution of the graph of CHOFs configured in a framework program.
 
-    Data cell [#data-set]_
-        A grouping of data products that is identifiable by the framework.
+    Data cell
+        A grouping of data products that is identifiable by the framework [#data-set]_.
 
         Each data cell has has a data layer label, which indicates the type of the data cell.
         All the data cells of a given data layer are of the same type.

@@ -55,7 +55,7 @@ Partitions
 ^^^^^^^^^^
 
 Factorizing a set of data into non-overlapping subsets that collectively span the entire set is called creating a set *partition* [Wiki-Partition]_.
-Each subset of the partition is called a *cell*.
+Each subset of the partition is called a *cell* [#fcell]_.
 In the above example, the role of the :mathfunc:`into_spills` operation is to partition the input family into `Spill`\ s so that there is one fold result per `Spill`.
 In general, however, the partitioning function is of the form :math:`\textit{part}: \{\iset{c}\} \rightarrow \mathbb{P}(\iset{c})`, where:
 
@@ -65,7 +65,7 @@ In general, however, the partitioning function is of the form :math:`\textit{par
 The function :mathfunc:`part` also establishes an equivalence relationship on the index set :math:`\iset{c}`, where each element of the index set is mapped to a cell of the partition.
 The number of elements in the output family :math:`d` corresponds to the number of partition cells.
 
-As of this writing, the only partitions supported are those that correspond to the names of data cell categories.
+As of this writing, the only partitions supported are those that correspond to the names of data layers.
 The partition :mathfunc:`into_spills` can thus be represented by the string :cpp:`"Spill"`, which denotes that there is one partition spell per `Spill`.
 
 Initializing the Accumulator
@@ -145,6 +145,7 @@ Possible solutions include using :cpp:`std::atomic_ref<double>` [#fatomicref]_, 
 
 .. rubric:: Footnotes
 
+.. [#fcell] The term :term:`data cell` used elsewhere in this document is intended to closely reflect the concept of the partition cell.
 .. [#finit] It is acceptable for :mathfunc:`init` to return a type that is convertible to the accumulator's type.
 .. [#feff] Returning an updated accumulated value is generally not the most memory-efficient approach as it requires at least two copies of an accumulated value to be in memory at one time.
            The approach adopted by Phlex is to include a reference to the accumulated value as part of the fold operator's signature.

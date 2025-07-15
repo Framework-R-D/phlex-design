@@ -34,10 +34,14 @@ According to Wikipedia [Wiki-Pure]_, a pure function has the following propertie
 - the function return values are identical for identical arguments, and
 - the function has no side effects.
 
-The composition of pure functions is also a pure function.
-For example, assuming the functions :math:`f` and :math:`g` above are pure, then the composite function :math:`h` will also be pure.
+Phlex therefore encourages the use of pure functions for creating of :term:`reproducible` data products, a principle of the framework philosophy as discussed in :numref:`introduction:Framework philosophy`.
 
-Using pure functions to create data products ensures :term:`reproducibility <reproducible>`, as discussed in the framework philosophy in :numref:`introduction:Framework philosophy`.
+.. admonition:: Favor free functions
+
+    Functions can additionally be classified as *free functions* or *member functions* (or *instance methods*).
+    Whereas free functions have only explicit input parameters, member functions are bound to objects with internal state that is accessible as an implicit function parameter.
+    Both kinds of functions can be useful, but authors of classes must exercise special care to ensure that a class instance's member functions can be safely invoked in concurrent contexts.
+    For this reason, framework users should favor the use of free functions over classes and their member functions.
 
 Challenges with Functional Programming
 --------------------------------------
@@ -45,7 +49,7 @@ Challenges with Functional Programming
 One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
 We argue, though, that physicists often think in terms of functional programming when developing the high-level processing steps of a workflow.
-It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
+It is not until those processing steps need to be implemented that the functional steps are often translated into *procedural* ones.
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
 By leveraging commonly used processing patterns (see :numref:`ch_preliminaries/functional_programming:Families of Data and higher-order functions` on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
@@ -73,8 +77,7 @@ In particular, the arithmetic mean above can be expressed as:
 where the fold accepts a binary operator (:math:`+` in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the family.
 
 The fold is an example of a *higher-order function* (HOF) [Wiki-HOF]_ that accepts a family and an operator applied in some way to elements of that family.
-
-Additional HOFs exist---for example, suppose the family :math:`\fami{c}` was created by applying a function :math:`w: E \rightarrow C` to each element of a family :math:`\fami{e}`.
+However, additional HOFs exist---for example, suppose the family :math:`\fami{c}` was created by applying a function :math:`w: E \rightarrow C` to each element of a family :math:`\fami{e}`.
 Such a HOF is called a map or *transform*:
 
 .. math::
@@ -88,20 +91,6 @@ In such a scenario, the average :math:`\overline{c}` could be expressed as:
 The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
 The operator to this single fold is ':math:`+ \comp w`', indicating that the function :math:`w` should be applied first before invoking the :math:`+` operation.
 Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.
-
-A calculation is then generally expressed in terms of:
-
-1. The HOFs to be used (:math:`\mbox{fold}`, :math:`\mbox{transform}`, etc.)
-2. The operation to be used by each HOF (:math:`+`, :math:`w`, etc.)
-3. The family(s) of data on which the HOFs are to be applied.
-
-Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.
-
-.. index:: Algorithm
-
-Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
-As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
-Phlex will likely support other higher order functions as well.
 
 .. _hofs_in_phlex:
 
@@ -139,6 +128,18 @@ Phlex will likely support other higher order functions as well.
    |                                                                                   |                                        +-------------------------------------------------------------+                           |
    |                                                                                   |                                        | :math:`label: \one \rightarrow L`                           |                           |
    +-----------------------------------------------------------------------------------+----------------------------------------+-------------------------------------------------------------+---------------------------+
+
+A calculation using a HOF is then generally expressed in terms of:
+
+1. The HOF to be used (:math:`\text{fold}`, :math:`\text{transform}`, etc.)
+2. The operator(s) to be used by each HOF (:math:`+`, :math:`w`, etc.)
+3. The family (or families) of data on which the HOFs are to be applied.
+
+.. index:: Algorithm
+
+Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
+As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
+Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes
 

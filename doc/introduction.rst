@@ -78,13 +78,13 @@ The Phlex design therefore:
 Flexibility
 -----------
 
-Physics results in HEP are obtained by processing families of data and making statistical statements from them.
-Each element of a sequence generally contains the data corresponding to one readout of the detector.
-The sequence elements are often termed "events", which are treated as statistically independent observations of physics processes.
+Physics results in HEP are obtained by processing large collections of data and making statistical statements from them.
+Each element of a collection generally contains the data corresponding to one readout of the detector.
+Such elements are often termed "events", which are treated as statistically independent observations of physics processes.
 It is common for experiments to define larger aggregations of data by grouping events into subruns (or, for LHC experiments, luminosity blocks), and by further grouping subruns into runs.
 These larger aggregations are typically defined according to when certain detector calibrations or accelerator beam parameters were applied.
 
-Although frameworks supporting the *run-subrun-event* (RSE) hierarchy have proved effective and flexible enough for collider-based experiments, the RSE hierarchy is not always appropriate:
+Although frameworks supporting the `Run`\ -\ `Subrun`\ -\ `Event` (RSE) hierarchy have proved effective and flexible enough for collider-based experiments, the RSE hierarchy is not always appropriate:
 
 - simulated data often do not need to be processed with an RSE hierarchy; a flat hierarchy (e.g. only the "event") is usually sufficient,
 - framework interface is often explicitly couched in RSE terminology, making it difficult to apply to non-collider contexts, where a different data-grouping may be more appropriate (e.g. time slices for extended readout windows, each of which correspond to one "event"),

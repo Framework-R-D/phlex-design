@@ -8,8 +8,7 @@ The simplified expression for doing this was the chained application of two func
    ts = g\ (f\ ws) = (g \comp f)\ ws
 
 where :math:`ws` and :math:`ts` are the wires and tracks, respectively.
-
-An alternative representation to the equational form is a *directed graph*
+An alternative representation is a *directed graph*
 
 .. graphviz:: functional-programming-data-flow.gv
    :align: center
@@ -21,14 +20,13 @@ Some observations:
 
 - The function :math:`f` returns hits that are unlabeled in the equational form.
   For the graph above, we explicitly label those hits as :math:`hs` to emphasize that data are always passed along edges.
-  If, however, the hits are not needed by any other function in the graph, the two functions :math:`f` and :math:`g` can be replaced by their composition :math:`h=g \circ f`
+  If, however, the hits are not needed by any other function in the graph, the two functions :math:`f` and :math:`g` can be replaced by their composition :math:`h=g \circ f`, resulting in potential performance improvements in computational efficiency and program memory usage.
 
   .. graphviz:: functional-programming-data-flow-optimized.gv
      :align: center
 
-  resulting in potential performance improvements in computational efficiency and program memory usage.
 
-- A directed graph can have no unterminated edges---i.e. an edge must have a source (the tail of the arrow) and a target (the head of the arrow).
+- Each edge of a directed graph must have a source (the tail of the arrow) and a target (the head of the arrow).
   This means that whereas the equation does not need to specify where the :math:`ws` wires originate (or where the :math:`ts` tracks end up), such locations must be specified in the graph.
   Any node that has only outgoing edges is called a *source* (denoted by a solid dot), and any node that has only incoming edges is a *sink* (denoted by an encircled solid dot).
 
@@ -38,7 +36,7 @@ Data Flow with Families
 As mentioned earlier in :numref:`ch_preliminaries/functional_programming:Families of Data and higher-order functions`, processing families of data is a critical aspect of obtaining physics results.
 The data-flow discussion in the previous section naturally maps to applying the functions :math:`f` and :math:`g` to elements of families.  Specifically [#f2]_:
 
-- Instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts` being passed along the edges, the families :math:`\fami{ws}`, :math:`\fami{hs}`, and :math:`\fami{ts}` are passed.
+- The families :math:`\fami{ws}`, :math:`\fami{hs}`, and :math:`\fami{ts}` are passed along the edges instead of the individual objects :math:`ws`, :math:`hs`, and :math:`ts`.
 - The functions :math:`f` and :math:`g` map to :math:`\transform{f}` and :math:`\transform{g}`, respectively.
 
 .. graphviz:: functional-programming-data-flow-hof.gv
@@ -91,8 +89,7 @@ The vast majority of graphs included in this design document adopt the family-ba
 
 .. rubric:: Footnotes
 
-.. [#f1] Treating functions as nodes and data as edges is a function-centric view of the graph.
-         It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the *line digraph* of the function-centric graph.
+.. [#f1] It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; such an approach yields a data-centric graph, which is the *line digraph* of the function-centric graph shown above.
 .. [#f2] In Haskell (and, similarly, in category theory), this transformation is achieved through the `List/fmap` functor.
 .. [#f3] The same data flow can equivalently be represented with an unfold that uses the predicate :math:`less\_than\_or\_equal\_to\_n` and the operator :math:`\textit{increment}`, but starts with an initial value of :math:`1`.
          This other representation, however, requires an unfold predicate that depends on the value of :math:`n`.

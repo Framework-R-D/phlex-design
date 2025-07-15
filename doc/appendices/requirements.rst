@@ -260,7 +260,7 @@ Conceptual requirements
 
     The framework shall support access to external data sources.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`, :numref:`ch_conceptual_design/resources:Resources`
+- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`, :numref:`ch_conceptual_design/resources:Resources`
 
 .. req:: Calibration database algorithms
     :collapse:
@@ -508,7 +508,7 @@ Conceptual requirements
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data families.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`
+- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`
 
 .. req:: Specification of algorithm output FPUs
     :collapse:
