@@ -21,13 +21,13 @@ git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).de
 version = "0"
 
 # For releases for circulation use:
-# release = "0.2"
-# latex_filename = f"phlex-design-v{release}.tex"
+release = "0.2"
+latex_filename = f"phlex-design-v{release}.tex"
 
 # For development use
-release_base = "0.2.alpha"
-latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
-release = f"{release_base} ({git_commit})"
+# release_base = "0.2.alpha"
+# latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
+# release = f"{release_base} ({git_commit})"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -91,10 +91,11 @@ extra_packages = r"""
 """
 
 # "For DUNE Review", use scale=7 for watermark
+# "For Review", use scale=10.5 for watermark
 
 preliminary_watermark = r"""
 \usepackage[angle=30,color=lightgray]{background}
-\backgroundsetup{contents={Preliminary}}"""
+\backgroundsetup{scale=10.5, contents={For Review}}"""
 
 new_commands = r"""
 \newcommand\lt[0]{<}
