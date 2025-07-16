@@ -42,7 +42,7 @@ Various framework aspects are demonstrated by that figure:
 
       - An *unfold* HOF is configured to create a family of :product:`Waveforms` objects—creating one :product:`Waveforms` object per `APA`—from one :product:`SimDeps` data product in each `Spill`.
       - A configured *transform* HOF is run on the family of :product:`Waveforms` objects to create a family of :product:`GoodHits` objects.
-      - To make a :product:`GoodTracks` data product, a *window* algorithm is applied to pairs of :product:`GoodHits` objects that come from adjacent *APA*\ s.
+      - To make a :product:`GoodTracks` data product, a *window* algorithm is applied to pairs of :product:`GoodHits` objects that come from adjacent `APA`\ s.
       - Lastly, another *transform* algorithm operates on the :product:`GoodTracks` data products to produce vertices.
 
       There are additional parts of the graph that are not directly related to creating vertices:
@@ -60,7 +60,7 @@ Various framework aspects are demonstrated by that figure:
 
       The histogramming resource in :numref:`workflow` enables the *observe* algorithm to fill and write histograms to a ROOT analysis file.
 
-Note that in this workflow, the names *Spill* and *APA* are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
+Note that in this workflow, the names `Spill` and `APA` are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data cell (e.g. :math:`\textit{GoodHits}_{3,5,9}` denotes the :product:`GoodHits` data product belonging to `APA` :math:`9` of `Spill` :math:`5` of `Run` :math:`3`).
 
 .. graphviz:: work-flow.gv

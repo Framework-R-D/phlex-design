@@ -15,7 +15,7 @@ Filtering is of interest only when there is a downstream node that can receive t
 Therefore, Phlex will not schedule a filter for execution if the only nodes downstream of it are other filters or predicates.
 
 Filtering can be applied to the input data-product families of any HOFs without explicitly registering a filter HOF.
-This is done through a *predicate expression*, which is a stringized form of the predicate :math:`\phi` that is applied to the input data family, retaining only the elements that satisfy the predicate.
+This is done through a *predicate expression*, which is a stringized form of the predicate :math:`\phi` that is applied to the input data-product family, retaining only the elements that satisfy the predicate.
 
 Predicate Expression
 ^^^^^^^^^^^^^^^^^^^^

@@ -1,18 +1,18 @@
 Data Organization
 =================
 
-This section provides a conceptual overview of *data products*, *data cells*, *data layers*, and *data layer hierarchies*, as defined in :need:`DUNE 85` :need:`DUNE 86` :need:`DUNE 87` :need:`DUNE 88`.
-In addition, we discuss *data product families* and *data cell families*.
+This section provides a conceptual overview of *data products*, *data cells*, *data layers*, and *data-layer hierarchies*, as defined in :need:`DUNE 85` :need:`DUNE 86` :need:`DUNE 87` :need:`DUNE 88`.
+In addition, we discuss *data-product families* and *data-cell families*.
 This section aims to establish a mental model for how all of these concepts facilitate scientific workflows without delving into implementation specifics.
 
 Data products represent things like raw detector readouts, calibration information, and derived physics quantities. :need:`DUNE 40`.
 We call these kinds of things represented by data products *conceptual data products*.
 Data product types are the programming language representations of conceptual data products.
 A data layer is an experiment-defined level of aggregation of data products.
-Some example data layers are run, subrun, spill, and an interval of validity for some flavor of calibration.
-Each Phlex job includes a `Job` data layer at the top of the data layer hierarchy.
+Some example data layers are `Run`, `Subrun`, `Spill`, and an interval of validity for some flavor of calibration.
+Each Phlex job includes a `Job` data layer at the top of the data-layer hierarchy.
 A data cell is a collection of data products, associated with a data layer.
-A data cell family is a family of data cells that are in the same data layer.
+A data-cell family is a family of data cells that are in the same data layer.
 The `Job` layer always includes a single data cell.
 :numref:`data-organization` illustrates the relationships between all of these.
 
@@ -20,10 +20,10 @@ The `Job` layer always includes a single data cell.
    :caption: The data organization corresponding to part of :numref:`workflow`.
              The framework-provided `Job` data layer and three different user-defined (not special to the Phlex framework) data layers are shown: `Run`, `Spill`, and `APA`.
              Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data cells.
-             The pale green rectangles show two data cell families; these are identified as families because they are the result of executing the :mathfunc:`unfold(into_apas)` node shown in :numref:`workflow`.
+             The pale green rectangles show two data-cell families; these are identified as families because they are the result of executing the :mathfunc:`unfold(into_apas)` node shown in :numref:`workflow`.
              A solid line from one data cell to another data cell represents a logical association between the two data cells.
              The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data cell :math:`\textsf{APA}_{1,1,1}`, etc.
-             Each pale purple rectangle indicates the data product family created by unfolding each :product:`SimDepos` object as shown in :numref:`workflow`.
+             Each pale purple rectangle indicates the data-product family created by unfolding each :product:`SimDepos` object as shown in :numref:`workflow`.
    :name: data-organization
 
 In :numref:`data-organization`, the `Run` data layer exists, but as no algorithm in :numref:`workflow` requires any data products from a `Run` data cell, the framework does not create any data-cell families corresponding to the `Run`.
@@ -82,7 +82,7 @@ The data products created by an algorithm are associated with metadata that iden
 Such metadata include:
 
 - the *creator*, the name of the algorithm that created the data product
-- an identifier for the *data cells* with which the data product is associated (e.g. *spill*, *run*, *calibration interval*, or other experiment-defined layer)
+- an identifier for the *data cells* with which the data product is associated (e.g. `Spill`, `Run`, `Calibration Interval`, or other experiment-defined layer)
 - the *processing phase*, an identifier for the job in which the data product was created
 - an individual *name* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
 

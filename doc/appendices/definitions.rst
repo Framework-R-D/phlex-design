@@ -26,18 +26,18 @@ Definitions
     Data layer
         A group of data cells each of which has the same data layer label.
 
-        A data layer is one node in a data layer hierarchy.
-        The top layer of the graph is always the *Job*.
+        A data layer is one node in a data-layer hierarchy.
+        The top layer of the graph is always the `Job`.
         All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
-        By contrast, in *art* the data layers are *Run*, *SubRun*, and *Event*.
+        By contrast, in *art* the data layers are `Run`, `Subrun`, and `Event`.
 
-    Data layer hierarchy
+    Data-layer hierarchy
         A hierarchy of data layers.
 
-        A data layer hierarchy is an acyclic graph of relationships of logical containment.
-        The top layer of the hierarchy is always the *Job*.
+        A data-layer hierarchy is an acyclic graph of relationships of logical containment.
+        The top layer of the hierarchy is always the `Job`.
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
-        In *art*, the data layer hierarchy is *Run*-*SubRun*-*Event*.
+        In *art*, the data-layer hierarchy is `Run`\ -\ `Subrun`\ -\ `Event`.
 
     Data product
         An object managed by the framework and for which provenance information is recorded.
@@ -51,12 +51,12 @@ Definitions
         Each data cell has has a data layer label, which indicates the type of the data cell.
         All the data cells of a given data layer are of the same type.
         All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
-        In *art*, individual *Run* objects, *SubRun* objects and *Event* objects are examples of data cells.
+        In *art*, individual `Run` objects, `Subrun` objects and `Event` objects are examples of data cells.
 
     .. The framework ecosystem is referenced in one of the requirements, so it's included in the glossary for even the conceptual design
 
     Framework ecosystem
-        Ensemble of software delivered with the application framework.
+        The ensemble of software delivered with the application framework.
 
     Index set
         A mathematical set that provides the indexes of an indexed family.
@@ -77,20 +77,16 @@ Definitions
     Module
         A compiled library that is dynamically loadable by the framework.
 
-    Parentage
-        The set of unique identifiers of each ancestral datum.
-
-    Persistable data product
-        A data product that can be read from and written to persistent storage.
-
     Provenance
-        A description of how the data at issue were produced (parentage, configuration, library versions, and other information as specified by requirements).
+        A description of how the data were produced.
+
+        Examples include product parentage, job configuration, and library versions.
 
     Reproducible
         Identical inputs produce identical results.
 
     Resource
-        A non-data software or hardware component managed by the program that can be required by algorithms.
+        A non-data software or hardware component managed by the program that can be used by algorithms.
 
         Examples include:
 
@@ -123,6 +119,12 @@ Definitions
             A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
 
             The data model also specifies the mechanism for reading and writing persistable data products.
+
+        Parentage
+            The set of unique identifiers of each ancestral datum.
+
+        Persistable data product
+            A data product that can be read from and written to persistent storage.
 
 .. rubric:: Footnotes
 

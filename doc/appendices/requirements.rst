@@ -219,7 +219,7 @@ Conceptual requirements
     :jama: 88 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
-    :notes: This document uses "data layer hierarchies" rather than "data family hierarchies".
+    :notes: This document uses "data-layer hierarchies" rather than "data-family hierarchies".
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
