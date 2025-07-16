@@ -1,5 +1,5 @@
 ===============================
-Topology of the data-flow graph
+Topology of the Data-Flow Graph
 ===============================
 
 The graph shown in :numref:`workflow` is a close reflection of the graph used for scheduling algorithm execution.  It is formed from multiple ingredients, the most crucial of which is the program configuration (see :numref:`ch_conceptual_design/program_configuration:Program configuration`).
