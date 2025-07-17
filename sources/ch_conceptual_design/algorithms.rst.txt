@@ -1,7 +1,7 @@
 Algorithms
 ==========
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:Sequences of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
+As mentioned in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
 In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for a list of supported HOFs):
 
 .. code:: c++
@@ -15,9 +15,10 @@ Each registered function must accept at least one data product.
 The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.
 The latter is good practice regardless and commonly required by Python coding conventions:
 
+.. rstcheck: ignore-next-code-block
 .. code:: python
 
-   def function_name(p1: P1, pn: Pn..., rm: Rm) -> return_type:
+   def function_name(p1: P1, pn: Pn..., rm: Rm...) -> return_type:
 
 We will first discuss the data-product and resource types in :numref:`ch_conceptual_design/algorithms:Input parameters`, followed by the return types in :numref:`ch_conceptual_design/algorithms:Return types`, and then the function name and optional qualifers in :numref:`ch_conceptual_design/algorithms:Function names and qualifiers`.
 
@@ -77,7 +78,7 @@ When member functions are required, the qualifier :cpp:`const` should be specifi
 .. [#f1] In C++, the function signature corresponds to the function *declaration* [Cpp-Function]_, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
          However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
-         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
+         However, using such member functions is highly discouraged as it indicates that a class instance is modifiable during member-function execution, thus placing significant demands on the code author to ensure thread-safe code execution (see :numref:`ch_preliminaries/functional_programming:Pure Functions`).
 
 .. only:: html
 

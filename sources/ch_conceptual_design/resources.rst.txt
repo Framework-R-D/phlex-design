@@ -10,7 +10,7 @@ As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typica
 where the types :cpp:`P1, Pn...` represent data products, and the types :cpp:`Rm...` represent resources.
 
 .. note::
-  Phlex calls *resources* the object that can be used by an algorithm to let the framework know that the algorithm requires access to a shared entity which is not semantically related to the data-product set hierarchy.
+  Phlex calls *resources* the objects that can be used by an algorithm to notify the framework that the algorithm requires access to a shared entity that is not semantically related to the data-layer hierarchy.
   Note that in the requirements that the word "resource" is sometimes used in a more general sense.
   In this section we are only referring to the specific kind of resource described above.
 

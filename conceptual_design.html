@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.1 documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=2709fde1"></script>
+    <script src="static/documentation_options.js?v=10f1778b"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -69,41 +69,41 @@
 <p class="admonition-title">Purpose</p>
 <p>The conceptual design is not a reference manual; it is a high-level description of how the framework aims to satisfy the stakeholder requirements (see <a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).
 The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
-More detailed design aspects in support of the conceptual model are given in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+More detailed design aspects in support of the conceptual model are given in <span>the technical design <em>(under preparation)</em></span>.</p>
 </div>
-<p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>.
+<p>Phlex adopts the data-flow approach discussed in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-families"><span class="std std-numref">Section 2.6.1</span></a>.
 Instead of expressing scientific workflows as monolithic functions to be executed, workflows are factorized into composable algorithms that operate on data products passed among them <a class="reference internal" href="appendices/requirements.html#DUNE 1" title="DUNE 1"><em class="xref need">[DUNE 1]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 111" title="DUNE 111"><em class="xref need">[DUNE 111]</em></a>, <a class="reference internal" href="appendices/requirements.html#DUNE 20" title="DUNE 20"><em class="xref need">[DUNE 20]</em></a>.
-These algorithms then serve as operators to higher-order functions (HOFs) that operate on <em>data-product sequences</em>.</p>
+These algorithms then serve as operators to higher-order functions (HOFs) that operate on <em>data-product families</em>.</p>
 <p>To guide the discussion of Phlex’s conceptual model, we refer to <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>, which shows a small fictitious workflow that creates vertices from simulated energy deposits.
 Various framework aspects are demonstrated by that figure:</p>
 <blockquote>
 <div><dl>
 <dt><em>data-flow graph</em></dt><dd><p>The data-flow graph is formed by ingesting the configuration file and recording the data-product dependencies required of each algorithm (see <a class="reference internal" href="ch_conceptual_design/scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>).</p>
 </dd>
-<dt><em>data-product flow</em></dt><dd><p>Data products and data-product sets (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>) are passed along graph edges.
-As mentioned in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences"><span class="std std-numref">Section 2.6.1</span></a>, the data passed between HOFs are expressed as sequences.
-<a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> thus formally passes sequences (e.g. <span class="math notranslate nohighlight">\([\text{GoodHits}_{jk}]\)</span>) between nodes <a class="footnote-reference brackets" href="#flow" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
+<dt><em>data-product flow</em></dt><dd><p>Data products (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>) are passed along graph edges.
+As mentioned in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-families"><span class="std std-numref">Section 2.6.1</span></a>, the data passed between HOFs are expressed as families.
+<a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> thus formally passes families (e.g. <span class="math notranslate nohighlight">\([\textit{GoodHits}_{ijk}]\)</span>) between nodes <a class="footnote-reference brackets" href="#flow" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 </dd>
 <dt><em>framework driver</em></dt><dd><p>The driver instructs the framework what to process (see <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>).</p>
 <p>The driver in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is configured so that all <cite>Spill</cite>s in the specified ROOT input files are processed.</p>
 </dd>
 <dt><em>data-product providers</em></dt><dd><p>Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>).
-From a functional-programming perspective, they are transforms that map a data-product set to the data product within that set.</p>
-<p>In the workflow, one provider reads a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDepos</span></code> data product from each <cite>Spill</cite> in the ROOT input files, and the other reads a single <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Geometry</span></code> corresponding to the <cite>Job</cite> from a GDML file.</p>
+From a functional programming perspective they are transforms that map a data cell to one of the data products within that data cell.</p>
+<p>In the workflow, one provider reads a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product from each <cite>Spill</cite> in the HDF5 input files, and the other reads a single <span class="math notranslate nohighlight">\(\textit{Geometry}\)</span> corresponding to the <cite>Job</cite> from a GDML file.</p>
 </dd>
 <dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
 <p>All seven HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 For the main processing chain of creating vertices:</p>
 <ul class="simple">
-<li><p>An <em>unfold</em> algorithm is configured to create a sequence of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> objects—creating one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> object per <em>APA</em>—from one <code class="code highlight c++ docutils literal highlight-c++"><span class="n">SimDeps</span></code> data product in each <cite>Spill</cite>.</p></li>
-<li><p>A <em>transform</em> algorithm is run on each <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Waveforms</span></code> objects to create a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> object.</p></li>
-<li><p>To make a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodTracks</span></code> data product, a <em>window</em> algorithm is applied to pairs of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> objects that come from adjacent <em>APA</em>s.</p></li>
-<li><p>Lastly, another <em>transform</em> algorithm operates on the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodTracks</span></code> data products to produce vertices.</p></li>
+<li><p>An <em>unfold</em> HOF is configured to create a family of <span class="math notranslate nohighlight">\(\textit{Waveforms}\)</span> objects—creating one <span class="math notranslate nohighlight">\(\textit{Waveforms}\)</span> object per <cite>APA</cite>—from one <span class="math notranslate nohighlight">\(\textit{SimDeps}\)</span> data product in each <cite>Spill</cite>.</p></li>
+<li><p>A configured <em>transform</em> HOF is run on the family of <span class="math notranslate nohighlight">\(\textit{Waveforms}\)</span> objects to create a family of <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> objects.</p></li>
+<li><p>To make a <span class="math notranslate nohighlight">\(\textit{GoodTracks}\)</span> data product, a <em>window</em> algorithm is applied to pairs of <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> objects that come from adjacent <cite>APA</cite>s.</p></li>
+<li><p>Lastly, another <em>transform</em> algorithm operates on the <span class="math notranslate nohighlight">\(\textit{GoodTracks}\)</span> data products to produce vertices.</p></li>
 </ul>
 <p>There are additional parts of the graph that are not directly related to creating vertices:</p>
 <ul class="simple">
-<li><p>A <em>fold</em> algorithm is executed over the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products to sum the hit energy (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">TotalHitEnergy</span></code>) across all <cite>APA</cite>s for a given <cite>Spill</cite>.</p></li>
-<li><p>After a <em>filter</em> has been applied with the <em>predicate</em> <code class="code highlight c++ docutils literal highlight-c++"><span class="n">high_energy</span></code>, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data products.</p></li>
+<li><p>A <em>fold</em> algorithm is executed over the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products to sum the hit energy (i.e. <span class="math notranslate nohighlight">\(\textit{TotalHitEnergy}\)</span>) across all <cite>APA</cite>s for a given <cite>Spill</cite>.</p></li>
+<li><p>After a <em>filter</em> has been applied with the <em>predicate</em> <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products.</p></li>
 </ul>
 </dd>
 <dt><em>data-product writers</em></dt><dd><p>Data-product writers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>)</p>
@@ -114,10 +114,10 @@ For the main processing chain of creating vertices:</p>
 </dd>
 </dl>
 </div></blockquote>
-<p>Note that in this workflow, the names <em>Spill</em> and <em>APA</em> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
-Each data product is also indexed, thus associating it with a particular data-product set (e.g. <span class="math notranslate nohighlight">\(\text{GoodHits}_{mn}\)</span> denotes the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">GoodHits</span></code> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(n\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(m\)</span>).</p>
+<p>Note that in this workflow, the names <cite>Spill</cite> and <cite>APA</cite> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
+Each data product is also indexed, thus associating it with a particular data cell (e.g. <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> denotes the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(9\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(5\)</span> of <cite>Run</cite> <span class="math notranslate nohighlight">\(3\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-c0313ab959e747d16be70fd2dc4e5825e4948e52.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-1eb2862bfbc1a3285ffd7d6a7c01fd65ccb7250c.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -142,7 +142,7 @@ Each data product is also indexed, thus associating it with a particular data-pr
 
   gdml [label=&quot;GDML file&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;]
   driver [label=&quot;driver(Spill)&quot;, style=&quot;rounded,filled&quot;,fillcolor=&quot;palegreen1&quot;];
-  input [label=&quot;ROOT input files(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
+  input [label=&quot;HDF5 input files(s)&quot;, shape=&quot;cylinder&quot;, style=&quot;filled&quot;, fillcolor=&quot;lightgray&quot;];
 
   // Providers
   geometry_provider [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
@@ -158,33 +158,33 @@ Each data product is also indexed, thus associating it with a particular data-pr
   start -&gt; driver [label=&quot; Configuration&quot;, fontcolor=&quot;forestgreen&quot;];
   driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
   driver -&gt; geometry_provider [label=&quot; [Job]&quot;, fontcolor=&quot;darkorange&quot;];
-  driver -&gt; sim_depos_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
+  driver -&gt; sim_depos_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
 
   gdml -&gt; geometry_provider [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
   resource -&gt; root [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
 
   sim_depos_provider -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
-  sim_depos_provider -&gt; unfold_into_apas [label=&lt; [SimDepos&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  sim_depos_provider -&gt; unfold_into_apas [label=&lt; [SimDepos&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
   geometry_provider -&gt; unfold_into_apas [label=&lt;[Geometry]&gt;];
   geometry_provider -&gt; transform_make_vertices [taillabel=&lt;[Geometry]&gt;, labeldistance=4.7, labelangle=20];
 
-  unfold_into_apas -&gt; transform_find_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
-  unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  unfold_into_apas -&gt; transform_find_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
+  unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
-  transform_find_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_find_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   transform_find_hits -&gt; hits_writer;
-  transform_find_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_find_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   transform_find_hits -&gt; fold_total_energy;
 
-  window_make_tracks -&gt; transform_make_vertices [label=&lt; [GoodTracks&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  window_make_tracks -&gt; transform_make_vertices [label=&lt; [GoodTracks&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   window_make_tracks -&gt; tracks_writer;
 
-  transform_make_vertices -&gt; vertices_writer [label=&lt; [Vertices&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_make_vertices -&gt; vertices_writer [label=&lt; [Vertices&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
-  fold_total_energy -&gt; total_energy_writer [label=&lt; [TotalHitEnergy&lt;sub&gt;&lt;i&gt;j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  fold_total_energy -&gt; total_energy_writer [label=&lt; [TotalHitEnergy&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
-  filter_high_energy -&gt; observe_histogram_hits [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
+  filter_high_energy -&gt; observe_histogram_hits [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
 
   resource -&gt; observe_histogram_hits [style=&quot;dashed&quot;];
 
@@ -216,7 +216,7 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/scheduling.html">3.1. Topology of the data-flow graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/data_organization.html">3.2. Data Organization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-products">3.2.1. Data Products</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-categories-families-and-data-product-sets">3.2.2. Data Categories, Families, and Data-Product Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-layers-data-cells-and-families">3.2.2. Data Layers, Data Cells, and Families</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-product-management">3.2.3. Data Product Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-product-identification">3.2.4. Data Product Identification</a></li>
 </ul>
@@ -262,8 +262,8 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="flow" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>In practice, elements of the sequence, not the full sequence itself, will be passed from one node to another.
-For memory purposes, it is also likely that each element of the sequence is a lightweight reference (in C++, a pointer) to the data of relevance.</p>
+<p>In practice, elements of the family, not the full family itself, will be passed from one node to another.
+For memory purposes, it is also likely that each element of the family is a lightweight reference (in C++, a pointer) to the data of relevance.</p>
 </aside>
 </aside>
 </section>
@@ -321,13 +321,13 @@ For memory purposes, it is also likely that each element of the sequence is a li
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

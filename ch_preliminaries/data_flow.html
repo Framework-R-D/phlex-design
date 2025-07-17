@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.6. Data Flow &#8212; Phlex 0.1 documentation</title>
+    <title>2.6. Data Flow &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -53,8 +53,8 @@
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
     </div>  
@@ -70,8 +70,8 @@
 The simplified expression for doing this was the chained application of two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[ts = g\ (f\ ws) = (g \comp f)\ ws\]</div>
-<p>where <span class="math notranslate nohighlight">\(ws\)</span> and <span class="math notranslate nohighlight">\(ts\)</span> are the wires and tracks, respectively.</p>
-<p>An alternative representation to the equational form is a <em>directed graph</em></p>
+<p>where <span class="math notranslate nohighlight">\(ws\)</span> and <span class="math notranslate nohighlight">\(ts\)</span> are the wires and tracks, respectively.
+An alternative representation is a <em>directed graph</em></p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-fe8c7c243fe9dac597204549d0718d2c34d86b0b.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
@@ -91,7 +91,7 @@ The arrows indicate the flow of the data (or <em>data flow</em>) through the gra
 <ul>
 <li><p>The function <span class="math notranslate nohighlight">\(f\)</span> returns hits that are unlabeled in the equational form.
 For the graph above, we explicitly label those hits as <span class="math notranslate nohighlight">\(hs\)</span> to emphasize that data are always passed along edges.
-If, however, the hits are not needed by any other function in the graph, the two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> can be replaced by their composition <span class="math notranslate nohighlight">\(h=g \circ f\)</span></p>
+If, however, the hits are not needed by any other function in the graph, the two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> can be replaced by their composition <span class="math notranslate nohighlight">\(h=g \circ f\)</span>, resulting in potential performance improvements in computational efficiency and program memory usage.</p>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-4a903f1e4c988fc30650e7fbcd9563213617c0f4.png" alt="digraph {
   rankdir=LR
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
@@ -104,18 +104,17 @@ If, however, the hits are not needed by any other function in the graph, the two
   h -&gt; end [label=&lt;&lt;i&gt;&lt;font color=&quot;red&quot;&gt;ts&lt;/font&gt;&lt;/i&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>resulting in potential performance improvements in computational efficiency and program memory usage.</p>
 </li>
-<li><p>A directed graph can have no unterminated edges—i.e. an edge must have a source (the tail of the arrow) and a target (the head of the arrow).
+<li><p>Each edge of a directed graph must have a source (the tail of the arrow) and a target (the head of the arrow).
 This means that whereas the equation does not need to specify where the <span class="math notranslate nohighlight">\(ws\)</span> wires originate (or where the <span class="math notranslate nohighlight">\(ts\)</span> tracks end up), such locations must be specified in the graph.
 Any node that has only outgoing edges is called a <em>source</em> (denoted by a solid dot), and any node that has only incoming edges is a <em>sink</em> (denoted by an encircled solid dot).</p></li>
 </ul>
-<section id="data-flow-with-sequences">
-<h2><span class="section-number">2.6.1. </span>Data Flow with Sequences<a class="headerlink" href="#data-flow-with-sequences" title="Link to this heading">¶</a></h2>
-<p>As mentioned earlier in <a class="reference internal" href="functional_programming.html#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, processing sequences of data is a critical aspect of obtaining physics results.
-The data-flow discussion in the previous section naturally maps to applying the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> to elements of sequences.  Specifically <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
+<section id="data-flow-with-families">
+<h2><span class="section-number">2.6.1. </span>Data Flow with Families<a class="headerlink" href="#data-flow-with-families" title="Link to this heading">¶</a></h2>
+<p>As mentioned earlier in <a class="reference internal" href="functional_programming.html#families-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, processing families of data is a critical aspect of obtaining physics results.
+The data-flow discussion in the previous section naturally maps to applying the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> to elements of families.  Specifically <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
 <ul class="simple">
-<li><p>Instead of the individual objects <span class="math notranslate nohighlight">\(ws\)</span>, <span class="math notranslate nohighlight">\(hs\)</span>, and <span class="math notranslate nohighlight">\(ts\)</span> being passed along the edges, the sequences <span class="math notranslate nohighlight">\([ws_i]\)</span>, <span class="math notranslate nohighlight">\([hs_i]\)</span>, and <span class="math notranslate nohighlight">\([ts_i]\)</span> are passed.</p></li>
+<li><p>The families <span class="math notranslate nohighlight">\(\fami{ws}\)</span>, <span class="math notranslate nohighlight">\(\fami{hs}\)</span>, and <span class="math notranslate nohighlight">\(\fami{ts}\)</span> are passed along the edges instead of the individual objects <span class="math notranslate nohighlight">\(ws\)</span>, <span class="math notranslate nohighlight">\(hs\)</span>, and <span class="math notranslate nohighlight">\(ts\)</span>.</p></li>
 <li><p>The functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> map to <span class="math notranslate nohighlight">\(\transform{f}\)</span> and <span class="math notranslate nohighlight">\(\transform{g}\)</span>, respectively.</p></li>
 </ul>
 <div align="center" class="align-center"><div class="graphviz"><img src="../images/graphviz-5f88bbb489d0643643a0d7c564bcb621d71bc1c8.png" alt="digraph {
@@ -138,9 +137,9 @@ The data-flow discussion in the previous section naturally maps to applying the 
                     &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>The above graph does not specify an implementation—assuming <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
+<p>The above graph does not specify an implementation—assuming <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are pure functions (see <a class="reference internal" href="functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>), the same result is obtained if (a) full families are passed between the nodes, or (b) one element per family is passed at a time.
 Determining whether option (a) or (b) is more efficient depends on the data passed between the nodes and the overall constraints on the program.</p>
-<p>One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
+<p>One benefit to using a graph representation using data families and higher-order functions is the ability to easily express folds and unfolds.
 As an illustration, consider the calculation of a sum of squares for all integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[S(n) = \sum_{i=1}^n i^2\]</div>
@@ -232,14 +231,13 @@ Once the predicate returns false, the unfold stops generating numbers.</p>
                      &lt;/table&gt;&gt;]
 }" class="graphviz" /></div>
 </div>
-<p>In addition, the topology of the sequence-based graph remains the same regardless of the value of <span class="math notranslate nohighlight">\(n\)</span>; the topology of the object-based graph becomes intractable as <span class="math notranslate nohighlight">\(n\)</span> increases.</p>
-<p>The vast majority of graphs included in this design document adopt the sequence-based data-flow representation.</p>
+<p>In addition, the topology of the family-based graph remains the same regardless of the value of <span class="math notranslate nohighlight">\(n\)</span>; the topology of the object-based graph becomes intractable as <span class="math notranslate nohighlight">\(n\)</span> increases.</p>
+<p>The vast majority of graphs included in this design document adopt the family-based data-flow representation.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="f1" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Treating functions as nodes and data as edges is a function-centric view of the graph.
-It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the <em>line digraph</em> of the function-centric graph.</p>
+<p>It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; such an approach yields a data-centric graph, which is the <em>line digraph</em> of the function-centric graph shown above.</p>
 </aside>
 <aside class="footnote brackets" id="f2" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
@@ -268,7 +266,7 @@ This other representation, however, requires an unfold predicate that depends on
     <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">2.6. Data Flow</a><ul>
-<li><a class="reference internal" href="#data-flow-with-sequences">2.6.1. Data Flow with Sequences</a></li>
+<li><a class="reference internal" href="#data-flow-with-families">2.6.1. Data Flow with Families</a></li>
 </ul>
 </li>
 </ul>
@@ -317,14 +315,14 @@ This other representation, however, requires an unfold predicate that depends on
         <li class="right" >
           <a href="functional_programming.html" title="2.4. Functional Programming"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.6. </span>Data Flow</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

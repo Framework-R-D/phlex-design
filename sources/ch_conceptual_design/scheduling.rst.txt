@@ -7,7 +7,7 @@ It is the program configuration that specifies:
 
 - the driver to use,
 - the algorithms needed for creating, filtering, and observing data products,
-- the specification of data products required and/or created by each algorithm,
+- the specification of data products required and (where supported) created by each algorithm,
 - which data products to write to output files,
 - which data products to read from input files,
 - any resources needed to process the data, and

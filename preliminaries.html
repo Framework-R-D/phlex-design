@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Preliminaries &#8212; Phlex 0.1 documentation</title>
+    <title>2. High-Level Abstractions &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=2709fde1"></script>
+    <script src="static/documentation_options.js?v=10f1778b"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,8 +51,8 @@
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Preliminaries</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>High-Level Abstractions</a></li> 
       </ul>
     </div>  
 
@@ -61,29 +61,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="preliminaries">
-<h1><span class="section-number">2. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Link to this heading">¶</a></h1>
-<p>Phlex adopts a <em>functional programming</em> paradigm, which is heavily influenced by mathematics.
-To adequately describe what functional programming is, we first introduce function notation and what we mean by “types”.
+  <section id="high-level-abstractions">
+<h1><span class="section-number">2. </span>High-Level Abstractions<a class="headerlink" href="#high-level-abstractions" title="Link to this heading">¶</a></h1>
+<p>With Phlex, the general notion of data-processing must be expressed without relying on the concept of an <em>event</em> <a class="reference internal" href="appendices/requirements.html#DUNE 22" title="DUNE 22"><em class="xref need">[DUNE 22]</em></a>.
+We therefore avoid the “event” terminology altogether.
+Instead, we adopt a set of well-known abstractions that can be systematically applied to each of the processing behaviors required of Phlex.
+These ideas work together, and they are presented here as ingredients necessary for understanding the conceptual design given in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>.</p>
+<p>This chapter is somewhat formal in mathematics.
+However, the formality used provides crisp descriptions of the data-processing concepts required of Phlex, enabling a computing model that is (a) naturally thread-safe, and (b) allows a close connection between user-defined algorithms and the physics such algorithms are intended to represent.</p>
+<p>As will be discussed in <a class="reference internal" href="ch_preliminaries/functional_programming.html#functional-programming"><span class="std std-numref">Section 2.4</span></a>, Phlex adopts a <em>functional programming</em> paradigm for the construction of workflows.
+To adequately describe what functional programming is, we first introduce function notation, the concept of the <em>type</em>, and mathematical sequences and indexed families.
 With these ingredients, we are then able to discuss functional programming and how it is supported by data-flow graphs.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/function_notation.html">2.1. Function Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/types.html">2.2. Types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/types.html#boolean-set">2.2.1. Boolean set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/types.html#boolean-set">2.2.1. Boolean Set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/types.html#representing-void-and-nonetype">2.2.2. Representing <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/types.html#representing-optional-types">2.2.3. Representing optional types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/types.html#representing-optional-types">2.2.3. Representing Optional Types</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/sequences.html">2.3. Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/sequences.html">2.3. Sequences and Families</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/functional_programming.html">2.4. Functional Programming</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/functional_programming.html#pure-functions">2.4.1. Pure Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/functional_programming.html#challenges-with-functional-programming">2.4.2. Challenges with Functional Programming</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/functional_programming.html#sequences-of-data-and-higher-order-functions">2.5. Sequences of Data and Higher-Order Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/functional_programming.html#families-of-data-and-higher-order-functions">2.5. Families of Data and Higher-Order Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_preliminaries/data_flow.html">2.6. Data Flow</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-sequences">2.6.1. Data Flow with Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-families">2.6.1. Data Flow with Families</a></li>
 </ul>
 </li>
 </ul>
@@ -143,13 +149,13 @@ With these ingredients, we are then able to discuss functional programming and h
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Preliminaries</a></li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>High-Level Abstractions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

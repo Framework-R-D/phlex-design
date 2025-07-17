@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.4. Filtering &#8212; Phlex 0.1 documentation</title>
+    <title>3.5.4. Filtering &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../../static/documentation_options.js?v=10f1778b"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="predicates.html" title="3.5.3. Predicates"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Filtering</a></li> 
@@ -71,7 +71,7 @@
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Filter</strong></p></th>
 <th class="head"><p>Operator</p></th>
-<th class="head"><p>Output sequence length</p></th>
+<th class="head"><p>Output family length</p></th>
 </tr>
 </thead>
 <tbody>
@@ -82,25 +82,25 @@
 </tbody>
 </table>
 <p>As mentioned in <a class="reference internal" href="predicates.html#predicates"><span class="std std-numref">Section 3.5.3</span></a>, the execution of workflow graph can be short-circuited if data products do not meet specified criteria.
-This process, known as <em>filtering</em>, effectively shortens the input sequence <span class="math notranslate nohighlight">\(a\)</span> by retaining only those entries that satisfy a predicate <span class="math notranslate nohighlight">\(\phi\)</span>, thus creating a different sequence <span class="math notranslate nohighlight">\(a'\)</span> composed of elements from <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<p>Filtering is of interest only when there is a downstream node that can receive the filtered sequence.
+This process, known as <em>filtering</em>, effectively shortens the input family <span class="math notranslate nohighlight">\(a\)</span> by retaining only those entries that satisfy a predicate <span class="math notranslate nohighlight">\(\phi\)</span>, thus creating a different family <span class="math notranslate nohighlight">\(a'\)</span> composed of elements from <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>Filtering is of interest only when there is a downstream node that can receive the filtered family.
 Therefore, Phlex will not schedule a filter for execution if the only nodes downstream of it are other filters or predicates.</p>
-<p>Filtering can be applied to the input data-product sequences of any HOFs without explicitly registering a filter HOF.
-This is done through a <em>predicate expression</em>, which is a stringized form of the predicate <span class="math notranslate nohighlight">\(\phi\)</span> that is applied to the input data sequence, retaining only the elements that satisfy the predicate.</p>
+<p>Filtering can be applied to the input data-product families of any HOFs without explicitly registering a filter HOF.
+This is done through a <em>predicate expression</em>, which is a stringized form of the predicate <span class="math notranslate nohighlight">\(\phi\)</span> that is applied to the input data-product family, retaining only the elements that satisfy the predicate.</p>
 <section id="predicate-expression">
 <h2><span class="section-number">3.5.4.1. </span>Predicate Expression<a class="headerlink" href="#predicate-expression" title="Link to this heading">¶</a></h2>
 <p>The predicate <span class="math notranslate nohighlight">\(\phi\)</span> is Boolean expression whose input arguments correspond to the Boolean results of <em>explicitly registered</em> predicates.
 For example, in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>, the predicate in <span class="math notranslate nohighlight">\(\textit{filter(high\_energy)}\)</span> is <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, which is an explicitly registered predicate, as presented in <a class="reference internal" href="predicates.html#registration-interface"><span class="std std-numref">Section 3.5.3.2</span></a>.</p>
 <p>It is possible for one filter named <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;only_high_energy&quot;</span></code> to use as its predicate <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, whereas another filter named <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;not_high_energy&quot;</span></code> could use the negation <span class="math notranslate nohighlight">\(\textit{filter}(\neg \textit{high\_energy})\)</span>.
 In this case, the predicate <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span> is executed only once, but its value can be used in different ways in the predicate expression.</p>
-<p>A predicate expression can be evaluated on a higher-level data-product set than the data-product sequence in question.
-For example, suppose none of the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products in a given <cite>Spill</cite> were suitable for processing.
-It is possible to create a filter that would reject all <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products from that <cite>Spill</cite> even though the predicate itself interrogated only the <cite>Spill</cite> information and not the lower-level good-hits information from the <cite>APA</cite>.</p>
-<p>The supported grammar of the predicate expression is discussed in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+<p>A predicate expression can be evaluated on a higher-level data cell than the data-product family in question.
+For example, suppose none of the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products in a given <cite>Spill</cite> were suitable for processing.
+It is possible to create a filter that would reject all <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products from that <cite>Spill</cite> even though the predicate itself interrogated only the <cite>Spill</cite> information and not the lower-level good-hits information from the <cite>APA</cite>.</p>
+<p>The supported grammar of the predicate expression is discussed in <span>the technical design <em>(under preparation)</em></span>.</p>
 </section>
 <section id="registration-interface">
 <h2><span class="section-number">3.5.4.2. </span>Registration interface<a class="headerlink" href="#registration-interface" title="Link to this heading">¶</a></h2>
-<p>The following example shows the complete registration for histogramming the filtered <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> data products shown in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.</p>
+<p>The following example shows the complete registration for histogramming the filtered <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products shown in <a class="reference internal" href="../../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">histogram_hits</span><span class="p">(</span><span class="n">hits</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">TH1F</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 
@@ -109,7 +109,7 @@ It is possible to create a filter that would reject all <code class="code highli
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">h_resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">resource</span><span class="o">&lt;</span><span class="n">histogramming</span><span class="o">&gt;</span><span class="p">();</span>
 
 <span class="w">  </span><span class="n">observe</span><span class="p">(</span><span class="n">histogram_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">serial</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">h_resource</span><span class="o">-&gt;</span><span class="n">make</span><span class="o">&lt;</span><span class="n">TH1F</span><span class="o">&gt;</span><span class="p">(...))</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">h_resource</span><span class="o">-&gt;</span><span class="n">make</span><span class="o">&lt;</span><span class="n">TH1F</span><span class="o">&gt;</span><span class="p">(...))</span>
 <span class="w">    </span><span class="p">.</span><span class="n">when</span><span class="p">(</span><span class="s">&quot;high_energy&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &lt;= predicate expression within the when(...) call</span>
 <span class="p">}</span>
 </pre></div>
@@ -196,7 +196,7 @@ Phlex allows users to specify predicate expressions in a program configuration:<
         <li class="right" >
           <a href="predicates.html" title="3.5.3. Predicates"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.4. </span>Filtering</a></li> 
@@ -204,7 +204,7 @@ Phlex allows users to specify predicate expressions in a program configuration:<
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

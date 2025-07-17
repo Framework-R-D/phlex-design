@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.6. Framework Driver &#8212; Phlex 0.1 documentation</title>
+    <title>3.6. Framework Driver &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,6 +29,8 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,7 +53,7 @@
         <li class="right" >
           <a href="hofs/windows.html" title="3.5.7. Windows"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.6. </span>Framework Driver</a></li> 
       </ul>
@@ -72,13 +74,13 @@ Users of these frameworks were not able to create alternate control flow structu
 Users of such languages are able to create new control flow structures by writing new higher-order functions.
 In Phlex, a framework <em>driver</em> is a higher-order function that provides the control flow for a framework program.
 Phlex provides a variety of framework drivers and also allows users to register their own drivers with the framework, to support different processing needs, e.g. <a class="reference internal" href="../appendices/requirements.html#DUNE 21" title="DUNE 21"><em class="xref need">[DUNE 21]</em></a> and <a class="reference internal" href="../appendices/requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>.</p>
-<p>The workflow shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> is driven by a <em>driver(Spill)</em> that is configured to process all the <em>spills</em> in the specified ROOT input files.
-The <em>driver(Spill)</em> communicates with the IO system to determine what <em>spills</em> are available for processing.
-All <em>driver</em> algorithms know about the single <em>job</em>-level data product set that corresponds to the entirety of the framework program execution (the job).
-The <em>driver</em> emits the single <em>job</em> object, and a sequence of <em>spill</em> objects, which cause the <em>provide</em> algorithms to create their products, thus starting the data flow through the graph.</p>
-<p>Other <em>driver</em> algorithms support different processing workflows.
-In one example workflow a single <em>spill</em> is reconstructed multiple times with different calibration objects used in the reconstruction, thus allowing a calibration study for a single spill to be performed in one framework execution.
-In another example a different <em>driver</em> algorithm could be used to drive the framework to process the Cartesian product of a set of <em>spills</em> and a set of <em>calibration</em> objects, to perform a different calibration study.</p>
+<p>The workflow shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> is driven by a <span class="math notranslate nohighlight">\(\textit{driver(Spill)}\)</span> node that is configured to process all the <cite>Spill</cite>s in the specified HDF5 input files.
+The <span class="math notranslate nohighlight">\(\textit{driver(Spill)}\)</span> communicates with the IO system to determine what <cite>Spill</cite>s are available for processing.
+All driver algorithms know about the single <cite>Job</cite>-level data cell that corresponds to the entirety of the framework program execution (the job).
+The driver emits the single <cite>Job</cite> object, and a family of <cite>Spill</cite> objects, which cause the <em>provide</em> algorithms to create their products, thus starting the data flow through the graph.</p>
+<p>Other driver algorithms support different processing workflows.
+In one example workflow, a single <cite>Spill</cite> could be reconstructed multiple times with different calibration objects used in the reconstruction, thus allowing a calibration study for a single spill to be performed in one framework execution.
+In another example a different driver algorithm could be used to drive the framework to process the Cartesian product of a set of <cite>Spill</cite>s and a set of <cite>Calibration</cite> data cells, to perform a different calibration study.</p>
 </section>
 
 
@@ -134,14 +136,14 @@ In another example a different <em>driver</em> algorithm could be used to drive 
         <li class="right" >
           <a href="hofs/windows.html" title="3.5.7. Windows"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.6. </span>Framework Driver</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -1,37 +1,54 @@
-*********
-Sequences
-*********
+**********************
+Sequences and Families
+**********************
 
-A finite sequence can be represented as a list of objects, each of which are of the same set or *type* (see :numref:`ch_preliminaries/types:Types`).
+A finite sequence can be represented as an ordered list of objects, all of which are from the same set or *type* (see :numref:`ch_preliminaries/types:Types`).
 For example, the sequence :math:`a = [a_1, a_2, \dots, a_n]` is written as
 
 .. math::
-    a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}
+    a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = \family{a}
 
-where each :math:`a_i \in A`, and :math:`\mathcal{I}_a = \{1, 2, \dots, n\}` is the :term:`index set` whose elements are used to identify objects within the sequence :math:`a`.
+where each :math:`a_i \in A`, and :math:`\mathcal{I} = \{1, 2, \dots, n\}` is the :term:`index set` whose elements are used to identify objects within the sequence :math:`a`.
 
-In general, an index set can impose an order on the sequence elements only if the index set itself is ordered.
-Because the elements of the set :math:`\mathbb{N}` respect the order :math:`1 \lt 2 \lt 3 \lt \cdots` , the sequence elements are listed in that order.
-However, if the index set is assumed to have no ordering associated with it, then instead of :math:`a` representing a sequence, it represents an *indexed family*, where the ordering of elements is irrelevant.
-Specifically, an indexed family :math:`a` can be equivalently represented as:
+The elements :math:`a_i` can be ordered only if the index set itself is ordered [#strict]_—e.g because the elements of the set :math:`\mathbb{N}` respect the order :math:`1 \lt 2 \lt 3 \lt \cdots` , the elements of :math:`a` are listed in that order, and :math:`a` is, therefore, a sequence.
+However, if the index set has no ordering associated with it, then instead of :math:`a` representing a sequence, it represents an :term:`indexed family`, where the ordering of elements is not meaningful.
+Specifically, an indexed family :math:`b` can be equivalently represented as:
 
 .. math::
-    a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]
+    b = [b_1, b_2, \dots, b_n] = [b_n, \dots, b_2, b_1] = \family{b}
 
 or any of the :math:`n!` orderings possible.
-The index set simply provides a mapping from an index to the data object itself.
+The index set :math:`\isetdefault` simply provides a mapping from an index to the data object itself.
 
-.. note::
+.. important::
 
    The order in which elements are presented to algorithms is not guaranteed in concurrent contexts.
-   Phlex, therefore, formally processes indexed families of data, and not sequences.
-   To avoid confusion with data families (:numref:`ch_conceptual_design/data_organization:Data Categories, Families, and Data-Product Sets`), we hereafter use the term *sequence* to refer to indexed families.
-   When necessary, we will use the term *ordered sequence* to denote a formal mathematical sequence.
+   Phlex, therefore, processes indexed families of data and not sequences.
 
-The *length* of the sequence :math:`a` above is denoted by :math:`|a|`, and it equals the *cardinality* of the index set: :math:`|a| = |\mathcal{I}_a| = n`.
-In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:
+In some cases, it is convenient to represent a family's index as a tuple of numbers, thus representing layers of nesting in the data organization (see :numref:`ch_conceptual_design/data_organization:Data Organization`).
+As an illustration, to use the RSE hierarchy from :numref:`introduction:Flexibility` one could specify
 
 .. math::
-    [\ ] = [a_i]_{i \in \emptyset} \ .
+    c = \ifamily{c}{\text{RSE}} = [c_{rse}]_{(r,s,e) \in \iset{\text{RSE}}}
 
-We also use the notation :math:`\tilde{a}` to denote a sequence whose elements are either Boolean `true` (:math:`\textsf{T}`) or `false` (:math:`\textsf{F}`), such as :math:`\tilde{a} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]`.
+to refer to a family of data products :product:`c`, where the variables :math:`r`, :math:`s`, and :math:`e` correspond to the identifiers for specific `Run`\ s, `Subrun`\ s, and `Event`\ s.
+The values that :math:`r`, :math:`s`, and :math:`e` are permitted to take are determined by the members of the index set :math:`\iset{\text{RSE}}`, which contains triplets of numbers.
+The semantics of the indices depend on the use case, and it is usually best to denote the semantics along with the indices (e.g.):
+
+.. math::
+    c = [c_{rse}]_{(\text{Run}\ r,\ \text{Subrun}\ s,\ \text{Event}\ e) \in \iset{\text{RSE}}}
+
+This avoids confusion when other data organizations are considered.
+For presentation purposes, however, we only include explicit semantics whenever it is necessary for describing the data-processing in question (e.g. :numref:`ch_conceptual_design/hofs/partitioned_folds:Partitioned Folds`).
+
+The *length* of the family :math:`b` above is denoted by :math:`|b|`, and it equals the *cardinality* of the index set: :math:`|b| = |\isetdefault|`.
+In this document, we also use the *empty family*, which has length 0, and whose elements can be indexed by the empty set:
+
+.. math::
+    [\ ] = [b_i]_{i \in \emptyset} \ .
+
+We also use the notation :math:`\tilde{b}` to denote a family whose elements are either Boolean `true` (:math:`\textsf{T}`) or `false` (:math:`\textsf{F}`), such as :math:`\tilde{b} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]`.
+
+.. rubric:: Footnotes
+
+.. [#strict] Specifically, the index set must be equipped with a strict total order.

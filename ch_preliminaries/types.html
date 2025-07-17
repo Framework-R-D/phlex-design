@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.2. Types &#8212; Phlex 0.1 documentation</title>
+    <title>2.2. Types &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,12 +29,12 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.3. Sequences" href="sequences.html" />
+    <link rel="next" title="2.3. Sequences and Families" href="sequences.html" />
     <link rel="prev" title="2.1. Function Notation" href="function_notation.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -48,13 +48,13 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="sequences.html" title="2.3. Sequences"
+          <a href="sequences.html" title="2.3. Sequences and Families"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="function_notation.html" title="2.1. Function Notation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
       </ul>
     </div>  
@@ -73,7 +73,7 @@ In such a case, specifying the function <span class="math notranslate nohighligh
 In a framework context, not all data of type <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code> (the equivalent to <span class="math notranslate nohighlight">\(\mathbb{Z}\)</span>) are suitable for processing by the algorithm <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>In this document, the type therefore refers to a mathematical set that includes more than just the programming language’s type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code>; it can also include various labels that identify which kind of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code> is desired.</p>
 <section id="boolean-set">
-<h2><span class="section-number">2.2.1. </span>Boolean set<a class="headerlink" href="#boolean-set" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">2.2.1. </span>Boolean Set<a class="headerlink" href="#boolean-set" title="Link to this heading">¶</a></h2>
 <p>The Boolean values <cite>true</cite> (<span class="math notranslate nohighlight">\(\textsf{T}\)</span>) and <cite>false</cite> (<span class="math notranslate nohighlight">\(\textsf{F}\)</span>) are used frequently in computing.
 It is convenient to denote a set that contains both values:</p>
 <div class="math notranslate nohighlight">
@@ -99,7 +99,7 @@ The above functions are thus represented in function notation as:</p>
 When necessary we will refer to that single element as the <em>null value</em>, or simply the open-closed parentheses <code class="code highlight c++ docutils literal highlight-c++"><span class="p">()</span></code>.</p>
 </section>
 <section id="representing-optional-types">
-<h2><span class="section-number">2.2.3. </span>Representing optional types<a class="headerlink" href="#representing-optional-types" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">2.2.3. </span>Representing Optional Types<a class="headerlink" href="#representing-optional-types" title="Link to this heading">¶</a></h2>
 <p>It is occasionally necessary to represent a “nullable” or “optional” type <span class="math notranslate nohighlight">\(\opt{T}\)</span>, whose objects either contain a value type <span class="math notranslate nohighlight">\(T\)</span> or are null.
 Mathematically, this is represented by the coproduct <span class="math notranslate nohighlight">\(T \sqcup \one\)</span>, where a null or <em>disengaged</em> object of type <span class="math notranslate nohighlight">\(\opt{T}\)</span> has a value equal to the single element of the set <span class="math notranslate nohighlight">\(\one\)</span>.</p>
 <p><a class="reference internal" href="#optional-types"><span class="std std-numref">Table 2.1</span></a> gives examples of programming types in various languages that can be mathematically represented by <span class="math notranslate nohighlight">\(\opt{T}\)</span>.
@@ -126,23 +126,23 @@ Although Phlex does not support algorithms written in Haskell, an example of the
 <tr class="row-even"><td><p>Haskell</p></td>
 <td><p><code class="code highlight haskell docutils literal highlight-haskell"><span class="kt">Int</span></code></p></td>
 <td><p><code class="code highlight haskell docutils literal highlight-haskell"><span class="nf">m</span><span class="w"> </span><span class="ow">::</span><span class="w"> </span><span class="kt">Maybe</span><span class="w"> </span><span class="kt">Int</span></code></p></td>
-<td><p><code class="code highlight haskell docutils literal highlight-haskell"><span class="nf">m</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Just</span><span class="w"> </span><span class="mi">6</span></code></p></td>
+<td><p><code class="code highlight haskell docutils literal highlight-haskell"><span class="nf">m</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Just</span><span class="w"> </span><span class="mi">42</span></code></p></td>
 <td><p><code class="code highlight haskell docutils literal highlight-haskell"><span class="nf">m</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kt">Nothing</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Python</p></td>
 <td><p><code class="code highlight py docutils literal highlight-py"><span class="nb">int</span></code></p></td>
 <td><p><em>See caption</em></p></td>
-<td><p><code class="code highlight py docutils literal highlight-py"><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span></code></p></td>
+<td><p><code class="code highlight py docutils literal highlight-py"><span class="n">k</span> <span class="o">=</span> <span class="mi">42</span></code></p></td>
 <td><p><code class="code highlight py docutils literal highlight-py"><span class="n">k</span> <span class="o">=</span> <span class="kc">None</span></code></p></td>
 </tr>
 <tr class="row-even"><td rowspan="2"><p>C++</p></td>
 <td rowspan="2"><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span></code></p></td>
 <td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">;</span></code></p></td>
-<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span></code></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span></code></p></td>
 <td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span><span class="p">;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="kt">int</span><span class="w"> </span><span class="k">const</span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">;</span></code></p></td>
-<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span></code></p></td>
+<td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">{</span><span class="mi">42</span><span class="p">};</span></code></p></td>
 <td><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span></code></p></td>
 </tr>
 </tbody>
@@ -173,9 +173,9 @@ The empty set contains no such objects that can be presented to (or returned fro
     <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">2.2. Types</a><ul>
-<li><a class="reference internal" href="#boolean-set">2.2.1. Boolean set</a></li>
+<li><a class="reference internal" href="#boolean-set">2.2.1. Boolean Set</a></li>
 <li><a class="reference internal" href="#representing-void-and-nonetype">2.2.2. Representing <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">void</span></code> and <code class="code highlight py docutils literal highlight-py"><span class="n">NoneType</span></code></a></li>
-<li><a class="reference internal" href="#representing-optional-types">2.2.3. Representing optional types</a></li>
+<li><a class="reference internal" href="#representing-optional-types">2.2.3. Representing Optional Types</a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +189,7 @@ The empty set contains no such objects that can be presented to (or returned fro
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="sequences.html"
-                          title="next chapter"><span class="section-number">2.3. </span>Sequences</a></p>
+                          title="next chapter"><span class="section-number">2.3. </span>Sequences and Families</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -219,19 +219,19 @@ The empty set contains no such objects that can be presented to (or returned fro
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="sequences.html" title="2.3. Sequences"
+          <a href="sequences.html" title="2.3. Sequences and Families"
              >next</a> |</li>
         <li class="right" >
           <a href="function_notation.html" title="2.1. Function Notation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.2. </span>Types</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

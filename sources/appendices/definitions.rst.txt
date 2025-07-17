@@ -4,67 +4,72 @@ Definitions
 .. glossary::
     :sorted:
 
-    APA
-        Anode Plane Assembly: physical far-detector unit comprising thousands of wires as a planar slice
-
     Algorithm
-        A decomposed unit of processing; a user-defined function registered for execution by the framework.
+        A user-defined function registered for execution by the framework.
 
-    Algorithmic origin
-        The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
+        Algorithms often serve as operators in a higher-order function.
 
-    Ancestral data
-        The data used as input to the algorithm that produced the data at issue.
+    APA
+        **A**\ node **P**\ lane **A**\ ssembly, a physical far-detector unit comprising thousands of wires as a planar slice.
 
     Backward compatibility (persisted data)
         The ability to construct the in-memory representation of data from persisted information derived from an earlier in-memory representation of those data.
 
-    CRP
-        Charge Readout Plane: physical far-detector unit placed on either the top or bottom edge of an APA
+    CHOF
+        *See* :term:`Configured higher-order function`
 
-    Configuration canonical form
-        The result of a transformation on a configuration that preserves the semantics of the configuration.
-        All semantically identical configurations shall have the same canonical form.
-        Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
-
-    Configured higher-order function (CHOF)
+    Configured higher-order function
         An entity created when registering an algorithm with the framework.
+
         The registration includes the algorithm's input/output data product requirements, the algorithm's resource requirements, and the higher-order function to which the algorithm serves as an operator.
 
-    Data family
-        A collection of data sets (e.g.):
+    Data layer
+        A group of data cells each of which has the same data layer label.
 
-        - examples of data families in art: collection of Runs, collection of Events, and collection of SubRuns
-        - other examples of data families: collection of calibration intervals of the same type, collection of geometry/alignment intervals of the same type, collection of APAs, collection of trigger primitives, collection of beam spills
+        A data layer is one node in a data-layer hierarchy.
+        The top layer of the graph is always the `Job`.
+        All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
+        By contrast, in *art* the data layers are `Run`, `Subrun`, and `Event`.
 
-        The type of an element in a data family is called a category.
-        For example, the category of a family of Events is the type Event.
-        An object of type Event is a data set.
+    Data-layer hierarchy
+        A hierarchy of data layers.
 
-    Data family hierarchy
-        A hierarchy of data families (e.g. run contains subrun contains event).
-
-    Data model
-        A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
-        The data model also specifies the mechanism for reading and writing persistable data products.
+        A data-layer hierarchy is an acyclic graph of relationships of logical containment.
+        The top layer of the hierarchy is always the `Job`.
+        All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
+        In *art*, the data-layer hierarchy is `Run`\ -\ `Subrun`\ -\ `Event`.
 
     Data product
-        An object of data the framework can provide as an input to a user-defined algorithm, or that can be produced as an output of an algorithm.
+        An object managed by the framework and for which provenance information is recorded.
 
-    Data product set
-        A mathematical set of data products that is identifiable by the framework and used to determine which data products serve as inputs to an algorithm.
+        A data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
+        Data products determine the flow of execution of the graph of CHOFs configured in a framework program.
 
-    Deterministic
-        Identical inputs produce identical results via identical behavior.
+    Data cell
+        A grouping of data products that is identifiable by the framework [#data-set]_.
+
+        Each data cell has has a data layer label, which indicates the type of the data cell.
+        All the data cells of a given data layer are of the same type.
+        All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
+        In *art*, individual `Run` objects, `Subrun` objects and `Event` objects are examples of data cells.
+
+    .. The framework ecosystem is referenced in one of the requirements, so it's included in the glossary for even the conceptual design
 
     Framework ecosystem
-        Ensemble of software delivered with the application framework.
+        The ensemble of software delivered with the application framework.
 
     Index set
-        A mathematical set used to identify elements of a sequence—e.g. in the expression :math:`[a_1,\ a_2,\ \dots,\ a_n] = \sequence{a}`, where the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
+        A mathematical set that provides the indexes of an indexed family.
 
-    Integration test
-        A test that verifies the behavior of multiple system components working in concert.
+        For the family :math:`a = [a_1, a_2, \dots, a_n] = \family{a}`, the index set :math:`\isetdefault` is the set :math:`\{1,\ 2,\ \dots,\ n\}`.
+
+    Indexed family
+        A collection of elements identified by an index from an index set.
+
+        The term family is often used as a shorthand for indexed family.
+        In *art* there was no direct representation of families.
+        However, the sequence of *Events* processed by a given job is an example of a family of data cells.
+        In a single *art* module, the sequence of event data products looked up by the module across all events is an example of a family of data products.
 
     Metadata
         Data that is ancillary to physics data.
@@ -72,20 +77,16 @@ Definitions
     Module
         A compiled library that is dynamically loadable by the framework.
 
-    Parentage
-        The set of unique identifiers of each ancestral datum.
-
-    Persistable data product
-        A data product that can be read from and written to persistent storage.
-
     Provenance
-        A description of how the data at issue were produced (parentage, configuration, library versions, and other information as specified by requirements).
+        A description of how the data were produced.
+
+        Examples include product parentage, job configuration, and library versions.
 
     Reproducible
         Identical inputs produce identical results.
 
     Resource
-        A non-data software or hardware component managed by the program that can be required by algorithms.
+        A non-data software or hardware component managed by the program that can be used by algorithms.
 
         Examples include:
 
@@ -97,11 +98,34 @@ Definitions
         - Inference servers
         - Databases
 
-    Unit test
-        A test that verifies the behavior of a small and self-contained system component in isolation from other system components.
 
-    Validation
-        Did it do what we needed it to do (requirements)
+    .. The following definitions are needed for the supporting/subsystem design
 
-    Verification
-        Did it do what we intended it to do (code)
+    .. only:: not conceptual_design_only
+
+        Algorithmic origin
+            The unique identifier, version, and configuration of the algorithm responsible for the creation of a specific data product.
+
+        Ancestral data
+            The data used as input to the algorithm that produced the data at issue.
+
+        Configuration canonical form
+            The result of a transformation on a configuration that preserves the semantics of the configuration.
+
+            All semantically identical configurations shall have the same canonical form.
+            Any given configuration shall have exactly one canonical form (which may be syntactically identical to the original configuration).
+
+        Data model
+            A set of mechanisms enabling the definition, creation, identification, and organization of data products, as well as the relationships among them.
+
+            The data model also specifies the mechanism for reading and writing persistable data products.
+
+        Parentage
+            The set of unique identifiers of each ancestral datum.
+
+        Persistable data product
+            A data product that can be read from and written to persistent storage.
+
+.. rubric:: Footnotes
+
+.. [#data-set] In earlier documentation, the term *data product set* was used for this concept.

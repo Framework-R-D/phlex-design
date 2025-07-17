@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5. Supported Higher-Order Functions &#8212; Phlex 0.1 documentation</title>
+    <title>3.5. Supported Higher-Order Functions &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="registration.html" title="3.4. Framework Registration"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Supported Higher-Order Functions</a></li> 
       </ul>
@@ -66,14 +66,14 @@
             
   <section id="supported-higher-order-functions">
 <h1><span class="section-number">3.5. </span>Supported Higher-Order Functions<a class="headerlink" href="#supported-higher-order-functions" title="Link to this heading">¶</a></h1>
-<p>In Phlex, HOFs transform one sequence to another:</p>
+<p>In Phlex, HOFs transform one family to another:</p>
 <div class="math notranslate nohighlight">
-\[\isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}\]</div>
+\[\ifamily{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \ifamily{a}{\text{input}}\]</div>
 <p>where the functions <span class="math notranslate nohighlight">\(f_1, f_2, \ \dots\)</span> are <em>operators</em> required by the HOF.
 Note that the output index set <span class="math notranslate nohighlight">\(\iset{\text{output}}\)</span> is not necessarily the same as the input index set <span class="math notranslate nohighlight">\(\iset{\text{input}}\)</span>.</p>
-<p>In what follows, a sequence <span class="math notranslate nohighlight">\([a_i]_{i \in \iset{a}}\)</span> will often be represented by a single variable <span class="math notranslate nohighlight">\(a\)</span>.
-Whether a variable name (e.g. <span class="math notranslate nohighlight">\(a\)</span>) represents a sequence or an operation to a higher-order function will be apparent based on context.</p>
-<p>Each HOF below also supports the <span class="math notranslate nohighlight">\(\textit{label}:\one \rightarrow L\)</span> operator, where the output data-product set category is user-specifiable.
+<p>In what follows, a family <span class="math notranslate nohighlight">\([a_i]_{i \in \iset{a}}\)</span> will often be represented by a single variable <span class="math notranslate nohighlight">\(a\)</span>.
+Whether a variable name (e.g. <span class="math notranslate nohighlight">\(a\)</span>) represents a family or an operation to a higher-order function will be apparent based on context.</p>
+<p>Each HOF below also supports the <span class="math notranslate nohighlight">\(\textit{label}:\one \rightarrow L\)</span> operator, where the output data layer is user-specifiable.
 The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator is explicitly mentioned only for those HOFs that require it–i.e. <span class="math notranslate nohighlight">\(\text{unfold}\)</span> and <span class="math notranslate nohighlight">\(\text{window}\)</span> <a class="footnote-reference brackets" href="#label" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -90,7 +90,7 @@ The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operato
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="label" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The specific rules by which the <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator can be used are given in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+<p>The specific rules by which the <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator can be used are given in <span>the technical design <em>(under preparation)</em></span>.</p>
 </aside>
 </aside>
 </section>
@@ -148,14 +148,14 @@ The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operato
         <li class="right" >
           <a href="registration.html" title="3.4. Framework Registration"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Supported Higher-Order Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -4,6 +4,11 @@ Framework requirements
 
 **Requirements norm**: Baseline 1 (created March 03, 2025)
 
+.. important::
+
+    All stakeholder requirements approved by DUNE are listed here for convenience.
+    However, the requirements recorded in the `DUNE framework Jama Connect project <https://fnal-prod.jamacloud.com/perspective.req#/projects/63/dashboard/63>`_ are authoritative and take precedence over any unintentional variations below.
+
 =======================
 Conceptual requirements
 =======================
@@ -30,7 +35,7 @@ Conceptual requirements
 
     The framework shall mediate communication between algorithms via data products.
 
-- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`, :numref:`ch_conceptual_design/registration:Framework registration`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Data Products`, :numref:`ch_conceptual_design/registration:Framework registration`
 
 .. req:: Data Product Representation
     :collapse:
@@ -147,13 +152,13 @@ Conceptual requirements
 
     The framework shall present data produced by an already executed algorithm to each subsequent, requesting algorithm.
 
-- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
+- See :numref:`ch_conceptual_design/scheduling:Topology of the data-flow graph`, :numref:`ch_conceptual_design/data_organization:Data Products`
 
 .. req:: Mix input streams
     :collapse:
     :id: DUNE 21
     :jama: 21 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14563
-    :notes: This is ID #11 from the original DUNE document.
+    :notes: This is ID #11 from the original DUNE document.  This document uses "data cells" rather than "data sets".
     :status: Approved
     :tags: Physics Analysis, Original
 
@@ -171,7 +176,7 @@ Conceptual requirements
 
     The framework shall support flexibly defined, context-aware processing units to address the varying granularity necessary for processing different kinds of data.
 
-- See :numref:`introduction:Flexibility`
+- See :numref:`introduction:Requirements Process and Framework Selection`, :numref:`introduction:Flexibility`
 
 .. req:: Definition of data products
     :collapse:
@@ -182,7 +187,7 @@ Conceptual requirements
 
     The framework shall provide the ability for user-level code to define data products.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Defining Data Product Types`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Creation of data sets
     :collapse:
@@ -190,10 +195,11 @@ Conceptual requirements
     :jama: 86 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14696
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall provide the ability for user-level code to create new data sets.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Definition of data families
     :collapse:
@@ -201,10 +207,11 @@ Conceptual requirements
     :jama: 87 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14697
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data layers" rather than (this use) of "data families".
 
     The framework shall provide the ability for user-level code to define data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Definition of data family hierarchies
     :collapse:
@@ -212,10 +219,11 @@ Conceptual requirements
     :jama: 88 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14698
     :status: Approved
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data-layer hierarchies" rather than "data-family hierarchies".
 
     The framework shall provide the ability for user-level code to define hierarchies of data families.
 
-- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:Data organization`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Process collections of unconstrained size
     :collapse:
@@ -227,7 +235,7 @@ Conceptual requirements
 
     The framework shall support processing of collections that are too large to fit into memory at one time.
 
-- See :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`
+- See :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`
 
 .. req:: Unfolding data products
     :collapse:
@@ -252,7 +260,7 @@ Conceptual requirements
 
     The framework shall support access to external data sources.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`, :numref:`ch_conceptual_design/resources:Resources`
+- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`, :numref:`ch_conceptual_design/resources:Resources`
 
 .. req:: Calibration database algorithms
     :collapse:
@@ -276,7 +284,7 @@ Conceptual requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:Data categories, families, and data-product sets`, :numref:`ch_conceptual_design/algorithms:Algorithms`
+- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`, :numref:`ch_conceptual_design/algorithms:Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:
@@ -464,6 +472,7 @@ Conceptual requirements
     :status: Approved
     :jama: 89 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14705
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data sets.
 
@@ -475,10 +484,11 @@ Conceptual requirements
     :status: Approved
     :jama: 91 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14713
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall support the invocation of an algorithm with data products belonging to adjacent data sets.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`
 
 .. req:: User-defined adjacency
     :collapse:
@@ -486,10 +496,11 @@ Conceptual requirements
     :status: Approved
     :jama: 92 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14714
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall support user code that defines adjacency of data sets within a data family.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data-Product Sets`
+- See :numref:`ch_conceptual_design/registration:Data Products from Adjacent Data Cells`
 
 .. req:: Algorithm invocation with data products from multiple data families
     :collapse:
@@ -497,10 +508,11 @@ Conceptual requirements
     :status: Approved
     :jama: 113 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14937
     :tags: Flexible Processing Unit (FPU)
+    :notes: This document uses "data layers" rather than (this use) of "data families".
 
     The framework shall allow a single invocation of an algorithm with data products from multiple data families.
 
-- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Categories`
+- See :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`
 
 .. req:: Specification of algorithm output FPUs
     :collapse:
@@ -508,6 +520,7 @@ Conceptual requirements
     :status: Approved
     :jama: 90 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14706
     :notes: To implement this requirement, the algorithm should not know where its created data products are going--that is something that will be specified at the plugin level (perhaps by configuration).
+            This document uses "data layer" rather than (this use) of "data family".
     :tags: Flexible Processing Unit (FPU)
 
     The framework shall support the user specification of which data family to place the data products created by an algorithm.
@@ -523,7 +536,7 @@ Conceptual requirements
 
     The data objects exchanged among algorithms shall be separable from those algorithms.
 
-- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
+- See :numref:`ch_conceptual_design/data_organization:Data Products`
 
 .. req:: Provenance discovery
     :collapse:
@@ -534,7 +547,7 @@ Conceptual requirements
 
     The framework shall enable users to discover the provenance of data products.
 
-- See :numref:`introduction:Framework philosophy`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`, :numref:`ch_conceptual_design/data_organization:Data product management`, :numref:`ch_conceptual_design/data_organization:Data product identification`.
+- See :numref:`introduction:Framework philosophy`, :numref:`ch_conceptual_design/data_organization:Data Products`, :numref:`ch_conceptual_design/data_organization:Data product management`, :numref:`ch_conceptual_design/data_organization:Data product identification`.
 
 .. req:: Framework recording of metadata for reproduction of output data
     :collapse:
@@ -1002,7 +1015,7 @@ Supporting requirements
 
     The framework ecosystem shall support a ROOT IO backend.
 
-- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`.
+- See :numref:`ch_conceptual_design/data_organization:Data Products`.
 
 .. req:: I/O backend for HDF5
     :collapse:
@@ -1013,7 +1026,7 @@ Supporting requirements
 
     The framework ecosystem shall support an HDF5 IO backend.
 
-- See :numref:`ch_conceptual_design/data_organization:Conceptual Nature`.
+- See :numref:`ch_conceptual_design/data_organization:Data Products`.
 
 .. req:: Data product backward compatibility
     :collapse:
@@ -1060,6 +1073,7 @@ Supporting requirements
     :status: Approved
     :jama: 109 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14806
     :notes: Some examples include limiting the output file to contain data for: (a) 1 subrun ("subrun" is the user-specified family) (b) 100 spills ("spill" is the user-specified family) (c) 10 blobs ("blob" is the user-specified family)
+            This document uses "data cells" rather than "data sets", and "data layer" rather than (this use) of "data family".
     :tags: Data I/O layer
 
     The framework shall have an option to rollover output files according to a configurable limit on the number of data sets in a user-specified data family.
@@ -1155,7 +1169,7 @@ Supporting requirements
 
     The framework shall operate independently of unique characteristics of existing hardware.
 
-- See :numref:`introduction:Portability`, :numref:`ch_conceptual_design/data_organization:Conceptual Nature`
+- See :numref:`introduction:Portability`, :numref:`ch_conceptual_design/data_organization:Data Products`
 
 .. req:: Command line interface (CLI)
     :collapse:
@@ -1208,6 +1222,7 @@ Supporting requirements
     :status: Approved
     :jama: 129 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15737
     :tags: Provenance, Chunkification
+    :notes: This document uses "data cells" rather than "data sets".
 
     The framework shall record metadata identifying data sets where the framework took special measures to process data collections of unconstrained size.
 

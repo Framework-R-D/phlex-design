@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.4. Functional Programming &#8212; Phlex 0.1 documentation</title>
+    <title>2.4. Functional Programming &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,13 +29,13 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2.6. Data Flow" href="data_flow.html" />
-    <link rel="prev" title="2.3. Sequences" href="sequences.html" />
+    <link rel="prev" title="2.3. Sequences and Families" href="sequences.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -51,10 +51,10 @@
           <a href="data_flow.html" title="2.6. Data Flow"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="sequences.html" title="2.3. Sequences"
+          <a href="sequences.html" title="2.3. Sequences and Families"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
     </div>  
@@ -90,59 +90,54 @@ Expressing the processing needs according to mathematics enables:</p>
 <li><p>the function return values are identical for identical arguments, and</p></li>
 <li><p>the function has no side effects.</p></li>
 </ul>
-<p>The composition of pure functions is also a pure function.
-For example, assuming the functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> above are pure, then the composite function <span class="math notranslate nohighlight">\(h\)</span> will also be pure.</p>
-<p>Using pure functions to create data products ensures <a class="reference internal" href="../appendices/definitions.html#term-Reproducible"><span class="xref std std-term">reproducibility</span></a>, as discussed in the framework philosophy in <a class="reference internal" href="../introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>.</p>
+<p>Phlex therefore encourages the use of pure functions for creating of <a class="reference internal" href="../appendices/definitions.html#term-Reproducible"><span class="xref std std-term">reproducible</span></a> data products, a principle of the framework philosophy as discussed in <a class="reference internal" href="../introduction.html#framework-philosophy"><span class="std std-numref">Section 1.2</span></a>.</p>
+<div class="admonition-favor-free-functions admonition">
+<p class="admonition-title">Favor free functions</p>
+<p>Functions can additionally be classified as <em>free functions</em> or <em>member functions</em> (or <em>methods</em>).
+Whereas a free function has only explicit input parameters, a member function called on an object has access to the internal state of the object as well as the explicit function parameters.
+Both kinds of functions can be useful, but authors of classes must exercise special care to ensure that a class instance’s member functions can be safely invoked in concurrent contexts.
+For this reason, framework users should favor free functions over classes and their member functions.</p>
+</div>
 </section>
 <section id="challenges-with-functional-programming">
 <h2><span class="section-number">2.4.2. </span>Challenges with Functional Programming<a class="headerlink" href="#challenges-with-functional-programming" title="Link to this heading">¶</a></h2>
 <p>One drawback to functional programming is that it differs from what many in the HEP community are accustomed to when writing their own physics algorithms.
 Commonly used third-party libraries and computing languages can also make functional programming difficult to use in practice.
 We argue, though, that physicists often think in terms of functional programming when developing the high-level processing steps of a workflow.
-It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often <em>procedural</em>).</p>
+It is not until those processing steps need to be implemented that the functional steps are often translated into <em>procedural</em> ones.</p>
 <p>Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see <a class="reference internal" href="#sequences-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a> on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
+By leveraging commonly used processing patterns (see <a class="reference internal" href="#families-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a> on higher-order functions), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 The framework also does not place constraints on the algorithm <em>implementations</em>—algorithm authors are free to employ imperative programming techniques within the implementations if doing so is convenient.
 The framework will simply schedule the algorithm as if it were a pure function without regard to its implementation.</p>
 </section>
 </section>
-<section id="sequences-of-data-and-higher-order-functions">
-<h1><span class="section-number">2.5. </span>Sequences of Data and Higher-Order Functions<a class="headerlink" href="#sequences-of-data-and-higher-order-functions" title="Link to this heading">¶</a></h1>
-<p>Particle physics results are obtained by performing statistical analysis on sequences of data.
+<section id="families-of-data-and-higher-order-functions">
+<h1><span class="section-number">2.5. </span>Families of Data and Higher-Order Functions<a class="headerlink" href="#families-of-data-and-higher-order-functions" title="Link to this heading">¶</a></h1>
+<p>Particle physics results are obtained by performing statistical analysis on families of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
 For example, a relatively simple result is calculating the arithmetic mean of <span class="math notranslate nohighlight">\(n\)</span> numbers:</p>
 <div class="math notranslate nohighlight">
 \[\overline{c} = \frac{1}{n}\sum_{i \in \mathcal{I}} c_i\]</div>
-<p>where the sum is over a sequence of numbers <span class="math notranslate nohighlight">\(\sequence{c}\)</span>, and <span class="math notranslate nohighlight">\(n\)</span> is the size or <em>cardinality</em> of the index set <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> (e.g. <span class="math notranslate nohighlight">\(\{1, 2, \dots, n\}\)</span>) used to identify each element of the sequence.</p>
-<p>The sum is an example of a data reduction or <em>fold</em>, where a sequence is collapsed into one result.
+<p>where the sum is over the numbers <span class="math notranslate nohighlight">\(\family{c}\)</span>, and <span class="math notranslate nohighlight">\(n\)</span> is the cardinality of the index set <span class="math notranslate nohighlight">\(\mathcal{I}\)</span>.</p>
+<p>The sum is an example of a data reduction or <em>fold</em>, where a family is collapsed into one result.
 In particular, the arithmetic mean above can be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \sequence{c}\]</div>
-<p>where the fold accepts a binary operator (<span class="math notranslate nohighlight">\(+\)</span> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the sequence.</p>
-<p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-HOF]</span></a> that accepts a sequence and an operator applied in some way to elements of that sequence.</p>
-<p>Additional HOFs exist—for example, suppose the sequence <span class="math notranslate nohighlight">\([c_i]\)</span> was created by applying a function <span class="math notranslate nohighlight">\(w: E \rightarrow C\)</span> to each element of a sequence <span class="math notranslate nohighlight">\([e_i]\)</span>.
+\[\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \family{c}\]</div>
+<p>where the fold accepts a binary operator (<span class="math notranslate nohighlight">\(+\)</span> in this case) that is repeatedly applied to an accumulated value (initialized to 0) and each element of the family.</p>
+<p>The fold is an example of a <em>higher-order function</em> (HOF) <a class="reference internal" href="#wiki-hof" id="id3"><span>[Wiki-HOF]</span></a> that accepts a family and an operator applied in some way to elements of that family.
+However, additional HOFs exist—for example, suppose the family <span class="math notranslate nohighlight">\(\fami{c}\)</span> was created by applying a function <span class="math notranslate nohighlight">\(w: E \rightarrow C\)</span> to each element of a family <span class="math notranslate nohighlight">\(\fami{e}\)</span>.
 Such a HOF is called a map or <em>transform</em>:</p>
 <div class="math notranslate nohighlight">
-\[\sequence{c} = \sequence{w\ e} = \transform{w}\ \sequence{e}\]</div>
+\[\fami{c} = \fami{w\ e} = \transform{w}\ \fami{e}\]</div>
 <p>In such a scenario, the average <span class="math notranslate nohighlight">\(\overline{c}\)</span> could be expressed as:</p>
 <div class="math notranslate nohighlight">
-\[\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \sequence{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \sequence{e}\]</div>
+\[\overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \fami{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \fami{e}\]</div>
 <p>The second equality holds by the fold-map fusion law <a class="reference internal" href="#bird" id="id4"><span>[Bird]</span></a>, which states that the application of a <span class="math notranslate nohighlight">\(\text{transform}\)</span> followed by a <span class="math notranslate nohighlight">\(\text{fold}\)</span> can be reduced to a single <span class="math notranslate nohighlight">\(\text{fold}\)</span>.
 The operator to this single fold is ‘<span class="math notranslate nohighlight">\(+ \comp w\)</span>’, indicating that the function <span class="math notranslate nohighlight">\(w\)</span> should be applied first before invoking the <span class="math notranslate nohighlight">\(+\)</span> operation.
 Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.</p>
-<p>A calculation is then generally expressed in terms of:</p>
-<ol class="arabic simple">
-<li><p>The HOFs to be used (<span class="math notranslate nohighlight">\(\mbox{fold}\)</span>, <span class="math notranslate nohighlight">\(\mbox{transform}\)</span>, etc.)</p></li>
-<li><p>The operation to be used by each HOF (<span class="math notranslate nohighlight">\(+\)</span>, <span class="math notranslate nohighlight">\(w\)</span>, etc.)</p></li>
-<li><p>The sequence(s) of data on which the HOFs are to be applied.</p></li>
-</ol>
-<p>Such a formulation lends itself to well-established processing patterns that can be naturally factorized and parallelized.</p>
-<p><a class="reference internal" href="#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a> lists the HOFs supported by Phlex.
-As discussed later, each HOF’s <em>operator</em> is an <a class="reference internal" href="../appendices/definitions.html#term-Algorithm"><span class="xref std std-term">algorithm</span></a> registered with the framework.
-Phlex will likely support other higher order functions as well.</p>
 <span id="hofs-in-phlex"></span><table class="docutils align-default" id="id5">
 <caption><span class="caption-number">Table 2.2 </span><span class="caption-text">Higher-order functions supported by Phlex.
-        Each sequence is represented by a single variable (e.g. <span class="math notranslate nohighlight">\(a\)</span>).
+        Each family is represented by a single variable (e.g. <span class="math notranslate nohighlight">\(a\)</span>).
         Details of each HOF and its operators are in <a class="reference internal" href="../ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>.</span><a class="headerlink" href="#id5" title="Link to this table">¶</a></caption>
 <colgroup>
 <col style="width: 15.0%" />
@@ -153,7 +148,7 @@ Phlex will likely support other higher order functions as well.</p>
 <thead>
 <tr class="row-odd"><th class="head" colspan="2"><p><strong>Higher-order function</strong></p></th>
 <th class="head"><p>Operator(s)</p></th>
-<th class="head"><p>Output sequence length</p></th>
+<th class="head"><p>Output family length</p></th>
 </tr>
 </thead>
 <tbody>
@@ -206,6 +201,15 @@ Phlex will likely support other higher order functions as well.</p>
 </tr>
 </tbody>
 </table>
+<p>A calculation using a HOF is then generally expressed in terms of:</p>
+<ol class="arabic simple">
+<li><p>The HOF to be used (<span class="math notranslate nohighlight">\(\text{fold}\)</span>, <span class="math notranslate nohighlight">\(\text{transform}\)</span>, etc.)</p></li>
+<li><p>The operator(s) to be used by each HOF (<span class="math notranslate nohighlight">\(+\)</span>, <span class="math notranslate nohighlight">\(w\)</span>, etc.)</p></li>
+<li><p>The family (or families) of data on which the HOFs are to be applied.</p></li>
+</ol>
+<p id="index-0">Phlex supports the HOFs listed in <a class="reference internal" href="#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>.
+As discussed later, each HOF’s <em>operator</em> is an <a class="reference internal" href="../appendices/definitions.html#term-Algorithm"><span class="xref std std-term">algorithm</span></a> registered with the framework.
+Phlex will likely support other higher order functions as well.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
 <aside class="footnote brackets" id="graph" role="doc-footnote">
@@ -225,7 +229,9 @@ Phlex will likely support other higher order functions as well.</p>
 </div>
 <div class="citation" id="bird" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Bird</a><span class="fn-bracket">]</span></span>
-<p>Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132</p>
+<ol class="upperalpha simple" start="18">
+<li><p>Bird, Introduction to Functional Programming using Haskell (2nd ed.), Prentice Hall (1988), pp. 131–132</p></li>
+</ol>
 </div>
 </div>
 </section>
@@ -248,14 +254,14 @@ Phlex will likely support other higher order functions as well.</p>
 <li><a class="reference internal" href="#challenges-with-functional-programming">2.4.2. Challenges with Functional Programming</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#sequences-of-data-and-higher-order-functions">2.5. Sequences of Data and Higher-Order Functions</a></li>
+<li><a class="reference internal" href="#families-of-data-and-higher-order-functions">2.5. Families of Data and Higher-Order Functions</a></li>
 </ul>
 
   </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="sequences.html"
-                          title="previous chapter"><span class="section-number">2.3. </span>Sequences</a></p>
+                          title="previous chapter"><span class="section-number">2.3. </span>Sequences and Families</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
@@ -293,16 +299,16 @@ Phlex will likely support other higher order functions as well.</p>
           <a href="data_flow.html" title="2.6. Data Flow"
              >next</a> |</li>
         <li class="right" >
-          <a href="sequences.html" title="2.3. Sequences"
+          <a href="sequences.html" title="2.3. Sequences and Families"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.4. </span>Functional Programming</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

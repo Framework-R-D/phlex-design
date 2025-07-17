@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Sequences &#8212; Phlex 0.1 documentation</title>
+    <title>2.3. Sequences and Families &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -53,9 +53,9 @@
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences and Families</a></li> 
       </ul>
     </div>  
 
@@ -64,33 +64,48 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="sequences">
-<h1><span class="section-number">2.3. </span>Sequences<a class="headerlink" href="#sequences" title="Link to this heading">¶</a></h1>
-<p>A finite sequence can be represented as a list of objects, each of which are of the same set or <em>type</em> (see <a class="reference internal" href="types.html#types"><span class="std std-numref">Section 2.2</span></a>).
+  <section id="sequences-and-families">
+<h1><span class="section-number">2.3. </span>Sequences and Families<a class="headerlink" href="#sequences-and-families" title="Link to this heading">¶</a></h1>
+<p>A finite sequence can be represented as an ordered list of objects, all of which are from the same set or <em>type</em> (see <a class="reference internal" href="types.html#types"><span class="std std-numref">Section 2.2</span></a>).
 For example, the sequence <span class="math notranslate nohighlight">\(a = [a_1, a_2, \dots, a_n]\)</span> is written as</p>
 <div class="math notranslate nohighlight">
-\[a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = [a_i]_{i \in \mathcal{I}_a}\]</div>
-<p>where each <span class="math notranslate nohighlight">\(a_i \in A\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{I}_a = \{1, 2, \dots, n\}\)</span> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<p>In general, an index set can impose an order on the sequence elements only if the index set itself is ordered.
-Because the elements of the set <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> respect the order <span class="math notranslate nohighlight">\(1 \lt 2 \lt 3 \lt \cdots\)</span> , the sequence elements are listed in that order.
-However, if the index set is assumed to have no ordering associated with it, then instead of <span class="math notranslate nohighlight">\(a\)</span> representing a sequence, it represents an <em>indexed family</em>, where the ordering of elements is irrelevant.
-Specifically, an indexed family <span class="math notranslate nohighlight">\(a\)</span> can be equivalently represented as:</p>
+\[a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = \family{a}\]</div>
+<p>where each <span class="math notranslate nohighlight">\(a_i \in A\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{I} = \{1, 2, \dots, n\}\)</span> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>The elements <span class="math notranslate nohighlight">\(a_i\)</span> can be ordered only if the index set itself is ordered <a class="footnote-reference brackets" href="#strict" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>—e.g because the elements of the set <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> respect the order <span class="math notranslate nohighlight">\(1 \lt 2 \lt 3 \lt \cdots\)</span> , the elements of <span class="math notranslate nohighlight">\(a\)</span> are listed in that order, and <span class="math notranslate nohighlight">\(a\)</span> is, therefore, a sequence.
+However, if the index set has no ordering associated with it, then instead of <span class="math notranslate nohighlight">\(a\)</span> representing a sequence, it represents an <a class="reference internal" href="../appendices/definitions.html#term-Indexed-family"><span class="xref std std-term">indexed family</span></a>, where the ordering of elements is not meaningful.
+Specifically, an indexed family <span class="math notranslate nohighlight">\(b\)</span> can be equivalently represented as:</p>
 <div class="math notranslate nohighlight">
-\[a = [a_1, a_2, \dots, a_n] = [a_n, \dots, a_2, a_1]\]</div>
+\[b = [b_1, b_2, \dots, b_n] = [b_n, \dots, b_2, b_1] = \family{b}\]</div>
 <p>or any of the <span class="math notranslate nohighlight">\(n!\)</span> orderings possible.
-The index set simply provides a mapping from an index to the data object itself.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+The index set <span class="math notranslate nohighlight">\(\isetdefault\)</span> simply provides a mapping from an index to the data object itself.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <p>The order in which elements are presented to algorithms is not guaranteed in concurrent contexts.
-Phlex, therefore, formally processes indexed families of data, and not sequences.
-To avoid confusion with data families (<a class="reference internal" href="../ch_conceptual_design/data_organization.html#data-categories-families-and-data-product-sets"><span class="std std-numref">Section 3.2.2</span></a>), we hereafter use the term <em>sequence</em> to refer to indexed families.
-When necessary, we will use the term <em>ordered sequence</em> to denote a formal mathematical sequence.</p>
+Phlex, therefore, processes indexed families of data and not sequences.</p>
 </div>
-<p>The <em>length</em> of the sequence <span class="math notranslate nohighlight">\(a\)</span> above is denoted by <span class="math notranslate nohighlight">\(|a|\)</span>, and it equals the <em>cardinality</em> of the index set: <span class="math notranslate nohighlight">\(|a| = |\mathcal{I}_a| = n\)</span>.
-In this document, we will have need of a list of length 0, or the empty list, which is a sequence whose elements are indexed by the empty set:</p>
+<p>In some cases, it is convenient to represent a family’s index as a tuple of numbers, thus representing layers of nesting in the data organization (see <a class="reference internal" href="../ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>).
+As an illustration, to use the RSE hierarchy from <a class="reference internal" href="../introduction.html#flexibility"><span class="std std-numref">Section 1.2.1</span></a> one could specify</p>
 <div class="math notranslate nohighlight">
-\[[\ ] = [a_i]_{i \in \emptyset} \ .\]</div>
-<p>We also use the notation <span class="math notranslate nohighlight">\(\tilde{a}\)</span> to denote a sequence whose elements are either Boolean <cite>true</cite> (<span class="math notranslate nohighlight">\(\textsf{T}\)</span>) or <cite>false</cite> (<span class="math notranslate nohighlight">\(\textsf{F}\)</span>), such as <span class="math notranslate nohighlight">\(\tilde{a} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]\)</span>.</p>
+\[c = \ifamily{c}{\text{RSE}} = [c_{rse}]_{(r,s,e) \in \iset{\text{RSE}}}\]</div>
+<p>to refer to a family of data products <span class="math notranslate nohighlight">\(\textit{c}\)</span>, where the variables <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(s\)</span>, and <span class="math notranslate nohighlight">\(e\)</span> correspond to the identifiers for specific <cite>Run</cite>s, <cite>Subrun</cite>s, and <cite>Event</cite>s.
+The values that <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(s\)</span>, and <span class="math notranslate nohighlight">\(e\)</span> are permitted to take are determined by the members of the index set <span class="math notranslate nohighlight">\(\iset{\text{RSE}}\)</span>, which contains triplets of numbers.
+The semantics of the indices depend on the use case, and it is usually best to denote the semantics along with the indices (e.g.):</p>
+<div class="math notranslate nohighlight">
+\[c = [c_{rse}]_{(\text{Run}\ r,\ \text{Subrun}\ s,\ \text{Event}\ e) \in \iset{\text{RSE}}}\]</div>
+<p>This avoids confusion when other data organizations are considered.
+For presentation purposes, however, we only include explicit semantics whenever it is necessary for describing the data-processing in question (e.g. <a class="reference internal" href="../ch_conceptual_design/hofs/partitioned_folds.html#partitioned-folds"><span class="std std-numref">Section 3.5.5</span></a>).</p>
+<p>The <em>length</em> of the family <span class="math notranslate nohighlight">\(b\)</span> above is denoted by <span class="math notranslate nohighlight">\(|b|\)</span>, and it equals the <em>cardinality</em> of the index set: <span class="math notranslate nohighlight">\(|b| = |\isetdefault|\)</span>.
+In this document, we also use the <em>empty family</em>, which has length 0, and whose elements can be indexed by the empty set:</p>
+<div class="math notranslate nohighlight">
+\[[\ ] = [b_i]_{i \in \emptyset} \ .\]</div>
+<p>We also use the notation <span class="math notranslate nohighlight">\(\tilde{b}\)</span> to denote a family whose elements are either Boolean <cite>true</cite> (<span class="math notranslate nohighlight">\(\textsf{T}\)</span>) or <cite>false</cite> (<span class="math notranslate nohighlight">\(\textsf{F}\)</span>), such as <span class="math notranslate nohighlight">\(\tilde{b} = [\textsf{T}, \textsf{T}, \textsf{F}, \dots]\)</span>.</p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="strict" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Specifically, the index set must be equipped with a strict total order.</p>
+</aside>
+</aside>
 </section>
 
 
@@ -146,14 +161,14 @@ In this document, we will have need of a list of length 0, or the empty list, wh
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>Preliminaries</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences and Families</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

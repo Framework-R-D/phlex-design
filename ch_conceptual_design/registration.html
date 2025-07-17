@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0.1 documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
-    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=1372b6f5" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=2709fde1"></script>
+    <script src="../static/documentation_options.js?v=10f1778b"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -29,7 +29,7 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\mathcal{I}_{#1}", 1], "sequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}}", 1], "isequence": ["\\left[#1_i\\right]_{i \\in \\mathcal{I}_{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -66,9 +66,6 @@
             
   <section id="framework-registration">
 <h1><span class="section-number">3.4. </span>Framework Registration<a class="headerlink" href="#framework-registration" title="Link to this heading">¶</a></h1>
-<p>To the extent possible, Phlex preserves data flow among data products and algorithms.
-This is indicated in the interface for registering algorithms.
-In some cases, access to a limited resource is required and the algorithm signature will specify dependencies on not only the data of interest but also the shared resource.</p>
 <p>Consider the following C++ classes and function:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">hits</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">waveforms</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
@@ -77,19 +74,18 @@ In some cases, access to a limited resource is required and the algorithm signat
 </pre></div>
 </div>
 <p>where the implementations of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">waveforms</span></code>, <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code>, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> are unspecified.
-Suppose a physicist would like to use the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> to transform “waveforms” to “GoodHits” for each spill with unlimited concurrency.
+Suppose a physicist would like to use the function <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> to transform a data product labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> to one labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> for each spill with unlimited concurrency.
 This can be achieved by in terms of the C++ <em>registration stanza</em>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span><span class="w">   </span><span class="c1">// &lt;== Registration opener (w/o configuration object)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="c1">// 1. Specification of output data product from make_tracks</span>
+<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="c1">// 1. Specification of output data product from find_hits</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="w">                </span><span class="c1">// 2. Higher-order function</span>
 <span class="w">      </span><span class="s">&quot;hit_finder&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1">// 3. Name assigned to HOF</span>
 <span class="w">      </span><span class="n">find_hits</span><span class="p">,</span><span class="w">              </span><span class="c1">// 4. Algorithm/HOF operation</span>
 <span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">  </span><span class="c1">// 5. Allowed CPU concurrency</span>
 <span class="w">    </span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span>
-<span class="w">      </span><span class="s">&quot;Waveforms&quot;</span><span class="w">             </span><span class="c1">// 6. Specification of input data product to make_tracks</span>
-<span class="w">      </span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">)</span><span class="w">              </span><span class="c1">// 7. Data category to search for input data products</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span>
+<span class="w">      </span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">)</span><span class="w">   </span><span class="c1">// 6. Specification of input data-product family (see text)</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -100,14 +96,14 @@ For the sake of consistency and ease of understaning, the helpers have the same 
 <p>The stanza is introduced by an <em>opener</em>—e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">()</span></code>—followed by a <em>registration block</em>, a block of code between two curly braces that contains one or more <em>registration statements</em>.
 A registration statement is a programming statement that closely follows the equation described in <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> and is used to register an algorithm with the framework.</p>
 <div class="math notranslate nohighlight">
-\[\isequence{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \isequence{a}{\text{input}}\]</div>
+\[\ifamily{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \ifamily{a}{\text{input}}\]</div>
 <p>Specifically, in the registration stanza above, we have the following:</p>
 <blockquote>
 <div><dl class="simple">
 <dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">products</span><span class="p">(...)</span></code></dt><dd><ol class="arabic simple">
-<li><p>This is the equivalent of the output sequence <span class="math notranslate nohighlight">\(\isequence{b}{\text{output}}\)</span>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.
-One of the fields of the data-product specification is the data-product set category to which the data products will belong <a class="reference internal" href="../appendices/requirements.html#DUNE 90" title="DUNE 90"><em class="xref need">[DUNE 90]</em></a>.
-Phlex does not require the output and input categories to be the same.</p></li>
+<li><p>This is the equivalent of the output family <span class="math notranslate nohighlight">\(\ifamily{b}{\text{output}}\)</span>, which is formed from specification(s) of the data product(s) created by the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 156" title="DUNE 156"><em class="xref need">[DUNE 156]</em></a>.
+One of the fields of the data-product specification is the data layer to which the data products will belong <a class="reference internal" href="../appendices/requirements.html#DUNE 90" title="DUNE 90"><em class="xref need">[DUNE 90]</em></a>.
+Phlex does not require the output and input data layers to be the same.</p></li>
 </ol>
 </dd>
 <dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...)</span></code></dt><dd><p>Fully specifying the mathematical expression <span class="math notranslate nohighlight">\(\text{HOF}(f_1,\ f_2,\ \dots)\)</span> requires several items:</p>
@@ -118,10 +114,9 @@ Phlex does not require the output and input categories to be the same.</p></li>
 <li><p>The maximum number of CPU threads the framework can use when invoking the algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 152" title="DUNE 152"><em class="xref need">[DUNE 152]</em></a>.</p></li>
 </ol>
 </dd>
-<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code></dt><dd><p>The specification of the input sequence <span class="math notranslate nohighlight">\(\isequence{a}{\text{input}}\)</span> requires:</p>
-<ol class="arabic simple" start="6">
-<li><p>The specification(s) of data products that serve as input sequence elements <a class="reference internal" href="../appendices/requirements.html#DUNE 65" title="DUNE 65"><em class="xref need">[DUNE 65]</em></a>.</p></li>
-<li><p>The data category where the input data products are found.</p></li>
+<dt><code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code></dt><dd><ol class="arabic simple" start="6">
+<li><p>The specification of the input family <span class="math notranslate nohighlight">\(\ifamily{a}{\text{input}}\)</span> requires (a) the specification of data products that serve as input family elements <a class="reference internal" href="../appendices/requirements.html#DUNE 65" title="DUNE 65"><em class="xref need">[DUNE 65]</em></a>, and (b) the label of the data layer in which the input data products are found.
+In the registration code above, this is achieved by providing the expression <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">)</span></code>, which instructs the framework to create a family of waveforms that reside in <cite>APA</cite>s <a class="footnote-reference brackets" href="#user-defined" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p></li>
 </ol>
 </dd>
 </dl>
@@ -134,7 +129,7 @@ In other words:</p>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> (i.e. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">waveforms</span></code>).</p></li>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodHits&quot;</span></code> specifies a data product whose C++ type is the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hits</span></code> return type of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code>.</p></li>
 </ul>
-<p>When executed, the above code creates a <a class="reference internal" href="../appendices/definitions.html#term-Configured-higher-order-function-CHOF"><span class="xref std std-term">configured higher-order function</span></a>, which serves as a node in the function-centric data-flow graph.</p>
+<p>When executed, the above code creates a <a class="reference internal" href="../appendices/definitions.html#term-Configured-higher-order-function"><span class="xref std std-term">configured higher-order function</span></a>, which serves as a node in the function-centric data-flow graph.</p>
 <p>The registration block may contain any code supported by C++.
 The block, however, must contain a registration statement to execute an algorithm.</p>
 <div class="admonition important">
@@ -144,7 +139,7 @@ Note that multiple registration statements may be made in each stanza.</p>
 </div>
 <section id="algorithms-with-multiple-input-data-products">
 <h2><span class="section-number">3.4.1. </span>Algorithms with Multiple Input Data Products<a class="headerlink" href="#algorithms-with-multiple-input-data-products" title="Link to this heading">¶</a></h2>
-<p>The registration example given above in <a class="reference internal" href="#framework-registration"><span class="std std-numref">Section 3.4</span></a> creates an output sequence by applying a one-parameter algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> to each element of the input sequence, as specified by <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">))</span></code>.
+<p>The registration example given above in <a class="reference internal" href="#framework-registration"><span class="std std-numref">Section 3.4</span></a> creates an output family by applying a one-parameter algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> to each element of the input family, as specified by <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">))</span></code>.
 In many cases, however, the algorithm will require more than one data product.
 Consider another algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits_subtract_pedestals</span></code>, which forms hits by first subtracting pedestal values from the waveforms, both of which are presented to the algorithm as data products from the <cite>APA</cite>.
 The interface of the algorithm and its registration would look like:</p>
@@ -157,21 +152,21 @@ The interface of the algorithm and its registration would look like:</p>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;find_hits&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">find_hits_subtract_pedestals</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Pedestals&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Pedestals&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The elements of the input sequence are thus pairs of the data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Pedestals&quot;</span></code> in each APA. <a class="footnote-reference brackets" href="#zip" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
-In this case, the data-product set for both data products is the same—i.e. for a given invocation of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits_subtract_pedestals</span></code>, both data products will be associated with the same APA.</p>
-<p>There are cases, however, where an algorithm needs to operate on data products from <em>different</em> data-product sets <a class="reference internal" href="../appendices/requirements.html#DUNE 89" title="DUNE 89"><em class="xref need">[DUNE 89]</em></a>.</p>
+<p>The elements of the input family are thus pairs of the data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Pedestals&quot;</span></code> in each APA. <a class="footnote-reference brackets" href="#zip" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>
+In this case, the data cell for both data products is the same—i.e. for a given invocation of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits_subtract_pedestals</span></code>, both data products will be associated with the same APA.</p>
+<p>There are cases, however, where an algorithm needs to operate on data products from <em>different</em> data cells <a class="reference internal" href="../appendices/requirements.html#DUNE 89" title="DUNE 89"><em class="xref need">[DUNE 89]</em></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The number of arguments presented to the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code> must match the number of input parameters to the registered algorithm.
-The order of the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">sequence</span><span class="p">(...)</span></code> arguments also corresponds to the order of the algorithm’s input parameters.</p>
+<p>The number of arguments presented to the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code> clause must match the number of input parameters to the registered algorithm.
+The order of the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code> arguments also corresponds to the order of the algorithm’s input parameters.</p>
 </div>
-<section id="data-products-from-different-data-categories">
-<h3><span class="section-number">3.4.1.1. </span>Data Products from Different Data Categories<a class="headerlink" href="#data-products-from-different-data-categories" title="Link to this heading">¶</a></h3>
-<p>Consider the algorithm <code class="code highlight c++ docutils literal highlight-c++"><span class="n">make_vertices</span></code> in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> that requires two arguments: the <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;GoodTracks&quot;</span></code> collection for each APA (data category <cite>APA</cite>), and the detector <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Geometry&quot;</span></code> that applies for the entire job (data category <cite>Job</cite>) <a class="footnote-reference brackets" href="#job" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+<section id="data-products-from-different-data-layers">
+<h3><span class="section-number">3.4.1.1. </span>Data Products from Different Data Layers<a class="headerlink" href="#data-products-from-different-data-layers" title="Link to this heading">¶</a></h3>
+<p>Consider the operator <span class="math notranslate nohighlight">\(\textit{make\_vertices}\)</span> in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> that requires two arguments: the <span class="math notranslate nohighlight">\(\textit{GoodTracks}\)</span> collection for each APA (data layer <cite>APA</cite>), and the detector <span class="math notranslate nohighlight">\(\textit{Geometry}\)</span> that applies for the entire job (data layer <cite>Job</cite>) <a class="footnote-reference brackets" href="#job" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>.
 This would be expressed in C++ as:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span><span class="w"> </span><span class="nf">make_vertices</span><span class="p">(</span><span class="n">tracks</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 
@@ -179,22 +174,22 @@ This would be expressed in C++ as:</p>
 <span class="p">{</span>
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;Vertices&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;vertex_maker&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">make_vertices</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Geometry&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;Job&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Geometry&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;Job&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>where the categories are explicit in the sequence statement.</p>
-<p>Phlex supports such uses cases <a class="reference internal" href="../appendices/requirements.html#DUNE 113" title="DUNE 113"><em class="xref need">[DUNE 113]</em></a>, even if the specified categories are unrelated to each other.
+<p>where the data layers are explicit in the family statement.</p>
+<p>Phlex supports such uses cases <a class="reference internal" href="../appendices/requirements.html#DUNE 113" title="DUNE 113"><em class="xref need">[DUNE 113]</em></a>, even if the specified data layers are unrelated to each other.
 For example, suppose an algorithm needed to access a data product from a <cite>Spill</cite>, and it also required a calibration offset provided from an external database table <a class="reference internal" href="../appendices/requirements.html#DUNE 35" title="DUNE 35"><em class="xref need">[DUNE 35]</em></a>.
-Instead of providing a separate mechanism for handling calibration constants, a separate category could be invented (e.g. <cite>Calibration</cite>) whose data-product sets corresponded to intervals of validity.
-So long as a relation can be defined between specific <cite>Spill</cite> data-product sets and specific <cite>Calibration</cite> data-product sets, the framework can use that relation to form the input sequence of <cite>Spill</cite>-<cite>Calibration</cite> data-product pairs that are presented to the algorithm.
-How the relation between data-product sets is defined is referred to as <em>data marshaling</em>, and it is described further in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+Instead of providing a separate mechanism for handling calibration constants, a separate layer could be invented (e.g. <cite>Calibration</cite>) whose data cells corresponded to intervals of validity.
+So long as a relation can be defined between specific <cite>Spill</cite> data cells and specific <cite>Calibration</cite> data cells, the framework can use that relation to form the input family of <cite>Spill</cite>-<cite>Calibration</cite> data-product pairs that are presented to the algorithm.
+How the relation between data cells is defined is referred to as <em>data marshaling</em>, and it is described further in <span>the technical design <em>(under preparation)</em></span>.</p>
 </section>
-<section id="data-products-from-adjacent-data-product-sets">
-<h3><span class="section-number">3.4.1.2. </span>Data Products from Adjacent Data-Product Sets<a class="headerlink" href="#data-products-from-adjacent-data-product-sets" title="Link to this heading">¶</a></h3>
+<section id="data-products-from-adjacent-data-cells">
+<h3><span class="section-number">3.4.1.2. </span>Data Products from Adjacent Data Cells<a class="headerlink" href="#data-products-from-adjacent-data-cells" title="Link to this heading">¶</a></h3>
 <p>In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets <a class="reference internal" href="../appendices/requirements.html#DUNE 91" title="DUNE 91"><em class="xref need">[DUNE 91]</em></a>, where <em>adjacency</em> is defined by the user <a class="reference internal" href="../appendices/requirements.html#DUNE 92" title="DUNE 92"><em class="xref need">[DUNE 92]</em></a>.
 The notion of adjacency can be critical for (e.g.) time-windowed processing (see <a class="reference internal" href="hofs/windows.html#windows"><span class="std std-numref">Section 3.5.7</span></a>), where the details of the “next” time bin are needed to accurately calculate properties of the “current” time bin.</p>
-<p>Supporting the processing of adjacent data-product sets is described further in <span>the subsystem design <em>(under preparation)</em></span>.</p>
+<p>Supporting the processing of adjacent data cells is described further in <span>the technical design <em>(under preparation)</em></span>.</p>
 </section>
 </section>
 <section id="accessing-configuration-information">
@@ -203,17 +198,17 @@ The notion of adjacency can be critical for (e.g.) time-windowed processing (see
 To do this, an additional argument (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="n">config</span></code>) is passed to the registration opener:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_category&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_layer&quot;</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;hit_finder&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">find_hits</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_category</span><span class="p">));</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_layer</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As discussed in <span>the subsystem design <em>(under preparation)</em></span>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
+<p>As discussed in <span>the technical design <em>(under preparation)</em></span>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
 </div>
 <p>Except for the specification of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> as the algorithm to be invoked, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span></code> as the HOF, all other pieces of information may be provided through the configuration.</p>
 </section>
@@ -235,7 +230,7 @@ By specifying a lambda expression that takes a <code class="code highlight c++ d
 <span class="w">      </span><span class="p">[](</span><span class="n">phlex</span><span class="o">::</span><span class="n">handle</span><span class="o">&lt;</span><span class="n">waveforms</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ws</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">find_hits_debug</span><span class="p">(</span><span class="o">*</span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="n">ws</span><span class="p">.</span><span class="n">id</span><span class="p">().</span><span class="n">number</span><span class="p">());</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span>
 <span class="w">    </span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
+<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -256,12 +251,12 @@ For example, the <code class="code highlight c++ docutils literal highlight-c++"
 <span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">sigma_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;sigma_threshold&quot;</span><span class="p">);</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_category&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">selected_data_layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;data_layer&quot;</span><span class="p">);</span>
 
 <span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;GoodHits&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
 <span class="w">    </span><span class="n">make</span><span class="o">&lt;</span><span class="n">hit_finder</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sigma_threshold</span><span class="p">)</span><span class="w">  </span><span class="c1">// &lt;= Make framework-owned instance of hit_finder</span>
 <span class="w">      </span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="s">&quot;hit_finder&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hit_finder</span><span class="o">::</span><span class="n">find</span><span class="p">,</span><span class="w"> </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="p">)</span>
-<span class="w">      </span><span class="p">.</span><span class="n">sequence</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_scope</span><span class="p">));</span>
+<span class="w">      </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="n">selected_data_scope</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -270,7 +265,7 @@ The <code class="code highlight c++ docutils literal highlight-c++"><span class=
 <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find</span></code>, bound to the framework-owned <code class="code highlight c++ docutils literal highlight-c++"><span class="n">hit_finder</span></code> instance.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Algorithm authors should first attempt to implement algorithms as free functions.
+<p>Algorithm authors should first attempt to implement algorithms as free functions (see <a class="reference internal" href="../ch_preliminaries/functional_programming.html#pure-functions"><span class="std std-numref">Section 2.4.1</span></a>).
 Registering class instances and their member functions with the framework should only be considered when:</p>
 <ul class="simple">
 <li><p>multiple processing steps must work together, relying on shared internal data, or</p></li>
@@ -284,26 +279,38 @@ Registering class instances and their member functions with the framework should
 This works well except in cases where the registered algorithms are overloaded functions.
 For example, suppose one wants to register C++’s overloaded <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(...)</span></code> function with the framework.
 Simply specifying <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">)</span></code> will fail at compile time as the compiler will not be able to determine which overload is desired.</p>
-<p>Instead, the code author can use the following <a class="footnote-reference brackets" href="#f1" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
+<p>Instead, the code author can use the following <a class="footnote-reference brackets" href="#f1" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="p">[](</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
 </div>
 <p>where the desired overload is selected based on the <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">double</span></code> argument to the lambda expression.</p>
 <p class="rubric">Footnotes</p>
 <aside class="footnote-list brackets">
-<aside class="footnote brackets" id="zip" role="doc-footnote">
+<aside class="footnote brackets" id="user-defined" role="doc-footnote">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The operation that forms the sequence <span class="math notranslate nohighlight">\(\left[(\texttt{&quot;Waveforms&quot;}_i, \texttt{&quot;Pedestals&quot;}_i)\right]_{i \in \mathcal{I}_{\text{APA}}}\)</span> from the separate sequences <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Waveforms&quot;}}{\text{APA}}\)</span> and <span class="math notranslate nohighlight">\(\isequence{\texttt{&quot;Pedestals&quot;}}{\text{APA}}\)</span> is called <em>zip</em>.</p>
+<p>The token <code class="code highlight c++ docutils literal highlight-c++"><span class="n">_in</span></code> is a suffix that is part of a user-defined literal <a class="reference internal" href="#cpp-userliteral" id="id5"><span>[Cpp-UserLiteral]</span></a>, which permits an expression like <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;Waveforms&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;APA&quot;</span><span class="p">)</span></code>.
+The type returned by the expression is implementation-defined and has no public interface needed by the user.</p>
+</aside>
+<aside class="footnote brackets" id="zip" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>The operation that forms the family <span class="math notranslate nohighlight">\(\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}\)</span> from the separate families <span class="math notranslate nohighlight">\(\ifamily{\textit{Waveforms}}{\text{APA}}\)</span> and <span class="math notranslate nohighlight">\(\ifamily{\textit{Pedestals}}{\text{APA}}\)</span> is called <em>zip</em>.</p>
 </aside>
 <aside class="footnote brackets" id="job" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
-<p>As shown in <a class="reference internal" href="data_organization.html#id1"><span class="std std-numref">Fig. 3.2</span></a>, there is a <cite>Job</cite> data category , to which job-level data products may belong.</p>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>As shown in <a class="reference internal" href="data_organization.html#id1"><span class="std std-numref">Fig. 3.2</span></a>, there is a <cite>Job</cite> data layer, to which job-level data products may belong.</p>
 </aside>
 <aside class="footnote brackets" id="f1" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
 <p>Equivalently, one can use the obscure syntax <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span><span class="p">(...,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">),</span><span class="w"> </span><span class="p">...)</span></code>, where <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span></code> is cast to the desired overload.</p>
 </aside>
 </aside>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="cpp-userliteral" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Cpp-UserLiteral</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.cppreference.com/w/cpp/language/user_literal.html">https://en.cppreference.com/w/cpp/language/user_literal.html</a></p>
+</div>
+</div>
 </section>
 </section>
 
@@ -322,8 +329,8 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
     <ul>
 <li><a class="reference internal" href="#">3.4. Framework Registration</a><ul>
 <li><a class="reference internal" href="#algorithms-with-multiple-input-data-products">3.4.1. Algorithms with Multiple Input Data Products</a><ul>
-<li><a class="reference internal" href="#data-products-from-different-data-categories">3.4.1.1. Data Products from Different Data Categories</a></li>
-<li><a class="reference internal" href="#data-products-from-adjacent-data-product-sets">3.4.1.2. Data Products from Adjacent Data-Product Sets</a></li>
+<li><a class="reference internal" href="#data-products-from-different-data-layers">3.4.1.1. Data Products from Different Data Layers</a></li>
+<li><a class="reference internal" href="#data-products-from-adjacent-data-cells">3.4.1.2. Data Products from Adjacent Data Cells</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#accessing-configuration-information">3.4.2. Accessing Configuration Information</a></li>
@@ -378,14 +385,14 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 03, 2025.
+      Last updated on Jul 17, 2025.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
