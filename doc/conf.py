@@ -16,6 +16,12 @@ project = 'Phlex'
 copyright = '2025, Fermi Forward Discovery Group, LLC'
 author = ''
 
+def watermark_blurb(scale, contents):
+    preamble = "\\usepackage[angle=30,color=lightgray]{background}\n"
+    if scale is None:
+        return rf"{preamble}\backgroundsetup{{contents={{{contents}}}}}"
+    return rf"{preamble}\backgroundsetup{{scale={scale}, contents={{{contents}}}}}"
+
 git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).decode('ascii').strip()
 
 version = "0"
@@ -23,11 +29,21 @@ version = "0"
 # For releases for circulation use:
 # release = "0.2"
 # latex_filename = f"phlex-design-v{release}.tex"
+# watermark = watermark_blurb(scale=10.5, contents="For Review")
+# watermark = watermark_blurb(scale=7, contents="For DUNE Review")
+
+# For releases for circulation without watermark use:
+# release_base = "0.2"
+# release = f"{release_base} (For Review)"
+# latex_filename = f"phlex-design-v{release_base}-no-watermark.tex"
+# watermark = ""  # No watermark
+# today = "Jul 16, 2025"
 
 # For development use
 release_base = "0.3.alpha"
-latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
 release = f"{release_base} ({git_commit})"
+latex_filename = f"phlex-design-v{release_base}-{git_commit}.tex"
+watermark = watermark_blurb(scale=None, contents="Preliminary")
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -89,14 +105,6 @@ extra_packages = r"""
 \usepackage{bbm}
 \usepackage{mathtools}
 """
-
-# "Preliminary", do not specify scale for watermark
-# "For DUNE Review", use scale=7 for watermark
-# "For Review", use scale=10.5 for watermark
-
-preliminary_watermark = r"""
-\usepackage[angle=30,color=lightgray]{background}
-\backgroundsetup{contents={Preliminary}}"""
 
 new_commands = r"""
 \newcommand\lt[0]{<}
@@ -217,7 +225,7 @@ html_last_updated_fmt = ""  # Equivalent to showing (e.g.) May 29, 2025
 
 latex_logo = 'phlex-logo.png'
 latex_elements = {
-    "preamble": extra_packages + preliminary_watermark + new_commands,
+    "preamble": extra_packages + watermark + new_commands,
 }
 latex_documents = [("index",
                     latex_filename,
