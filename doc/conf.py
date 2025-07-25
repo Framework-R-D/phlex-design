@@ -51,6 +51,7 @@ watermark = watermark_blurb(scale=None, contents="Preliminary")
 extensions = ['sphinx.ext.graphviz',
               'sphinx.ext.autosectionlabel',
               'appendix',
+              "autoindex_term",
               "missing_references",
               "sphinx_needs",
               "terminology"]
