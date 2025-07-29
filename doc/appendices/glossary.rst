@@ -1,5 +1,5 @@
-Definitions
-===========
+Glossary
+========
 
 .. glossary::
     :sorted:
@@ -39,11 +39,11 @@ Definitions
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
         In *art*, the data-layer hierarchy is `Run`\ -\ `Subrun`\ -\ `Event`.
 
-    Data product
+    Concrete data product
         An object managed by the framework and for which provenance information is recorded.
 
-        A data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
-        Data products determine the flow of execution of the graph of CHOFs configured in a framework program.
+        A concrete data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
+        Concrete data products determine the flow of execution of the graph of CHOFs configured in a framework program.
 
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.

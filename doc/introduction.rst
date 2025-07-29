@@ -185,13 +185,13 @@ From there, we discuss the conceptual design itself in :numref:`Chapter %s <conc
 
 .. only:: conceptual_design_only
 
-   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/glossary:Glossary>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
 
 .. only:: not conceptual_design_only
 
    Supporting material is presented in :numref:`Chapter %s<supporting_design:technical design>`.
 
-   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/glossary:Glossary>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
 
 .. attention::
 
