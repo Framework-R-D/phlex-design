@@ -56,21 +56,29 @@ jobs:
           for d in static sources images; do mv build/html/_$d build/html/$d; done
           for d in static sources images; do sed -i -e "s|_$d/|$d/|g" $(find build/html/ -name \*.html); done
 
-      - name: Check out repository code (gh-pages branch)
-        uses: actions/checkout@v4
+      - name: Upload HTML document
+        id: upload-html-document
+        uses: actions/upload-artifact@v4
         with:
-          path: gh-pages
-          ref: gh-pages
+          name: phlex-design-html
+          path: ./main/doc/build/html/
+          if-no-files-found: error
 
-      - name: Push HTML pages to gh-pages branch
-        working-directory: ./gh-pages/
-        run: |
-          # Remove the contents to avoid retaining generated images that are no longer used
-          rm -rf *
-          # Copy built HTML pages into gh-pages source tree
-          cp -r ../main/doc/build/html/* .
-          # Note: the following account information will not work on GHES
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "[auto-generated] Pages for commit ${PHLEX_DESIGN_COMMIT}" && git push
+      # - name: Check out repository code (gh-pages branch)
+      #   uses: actions/checkout@v4
+      #   with:
+      #     path: gh-pages
+      #     ref: gh-pages
+      #
+      # - name: Push HTML pages to gh-pages branch
+      #   working-directory: ./gh-pages/
+      #   run: |
+      #     # Remove the contents to avoid retaining generated images that are no longer used
+      #     rm -rf *
+      #     # Copy built HTML pages into gh-pages source tree
+      #     cp -r ../main/doc/build/html/* .
+      #     # Note: the following account information will not work on GHES
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git add .
+      #     git commit -m "[auto-generated] Pages for commit ${PHLEX_DESIGN_COMMIT}" && git push
