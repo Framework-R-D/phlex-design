@@ -253,18 +253,6 @@ Conceptual Requirements
 
 - See :numref:`ch_conceptual_design/resources:Resources`
 
-.. req:: Resource specification for algorithms
-    :collapse:
-    :id: DUNE 52
-    :status: Approved
-    :jama: 52 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620
-    :notes: This is ID #33 from the original DUNE document.
-    :tags: Original, Concurrency and multithreading, Resource management
-
-    The framework shall enable the specification of resources required by each algorithm.
-
-- See :numref:`ch_conceptual_design/resources:Resources`
-
 .. req:: Resource-based algorithm concurrency
     :collapse:
     :id: DUNE 50
@@ -274,6 +262,18 @@ Conceptual Requirements
     :tags: Original, Concurrency and multithreading, Resource management
 
     The framework shall dynamically schedule algorithms to execute efficiently according to the availability of each algorithm's required resources.
+
+- See :numref:`ch_conceptual_design/resources:Resources`
+
+.. req:: Resource specification for algorithms
+    :collapse:
+    :id: DUNE 52
+    :status: Approved
+    :jama: 52 https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14620
+    :notes: This is ID #33 from the original DUNE document.
+    :tags: Original, Concurrency and multithreading, Resource management
+
+    The framework shall enable the specification of resources required by each algorithm.
 
 - See :numref:`ch_conceptual_design/resources:Resources`
 
