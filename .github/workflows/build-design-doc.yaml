@@ -36,6 +36,7 @@ jobs:
           dot -c  # because it's weird out of the box
           git config --global --add safe.directory $GITHUB_WORKSPACE
           PHLEX_CONCEPTUAL_DESIGN_ONLY=1 make latexpdf
+          PHLEX_CONCEPTUAL_DESIGN_ONLY=1 PHLEX_NO_WATERMARK=1 make latexpdf
 
       - name: Upload PDF document
         id: upload-pdf-document

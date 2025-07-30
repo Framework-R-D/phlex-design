@@ -27,16 +27,17 @@ git_commit = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).de
 version = "0"
 
 # For releases for circulation use:
-release = "0.3"
+release_base = "0.3"
+release = release_base
 latex_filename = f"phlex-design-v{release}.tex"
 watermark = watermark_blurb(scale=10.5, contents="For Review")
 # watermark = watermark_blurb(scale=7, contents="For DUNE Review")
 
-# For releases for circulation without watermark use:
-# release_base = "0.3"
-# release = f"{release_base} (For Review)"
-# latex_filename = f"phlex-design-v{release_base}-no-watermark.tex"
-# watermark = ""  # No watermark
+if os.environ.get("PHLEX_NO_WATERMARK", False):
+    release = f"{release_base} (For Review)"
+    latex_filename = f"phlex-design-v{release_base}-no-watermark.tex"
+    watermark = ""  # No watermark
+
 # today = "Jul 16, 2025"
 
 # For development use
