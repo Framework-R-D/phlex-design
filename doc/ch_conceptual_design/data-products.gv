@@ -15,7 +15,7 @@ digraph {
     fontcolor="blue"
     color="none"
     label=<<b>Data-product<br/> concept</b>>
-    hits [label="Hits", shape="ellipse", fillcolor="lightcyan", fontcolor="blue", color="blue"]
+    hits [label="HitCollection", shape="ellipse", fillcolor="lightcyan", fontcolor="blue", color="blue"]
   }
 
   hits -> real_world_hits [style="dotted", label="abstracts", color="blue", fontcolor="blue"]
@@ -36,7 +36,7 @@ digraph {
          fontcolor="webgreen"]
 
     std_vector [label=<<b>std::vector&lt;Hit&gt;</b>>]
-    hit_coll [label=<<b>HitColl</b>>]
+    hit_coll [label=<<b>HitSOA</b>>]
     py_hit_coll [label=<<b>py_hit_coll  </b>>]
   }
 
