@@ -40,6 +40,23 @@ digraph {
     py_hit_coll [label=<<b>py_hit_coll  </b>>]
   }
 
+  subgraph cluster_persistent {
+    labelloc="b"
+    labeljust="r"
+    label=<<b>Persistent layouts</b>>
+    color="ivory4"
+    fontcolor="ivory4"
+    style="filled"
+    fillcolor="ivory1"
+    node[style="plaintext",
+         peripheries=0,
+         margin="0.25,0",
+         fontname="Monaco",
+         fontsize=11,
+         fontcolor="ivory4"]
+    hit_collection_layout
+  }
+
   subgraph cluster_object {
 
     labeljust="l"
@@ -49,8 +66,6 @@ digraph {
 
     hs1; hs2; hs3;
   }
-
-  persistent [shape="plaintext", label=<Persistent<br/>layout>, style="none", fontcolor="webgreen"]
   hs4 [style="box", width=0.1, style="filled", fontcolor="white", fillcolor="red3"]
 
 
@@ -64,11 +79,11 @@ digraph {
   std_vector -> hits [label="models"];
   hit_coll -> hits;
   py_hit_coll -> hits [label="models"];
-  persistent -> hits;
+  hit_collection_layout -> hits [label="models"];
 
   edge [arrowhead="none", color="webgreen"]
   hs1 -> std_vector
   hs2 -> hit_coll
   hs3 -> py_hit_coll;
-  hs4 -> persistent;
+  hs4 -> hit_collection_layout;
 }
