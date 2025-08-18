@@ -2,7 +2,7 @@
 Introduction
 ************
 
-A resonable definition of a software framework is [Wiki-Framework]_:
+A reasonable definition of a software framework is [Wiki-Framework]_:
 
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
