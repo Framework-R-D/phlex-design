@@ -6,19 +6,19 @@ digraph {
     label=<<b>Physical data product</b>>
     labelloc="b"
     color="none"
-    fontcolor="brown"
-    real_world_hits [label=<Real-world hits>, fillcolor="wheat", color="brown", fontcolor="brown"]
+    fontcolor="purple2"
+    real_world_hits [label=<Real-world hits>, fillcolor="thistle2", color="purple2", fontcolor="purple2"]
   }
 
   subgraph cluster_concept {
     labelloc="b"
     fontcolor="blue"
     color="none"
-    label=<<b>Data-product<br/> concept</b>>
+    label=<<b>Data-product concept</b>>
     hits [label="HitCollection", shape="ellipse", fillcolor="lightcyan", fontcolor="blue", color="blue"]
   }
 
-  hits -> real_world_hits [style="dotted", label="abstracts", color="blue", fontcolor="blue"]
+  hits -> real_world_hits [style="dotted", label="  abstracts", color="blue", fontcolor="blue"]
 
   subgraph cluster_concrete {
     labelloc="b"
@@ -28,16 +28,18 @@ digraph {
     fontcolor="webgreen"
     style="filled"
     fillcolor="darkseagreen1";
-    node[style="plaintext",
+    node[shape="plaintext",
+         style="solid",
          peripheries=0,
-         margin="0.25,0",
+         width=0.01,
+         height=0.02,
          fontname="Monaco",
          fontsize=11,
          fontcolor="webgreen"]
 
     std_vector [label=<<b>std::vector&lt;Hit&gt;</b>>]
     hit_coll [label=<<b>HitSOA</b>>]
-    py_hit_coll [label=<<b>py_hit_coll  </b>>]
+    py_hit_coll [label=<<b>py_hit_coll</b>>]
   }
 
   subgraph cluster_persistent {
@@ -48,42 +50,57 @@ digraph {
     fontcolor="ivory4"
     style="filled"
     fillcolor="ivory1"
-    node[style="plaintext",
+    node[shape="plaintext",
+         style="solid",
          peripheries=0,
-         margin="0.25,0",
+         width=0.01,
+         height=0.02,
          fontname="Monaco",
          fontsize=11,
          fontcolor="ivory4"]
-    hit_collection_layout
+    HitCollROOT
+    HitCollROOTSOA
+    HitCollHDF5
   }
 
-  subgraph cluster_object {
-
+  subgraph cluster_concrete_objects {
     labeljust="l"
     label=<<b>Concrete data products</b>>
     color=black
-    node [style="box", width=0.1, style="filled", fontcolor="white", fillcolor="red3"]
+    node [style="box", width=0.1, style="filled", fillcolor="orange"]
 
     hs1; hs2; hs3;
   }
-  hs4 [style="box", width=0.1, style="filled", fontcolor="white", fillcolor="red3"]
+
+  subgraph cluster_persistent_objects {
+    labeljust="l"
+    label=<<b>Persisted data products</b>>
+    node [style="box", width=0.1, style="filled", fontcolor="white", fillcolor="red3"]
+    hs4; hs6; hs5;
+  }
 
 
-  edge [style="dashed", arrowhead="normal", color="red3", fontcolor="red3"]
-  hs1 -> real_world_hits [label=" represents"];
-  hs2 -> real_world_hits;
-  hs3 -> real_world_hits;
-  hs4 -> real_world_hits [label="represents"];
+  edge [style="dotted", arrowhead="normal", color="purple2", fontcolor="purple2"]
+  hs1 -> real_world_hits:w [label="represents"];
+  hs2 -> real_world_hits:w;
+  hs3 -> real_world_hits:w;
+  hs4 -> real_world_hits:e;
+  hs5 -> real_world_hits:e [label="represents"];
+  hs6 -> real_world_hits:e;
 
-  edge [style="normal", arrowhead="empty", color="webgreen", fontcolor="webgreen"]
+  edge [style="solid", arrowhead="empty", color="webgreen", fontcolor="webgreen"]
   std_vector -> hits [label="models"];
   hit_coll -> hits;
   py_hit_coll -> hits [label="models"];
-  hit_collection_layout -> hits [label="models"];
+  HitCollROOT -> hits;
+  HitCollROOTSOA -> hits [label="models"];
+  HitCollHDF5 -> hits;
 
   edge [arrowhead="none", color="webgreen"]
   hs1 -> std_vector
   hs2 -> hit_coll
   hs3 -> py_hit_coll;
-  hs4 -> hit_collection_layout;
+  hs4 -> HitCollROOT;
+  hs5 -> HitCollROOTSOA;
+  hs6 -> HitCollHDF5;
 }
