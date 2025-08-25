@@ -60,11 +60,11 @@ It is therefore necessary to constrain the parameters of external contributions 
 
 ### Acceptance of External Contributions
 
-An external contribution:
+External contributions to Phlex are encouraged so long as:
 
-  1. Shall not inhibit Phlex’s ability to satisfy requirements for officially supported systems.
+  1. They do not inhibit Phlex’s ability to satisfy requirements for officially supported systems.
 
-  2. Shall conform to all other policies for the appropriate Phlex repository, including (but not limited to) those concerning:
+  2. They conform to all other policies for the appropriate Phlex repository, such as those concerning:
 
      1. CI/CD tests on officially and community supported systems
      2. Test coverage
@@ -79,8 +79,8 @@ An external contribution:
 
 In the event that CI/CD test failures for any Phlex repository (or other reported anomalous behavior) can be traced to an external contribution *after it has been accepted*:
 
-1. The contributor(s) shall be notified of such issues and asked to resolve them within a reasonable time period reflecting the scope of the failure (e.g. failures affecting officially supported systems shall be considered urgent).
-2. If any affected system is community supported, the responsible party for that system's support shall also be contacted.
-3. If that failure is not remediated timely, the minimum action shall be taken by the core developers to mitigate the effect of the failure on Phlex’s ongoing ability to satisfy stakeholder requirements.
-4. Such minimal action may include disablement or removal of the external contribution, or disablement of CI/CD for community supported systems.
+1. The contributor(s) will be notified of such issues and asked to resolve them within a reasonable time period reflecting the scope of the failure (e.g. failures affecting officially supported systems shall be considered urgent).
+2. If any affected system is community-supported, the responsible party for that system's support will also be contacted.
+3. If that failure is not addressed in a timely manner, the core developers will take the minimum action required to continue development that satisfies Phlex’s stakeholder requirements.
+4. Such minimal action may include disabling or removing the external contribution, or disabling the CI/CD for community-supported systems.
 5. The external contribution may be restored via a subsequent PR conforming with this policy.
