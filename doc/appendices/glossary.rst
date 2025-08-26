@@ -27,7 +27,7 @@ Glossary
         A group of data cells each of which has the same data layer label.
 
         A data layer is one node in a data-layer hierarchy.
-        The top layer of the graph is always the `Job`.
+        The top layer of the hierarchy is always the `Job`.
         All other layers are defined by the combination of the configuration of the framework job and the layers defined in the input data.
         By contrast, in *art* the data layers are `Run`, `Subrun`, and `Event`.
 
@@ -44,6 +44,20 @@ Glossary
 
         A concrete data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
         Concrete data products determine the flow of execution of the graph of CHOFs configured in a framework program.
+
+    Concrete data-product type
+        The programming-language type of a concrete data product.
+
+    Data-product concept
+        An abstraction that captures the computationally-relevant aspects of a physical data product.
+
+        A data-product concept can be modeled by multiple concrete data-product types.
+        A physical data product can also be abstracted differently by distinct data-product concepts.
+
+    Physical data product
+        A real-world entity like a raw detector readout, some calibration information, or a derived physics quantity, such as a collection of hits.
+
+        A particular physical data product may be represented by multiple concrete data products, possibly of different concrete data-product types.
 
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.

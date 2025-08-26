@@ -71,7 +71,7 @@ Maintaining data integrity is therefore paramount, as is retaining an accounting
 The Phlex design therefore:
 
 - treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program's execution,
-- requires recording the :term:`provenance` of every created :term:`data product` :need:`DUNE 121`, and
+- requires recording the :term:`provenance` of every created :term:`concrete data product` :need:`DUNE 121`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
 -----------
