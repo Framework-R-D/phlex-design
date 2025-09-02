@@ -50,10 +50,10 @@ Various framework aspects are demonstrated by that figure:
       - A *fold* algorithm is executed over the :product:`GoodHits` data products to sum the hit energy (i.e. :product:`TotalHitEnergy`) across all `APA`\ s for a given `Spill`.
       - After a *filter* has been applied with the *predicate* :mathfunc:`high_energy`, an *observe* algorithm is used to fill a histogram with hit-related information from the :product:`GoodHits` data products.
 
-   *data-product writers*
-      Data-product writers are plugins that write data products to framework outputs (see :numref:`ch_conceptual_design/writers:Data-Product writers`)
+   *data-product preservers*
+      Data-product preservers are plugins that write data products to framework outputs (see :numref:`ch_conceptual_design/preservers:Data-Product preservers`)
 
-      Each of the five writers in :numref:`workflow` is responsible for writing to one or more output files.
+      Each of the five preservers in :numref:`workflow` is responsible for writing to one or more output files.
 
    *resources*
       Most workflows require access to some external resource (see :numref:`ch_conceptual_design/resources:Resources`).
@@ -81,7 +81,7 @@ Each data product is also indexed, thus associating it with a particular data ce
    ch_conceptual_design/supported_hofs
    ch_conceptual_design/driver
    ch_conceptual_design/providers
-   ch_conceptual_design/writers
+   ch_conceptual_design/preservers
    ch_conceptual_design/resources
    ch_conceptual_design/program_configuration
 

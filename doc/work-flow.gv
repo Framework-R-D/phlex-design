@@ -29,12 +29,12 @@ digraph {
   geometry_provider [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
   sim_depos_provider [label="provide(SimDepos)", style="filled,rounded" fillcolor="lightblue"];
 
-  // Writers
-  waveforms_writer [label="write(Waveforms)", style="filled,rounded", fillcolor="lightblue"];
-  total_energy_writer [label="write(TotalHitEnergy)", style="filled,rounded", fillcolor="lightblue"];
-  tracks_writer [label="write(GoodTracks)", style="filled,rounded", fillcolor="lightblue"];
-  vertices_writer [label="write(Vertices)", style="filled,rounded", fillcolor="lightblue"];
-  hits_writer [label="write(GoodHits)", style="filled,rounded" fillcolor="lightblue"];
+  // preservers
+  waveforms_preserver [label="preserve(Waveforms)", style="filled,rounded", fillcolor="lightblue"];
+  total_energy_preserver [label="preserve(TotalHitEnergy)", style="filled,rounded", fillcolor="lightblue"];
+  tracks_preserver [label="preserve(GoodTracks)", style="filled,rounded", fillcolor="lightblue"];
+  vertices_preserver [label="preserve(Vertices)", style="filled,rounded", fillcolor="lightblue"];
+  hits_preserver [label="preserve(GoodHits)", style="filled,rounded" fillcolor="lightblue"];
 
   start -> driver [label=" Configuration", fontcolor="forestgreen"];
   driver -> input [style="dotted", arrowhead=none];
@@ -51,36 +51,36 @@ digraph {
   geometry_provider -> transform_make_vertices [taillabel=<[Geometry]>, labeldistance=4.7, labelangle=20];
 
   unfold_into_apas -> transform_find_hits [xlabel=<[Waveforms<sub><i>i j k</i></sub>] >];
-  unfold_into_apas -> waveforms_writer [label=<[Waveforms<sub><i>i j k</i></sub>]>];
+  unfold_into_apas -> waveforms_preserver [label=<[Waveforms<sub><i>i j k</i></sub>]>];
 
   transform_find_hits -> filter_high_energy [label=<[GoodHits<sub><i>i j k</i></sub>]>];
-  transform_find_hits -> hits_writer;
+  transform_find_hits -> hits_preserver;
   transform_find_hits -> window_make_tracks [label=<[GoodHits<sub><i>i j k</i></sub>]>];
   transform_find_hits -> fold_total_energy;
 
   window_make_tracks -> transform_make_vertices [label=< [GoodTracks<sub><i>i j k</i></sub>]>];
-  window_make_tracks -> tracks_writer;
+  window_make_tracks -> tracks_preserver;
 
-  transform_make_vertices -> vertices_writer [label=< [Vertices<sub><i>i j k</i></sub>]>];
+  transform_make_vertices -> vertices_preserver [label=< [Vertices<sub><i>i j k</i></sub>]>];
 
-  fold_total_energy -> total_energy_writer [label=< [TotalHitEnergy<sub><i>i j</i></sub>]>];
+  fold_total_energy -> total_energy_preserver [label=< [TotalHitEnergy<sub><i>i j</i></sub>]>];
 
   filter_high_energy -> observe_histogram_hits [label=<[GoodHits<sub><i>i j k</i> '</sub>]>];
 
   resource -> observe_histogram_hits [style="dashed"];
 
-  { total_energy_writer, waveforms_writer, hits_writer, tracks_writer, vertices_writer } -> out [style="dotted", arrowhead=none]
+  { total_energy_preserver, waveforms_preserver, hits_preserver, tracks_preserver, vertices_preserver } -> out [style="dotted", arrowhead=none]
 
   // Making the graph layout better
   { rank=same; driver; input; }
   { rank=same; resource; root; }
   { rank=same; gdml; geometry_provider; sim_depos_provider; }
-  { rank=same; window_make_tracks; hits_writer; fold_total_energy; filter_high_energy; }
-  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_writer; total_energy_writer; }
+  { rank=same; window_make_tracks; hits_preserver; fold_total_energy; filter_high_energy; }
+  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_preserver; total_energy_preserver; }
 
   // The following edges do not denote any formal relationships; they are intended for influencing the layout.
   edge [style="invis"]
-  input -> waveforms_writer;
+  input -> waveforms_preserver;
   filter_high_energy -> resource;
-  transform_find_hits -> waveforms_writer [constraint="false"];
+  transform_find_hits -> waveforms_preserver [constraint="false"];
 }
