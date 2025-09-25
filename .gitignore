@@ -9,3 +9,7 @@ requirements-statemachine.png
 .quarto/
 .vscode/
 /README.html
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
