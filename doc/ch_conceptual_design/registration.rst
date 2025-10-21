@@ -16,17 +16,19 @@ This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code-block:: c++
 
-   PHLEX_REGISTER_ALGORITHMS()   // <== Registration opener (w/o configuration object)
+   PHLEX_REGISTER_ALGORITHMS()  // <== Registration opener (w/o configuration object)
    {
-     products("GoodHits") =      // 1. Specification of output data product from find_hits
-       transform(                // 2. Higher-order function
-         "hit_finder",           // 3. Name assigned to HOF
-         find_hits,              // 4. Algorithm/HOF operation
-         concurrency::unlimited  // 5. Allowed CPU concurrency
-       )
-       .family(
-         "Waveforms"_in("APA")   // 6. Specification of input data-product family (see text)
-       );
+     transform(                 // 1. Higher-order function
+       "hit_finder",            // 2. Name assigned to HOF
+       find_hits,               // 3. Algorithm/HOF operation
+       concurrency::unlimited   // 4. Allowed CPU concurrency
+     )
+     .input_family(
+       "Waveforms"_in("APA")    // 5. Specification of input data-product family (see text)
+     )
+     .output_products(
+       "GoodHits"               // 6. Specification of output data product from find_hits
+     );
    }
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
@@ -95,9 +97,9 @@ The interface of the algorithm and its registration would look like:
 
   PHLEX_REGISTER_ALGORITHMS(config)
   {
-    products("GoodHits") =
-      transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
-      .family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
+    transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
+      .input_family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
+      .output_products("GoodHits");
   }
 
 The elements of the input family are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
@@ -122,9 +124,9 @@ This would be expressed in C++ as:
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("Vertices") =
-       transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .family("GoodHits"_in("APA"), "Geometry"_in("Job"));
+     transform("vertex_maker", make_vertices, concurrency::unlimited)
+       .input_family("GoodTracks"_in("APA"), "Geometry"_in("Job"));
+       .output_products("Vertices");
    }
 
 where the data layers are explicit in the family statement.
@@ -155,9 +157,9 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
    {
      auto selected_data_layer = config.get<std::string>("data_layer");
 
-     products("GoodHits") =
-       transform("hit_finder", find_hits, concurrency::unlimited)
-       .family("Waveforms"_in(selected_data_layer));
+     transform("hit_finder", find_hits, concurrency::unlimited)
+       .input_family("Waveforms"_in(selected_data_layer));
+       .output_products("GoodHits");
    }
 
 .. note::
@@ -183,13 +185,13 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
-     products("GoodHits") =
-       transform(
-         "hit_finder",
-         [](phlex::handle<waveforms> ws) { return find_hits_debug(*ws, ws.id().number()); },
-         concurrency::unlimited
-       )
-       .family("Waveforms"_in("APA"));
+     transform(
+       "hit_finder",
+       [](phlex::handle<waveforms> ws) { return find_hits_debug(*ws, ws.id().number()); },
+       concurrency::unlimited
+     )
+     .input_family("Waveforms"_in("APA"))
+     .output_products("GoodHits");
    }
 
 The lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` function, however, retains its framework independence.
@@ -215,10 +217,10 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
      auto sigma_threshold = config.get<float>("sigma_threshold");
      auto selected_data_layer = config.get<std::string>("data_layer");
 
-     products("GoodHits") =
-       make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
-         .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
-         .family("Waveforms"_in(selected_data_scope));
+     make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
+       .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
+       .input_family("Waveforms"_in(selected_data_scope));
+       .output_products("GoodHits");
    }
 
 Note that the :cpp:`hit_finder` instance created in the code above is *owned by the framework*.
