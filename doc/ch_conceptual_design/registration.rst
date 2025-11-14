@@ -37,7 +37,7 @@ A Python algorithm can be registered with its own companion C++ module or throug
 For the sake of consistency and ease of understaning, the helpers have the same naming and follow the same conventions as the C++ registration.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
-A registration statement is a programming statement that closely follows the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` and is used to register an algorithm with the framework.
+A registration statement is a programming statement intended to model the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` [#statement_ordering]_:
 
 .. math::
 
@@ -45,22 +45,22 @@ A registration statement is a programming statement that closely follows the equ
 
 Specifically, in the registration stanza above, we have the following:
 
-   :cpp:`products(...)`
-     1. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
-        One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
-        Phlex does not require the output and input data layers to be the same.
-
    :cpp:`transform(...)`
      Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
 
-     2. The HOF to be used,
-     3. The name to assign to the configured HOF,
-     4. The algorithm/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
-     5. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
+     1. The HOF to be used,
+     2. The name to assign to the configured HOF,
+     3. The algorithm/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
+     4. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
 
-   :cpp:`family(...)`
-     6. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
+   :cpp:`input_family(...)`
+     5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
         In the registration code above, this is achieved by providing the expression :cpp:`"Waveforms"_in("APA")`, which instructs the framework to create a family of waveforms that reside in `APA`\ s [#user_defined]_.
+
+   :cpp:`output_products(...)`
+     6. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+        One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
+        Phlex does not require the output and input data layers to be the same.
 
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
@@ -253,6 +253,7 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. rubric:: Footnotes
 
+.. [#statement_ordering] In contrast to the equational form, the specification of the output products occurs *after* the specification of the input family, leading to more natural programming patterns.
 .. [#user_defined] The token :cpp:`_in` is a suffix that is part of a user-defined literal [Cpp-UserLiteral]_, which permits an expression like :cpp:`"Waveforms"_in("APA")`.
                    The type returned by the expression is implementation-defined and has no public interface needed by the user.
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.

@@ -62,7 +62,7 @@ Glossary
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.
 
-        Each data cell has has a data layer label, which indicates the type of the data cell.
+        Each data cell has a data layer label, which indicates the type of the data cell.
         All the data cells of a given data layer are of the same type.
         All the data cells of a given data layer are identifiable by the same type of index, and each is identified by a unique index value.
         In *art*, individual `Run` objects, `Subrun` objects and `Event` objects are examples of data cells.
