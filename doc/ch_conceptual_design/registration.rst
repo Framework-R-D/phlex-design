@@ -11,22 +11,27 @@ Consider the following C++ classes and function:
    hits find_hits(waveforms const& ws) { ... }
 
 where the implementations of :cpp:`waveforms`, :cpp:`hits`, and :cpp:`find_hits` are unspecified.
-Suppose a physicist would like to use the function :cpp:`find_hits` to transform a data product labeled :cpp:`"Waveforms"` to one labeled :cpp:`"GoodHits"` for each spill with unlimited concurrency.
+Suppose a physicist would like to use the function :cpp:`find_hits` in transform.
+The input is to come from a node named :cpp:`calibrate_wires`.
+The algorithm is to be run on every spill, and supports unlimited concurrency.
+The output is to have a product suffix of :cpp:`"GoodHits"`.
+
 This can be achieved by in terms of the C++ *registration stanza*:
 
 .. code-block:: c++
 
-   PHLEX_REGISTER_ALGORITHMS()  // <== Registration opener (w/o configuration object)
+   PHLEX_REGISTER_ALGORITHMS(m)  // <== Registration opener (w/o configuration object)
    {
-     transform(                 // 1. Higher-order function
+     m.transform(                 // 1. Higher-order function
        "hit_finder",            // 2. Name assigned to HOF
        find_hits,               // 3. Algorithm/HOF operation
        concurrency::unlimited   // 4. Allowed CPU concurrency
      )
-     .input_family(
-       "Waveforms"_in("APA")    // 5. Specification of input data-product family (see text)
-     )
-     .output_product_suffixes(
+     .input_family(product_query({.creator = "calibrate_wires",
+                               .suffix = "GoodHits",
+                               .layer = "spill"} // 5. Specification of input data-product family (see text)
+     ))
+     .output_products_suffixes(
        "GoodHits"               // 6. Specification of output data product from find_hits
      );
    }

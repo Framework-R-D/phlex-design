@@ -38,8 +38,8 @@ digraph {
 
   start -> driver [label=" Configuration", fontcolor="forestgreen"];
   driver -> input [style="dotted", arrowhead=none];
-  driver -> geometry_provider [label=" [Job]", fontcolor="darkorange"];
-  driver -> sim_depos_provider [label=< [Spill<sub><i>i j</i></sub>]>, fontcolor="darkorange"];
+  driver -> geometry_provider [label=" [J]", fontcolor="darkorange"];
+  driver -> sim_depos_provider [label=< [i j]>, fontcolor="darkorange"];
 
   gdml -> geometry_provider [arrowhead=none, style="dotted", color="black:invis:black"];
   resource -> root [arrowhead=none, style="dotted", color="black:invis:black"];

@@ -14,7 +14,8 @@ Phlex provides a variety of framework drivers and also allows users to register 
 The workflow shown in :numref:`workflow` is driven by a :mathfunc:`driver(Spill)` node that is configured to process all the `Spill`\ s in the specified HDF5 input files.
 The :mathfunc:`driver(Spill)` communicates with the IO system to determine what `Spill`\ s are available for processing.
 All driver algorithms know about the single `Job`\ -level data cell that corresponds to the entirety of the framework program execution (the job).
-The driver emits the single `Job` object, and a family of `Spill` objects, which cause the *provide* algorithms to create their products, thus starting the data flow through the graph.
+The driver emits a single index object that refers to the entire job, and a family of indices that refer to the spills to be processed. 
+These indices are the inputs to the *provide* algorithms, which create their products, thus starting the data flow through the graph.
 
 Other driver algorithms support different processing workflows.
 In one example workflow, a single `Spill` could be reconstructed multiple times with different calibration objects used in the reconstruction, thus allowing a calibration study for a single spill to be performed in one framework execution.
