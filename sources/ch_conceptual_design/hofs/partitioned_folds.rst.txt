@@ -137,7 +137,7 @@ The :mathfunc:`fold(sum_energies)` node in :numref:`workflow` would be represent
        concurrency::unlimited  // <= Allowed concurrency
      )
      .input_family("GoodHits"_in("APA"))
-     .output_products("TotalHitEnergy");
+     .output_product_suffixes("TotalHitEnergy");
    }
 
 In order for the user-defined algorithm :cpp:`sum_energy` algorithm to be safely executed concurrently, protections must be in place to avoid data races when updating the :cpp:`total_hit_energy` result object from multiple threads.

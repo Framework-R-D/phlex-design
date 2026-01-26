@@ -106,7 +106,7 @@ The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represen
        concurrency::unlimited  // <= Allowed concurrency
      )
      .input_family("GoodHits"_in("APA"))
-     .output_products("GoodTracks");
+     .output_product_suffixes("GoodTracks");
    }
 
 Note that the second input parameter for :cpp:`make_tracks` is an optional type.
