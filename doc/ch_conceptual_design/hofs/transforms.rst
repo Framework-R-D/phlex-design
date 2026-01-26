@@ -73,7 +73,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    {
      transform("hit_finder", find_hits, concurrency::unlimited)
        .input_family("Waveforms"_in("APA"))
-       .output_products("GoodHits");
+       .output_product_suffixes("GoodHits");
    }
 
 **Transform with two arguments (default output product name)**
@@ -86,7 +86,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    {
      transform("vertex_maker", make_vertices, concurrency::unlimited)
        .input_family("Geometry"_in("Job"), "GoodTracks"_in("APA"))
-       .output_products("Vertices");
+       .output_product_suffixes("Vertices");
    }
 
 **Transform creating two data products (user-specified output product names)**
@@ -97,5 +97,5 @@ To illustrate the different ways a transform's algorithm can be registered with 
    {
      transform("hit_counter", count_good_hits, concurrency::unlimited)
        .input_family("GoodHits"_in("APA"))
-       .output_products("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
+       .output_product_suffixes("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
    }

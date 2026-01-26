@@ -26,7 +26,7 @@ This can be achieved by in terms of the C++ *registration stanza*:
      .input_family(
        "Waveforms"_in("APA")    // 5. Specification of input data-product family (see text)
      )
-     .output_products(
+     .output_product_suffixes(
        "GoodHits"               // 6. Specification of output data product from find_hits
      );
    }
@@ -57,7 +57,7 @@ Specifically, in the registration stanza above, we have the following:
      5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
         In the registration code above, this is achieved by providing the expression :cpp:`"Waveforms"_in("APA")`, which instructs the framework to create a family of waveforms that reside in `APA`\ s [#user_defined]_.
 
-   :cpp:`output_products(...)`
+   :cpp:`output_product_suffixes(...)`
      6. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
         One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
         Phlex does not require the output and input data layers to be the same.
@@ -99,7 +99,7 @@ The interface of the algorithm and its registration would look like:
   {
     transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
       .input_family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
-      .output_products("GoodHits");
+      .output_product_suffixes("GoodHits");
   }
 
 The elements of the input family are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
@@ -126,7 +126,7 @@ This would be expressed in C++ as:
    {
      transform("vertex_maker", make_vertices, concurrency::unlimited)
        .input_family("GoodTracks"_in("APA"), "Geometry"_in("Job"));
-       .output_products("Vertices");
+       .output_product_suffixes("Vertices");
    }
 
 where the data layers are explicit in the family statement.
@@ -159,7 +159,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
      transform("hit_finder", find_hits, concurrency::unlimited)
        .input_family("Waveforms"_in(selected_data_layer));
-       .output_products("GoodHits");
+       .output_product_suffixes("GoodHits");
    }
 
 .. note::
@@ -191,7 +191,7 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
        concurrency::unlimited
      )
      .input_family("Waveforms"_in("APA"))
-     .output_products("GoodHits");
+     .output_product_suffixes("GoodHits");
    }
 
 The lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` function, however, retains its framework independence.
@@ -220,7 +220,7 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
      make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
        .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
        .input_family("Waveforms"_in(selected_data_scope));
-       .output_products("GoodHits");
+       .output_product_suffixes("GoodHits");
    }
 
 Note that the :cpp:`hit_finder` instance created in the code above is *owned by the framework*.
