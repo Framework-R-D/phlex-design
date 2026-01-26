@@ -2,7 +2,7 @@
 Introduction
 ************
 
-A resonable definition of a software framework is [Wiki-Framework]_:
+A reasonable definition of a software framework is [Wiki-Framework]_:
 
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
@@ -71,7 +71,7 @@ Maintaining data integrity is therefore paramount, as is retaining an accounting
 The Phlex design therefore:
 
 - treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program's execution,
-- requires recording the :term:`provenance` of every created :term:`data product` :need:`DUNE 121`, and
+- requires recording the :term:`provenance` of every created :term:`concrete data product` :need:`DUNE 121`, and
 - enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
 -----------
@@ -185,13 +185,13 @@ From there, we discuss the conceptual design itself in :numref:`Chapter %s <conc
 
 .. only:: conceptual_design_only
 
-   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/glossary:Glossary>`) and list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`).
 
 .. only:: not conceptual_design_only
 
    Supporting material is presented in :numref:`Chapter %s<supporting_design:technical design>`.
 
-   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/definitions:Definitions>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
+   Appendices are provided that give definitions (:numref:`Appendix %s <appendices/glossary:Glossary>`), list stakeholder requirements (:numref:`Appendix %s <appendices/requirements:Framework Requirements>`), present supported platforms (:numref:`Appendix %s <appendices/platforms:Supported Platforms>`), and discuss Phlex deployment (:numref:`Appendix %s <appendices/deployment:Deployment>`).
 
 .. attention::
 

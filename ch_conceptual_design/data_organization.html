@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex 0.3 documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0.4.alpha (5568b25) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=b489f392"></script>
+    <script src="../static/documentation_options.js?v=c2dbb84f"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -69,16 +69,128 @@
 <p>This section provides a conceptual overview of <em>data products</em>, <em>data cells</em>, <em>data layers</em>, and <em>data-layer hierarchies</em>, as defined in <a class="reference internal" href="../appendices/requirements.html#DUNE 85" title="DUNE 85"><em class="xref need">[DUNE 85]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
 In addition, we discuss <em>data-product families</em> and <em>data-cell families</em>.
 This section aims to establish a mental model for how all of these concepts facilitate scientific workflows without delving into implementation specifics.</p>
-<p>Data products represent things like raw detector readouts, calibration information, and derived physics quantities. <a class="reference internal" href="../appendices/requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>.
-We call these kinds of things represented by data products <em>conceptual data products</em>.
-Data product types are the programming language representations of conceptual data products.
-A data layer is an experiment-defined level of aggregation of data products.
+<p><a class="reference internal" href="../appendices/glossary.html#term-Physical-data-product"><span class="xref std std-term">Physical data products</span></a> are real-world entities like raw detector readouts, calibration information <a class="reference internal" href="../appendices/requirements.html#DUNE 40" title="DUNE 40"><em class="xref need">[DUNE 40]</em></a>, or derived physics quantities, such as collections of hits.
+<a class="reference internal" href="../appendices/glossary.html#term-Data-product-concept"><span class="xref std std-term">Data-product concepts</span></a> are abstractions that capture the computationally-relevant aspects of physical data products.
+<a class="reference internal" href="../appendices/glossary.html#term-Concrete-data-product"><span class="xref std std-term">Concrete data products</span></a> are programming-language objects that represent physical data products; <a class="reference internal" href="../appendices/glossary.html#term-Concrete-data-product-type"><span class="xref std std-term">concrete data-product types</span></a> are the types of these objects.
+<a class="reference internal" href="#data-product-relationships"><span class="std std-numref">Fig. 3.2</span></a> shows how each of these aspects are related to each other for a real-world collection of hits.</p>
+<figure class="align-default" id="data-product-relationships">
+<div class="graphviz"><img src="../images/graphviz-a82a6f8d436799c2f26ba160c9960331dab8929e.png" alt="digraph {
+  node [shape=&quot;box&quot; style=&quot;filled,rounded&quot;]
+  rankdir=BT
+
+  subgraph cluster_physical {
+    label=&lt;&lt;b&gt;Physical data product&lt;/b&gt;&gt;
+    labelloc=&quot;b&quot;
+    color=&quot;none&quot;
+    fontcolor=&quot;purple2&quot;
+    real_world_hits [label=&lt;Real-world hits&gt;, fillcolor=&quot;thistle2&quot;, color=&quot;purple2&quot;, fontcolor=&quot;purple2&quot;]
+  }
+
+  subgraph cluster_concept {
+    labelloc=&quot;b&quot;
+    fontcolor=&quot;blue&quot;
+    color=&quot;none&quot;
+    label=&lt;&lt;b&gt;Data-product concept&lt;/b&gt;&gt;
+    hits [label=&quot;HitCollection&quot;, shape=&quot;ellipse&quot;, fillcolor=&quot;lightcyan&quot;, fontcolor=&quot;blue&quot;, color=&quot;blue&quot;]
+  }
+
+  hits -&gt; real_world_hits [style=&quot;dotted&quot;, label=&quot;  abstracts&quot;, color=&quot;blue&quot;, fontcolor=&quot;blue&quot;]
+
+  subgraph cluster_concrete {
+    labelloc=&quot;b&quot;
+    labeljust=&quot;l&quot;
+    label=&lt;&lt;b&gt;Concrete data-product types&lt;/b&gt;&gt;
+    color=&quot;webgreen&quot;
+    fontcolor=&quot;webgreen&quot;
+    style=&quot;filled&quot;
+    fillcolor=&quot;darkseagreen1&quot;;
+    node[shape=&quot;plaintext&quot;,
+         style=&quot;solid&quot;,
+         peripheries=0,
+         width=0.01,
+         height=0.02,
+         fontname=&quot;Monaco&quot;,
+         fontsize=11,
+         fontcolor=&quot;webgreen&quot;]
+
+    std_vector [label=&lt;&lt;b&gt;std::vector&amp;lt;Hit&amp;gt;&lt;/b&gt;&gt;]
+    hit_coll [label=&lt;&lt;b&gt;HitSOA&lt;/b&gt;&gt;]
+    py_hit_coll [label=&lt;&lt;b&gt;py_hit_coll&lt;/b&gt;&gt;]
+  }
+
+  subgraph cluster_persistent {
+    labelloc=&quot;b&quot;
+    labeljust=&quot;r&quot;
+    label=&lt;&lt;b&gt;Persistent layouts&lt;/b&gt;&gt;
+    color=&quot;ivory4&quot;
+    fontcolor=&quot;ivory4&quot;
+    style=&quot;filled&quot;
+    fillcolor=&quot;ivory1&quot;
+    node[shape=&quot;plaintext&quot;,
+         style=&quot;solid&quot;,
+         peripheries=0,
+         width=0.01,
+         height=0.02,
+         fontname=&quot;Monaco&quot;,
+         fontsize=11,
+         fontcolor=&quot;ivory4&quot;]
+    HitCollROOT
+    HitCollROOTSOA
+    HitCollHDF5
+  }
+
+  subgraph cluster_concrete_objects {
+    labeljust=&quot;l&quot;
+    label=&lt;&lt;b&gt;Concrete data products&lt;/b&gt;&gt;
+    color=black
+    node [style=&quot;box&quot;, width=0.1, style=&quot;filled&quot;, fillcolor=&quot;orange&quot;]
+
+    hs1; hs2; hs3;
+  }
+
+  subgraph cluster_persistent_objects {
+    labeljust=&quot;l&quot;
+    label=&lt;&lt;b&gt;Persisted data products&lt;/b&gt;&gt;
+    node [style=&quot;box&quot;, width=0.1, style=&quot;filled&quot;, fontcolor=&quot;white&quot;, fillcolor=&quot;red3&quot;]
+    hs4; hs6; hs5;
+  }
+
+
+  edge [style=&quot;dotted&quot;, arrowhead=&quot;normal&quot;, color=&quot;purple2&quot;, fontcolor=&quot;purple2&quot;]
+  hs1 -&gt; real_world_hits:w [label=&quot;represents&quot;];
+  hs2 -&gt; real_world_hits:w;
+  hs3 -&gt; real_world_hits:w;
+  hs4 -&gt; real_world_hits:e;
+  hs5 -&gt; real_world_hits:e [label=&quot;represents&quot;];
+  hs6 -&gt; real_world_hits:e;
+
+  edge [style=&quot;solid&quot;, arrowhead=&quot;empty&quot;, color=&quot;webgreen&quot;, fontcolor=&quot;webgreen&quot;]
+  std_vector -&gt; hits [label=&quot;models&quot;];
+  hit_coll -&gt; hits;
+  py_hit_coll -&gt; hits [label=&quot;models&quot;];
+  HitCollROOT -&gt; hits;
+  HitCollROOTSOA -&gt; hits [label=&quot;models&quot;];
+  HitCollHDF5 -&gt; hits;
+
+  edge [arrowhead=&quot;none&quot;, color=&quot;webgreen&quot;]
+  hs1 -&gt; std_vector
+  hs2 -&gt; hit_coll
+  hs3 -&gt; py_hit_coll;
+  hs4 -&gt; HitCollROOT;
+  hs5 -&gt; HitCollROOTSOA;
+  hs6 -&gt; HitCollHDF5;
+}" class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">The data-product terminology for the physical data product “hits”, and the relations between the terms.</span><a class="headerlink" href="#data-product-relationships" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>A <a class="reference internal" href="../appendices/glossary.html#term-Data-layer"><span class="xref std std-term">data layer</span></a> is an experiment-defined level of aggregation of data products.
 Some example data layers are <cite>Run</cite>, <cite>Subrun</cite>, <cite>Spill</cite>, and an interval of validity for some flavor of calibration.
 Each Phlex job includes a <cite>Job</cite> data layer at the top of the data-layer hierarchy.
-A data cell is a collection of data products, associated with a data layer.
+A data cell is a collection of concrete data products, associated with a data layer.
 A data-cell family is a family of data cells that are in the same data layer.
 The <cite>Job</cite> layer always includes a single data cell.
-<a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.2</span></a> illustrates the relationships between all of these.</p>
+<a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.3</span></a> illustrates the relationships between all of these.</p>
 <figure class="align-default" id="id1">
 <div class="graphviz"><img src="../images/graphviz-5a6c7fa2bbb2a97c8a5b37f0fc8defa5127adf71.png" alt="digraph {
 
@@ -190,7 +302,7 @@ The <cite>Job</cite> layer always includes a single data cell.
   apa2N -&gt; t2N
 }" class="graphviz" /></div>
 <figcaption>
-<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">The data organization corresponding to part of <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+<p><span class="caption-number">Fig. 3.3 </span><span class="caption-text">The data organization corresponding to part of <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 The framework-provided <cite>Job</cite> data layer and three different user-defined (not special to the Phlex framework) data layers are shown: <cite>Run</cite>, <cite>Spill</cite>, and <cite>APA</cite>.
 Rectangles with labels <span class="math notranslate nohighlight">\(\textsf{Run}_i\)</span>, <span class="math notranslate nohighlight">\(\textsf{Spill}_{i,j}\)</span>, and <span class="math notranslate nohighlight">\(\textsf{APA}_{i,j,k}\)</span> represent data cells.
 The pale green rectangles show two data-cell families; these are identified as families because they are the result of executing the <span class="math notranslate nohighlight">\(\textit{unfold(into\_apas)}\)</span> node shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
@@ -199,7 +311,7 @@ The bottom rectangle shows that <span class="math notranslate nohighlight">\(\te
 Each pale purple rectangle indicates the data-product family created by unfolding each <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> object as shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>In <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.2</span></a>, the <cite>Run</cite> data layer exists, but as no algorithm in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> requires any data products from a <cite>Run</cite> data cell, the framework does not create any data-cell families corresponding to the <cite>Run</cite>.</p>
+<p>In <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.3</span></a>, the <cite>Run</cite> data layer exists, but as no algorithm in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> requires any data products from a <cite>Run</cite> data cell, the framework does not create any data-cell families corresponding to the <cite>Run</cite>.</p>
 <section id="data-products">
 <h2><span class="section-number">3.2.1. </span>Data Products<a class="headerlink" href="#data-products" title="Link to this heading">¶</a></h2>
 <p>Data products are entities that encapsulate processed or raw data, of all kinds, separate from the algorithms that create them <a class="reference internal" href="../appendices/requirements.html#DUNE 110" title="DUNE 110"><em class="xref need">[DUNE 110]</em></a>.
@@ -224,7 +336,7 @@ Framework users are expected to define their own data product types <a class="re
 </section>
 <section id="data-layers-data-cells-and-families">
 <h2><span class="section-number">3.2.2. </span>Data Layers, Data Cells, and Families<a class="headerlink" href="#data-layers-data-cells-and-families" title="Link to this heading">¶</a></h2>
-<p>As illustrated in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.2</span></a>, data products are organized into user-defined data cells, families, layers, and hierarchies, supporting varying levels of granularity <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
+<p>As illustrated in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.3</span></a>, data products are organized into user-defined data cells, families, layers, and hierarchies, supporting varying levels of granularity <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales <a class="reference internal" href="../appendices/requirements.html#DUNE 43" title="DUNE 43"><em class="xref need">[DUNE 43]</em></a>.
 This provides the ability to process data too large to fit into memory at one time <a class="reference internal" href="../appendices/requirements.html#DUNE 25" title="DUNE 25"><em class="xref need">[DUNE 25]</em></a>.</p>
 </section>
@@ -326,14 +438,14 @@ The algorithms are configured to identify the inputs in which they are intereste
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 30, 2025.
+      Last updated on Jan 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

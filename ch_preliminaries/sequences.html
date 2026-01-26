@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Sequences and Families &#8212; Phlex 0.3 documentation</title>
+    <title>2.3. Sequences and Families &#8212; Phlex 0.4.alpha (5568b25) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=b489f392"></script>
+    <script src="../static/documentation_options.js?v=c2dbb84f"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" accesskey="U"><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences and Families</a></li> 
       </ul>
@@ -70,9 +70,9 @@
 For example, the sequence <span class="math notranslate nohighlight">\(a = [a_1, a_2, \dots, a_n]\)</span> is written as</p>
 <div class="math notranslate nohighlight">
 \[a = [a_1, a_2, \dots, a_n] = [a_i]_{i \in \{1, 2, \dots, n\}} = \family{a}\]</div>
-<p>where each <span class="math notranslate nohighlight">\(a_i \in A\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{I} = \{1, 2, \dots, n\}\)</span> is the <a class="reference internal" href="../appendices/definitions.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>where each <span class="math notranslate nohighlight">\(a_i \in A\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{I} = \{1, 2, \dots, n\}\)</span> is the <a class="reference internal" href="../appendices/glossary.html#term-Index-set"><span class="xref std std-term">index set</span></a> whose elements are used to identify objects within the sequence <span class="math notranslate nohighlight">\(a\)</span>.</p>
 <p>The elements <span class="math notranslate nohighlight">\(a_i\)</span> can be ordered only if the index set itself is ordered <a class="footnote-reference brackets" href="#strict" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>—e.g because the elements of the set <span class="math notranslate nohighlight">\(\mathbb{N}\)</span> respect the order <span class="math notranslate nohighlight">\(1 \lt 2 \lt 3 \lt \cdots\)</span> , the elements of <span class="math notranslate nohighlight">\(a\)</span> are listed in that order, and <span class="math notranslate nohighlight">\(a\)</span> is, therefore, a sequence.
-However, if the index set has no ordering associated with it, then instead of <span class="math notranslate nohighlight">\(a\)</span> representing a sequence, it represents an <a class="reference internal" href="../appendices/definitions.html#term-Indexed-family"><span class="xref std std-term">indexed family</span></a>, where the ordering of elements is not meaningful.
+However, if the index set has no ordering associated with it, then instead of <span class="math notranslate nohighlight">\(a\)</span> representing a sequence, it represents an <a class="reference internal" href="../appendices/glossary.html#term-Indexed-family"><span class="xref std std-term">indexed family</span></a>, where the ordering of elements is not meaningful.
 Specifically, an indexed family <span class="math notranslate nohighlight">\(b\)</span> can be equivalently represented as:</p>
 <div class="math notranslate nohighlight">
 \[b = [b_1, b_2, \dots, b_n] = [b_n, \dots, b_2, b_1] = \family{b}\]</div>
@@ -161,14 +161,14 @@ In this document, we also use the <em>empty family</em>, which has length 0, and
         <li class="right" >
           <a href="types.html" title="2.2. Types"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../preliminaries.html" ><span class="section-number">2. </span>High-Level Abstractions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2.3. </span>Sequences and Families</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 30, 2025.
+      Last updated on Jan 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

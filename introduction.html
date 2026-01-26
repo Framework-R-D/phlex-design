@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; Phlex 0.3 documentation</title>
+    <title>1. Introduction &#8212; Phlex 0.4.alpha (5568b25) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=b489f392"></script>
+    <script src="static/documentation_options.js?v=c2dbb84f"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>  
@@ -63,7 +63,7 @@
             
   <section id="introduction">
 <h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
-<p>A resonable definition of a software framework is <a class="reference internal" href="#wiki-framework" id="id1"><span>[Wiki-Framework]</span></a>:</p>
+<p>A reasonable definition of a software framework is <a class="reference internal" href="#wiki-framework" id="id1"><span>[Wiki-Framework]</span></a>:</p>
 <blockquote>
 <div><p><em>an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.</em></p>
 </div></blockquote>
@@ -149,8 +149,8 @@ Maintaining data integrity is therefore paramount, as is retaining an accounting
 The Phlex design therefore:</p>
 <ul class="simple">
 <li><p>treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program’s execution,</p></li>
-<li><p>requires recording the <a class="reference internal" href="appendices/definitions.html#term-Provenance"><span class="xref std std-term">provenance</span></a> of every created <a class="reference internal" href="appendices/definitions.html#term-Data-product"><span class="xref std std-term">data product</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>, and</p></li>
-<li><p>enables, and—to the extent possible—ensures the <a class="reference internal" href="appendices/definitions.html#term-Reproducible"><span class="xref std std-term">reproducible</span></a> creation of data products.</p></li>
+<li><p>requires recording the <a class="reference internal" href="appendices/glossary.html#term-Provenance"><span class="xref std std-term">provenance</span></a> of every created <a class="reference internal" href="appendices/glossary.html#term-Concrete-data-product"><span class="xref std std-term">concrete data product</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>, and</p></li>
+<li><p>enables, and—to the extent possible—ensures the <a class="reference internal" href="appendices/glossary.html#term-Reproducible"><span class="xref std std-term">reproducible</span></a> creation of data products.</p></li>
 </ul>
 <section id="flexibility">
 <h3><span class="section-number">1.2.1. </span>Flexibility<a class="headerlink" href="#flexibility" title="Link to this heading">¶</a></h3>
@@ -224,7 +224,7 @@ Consequently, part of the Phlex design is simply a summary of prior research tha
 </section>
 <section id="programming-languages">
 <h2><span class="section-number">1.3. </span>Programming Languages<a class="headerlink" href="#programming-languages" title="Link to this heading">¶</a></h2>
-<p>The framework will support user <a class="reference internal" href="appendices/definitions.html#term-Algorithm"><span class="xref std std-term">algorithms</span></a> written in multiple programming languages <a class="reference internal" href="appendices/requirements.html#DUNE 14" title="DUNE 14"><em class="xref need">[DUNE 14]</em></a>.  Specifically, an algorithm may be written in either C++ <a class="footnote-reference brackets" href="#f2" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 81" title="DUNE 81"><em class="xref need">[DUNE 81]</em></a> or Python <a class="footnote-reference brackets" href="#f3" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 82" title="DUNE 82"><em class="xref need">[DUNE 82]</em></a>.
+<p>The framework will support user <a class="reference internal" href="appendices/glossary.html#term-Algorithm"><span class="xref std std-term">algorithms</span></a> written in multiple programming languages <a class="reference internal" href="appendices/requirements.html#DUNE 14" title="DUNE 14"><em class="xref need">[DUNE 14]</em></a>.  Specifically, an algorithm may be written in either C++ <a class="footnote-reference brackets" href="#f2" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 81" title="DUNE 81"><em class="xref need">[DUNE 81]</em></a> or Python <a class="footnote-reference brackets" href="#f3" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> <a class="reference internal" href="appendices/requirements.html#DUNE 82" title="DUNE 82"><em class="xref need">[DUNE 82]</em></a>.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.</p>
 <p>Note that the language is left unspecified for the implementation of the framework itself.</p>
 </section>
@@ -243,7 +243,7 @@ In fact, depending on what the algorithm is doing, some algorithms might require
 We therefore adopt a set of high-level abstractions that model the data-processing the framework will perform.
 These ideas are discussed in <a class="reference internal" href="preliminaries.html#high-level-abstractions"><span class="std std-numref">Chapter 2</span></a>, which summarizes well-known mathematical concepts already used in the computing industry.
 From there, we discuss the conceptual design itself in <a class="reference internal" href="conceptual_design.html#conceptual-design"><span class="std std-numref">Chapter 3</span></a>.</p>
-<p>Appendices are provided that give definitions (<a class="reference internal" href="appendices/definitions.html#definitions"><span class="std std-numref">Appendix A</span></a>) and list stakeholder requirements (<a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).</p>
+<p>Appendices are provided that give definitions (<a class="reference internal" href="appendices/glossary.html#glossary"><span class="std std-numref">Appendix A</span></a>) and list stakeholder requirements (<a class="reference internal" href="appendices/requirements.html#framework-requirements"><span class="std std-numref">Appendix B</span></a>).</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Any C++ or Python framework interface presented in this document is illustrative and not intended to reflect the final framework interface.</p>
@@ -391,13 +391,13 @@ In such a case, the stakeholder requirements of one experiment may not negate th
         <li class="right" >
           <a href="index.html" title="Phlex Framework Design"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 30, 2025.
+      Last updated on Jan 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

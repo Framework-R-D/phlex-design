@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5.6. Partitioned Unfolds &#8212; Phlex 0.3 documentation</title>
+    <title>3.5.6. Partitioned Unfolds &#8212; Phlex 0.4.alpha (5568b25) documentation</title>
     <link rel="stylesheet" type="text/css" href="../../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../../static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="../../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="../../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../../static/jquery.js?v=5d32c60e"></script>
     <script src="../../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../static/documentation_options.js?v=b489f392"></script>
+    <script src="../../static/documentation_options.js?v=c2dbb84f"></script>
     <script src="../../static/doctools.js?v=9bcbadda"></script>
     <script src="../../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.5. Partitioned Folds"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" accesskey="U"><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Partitioned Unfolds</a></li> 
@@ -189,15 +189,15 @@ An unfold’s <span class="math notranslate nohighlight">\(\textit{gen}\)</span>
 The class is then registered with Phlex via:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PHLEX_REGISTER_ALGORITHMS</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="p">{</span>
-<span class="w">  </span><span class="n">products</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">unfold</span><span class="o">&lt;</span><span class="n">to_apas</span><span class="o">&gt;</span><span class="p">(</span>
-<span class="w">      </span><span class="s">&quot;to_apas&quot;</span><span class="p">,</span><span class="w">                 </span><span class="c1">// &lt;= Node name for framework</span>
-<span class="w">      </span><span class="o">&amp;</span><span class="n">to_apas</span><span class="o">::</span><span class="n">keep_going</span><span class="p">,</span><span class="w">      </span><span class="c1">// &lt;= Unfold predicate</span>
-<span class="w">      </span><span class="o">&amp;</span><span class="n">to_apas</span><span class="o">::</span><span class="n">make_waveforms</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;= Unfold generator</span>
-<span class="w">      </span><span class="s">&quot;APA&quot;</span><span class="p">,</span><span class="w">                     </span><span class="c1">// &lt;= Data layer for output data products</span>
-<span class="w">      </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">     </span><span class="c1">// &lt;= Allowed concurrency</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">    </span><span class="p">.</span><span class="n">family</span><span class="p">(</span><span class="s">&quot;SimDepos&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;Spill&quot;</span><span class="p">));</span>
+<span class="w">  </span><span class="n">unfold</span><span class="o">&lt;</span><span class="n">to_apas</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;to_apas&quot;</span><span class="p">,</span><span class="w">                 </span><span class="c1">// &lt;= Node name for framework</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">to_apas</span><span class="o">::</span><span class="n">keep_going</span><span class="p">,</span><span class="w">      </span><span class="c1">// &lt;= Unfold predicate</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">to_apas</span><span class="o">::</span><span class="n">make_waveforms</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;= Unfold generator</span>
+<span class="w">    </span><span class="s">&quot;APA&quot;</span><span class="p">,</span><span class="w">                     </span><span class="c1">// &lt;= Data layer for output data products</span>
+<span class="w">    </span><span class="n">concurrency</span><span class="o">::</span><span class="n">unlimited</span><span class="w">     </span><span class="c1">// &lt;= Allowed concurrency</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="n">input_family</span><span class="p">(</span><span class="s">&quot;SimDepos&quot;</span><span class="n">_in</span><span class="p">(</span><span class="s">&quot;Spill&quot;</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="n">output_products</span><span class="p">(</span><span class="s">&quot;Waveforms&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -271,7 +271,7 @@ The framework ensures that all data products remain in memory for as long as the
         <li class="right" >
           <a href="partitioned_folds.html" title="3.5.5. Partitioned Folds"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../supported_hofs.html" ><span class="section-number">3.5. </span>Supported Higher-Order Functions</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5.6. </span>Partitioned Unfolds</a></li> 
@@ -279,7 +279,7 @@ The framework ensures that all data products remain in memory for as long as the
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 30, 2025.
+      Last updated on Jan 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

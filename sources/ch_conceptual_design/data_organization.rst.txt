@@ -5,13 +5,19 @@ This section provides a conceptual overview of *data products*, *data cells*, *d
 In addition, we discuss *data-product families* and *data-cell families*.
 This section aims to establish a mental model for how all of these concepts facilitate scientific workflows without delving into implementation specifics.
 
-Data products represent things like raw detector readouts, calibration information, and derived physics quantities. :need:`DUNE 40`.
-We call these kinds of things represented by data products *conceptual data products*.
-Data product types are the programming language representations of conceptual data products.
-A data layer is an experiment-defined level of aggregation of data products.
+:term:`Physical data products <Physical data product>` are real-world entities like raw detector readouts, calibration information :need:`DUNE 40`, or derived physics quantities, such as collections of hits.
+:term:`Data-product concepts <Data-product concept>` are abstractions that capture the computationally-relevant aspects of physical data products.
+:term:`Concrete data products <Concrete data product>` are programming-language objects that represent physical data products; :term:`concrete data-product types <Concrete data-product type>` are the types of these objects.
+:numref:`data-product-relationships` shows how each of these aspects are related to each other for a real-world collection of hits.
+
+.. graphviz:: data-products.gv
+   :caption: The data-product terminology for the physical data product "hits", and the relations between the terms.
+   :name: data-product-relationships
+
+A :term:`data layer` is an experiment-defined level of aggregation of data products.
 Some example data layers are `Run`, `Subrun`, `Spill`, and an interval of validity for some flavor of calibration.
 Each Phlex job includes a `Job` data layer at the top of the data-layer hierarchy.
-A data cell is a collection of data products, associated with a data layer.
+A data cell is a collection of concrete data products, associated with a data layer.
 A data-cell family is a family of data cells that are in the same data layer.
 The `Job` layer always includes a single data cell.
 :numref:`data-organization` illustrates the relationships between all of these.

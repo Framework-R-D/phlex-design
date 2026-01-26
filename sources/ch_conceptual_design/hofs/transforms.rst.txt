@@ -60,7 +60,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
      transform("hit_finder", find_hits, concurrency::unlimited)
-       .family("Waveforms"_in("APA"));
+       .input_family("Waveforms"_in("APA"));
    }
 
 **Transform with one argument (user-specified output product name)**
@@ -71,9 +71,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("GoodHits") =
-       transform("hit_finder", find_hits, concurrency::unlimited)
-       .family("Waveforms"_in("APA"));
+     transform("hit_finder", find_hits, concurrency::unlimited)
+       .input_family("Waveforms"_in("APA"))
+       .output_products("GoodHits");
    }
 
 **Transform with two arguments (default output product name)**
@@ -84,9 +84,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("Vertices") =
-       transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .family("Geometry"_in("Job"), "GoodTracks"_in("APA"));
+     transform("vertex_maker", make_vertices, concurrency::unlimited)
+       .input_family("Geometry"_in("Job"), "GoodTracks"_in("APA"))
+       .output_products("Vertices");
    }
 
 **Transform creating two data products (user-specified output product names)**
@@ -95,7 +95,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("NumGoodHits", "NumAllHits") =  // <= One name per tuple slot of return type
-       transform("hit_counter", count_good_hits, concurrency::unlimited)
-       .family("GoodHits"_in("APA"));
+     transform("hit_counter", count_good_hits, concurrency::unlimited)
+       .input_family("GoodHits"_in("APA"))
+       .output_products("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
    }

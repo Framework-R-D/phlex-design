@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.3 documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (5568b25) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=4a93b68d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=b489f392"></script>
+    <script src="static/documentation_options.js?v=c2dbb84f"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -106,8 +106,8 @@ For the main processing chain of creating vertices:</p>
 <li><p>After a <em>filter</em> has been applied with the <em>predicate</em> <span class="math notranslate nohighlight">\(\textit{high\_energy}\)</span>, an <em>observe</em> algorithm is used to fill a histogram with hit-related information from the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data products.</p></li>
 </ul>
 </dd>
-<dt><em>data-product writers</em></dt><dd><p>Data-product writers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/writers.html#data-product-writers"><span class="std std-numref">Section 3.8</span></a>)</p>
-<p>Each of the five writers in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is responsible for writing to one or more output files.</p>
+<dt><em>data-product preservers</em></dt><dd><p>Data-product preservers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/preservers.html#data-product-preservers"><span class="std std-numref">Section 3.8</span></a>)</p>
+<p>Each of the five preservers in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is responsible for writing to one or more output files.</p>
 </dd>
 <dt><em>resources</em></dt><dd><p>Most workflows require access to some external resource (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.9</span></a>).</p>
 <p>The histogramming resource in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> enables the <em>observe</em> algorithm to fill and write histograms to a ROOT analysis file.</p>
@@ -117,7 +117,7 @@ For the main processing chain of creating vertices:</p>
 <p>Note that in this workflow, the names <cite>Spill</cite> and <cite>APA</cite> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data cell (e.g. <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> denotes the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(9\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(5\)</span> of <cite>Run</cite> <span class="math notranslate nohighlight">\(3\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-1eb2862bfbc1a3285ffd7d6a7c01fd65ccb7250c.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-0e00f4ab9818cdb5ef39747511e98121f35ea493.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -148,12 +148,12 @@ Each data product is also indexed, thus associating it with a particular data ce
   geometry_provider [label=&quot;provide(Geometry)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
   sim_depos_provider [label=&quot;provide(SimDepos)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
 
-  // Writers
-  waveforms_writer [label=&quot;write(Waveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-  total_energy_writer [label=&quot;write(TotalHitEnergy)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-  tracks_writer [label=&quot;write(GoodTracks)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-  vertices_writer [label=&quot;write(Vertices)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
-  hits_writer [label=&quot;write(GoodHits)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
+  // preservers
+  waveforms_preserver [label=&quot;preserve(Waveforms)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  total_energy_preserver [label=&quot;preserve(TotalHitEnergy)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  tracks_preserver [label=&quot;preserve(GoodTracks)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  vertices_preserver [label=&quot;preserve(Vertices)&quot;, style=&quot;filled,rounded&quot;, fillcolor=&quot;lightblue&quot;];
+  hits_preserver [label=&quot;preserve(GoodHits)&quot;, style=&quot;filled,rounded&quot; fillcolor=&quot;lightblue&quot;];
 
   start -&gt; driver [label=&quot; Configuration&quot;, fontcolor=&quot;forestgreen&quot;];
   driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
@@ -170,38 +170,38 @@ Each data product is also indexed, thus associating it with a particular data ce
   geometry_provider -&gt; transform_make_vertices [taillabel=&lt;[Geometry]&gt;, labeldistance=4.7, labelangle=20];
 
   unfold_into_apas -&gt; transform_find_hits [xlabel=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;] &gt;];
-  unfold_into_apas -&gt; waveforms_writer [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  unfold_into_apas -&gt; waveforms_preserver [label=&lt;[Waveforms&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
   transform_find_hits -&gt; filter_high_energy [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  transform_find_hits -&gt; hits_writer;
+  transform_find_hits -&gt; hits_preserver;
   transform_find_hits -&gt; window_make_tracks [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
   transform_find_hits -&gt; fold_total_energy;
 
   window_make_tracks -&gt; transform_make_vertices [label=&lt; [GoodTracks&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
-  window_make_tracks -&gt; tracks_writer;
+  window_make_tracks -&gt; tracks_preserver;
 
-  transform_make_vertices -&gt; vertices_writer [label=&lt; [Vertices&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  transform_make_vertices -&gt; vertices_preserver [label=&lt; [Vertices&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
-  fold_total_energy -&gt; total_energy_writer [label=&lt; [TotalHitEnergy&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;];
+  fold_total_energy -&gt; total_energy_preserver [label=&lt; [TotalHitEnergy&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;];
 
   filter_high_energy -&gt; observe_histogram_hits [label=&lt;[GoodHits&lt;sub&gt;&lt;i&gt;i j k&lt;/i&gt; '&lt;/sub&gt;]&gt;];
 
   resource -&gt; observe_histogram_hits [style=&quot;dashed&quot;];
 
-  { total_energy_writer, waveforms_writer, hits_writer, tracks_writer, vertices_writer } -&gt; out [style=&quot;dotted&quot;, arrowhead=none]
+  { total_energy_preserver, waveforms_preserver, hits_preserver, tracks_preserver, vertices_preserver } -&gt; out [style=&quot;dotted&quot;, arrowhead=none]
 
   // Making the graph layout better
   { rank=same; driver; input; }
   { rank=same; resource; root; }
   { rank=same; gdml; geometry_provider; sim_depos_provider; }
-  { rank=same; window_make_tracks; hits_writer; fold_total_energy; filter_high_energy; }
-  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_writer; total_energy_writer; }
+  { rank=same; window_make_tracks; hits_preserver; fold_total_energy; filter_high_energy; }
+  { rank=same; transform_make_vertices; observe_histogram_hits; tracks_preserver; total_energy_preserver; }
 
   // The following edges do not denote any formal relationships; they are intended for influencing the layout.
   edge [style=&quot;invis&quot;]
-  input -&gt; waveforms_writer;
+  input -&gt; waveforms_preserver;
   filter_high_energy -&gt; resource;
-  transform_find_hits -&gt; waveforms_writer [constraint=&quot;false&quot;];
+  transform_find_hits -&gt; waveforms_preserver [constraint=&quot;false&quot;];
 }" class="graphviz" /></div>
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A fictitious workflow showing how HOFs are used in a Phlex program.
@@ -247,7 +247,7 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/driver.html">3.6. Framework Driver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/providers.html">3.7. Data-Product Providers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/writers.html">3.8. Data-Product Writers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/preservers.html">3.8. Data-Product Preservers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/resources.html">3.9. Resources</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#limited-resources">3.9.1. Limited Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#gpus">3.9.2. GPUs</a></li>
@@ -321,13 +321,13 @@ For memory purposes, it is also likely that each element of the family is a ligh
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.3 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (5568b25) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jul 30, 2025.
+      Last updated on Jan 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

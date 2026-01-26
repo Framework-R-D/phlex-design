@@ -98,15 +98,15 @@ The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represen
 
    PHLEX_REGISTER_ALGORITHMS(config)
    {
-     products("GoodTracks") =
-       window(
-         "track_maker",          // <= Node name for framework
-         make_tracks,            // <= Window algorithm (f)
-         are_adjacent            // <= Adjacency criterion
-         "APA",                  // <= Output data layer
-         concurrency::unlimited  // <= Allowed concurrency
-       )
-       .family("GoodHits"_in("APA"));
+     window(
+       "track_maker",          // <= Node name for framework
+       make_tracks,            // <= Window algorithm (f)
+       are_adjacent            // <= Adjacency criterion
+       "APA",                  // <= Output data layer
+       concurrency::unlimited  // <= Allowed concurrency
+     )
+     .input_family("GoodHits"_in("APA"))
+     .output_products("GoodTracks");
    }
 
 Note that the second input parameter for :cpp:`make_tracks` is an optional type.
