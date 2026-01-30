@@ -29,11 +29,11 @@ This can be achieved by in terms of the C++ *registration stanza*:
        concurrency::unlimited    // 4. Allowed CPU concurrency
      )
                                  // 5. Specification of input data-product family (see text)
-     .input_family(product_query({.creator = "calibrate_wires",  
+     .input_family(product_query({.creator = "calibrate_wires",
                                   .suffix = "",
-                                  .layer = "spill"} 
+                                  .layer = "spill"}
      ))
-     .output_products_suffixes(
+     .output_product_suffixes(
        "GoodHits"               // 6. Specification of output data product from find_hits
      );
    }
@@ -62,26 +62,20 @@ Specifically, in the registration stanza above, we have the following:
      4. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
         Replace with: The maximum number of CPU threads from which the framework can simultaneously invoke the node.
         Note that this does not address :need:`DUNE 152`.
-        We propose to get rid of :need:`DUNE 152`.   
+        We propose to get rid of :need:`DUNE 152`.
 
    :cpp:`input_family(...)`
      5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of the creator of each data product that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which each input data product is found.
         In the registration code above, this is achieved by the construction of a :cpp:`product_query` with the appropriate arguments.
         The example shows finding products created by a node named "calibrate_wires", with an empty product suffix, and in the layer labeled "spill".
-        Because the product suffix is empty, the :cpp:`.suffix` field could have been omitted altogether. 
-        
+        Because the product suffix is empty, the :cpp:`.suffix` field could have been omitted altogether.
 
    :cpp:`output_product_suffixes(...)`
-     6. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
-        One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
-        Phlex does not require the output and input data layers to be the same.
-   
-   :cpp:`output_products(...)`
      6. This is the specification of the output products :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
-        The arguments to :cpp:`output_products(...)` is one suffix for each product created by the transform operator.
+        The arguments to :cpp:`output_product_suffixes(...)` is one suffix for each product created by the transform operator.
         In this case, because the operator is producing a single product of type :cpp:`hits`, the product suffix could have been an empty string.
-        An equivalent to that would have been to omit the :cpp:`output_products(...)` clause altogether, in which case the framework would have assigned a default suffix of an empty string to the output product.
-         
+        An equivalent to that would have been to omit the :cpp:`output_product_suffixes(...)` clause altogether, in which case the framework would have assigned a default suffix of an empty string to the output product.
+
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
