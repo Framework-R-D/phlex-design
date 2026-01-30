@@ -11,10 +11,11 @@ Consider the following C++ classes and function:
    hits find_hits(waveforms const& ws) { ... }
 
 where the implementations of :cpp:`waveforms`, :cpp:`hits`, and :cpp:`find_hits` are unspecified.
-Suppose a physicist would like to use the function :cpp:`find_hits` in transform.
+Suppose a physicist would like to use the function :cpp:`find_hits` in a transform.
 The input is to come from a node named :cpp:`calibrate_wires`.
 The algorithm is to be run on every spill, and supports unlimited concurrency.
 The output is to have a product suffix of :cpp:`"GoodHits"`.
+
 
 This can be achieved by in terms of the C++ *registration stanza*:
 
@@ -22,14 +23,15 @@ This can be achieved by in terms of the C++ *registration stanza*:
 
    PHLEX_REGISTER_ALGORITHMS(m)  // <== Registration opener (w/o configuration object)
    {
-     m.transform(                 // 1. Higher-order function
-       "hit_finder",            // 2. Name assigned to HOF
-       find_hits,               // 3. Algorithm/HOF operation
-       concurrency::unlimited   // 4. Allowed CPU concurrency
+     m.transform(                // 1. Higher-order function
+       "hit_finder",             // 2. Name assigned to HOF
+       find_hits,                // 3. Algorithm/HOF operation
+       concurrency::unlimited    // 4. Allowed CPU concurrency
      )
-     .input_family(product_query({.creator = "calibrate_wires",
-                               .suffix = "GoodHits",
-                               .layer = "spill"} // 5. Specification of input data-product family (see text)
+                                 // 5. Specification of input data-product family (see text)
+     .input_family(product_query({.creator = "calibrate_wires",  
+                                  .suffix = "",
+                                  .layer = "spill"} 
      ))
      .output_products_suffixes(
        "GoodHits"               // 6. Specification of output data product from find_hits
@@ -43,6 +45,7 @@ For the sake of consistency and ease of understaning, the helpers have the same 
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement is a programming statement intended to model the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` [#statement_ordering]_:
+Loading the library created from the :term:`module` causes the creation of one workflow node for each registration statement in the stanza.
 
 .. math::
 
@@ -55,18 +58,30 @@ Specifically, in the registration stanza above, we have the following:
 
      1. The HOF to be used,
      2. The name to assign to the configured HOF,
-     3. The algorithm/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
+     3. The algorithm(s)/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
      4. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
+        Replace with: The maximum number of CPU threads from which the framework can simultaneously invoke the node.
+        Note that this does not address :need:`DUNE 152`.
+        We propose to get rid of :need:`DUNE 152`.   
 
    :cpp:`input_family(...)`
-     5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of data products that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which the input data products are found.
-        In the registration code above, this is achieved by providing the expression :cpp:`"Waveforms"_in("APA")`, which instructs the framework to create a family of waveforms that reside in `APA`\ s [#user_defined]_.
+     5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of the creator of each data product that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which each input data product is found.
+        In the registration code above, this is achieved by the construction of a :cpp:`product_query` with the appropriate arguments.
+        The example shows finding products created by a node named "calibrate_wires", with an empty product suffix, and in the layer labeled "spill".
+        Because the product suffix is empty, the :cpp:`.suffix` field could have been omitted altogether. 
+        
 
    :cpp:`output_product_suffixes(...)`
      6. This is the equivalent of the output family :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
         One of the fields of the data-product specification is the data layer to which the data products will belong :need:`DUNE 90`.
         Phlex does not require the output and input data layers to be the same.
-
+   
+   :cpp:`output_products(...)`
+     6. This is the specification of the output products :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+        The arguments to :cpp:`output_products(...)` is one suffix for each product created by the transform operator.
+        In this case, because the operator is producing a single product of type :cpp:`hits`, the product suffix could have been an empty string.
+        An equivalent to that would have been to omit the :cpp:`output_products(...)` clause altogether, in which case the framework would have assigned a default suffix of an empty string to the output product.
+         
 The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
 However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
 Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
@@ -259,8 +274,6 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 .. rubric:: Footnotes
 
 .. [#statement_ordering] In contrast to the equational form, the specification of the output products occurs *after* the specification of the input family, leading to more natural programming patterns.
-.. [#user_defined] The token :cpp:`_in` is a suffix that is part of a user-defined literal [Cpp-UserLiteral]_, which permits an expression like :cpp:`"Waveforms"_in("APA")`.
-                   The type returned by the expression is implementation-defined and has no public interface needed by the user.
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data layer, to which job-level data products may belong.
 .. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.
