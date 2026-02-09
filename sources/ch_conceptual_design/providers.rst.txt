@@ -40,46 +40,29 @@ Only a single data product can be returned by a provider function.
 
 Provider Registration
 ---------------------
-
+To illustrate the how a provider function is registered with Phlex, we use the following class and function, which are presumably defined in some experiment libraries.
 
 .. code:: c++
 
-   class hits { ... };
+   class SimDepos { ... };
 
-   hits provide_hits(data_cell_index const&) { ... }
+   SimDepos provide_sim_depos(data_cell_index const&) { ... }
 
-**Provider function that returns hits**
+**Provider function that returns SimDepos**
 
 .. code-block:: cpp
 
    PHLEX_REGISTER_PROVIDERS(s)
    {
-     s.provide("fake_hits", provide_hits, concurrency::unlimited)
+     s.provide("fake_sim_depos", provide_sim_depos, concurrency::unlimited)
        .output_product_suffixes("");
    }
 
 **Provider registration**
 
-Output Product Specification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[Explanation of output_product() and layer specifications]
-
-Concurrency Control
--------------------
-
-Serial vs. Unlimited Concurrency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[Discussion of concurrency options and when to use each]
-
-Thread Safety Requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[Requirements for thread-safe provider implementations]
-
-
-
+This registers a provider that inserts a :product:`SimDepos` data product into each data cell in the data layer indicated by the data cell index.
+In this example, the data product suffix provided to :cpp:`output_product_suffixes` is an empty string.
+The same affect can be achieved by omitting the :cpp:`output_product_suffixes` call entirely.
 I/O System Integration
 ~~~~~~~~~~~~~~~~~~~~~~
 
