@@ -29,10 +29,11 @@ Various framework aspects are demonstrated by that figure:
       The driver in :numref:`workflow` is configured so that all `Spill`\ s in the specified ROOT input files are processed.
 
    *data-product providers*
-      Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see :numref:`ch_conceptual_design/providers:Data-Product Providers`).
-      From a functional programming perspective they are transforms that map a data cell to one of the data products within that data cell.
-
-      In the workflow, one provider reads a :product:`SimDepos` data product from each `Spill` in the HDF5 input files, and the other reads a single :product:`Geometry` corresponding to the `Job` from a GDML file.
+      Data-product providers are framework components that provide data products to downstream user algorithms (see :numref:`ch_conceptual_design/providers:Data-Product Providers`).
+      They take as input data cell indices.
+      In the example there are two providers, each of which reads data products from an external source.
+      One provider reads a :product:`SimDepos` data product from each `Spill` in the HDF5 input files, and the other reads a single :product:`Geometry` corresponding to the `Job` from a GDML file.
+      From a functional programming perspective these providers are impure functions that map a data cell index to one of the data products within the indicated data cell.
 
    *HOFs and user-provided algorithms*
       Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see :numref:`ch_conceptual_design/algorithms:Algorithms`, :numref:`ch_conceptual_design/registration:Framework Registration` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`).
