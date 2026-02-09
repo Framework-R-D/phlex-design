@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (91a8ba4) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (c99fe26) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=9eb6e4c3"></script>
+    <script src="static/documentation_options.js?v=d8812877"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (91a8ba4) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (c99fe26) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -87,9 +87,11 @@ As mentioned in <a class="reference internal" href="ch_preliminaries/data_flow.h
 <dt><em>framework driver</em></dt><dd><p>The driver instructs the framework what to process (see <a class="reference internal" href="ch_conceptual_design/driver.html#framework-driver"><span class="std std-numref">Section 3.6</span></a>).</p>
 <p>The driver in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is configured so that all <cite>Spill</cite>s in the specified ROOT input files are processed.</p>
 </dd>
-<dt><em>data-product providers</em></dt><dd><p>Data-product providers are framework components that provide data products from external entities to downstream user algorithms (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>).
-From a functional programming perspective they are transforms that map a data cell to one of the data products within that data cell.</p>
-<p>In the workflow, one provider reads a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product from each <cite>Spill</cite> in the HDF5 input files, and the other reads a single <span class="math notranslate nohighlight">\(\textit{Geometry}\)</span> corresponding to the <cite>Job</cite> from a GDML file.</p>
+<dt><em>data-product providers</em></dt><dd><p>Data-product providers are framework components that provide data products to downstream user algorithms (see <a class="reference internal" href="ch_conceptual_design/providers.html#data-product-providers"><span class="std std-numref">Section 3.7</span></a>).
+They take as input data cell indices.
+In the example there are two providers, each of which reads data products from an external source.
+One provider reads a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product from each <cite>Spill</cite> in the HDF5 input files, and the other reads a single <span class="math notranslate nohighlight">\(\textit{Geometry}\)</span> corresponding to the <cite>Job</cite> from a GDML file.
+From a functional programming perspective these providers are impure functions that map a data cell index to one of the data products within the indicated data cell.</p>
 </dd>
 <dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
 <p>All seven HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
@@ -117,7 +119,7 @@ For the main processing chain of creating vertices:</p>
 <p>Note that in this workflow, the names <cite>Spill</cite> and <cite>APA</cite> are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data cell (e.g. <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> denotes the <span class="math notranslate nohighlight">\(\textit{GoodHits}\)</span> data product belonging to <cite>APA</cite> <span class="math notranslate nohighlight">\(9\)</span> of <cite>Spill</cite> <span class="math notranslate nohighlight">\(5\)</span> of <cite>Run</cite> <span class="math notranslate nohighlight">\(3\)</span>).</p>
 <figure class="align-default" id="workflow">
-<div class="graphviz"><img src="images/graphviz-0e00f4ab9818cdb5ef39747511e98121f35ea493.png" alt="digraph {
+<div class="graphviz"><img src="images/graphviz-856bc1f7d0e27103cf6c8b5bca749c087a5c9f3f.png" alt="digraph {
   node [shape=&quot;box&quot;, style=&quot;rounded&quot;]
   edge [fontcolor=&quot;red&quot;];
 
@@ -157,8 +159,8 @@ Each data product is also indexed, thus associating it with a particular data ce
 
   start -&gt; driver [label=&quot; Configuration&quot;, fontcolor=&quot;forestgreen&quot;];
   driver -&gt; input [style=&quot;dotted&quot;, arrowhead=none];
-  driver -&gt; geometry_provider [label=&quot; [Job]&quot;, fontcolor=&quot;darkorange&quot;];
-  driver -&gt; sim_depos_provider [label=&lt; [Spill&lt;sub&gt;&lt;i&gt;i j&lt;/i&gt;&lt;/sub&gt;]&gt;, fontcolor=&quot;darkorange&quot;];
+  driver -&gt; geometry_provider [label=&quot; [J]&quot;, fontcolor=&quot;darkorange&quot;];
+  driver -&gt; sim_depos_provider [label=&lt; [i j]&gt;, fontcolor=&quot;darkorange&quot;];
 
   gdml -&gt; geometry_provider [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
   resource -&gt; root [arrowhead=none, style=&quot;dotted&quot;, color=&quot;black:invis:black&quot;];
@@ -246,7 +248,14 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/driver.html">3.6. Framework Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/providers.html">3.7. Data-Product Providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/providers.html">3.7. Data-Product Providers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/providers.html#provider-characteristics">3.7.1. Provider Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/providers.html#provider-function-signature">3.7.2. Provider Function Signature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/providers.html#provider-registration">3.7.3. Provider Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/providers.html#concurrency-control">3.7.4. Concurrency Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/providers.html#requirements-mapping">3.7.5. Requirements Mapping</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/preservers.html">3.8. Data-Product Preservers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/resources.html">3.9. Resources</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#limited-resources">3.9.1. Limited Resources</a></li>
@@ -321,13 +330,13 @@ For memory purposes, it is also likely that each element of the family is a ligh
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (91a8ba4) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (c99fe26) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jan 26, 2026.
+      Last updated on Feb 09, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

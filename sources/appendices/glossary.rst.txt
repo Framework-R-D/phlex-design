@@ -42,7 +42,7 @@ Glossary
     Concrete data product
         An object managed by the framework and for which provenance information is recorded.
 
-        A concrete data product is produced by an algorithm (or is recovered from storage by a provider) and can be passed as an input to other algorithms.
+        A concrete data product is produced by an algorithm (or is recovered from storage or created by a provider) and can be passed as an input to other algorithms.
         Concrete data products determine the flow of execution of the graph of CHOFs configured in a framework program.
 
     Concrete data-product type
