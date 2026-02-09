@@ -9,11 +9,10 @@ Some provider algorithms communicate with the IO system through a specified API 
 Providers communicate with the IO system only through this API.
 This allows the framework to support multiple IO back ends, including ROOT :need:`DUNE 74` and HDF5 :need:`DUNE 141`, and ensure that new back ends can be added without modifying the framework code :need:`DUNE 73`.
 
-Providers are responsible for being able to read data written by earlier code versions, subject to policy decisions made by the experiment :need:`DUNE 76`.
+Providers are responsible for reading data written by earlier code versions, subject to policy decisions made by the experiment :need:`DUNE 76`.
 
-Providers are also responsible for be able to read some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
+Providers are also responsible for reading some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
 The workflow shown in :numref:`workflow` shows an example of one such *provider* algorithm, which reads geometry data from a GDML file.
-
 
 Provider Characteristics
 ------------------------
@@ -62,7 +61,8 @@ To illustrate the how a provider function is registered with Phlex, we use the f
 
 This registers a provider that inserts a :product:`SimDepos` data product into each data cell in the data layer indicated by the data cell index.
 In this example, the data product suffix provided to :cpp:`output_product_suffixes` is an empty string.
-The same affect can be achieved by omitting the :cpp:`output_product_suffixes` call entirely.
+The same effect can be achieved by omitting the :cpp:`output_product_suffixes` call entirely.
+
 I/O System Integration
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -72,8 +72,6 @@ Multiple I/O Backend Support
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [ROOT, HDF5, and other backends as mentioned in requirements]
-
-
 
 Non-File Data Sources
 ~~~~~~~~~~~~~~~~~~~~~

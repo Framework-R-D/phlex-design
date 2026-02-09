@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.7. Data-Product Providers &#8212; Phlex 0.4.alpha (24e9e10) documentation</title>
+    <title>3.7. Data-Product Providers &#8212; Phlex 0.4.alpha (7441d26) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=aa634421"></script>
+    <script src="../static/documentation_options.js?v=7602de08"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="driver.html" title="3.6. Framework Driver"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (24e9e10) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7441d26) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.7. </span>Data-Product Providers</a></li> 
       </ul>
@@ -72,8 +72,8 @@ A provider invokes a user-supplied <em>provider algorithm</em>.</p>
 <p>Some provider algorithms communicate with the IO system through a specified API that is implemented by each IO back end.
 Providers communicate with the IO system only through this API.
 This allows the framework to support multiple IO back ends, including ROOT <a class="reference internal" href="../appendices/requirements.html#DUNE 74" title="DUNE 74"><em class="xref need">[DUNE 74]</em></a> and HDF5 <a class="reference internal" href="../appendices/requirements.html#DUNE 141" title="DUNE 141"><em class="xref need">[DUNE 141]</em></a>, and ensure that new back ends can be added without modifying the framework code <a class="reference internal" href="../appendices/requirements.html#DUNE 73" title="DUNE 73"><em class="xref need">[DUNE 73]</em></a>.</p>
-<p>Providers are responsible for being able to read data written by earlier code versions, subject to policy decisions made by the experiment <a class="reference internal" href="../appendices/requirements.html#DUNE 76" title="DUNE 76"><em class="xref need">[DUNE 76]</em></a>.</p>
-<p>Providers are also responsible for be able to read some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
+<p>Providers are responsible for reading data written by earlier code versions, subject to policy decisions made by the experiment <a class="reference internal" href="../appendices/requirements.html#DUNE 76" title="DUNE 76"><em class="xref need">[DUNE 76]</em></a>.</p>
+<p>Providers are also responsible for reading some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
 The workflow shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> shows an example of one such <em>provider</em> algorithm, which reads geometry data from a GDML file.</p>
 <section id="provider-characteristics">
 <h2><span class="section-number">3.7.1. </span>Provider Characteristics<a class="headerlink" href="#provider-characteristics" title="Link to this heading">¶</a></h2>
@@ -114,24 +114,25 @@ Only a single data product can be returned by a provider function.</p>
 <p><strong>Provider registration</strong></p>
 <p>This registers a provider that inserts a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product into each data cell in the data layer indicated by the data cell index.
 In this example, the data product suffix provided to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> is an empty string.
-The same affect can be achieved by omitting the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> call entirely.
-I/O System Integration
-~~~~~~~~~~~~~~~~~~~~~~</p>
+The same effect can be achieved by omitting the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> call entirely.</p>
+<section id="i-o-system-integration">
+<h3><span class="section-number">3.7.3.1. </span>I/O System Integration<a class="headerlink" href="#i-o-system-integration" title="Link to this heading">¶</a></h3>
 <p>[How providers communicate with I/O backends]</p>
+</section>
 <section id="multiple-i-o-backend-support">
-<h3><span class="section-number">3.7.3.1. </span>Multiple I/O Backend Support<a class="headerlink" href="#multiple-i-o-backend-support" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">3.7.3.2. </span>Multiple I/O Backend Support<a class="headerlink" href="#multiple-i-o-backend-support" title="Link to this heading">¶</a></h3>
 <p>[ROOT, HDF5, and other backends as mentioned in requirements]</p>
 </section>
 <section id="non-file-data-sources">
-<h3><span class="section-number">3.7.3.2. </span>Non-File Data Sources<a class="headerlink" href="#non-file-data-sources" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">3.7.3.3. </span>Non-File Data Sources<a class="headerlink" href="#non-file-data-sources" title="Link to this heading">¶</a></h3>
 <p>[Calibration data, geometry descriptions, external services]</p>
 </section>
 <section id="integration-with-data-hierarchy">
-<h3><span class="section-number">3.7.3.3. </span>Integration with Data Hierarchy<a class="headerlink" href="#integration-with-data-hierarchy" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">3.7.3.4. </span>Integration with Data Hierarchy<a class="headerlink" href="#integration-with-data-hierarchy" title="Link to this heading">¶</a></h3>
 <p>[How providers work with different hierarchical layers]</p>
 </section>
 <section id="provider-with-different-layers">
-<h3><span class="section-number">3.7.3.4. </span>Provider with Different Layers<a class="headerlink" href="#provider-with-different-layers" title="Link to this heading">¶</a></h3>
+<h3><span class="section-number">3.7.3.5. </span>Provider with Different Layers<a class="headerlink" href="#provider-with-different-layers" title="Link to this heading">¶</a></h3>
 <p>[Example showing multiple providers for different layers]</p>
 </section>
 </section>
@@ -164,10 +165,11 @@ I/O System Integration
 <li><a class="reference internal" href="#provider-characteristics">3.7.1. Provider Characteristics</a></li>
 <li><a class="reference internal" href="#provider-function-signature">3.7.2. Provider Function Signature</a></li>
 <li><a class="reference internal" href="#provider-registration">3.7.3. Provider Registration</a><ul>
-<li><a class="reference internal" href="#multiple-i-o-backend-support">3.7.3.1. Multiple I/O Backend Support</a></li>
-<li><a class="reference internal" href="#non-file-data-sources">3.7.3.2. Non-File Data Sources</a></li>
-<li><a class="reference internal" href="#integration-with-data-hierarchy">3.7.3.3. Integration with Data Hierarchy</a></li>
-<li><a class="reference internal" href="#provider-with-different-layers">3.7.3.4. Provider with Different Layers</a></li>
+<li><a class="reference internal" href="#i-o-system-integration">3.7.3.1. I/O System Integration</a></li>
+<li><a class="reference internal" href="#multiple-i-o-backend-support">3.7.3.2. Multiple I/O Backend Support</a></li>
+<li><a class="reference internal" href="#non-file-data-sources">3.7.3.3. Non-File Data Sources</a></li>
+<li><a class="reference internal" href="#integration-with-data-hierarchy">3.7.3.4. Integration with Data Hierarchy</a></li>
+<li><a class="reference internal" href="#provider-with-different-layers">3.7.3.5. Provider with Different Layers</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#requirements-mapping">3.7.4. Requirements Mapping</a></li>
@@ -219,7 +221,7 @@ I/O System Integration
         <li class="right" >
           <a href="driver.html" title="3.6. Framework Driver"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (24e9e10) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7441d26) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.7. </span>Data-Product Providers</a></li> 
       </ul>
