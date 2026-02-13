@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.7. Data-Product Providers &#8212; Phlex 0.4.alpha (7441d26) documentation</title>
+    <title>3.7. Data-Product Providers &#8212; Phlex 0.4.alpha (3459266) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=7602de08"></script>
+    <script src="../static/documentation_options.js?v=a84d7645"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="driver.html" title="3.6. Framework Driver"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7441d26) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3459266) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.7. </span>Data-Product Providers</a></li> 
       </ul>
@@ -68,26 +68,16 @@
 <h1><span class="section-number">3.7. </span>Data-Product Providers<a class="headerlink" href="#data-product-providers" title="Link to this heading">¶</a></h1>
 <p>Data-product providers are framework components that provide data products to downstream configured HOFs.
 They take as input data cell indices.
-A provider invokes a user-supplied <em>provider algorithm</em>.</p>
-<p>Some provider algorithms communicate with the IO system through a specified API that is implemented by each IO back end.
+A user-supplied provider invokes a user-supplied <em>provider algorithm</em>.
+There are also framework-supplied providers that use framework IO subsystem to read data products from framework supported data files.
+These providers communicate with the IO system through a specified API that is implemented by each IO back end.
 Providers communicate with the IO system only through this API.
 This allows the framework to support multiple IO back ends, including ROOT <a class="reference internal" href="../appendices/requirements.html#DUNE 74" title="DUNE 74"><em class="xref need">[DUNE 74]</em></a> and HDF5 <a class="reference internal" href="../appendices/requirements.html#DUNE 141" title="DUNE 141"><em class="xref need">[DUNE 141]</em></a>, and ensure that new back ends can be added without modifying the framework code <a class="reference internal" href="../appendices/requirements.html#DUNE 73" title="DUNE 73"><em class="xref need">[DUNE 73]</em></a>.</p>
 <p>Providers are responsible for reading data written by earlier code versions, subject to policy decisions made by the experiment <a class="reference internal" href="../appendices/requirements.html#DUNE 76" title="DUNE 76"><em class="xref need">[DUNE 76]</em></a>.</p>
 <p>Providers are also responsible for reading some types of data (such as calibration data, or geometry descriptions) from sources other than files written by the IO system.
 The workflow shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a> shows an example of one such <em>provider</em> algorithm, which reads geometry data from a GDML file.</p>
-<section id="provider-characteristics">
-<h2><span class="section-number">3.7.1. </span>Provider Characteristics<a class="headerlink" href="#provider-characteristics" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>On-demand evaluation</p></li>
-<li><p>Automatic caching</p></li>
-<li><p>External data sources</p></li>
-<li><p>Purity and determinism</p></li>
-<li><p>Single output per provider</p></li>
-<li><p>Plugin architecture</p></li>
-</ul>
-</section>
 <section id="provider-function-signature">
-<h2><span class="section-number">3.7.2. </span>Provider Function Signature<a class="headerlink" href="#provider-function-signature" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.7.1. </span>Provider Function Signature<a class="headerlink" href="#provider-function-signature" title="Link to this heading">¶</a></h2>
 <p>The provider function take a data cell index as input and returns a data product.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="n">function_name</span><span class="p">(</span><span class="n">data_cell_index</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
 </pre></div>
@@ -96,7 +86,7 @@ The workflow shown in <a class="reference internal" href="../conceptual_design.h
 Only a single data product can be returned by a provider function.</p>
 </section>
 <section id="provider-registration">
-<h2><span class="section-number">3.7.3. </span>Provider Registration<a class="headerlink" href="#provider-registration" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.7.2. </span>Provider Registration<a class="headerlink" href="#provider-registration" title="Link to this heading">¶</a></h2>
 <p>To illustrate the how a provider function is registered with Phlex, we use the following class and function, which are presumably defined in some experiment libraries.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimDepos</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span>
 
@@ -114,37 +104,7 @@ Only a single data product can be returned by a provider function.</p>
 <p><strong>Provider registration</strong></p>
 <p>This registers a provider that inserts a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product into each data cell in the data layer indicated by the data cell index.
 In this example, the data product suffix provided to <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> is an empty string.
-The same effect can be achieved by omitting the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> call entirely.</p>
-<section id="i-o-system-integration">
-<h3><span class="section-number">3.7.3.1. </span>I/O System Integration<a class="headerlink" href="#i-o-system-integration" title="Link to this heading">¶</a></h3>
-<p>[How providers communicate with I/O backends]</p>
-</section>
-<section id="multiple-i-o-backend-support">
-<h3><span class="section-number">3.7.3.2. </span>Multiple I/O Backend Support<a class="headerlink" href="#multiple-i-o-backend-support" title="Link to this heading">¶</a></h3>
-<p>[ROOT, HDF5, and other backends as mentioned in requirements]</p>
-</section>
-<section id="non-file-data-sources">
-<h3><span class="section-number">3.7.3.3. </span>Non-File Data Sources<a class="headerlink" href="#non-file-data-sources" title="Link to this heading">¶</a></h3>
-<p>[Calibration data, geometry descriptions, external services]</p>
-</section>
-<section id="integration-with-data-hierarchy">
-<h3><span class="section-number">3.7.3.4. </span>Integration with Data Hierarchy<a class="headerlink" href="#integration-with-data-hierarchy" title="Link to this heading">¶</a></h3>
-<p>[How providers work with different hierarchical layers]</p>
-</section>
-<section id="provider-with-different-layers">
-<h3><span class="section-number">3.7.3.5. </span>Provider with Different Layers<a class="headerlink" href="#provider-with-different-layers" title="Link to this heading">¶</a></h3>
-<p>[Example showing multiple providers for different layers]</p>
-</section>
-</section>
-<section id="requirements-mapping">
-<h2><span class="section-number">3.7.4. </span>Requirements Mapping<a class="headerlink" href="#requirements-mapping" title="Link to this heading">¶</a></h2>
-<p>[Cross-references to specific DUNE requirements mentioned in original text]</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../appendices/requirements.html#DUNE 73" title="DUNE 73"><em class="xref need">[DUNE 73]</em></a> - Supporting new I/O backends without framework modifications</p></li>
-<li><p><a class="reference internal" href="../appendices/requirements.html#DUNE 74" title="DUNE 74"><em class="xref need">[DUNE 74]</em></a> - ROOT support</p></li>
-<li><p><a class="reference internal" href="../appendices/requirements.html#DUNE 76" title="DUNE 76"><em class="xref need">[DUNE 76]</em></a> - Reading data from earlier code versions</p></li>
-<li><p><a class="reference internal" href="../appendices/requirements.html#DUNE 141" title="DUNE 141"><em class="xref need">[DUNE 141]</em></a> - HDF5 support</p></li>
-</ul>
+The same affect can be achieved by omitting the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">output_product_suffixes</span></code> call entirely.</p>
 </section>
 </section>
 
@@ -162,17 +122,8 @@ The same effect can be achieved by omitting the <code class="code highlight c++ 
     <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">3.7. Data-Product Providers</a><ul>
-<li><a class="reference internal" href="#provider-characteristics">3.7.1. Provider Characteristics</a></li>
-<li><a class="reference internal" href="#provider-function-signature">3.7.2. Provider Function Signature</a></li>
-<li><a class="reference internal" href="#provider-registration">3.7.3. Provider Registration</a><ul>
-<li><a class="reference internal" href="#i-o-system-integration">3.7.3.1. I/O System Integration</a></li>
-<li><a class="reference internal" href="#multiple-i-o-backend-support">3.7.3.2. Multiple I/O Backend Support</a></li>
-<li><a class="reference internal" href="#non-file-data-sources">3.7.3.3. Non-File Data Sources</a></li>
-<li><a class="reference internal" href="#integration-with-data-hierarchy">3.7.3.4. Integration with Data Hierarchy</a></li>
-<li><a class="reference internal" href="#provider-with-different-layers">3.7.3.5. Provider with Different Layers</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#requirements-mapping">3.7.4. Requirements Mapping</a></li>
+<li><a class="reference internal" href="#provider-function-signature">3.7.1. Provider Function Signature</a></li>
+<li><a class="reference internal" href="#provider-registration">3.7.2. Provider Registration</a></li>
 </ul>
 </li>
 </ul>
@@ -221,14 +172,14 @@ The same effect can be achieved by omitting the <code class="code highlight c++ 
         <li class="right" >
           <a href="driver.html" title="3.6. Framework Driver"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7441d26) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3459266) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.7. </span>Data-Product Providers</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Feb 09, 2026.
+      Last updated on Feb 13, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
