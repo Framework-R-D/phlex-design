@@ -57,9 +57,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform("hit_finder", find_hits, concurrency::unlimited)
+     m.transform("hit_finder", find_hits, concurrency::unlimited)
        .input_family("Waveforms"_in("APA"));
    }
 
@@ -69,9 +69,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform("hit_finder", find_hits, concurrency::unlimited)
+     m.transform("hit_finder", find_hits, concurrency::unlimited)
        .input_family("Waveforms"_in("APA"))
        .output_product_suffixes("GoodHits");
    }
@@ -82,9 +82,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform("vertex_maker", make_vertices, concurrency::unlimited)
+     m.transform("vertex_maker", make_vertices, concurrency::unlimited)
        .input_family("Geometry"_in("Job"), "GoodTracks"_in("APA"))
        .output_product_suffixes("Vertices");
    }
@@ -93,9 +93,9 @@ To illustrate the different ways a transform's algorithm can be registered with 
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform("hit_counter", count_good_hits, concurrency::unlimited)
+     m.transform("hit_counter", count_good_hits, concurrency::unlimited)
        .input_family("GoodHits"_in("APA"))
        .output_product_suffixes("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
    }
