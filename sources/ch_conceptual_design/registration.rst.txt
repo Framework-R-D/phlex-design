@@ -199,7 +199,7 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform(
+     m.transform(
        "hit_finder",
        [](phlex::handle<waveforms> ws) { return find_hits_debug(*ws, ws.id().number()); },
        concurrency::unlimited
