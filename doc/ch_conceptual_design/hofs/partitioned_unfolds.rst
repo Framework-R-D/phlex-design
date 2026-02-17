@@ -131,9 +131,9 @@ The class is then registered with Phlex via:
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     unfold<to_apas>(
+     m.unfold<to_apas>(
        "to_apas",                 // <= Node name for framework
        &to_apas::keep_going,      // <= Unfold predicate
        &to_apas::make_waveforms,  // <= Unfold generator

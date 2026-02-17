@@ -44,8 +44,8 @@ The registration for the predicate node in :numref:`workflow` would look like:
    class hits { ... };
    bool high_energy(hits const& hs) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     predicate("high_energy", high_energy, concurrency::unlimited)
+     m.predicate("high_energy", high_energy, concurrency::unlimited)
        .input_family("GoodHits"_in("APA"));
    }

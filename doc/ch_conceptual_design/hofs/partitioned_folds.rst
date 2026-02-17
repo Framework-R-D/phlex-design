@@ -127,9 +127,9 @@ The :mathfunc:`fold(sum_energies)` node in :numref:`workflow` would be represent
 
    void sum_energy(double& total_hit_energy, hits const& hs) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     fold(
+     m.fold(
        "sum_hit_energy",       // <= Node name for framework
        sum_energy,             // <= Fold operation
        0.,                     // <= Initializer for each fold result

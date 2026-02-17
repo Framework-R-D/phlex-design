@@ -96,9 +96,9 @@ The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represen
    tracks make_tracks(tracks const& ts, tracks const* next_ts) { ... }
    bool are_adjacent(id const& left, id const& right) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     window(
+     m.window(
        "track_maker",          // <= Node name for framework
        make_tracks,            // <= Window algorithm (f)
        are_adjacent            // <= Adjacency criterion

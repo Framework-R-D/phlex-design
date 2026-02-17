@@ -109,9 +109,9 @@ The interface of the algorithm and its registration would look like:
   class pedestals { ... };
   hits find_hits_subtract_pedestals(waveforms const&, pedestals const&) {...}
 
-  PHLEX_REGISTER_ALGORITHMS(config)
+  PHLEX_REGISTER_ALGORITHMS(m)
   {
-    transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
+    m.transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
       .input_family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
       .output_product_suffixes("GoodHits");
   }
@@ -136,9 +136,9 @@ This would be expressed in C++ as:
 
    vertices make_vertices(tracks const&, geometry const&) { ... }
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m)
    {
-     transform("vertex_maker", make_vertices, concurrency::unlimited)
+     m.transform("vertex_maker", make_vertices, concurrency::unlimited)
        .input_family("GoodTracks"_in("APA"), "Geometry"_in("Job"));
        .output_product_suffixes("Vertices");
    }
@@ -167,11 +167,11 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. code:: c++
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      auto selected_data_layer = config.get<std::string>("data_layer");
 
-     transform("hit_finder", find_hits, concurrency::unlimited)
+     m.transform("hit_finder", find_hits, concurrency::unlimited)
        .input_family("Waveforms"_in(selected_data_layer));
        .output_product_suffixes("GoodHits");
    }
@@ -226,12 +226,12 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
      ...
    };
 
-   PHLEX_REGISTER_ALGORITHMS(config)
+   PHLEX_REGISTER_ALGORITHMS(m, config)
    {
      auto sigma_threshold = config.get<float>("sigma_threshold");
      auto selected_data_layer = config.get<std::string>("data_layer");
 
-     make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
+     m.make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
        .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
        .input_family("Waveforms"_in(selected_data_scope));
        .output_product_suffixes("GoodHits");
@@ -261,7 +261,7 @@ Instead, the code author can use the following [#f1]_:
 
 .. code:: c++
 
-   transform(..., [](double x){ return std::sqrt(x); }, ...);
+   m.transform(..., [](double x){ return std::sqrt(x); }, ...);
 
 where the desired overload is selected based on the :cpp:`double` argument to the lambda expression.
 
@@ -270,7 +270,7 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 .. [#statement_ordering] In contrast to the equational form, the specification of the output products occurs *after* the specification of the input family, leading to more natural programming patterns.
 .. [#zip] The operation that forms the family :math:`\left[(\textit{Waveforms}_i, \textit{Pedestals}_i)\right]_{i \in \iset{\text{APA}}}` from the separate families :math:`\ifamily{\textit{Waveforms}}{\text{APA}}` and :math:`\ifamily{\textit{Pedestals}}{\text{APA}}` is called *zip*.
 .. [#job] As shown in :numref:`data-organization`, there is a `Job` data layer, to which job-level data products may belong.
-.. [#f1] Equivalently, one can use the obscure syntax :cpp:`transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.
+.. [#f1] Equivalently, one can use the obscure syntax :cpp:`m.transform(..., static_cast<double(*)(double)>(std::sqrt), ...)`, where :cpp:`std::sqrt` is cast to the desired overload.
 
 .. only:: html
 

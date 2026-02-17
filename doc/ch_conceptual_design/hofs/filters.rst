@@ -46,7 +46,7 @@ The following example shows the complete registration for histogramming the filt
    {
      auto h_resource = m.resource<histogramming>();
 
-     observe(histogram_hits, concurrency::serial)
+     m.observe(histogram_hits, concurrency::serial)
        .input_family("GoodHits"_in("APA"), h_resource->make<TH1F>(...))
        .when("high_energy");  // <= predicate expression within the when(...) call
    }
