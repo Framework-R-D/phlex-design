@@ -43,7 +43,7 @@ It uses the :cpp:`resource<histogramming>` interface to provide access to a puta
    {
      auto h_resource = m.resource<histogramming>();
 
-     observe(histogram_hits, concurrency::serial)
+     m.observe(histogram_hits, concurrency::serial)
        .input_family("GoodHits"_in("APA"), h_resource->make<TH1F>(...));
    }
 
