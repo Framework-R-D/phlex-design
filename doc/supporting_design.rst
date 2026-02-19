@@ -10,8 +10,7 @@ The graph below depicts the relationships between the framework subsystems.
    :maxdepth: 2
 
    ch_subsystem_design/task_management
-   ch_subsystem_design/sequence_spec
-   ch_subsystem_design/data_management
+   ch_subsystem_design/data_product_management
    ch_subsystem_design/data_modeling
    ch_subsystem_design/metadata_management
    ch_subsystem_design/io

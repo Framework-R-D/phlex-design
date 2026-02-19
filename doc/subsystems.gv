@@ -9,20 +9,20 @@ digraph finite_state_machine {
   subgraph cluster_core_subsystems {
     label = "Core framework subsystems";
 
-    algo_description [label="Algorithm description"];
-    application [label="Application"];
+    algo_description [label="Algorithm\ndescription"];
+    application [label="Framework\nApplication"];
     data_modeling [label="Data modeling"];
     error_handler [label="Error handler"];
     io [label="IO"];
-    data_product_management [label="Data product management"];
-    metadata_management [label="Metadata management"];
-    monitoring [label="Monitoring and reporting"];
-    plugin_management [label="Plugin management"];
+    data_product_management [label="Data product\nmanagement"];
+    metadata_management [label="Metadata\nmanagement"];
+    monitoring [label="Monitoring\nand\nreporting"];
+    plugin_management [label="Plugin\nmanagement"];
     registration [label="Registration"];
-    random_number [ label="Random number"];
-    resource_management [label="Resource management"];
+    random_number [ label="Random\nnumbers"];
+    resource_management [label="Resource\nmanagement"];
     signal_handler [label="Signal handler"];
-    task_management [label="Task management"];
+    task_management [label="Task\nmanagement"];
 
     { rank=same; algo_description; task_management; }
 
@@ -71,8 +71,8 @@ digraph finite_state_machine {
     Build;
     CI;
     Documentation;
-    event_display [label="Event display"];
-    workflow [label="Workflow management"];
+    event_display [label="Event\ndisplay"];
+    workflow [label="Workflow\nmanagement"];
   }
 
   subgraph cluster_plugins {
