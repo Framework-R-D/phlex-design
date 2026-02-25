@@ -1,0 +1,16 @@
+classDiagram
+    direction TB
+    class StandardRecord { }
+    class SRDetectorMetaBranch { }
+    class SRBeamBranch { }
+    class SRTruthBranch { }
+    class SRCommonRecoBranch { }
+    class SRFDBranch { }
+    class SRNDBranch { }
+
+    StandardRecord "1" *-- SRDetectorMetaBranch : meta
+    StandardRecord "1" *-- SRBeamBranch : beam
+    StandardRecord "1" *-- SRTruthBranch : mc
+    StandardRecord "1" *-- SRCommonRecoBranch : common
+    StandardRecord "1" *-- SRFDBranch : fd
+    StandardRecord "1" *-- SRNDBranch : nd

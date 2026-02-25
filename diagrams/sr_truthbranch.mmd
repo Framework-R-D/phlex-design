@@ -1,0 +1,64 @@
+classDiagram
+    class SRTruthBranch {
+        +nnu : size_t
+    }
+
+    class SRTrueInteraction {
+        +id : long
+        +xsec_cvwgt : float
+    }
+
+    SRTruthBranch *-- "0..*" SRTrueInteraction : nu
+
+    SRTrueInteraction *-- ScatteringMode : mode
+    SRTrueInteraction *-- SRVector3D : vtx
+    SRTrueInteraction *-- SRVector3D : momentum
+    SRTrueInteraction *-- SRVector3D : prod_vtx
+    SRTrueInteraction *-- SRVector3D : parent_dcy_mom
+    SRTrueInteraction *-- Generator : generator
+    SRTrueInteraction *-- "0..*" SRTrueParticle : prim
+    SRTrueInteraction *-- "0..*" SRTrueParticle : prefsi
+    SRTrueInteraction *-- "0..*" SRTrueParticle : sec
+
+    class ScatteringMode {
+        <<enumeration>>
+    }
+
+    class Generator {
+        <<enumeration>>
+    }
+
+    class SRTrueParticle {
+        +pdg : int
+        +end_subprocess : unsigned int
+    }
+
+    SRTrueParticle *-- TrueParticleID : ancestor_id
+    SRTrueParticle *-- SRLorentzVector : p
+    SRTrueParticle *-- SRVector3D : start_pos
+    SRTrueParticle *-- SRVector3D : end_pos
+
+
+    class TrueParticleID {
+      + ixn : int
+      + part : int
+    }
+
+    TrueParticleID *-- PartType : type
+
+    class PartType {
+        <<enumeration>>
+    }
+                                                                                                                                                                                                                                                                                                                                                                            
+    class SRLorentzVector {
+        +E : float
+        +px : float
+        +py : float
+        +pz : float
+    }
+
+    class SRVector3D {
+        +x : float
+        +y : float
+        +z : float
+    }
