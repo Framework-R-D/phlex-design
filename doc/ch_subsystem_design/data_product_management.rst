@@ -2,7 +2,7 @@ Data Product Management
 =======================
 
 .. todo::
-   - Data (product) set definitions
+   - Data cell definitions
    - Data family definitions
    - Data product definitions
    - Data product specifications

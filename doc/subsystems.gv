@@ -11,8 +11,8 @@ digraph finite_state_machine {
 
     algo_description [label="Algorithm\ndescription"];
     application [label="Framework\nApplication"];
-    data_modeling [label="Data modeling"];
-    error_handler [label="Error handler"];
+    data_modeling [label="Data\nmodeling"];
+    error_handler [label="Error\nhandler"];
     io [label="IO"];
     data_product_management [label="Data product\nmanagement"];
     metadata_management [label="Metadata\nmanagement"];
@@ -21,7 +21,7 @@ digraph finite_state_machine {
     registration [label="Registration"];
     random_number [ label="Random\nnumbers"];
     resource_management [label="Resource\nmanagement"];
-    signal_handler [label="Signal handler"];
+    signal_handler [label="Signal\nhandler"];
     task_management [label="Task\nmanagement"];
 
     { rank=same; algo_description; task_management; }

@@ -3,34 +3,50 @@ Technical Design
 ****************
 
 The graph below depicts the relationships between the framework subsystems.
-A subsystem is a cohesive set of components that together provide a well-defined set of functionalities to the rest of the framework.
+A *subsystem* is a cohesive set of components that together provide a well-defined set of functionalities to the rest of the framework.
 Each subsystem has a set of responsibilities and a well-defined interface to be used by the other subsystems and plugins that need to use the provided functionality.
 In the figure, the ellipses represent subsystems, and the arrows indicate what other subsystems each subsystem depends upon.
 The subsystems have no circular dependencies.
 The diagram shows a box that identifies the *core framework subsystems*, another that identifies the *external subsystems*, and a third one that shows examples of *plugins*.
 
 .. graphviz:: subsystems.gv
+   :caption: Phlex subsystems
 
 The figure organizes all Phlex subsystems into three groups, with two standalone cross-cutting nodes.
 
 The 14 core subsystems and their dependency arrows show the following structure:
 
 - **Framework Application** provides the executables run by the user.
+  It is responsible for creating and executing the workflow graph.
 
-- **Task Management** is the most widely connected core node.
-  It depends on *IO*, *Data Product Management*, *Metadata Management*, *Monitoring*,
-  *Random Numbers*, *Resource Management*, *Error Handler*, and *Signal Handler*,
-  reflecting its role as the runtime scheduler and executor.
-- **Data Product Management** depends on *Metadata Management* and *Data Modeling*,
-  establishing a chain: products carry metadata and are described by the data model.
-- **IO** depends on *Data Modeling*, meaning the IO subsystem uses the data model to
+- **Task Management** provides the runtime scheduler and executor.
+  It depends on `oneTBB Flow Graph <https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/flow_graph>`_.
+  It provides the nodes that are used to represent CHOFs in the workflow.
+  It also provides the types that are used to represent the workflow graph as a whole.
+
+- **Data Modeling** provides the mechanism by which users define data product types, and the tools used to translate between in-memory representations of data product concepts.
+
+- **Data Product Management** provides the mechanisms to organize and identify data products.
+  This includes the types used to represent data cells, data product families, and data layers.
+  It also provides the mechanisms by which the lifetime of data products are managed.
+  It provides the mechanisms used for data product lookup (based on data product metadata).
+
+- **Metadata Management** provides the mechanisms by which framework-defined metadata are associated with data products, data cells, data product families, data layers, and jobs.
+  It also provides the facilities by which users can define their own metadata types and associate them with the appropriate entities, listed above.
+  It also provides the mechanisms by which the metadata associated with one of these items can be retrieved.
+
+
+- **IO** provides the mechanisms by which data products and relevant metadata are read and written to persistent storage.
+
+  depends on *Data Modeling*, meaning the IO subsystem uses the data model to
   know how to read and write products.
-- **Metadata Management** depends on both *Data Modeling* and *Registration*, as metadata
-  must be anchored to typed products and registered algorithms.
+
 - **Plugin Management** and **Data Modeling** both depend on *Registration* and
   *Monitoring*, contributing discovered plugins and data-model events to those subsystems
   respectively.
+  
 - **Resource Management** depends solely on *Monitoring*, reporting resource utilization.
+
 - **Algorithm Description** depends on *Registration*, as descriptions are derived from
   what is registered.
 - *Error Handler*, *Signal Handler*, *Random Numbers*, and *Monitoring and Reporting* are
@@ -60,8 +76,8 @@ itself.
    :maxdepth: 2
 
    ch_subsystem_design/task_management
-   ch_subsystem_design/data_product_management
    ch_subsystem_design/data_modeling
+   ch_subsystem_design/data_product_management
    ch_subsystem_design/metadata_management
    ch_subsystem_design/io
    ch_subsystem_design/registration
