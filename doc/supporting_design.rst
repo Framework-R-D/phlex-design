@@ -5,7 +5,7 @@ Technical Design
 The graph below depicts the relationships between the framework subsystems.
 A *subsystem* is a cohesive set of components that together provide a well-defined set of functionalities to the rest of the framework.
 Each subsystem has a set of responsibilities and a well-defined interface to be used by the other subsystems and plugins that need to use the provided functionality.
-In the figure, the ellipses represent subsystems, and the arrows indicate what other subsystems each subsystem depends upon.
+In the figure, the elliptical nodes represent subsystems, and the arrows indicate what other subsystems each subsystem depends upon.
 The subsystems have no circular dependencies.
 The diagram shows a box that identifies the *core framework subsystems*, another that identifies the *external subsystems*, and a third one that shows examples of *plugins*.
 
@@ -37,8 +37,8 @@ The 14 core subsystems and their dependency arrows show the following structure:
 
 
 - **IO** provides the mechanisms by which data products and relevant metadata are read and written to persistent storage.
-  It is unclear exactly what the responsibilities of the IO subsystem are.
-  It is unclear what the relationship betwen the IO subsystem and FORM is.
+  It defines an interface implemented by IO plugins.
+  Providers and perservers use this interface to read and write data products and metadata.
 
 - **Plugin Management** depend on *Registration* and
   *Monitoring*, contributing discovered plugins and data-model events to those subsystems
@@ -62,7 +62,9 @@ Three representative plugin categories are shown — *User Algorithms*, *IO Back
 As a group, plugins depend on **Configuration** (to configure each plugin) and **Logging**
 (to emit messages), but are otherwise decoupled from core internals.
 
-
+*IO Backends* are plugins that implement the IO interface provided by the IO subsystem.
+One such implementation is FORM, which provides the ability to read and write from ROOT and HDF5 files.
+Other IO technologies may be supported by implementing another IO Backend plugin.
 
 Five externally-managed concerns — *Build*, *CI*, *Documentation*, *Event Display*, and
 *Workflow Management* — are grouped separately.
@@ -74,6 +76,7 @@ itself.
 .. toctree::
    :maxdepth: 2
 
+   ch_subsystem_design/data_product_translation
    ch_subsystem_design/task_management
    ch_subsystem_design/data_modeling
    ch_subsystem_design/data_product_management
