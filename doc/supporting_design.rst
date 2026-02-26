@@ -37,11 +37,10 @@ The 14 core subsystems and their dependency arrows show the following structure:
 
 
 - **IO** provides the mechanisms by which data products and relevant metadata are read and written to persistent storage.
+  It is unclear exactly what the responsibilities of the IO subsystem are.
+  It is unclear what the relationship betwen the IO subsystem and FORM is.
 
-  depends on *Data Modeling*, meaning the IO subsystem uses the data model to
-  know how to read and write products.
-
-- **Plugin Management** and **Data Modeling** both depend on *Registration* and
+- **Plugin Management** depend on *Registration* and
   *Monitoring*, contributing discovered plugins and data-model events to those subsystems
   respectively.
   
