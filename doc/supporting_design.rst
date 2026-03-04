@@ -73,23 +73,11 @@ from the workflow manager to the core subsystems cluster, indicating that a work
 drives framework application execution but is not architecturally part of the framework
 itself.
 
-Program Startup
-===============
-
-The configuration document specifies what modules and sources are to be loaded and provides configuration information for each.
-Each module and source when loaded creates one or more nodes in the graph.
-The nodes in the graph get connected (this is building the graph).
-- Input nodes that are not satisfied by the output of other nodes are identified.
-- For each one:
-  - if a provider has been configured to deliver that product, it is conneced.
-  - for any input port remaining, the system needs to determine if a provider that reads from IO perhaps in combination with a translator can deliver the product.
-    - if so, they are created and added to the graph.
-    - if not, we have a startup failure because a required input to the graph can never be supplied.
-
 
 .. toctree::
    :maxdepth: 2
 
+   ch_subsystem_design/program_startup
    ch_subsystem_design/data_product_translation
    ch_subsystem_design/task_management
    ch_subsystem_design/data_modeling
