@@ -172,9 +172,7 @@ _________________________________________________
 
 Your feedback is crucial for improving Phlex. The development team will analyze all responses to prioritize work for upcoming releases.
 
-**Survey completion time**: Approximately 15-20 minutes
-
-**Data handling**: All responses are confidential. Aggregate data will be used for development planning and may be shared in anonymized form with the community.
+**Survey completion time**: Approximately 10-15 minutes
 
 **Contact for follow-up** (optional): ___________
 
