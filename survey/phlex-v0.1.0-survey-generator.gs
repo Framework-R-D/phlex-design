@@ -64,20 +64,32 @@ function createSurveyForm() {
     .setBounds(1, 5)
     .setLabels('Not at all familiar', 'Extremely familiar');
 
+  // Q6
+  form.addCheckboxItem()
+    .setTitle('Q6. Please list which HEP frameworks you have used in the past')
+    .setChoiceValues([
+      'art',
+      'basf2',
+      'CMSSW',
+      'Gaudi',
+      'O2',
+    ])
+    .showOtherOption(true);
+
   // ── Part 2: Installation & Setup Experience ─────────────────────────────────
 
   form.addSectionHeaderItem()
     .setTitle('Part 2: Installation & Setup Experience');
 
-  // Q6
+  // Q7
   form.addScaleItem()
-    .setTitle('Q6. How easy was it to install and set up Phlex? (Leave blank if not yet installed)')
+    .setTitle('Q7. How easy was it to install and set up Phlex? (Leave blank if not yet installed)')
     .setBounds(1, 5)
     .setLabels('Very Difficult', 'Very Easy');
 
-  // Q7
+  // Q8
   form.addMultipleChoiceItem()
-    .setTitle('Q7. Which installation method did you use?')
+    .setTitle('Q8. Which installation method did you use?')
     .setChoiceValues([
       'Spack package manager',
       'Manual build from source',
@@ -87,9 +99,9 @@ function createSurveyForm() {
     ])
     .showOtherOption(true);
 
-  // Q8
+  // Q9
   form.addScaleItem()
-    .setTitle('Q8. How clear and helpful was the installation documentation?')
+    .setTitle('Q9. How clear and helpful was the installation documentation?')
     .setBounds(1, 5)
     .setLabels('Very Unclear', 'Very Clear');
 
@@ -101,9 +113,9 @@ function createSurveyForm() {
   form.addSectionHeaderItem()
     .setTitle('Part 3: Core Functionality Assessment');
 
-  // Q9
+  // Q10
   form.addCheckboxItem()
-    .setTitle('Q9. Which Phlex features have you used? (Select all that apply)')
+    .setTitle('Q10. Which Phlex features have you used? (Select all that apply)')
     .setChoiceValues([
       'C++ transform algorithms',
       'C++ observe algorithms',
@@ -118,15 +130,15 @@ function createSurveyForm() {
       'None yet (planning to)',
     ]);
 
-  // Q10a
+  // Q11a
   form.addScaleItem()
-    .setTitle('Q10a. Rate the ease of registering C++ algorithms.')
+    .setTitle('Q11a. Rate the ease of registering C++ algorithms.')
     .setBounds(1, 5)
     .setLabels('Very Difficult', 'Very Easy');
 
-  // Q10b
+  // Q11b
   form.addScaleItem()
-    .setTitle('Q10b. Rate the ease of registering Python algorithms.')
+    .setTitle('Q11b. Rate the ease of registering Python algorithms.')
     .setBounds(1, 5)
     .setLabels('Very Difficult', 'Very Easy');
 
@@ -138,27 +150,27 @@ function createSurveyForm() {
   form.addSectionHeaderItem()
     .setTitle('Part 4: Documentation & Learning Resources');
 
-  // Q11
+  // Q12
   form.addScaleItem()
-    .setTitle('Q11. Rate the quality of the Phlex README and getting started guide.')
+    .setTitle('Q12. Rate the quality of the Phlex README and getting started guide.')
     .setBounds(1, 5)
     .setLabels('Poor', 'Excellent');
 
   form.addParagraphTextItem()
     .setTitle('Please explain how the README/guide can be improved:');
 
-  // Q12
+  // Q13
   form.addScaleItem()
-    .setTitle('Q12. How easy was it to get started with the phlex-examples repository?')
+    .setTitle('Q13. How easy was it to get started with the phlex-examples repository?')
     .setBounds(1, 5)
     .setLabels('Very Difficult', 'Very Easy');
 
   form.addParagraphTextItem()
     .setTitle('Please explain how the phlex-examples repository can be improved:');
 
-  // Q13
+  // Q14
   form.addCheckboxItem()
-    .setTitle('Q13. What documentation improvements would be most valuable? (Select top 3)')
+    .setTitle('Q14. What documentation improvements would be most valuable? (Select top 3)')
     .setChoiceValues([
       'More code examples',
       'API reference completeness',
@@ -179,9 +191,9 @@ function createSurveyForm() {
   form.addSectionHeaderItem()
     .setTitle('Part 5: C++/Python Interoperability');
 
-  // Q14
+  // Q15
   form.addMultipleChoiceItem()
-    .setTitle('Q14. Have you used Phlex\'s C++/Python interoperability features?')
+    .setTitle('Q15. Have you used Phlex\'s C++/Python interoperability features?')
     .setChoiceValues([
       'Yes – Python algorithms consuming C++ data products',
       'Yes – C++ algorithms consuming Python data products',
@@ -190,9 +202,9 @@ function createSurveyForm() {
       'No, not needed for my use case',
     ]);
 
-  // Q15
+  // Q16
   form.addMultipleChoiceItem()
-    .setTitle('Q15. Are there type-conversion or data-marshaling issues between C++ and Python?')
+    .setTitle('Q16. Are there type-conversion or data-marshaling issues between C++ and Python?')
     .setChoiceValues([
       'No issues',
       'Minor issues (workarounds available)',
@@ -209,9 +221,9 @@ function createSurveyForm() {
   form.addSectionHeaderItem()
     .setTitle('Part 6: Missing Features & Pain Points');
 
-  // Q16
+  // Q17
   form.addCheckboxItem()
-    .setTitle('Q16. What critical features should be prioritized for future releases? (Select top 3)')
+    .setTitle('Q17. What critical features should be prioritized for future releases? (Select top 3)')
     .setChoiceValues([
       'Ability to create user-defined framework drivers',
       'Ability to filter which data products are processed by algorithms',
@@ -229,14 +241,14 @@ function createSurveyForm() {
       .requireSelectAtMost(3)
       .build());
 
-  // Q17
+  // Q18
   form.addParagraphTextItem()
-    .setTitle('Q17. What is your biggest pain point with Phlex v0.1.0?');
+    .setTitle('Q18. What is your biggest pain point with Phlex v0.1.0?');
 
   form.addParagraphTextItem()
     .setTitle('Additional comments on missing features');
 
-  // Q18
+  // Q19
   form.addParagraphTextItem()
     .setTitle('Any other comments, suggestions, or feedback?');
 

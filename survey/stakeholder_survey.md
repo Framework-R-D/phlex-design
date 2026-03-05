@@ -40,15 +40,24 @@ _________________________________________________
 
 1 - Not at all familiar | 2 - Slightly familiar | 3 - Moderately familiar | 4 - Very familiar | 5 - Extremely familiar | N/A
 
+### Q6. Please list which HEP frameworks you have used in the past (Select all that apply)
+
+- [ ] art
+- [ ] basf2
+- [ ] CMSSW
+- [ ] Gaudi
+- [ ] O2
+- [ ] Other (please specify): ___________
+
 ---
 
 ## Part 2: Installation & Setup Experience
 
-### Q6. How easy was it to install and set up Phlex? (1-5 scale)
+### Q7. How easy was it to install and set up Phlex? (1-5 scale)
 
 1 - Very Difficult | 2 - Difficult | 3 - Moderate | 4 - Easy | 5 - Very Easy | N/A - Haven't installed
 
-### Q7. Which installation method did you use? (Select one)
+### Q8. Which installation method did you use? (Select one)
 
 - [ ] Spack package manager
 - [ ] Manual build from source
@@ -57,7 +66,7 @@ _________________________________________________
 - [ ] Other (please specify): ___________
 - [ ] Haven't installed yet
 
-### Q8. How clear and helpful was the installation documentation? (1-5 scale)
+### Q9. How clear and helpful was the installation documentation? (1-5 scale)
 
 1 - Very Unclear | 2 - Unclear | 3 - Adequate | 4 - Clear | 5 - Very Clear | N/A
 
@@ -68,7 +77,7 @@ _________________________________________________
 
 ## Part 3: Core Functionality Assessment
 
-### Q9. Which Phlex features have you used? (Select all that apply)
+### Q10. Which Phlex features have you used? (Select all that apply)
 
 - [ ] C++ transform algorithms
 - [ ] C++ observe algorithms
@@ -82,11 +91,11 @@ _________________________________________________
 - [ ] Data-layer hierarchy
 - [ ] None yet (planning to)
 
-### Q10a. Rate the ease of registering C++ algorithms.
+### Q11a. Rate the ease of registering C++ algorithms.
 
 1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
 
-### Q10b. Rate the ease of registering Python algorithms.
+### Q11b. Rate the ease of registering Python algorithms.
 
 1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
 
@@ -97,7 +106,7 @@ _________________________________________________
 
 ## Part 4: Documentation & Learning Resources
 
-### Q11. Rate the quality of the Phlex README and getting started guide.
+### Q12. Rate the quality of the Phlex README and getting started guide.
 
 1 - Poor | 2 | 3 | 4 | 5 - Excellent
 
@@ -105,7 +114,7 @@ _________________________________________________
 
 _________________________________________________
 
-### Q12. How easy was it to get started with the phlex-examples repository? (1-5 scale)
+### Q13. How easy was it to get started with the phlex-examples repository? (1-5 scale)
 
 1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
 
@@ -113,7 +122,7 @@ _________________________________________________
 
 _________________________________________________
 
-### Q13. What documentation improvements would be most valuable? (Select top 3)
+### Q14. What documentation improvements would be most valuable? (Select top 3)
 
 - [ ] More code examples
 - [ ] API reference completeness
@@ -128,7 +137,7 @@ _________________________________________________
 
 ## Part 5: C++/Python Interoperability
 
-### Q14. Have you used C++/Python interoperability features? (Select one)
+### Q15. Have you used C++/Python interoperability features? (Select one)
 
 - [ ] Yes, Python consuming C++ products
 - [ ] Yes, C++ consuming Python products
@@ -136,7 +145,7 @@ _________________________________________________
 - [ ] No, but plan to
 - [ ] No, not needed for my use case
 
-### Q15. Are there type-conversion or data-marshaling issues between C++ and Python? (Select one)
+### Q16. Are there type-conversion or data-marshaling issues between C++ and Python? (Select one)
 
 - [ ] No issues
 - [ ] Minor issues (workarounds available)
@@ -151,7 +160,7 @@ _________________________________________________
 
 ## Part 6: Missing Features & Pain Points
 
-### Q16. What critical features should be prioritized for future releases? (Select top 3)
+### Q17. What critical features should be prioritized for future releases? (Select top 3)
 
 - [ ] Ability to create user-defined framework drivers
 - [ ] Ability to filter which data products are processed by algorithms
@@ -164,7 +173,7 @@ _________________________________________________
 - [ ] Support for YAML and FHiCL configuration languages
 - [ ] Other (please specify): ___________
 
-### Q17. What is your biggest pain point with Phlex v0.1.0? (Open text)
+### Q18. What is your biggest pain point with Phlex v0.1.0? (Open text)
 
 _________________________________________________
 
@@ -197,11 +206,11 @@ The survey is designed to produce the following plot types:
 1. **Stacked Bar Charts**:
    - Q1: Respondent role distribution
    - Q2-Q3: Experience level distribution
-   - Q9: Feature usage patterns
-   - Q16: Missing features by priority
+   - Q10: Feature usage patterns
+   - Q17: Missing features by priority
 
 2. **Rating Distribution Plots** (1-5 scale questions):
-   - Q6, Q8, Q10, Q11, Q13, Q15, Q22, Q24, Q26, Q30, Q35-Q36, Q39, Q41-Q42
+   - Q7, Q9, Q11, Q12, Q14, Q16, Q22, Q24, Q26, Q30, Q35-Q36, Q39, Q41-Q42
    - Can show as histograms, box plots, or violin plots
 
 3. **Heatmaps**:
@@ -210,24 +219,24 @@ The survey is designed to produce the following plot types:
    - Cross-tabulation: Experience level vs. satisfaction ratings
 
 4. **Percentage/Pie Charts**:
-   - Q7: Installation method distribution
-   - Q14: Binary/categorical distributions
+   - Q8: Installation method distribution
+   - Q15: Binary/categorical distributions
 
 5. **Multi-select Analysis** (bar charts showing frequency):
    - Q4: Use case distribution
-   - Q9: Feature usage
-   - Q12: Documentation needs
-   - Q16: Missing features
+   - Q10: Feature usage
+   - Q13: Documentation needs
+   - Q17: Missing features
    - Q33: Production readiness factors
    - Q34: Integration requirements
    - Q38: Support preferences
    - Q40: Participation interest
 
 6. **Correlation Analysis**:
-   - Experience level (Q2-Q3) vs. ease of use ratings (Q10)
-   - Role (Q1) vs. feature priorities (Q16)
-   - Use case (Q4) vs. performance ratings (Q15)
-   - Documentation ratings (Q11) vs. overall satisfaction (Q41)
+   - Experience level (Q2-Q3) vs. ease of use ratings (Q11)
+   - Role (Q1) vs. feature priorities (Q17)
+   - Use case (Q4) vs. performance ratings (Q16)
+   - Documentation ratings (Q12) vs. overall satisfaction (Q41)
 
 7. **Time Series** (if survey is repeated):
    - Track improvements in satisfaction scores
@@ -235,17 +244,17 @@ The survey is designed to produce the following plot types:
    - Issue resolution trends
 
 8. **Word Clouds/Theme Analysis** (open-ended responses):
-   - Q17: Pain points
-   - Q18: Most valuable features
+   - Q18: Pain points
+   - Q19: Most valuable features
    - Q43: Top improvement suggestions
-   - Q19: General feedback
+   - Q20: General feedback
 
 ### Key Performance Indicators (KPIs)
 
 - **Net Promoter Score**: Based on Q31 (recommend to colleagues)
 - **Adoption Intent**: Q32 (production usage plans)
 - **Feature Completeness**: % of users satisfied with feature set
-- **Documentation Quality**: Average across Q11 ratings
+- **Documentation Quality**: Average across Q12 ratings
 - **Overall Satisfaction**: Q41 mean score
 - **Developer Experience**: Average of Q24 ratings
 - **Ease of Use**: Average of installation and setup questions
@@ -255,8 +264,8 @@ The survey is designed to produce the following plot types:
 - By role (Q1)
 - By experience level (Q2-Q3)
 - By use case (Q4)
-- By installation method (Q7)
-- By feature usage (Q9)
+- By installation method (Q8)
+- By feature usage (Q10)
 - By production status (Q32)
 
 This segmentation allows for targeted improvements based on user personas.
