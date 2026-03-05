@@ -1,9 +1,11 @@
 # Phlex Framework - Stakeholder Feedback Survey (Post v0.1.0)
 
 ## Purpose
+
 This survey helps the Phlex development team understand user experiences, prioritize features for upcoming releases, and improve the overall framework design.
 
 ## Survey Structure
+
 - **Rating Scale**: 1 (Poor/Strongly Disagree) to 5 (Excellent/Strongly Agree)
 - **Multiple Choice**: Select one or more options as indicated
 - **Yes/No/Not Applicable**: Binary choices with N/A option
@@ -14,6 +16,7 @@ This survey helps the Phlex development team understand user experiences, priori
 ## Part 1: Respondent Profile
 
 ### Q1. What is your primary role? (Select one)
+
 - [ ] Staff Scientist
 - [ ] University Professor
 - [ ] Software Developer
@@ -21,27 +24,20 @@ This survey helps the Phlex development team understand user experiences, priori
 - [ ] Postdoc
 - [ ] Other (please specify): ___________
 
-### Q2. How would you describe your experience level with C++? (Select one)
-- [ ] Expert (10+ years, deep language knowledge)
-- [ ] Advanced (5-10 years, comfortable with modern C++)
-- [ ] Intermediate (2-5 years, working knowledge)
-- [ ] Beginner (< 2 years)
-- [ ] No C++ experience
+### Q2. How comfortable are you with modern C++? (1-5 scale)
 
-### Q3. How would you describe your experience level with Python? (Select one)
-- [ ] Expert (10+ years, deep ecosystem knowledge)
-- [ ] Advanced (5-10 years, proficient)
-- [ ] Intermediate (2-5 years, working knowledge)
-- [ ] Beginner (< 2 years)
-- [ ] No Python experience
+1 - Not comfortable | 2 | 3 | 4 | 5 - Very comfortable
 
-### Q4. Which best describes your use case? (Select all that apply)
-- [ ] Near detector simulation and/or reconstruction
-- [ ] Far detector simulation and/or reconstruction
-- [ ] Physics algorithm development and testing
-- [ ] Other (please specify): ___________
+### Q3. How comfortable are you with modern Python? (1-5 scale)
+
+1 - Not comfortable | 2 | 3 | 4 | 5 - Very comfortable
+
+### Q4. What do you plan to use Phlex for (which physics use cases, data-processing techniques, etc.)?
+
+_________________________________________________
 
 ### Q5. How familiar are you with the higher-order function paradigm (transform, fold, unfold, observe)? (1-5 scale)
+
 1 - Not at all familiar | 2 - Slightly familiar | 3 - Moderately familiar | 4 - Very familiar | 5 - Extremely familiar | N/A
 
 ---
@@ -49,9 +45,11 @@ This survey helps the Phlex development team understand user experiences, priori
 ## Part 2: Installation & Setup Experience
 
 ### Q6. How easy was it to install and set up Phlex? (1-5 scale)
+
 1 - Very Difficult | 2 - Difficult | 3 - Moderate | 4 - Easy | 5 - Very Easy | N/A - Haven't installed
 
 ### Q7. Which installation method did you use? (Select one)
+
 - [ ] Spack package manager
 - [ ] Manual build from source
 - [ ] Container (Docker, Podman, etc.)
@@ -60,6 +58,7 @@ This survey helps the Phlex development team understand user experiences, priori
 - [ ] Haven't installed yet
 
 ### Q8. How clear and helpful was the installation documentation? (1-5 scale)
+
 1 - Very Unclear | 2 - Unclear | 3 - Adequate | 4 - Clear | 5 - Very Clear | N/A
 
 **Comments on installation experience**:
@@ -70,6 +69,7 @@ _________________________________________________
 ## Part 3: Core Functionality Assessment
 
 ### Q9. Which Phlex features have you used? (Select all that apply)
+
 - [ ] C++ transform algorithms
 - [ ] C++ observe algorithms
 - [ ] C++ fold algorithms
@@ -82,12 +82,13 @@ _________________________________________________
 - [ ] Data-layer hierarchy
 - [ ] None yet (planning to)
 
-### Q10. Rate the ease of registering algorithms (1-5 scale)
+### Q10a. Rate the ease of registering C++ algorithms.
 
-**C++ algorithms**: 1 - Very Difficult | 2 - Difficult | 3 - Moderate | 4 - Easy | 5 - Very Easy | N/A
+1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
 
-**Python algorithms**: 1 - Very Difficult | 2 - Difficult | 3 - Moderate | 4 - Easy | 5 - Very Easy | N/A
+### Q10b. Rate the ease of registering Python algorithms.
 
+1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
 
 **Comments on core functionality**:
 _________________________________________________
@@ -96,22 +97,29 @@ _________________________________________________
 
 ## Part 4: Documentation & Learning Resources
 
-### Q11. Rate the quality of the following documentation (1-5 scale each):
+### Q11. Rate the quality of the Phlex README and getting started guide.
 
-**README and getting started guide**: 1 - Poor | 2 - Fair | 3 - Good | 4 - Very Good | 5 - Excellent | N/A
+1 - Poor | 2 | 3 | 4 | 5 - Excellent
 
-**phlex-examples repository**: 1 - Poor | 2 - Fair | 3 - Good | 4 - Very Good | 5 - Excellent | N/A
+### Please explain how the README/guide can be improved:
 
-### Q12. What documentation improvements would be most valuable? (Select top 3)
+_________________________________________________
+
+### Q12. How easy was it to get started with the phlex-examples repository? (1-5 scale)
+
+1 - Very Difficult | 2 | 3 | 4 | 5 - Very Easy
+
+### Please explain how the phlex-examples repository can be improved:
+
+_________________________________________________
+
+### Q13. What documentation improvements would be most valuable? (Select top 3)
+
 - [ ] More code examples
-- [ ] Tutorial series (beginner to advanced)
 - [ ] API reference completeness
-- [ ] Migration guides (from other frameworks)
+- [ ] Migration guides (from art)
 - [ ] Best practices guide
 - [ ] Other (please specify): ___________
-
-### Q13. How easy was it to get started with the phlex-examples repository? (1-5 scale)
-1 - Very Difficult | 2 - Difficult | 3 - Moderate | 4 - Easy | 5 - Very Easy | N/A
 
 **Comments on documentation**:
 _________________________________________________
@@ -121,6 +129,7 @@ _________________________________________________
 ## Part 5: C++/Python Interoperability
 
 ### Q14. Have you used C++/Python interoperability features? (Select one)
+
 - [ ] Yes, Python consuming C++ products
 - [ ] Yes, C++ consuming Python products
 - [ ] Yes, both directions
@@ -128,6 +137,7 @@ _________________________________________________
 - [ ] No, not needed for my use case
 
 ### Q15. Are there type-conversion or data-marshaling issues between C++ and Python? (Select one)
+
 - [ ] No issues
 - [ ] Minor issues (workarounds available)
 - [ ] Significant issues (limiting functionality)
@@ -141,29 +151,29 @@ _________________________________________________
 
 ## Part 6: Missing Features & Pain Points
 
-### Q16. What critical features should be prioritized for future releases? (Select all that apply)
-- [ ] More Python data types supported
-- [ ] Processing non-trivial data layer hierarchies
-- [ ] Additional configuration languages
-- [ ] Support for persistent references and associations
+### Q16. What critical features should be prioritized for future releases? (Select top 3)
+
 - [ ] Ability to create user-defined framework drivers
+- [ ] Ability to filter which data products are processed by algorithms
 - [ ] Better debugging/profiling tools
 - [ ] GPU integration with the framework
+- [ ] Processing non-trivial data layer hierarchies
 - [ ] Safe access to thread-unsafe resources
+- [ ] Support for more Python data types
+- [ ] Support for persistent references and associations
+- [ ] Support for YAML and FHiCL configuration languages
 - [ ] Other (please specify): ___________
 
 ### Q17. What is your biggest pain point with Phlex v0.1.0? (Open text)
+
 _________________________________________________
 
+### Additional comments on missing features
 
-### Q18. What ONE feature would provide the most value in the next release? (Open text)
 _________________________________________________
 
-**Additional comments on missing features**:
-_________________________________________________
+### Any other comments, suggestions, or feedback?
 
-
-### Q19. Any other comments, suggestions, or feedback?
 _________________________________________________
 
 ---
