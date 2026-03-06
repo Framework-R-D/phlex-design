@@ -28,4 +28,4 @@ The :math:`\textit{label}` operator is explicitly mentioned only for those HOFs 
 
 .. rubric:: Footnotes
 
-.. [#label] The specific rules by which the :math:`\textit{label}` operator can be used are given in :numref:`ch_subsystem_design/data_management:Data Product Management`.
+.. [#label] The specific rules by which the :math:`\textit{label}` operator can be used are given in :numref:`ch_subsystem_design/data_product_management:Data Product Management`.
