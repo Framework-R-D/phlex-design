@@ -22,6 +22,7 @@ The 14 core subsystems and their dependency arrows show the following structure:
   It depends on `oneTBB Flow Graph <https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/flow_graph>`_.
   It provides the nodes that are used to represent CHOFs in the workflow.
   This includes computational, provider, translator and preserver nodes.
+  It also provides the types used to define *drivers*, as well as framework-supplied drivers
   It also provides the types that are used to represent the workflow graph as a whole.
 
 - **Data Modeling** provides the mechanism by which users define data product types, and the tools used to translate between in-memory representations of data product concepts.
@@ -39,6 +40,13 @@ The 14 core subsystems and their dependency arrows show the following structure:
 - **IO** provides the mechanisms by which data products and relevant metadata are read and written to persistent storage.
   It defines an interface implemented by IO plugins.
   Providers and perservers use this interface to read and write data products and metadata.
+
+----
+
+**From this item to the end of this subsection, the reaminder is just notes and not worthy to be discussed.**
+
+----
+
 
 - **Plugin Management** provides tools to dynamically load libraries that implement plugins.
   This includes modules that create computational nodes, sources that create provider nodes.
