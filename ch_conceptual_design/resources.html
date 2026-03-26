@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.9. Resources &#8212; Phlex 0.4.alpha (caebbae) documentation</title>
+    <title>3.10. Resources &#8212; Phlex 0.4.alpha (c11f677) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=22be9ded"></script>
+    <script src="../static/documentation_options.js?v=d8557aa0"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -32,8 +32,8 @@
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.10. Program Configuration" href="program_configuration.html" />
-    <link rel="prev" title="3.8. Data-Product Preservers" href="preservers.html" />
+    <link rel="next" title="3.11. Program Configuration" href="program_configuration.html" />
+    <link rel="prev" title="3.9. Translators" href="translators.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -46,14 +46,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="program_configuration.html" title="3.10. Program Configuration"
+          <a href="program_configuration.html" title="3.11. Program Configuration"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="preservers.html" title="3.8. Data-Product Preservers"
+          <a href="translators.html" title="3.9. Translators"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (caebbae) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Resources</a></li> 
       </ul>
     </div>  
 
@@ -63,7 +63,7 @@
           <div class="body" role="main">
             
   <section id="resources">
-<h1><span class="section-number">3.9. </span>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h1>
+<h1><span class="section-number">3.10. </span>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h1>
 <p>As mentioned in <a class="reference internal" href="algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, the typical form of a C++ function that can be registered with the framework is:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span>
 </pre></div>
@@ -93,7 +93,7 @@ To facilitate efficient scheduling of work, the resources needed by the program 
 </ul>
 <p>Whereas data products have provenance associated with them, resources do not.</p>
 <section id="limited-resources">
-<h2><span class="section-number">3.9.1. </span>Limited Resources<a class="headerlink" href="#limited-resources" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.10.1. </span>Limited Resources<a class="headerlink" href="#limited-resources" title="Link to this heading">¶</a></h2>
 <p>Some resources are used to indicate that an algorithm requires sole use of some program entity.
 One example of such an entity is a thread-unsafe library, where the framework must ensure that only one algorithm is interacting with that library at any time <a class="reference internal" href="../appendices/requirements.html#DUNE 45" title="DUNE 45"><em class="xref need">[DUNE 45]</em></a>, <a class="reference internal" href="../appendices/requirements.html#DUNE 145" title="DUNE 145"><em class="xref need">[DUNE 145]</em></a>.
 A second example of a limited resource is a fixed number of GPUs present on a particular platform, where Phlex must ensure that each algorithm requiring the use of a GPU has sole access to the GPU it is running on for the duration of the algorithm’s execution.
@@ -104,14 +104,14 @@ These resources are called <em>limited resources</em>, because the framework is 
 <p>An algorithm to be used by Phlex indicates that it requires a limited resource by requiring an argument that denotes such a resource.</p>
 </section>
 <section id="gpus">
-<h2><span class="section-number">3.9.2. </span>GPUs<a class="headerlink" href="#gpus" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.10.2. </span>GPUs<a class="headerlink" href="#gpus" title="Link to this heading">¶</a></h2>
 <p>In order to allow algorithms to make use of GPUs, and to allow the composition of workflows that involve both CPU-based and GPU-based algorithms, Phlex provides a mechanism for an algorithm that requires access to a GPU to declare that fact <a class="reference internal" href="../appendices/requirements.html#DUNE 54" title="DUNE 54"><em class="xref need">[DUNE 54]</em></a>.
 This is done by making the algorithm accept a resource that denotes the GPU.
 Phlex can support running on platforms that provide access to more than one GPU while ensuring that a given algorithm has sole access to the GPU it requires while it is executing.
 Phlex also provides, through the same mechanism, the ability for an algorithm to specify that it requires remote access to a GPU.</p>
 </section>
 <section id="random-number-resource">
-<h2><span class="section-number">3.9.3. </span>Random Number Resource<a class="headerlink" href="#random-number-resource" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.10.3. </span>Random Number Resource<a class="headerlink" href="#random-number-resource" title="Link to this heading">¶</a></h2>
 <p>The generation of pseudorandom numbers (hereafter just <em>random numbers</em>) is a critical aspect of obtaining physics results, especially when simulating data.
 Although multiple random-number generation techniques exists, the vast majority of random-number implementations used in HEP rely on stateful random-number engines, which are subject to data races in multi-threaded contexts.
 To ensure reproducible data and to ensure thread-safe access to stateful random-number engines, HEP frameworks impose idiosyncratic constraints on their use.</p>
@@ -120,7 +120,7 @@ However, instead of working around the limitations of stateful random-number eng
 Counter-based random number generators (CBRNGs) <a class="reference internal" href="#wiki-cbrng" id="id2"><span>[Wiki-CBRNG]</span></a> provide such capabilities, and Phlex will provide an interface algorithm authors can use to take advantage of them.</p>
 </section>
 <section id="user-defined-resources">
-<h2><span class="section-number">3.9.4. </span>User-defined Resources<a class="headerlink" href="#user-defined-resources" title="Link to this heading">¶</a></h2>
+<h2><span class="section-number">3.10.4. </span>User-defined Resources<a class="headerlink" href="#user-defined-resources" title="Link to this heading">¶</a></h2>
 <p>While Phlex will provide some commonly-used types to represent resources, it will also be possible for users to create new types to represent a new type of resouce, with no modifications to the Phlex framework code <a class="reference internal" href="../appendices/requirements.html#DUNE 149" title="DUNE 149"><em class="xref need">[DUNE 149]</em></a>.
 Such resource types have no dependency on Phlex, so that a user algorithm employing such a resource does not thereby incur any dependency on the framework.</p>
 <p class="rubric">Footnotes</p>
@@ -153,11 +153,11 @@ Such resource types have no dependency on Phlex, so that a user algorithm employ
   <div>
     <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">3.9. Resources</a><ul>
-<li><a class="reference internal" href="#limited-resources">3.9.1. Limited Resources</a></li>
-<li><a class="reference internal" href="#gpus">3.9.2. GPUs</a></li>
-<li><a class="reference internal" href="#random-number-resource">3.9.3. Random Number Resource</a></li>
-<li><a class="reference internal" href="#user-defined-resources">3.9.4. User-defined Resources</a></li>
+<li><a class="reference internal" href="#">3.10. Resources</a><ul>
+<li><a class="reference internal" href="#limited-resources">3.10.1. Limited Resources</a></li>
+<li><a class="reference internal" href="#gpus">3.10.2. GPUs</a></li>
+<li><a class="reference internal" href="#random-number-resource">3.10.3. Random Number Resource</a></li>
+<li><a class="reference internal" href="#user-defined-resources">3.10.4. User-defined Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -165,13 +165,13 @@ Such resource types have no dependency on Phlex, so that a user algorithm employ
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="preservers.html"
-                          title="previous chapter"><span class="section-number">3.8. </span>Data-Product Preservers</a></p>
+    <p class="topless"><a href="translators.html"
+                          title="previous chapter"><span class="section-number">3.9. </span>Translators</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="program_configuration.html"
-                          title="next chapter"><span class="section-number">3.10. </span>Program Configuration</a></p>
+                          title="next chapter"><span class="section-number">3.11. </span>Program Configuration</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -201,19 +201,19 @@ Such resource types have no dependency on Phlex, so that a user algorithm employ
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="program_configuration.html" title="3.10. Program Configuration"
+          <a href="program_configuration.html" title="3.11. Program Configuration"
              >next</a> |</li>
         <li class="right" >
-          <a href="preservers.html" title="3.8. Data-Product Preservers"
+          <a href="translators.html" title="3.9. Translators"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (caebbae) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Resources</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.10. </span>Resources</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Mar 09, 2026.
+      Last updated on Mar 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

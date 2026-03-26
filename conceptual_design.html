@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (caebbae) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (c11f677) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=22be9ded"></script>
+    <script src="static/documentation_options.js?v=d8557aa0"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (caebbae) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -81,6 +81,7 @@ Various framework aspects are demonstrated by that figure:</p>
 <dt><em>data-flow graph</em></dt><dd><p>The data-flow graph is formed by ingesting the configuration file and recording the data-product dependencies required of each algorithm (see <a class="reference internal" href="ch_conceptual_design/scheduling.html#topology-of-the-data-flow-graph"><span class="std std-numref">Section 3.1</span></a>).</p>
 </dd>
 <dt><em>data-product flow</em></dt><dd><p>Data products (see <a class="reference internal" href="ch_conceptual_design/data_organization.html#data-organization"><span class="std std-numref">Section 3.2</span></a>) are passed along graph edges.
+Each node has an <em>input port</em> for each incoming edge, and an <em>output port</em> for each outgoing edge.
 As mentioned in <a class="reference internal" href="ch_preliminaries/data_flow.html#data-flow-with-families"><span class="std std-numref">Section 2.6.1</span></a>, the data passed between HOFs are expressed as families.
 <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> thus formally passes families (e.g. <span class="math notranslate nohighlight">\([\textit{GoodHits}_{ijk}]\)</span>) between nodes <a class="footnote-reference brackets" href="#flow" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 </dd>
@@ -111,7 +112,7 @@ For the main processing chain of creating vertices:</p>
 <dt><em>data-product preservers</em></dt><dd><p>Data-product preservers are plugins that write data products to framework outputs (see <a class="reference internal" href="ch_conceptual_design/preservers.html#data-product-preservers"><span class="std std-numref">Section 3.8</span></a>)</p>
 <p>Each of the five preservers in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> is responsible for writing to one or more output files.</p>
 </dd>
-<dt><em>resources</em></dt><dd><p>Most workflows require access to some external resource (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.9</span></a>).</p>
+<dt><em>resources</em></dt><dd><p>Most workflows require access to some external resource (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.10</span></a>).</p>
 <p>The histogramming resource in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> enables the <em>observe</em> algorithm to fill and write histograms to a ROOT analysis file.</p>
 </dd>
 </dl>
@@ -254,14 +255,15 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/preservers.html">3.8. Data-Product Preservers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/resources.html">3.9. Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#limited-resources">3.9.1. Limited Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#gpus">3.9.2. GPUs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#random-number-resource">3.9.3. Random Number Resource</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#user-defined-resources">3.9.4. User-defined Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/translators.html">3.9. Translators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/resources.html">3.10. Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#limited-resources">3.10.1. Limited Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#gpus">3.10.2. GPUs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#random-number-resource">3.10.3. Random Number Resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/resources.html#user-defined-resources">3.10.4. User-defined Resources</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/program_configuration.html">3.10. Program Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/program_configuration.html">3.11. Program Configuration</a></li>
 </ul>
 </div>
 <p class="rubric">Footnotes</p>
@@ -327,13 +329,13 @@ For memory purposes, it is also likely that each element of the family is a ligh
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (caebbae) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Mar 09, 2026.
+      Last updated on Mar 26, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.5. Supported Higher-Order Functions &#8212; Phlex 0.4.alpha (c11f677) documentation</title>
+    <title>3.9. Translators &#8212; Phlex 0.4.alpha (c11f677) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -29,13 +29,11 @@
     <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.5.1. Transforms" href="hofs/transforms.html" />
-    <link rel="prev" title="3.4. Framework Registration" href="registration.html" />
+    <link rel="next" title="3.10. Resources" href="resources.html" />
+    <link rel="prev" title="3.8. Data-Product Preservers" href="preservers.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -48,14 +46,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="hofs/transforms.html" title="3.5.1. Transforms"
+          <a href="resources.html" title="3.10. Resources"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="registration.html" title="3.4. Framework Registration"
+          <a href="preservers.html" title="3.8. Data-Product Preservers"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Supported Higher-Order Functions</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Translators</a></li> 
       </ul>
     </div>  
 
@@ -64,35 +62,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="supported-higher-order-functions">
-<h1><span class="section-number">3.5. </span>Supported Higher-Order Functions<a class="headerlink" href="#supported-higher-order-functions" title="Link to this heading">¶</a></h1>
-<p>In Phlex, HOFs transform one family to another:</p>
-<div class="math notranslate nohighlight">
-\[\ifamily{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \ifamily{a}{\text{input}}\]</div>
-<p>where the functions <span class="math notranslate nohighlight">\(f_1, f_2, \ \dots\)</span> are <em>operators</em> required by the HOF.
-Note that the output index set <span class="math notranslate nohighlight">\(\iset{\text{output}}\)</span> is not necessarily the same as the input index set <span class="math notranslate nohighlight">\(\iset{\text{input}}\)</span>.</p>
-<p>In what follows, a family <span class="math notranslate nohighlight">\([a_i]_{i \in \iset{a}}\)</span> will often be represented by a single variable <span class="math notranslate nohighlight">\(a\)</span>.
-Whether a variable name (e.g. <span class="math notranslate nohighlight">\(a\)</span>) represents a family or an operation to a higher-order function will be apparent based on context.</p>
-<p>Each HOF below also supports the <span class="math notranslate nohighlight">\(\textit{label}:\one \rightarrow L\)</span> operator, where the output data layer is user-specifiable.
-The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator is explicitly mentioned only for those HOFs that require it–i.e. <span class="math notranslate nohighlight">\(\text{unfold}\)</span> and <span class="math notranslate nohighlight">\(\text{window}\)</span> <a class="footnote-reference brackets" href="#label" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="hofs/transforms.html">3.5.1. Transforms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/observers.html">3.5.2. Observers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/predicates.html">3.5.3. Predicates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/filters.html">3.5.4. Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/partitioned_folds.html">3.5.5. Partitioned Folds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/partitioned_unfolds.html">3.5.6. Partitioned Unfolds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hofs/windows.html">3.5.7. Windows</a></li>
-</ul>
-</div>
-<p class="rubric">Footnotes</p>
-<aside class="footnote-list brackets">
-<aside class="footnote brackets" id="label" role="doc-footnote">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>The specific rules by which the <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator can be used are given in <span>the technical design <em>(under preparation)</em></span>.</p>
-</aside>
-</aside>
+  <section id="translators">
+<h1><span class="section-number">3.9. </span>Translators<a class="headerlink" href="#translators" title="Link to this heading">¶</a></h1>
+<p>Translator convert an object of one <a class="reference internal" href="../appendices/glossary.html#term-Concrete-data-product"><span class="xref std std-term">concrete data product</span></a> and outputs an object of a different concrete data type that models the same <a class="reference internal" href="../appendices/glossary.html#term-Data-product-concept"><span class="xref std std-term">data-product concept</span></a>.</p>
+<p>A single data-product concept may have multiple concrete representations (e.g. different language bindings, GPU- and CPU-friendly layouts).
+Conversely, a single concrete type may represent multiple data-product concepts (e.g., the concept of Protons On Target (POT) can be represened by a <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">double</span></code> or a <code class="code highlight c++ docutils literal highlight-c++"><span class="kt">long</span></code>).</p>
+<p>Translators are automatically added to the graph as necessary.</p>
 </section>
 
 
@@ -107,18 +82,18 @@ The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operato
             </a></p>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="registration.html"
-                          title="previous chapter"><span class="section-number">3.4. </span>Framework Registration</a></p>
+    <p class="topless"><a href="preservers.html"
+                          title="previous chapter"><span class="section-number">3.8. </span>Data-Product Preservers</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="hofs/transforms.html"
-                          title="next chapter"><span class="section-number">3.5.1. </span>Transforms</a></p>
+    <p class="topless"><a href="resources.html"
+                          title="next chapter"><span class="section-number">3.10. </span>Resources</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../sources/ch_conceptual_design/supported_hofs.rst.txt"
+      <li><a href="../sources/ch_conceptual_design/translators.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -143,14 +118,14 @@ The <span class="math notranslate nohighlight">\(\textit{label}\)</span> operato
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="hofs/transforms.html" title="3.5.1. Transforms"
+          <a href="resources.html" title="3.10. Resources"
              >next</a> |</li>
         <li class="right" >
-          <a href="registration.html" title="3.4. Framework Registration"
+          <a href="preservers.html" title="3.8. Data-Product Preservers"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (c11f677) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.5. </span>Supported Higher-Order Functions</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.9. </span>Translators</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
