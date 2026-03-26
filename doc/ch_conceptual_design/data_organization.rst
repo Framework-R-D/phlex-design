@@ -9,6 +9,8 @@ This section aims to establish a mental model for how all of these concepts faci
 :term:`Data-product concepts <Data-product concept>` are abstractions that capture the computationally-relevant aspects of physical data products.
 :term:`Concrete data products <Concrete data product>` are programming-language objects that represent physical data products; :term:`concrete data-product types <Concrete data-product type>` are the types of these objects.
 :numref:`data-product-relationships` shows how each of these aspects are related to each other for a real-world collection of hits.
+A single data-product concept may have multiple concrete representations (e.g., different in-memory layouts or language bindings).
+
 
 .. graphviz:: data-products.gv
    :caption: The data-product terminology for the physical data product "hits", and the relations between the terms.

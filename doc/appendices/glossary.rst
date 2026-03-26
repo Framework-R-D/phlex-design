@@ -112,6 +112,10 @@ Glossary
         - Inference servers
         - Databases
 
+    Translator
+        A component that converts an object of one concrete data-product type to an object of another concrete data-product type that models the same data-product concept.
+
+        Translators are added to the graph as necessary.
 
     .. The following definitions are needed for the supporting/subsystem design
 

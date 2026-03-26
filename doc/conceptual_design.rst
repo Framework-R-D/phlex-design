@@ -84,6 +84,7 @@ Each data product is also indexed, thus associating it with a particular data ce
    ch_conceptual_design/driver
    ch_conceptual_design/providers
    ch_conceptual_design/preservers
+   ch_conceptual_design/translators
    ch_conceptual_design/resources
    ch_conceptual_design/program_configuration
 
