@@ -20,6 +20,7 @@ Various framework aspects are demonstrated by that figure:
 
    *data-product flow*
       Data products (see :numref:`ch_conceptual_design/data_organization:Data organization`) are passed along graph edges.
+      Each node has an *input port* for each incoming edge, and an *output port* for each outgoing edge.
       As mentioned in :numref:`ch_preliminaries/data_flow:Data Flow with families`, the data passed between HOFs are expressed as families.
       :numref:`workflow` thus formally passes families (e.g. :math:`[\textit{GoodHits}_{ijk}]`) between nodes [#flow]_.
 
