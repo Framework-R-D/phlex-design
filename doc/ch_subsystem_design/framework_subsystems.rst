@@ -41,18 +41,24 @@ The 14 core subsystems and their dependency arrows show the following structure:
   It defines an interface implemented by IO plugins.
   Providers and perservers use this interface to read and write data products and metadata.
 
-----
-
-**From this item to the end of this subsection, the reaminder is just notes and not worthy to be discussed.**
-
-----
-
-
 - **Plugin Management** provides tools to dynamically load libraries that implement plugins.
-  This includes modules that create computational nodes, sources that create provider nodes.
+  Supported plugin types include:
+
+  1. modules that create computational nodes,
+  2. sources that create provider nodes,
+  3. libraries that provide translator nodes,
+  4. libraries that provide preserver nodes,
+  5. libraries that provide drivers, and
+  6. libraries that provide IO backends.
 
 - **Resource Management** is responsible for initializing and configuring TBB.
   It also provides mechanisms to initialize and manage GPU runtime systems.
+
+- **Monitoring and Reporting** provides the mechanisms by which the framework's performance and behavior can be monitored and reported.
+
+- **Registration** provides the mechanisms by which users can register their own algorithms, data product types, providers, drivers, and plugins.
+
+The following subsystems will be specified when the requirements are more complete.
 
 - **Algorithm Description**
 
@@ -62,7 +68,6 @@ The 14 core subsystems and their dependency arrows show the following structure:
 
 - **Random Numbers**
 
-- **Monitoring and Reporting**
 
 Two cross-cutting subsystems sit outside all clusters because every other subsystem may depend on them:
 
@@ -79,9 +84,6 @@ As a group, plugins depend on **Configuration** (to configure each plugin) and *
 One such implementation is FORM, which provides the ability to read and write from ROOT and HDF5 files.
 Other IO technologies may be supported by implementing another IO Backend plugin.
 
-Five externally-managed concerns — *Build*, *CI*, *Documentation*, *Event Display*, and
-*Workflow Management* — are grouped separately.
-Of these, only **Workflow Management** has a cross-edge: a dotted *"Makes use of"* arrow
-from the workflow manager to the core subsystems cluster, indicating that a workflow system
-drives framework application execution but is not architecturally part of the framework
-itself.
+Five externally-managed systems — *Build*, *CI*, *Documentation*, *Event Display*, and *Workflow Management* — are grouped separately.
+Of these, only **Workflow Management** has a cross-edge: a dotted *"Makes use of"* arrow from the workflow manager to the core subsystems cluster.
+This indicates a workflow system that drives framework application execution but is not architecturally part of the framework itself.
