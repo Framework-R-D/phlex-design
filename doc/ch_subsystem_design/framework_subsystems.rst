@@ -1,7 +1,7 @@
 Framework Subsystems
 ====================
 
-The graph below depicts the relationships between the framework subsystems.
+:numref:`subsystems` depicts the relationships between the framework subsystems.
 A *subsystem* is a cohesive set of components that together provide a well-defined set of functionalities to the rest of the framework.
 Each subsystem has a set of responsibilities and a well-defined interface to be used by the other subsystems and plugins that need to use the provided functionality.
 In the figure, the elliptical nodes represent subsystems, and the arrows indicate what other subsystems each subsystem depends upon.
@@ -10,6 +10,8 @@ The diagram shows a box that identifies the *core framework subsystems*, another
 
 .. graphviz:: subsystems.gv
    :caption: Phlex subsystems
+   :name: subsystems
+
 
 The figure organizes all Phlex subsystems into three groups, with two standalone cross-cutting nodes.
 
