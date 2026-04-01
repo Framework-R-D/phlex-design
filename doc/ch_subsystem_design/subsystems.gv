@@ -14,7 +14,7 @@ digraph finite_state_machine {
     data_modeling [label="Data\nmodeling"];
     error_handler [label="Error\nhandler"];
     io [label="IO"];
-    data_product_management [label="Data product\nmanagement"];
+    data_product_management [label="Data-product\nmanagement"];
     metadata_management [label="Metadata\nmanagement"];
     monitoring [label="Monitoring\nand\nreporting"];
     plugin_management [label="Plugin\nmanagement"];

@@ -27,14 +27,14 @@ The 14 core subsystems and their dependency arrows show the following structure:
   It also provides the types used to define *drivers*, as well as framework-supplied drivers
   It also provides the types that are used to represent the workflow graph as a whole.
 
-- **Data Modeling** provides the mechanism by which users define data product types, and the tools used to translate between in-memory representations of data product concepts.
+- **Data Modeling** provides the mechanism by which users define data-product types, and the tools used to translate between in-memory representations of data-product concepts.
 
-- **Data Product Management** provides the mechanisms to organize and identify data products.
-  This includes the types used to represent data cells, data product families, and data layers.
+- **Data-Product Management** provides the mechanisms to organize and identify data products.
+  This includes the types used to represent data cells, data-product families, and data layers.
   It also provides the mechanisms by which the lifetime of data products are managed.
-  It provides the mechanisms used for data product lookup (based on data product metadata).
+  It provides the mechanisms used for data-product lookup (based on data-product metadata).
 
-- **Metadata Management** provides the mechanisms by which framework-defined metadata are associated with data products, data cells, data product families, data layers, and jobs.
+- **Metadata Management** provides the mechanisms by which framework-defined metadata are associated with data products, data cells, data-product families, data layers, and jobs.
   It also provides the facilities by which users can define their own metadata types and associate them with the appropriate entities, listed above.
   It also provides the mechanisms by which the metadata associated with one of these items can be retrieved.
 
@@ -58,7 +58,7 @@ The 14 core subsystems and their dependency arrows show the following structure:
 
 - **Monitoring and Reporting** provides the mechanisms by which the framework's performance and behavior can be monitored and reported.
 
-- **Registration** provides the mechanisms by which users can register their own algorithms, data product types, providers, drivers, and plugins.
+- **Registration** provides the mechanisms by which users can register their own algorithms, data-product types, providers, drivers, and plugins.
 
 The following subsystems will be specified when the requirements are more complete.
 

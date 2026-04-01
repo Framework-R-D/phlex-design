@@ -22,9 +22,9 @@ If the concrete data-product type of the output matches the input, then the port
 If the concrete types do not match, then a translator node can be inserted to convert the output concrete type to the required input concrete type.
 
 Next, any input ports that remain unsatisfied after this initial connection step are resolved by connecting them to provider nodes.
-A similar matching process is performed to connect the remaining input ports to the output port of each configred provider node.
+A similar matching process is performed to connect the remaining input ports to the output port of each configured provider node.
 
-For any input port that still remains unconnected, the framework determines whether a provider that reads from I/O (possibly in combination with a data-product translator) can supply the required product.
+For any input port that still remains unconnected, the framework determines whether a provider that reads from IO (possibly in combination with a data-product translator) can supply the required product.
 If so, the necessary provider and translator nodes are created and added to the graph.
 If no means of satisfying a required input port can be found, program startup fails, as the data-flow graph cannot be made complete.
 
