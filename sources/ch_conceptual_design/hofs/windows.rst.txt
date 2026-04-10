@@ -99,13 +99,13 @@ The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represen
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.window(
-       "track_maker",          // <= Node name for framework
-       make_tracks,            // <= Window algorithm (f)
-       are_adjacent            // <= Adjacency criterion
-       "APA",                  // <= Output data layer
-       concurrency::unlimited  // <= Allowed concurrency
+        "track_maker",          // <= Node name for framework
+        make_tracks,            // <= Window algorithm (f)
+        are_adjacent,           // <= Adjacency criterion
+        "APA",                  // <= Output data layer
+        concurrency::unlimited  // <= Allowed concurrency
      )
-     .input_family("GoodHits"_in("APA"))
+     .input_family(product_query{.suffix = "GoodHits", .layer = "APA"})
      .output_product_suffixes("GoodTracks");
    }
 

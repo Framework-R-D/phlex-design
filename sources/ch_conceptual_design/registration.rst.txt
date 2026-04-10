@@ -24,18 +24,16 @@ This can be achieved by in terms of the C++ *registration stanza*:
    PHLEX_REGISTER_ALGORITHMS(m)  // <== Registration opener (w/o configuration object)
    {
      m.transform(                // 1. Higher-order function
-       "hit_finder",             // 2. Name assigned to HOF
-       find_hits,                // 3. Algorithm/HOF operation
-       concurrency::unlimited    // 4. Allowed CPU concurrency
-     )
-                                 // 5. Specification of input data-product family (see text)
-     .input_family(product_query({.creator = "calibrate_wires",
-                                  .suffix = "",
-                                  .layer = "spill"}
-     ))
-     .output_product_suffixes(
-       "GoodHits"               // 6. Specification of output data product from find_hits
-     );
+        "hit_finder",            // 2. Name assigned to HOF
+        find_hits,               // 3. Algorithm/HOF operation
+        concurrency::unlimited   // 4. Allowed CPU concurrency
+      )
+      .input_family(             // 5. Specification of input data-product family (see text)
+        product_query{.creator = "calibrate_wires", .suffix = "", .layer = "spill"}
+      )
+      .output_product_suffixes(
+        "GoodHits"               // 6. Specification of output data product from find_hits
+      );
    }
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
@@ -97,7 +95,7 @@ The block, however, must contain a registration statement to execute an algorith
 Algorithms with Multiple Input Data Products
 --------------------------------------------
 
-The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output family by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input family, as specified by :cpp:`family("Waveforms"_in("APA"))`.
+The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output family by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input family, as specified by :cpp:`input_family(product_query{.suffix = "Waveforms", .layer = "APA"})`.
 In many cases, however, the algorithm will require more than one data product.
 Consider another algorithm :cpp:`find_hits_subtract_pedestals`, which forms hits by first subtracting pedestal values from the waveforms, both of which are presented to the algorithm as data products from the `APA`.
 The interface of the algorithm and its registration would look like:
@@ -112,7 +110,10 @@ The interface of the algorithm and its registration would look like:
   PHLEX_REGISTER_ALGORITHMS(m)
   {
     m.transform("find_hits", find_hits_subtract_pedestals, concurrency::unlimited)
-      .input_family("Waveforms"_in("APA"), "Pedestals"_in("APA"));
+      .input_family(
+        product_query{.suffix = "Waveforms", .layer = "APA"},
+        product_query{.suffix = "Pedestals", .layer = "APA"}
+      )
       .output_product_suffixes("GoodHits");
   }
 
@@ -139,8 +140,11 @@ This would be expressed in C++ as:
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .input_family("GoodTracks"_in("APA"), "Geometry"_in("Job"));
-       .output_product_suffixes("Vertices");
+      .input_family(
+        product_query{.suffix = "GoodTracks", .layer = "APA"},
+        product_query{.suffix = "Geometry", .layer = "Job"}
+      )
+      .output_product_suffixes("Vertices");
    }
 
 where the data layers are explicit in the family statement.
@@ -172,8 +176,8 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
      auto selected_data_layer = config.get<std::string>("data_layer");
 
      m.transform("hit_finder", find_hits, concurrency::unlimited)
-       .input_family("Waveforms"_in(selected_data_layer));
-       .output_product_suffixes("GoodHits");
+      .input_family(product_query{.suffix = "Waveforms", .layer = selected_data_layer})
+      .output_product_suffixes("GoodHits");
    }
 
 .. note::
@@ -203,9 +207,9 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
        "hit_finder",
        [](phlex::handle<waveforms> ws) { return find_hits_debug(*ws, ws.id().number()); },
        concurrency::unlimited
-     )
-     .input_family("Waveforms"_in("APA"))
-     .output_product_suffixes("GoodHits");
+      )
+      .input_family(product_query{.suffix = "Waveforms", .layer = "APA"})
+      .output_product_suffixes("GoodHits");
    }
 
 The lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` function, however, retains its framework independence.
@@ -232,9 +236,9 @@ For example, the :cpp:`find_hits` algorithm author could have instead created a 
      auto selected_data_layer = config.get<std::string>("data_layer");
 
      m.make<hit_finder>(sigma_threshold)  // <= Make framework-owned instance of hit_finder
-       .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
-       .input_family("Waveforms"_in(selected_data_scope));
-       .output_product_suffixes("GoodHits");
+      .transform("hit_finder", &hit_finder::find, concurrency::unlimited)
+      .input_family(product_query{.suffix = "Waveforms", .layer = selected_data_scope})
+      .output_product_suffixes("GoodHits");
    }
 
 Note that the :cpp:`hit_finder` instance created in the code above is *owned by the framework*.

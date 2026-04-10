@@ -60,7 +60,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.transform("hit_finder", find_hits, concurrency::unlimited)
-       .input_family("Waveforms"_in("APA"));
+      .input_family(product_query{.suffix = "Waveforms", .layer = "APA"});
    }
 
 **Transform with one argument (user-specified output product name)**
@@ -72,8 +72,8 @@ To illustrate the different ways a transform's algorithm can be registered with 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.transform("hit_finder", find_hits, concurrency::unlimited)
-       .input_family("Waveforms"_in("APA"))
-       .output_product_suffixes("GoodHits");
+      .input_family(product_query{.suffix = "Waveforms", .layer = "APA"})
+      .output_product_suffixes("GoodHits");
    }
 
 **Transform with two arguments (default output product name)**
@@ -85,8 +85,11 @@ To illustrate the different ways a transform's algorithm can be registered with 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.transform("vertex_maker", make_vertices, concurrency::unlimited)
-       .input_family("Geometry"_in("Job"), "GoodTracks"_in("APA"))
-       .output_product_suffixes("Vertices");
+      .input_family(
+        product_query{.suffix = "Geometry", .layer = "Job"},
+        product_query{.suffix = "GoodTracks", .layer = "APA"}
+      )
+      .output_product_suffixes("Vertices");
    }
 
 **Transform creating two data products (user-specified output product names)**
@@ -96,6 +99,6 @@ To illustrate the different ways a transform's algorithm can be registered with 
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.transform("hit_counter", count_good_hits, concurrency::unlimited)
-       .input_family("GoodHits"_in("APA"))
-       .output_product_suffixes("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
+      .input_family(product_query{.suffix = "GoodHits", .layer = "APA"})
+      .output_product_suffixes("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
    }
