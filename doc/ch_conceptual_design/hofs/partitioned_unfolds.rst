@@ -134,14 +134,16 @@ The class is then registered with Phlex via:
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.unfold<to_apas>(
-       "to_apas",                 // <= Node name for framework
-       &to_apas::keep_going,      // <= Unfold predicate
-       &to_apas::make_waveforms,  // <= Unfold generator
-       "APA",                     // <= Data layer for output data products
-       concurrency::unlimited     // <= Allowed concurrency
-     )
-     .input_family("SimDepos"_in("Spill"))
-     .output_product_suffixes("Waveforms");
+        "to_apas",                 // <= Node name for framework
+        &to_apas::keep_going,      // <= Unfold predicate
+        &to_apas::make_waveforms,  // <= Unfold generator
+        "APA",                     // <= Data layer for output data products
+        concurrency::unlimited     // <= Allowed concurrency
+      )
+      .input_family(
+        product_query{.suffix = "SimDepos", .layer = "Spill"}
+      )
+      .output_product_suffixes("Waveforms");
    }
 
 Note that the template argument in :cpp:`unfold<to_apas>` is an indication that the framework will create an object of type :cpp:`to_apas` each time it receives a :cpp:`"SimDepos"` data product.

@@ -15,7 +15,7 @@ Specifying Familiies
 --------------------
 
 As discussed in :numref:`ch_conceptual_design/registration:Framework Registration`, the input family to a HOF is specified via a :cpp:`family(...)` clause, where the ellipsis is replaced by a *family specification*.
-One of the specifications provided is :cpp:`"good_hits"_in("spill")`, which indicates that a family should be formed from data products labeled :cpp:`"good_hits"` from each :cpp:`"spill"` data layer.
+One of the specifications provided is :cpp:`product_query{.suffix = "good_hits", .layer = "spill"}`, which indicates that a family should be formed from data products labeled :cpp:`"good_hits"` from each :cpp:`"spill"` data layer.
 
 Input Family Specification
 --------------------------

@@ -47,5 +47,5 @@ The registration for the predicate node in :numref:`workflow` would look like:
    PHLEX_REGISTER_ALGORITHMS(m)
    {
      m.predicate("high_energy", high_energy, concurrency::unlimited)
-       .input_family("GoodHits"_in("APA"));
+      .input_family(product_query{.suffix = "GoodHits", .layer = "APA"});
    }

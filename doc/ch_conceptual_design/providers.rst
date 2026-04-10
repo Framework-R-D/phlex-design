@@ -31,24 +31,22 @@ Provider Registration
 ---------------------
 To illustrate the how a provider function is registered with Phlex, we use the following class and function, which are presumably defined in some experiment libraries.
 
+**Provider function that returns SimDepos**
+
 .. code:: c++
 
    class SimDepos { ... };
 
    SimDepos provide_sim_depos(data_cell_index const&) { ... }
 
-**Provider function that returns SimDepos**
+**Provider registration**
 
 .. code-block:: cpp
 
    PHLEX_REGISTER_PROVIDERS(s)
    {
      s.provide("fake_sim_depos", provide_sim_depos, concurrency::unlimited)
-       .output_product_suffixes("");
+      .output_product({.creator = "fake_sim_depos", .suffix = "", .layer = "Spill"});
    }
 
-**Provider registration**
-
-This registers a provider that inserts a :product:`SimDepos` data product into each data cell in the data layer indicated by the data cell index.
-In this example, the data product suffix provided to :cpp:`output_product_suffixes` is an empty string.
-The same affect can be achieved by omitting the :cpp:`output_product_suffixes` call entirely.
+This registers a provider that creates a :product:`SimDepos` data product associated with each data cell in the *Spill* data layer.
