@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.1. Framework Subsystems &#8212; Phlex 0.4.alpha (127639c) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=e1e6b4b7"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.2. Program Startup" href="program_startup.html" />
+    <link rel="prev" title="4. Technical Design" href="../supporting_design.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="program_startup.html" title="4.2. Program Startup"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../supporting_design.html" title="4. Technical Design"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.1. </span>Framework Subsystems</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="framework-subsystems">
+<h1><span class="section-number">4.1. </span>Framework Subsystems<a class="headerlink" href="#framework-subsystems" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="#subsystems"><span class="std std-numref">Fig. 4.1</span></a> depicts the relationships between the framework subsystems.
+A <em>subsystem</em> is a cohesive set of components that together provide a well-defined set of functionalities to the rest of the framework.
+Each subsystem has a set of responsibilities and a well-defined interface to be used by the other subsystems and plugins that need to use the provided functionality.
+In the figure, the elliptical nodes represent subsystems, and the arrows indicate what other subsystems each subsystem depends upon.
+The subsystems have no circular dependencies.
+The diagram shows a box that identifies the <em>core framework subsystems</em>, another that identifies the <em>external subsystems</em>, and a third one that shows examples of <em>plugins</em>.</p>
+<figure class="align-default" id="subsystems">
+<div class="graphviz"><img src="../images/graphviz-c18d29145e8ca3b4457420e3e8722b9ae6adbc2e.png" alt="digraph finite_state_machine {
+  fontname=&quot;Helvetica,Arial,sans-serif&quot;
+  compound=true
+  node [fontname=&quot;Helvetica,Arial,sans-serif&quot;, style=filled, fillcolor=darksalmon];
+
+  logging [label=&quot;Logging&quot;];
+  configuration [label=&quot;Configuration&quot;];
+
+  subgraph cluster_core_subsystems {
+    label = &quot;Core framework subsystems&quot;;
+
+    algo_description [label=&quot;Algorithm\ndescription&quot;];
+    application [label=&quot;Framework\nApplication&quot;];
+    data_modeling [label=&quot;Data\nmodeling&quot;];
+    error_handler [label=&quot;Error\nhandler&quot;];
+    io [label=&quot;IO&quot;];
+    data_product_management [label=&quot;Data-product\nmanagement&quot;];
+    metadata_management [label=&quot;Metadata\nmanagement&quot;];
+    monitoring [label=&quot;Monitoring\nand\nreporting&quot;];
+    plugin_management [label=&quot;Plugin\nmanagement&quot;];
+    registration [label=&quot;Registration&quot;];
+    random_number [ label=&quot;Random\nnumbers&quot;];
+    resource_management [label=&quot;Resource\nmanagement&quot;];
+    signal_handler [label=&quot;Signal\nhandler&quot;];
+    task_management [label=&quot;Task\nmanagement&quot;];
+
+    { rank=same; algo_description; task_management; }
+
+    algo_description -&gt; registration;
+
+    application -&gt; algo_description;
+    application -&gt; error_handler;
+    application -&gt; monitoring;
+    application -&gt; plugin_management;
+    application -&gt; signal_handler;
+    application -&gt; task_management;
+
+    data_modeling -&gt; monitoring;
+    data_modeling -&gt; registration;
+
+    io -&gt; data_modeling;
+
+    metadata_management -&gt; data_modeling;
+    metadata_management -&gt; registration;
+
+    plugin_management -&gt; monitoring;
+    plugin_management -&gt; registration;
+
+    resource_management -&gt; monitoring;
+
+    task_management -&gt; error_handler;
+    task_management -&gt; io;
+    task_management -&gt; data_product_management;
+    task_management -&gt; metadata_management;
+    task_management -&gt; monitoring;
+    task_management -&gt; random_number;
+    task_management -&gt; resource_management;
+    task_management -&gt; signal_handler;
+
+    data_product_management -&gt; metadata_management;
+    data_product_management -&gt; data_modeling;
+  }
+
+  subgraph cluster_external {
+    label=&quot;External subsystems&quot;;
+    edge [style=invis]
+    node [fillcolor=lightyellow];
+    style=&quot;filled&quot;;
+    fillcolor=&quot;lightgray&quot;;
+
+    Build;
+    CI;
+    Documentation;
+    event_display [label=&quot;Event\ndisplay&quot;];
+    workflow [label=&quot;Workflow\nmanagement&quot;];
+  }
+
+  subgraph cluster_plugins {
+    label=&quot;Plugins&quot;;
+    edge [style=invis]
+    node [shape=box,fillcolor=lightblue];
+    ranksep=&quot;0.05&quot;;
+    style=&quot;filled&quot;;
+    fillcolor=&quot;lightgray&quot;;
+
+    Algo [label=&quot;User algorithms&quot;]
+    ROOT [label=&quot;IO backends&quot;]
+    RUCIO [label=&quot;Data management&quot;]
+    ellipsis [label=&quot;etc.&quot;, fillcolor=none, peripheries=0];
+    Algo -&gt; ROOT -&gt; RUCIO -&gt; ellipsis;
+  }
+
+  algo_description -&gt; configuration [ltail=cluster_core_subsystems];
+  error_handler -&gt; logging [ltail=cluster_core_subsystems];
+
+  RUCIO -&gt; logging [ltail=cluster_plugins];
+  ROOT -&gt; configuration [ltail=cluster_plugins];
+  workflow -&gt; application [ltail=cluster_external,
+                           lhead=cluster_core_subsystems,
+                           fontname=&quot;Helvetica,Arial,sans-serif&quot;,
+                           label=&quot; Makes use of&quot;,
+                           style=dotted,
+                           minlen=3]
+}" class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Phlex subsystems</span><a class="headerlink" href="#subsystems" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The figure organizes all Phlex subsystems into three groups, with two standalone cross-cutting nodes.</p>
+<p>The 14 core subsystems and their dependency arrows show the following structure:</p>
+<ul class="simple">
+<li><p><strong>Framework Application</strong> provides the executables run by the user.
+It is responsible for creating and executing the workflow graph.</p></li>
+<li><p><strong>Task Management</strong> provides the runtime scheduler and executor.
+It depends on <a class="reference external" href="https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/flow_graph">oneTBB Flow Graph</a>.
+It provides the nodes that are used to represent CHOFs in the workflow.
+This includes computational, provider, translator and preserver nodes.
+It also provides the types used to define <em>drivers</em>, as well as framework-supplied drivers
+It also provides the types that are used to represent the workflow graph as a whole.</p></li>
+<li><p><strong>Data Modeling</strong> provides the mechanism by which users define data-product types, and the tools used to translate between in-memory representations of data-product concepts.</p></li>
+<li><p><strong>Data-Product Management</strong> provides the mechanisms to organize and identify data products.
+This includes the types used to represent data cells, data-product families, and data layers.
+It also provides the mechanisms by which the lifetime of data products are managed.
+It provides the mechanisms used for data-product lookup (based on data-product metadata).</p></li>
+<li><p><strong>Metadata Management</strong> provides the mechanisms by which framework-defined metadata are associated with data products, data cells, data-product families, data layers, and jobs.
+It also provides the facilities by which users can define their own metadata types and associate them with the appropriate entities, listed above.
+It also provides the mechanisms by which the metadata associated with one of these items can be retrieved.</p></li>
+<li><p><strong>IO</strong> provides the mechanisms by which data products and relevant metadata are read and written to persistent storage.
+It defines an interface implemented by IO plugins.
+Providers and perservers use this interface to read and write data products and metadata.</p></li>
+<li><p><strong>Plugin Management</strong> provides tools to dynamically load libraries that implement plugins.
+Supported plugin types include:</p>
+<ol class="arabic simple">
+<li><p>modules that create computational nodes,</p></li>
+<li><p>sources that create provider nodes,</p></li>
+<li><p>libraries that provide translator nodes,</p></li>
+<li><p>libraries that provide preserver nodes,</p></li>
+<li><p>libraries that provide drivers, and</p></li>
+<li><p>libraries that provide IO backends.</p></li>
+</ol>
+</li>
+<li><p><strong>Resource Management</strong> is responsible for initializing and configuring TBB.
+It also provides mechanisms to initialize and manage GPU runtime systems.</p></li>
+<li><p><strong>Monitoring and Reporting</strong> provides the mechanisms by which the framework’s performance and behavior can be monitored and reported.</p></li>
+<li><p><strong>Registration</strong> provides the mechanisms by which users can register their own algorithms, data-product types, providers, drivers, and plugins.</p></li>
+</ul>
+<p>The following subsystems will be specified when the requirements are more complete.</p>
+<ul class="simple">
+<li><p><strong>Algorithm Description</strong></p></li>
+<li><p><strong>Error Handler</strong></p></li>
+<li><p><strong>Signal Handler</strong></p></li>
+<li><p><strong>Random Numbers</strong></p></li>
+</ul>
+<p>Two cross-cutting subsystems sit outside all clusters because every other subsystem may depend on them:</p>
+<ul class="simple">
+<li><p><strong>Configuration</strong> — provides configurability for both the core subsystems and plugins.</p></li>
+<li><p><strong>Logging</strong> — initializes the logging mechanism that can be used by both the core subsystems and plugins.</p></li>
+</ul>
+<p>Three representative plugin categories are shown — <em>User Algorithms</em>, <em>IO Backends</em>, and
+<em>Data Management</em> (e.g., RUCIO) — with an <code class="docutils literal notranslate"><span class="pre">etc.</span></code> node indicating extensibility.
+As a group, plugins depend on <strong>Configuration</strong> (to configure each plugin) and <strong>Logging</strong>
+(to emit messages), but are otherwise decoupled from core internals.</p>
+<p><em>IO Backends</em> are plugins that implement the IO interface provided by the IO subsystem.
+One such implementation is FORM, which provides the ability to read and write from ROOT and HDF5 files.
+Other IO technologies may be supported by implementing another IO Backend plugin.</p>
+<p>Five externally-managed systems — <em>Build</em>, <em>CI</em>, <em>Documentation</em>, <em>Event Display</em>, and <em>Workflow Management</em> — are grouped separately.
+Of these, only <strong>Workflow Management</strong> has a cross-edge: a dotted <em>“Makes use of”</em> arrow from the workflow manager to the core subsystems cluster.
+This indicates a workflow system that drives framework application execution but is not architecturally part of the framework itself.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../supporting_design.html"
+                          title="previous chapter"><span class="section-number">4. </span>Technical Design</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="program_startup.html"
+                          title="next chapter"><span class="section-number">4.2. </span>Program Startup</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_subsystem_design/framework_subsystems.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="program_startup.html" title="4.2. Program Startup"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../supporting_design.html" title="4. Technical Design"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.1. </span>Framework Subsystems</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Apr 13, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

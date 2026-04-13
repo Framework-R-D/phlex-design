@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Phlex Framework Design &#8212; Phlex 0.4.alpha (7c5c221) documentation</title>
+    <title>Phlex Framework Design &#8212; Phlex 0.4.alpha (127639c) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=848293bb"></script>
+    <script src="static/documentation_options.js?v=e1e6b4b7"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -47,7 +47,7 @@
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Phlex 0.4.alpha (7c5c221) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Phlex Framework Design</a></li> 
       </ul>
     </div>  
@@ -63,7 +63,7 @@
 <p>This document gives a brief introduction to what Phlex aims to achieve, the conceptual design elements in support of those aims.</p>
 <div class="admonition-pdf-available admonition">
 <p class="admonition-title">PDF available</p>
-<p>A PDF rendering of this documentation is available <a class="reference external" href="https://github.com/Framework-R-D/phlex-design/actions/runs/24258524679/artifacts/6377462195">here</a>.</p>
+<p>A PDF rendering of this documentation is available <a class="reference external" href="https://github.com/Framework-R-D/phlex-design/actions/runs/24349768698/artifacts/6408079372">here</a>.</p>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
@@ -98,6 +98,29 @@
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/program_configuration.html">3.11. Program Configuration</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="supporting_design.html">4. Technical Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/framework_subsystems.html">4.1. Framework Subsystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/program_startup.html">4.2. Program Startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/role_of_data_product_concepts.html">4.3. The Role of Data Product Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/application.html">4.4. Framework Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/task_management.html">4.5. Task Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/data_modeling.html">4.6. Data Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/data_product_management.html">4.7. Data Product Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/metadata_management.html">4.8. Metadata Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/io.html">4.9. IO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/plugin_management.html">4.10. Plugin Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/resource_management.html">4.11. Resource Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/monitoring.html">4.12. Monitoring and Reporting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/registration.html">4.13. Algorithm Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/algo_description.html">4.14. Algorithm Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/error_handler.html">4.15. Error Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/signal_handler.html">4.16. Signal Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/random_numbers.html">4.17. Random Number Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/configuration.html">4.18. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/logging.html">4.19. Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting_design.html#external-subsystems">4.20. External Subsystems</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -109,6 +132,8 @@
 <li class="toctree-l2"><a class="reference internal" href="appendices/requirements.html#supporting-requirements">B.2. Supporting Requirements</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/platforms.html">C. Supported Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/deployment.html">D. Deployment</a></li>
 </ul>
 </div>
 </section>
@@ -158,13 +183,13 @@
         <li class="right" >
           <a href="introduction.html" title="1. Introduction"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">Phlex 0.4.alpha (7c5c221) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Phlex Framework Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Apr 10, 2026.
+      Last updated on Apr 13, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

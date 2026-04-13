@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Technical Design &#8212; Phlex 0.4.alpha (127639c) documentation</title>
+    <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="static/jquery.js?v=5d32c60e"></script>
+    <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="static/documentation_options.js?v=e1e6b4b7"></script>
+    <script src="static/doctools.js?v=9bcbadda"></script>
+    <script src="static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4.1. Framework Subsystems" href="ch_subsystem_design/framework_subsystems.html" />
+    <link rel="prev" title="3.11. Program Configuration" href="ch_conceptual_design/program_configuration.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ch_subsystem_design/framework_subsystems.html" title="4.1. Framework Subsystems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ch_conceptual_design/program_configuration.html" title="3.11. Program Configuration"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Technical Design</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="technical-design">
+<h1><span class="section-number">4. </span>Technical Design<a class="headerlink" href="#technical-design" title="Link to this heading">¶</a></h1>
+<p>Phlex is divided into several <em>subsystems</em>, each of which is responsible for a specific aspect of the framework’s functionality.
+A subsystem is a set of libraries with a well-defined public interface.
+One subsystem may make use of the functionality provided by another subsystem only through the public interface of the other subsystem.
+The set of subsystems may have no circular dependencies.</p>
+<p>Phlex also makes use of several <em>external subsystems</em>, which are not part of the Phlex codebase but are used by Phlex to provide certain functionality.
+There are also several external systems that users of Phlex may interact with in the context of using Phlex, but which are not part of Phlex itself.</p>
+<p>This chapter of the document enumerates the subsystems, and describes their responsibliities and interactions.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/framework_subsystems.html">4.1. Framework Subsystems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/program_startup.html">4.2. Program Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/role_of_data_product_concepts.html">4.3. The Role of Data Product Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/application.html">4.4. Framework Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/task_management.html">4.5. Task Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/task_management.html#creating-the-data-flow-graph">4.5.1. Creating the Data-Flow Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/task_management.html#data-marshaling">4.5.2. Data-Marshaling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/data_modeling.html">4.6. Data Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/data_product_management.html">4.7. Data Product Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/data_product_management.html#specifying-familiies">4.7.1. Specifying Familiies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/data_product_management.html#input-family-specification">4.7.2. Input Family Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/data_product_management.html#output-family-specification">4.7.3. Output family specification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/metadata_management.html">4.8. Metadata Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/io.html">4.9. IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/plugin_management.html">4.10. Plugin Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/resource_management.html">4.11. Resource Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/monitoring.html">4.12. Monitoring and Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/registration.html">4.13. Algorithm Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/algo_description.html">4.14. Algorithm Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/error_handler.html">4.15. Error Handler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/signal_handler.html">4.16. Signal Handler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/random_numbers.html">4.17. Random Number Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/configuration.html">4.18. Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/configuration.html#mechanics-of-configuration-specification">4.18.1. Mechanics of Configuration Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/configuration.html#programmatic-access-to-the-configuration">4.18.2. Programmatic Access to the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/configuration.html#semantic-structure-of-the-configuration">4.18.3. Semantic Structure of the Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_subsystem_design/configuration.html#program-resource-specification">4.18.4. Program Resource Specification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch_subsystem_design/logging.html">4.19. Logging</a></li>
+</ul>
+</div>
+<section id="external-subsystems">
+<h2><span class="section-number">4.20. </span>External Subsystems<a class="headerlink" href="#external-subsystems" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Build</p></li>
+<li><p>CI</p></li>
+<li><p>Documentation</p></li>
+<li><p>Event display</p></li>
+<li><p>Workflow management</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">4. Technical Design</a><ul>
+<li><a class="reference internal" href="#external-subsystems">4.20. External Subsystems</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ch_conceptual_design/program_configuration.html"
+                          title="previous chapter"><span class="section-number">3.11. </span>Program Configuration</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ch_subsystem_design/framework_subsystems.html"
+                          title="next chapter"><span class="section-number">4.1. </span>Framework Subsystems</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/supporting_design.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ch_subsystem_design/framework_subsystems.html" title="4.1. Framework Subsystems"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ch_conceptual_design/program_configuration.html" title="3.11. Program Configuration"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Technical Design</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Apr 13, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

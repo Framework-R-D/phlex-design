@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.4. Framework Registration &#8212; Phlex 0.4.alpha (7c5c221) documentation</title>
+    <title>3.4. Framework Registration &#8212; Phlex 0.4.alpha (127639c) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=848293bb"></script>
+    <script src="../static/documentation_options.js?v=e1e6b4b7"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7c5c221) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
@@ -201,13 +201,13 @@ This would be expressed in C++ as:</p>
 For example, suppose an algorithm needed to access a data product from a <cite>Spill</cite>, and it also required a calibration offset provided from an external database table <a class="reference internal" href="../appendices/requirements.html#DUNE 35" title="DUNE 35"><em class="xref need">[DUNE 35]</em></a>.
 Instead of providing a separate mechanism for handling calibration constants, a separate layer could be invented (e.g. <cite>Calibration</cite>) whose data cells corresponded to intervals of validity.
 So long as a relation can be defined between specific <cite>Spill</cite> data cells and specific <cite>Calibration</cite> data cells, the framework can use that relation to form the input family of <cite>Spill</cite>-<cite>Calibration</cite> data-product pairs that are presented to the algorithm.
-How the relation between data cells is defined is referred to as <em>data marshaling</em>, and it is described further in <span>the technical design <em>(under preparation)</em></span>.</p>
+How the relation between data cells is defined is referred to as <em>data marshaling</em>, and it is described further in <a class="reference internal" href="../ch_subsystem_design/task_management.html#data-marshaling"><span class="std std-numref">Section 4.5.2</span></a>.</p>
 </section>
 <section id="data-products-from-adjacent-data-cells">
 <h3><span class="section-number">3.4.1.2. </span>Data Products from Adjacent Data Cells<a class="headerlink" href="#data-products-from-adjacent-data-cells" title="Link to this heading">¶</a></h3>
 <p>In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets <a class="reference internal" href="../appendices/requirements.html#DUNE 91" title="DUNE 91"><em class="xref need">[DUNE 91]</em></a>, where <em>adjacency</em> is defined by the user <a class="reference internal" href="../appendices/requirements.html#DUNE 92" title="DUNE 92"><em class="xref need">[DUNE 92]</em></a>.
 The notion of adjacency can be critical for (e.g.) time-windowed processing (see <a class="reference internal" href="hofs/windows.html#windows"><span class="std std-numref">Section 3.5.7</span></a>), where the details of the “next” time bin are needed to accurately calculate properties of the “current” time bin.</p>
-<p>Supporting the processing of adjacent data cells is described further in <span>the technical design <em>(under preparation)</em></span>.</p>
+<p>Supporting the processing of adjacent data cells is described further in <a class="reference internal" href="../ch_subsystem_design/task_management.html#data-marshaling"><span class="std std-numref">Section 4.5.2</span></a>.</p>
 </section>
 </section>
 <section id="accessing-configuration-information">
@@ -226,7 +226,7 @@ To do this, an additional argument (e.g. <code class="code highlight c++ docutil
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As discussed in <span>the technical design <em>(under preparation)</em></span>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
+<p>As discussed in <a class="reference internal" href="../ch_subsystem_design/configuration.html#programmatic-access-to-the-configuration"><span class="std std-numref">Section 4.18.2</span></a>, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.</p>
 </div>
 <p>Except for the specification of <code class="code highlight c++ docutils literal highlight-c++"><span class="n">find_hits</span></code> as the algorithm to be invoked, and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">transform</span></code> as the HOF, all other pieces of information may be provided through the configuration.</p>
 </section>
@@ -402,14 +402,14 @@ Simply specifying <code class="code highlight c++ docutils literal highlight-c++
         <li class="right" >
           <a href="algorithms.html" title="3.3. Algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (7c5c221) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.4. </span>Framework Registration</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Apr 10, 2026.
+      Last updated on Apr 13, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

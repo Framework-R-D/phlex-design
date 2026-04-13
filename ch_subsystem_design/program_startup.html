@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.2. Program Startup &#8212; Phlex 0.4.alpha (127639c) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=e1e6b4b7"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3. The Role of Data Product Concepts" href="role_of_data_product_concepts.html" />
+    <link rel="prev" title="4.1. Framework Subsystems" href="framework_subsystems.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="role_of_data_product_concepts.html" title="4.3. The Role of Data Product Concepts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="framework_subsystems.html" title="4.1. Framework Subsystems"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.2. </span>Program Startup</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="program-startup">
+<h1><span class="section-number">4.2. </span>Program Startup<a class="headerlink" href="#program-startup" title="Link to this heading">¶</a></h1>
+<p>At program startup, the application reads a configuration document that specifies the workflow to be executed.
+The configuration document specifies the modules and sources to be loaded, and provides configuration parameters for each.
+Optionally, the configuration document also specifies which data products are to be written to the output.
+Optionally, the configuration document also specifies what input file or files are to be read, including both physics data files (e.g. ROOT or HDF5 files in the framework’s format) and ancillary data files (e.g GDML files specifying a geometry).
+The configuration document also specifies the configuration of a <em>driver</em>, which determines which data cells will be processed by the program.
+<a class="footnote-reference brackets" href="#incomplete-config-list" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>Loading each module creates one or more <em>computational</em> nodes.
+Computational nodes are the nodes that do physics reconstruction or simulation tasks, as opposed to the reading and writing of data.
+Loading each source creates one or more <em>provider</em> nodes to be assembled into the data-flow graph.
+Provider nodes are the nodes that either read data products or create data products from an input that is only a data cell index.
+Once the computational and provider nodes have been created, the graph assembly begins.</p>
+<p>First, computational nodes whose output data products satisfy the input requirements of other computational nodes are connected forming a graph.
+For each input port on each computational node, a search for a matching output port on another computational node is performed.
+Each input port has associated a creator name, a product suffix, a data layer, a concrete data-product type and a data-product concept.
+For a successful match, there must be a match for the creator name, product suffix, data layer and data-product concept.
+If the concrete data-product type of the output matches the input, then the ports are connected.
+If the concrete types do not match, then a translator node can be inserted to convert the output concrete type to the required input concrete type.</p>
+<p>Next, any input ports that remain unsatisfied after this initial connection step are resolved by connecting them to provider nodes.
+A similar matching process is performed to connect the remaining input ports to the output port of each configured provider node.</p>
+<p>For any input port that still remains unconnected, the framework determines whether a provider that reads from IO (possibly in combination with a data-product translator) can supply the required product.
+If so, the necessary provider and translator nodes are created and added to the graph.
+If no means of satisfying a required input port can be found, program startup fails, as the data-flow graph cannot be made complete.</p>
+<p>Finally, for any created data products that the configuration specifies should be written to the output, a preserver node is created.
+The preserver node is connected to the computational node that produces the data product, and is configured to write that data product to the output.</p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="incomplete-config-list" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>This list does not describe all the configuration options.</p>
+</aside>
+</aside>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="framework_subsystems.html"
+                          title="previous chapter"><span class="section-number">4.1. </span>Framework Subsystems</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="role_of_data_product_concepts.html"
+                          title="next chapter"><span class="section-number">4.3. </span>The Role of Data Product Concepts</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_subsystem_design/program_startup.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="role_of_data_product_concepts.html" title="4.3. The Role of Data Product Concepts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="framework_subsystems.html" title="4.1. Framework Subsystems"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.2. </span>Program Startup</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Apr 13, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

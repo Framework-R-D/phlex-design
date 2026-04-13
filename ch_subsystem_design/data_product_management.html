@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.7. Data Product Management &#8212; Phlex 0.4.alpha (127639c) documentation</title>
+    <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
+    <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
+    
+    <script src="../static/jquery.js?v=5d32c60e"></script>
+    <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../static/documentation_options.js?v=e1e6b4b7"></script>
+    <script src="../static/doctools.js?v=9bcbadda"></script>
+    <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script>window.MathJax = {"loader": {"load": ["[tex]/newcommand", "[tex]/textmacros", "[tex]/mathtools"]}, "tex": {"packages": {"[+]": ["newcommand", "textmacros", "mathtools"]}, "macros": {"bool": ["\\mathbb{B}", 0], "one": ["\\Bbb{1}", 0], "opt": ["\\text{Opt}(#1)", 1], "transform": ["\\textrm{transform}(#1)", 1], "predicate": ["\\textrm{predicate}(#1)", 1], "filter": ["\\textrm{filter}(#1)", 1], "observe": ["\\textrm{observe}(#1)", 1], "unfold": ["\\textrm{unfold}(#1, #2)", 2], "punfold": ["\\textrm{unfold}(#1, #2, #3)", 3], "fold": ["\\textrm{fold}(#1, #2)", 2], "pfold": ["\\textrm{fold}(#1, #2, #3)", 3], "window": ["\\textrm{window}(#1, #2, #3)", 3], "isetdefault": ["\\mathcal{I}", 0], "iset": ["\\isetdefault_{#1}", 1], "fami": ["\\left[#1_i\\right]", 1], "family": ["\\left[#1_i\\right]_{i \\in \\isetdefault}", 1], "ifamily": ["\\left[#1_i\\right]_{i \\in \\iset{#2}}", 2], "comp": ["\\circ", 0]}}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.8. Metadata Management" href="metadata_management.html" />
+    <link rel="prev" title="4.6. Data Modeling" href="data_modeling.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="metadata_management.html" title="4.8. Metadata Management"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="data_modeling.html" title="4.6. Data Modeling"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="data-product-management">
+<h1><span class="section-number">4.7. </span>Data Product Management<a class="headerlink" href="#data-product-management" title="Link to this heading">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Data cell definitions</p></li>
+<li><p>Data family definitions</p></li>
+<li><p>Data product definitions</p></li>
+<li><p>Data product specifications</p></li>
+<li><p>Data-product lookup policies</p></li>
+<li><p>Describes what data products should be used/created by an algorithm</p></li>
+<li><p>Describes how the <span class="math notranslate nohighlight">\(\textit{label}\)</span> operator can be used (as described in <a class="reference internal" href="../ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>)</p></li>
+</ul>
+</div>
+<section id="specifying-familiies">
+<h2><span class="section-number">4.7.1. </span>Specifying Familiies<a class="headerlink" href="#specifying-familiies" title="Link to this heading">¶</a></h2>
+<p>As discussed in <a class="reference internal" href="../ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a>, the input family to a HOF is specified via a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code> clause, where the ellipsis is replaced by a <em>family specification</em>.
+One of the specifications provided is <code class="code highlight c++ docutils literal highlight-c++"><span class="n">product_query</span><span class="p">{.</span><span class="n">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;good_hits&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spill&quot;</span><span class="p">}</span></code>, which indicates that a family should be formed from data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> from each <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data layer.</p>
+</section>
+<section id="input-family-specification">
+<h2><span class="section-number">4.7.2. </span>Input Family Specification<a class="headerlink" href="#input-family-specification" title="Link to this heading">¶</a></h2>
+<p>A family specification contains one or more <em>product specifications</em> and zero or more <em>resource specifications</em>, expressed in EBNF grammar <a class="reference internal" href="#wiki-ebnf" id="id2"><span>[Wiki-EBNF]</span></a> as:</p>
+<pre>
+<strong id="grammar-token-input_family_spec">input_family_spec</strong>   ::= <a class="reference internal" href="#grammar-token-input_product_specs"><code class="xref docutils literal notranslate"><span class="pre">input_product_specs</span></code></a> | <a class="reference internal" href="#grammar-token-input_products"><code class="xref docutils literal notranslate"><span class="pre">input_products</span></code></a> &quot;,&quot; <a class="reference internal" href="#grammar-token-resources"><code class="xref docutils literal notranslate"><span class="pre">resources</span></code></a>
+<strong id="grammar-token-input_product_specs">input_product_specs</strong> ::= Product | Product &quot;,&quot; (<a class="reference internal" href="#grammar-token-input_product_specs"><code class="xref docutils literal notranslate"><span class="pre">input_product_specs</span></code></a> | <a class="reference internal" href="#grammar-token-resources"><code class="xref docutils literal notranslate"><span class="pre">resources</span></code></a>)
+<strong id="grammar-token-input_products">input_products</strong>      ::= Product | Product &quot;,&quot; <a class="reference internal" href="#grammar-token-input_products"><code class="xref docutils literal notranslate"><span class="pre">input_products</span></code></a>
+<strong id="grammar-token-resources">resources</strong>           ::= Resource | Resource &quot;,&quot; <a class="reference internal" href="#grammar-token-resources"><code class="xref docutils literal notranslate"><span class="pre">resources</span></code></a>
+</pre>
+<p>where <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> specify a single product and a single resource, respectively.</p>
+<p>In the code examples that follow, the bracketed term <cite>&lt;input_family_spec&gt;</cite> will refer to any specification allowed in the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code> clause.
+The specifications for <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> depend on the computing language of the algorithm and are defined elsewhere.</p>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>Where will be define the <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Product</span></code> and <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Resource</span></code> specifications, and what are they?</p>
+</div>
+</section>
+<section id="output-family-specification">
+<h2><span class="section-number">4.7.3. </span>Output family specification<a class="headerlink" href="#output-family-specification" title="Link to this heading">¶</a></h2>
+<pre>
+<strong id="grammar-token-output_family_spec">output_family_spec</strong> ::= ProductOutputSpec | ProductOutputSpec &quot;,&quot; <a class="reference internal" href="#grammar-token-output_family_spec"><code class="xref docutils literal notranslate"><span class="pre">output_family_spec</span></code></a>
+</pre>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="wiki-ebnf" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Wiki-EBNF</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Extended_Backus-Naur_form">https://en.wikipedia.org/wiki/Extended_Backus-Naur_form</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">4.7. Data Product Management</a><ul>
+<li><a class="reference internal" href="#specifying-familiies">4.7.1. Specifying Familiies</a></li>
+<li><a class="reference internal" href="#input-family-specification">4.7.2. Input Family Specification</a></li>
+<li><a class="reference internal" href="#output-family-specification">4.7.3. Output family specification</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="data_modeling.html"
+                          title="previous chapter"><span class="section-number">4.6. </span>Data Modeling</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="metadata_management.html"
+                          title="next chapter"><span class="section-number">4.8. </span>Metadata Management</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../sources/ch_subsystem_design/data_product_management.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="metadata_management.html" title="4.8. Metadata Management"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="data_modeling.html" title="4.6. Data Modeling"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (127639c) documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
+      Last updated on Apr 13, 2026.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
