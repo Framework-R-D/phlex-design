@@ -1,0 +1,86 @@
+#ifndef PHLEX_MODEL_IDENTIFIER_HPP
+#define PHLEX_MODEL_IDENTIFIER_HPP
+
+#include <boost/json/fwd.hpp>
+
+#include <fmt/format.h>
+
+#include <compare>
+#include <cstddef>
+#include <cstdint>
+#include <string>
+#include <string_view>
+
+namespace phlex {
+/// If you're comparing to an identifier you know at compile time, you're probably not going to need
+/// to print it.
+struct identifier_query {
+    std::uint64_t hash;
+};
+
+/// Carries around the string itself
+/// along with a precomputed hash used for all comparisons
+class identifier {
+  public:
+    static std::uint64_t hash_string(std::string_view str);
+    static identifier const blank; // This lets us return a const reference to an empty identifier
+    // The default constructor is necessary so other classes containing identifiers
+    // can have default constructors.
+    identifier() = default;
+    identifier(identifier const& other) = default;
+    identifier(identifier&& other) noexcept = default;
+
+    explicit identifier(std::string_view str);
+
+    // This is here to allow the node API which heretofore stored names as strings to be easily
+    // transitioned over to identifiers
+    explicit identifier(std::string&& str);
+
+    // char const* calls string_view
+    identifier(char const* lit) : identifier(std::string_view(lit)) {}
+
+    identifier& operator=(identifier const& rhs) = default;
+    identifier& operator=(identifier&& rhs) noexcept = default;
+
+    ~identifier() = default;
+
+    // Conversion to std::string_view
+    explicit operator std::string_view() const noexcept;
+
+    bool operator==(identifier const& rhs) const noexcept;
+    std::strong_ordering operator<=>(identifier const& rhs) const noexcept;
+
+    // check if empty
+    bool empty() const noexcept { return content_.empty(); }
+    // get hash
+    std::size_t hash() const noexcept { return hash_; }
+
+    // transitional access to contained string
+    std::string const& trans_get_string() const noexcept { return content_; }
+
+    // Comparison operators with _id queries
+    friend bool operator==(identifier const& lhs, identifier_query rhs);
+    friend std::strong_ordering operator<=>(identifier const& lhs,
+                                                               identifier_query rhs);
+    friend std::hash<identifier>;
+
+  private:
+    std::string content_;
+    std::uint64_t hash_{hash_string("")};
+};
+
+// Identifier UDL
+namespace literals {
+identifier operator""_id(char const* lit, std::size_t len);
+identifier_query operator""_idq(char const* lit, std::size_t len);
+} // namespace literals
+
+// Really trying to avoid the extra function call here
+inline std::string_view format_as(identifier const& id) { return std::string_view(id); }
+} // namespace phlex
+
+template <> struct std::hash<phlex::identifier> {
+    std::size_t operator()(phlex::identifier const& id) const noexcept { return id.hash_; }
+};
+
+#endif // PHLEX_MODEL_IDENTIFIER_HPP
