@@ -103,8 +103,6 @@ bool connect_inputs(node& node, ProductList auto const& products) {
     for (auto&& [query, link] : views::zip(node.spec->input_queries, node.inputs)) {
         ++slot;
         auto match = [&query = std::as_const(query)](product const& p) {
-            // Not strictly necessary, but just in case this function is called without filtering
-            // the product list
             if (!p.filled_in()) {
                 return false;
             }
@@ -169,7 +167,7 @@ bool connect_inputs(node& node, ProductList auto const& products) {
             fmt::print("Connected slot {}/{} for {} to {}\n", slot, n_slots, node, *link);
         }
     }
-    if (modified) {
+    if (modified && node.inputs_connected()) {
         auto input_layers = node.inputs | views::transform([](product const* p) {
                                 return std::cref(p->layer());
                             })
@@ -185,24 +183,23 @@ bool connect_inputs(node& node, ProductList auto const& products) {
                               node, fmt::join(input_layer_names, "\n  - ")));
         }
         layer_path_t const& new_layer = most_derived_layer(input_layers);
-        if (node.has_layer_path()) {
-            if (node.target_layer != new_layer) {
-                fmt::print("Target layer of {} is changing from {} to {}\n", node,
-                           node.target_layer, new_layer);
-                node.target_layer = new_layer;
-            }
+        if (node.target_layer != new_layer) {
+            fmt::print("Target layer of {} is changing from {} to {}\n", node,
+                       fmt_lp(node.target_layer), fmt_lp(new_layer));
+            node.target_layer = new_layer;
         }
-        node.target_layer = new_layer;
     }
     return modified;
 }
 
 bool connect_inputs(NodeList auto& nodes, ProductList auto const& products) {
     // Connect any inputs that we can now resolve
-    fmt::print("Connecting inputs\n");
     bool modified = false;
     for (node& node : nodes) {
         modified |= connect_inputs(node, products);
+    }
+    if (!modified) {
+        fmt::print("No changes\n");
     }
     return modified;
 }
@@ -226,25 +223,8 @@ Graph calculate(std::vector<init_prod> const& initial_products,
     node_spec_list_t provider_spec_list{};
 
     make_initial_products(initial_products, product_list, node_list, provider_spec_list);
-    // At this point all products in product_list are initial products, so we'll make two views, one
-    // with products from earlier stages, and one with products from the current stage. These will
-    // take the form of lambdas which return a view.
-    auto earlier_products = [count = product_list.size(), &product_list] {
-        return views::take(product_list, count);
-    };
-    auto current_products = [count = product_list.size(), &product_list] {
-        return views::drop(product_list, count);
-    };
-    // We can do something similar with the node lists, separating the providers from the
-    // computational nodes
-    auto providers = [count = node_list.size(), &node_list] {
-        return views::take(node_list, count);
-    };
     // Check providers all validate
-    assert(ranges::all_of(providers(), &node::validate) && "Provider nodes didn't all validate");
-    auto compute_nodes = [count = node_list.size(), &node_list] {
-        return views::drop(node_list, count);
-    };
+    assert(ranges::all_of(node_list, &node::validate) && "Provider nodes didn't all validate");
     // Now we actually make the rest of the nodes
     make_nodes(algorithms, node_list, product_list);
 
@@ -252,13 +232,15 @@ Graph calculate(std::vector<init_prod> const& initial_products,
     int pass = 0;
     bool modified = true;
     do {
-        fmt::print(fmt::fg(fmt::color::green), "Pass {}\n", ++pass);
-        if (!modified) {
-          fmt::print(fmt::fg(fmt::color::red), "Warning: Not modified on last pass\n");
-        }
+        fmt::print(fmt::fg(fmt::terminal_color::green), "Pass {}\n", ++pass);
         modified = connect_inputs(node_list, product_list);
-    } while (not validate_nodes(node_list));
-    fmt::print("DONE!!!\n");
+    } while (modified);
+    if (not validate_nodes(node_list)) {
+        fmt::print(fmt::fg(fmt::color::red),
+                   "Not modified on last pass but nodes don't all validate!\n");
+        exit(1);
+    }
+  fmt::print(fmt::fg(fmt::terminal_color::green), "DONE!!!\n");
 
     // Let's make the graph
     Graph graph;

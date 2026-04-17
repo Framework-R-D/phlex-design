@@ -4,10 +4,13 @@
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 #include <boost/container_hash/hash.hpp>
+#include <boost/lambda2.hpp>
 
 #include <algorithm>
 #include <flat_set>
 #include <string_view>
+
+using namespace boost::lambda2;
 
 id const& product::creator_name() const { return creator->spec->name; }
 layer_path_t const& product::layer() const { return creator->target_layer; }
@@ -69,11 +72,11 @@ bool node::inputs_connected() const {
     if (inputs.size() != spec->input_queries.size()) {
         return false;
     }
-    return std::ranges::all_of(inputs, [](product const* p) { return p != nullptr; });
+    return std::ranges::all_of(inputs, _1 != nullptr);
 }
 
 bool node::validate() const {
-    auto const warn_style = fmt::emphasis::bold | fmt::fg(fmt::color::red);
+    auto const warn_style = fmt::fg(fmt::color::orange);
     if (!filled_in()) {
         fmt::print(warn_style,
                    "{} isn't filled in. outputs_filled() = {}, inputs_connected()={}, "
