@@ -3,15 +3,15 @@ digraph {
   edge [fontcolor="red"];
 
   start [shape="point", width=0.1];
-  unfold_into_apas [label=<unfold(<font color="blue">into_apas</font>)>];
-  transform_find_hits [label=<transform(<font color="blue">find_hits</font>)>];
-  filter_high_energy [label=<filter(<font color="blue">high_energy</font>)>];
-  window_make_tracks [label=<window(<font color="blue">make_tracks</font>)>];
+  unfold_into_apas [shape=Mrecord, label=<{APAWaveformBuilder|unfold(<font color="blue">into_apas</font>)}>];
+  transform_find_hits [shape=Mrecord, label=<{PulseHitFinder|transform(<font color="blue">find_hits</font>)}>];
+  filter_high_energy [shape=Mrecord, label=<{HighEnergyHitSelector|filter(<font color="blue">high_energy</font>)}>];
+  window_make_tracks [shape=Mrecord, label=<{OverlapAwareTrackFinder|window(<font color="blue">make_tracks</font>)}>];
   out [label="ROOT output file(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
 
-  observe_histogram_hits [label=<observe(<font color="blue">histogram_hits</font>)>];
-  transform_make_vertices [label=<transform(<font color="blue">make_vertices</font>)>];
-  fold_total_energy [label=<fold(<font color="blue">sum_energy</font>)>];
+  observe_histogram_hits [shape=Mrecord, label=<{HitQAMonitor|observe(<font color="blue">histogram_hits</font>)}>];
+  transform_make_vertices [shape=Mrecord, label=<{InteractionVertexFinder|transform(<font color="blue">make_vertices</font>)}>];
+  fold_total_energy [shape=Mrecord, label=<{SpillEnergyAccumulator|fold(<font color="blue">sum_energy</font>)}>];
 
   // Histogram resource
   resource [label=<Histogram<br/> resource>,
@@ -82,5 +82,4 @@ digraph {
   edge [style="invis"]
   input -> waveforms_preserver;
   filter_high_energy -> resource;
-  transform_find_hits -> waveforms_preserver [constraint="false"];
 }

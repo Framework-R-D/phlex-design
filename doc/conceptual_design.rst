@@ -67,7 +67,9 @@ Each data product is also indexed, thus associating it with a particular data ce
 
 .. graphviz:: work-flow.gv
    :caption: A fictitious workflow showing how HOFs are used in a Phlex program.
-             Each unshaded node represent a HOF bound to a user-defined algorithm, whose name is shaded in blue.
+             Each unshaded node represent a HOF bound to a user-defined algorithm.
+             The top part of the box shows the configured name of the node; the bottom part shows higher-order function invoked, and the name of the user-defined algorithm that is bound to it.
+             The algorithm name is shaded in blue.
              Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.
              Whereas single-dotted lines indicate communication of data through the framework's IO system, double-dotted lines denote communication of data with entities not directly related to the framework.
              See text for workflow details.
