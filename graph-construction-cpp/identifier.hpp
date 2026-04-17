@@ -60,9 +60,9 @@ class identifier {
 
     // Comparison operators with _id queries
     friend bool operator==(identifier const& lhs, identifier_query rhs);
-    friend std::strong_ordering operator<=>(identifier const& lhs,
-                                                               identifier_query rhs);
+    friend std::strong_ordering operator<=>(identifier const& lhs, identifier_query rhs);
     friend std::hash<identifier>;
+    friend std::size_t hash_value(identifier const& id) { return id.hash_; }
 
   private:
     std::string content_;
