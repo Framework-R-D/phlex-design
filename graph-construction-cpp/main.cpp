@@ -12,52 +12,43 @@ auto main(int argc, char* argv[]) -> int {
         return 1;
     }
 
-    layer_path_t run = "/job/run"_lp;
-    layer_path_t subrun = "/job/run/subrun"_lp;
-    layer_path_t event = "/job/run/subrun/event"_lp;
-
     std::vector<init_prod> initial_products{
-          {.name = "number", .creator = "provide_geometry", .layer = run},
-          {.name = "another", .creator = "provide_string", .layer = subrun},
-          {.name = "still", .creator = "provide_integer", .layer = event}};
+          {.name = "number", .creator = "input", .layer = "/job/run/event"_lp}};
 
     std::vector<node_spec> nodes{
+          {.type = node_type::fold,
+           .name = "run_add",
+           .target_layer_name = "run",
+           .output_names = {"run_sum"},
+           .input_queries = {{.name = "number", .creator_name = "input"}}},
+          {.type = node_type::fold,
+           .name = "job_add",
+           .target_layer_name = "job",
+           .output_names = {"job_sum"},
+           .input_queries = {{.name = "number", .layer_name = "event"}}},
+          {.type = node_type::fold,
+           .name = "two_layer_job_add",
+           .target_layer_name = "job",
+           .output_names = {"two_layer_job_sum"},
+           .input_queries = {{.name = "run_sum"}}},
           {.type = node_type::transform,
-           .name = "B2",
-           .output_names = {"b2_output"},
-           .input_queries = {{.name = "a2_output", .creator_name = "A2"},
-                             {.name = "b1_output", .creator_name = "B1"}}},
-          {.type = node_type::transform,
-           .name = "A1",
-           .output_names = {"a1_output"},
-           .input_queries = {{.name = "number", .creator_name = "provide_geometry"}}},
-          {.type = node_type::transform,
-           .name = "B1",
-           .output_names = {"b1_output"},
-           .input_queries = {{.name = "a1_output", .creator_name = "A1"},
-                             {
-                                   .name = "another",
-                                   .creator_name = "provide_string",
-                             }}},
-
-          {.type = node_type::transform,
-           .name = "C",
-           .output_names = {"c_output"},
-           .input_queries = {{
-                                   .name = "b2_output",
-                                   .creator_name = "B2",
-                             },
-                             {.name = "still", .creator_name = "provide_integer"}}},
-
-          {.type = node_type::transform,
-           .name = "A2",
-           .output_names = {"a2_output"},
-           .input_queries = {{.name = "a1_output", .creator_name = "A1"}}},
-          {.type = node_type::transform,
-           .name = "A3",
-           .output_names = {"a3_output"},
-           .input_queries = {{.name = "a2_output", .creator_name = "A2"}}},
-
+           .name = "run_increment",
+           .output_names = {"run_inc"},
+           .input_queries = {{.name = "run_sum"}, {.name = "job_sum"}}},
+          {.type = node_type::unfold,
+           .name = "run_to_spill",
+           .target_layer_name = "spill",
+           .output_names = {"number"},
+           .input_queries = {{.name = "run_sum"}, {.name = "run_inc"}}},
+          {.type = node_type::consumer,
+           .name = "verify_run_sum",
+           .input_queries = {{.name = "run_sum"}}},
+          {.type = node_type::consumer,
+           .name = "verify_two_layer_job_add",
+           .input_queries = {{.name = "two_layer_job_sum"}}},
+          {.type = node_type::consumer,
+           .name = "verify_job_add",
+           .input_queries = {{.name = "job_sum"}}},
     };
 
     Graph graph = calculate(initial_products, nodes);

@@ -42,27 +42,36 @@ std::string format_as(node const& n) {
     return fmt::format("{} {} ({:04X})", n.spec->name, n.spec->type, std::uintptr_t(&n) & 0xFFFF);
 }
 
+namespace {
+auto const warn_style = fmt::fg(fmt::color::orange);
+}
 bool node_spec::validate() const {
     if (name.empty()) {
+        fmt::print(warn_style, "Empty name\n");
         return false;
     }
     if (type <= node_type(0) || type > node_type::consumer) {
+      fmt::print(warn_style, "Invalid type\n");
         return false;
     }
     if (type == node_type::fold || type == node_type::unfold) {
         if (!target_layer_name.has_value()) {
+          fmt::print(warn_style, "Folds and unfolds must have a target layer name\n");
             return false;
         }
     }
     else {
         if (target_layer_name.has_value()) {
+          fmt::print(warn_style, "{} must not have a target layer name\n", type);
             return false;
         }
     }
-    if (type != node_type::provider && output_names.empty()) {
+    if (type == node_type::provider && output_names.empty()) {
+        fmt::print(warn_style, "Providers must have output names\n");
         return false;
     }
-    if (type != node_type::consumer && input_queries.empty()) {
+    if (type == node_type::consumer && input_queries.empty()) {
+        fmt::print(warn_style, "Consumers must have input queries\n");
         return false;
     }
     return true;
@@ -76,7 +85,6 @@ bool node::inputs_connected() const {
 }
 
 bool node::validate() const {
-    auto const warn_style = fmt::fg(fmt::color::orange);
     if (!filled_in()) {
         fmt::print(warn_style,
                    "{} isn't filled in. outputs_filled() = {}, inputs_connected()={}, "

@@ -182,12 +182,28 @@ bool connect_inputs(node& node, ProductList auto const& products) {
                               "Input layers are:\n  - {}\n",
                               node, fmt::join(input_layer_names, "\n  - ")));
         }
-        layer_path_t const& new_layer = most_derived_layer(input_layers);
-        if (node.target_layer != new_layer) {
-            fmt::print("Target layer of {} is changing from {} to {}\n", node,
-                       fmt_lp(node.target_layer), fmt_lp(new_layer));
-            node.target_layer = new_layer;
+        layer_path_t const& most_derived = most_derived_layer(input_layers);
+        layer_path_t new_target_layer;
+        // Deal with folds and unfolds
+        if (node.spec->type == node_type::fold) {
+            auto const end = ranges::find(most_derived, node.spec->target_layer_name);
+            if (end == most_derived.cend()) {
+                throw std::runtime_error(
+                      fmt::format("Target layer {} of {} does not appear in most derived path: {}",
+                                  node.spec->target_layer_name.value(), node, most_derived));
+            }
+            new_target_layer = layer_path_t(most_derived.cbegin(), ranges::next(end));
         }
+        else if (node.spec->type == node_type::unfold) {
+            new_target_layer = most_derived;
+            new_target_layer.push_back(node.spec->target_layer_name.value());
+        }
+        else {
+            new_target_layer = most_derived;
+        }
+        fmt::print("Target layer of {} is changing from {} to {}\n", node,
+                   fmt_lp(node.target_layer), fmt_lp(new_target_layer));
+        node.target_layer = std::move(new_target_layer);
     }
     return modified;
 }
@@ -240,7 +256,7 @@ Graph calculate(std::vector<init_prod> const& initial_products,
                    "Not modified on last pass but nodes don't all validate!\n");
         exit(1);
     }
-  fmt::print(fmt::fg(fmt::terminal_color::green), "DONE!!!\n");
+    fmt::print(fmt::fg(fmt::terminal_color::green), "DONE!!!\n");
 
     // Let's make the graph
     Graph graph;
