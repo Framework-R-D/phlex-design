@@ -190,7 +190,7 @@ bool connect_inputs(node& node, ProductList auto const& products) {
             if (end == most_derived.cend()) {
                 throw std::runtime_error(
                       fmt::format("Target layer {} of {} does not appear in most derived path: {}",
-                                  node.spec->target_layer_name.value(), node, most_derived));
+                                  node.spec->target_layer_name.value(), node, fmt_lp(most_derived)));
             }
             new_target_layer = layer_path_t(most_derived.cbegin(), ranges::next(end));
         }

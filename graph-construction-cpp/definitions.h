@@ -19,7 +19,7 @@ struct input_query {
     id name; // Will be a combination of name and concept, hence mandatory
     opt_id creator_name;
     opt_id layer_name;
-    stage_t stage;
+    stage_t stage = stage_t::any;
 
     bool validate() const { return !name.empty(); }
 };
@@ -59,12 +59,11 @@ enum class node_type : char { transform = 1, fold, unfold, provider, consumer };
 std::string_view format_as(node_type t);
 // Type used to specify a node
 struct node_spec {
-    node_type const type;
+    node_type const type; // Must not be set to "provider". Providers are defined by entries in initial product list
     id const name;
-    std::optional<id> target_layer_name; // optional because this is only relevant for folds and
-    // unfolds
-    std::vector<id> output_names{};
-    std::vector<input_query> input_queries{};
+    std::optional<id> target_layer_name; // Must be provided for folds and unfolds, otherwise must not be provided
+    std::vector<id> output_names{}; // Must be provided unless this is a consumer, in which case this must be empty
+    std::vector<input_query> input_queries{}; // Must not be empty
 
     bool validate() const;
 };
