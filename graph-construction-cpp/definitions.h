@@ -5,6 +5,7 @@
 #include "layer_path_t.h"
 
 #include <optional>
+#include <source_location>
 #include <vector>
 
 using namespace phlex::literals;
@@ -20,8 +21,9 @@ struct input_query {
     opt_id creator_name;
     opt_id layer_name;
     stage_t stage = stage_t::any;
+    std::source_location src_loc = std::source_location::current();
 
-    bool validate() const { return !name.empty(); }
+    bool validate() const;
 };
 
 // Type specifying initial input products
@@ -29,10 +31,9 @@ struct init_prod {
     id name;
     id creator;
     layer_path_t layer;
+    std::source_location src_loc = std::source_location::current();
 
-    bool validate() const {
-        return !name.empty() and !creator.empty() and !layer.empty() and layer.front() == "job"_idq;
-    }
+    bool validate() const;
 };
 
 struct node; // forward declare the node type so we can hold a pointer to it
@@ -59,11 +60,15 @@ enum class node_type : char { transform = 1, fold, unfold, provider, consumer };
 std::string_view format_as(node_type t);
 // Type used to specify a node
 struct node_spec {
-    node_type const type; // Must not be set to "provider". Providers are defined by entries in initial product list
+    node_type const type; // Must not be set to "provider". Providers are defined by entries in
+                          // initial product list
     id const name;
-    std::optional<id> target_layer_name; // Must be provided for folds and unfolds, otherwise must not be provided
-    std::vector<id> output_names{}; // Must be provided unless this is a consumer, in which case this must be empty
+    std::optional<id> target_layer_name; // Must be provided for folds and unfolds, otherwise must
+                                         // not be provided
+    std::vector<id> output_names{}; // Must be provided unless this is a consumer, in which case
+                                    // this must be empty
     std::vector<input_query> input_queries{}; // Must not be empty
+    std::source_location src_loc = std::source_location::current();
 
     bool validate() const;
 };
