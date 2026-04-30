@@ -1,5 +1,10 @@
 #include "Graph.h"
 
+#include <boost/graph/connected_components.hpp>
+#include <boost/graph/topological_sort.hpp>
+#include <flat_map>
+
+#include <fmt/color.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 
@@ -33,7 +38,22 @@ void edge_writer::operator()(std::ostream& out, Graph::edge_descriptor const& de
 }
 
 void graph_writer(std::ostream& out) {
-    fmt::print(out, R"(graph [bgcolor=white, fontname="Iosevka,Monospace"])" "\n");
-    fmt::print(out, R"(node [style="filled,rounded", shape=rect, fontname="Iosevka,Monospace"])" "\n");
-    fmt::print(out, R"(edge [fontname="Iosevka,Monospace"])" "\n");
+    fmt::print(out, R"(graph [bgcolor=white, fontname="Iosevka,Monospace"])"
+                    "\n");
+    fmt::print(out, R"(node [style="filled,rounded", shape=rect, fontname="Iosevka,Monospace"])"
+                    "\n");
+    fmt::print(out, R"(edge [fontname="Iosevka,Monospace"])"
+                    "\n");
+}
+
+std::generator<Subgraph const&> connected_components(Graph const& g) {
+  auto s = fmt::fg(fmt::terminal_color::green);
+    fmt::print(s, "   Calculating connected components... ");
+    auto vertex_id_map = get(boost::vertex_index, g);
+    boost::vector_property_map<int, decltype(vertex_id_map)> component_map(vertex_id_map);
+    int const num_components = boost::connected_components(g, component_map);
+    fmt::print(s, "{}\n", num_components);
+
+  std::vector<vertex_filter> filters(num_components);
+  for (auto v : boost::vertices(g))
 }

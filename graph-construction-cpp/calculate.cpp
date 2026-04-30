@@ -280,5 +280,8 @@ Graph calculate(std::vector<init_prod> const& initial_products,
         }
     }
 
+  fmt::print(fmt::fg(fmt::terminal_color::green), "Running cycle detection:\n");
+
+
     return graph;
 }

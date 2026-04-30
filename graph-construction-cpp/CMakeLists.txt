@@ -12,3 +12,6 @@ TARGET_LINK_LIBRARIES(test PRIVATE graph-calc)
 
 ADD_EXECUTABLE(chat-gpt-1 chat_gpt_1.cpp)
 TARGET_LINK_LIBRARIES(chat-gpt-1 PRIVATE graph-calc)
+
+ADD_EXECUTABLE(stress-test stress_test.cpp)
+TARGET_LINK_LIBRARIES(stress-test PRIVATE graph-calc)
