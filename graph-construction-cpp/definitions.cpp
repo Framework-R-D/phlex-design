@@ -124,7 +124,8 @@ bool node::inputs_connected() const {
     if (inputs.size() != spec->input_queries.size()) {
         return false;
     }
-    return std::ranges::all_of(inputs, _1 != nullptr);
+    if (!std::ranges::all_of(inputs, _1 != nullptr)) return false;
+    return std::ranges::all_of(inputs, [](product const* p) { return p->filled_in(); });
 }
 
 bool node::validate() const {

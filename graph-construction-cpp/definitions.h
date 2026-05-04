@@ -4,6 +4,7 @@
 #include "identifier.hpp"
 #include "layer_path_t.h"
 
+#include <memory>
 #include <optional>
 #include <source_location>
 #include <vector>
@@ -73,6 +74,31 @@ struct node_spec {
     bool validate() const;
 };
 
+// Utility to track duplication
+class dupe_tracker {
+  public:
+    dupe_tracker()
+        : copies_master(std::make_unique<int>(1)), copies(copies_master.get()), copy_idx(0) {}
+    ~dupe_tracker() {
+        *copies -= 1;
+    } // Not strictly necessary, nodes only get deleted at program end
+    // copy_idx is set to the old value of *copies, which is the new value - 1
+    dupe_tracker(dupe_tracker const& rhs)
+        : copies_master(nullptr), copies(rhs.copies), copy_idx(*rhs.copies) {
+        *copies += 1;
+    }
+    // No copy assignment, move construction, or move assignment
+    dupe_tracker& operator=(dupe_tracker const&) = delete;
+    dupe_tracker(dupe_tracker&&) = delete;
+    dupe_tracker& operator=(dupe_tracker&&) = delete;
+
+  private:
+    std::unique_ptr<int> const copies_master; // same as `copies` if copy_idx == 0, else nullptr
+
+  public:
+    int* const copies;  // Total number of copies, increments automatically in all copies
+    int const copy_idx; // Index for this copy
+};
 // Type representing a node internally
 struct node {
     node_spec const* const spec;
@@ -80,6 +106,7 @@ struct node {
 
     std::vector<product const*> outputs{};
     layer_path_t target_layer;
+    dupe_tracker duplicate_tracking{};
     // Do we have a full layer path (i.e. one beginning with "job")
     bool has_layer_path() const {
         return target_layer.size() >= 1 && target_layer.front() == "job"_idq;

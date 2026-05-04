@@ -14,13 +14,17 @@ struct node_props {
     id name;
     node_type type;
     layer_path_t layer;
+    bool missing = false;
+    std::string comment = "";
 };
 
 struct prod_props {
     id name;
 };
 
-using Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS, node_props,
+using Graph = boost::adjacency_list<boost::listS, boost::vecS, boost::bidirectionalS, node_props,
+                                    prod_props, boost::no_property>;
+using UndirGraph = boost::adjacency_list<boost::listS, boost::vecS, boost::undirectedS, node_props,
                                     prod_props, boost::no_property>;
 class node_writer {
   public:
@@ -44,7 +48,6 @@ class edge_writer {
 
 void graph_writer(std::ostream& out);
 
-namespace {
 class vertex_filter {
   public:
     // Stores list of vertices in this component
@@ -53,11 +56,10 @@ class vertex_filter {
         return vertices.contains(v);
     }
 };
-} // namespace
 
 using Subgraph = boost::filtered_graph<Graph, boost::keep_all, vertex_filter>;
 
-std::generator<Subgraph const&> connected_components(Graph const& g);
+std::generator<Subgraph> connected_components(Graph const& g);
 bool is_dag(Subgraph const& sg);
 
 #endif // GRAPH_H_

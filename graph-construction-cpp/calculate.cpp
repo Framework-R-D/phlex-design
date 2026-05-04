@@ -14,12 +14,6 @@
 namespace ranges = std::ranges;
 namespace views = std::ranges::views;
 
-// Declare ProductList and NodeList concepts we can use in the calculation functions later
-template <typename R>
-concept ProductList = ranges::viewable_range<R> && std::same_as<ranges::range_value_t<R>, product>;
-template <typename R>
-concept NodeList = ranges::viewable_range<R> && std::same_as<ranges::range_value_t<R>, node>;
-
 // Typedefs to refer to concrete lists of product or node
 // Use lists for pointer stability (re-evaluate later for efficiency)
 template <typename T> using list_t = std::list<T>;
@@ -95,7 +89,9 @@ void make_nodes(std::vector<node_spec> const& algorithms, node_list_t& node_list
 }
 
 using candidate_set = std::vector<product const*>;
-bool connect_inputs(node& node, ProductList auto const& products) {
+// bool duplicate_and_connect_inputs(node& node, product_list_t const& products,
+
+bool connect_inputs(node& node, product_list_t const& products) {
     // Reconnect all inputs unconditionally
     int slot = 0;
     int const n_slots = node.spec->input_queries.size();
@@ -103,9 +99,6 @@ bool connect_inputs(node& node, ProductList auto const& products) {
     for (auto&& [query, link] : views::zip(node.spec->input_queries, node.inputs)) {
         ++slot;
         auto match = [&query = std::as_const(query)](product const& p) {
-            if (!p.filled_in()) {
-                return false;
-            }
             // name is mandatory
             if (p.name != query.name) {
                 return false;
@@ -113,7 +106,9 @@ bool connect_inputs(node& node, ProductList auto const& products) {
             if (query.creator_name && (p.creator->spec->name != query.creator_name)) {
                 return false;
             }
-            if (query.layer_name && (p.layer().back() != query.layer_name)) {
+            if (query.layer_name && (!p.filled_in() || p.layer().back() != query.layer_name)) {
+                // If the query has a layer_name it will only match after the corresponding product
+                // has had it's layer name determined
                 return false;
             }
             if ((query.stage != stage_t::any) && (p.stage() != query.stage)) {
@@ -138,17 +133,22 @@ bool connect_inputs(node& node, ProductList auto const& products) {
             }
             continue;
         }
-        // Otherwise, things get complicated. Start by only supporting the case where we have
-        // products from multiple stages, of which exactly one is from the current job. Later we
-        // might also think about the case where we have multiple products from different layers but
-        // that requires duplicating nodes or allowing nodes and products to have multiple layers.
-        // Count distinct stages by making a set and getting its size
+        // Otherwise, things get complicated.
+        // This function only needs to handle the case where we have multiple matches because we
+        // have a product created in this job and products created in earlier jobs. The case of
+        // having the same layer name in multiple paths is handled duplicate_and_connect_nodes.
         int const distinct_stages = (views::transform(matching_products,
                                                       [](product const* p) { return p->stage(); })
                                      | ranges::to<std::flat_set>())
                                           .size();
         if (distinct_stages <= 1) {
             // This is an error for now
+            fmt::print(
+                  "ERR: Multiple matching products for query\n - {}\n",
+                  fmt::join(matching_products | views::transform([](auto const* p) -> auto const& {
+                                return *p;
+                            }),
+                            "\n - "));
             throw std::runtime_error(fmt::format("Error connecting inputs for {}. Have {} products "
                                                  "in candidate set and only {} distinct stages.",
                                                  node, matching_products.size(), distinct_stages));
@@ -167,51 +167,15 @@ bool connect_inputs(node& node, ProductList auto const& products) {
             fmt::print("Connected slot {}/{} for {} to {}\n", slot, n_slots, node, *link);
         }
     }
-    if (modified && node.inputs_connected()) {
-        auto input_layers = node.inputs | views::transform([](product const* p) {
-                                return std::cref(p->layer());
-                            })
-                            | ranges::to<layer_path_list>();
-        bool const hierarchy_ok = forms_hierarchy(input_layers);
-        if (!hierarchy_ok) {
-            auto input_layer_names = input_layers
-                                     | views::transform([](auto const& lp) { return fmt_lp(lp); })
-                                     | ranges::to<std::vector<std::string>>();
-            throw std::runtime_error(
-                  fmt::format("Reconnected inputs for {} but input layers do not form a hierarchy. "
-                              "Input layers are:\n  - {}\n",
-                              node, fmt::join(input_layer_names, "\n  - ")));
-        }
-        layer_path_t const& most_derived = most_derived_layer(input_layers);
-        layer_path_t new_target_layer;
-        // Deal with folds and unfolds
-        if (node.spec->type == node_type::fold) {
-            auto const end = ranges::find(most_derived, node.spec->target_layer_name);
-            if (end == most_derived.cend()) {
-                throw std::runtime_error(
-                      fmt::format("Target layer {} of {} does not appear in most derived path: {}",
-                                  node.spec->target_layer_name.value(), node, fmt_lp(most_derived)));
-            }
-            new_target_layer = layer_path_t(most_derived.cbegin(), ranges::next(end));
-        }
-        else if (node.spec->type == node_type::unfold) {
-            new_target_layer = most_derived;
-            new_target_layer.push_back(node.spec->target_layer_name.value());
-        }
-        else {
-            new_target_layer = most_derived;
-        }
-        fmt::print("Target layer of {} is changing from {} to {}\n", node,
-                   fmt_lp(node.target_layer), fmt_lp(new_target_layer));
-        node.target_layer = std::move(new_target_layer);
-    }
     return modified;
 }
 
-bool connect_inputs(NodeList auto& nodes, ProductList auto const& products) {
+bool connect_inputs(node_list_t& nodes, product_list_t const& products) {
     // Connect any inputs that we can now resolve
     bool modified = false;
     for (node& node : nodes) {
+      // Only consider nodes that don't need to be duplicated.
+      // Specifically, if any of a nodes input queries explicitly state a layer name AND 
         modified |= connect_inputs(node, products);
     }
     if (!modified) {
@@ -220,7 +184,59 @@ bool connect_inputs(NodeList auto& nodes, ProductList auto const& products) {
     return modified;
 }
 
-bool validate_nodes(NodeList auto const& nodes) {
+bool update_layers(node_list_t& nodes, product_list_t const& products) {
+    bool modified = false;
+    for (node& node : nodes) {
+        if (!node.inputs.empty() && node.inputs_connected()) {
+            auto input_layers = node.inputs | views::transform([](product const* p) {
+                                    return std::cref(p->layer());
+                                })
+                                | ranges::to<layer_path_list>();
+            bool const hierarchy_ok = forms_hierarchy(input_layers);
+            if (!hierarchy_ok) {
+                auto input_layer_names = input_layers | views::transform([](auto const& lp) {
+                                             return fmt_lp(lp);
+                                         })
+                                         | ranges::to<std::vector<std::string>>();
+                throw std::runtime_error(fmt::format(
+                      "Reconnected inputs for {} but input layers do not form a hierarchy. "
+                      "Input layers are:\n  - {}\n",
+                      node, fmt::join(input_layer_names, "\n  - ")));
+            }
+            layer_path_t const& most_derived = most_derived_layer(input_layers);
+            layer_path_t new_target_layer;
+            // Deal with folds and unfolds
+            if (node.spec->type == node_type::fold) {
+                auto const end = ranges::find(most_derived, node.spec->target_layer_name);
+                if (end == most_derived.cend()) {
+                    throw std::runtime_error(fmt::format(
+                          "Target layer {} of {} does not appear in most derived path: {}",
+                          node.spec->target_layer_name.value(), node, fmt_lp(most_derived)));
+                }
+                new_target_layer = layer_path_t(most_derived.cbegin(), ranges::next(end));
+            }
+            else if (node.spec->type == node_type::unfold) {
+                new_target_layer = most_derived;
+                new_target_layer.push_back(node.spec->target_layer_name.value());
+            }
+            else {
+                new_target_layer = most_derived;
+            }
+            if (new_target_layer == node.target_layer) {
+                // no change
+                fmt::print("Target layer of {} remains {}\n", node, fmt_lp(node.target_layer));
+                continue;
+            }
+            fmt::print("Target layer of {} is changing from {} to {}\n", node,
+                       fmt_lp(node.target_layer), fmt_lp(new_target_layer));
+            node.target_layer = std::move(new_target_layer);
+            modified = true;
+        }
+    }
+    return modified;
+}
+
+bool validate_nodes(node_list_t const& nodes) {
     fmt::print("Validating nodes\n");
     for (node const& node : nodes) {
         if (!node.validate()) {
@@ -247,16 +263,21 @@ Graph calculate(std::vector<init_prod> const& initial_products,
     fmt::print("Now repeatedly connect nodes until they all validate.\n");
     int pass = 0;
     bool modified = true;
+    bool validated = true;
     do {
-        fmt::print(fmt::fg(fmt::terminal_color::green), "Pass {}\n", ++pass);
+        fmt::print(fmt::fg(fmt::terminal_color::green), "Pass {} -- connecting inputs\n", ++pass);
         modified = connect_inputs(node_list, product_list);
+        fmt::print(fmt::fg(fmt::terminal_color::green), "Pass {} -- setting layers\n", pass);
+        modified |= update_layers(node_list, product_list);
     } while (modified);
     if (not validate_nodes(node_list)) {
         fmt::print(fmt::fg(fmt::color::red),
                    "Not modified on last pass but nodes don't all validate!\n");
-        exit(1);
+        validated = false;
     }
-    fmt::print(fmt::fg(fmt::terminal_color::green), "DONE!!!\n");
+    else {
+        fmt::print(fmt::fg(fmt::terminal_color::green), "DONE!!!\n");
+    }
 
     // Let's make the graph
     Graph graph;
@@ -274,14 +295,42 @@ Graph calculate(std::vector<init_prod> const& initial_products,
     // Now the edges by going through each node and adding an edge from the creator of each input to
     // this node
     for (node const& node : node_list) {
-        for (product const* p : node.inputs) {
-            auto [e, _] = boost::add_edge(node_map[p->creator], node_map[&node], graph);
-            graph[e].name = p->name;
+        for (auto const& [query, p] : views::zip(node.spec->input_queries, node.inputs)) {
+            if (p == nullptr) {
+                // Add vertex for missing inputs
+                auto v = boost::add_vertex(graph);
+                graph[v].name = query.name;
+                graph[v].type = node_type::provider;
+                graph[v].missing = true;
+                auto const any = "ANY"_id;
+                auto const any_job = "any job"_id;
+                auto const current = "current job"_id;
+                auto const earlier = "earlier job"_id;
+                graph[v].comment = fmt::format("{} ⇦ {} ∈ {} @ {}", query.name,
+                                               query.creator_name.value_or(any),
+                                               query.layer_name.value_or(any),
+                                               query.stage == stage_t::any       ? any_job
+                                               : query.stage == stage_t::earlier ? earlier
+                                                                                 : current);
+                auto [e, _] = boost::add_edge(v, node_map[&node], graph);
+                graph[e].name = query.name;
+            }
+            else {
+                auto [e, _] = boost::add_edge(node_map[p->creator], node_map[&node], graph);
+                graph[e].name = p->name;
+            }
         }
     }
 
-  fmt::print(fmt::fg(fmt::terminal_color::green), "Running cycle detection:\n");
-
+    if (validated) {
+        fmt::print(fmt::fg(fmt::terminal_color::green), "Running cycle detection:\n");
+        for (Subgraph const& sg : connected_components(graph)) {
+            if (!is_dag(sg)) {
+                fmt::print(fmt::fg(fmt::color::red), " [ERROR] Found non-DAG component\n");
+                exit(1);
+            }
+        }
+    }
 
     return graph;
 }
