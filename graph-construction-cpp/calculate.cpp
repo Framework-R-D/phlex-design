@@ -4,6 +4,8 @@
 #include <flat_set>
 #include <list>
 #include <ranges>
+#include <set>
+#include <unordered_map>
 #include <vector>
 
 #include <fmt/color.h>
@@ -20,6 +22,36 @@ template <typename T> using list_t = std::list<T>;
 using product_list_t = list_t<product>;
 using node_list_t = list_t<node>;
 using node_spec_list_t = list_t<node_spec>;
+
+// Maps each layer name to a set of matching layer paths, and a number representing the number of
+// unfold nodes producing a given layer name which do not yet have a target layer path determined.
+struct layer_registry_entry {
+    std::set<layer_path_t> layer_paths{};
+    int undetermined_unfolds = 0;
+};
+using layer_registry_t = std::unordered_map<id, layer_registry_entry>;
+
+layer_registry_t make_layer_registry(product_list_t const& product_list,
+                                     node_list_t const& node_list) {
+    layer_registry_t reg{};
+    for (auto const& product : product_list) {
+        if (product.has_layer_path()) {
+            reg[product.layer().back()].layer_paths.insert(product.layer());
+        }
+    }
+    for (auto const& node : node_list) {
+        if (node.spec->type == node_type::unfold) {
+            // Not going to happen, but leave in just in case
+            if (node.has_layer_path()) {
+                reg[node.target_layer.back()].layer_paths.insert(node.target_layer);
+            }
+            else {
+                reg[node.spec->target_layer_name.value()].undetermined_unfolds++;
+            }
+        }
+    }
+    return reg;
+}
 
 void make_initial_products(std::vector<init_prod> const& initial_products,
                            product_list_t& product_list, node_list_t& node_list,
@@ -171,12 +203,33 @@ bool connect_inputs(node& node, product_list_t const& products) {
 }
 
 bool connect_inputs(node_list_t& nodes, product_list_t const& products) {
+    // First get an up-to-date layer registry
+    auto layer_registry = make_layer_registry(products, nodes);
     // Connect any inputs that we can now resolve
     bool modified = false;
     for (node& node : nodes) {
-      // Only consider nodes that don't need to be duplicated.
-      // Specifically, if any of a nodes input queries explicitly state a layer name AND 
-        modified |= connect_inputs(node, products);
+        // Only consider nodes that don't need to be duplicated.
+        // Specifically, if any of a nodes input queries explicitly state a layer name AND either
+        // there are undetermined unfolds creating such a layer or there's more than one matching
+        // layer path, that node is considered potentially duplicable.
+        auto mentioned_layer_names = node.spec->input_queries
+                                     | views::transform(&input_query::layer_name)
+                                     | views::filter(&opt_id::has_value)
+                                     | views::transform([](opt_id const& o) { return o.value(); })
+                                     | ranges::to<std::vector<id>>();
+        if (!mentioned_layer_names.empty()
+            && ranges::any_of(mentioned_layer_names, [&layer_registry](id const& layer) {
+                   return layer_registry[layer].undetermined_unfolds != 0
+                          || layer_registry[layer].layer_paths.size() > 1;
+               })) {
+            // Duplicable
+            // NOTE: PAUSING DEVELOPMENT -- We have decided that we may prefer a more dynamic system
+            // where nodes and "abstract" product specifications don't have a layer associated, only
+            // concrete products in specific cells have layers.
+        }
+        else {
+            modified |= connect_inputs(node, products);
+        }
     }
     if (!modified) {
         fmt::print("No changes\n");
