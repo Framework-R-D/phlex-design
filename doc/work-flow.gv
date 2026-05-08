@@ -23,7 +23,7 @@ digraph {
 
   gdml [label="GDML file", shape="cylinder", style="filled", fillcolor="lightgray"]
   driver [label="driver(Spill)", style="rounded,filled",fillcolor="palegreen1"];
-  input [label="HDF5 input files(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
+  input [label="HDF5 input file(s)", shape="cylinder", style="filled", fillcolor="lightgray"];
 
   // Providers
   geometry_provider [label="provide(Geometry)", style="filled,rounded", fillcolor="lightblue"];
