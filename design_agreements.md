@@ -49,12 +49,11 @@ From [#404](https://github.com/Framework-R-D/phlex/issues/404):
 
 From [#535](https://github.com/orgs/Framework-R-D/discussions/535):
 
-6. Translators are part of the computational graph.
-7. From the flow-graph point of view, translators are treated as first-class nodes, while being mostly irrelevant or invisible to the user.
-8. Translator nodes for a given data representation conversion should be singular by construction and should not be duplicated.
-9. Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
-10. The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
-11. The translator metadata required for graph building should be generated at translator plugin build time.
+6. From the flow-graph point of view, translators are treated as first-class nodes, while being mostly irrelevant or invisible to the user.
+7. Translator nodes for a given data representation conversion should be singular by construction and should not be duplicated.
+8. Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
+9. The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
+10. The translator metadata required for graph building should be generated at translator plugin build time.
 
 Important caveat from [#535](https://github.com/orgs/Framework-R-D/discussions/535):
 
@@ -80,27 +79,16 @@ From [#395](https://github.com/Framework-R-D/phlex/issues/395):
 3. Whenever the global hierarchy is established or updated, the framework validates it against what the computational graph requires.
 4. Validation may involve creating more index-set nodes, provider nodes, preserver nodes, and translator nodes.
 5. The job shall gracefully end when one of the input files contains a hierarchy that does not meet the hierarchy constraints of the computational graph.
-6. A driver registration syntax similar to the following was accepted:
-
-```cpp
-void cells_to_process(framework_driver& d) { ...}
-
-PHLEX_REGISTER_DRIVER(m)
-{
-  auto d = m.fixed_hierarchy("run", "subrun", "spill");
-  d.use(cells_to_process);
-}
-```
 
 From [#505](https://github.com/orgs/Framework-R-D/discussions/505):
 
-7. The semantic distinction between framework drivers and data-product providers will be retained.
-8. A data-cell index iterator that supplies one data-cell index at a time is sufficient for v0.3.0.
-9. Range-based processing of multiple data cells at one time is not needed for v0.3.0.
-10. The data-layer hierarchy will not be known until the input file is opened.
-11. Phlex will implement a driver interface that enables opening an input file.
-12. After opening the file, FORM will provide metadata used by the framework to synthesize a provider node for each required data product.
-13. After v0.3.0, expected future needs include:
+6. The semantic distinction between framework drivers and data-product providers will be retained.
+7. A data-cell index iterator that supplies one data-cell index at a time is sufficient for v0.3.0.
+8. Range-based processing of multiple data cells at one time is not needed for v0.3.0.
+9. The data-layer hierarchy will not be known until the input file is opened.
+10. Phlex will implement a driver interface that enables opening an input file.
+11. After opening the file, FORM will provide metadata used by the framework to synthesize a provider node for each required data product.
+12. After v0.3.0, expected future needs include:
    - updating processed hierarchy when opening another input file
    - a mode where external data management declares file hierarchy in advance
    - support for multiple concurrently open input files for multithreading or overlay use cases
@@ -125,12 +113,6 @@ From [#404](https://github.com/Framework-R-D/phlex/issues/404):
 1. A data-product concept can be modeled by multiple concrete data-product types.
 2. A concrete data-product type may model more than one data-product concept.
 3. The specification of input data products must support data-product concepts. This may include an optional explicit specification of the data-product concept.
-
-From [#265](https://github.com/Framework-R-D/phlex/issues/265):
-
-4. If the data-product concept is not ready in time for Prototype 0.2, the scope should focus on product suffix, creator name, and phase name, with a separate issue created for data-product concept access.
-
-This last point is partial and time-scoped, but it remains part of the collected record.
 
 ## Data-Product Management
 
@@ -234,13 +216,7 @@ Agreements identified about data accessible through a handle from [#508](https:/
    - module name in which the algorithm was registered
 10. The product suffix should be accessible.
 11. The phase name or stage name should be accessible.
-12. The term product name will be replaced with product suffix for now.
-13. If conditional execution depends on data that may or may not be present, that conditionality should be represented explicitly with a nullable type such as `std::optional<T const>` or `T const*`.
-14. Users should not explicitly invoke anything that creates a handle; the framework creates handles as needed.
-
-Partial note from [#265](https://github.com/Framework-R-D/phlex/issues/265):
-
-15. If the data-product concept is not ready in time for Prototype 0.2, the scope should focus on product suffix, creator name, and phase name, with a separate issue created for data-product concept access.
+12. Users should not explicitly invoke anything that creates a handle; the framework creates handles as needed.
 
 ## IO
 
@@ -358,28 +334,6 @@ From [#505](https://github.com/orgs/Framework-R-D/discussions/505):
 
 3. Phlex will enable registration of providers that return type-erased data.
 
-### Driver registration interface
-
-Primary source:
-
-- [#395](https://github.com/Framework-R-D/phlex/issues/395)
-
-Strength: Strong
-
-Agreement identified:
-
-1. A driver registration syntax similar to the following was accepted:
-
-```cpp
-void cells_to_process(framework_driver& d) { ...}
-
-PHLEX_REGISTER_DRIVER(m)
-{
-  auto d = m.fixed_hierarchy("run", "subrun", "spill");
-  d.use(cells_to_process);
-}
-```
-
 ## Discussions Reviewed But Not Counted As Settled Agreements
 
 ### Discussion #519: Data product support
@@ -486,36 +440,6 @@ Possible reconciliation:
 
 Even with that possible reconciliation, the current statements point in different directions and should be treated as a live design tension.
 
-### Metadata Management and Data-Product Management: singular handles vs plural query resolution
-
-Sources:
-
-- [#508](https://github.com/orgs/Framework-R-D/discussions/508)
-- [#391](https://github.com/Framework-R-D/phlex/issues/391)
-- [#506](https://github.com/orgs/Framework-R-D/discussions/506)
-
-Statements in tension:
-
-From [#508](https://github.com/orgs/Framework-R-D/discussions/508):
-
-- A handle provides access to exactly one data product.
-- A handle is always valid on successful construction.
-- Failure to construct a requested handle is an error.
-
-From [#391](https://github.com/Framework-R-D/phlex/issues/391) and [#506](https://github.com/orgs/Framework-R-D/discussions/506):
-
-- Product-query behavior is still described in ways that oscillate between singular resolution and plural delivery.
-
-Why this matters:
-
-- A handle design that always refers to exactly one valid product fits a singular-resolution access model.
-- That does not naturally fit a model where omitted-layer queries may intentionally deliver all matching products, unless those are exposed through some interface other than a singular handle.
-
-Assessment:
-
-- This is not yet a clean contradiction, but it is a strong sign that access APIs and query semantics may not be fully aligned.
-- It may be sufficient for the design to allow for multiple handles to be returned from a query, but that is not how the current handle design is described.
-
 ## Non-Contradictions or Compatible Decisions
 
 ### IO: `std::type_info` for FORM in v0.3.0
@@ -574,4 +498,3 @@ The next strongest tension is:
 
 1. [#395](https://github.com/Framework-R-D/phlex/issues/395): hierarchy declared and validated up front
 2. [#506](https://github.com/orgs/Framework-R-D/discussions/506): layers need not be known before graph formation
-
