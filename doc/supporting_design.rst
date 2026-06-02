@@ -16,25 +16,25 @@ This chapter of the document enumerates the subsystems, and describes their resp
 .. toctree::
    :maxdepth: 2
 
-   ch_subsystem_design/framework_subsystems
-   ch_subsystem_design/program_startup
-   ch_subsystem_design/role_of_data_product_concepts
-   ch_subsystem_design/application
-   ch_subsystem_design/task_management
-   ch_subsystem_design/data_modeling
-   ch_subsystem_design/data_product_management
-   ch_subsystem_design/metadata_management
-   ch_subsystem_design/io
-   ch_subsystem_design/plugin_management
-   ch_subsystem_design/resource_management
-   ch_subsystem_design/monitoring
-   ch_subsystem_design/registration
-   ch_subsystem_design/algo_description
-   ch_subsystem_design/error_handler
-   ch_subsystem_design/signal_handler
-   ch_subsystem_design/random_numbers
-   ch_subsystem_design/configuration
-   ch_subsystem_design/logging
+   ch_technical_design/framework_subsystems
+   ch_technical_design/program_startup
+   ch_technical_design/role_of_data_product_concepts
+   ch_technical_design/application
+   ch_technical_design/task_management
+   ch_technical_design/data_modeling
+   ch_technical_design/data_product_management
+   ch_technical_design/metadata_management
+   ch_technical_design/io
+   ch_technical_design/plugin_management
+   ch_technical_design/resource_management
+   ch_technical_design/monitoring
+   ch_technical_design/registration
+   ch_technical_design/algo_description
+   ch_technical_design/error_handler
+   ch_technical_design/signal_handler
+   ch_technical_design/random_numbers
+   ch_technical_design/configuration
+   ch_technical_design/logging
 
 External Subsystems
 ===================

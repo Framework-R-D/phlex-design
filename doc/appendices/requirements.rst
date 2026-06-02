@@ -546,7 +546,7 @@ Conceptual Requirements
 
     The framework shall support executing programs configured by composing configurations of separate components.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Graceful shutdown of framework program
     :collapse:
@@ -662,7 +662,7 @@ Supporting Requirements
 
     The framework shall provide an option to persist the configuration of each framework execution to the output of that execution.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Record execution environment
     :collapse:
@@ -738,7 +738,7 @@ Supporting Requirements
 
     The framework shall allow algorithms to use the same parallelism mechanisms the framework uses to schedule the execution of algorithms.
 
-- See :numref:`ch_subsystem_design/task_management:Task management`
+- See :numref:`ch_technical_design/task_management:Task management`
 
 .. req:: Logging resource usage per algorithm invocation
     :collapse:
@@ -770,7 +770,7 @@ Supporting Requirements
 
     The framework shall be able to report the global memory use of the framework program at user-specified points in time.
 
-- See :numref:`ch_subsystem_design/monitoring:Monitoring and reporting`
+- See :numref:`ch_technical_design/monitoring:Monitoring and reporting`
 
 .. req:: Elapsed time information
     :collapse:
@@ -784,7 +784,7 @@ Supporting Requirements
 
     The framework shall have an option to provide elapsed time information for each algorithm executed in a framework program.
 
-- See :numref:`ch_subsystem_design/monitoring:Monitoring and reporting`
+- See :numref:`ch_technical_design/monitoring:Monitoring and reporting`
 
 .. req:: Framework-independent message logging
     :collapse:
@@ -796,7 +796,7 @@ Supporting Requirements
 
     The framework shall support a logging solution that is usable in an algorithm without that algorithm explicitly relying on the framework.
 
-- See :numref:`ch_subsystem_design/logging:Logging`
+- See :numref:`ch_technical_design/logging:Logging`
 
 .. req:: Independence from unique hardware characteristics
     :collapse:
@@ -820,7 +820,7 @@ Supporting Requirements
 
     The framework shall validate an algorithm's configuration against specifications provided at registration time.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Algorithm configuration schema availability
     :collapse:
@@ -832,7 +832,7 @@ Supporting Requirements
 
     The framework shall have an option to emit an algorithm's configuration schema in human-readable form.
 
-- See :numref:`ch_subsystem_design/configuration:Semantic structure of the configuration`
+- See :numref:`ch_technical_design/configuration:Semantic structure of the configuration`
 
 .. req:: Emit message describing data flow of program
     :collapse:
@@ -855,7 +855,7 @@ Supporting Requirements
 
     The framework shall validate the configuration of each algorithm before that algorithm processes data.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`, :numref:`ch_subsystem_design/configuration:Semantic structure of the configuration`.
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`, :numref:`ch_technical_design/configuration:Semantic structure of the configuration`.
 
 .. req:: I/O backend for ROOT
     :collapse:
@@ -898,7 +898,7 @@ Supporting Requirements
 
     The framework shall provide the ability to compare two configurations.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: User-selectable list of recordable execution environment components
     :collapse:
@@ -1033,7 +1033,7 @@ Supporting Requirements
 
     The framework shall provide a command-line interface that allows the setting of configuration parameters.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Support local configuration changes
     :collapse:
@@ -1044,7 +1044,7 @@ Supporting Requirements
 
     The framework shall support the use of local configuration changes with respect to a separate complete configuration to modify the execution of a program.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Configuration tracing
     :collapse:
@@ -1055,7 +1055,7 @@ Supporting Requirements
 
     The framework configuration system shall have an option to provide diagnostic information for an evaluated configuration, including origins of final parameter values.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Configuration language single point of maintenance
     :collapse:
@@ -1067,7 +1067,7 @@ Supporting Requirements
 
     The language used for configuring a framework program shall include features for maintaining hierarchical configurations from a single point of maintenance.
 
-- See :numref:`ch_subsystem_design/configuration:Mechanics of Configuration Specification`
+- See :numref:`ch_technical_design/configuration:Mechanics of Configuration Specification`
 
 .. req:: Enable identification of data sets containing chunked data products
     :collapse:

@@ -200,7 +200,7 @@ rst_prolog ="""
 if conceptual_design_only := os.environ.get("PHLEX_CONCEPTUAL_DESIGN_ONLY", False):
     tags.add("conceptual_design_only")  # pyright: ignore[reportUndefinedVariable]
     exclude_patterns = ["supporting_design.rst",
-                        "ch_subsystem_design/*",
+                        "ch_technical_design/*",
                         "appendices/deployment.rst",
                         "appendices/platforms.rst"]
     suppress_warnings = ["toc.excluded"]
