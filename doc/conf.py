@@ -235,3 +235,7 @@ latex_documents = [("index",
                     author,
                     "manual",
                     False)]
+# The 'latex_table_style = ...' line should be removed once
+# https://github.com/sphinx-doc/sphinx/issues/14465 is resolved.  By default, both 'booktabs' and
+# 'colorrows' are enabled.  We can disable 'colorrows' by explicitly specifying only 'booktabs'.
+latex_table_style = ["booktabs"]
