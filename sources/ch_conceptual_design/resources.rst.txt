@@ -75,7 +75,7 @@ Such resource types have no dependency on Phlex, so that a user algorithm employ
 
 .. rubric:: Footnotes
 
-.. [#fdetails] Details for specifying program resources are described in :numref:`ch_subsystem_design/configuration:Program resource specification`.
+.. [#fdetails] Details for specifying program resources are described in :numref:`ch_technical_design/configuration:Program resource specification`.
 
 .. only:: html
 

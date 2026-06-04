@@ -153,7 +153,7 @@ Phlex supports such uses cases :need:`DUNE 113`, even if the specified data laye
 For example, suppose an algorithm needed to access a data product from a `Spill`, and it also required a calibration offset provided from an external database table :need:`DUNE 35`.
 Instead of providing a separate mechanism for handling calibration constants, a separate layer could be invented (e.g. `Calibration`) whose data cells corresponded to intervals of validity.
 So long as a relation can be defined between specific `Spill` data cells and specific `Calibration` data cells, the framework can use that relation to form the input family of `Spill`\ -\ `Calibration` data-product pairs that are presented to the algorithm.
-How the relation between data cells is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
+How the relation between data cells is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_technical_design/task_management:Data-Marshaling`.
 
 Data Products from Adjacent Data Cells
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -161,7 +161,7 @@ Data Products from Adjacent Data Cells
 In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets :need:`DUNE 91`, where *adjacency* is defined by the user :need:`DUNE 92`.
 The notion of adjacency can be critical for (e.g.) time-windowed processing (see :numref:`ch_conceptual_design/hofs/windows:Windows`), where the details of the "next" time bin are needed to accurately calculate properties of the "current" time bin.
 
-Supporting the processing of adjacent data cells is described further in :numref:`ch_subsystem_design/task_management:Data-Marshaling`.
+Supporting the processing of adjacent data cells is described further in :numref:`ch_technical_design/task_management:Data-Marshaling`.
 
 Accessing Configuration Information
 -----------------------------------
@@ -182,7 +182,7 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. note::
 
-   As discussed in :numref:`ch_subsystem_design/configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
+   As discussed in :numref:`ch_technical_design/configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
 
 Except for the specification of :cpp:`find_hits` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
 

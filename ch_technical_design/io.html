@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.4. Framework Application &#8212; Phlex 0.4.alpha (11f2db1) documentation</title>
+    <title>4.9. IO &#8212; Phlex 0.4.alpha (bb202a0) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=d3a00526"></script>
+    <script src="../static/documentation_options.js?v=9fc1ff8a"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -32,8 +32,8 @@
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.5. Task Management" href="task_management.html" />
-    <link rel="prev" title="4.3. The Role of Data Product Concepts" href="role_of_data_product_concepts.html" />
+    <link rel="next" title="4.10. Plugin Management" href="plugin_management.html" />
+    <link rel="prev" title="4.8. Metadata Management" href="metadata_management.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="static/css3-mediaqueries.js"></script>
@@ -46,14 +46,14 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="task_management.html" title="4.5. Task Management"
+          <a href="plugin_management.html" title="4.10. Plugin Management"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="role_of_data_product_concepts.html" title="4.3. The Role of Data Product Concepts"
+          <a href="metadata_management.html" title="4.8. Metadata Management"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (11f2db1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (bb202a0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.4. </span>Framework Application</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.9. </span>IO</a></li> 
       </ul>
     </div>  
 
@@ -62,8 +62,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="framework-application">
-<h1><span class="section-number">4.4. </span>Framework Application<a class="headerlink" href="#framework-application" title="Link to this heading">¶</a></h1>
+  <section id="io">
+<h1><span class="section-number">4.9. </span>IO<a class="headerlink" href="#io" title="Link to this heading">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>IO includes output and the input of all data not provided in a configuration file or on the command-line:</p>
+<ul class="simple">
+<li><p>This could also include external database use cases.</p></li>
+<li><p>This would also include the data-handling mechanisms.</p></li>
+<li><p>This may include a textual output, which may or may not be parse-able for input</p></li>
+</ul>
+</div>
 </section>
 
 
@@ -78,18 +87,18 @@
             </a></p>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="role_of_data_product_concepts.html"
-                          title="previous chapter"><span class="section-number">4.3. </span>The Role of Data Product Concepts</a></p>
+    <p class="topless"><a href="metadata_management.html"
+                          title="previous chapter"><span class="section-number">4.8. </span>Metadata Management</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="task_management.html"
-                          title="next chapter"><span class="section-number">4.5. </span>Task Management</a></p>
+    <p class="topless"><a href="plugin_management.html"
+                          title="next chapter"><span class="section-number">4.10. </span>Plugin Management</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../sources/ch_subsystem_design/application.rst.txt"
+      <li><a href="../sources/ch_technical_design/io.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -114,19 +123,19 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="task_management.html" title="4.5. Task Management"
+          <a href="plugin_management.html" title="4.10. Plugin Management"
              >next</a> |</li>
         <li class="right" >
-          <a href="role_of_data_product_concepts.html" title="4.3. The Role of Data Product Concepts"
+          <a href="metadata_management.html" title="4.8. Metadata Management"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (11f2db1) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (bb202a0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.4. </span>Framework Application</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.9. </span>IO</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 03, 2026.
+      Last updated on Jun 04, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
