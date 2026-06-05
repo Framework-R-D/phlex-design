@@ -43,6 +43,26 @@ Output family specification
 .. productionlist::
     output_family_spec : ProductOutputSpec | ProductOutputSpec "," `output_family_spec`
 
+
+
+Semantics and lookup policy for `product_selector`
+----------------------------------------------
+
+1. Only the data-product concept will be unconditionally required, and that could be calculated by the framework.
+2. It is a framework-graph initialization error if the `product_selector` object resolves to multiple data products.
+3. Ambiguities can be resolved by specifying additional fields.
+4. This implies that a working Phlex job may fail once a user adds another data product whose specification matches an existing `product_selector`.
+
+5. Duplicate specifications, as resolved from `product_selector` objects, of the same input data product will be allowed.
+
+
+6. A `product_selector` with an absent layer specification implies that any data products matching the query will be presented to the node.
+7. The data layers of data products processed by an algorithm do not necessarily need to be known before forming the data-flow graph.
+8. If the fields in the `product_selector` are sufficient to unambiguously connect one node to another, the data layer does not need to be known ahead of time.
+9. The user must specify a product's data layer, or equivalent disambiguating information using other `product_selector` fields, to guarantee that only products associated with that layer will be processed.
+
+
+
 .. only:: html
 
    .. rubric:: References
