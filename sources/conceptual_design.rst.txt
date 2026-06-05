@@ -62,12 +62,19 @@ Various framework aspects are demonstrated by that figure:
 
       The histogramming resource in :numref:`workflow` enables the *observe* algorithm to fill and write histograms to a ROOT analysis file.
 
+   *computational graph*
+      The computational graph is the part of the data-flow graph that performs the computations of the reconstruction or simulation task of the configured workflow.
+      The computational graph does not include providers, preservers, or the framework driver. 
+      The computational graph can be disjoint: a workflow may contain parts that are independent of each other.
+      In :numref:`workflow` the computational graph is formed by the unshaded nodes.
+
 Note that in this workflow, the names `Spill` and `APA` are not special to the Phlex framework; they are names (hypothetically) chosen by the experiment.
 Each data product is also indexed, thus associating it with a particular data cell (e.g. :math:`\textit{GoodHits}_{3,5,9}` denotes the :product:`GoodHits` data product belonging to `APA` :math:`9` of `Spill` :math:`5` of `Run` :math:`3`).
 
 .. graphviz:: work-flow.gv
    :caption: A fictitious workflow showing how HOFs are used in a Phlex program.
              Each unshaded node represent a HOF bound to a user-defined algorithm.
+             These nodes form the computational graph of the workflow.
              The top part of the box shows the configured name of the node; the bottom part shows higher-order function invoked, and the name of the user-defined algorithm that is bound to it.
              The algorithm name is shaded in blue.
              Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.

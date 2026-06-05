@@ -137,7 +137,7 @@ The :mathfunc:`fold(sum_energies)` node in :numref:`workflow` would be represent
         concurrency::unlimited  // <= Allowed concurrency
       )
       .input_family(
-         product_query{.suffix = "GoodHits", .layer = "APA"}
+         product_selector{.suffix = "GoodHits", .layer = "APA"}
       )
       .output_product_suffixes("TotalHitEnergy");
    }

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.5. Task Management &#8212; Phlex 0.4.alpha (32aed35) documentation</title>
+    <title>4.5. Task Management &#8212; Phlex 0.4.alpha (ad68e35) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=81d1c5bd"></script>
+    <script src="../static/documentation_options.js?v=aab702a3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="application.html" title="4.4. Framework Application"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (32aed35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.5. </span>Task Management</a></li> 
       </ul>
@@ -105,6 +105,47 @@ This step is iterative so that all graph-node candidates from <a class="referenc
 <section id="data-marshaling">
 <h2><span class="section-number">4.5.2. </span>Data-Marshaling<a class="headerlink" href="#data-marshaling" title="Link to this heading">¶</a></h2>
 </section>
+<section id="translators">
+<h2><span class="section-number">4.5.3. </span>Translators<a class="headerlink" href="#translators" title="Link to this heading">¶</a></h2>
+<p>A <em>translator</em> is a node whose input is of one concrete data-product type and whose output is of a different concrete data-product type, both of which model the same data-product concept.
+A translator will be automatically inserted into the graph between two nodes whose data-product types are concept-compatible but not identical.
+Translator nodes belong to the computational graph.
+There are no translators that precede a provider.
+There are no translators that follow a preserver.</p>
+<p>From the flow-graph point of view, translators are treated as first-class nodes, while being mostly irrelevant or invisible to the user.
+Translator nodes for a given data representation conversion should be singular by construction and should not be duplicated.
+Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
+The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
+The translator metadata required for graph building should be generated at translator plugin build time.</p>
+</section>
+<section id="drivers-and-runtime-hierarchy-handling">
+<h2><span class="section-number">4.5.4. </span>Drivers and Runtime Hierarchy Handling<a class="headerlink" href="#drivers-and-runtime-hierarchy-handling" title="Link to this heading">¶</a></h2>
+<p>Phlex will implement a driver interface that enables opening an input file.</p>
+<p>The hierarchy of data-cell indices will be declared to the framework before processing any data-cell indices.</p>
+<p>Different policies for supporting hierarchies will be supported:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a fixed hierarchy may be declared for the entire job</p></li>
+<li><p>the global hierarchy may be updated based on hierarchies stored in input files in the middle of the job</p></li>
+</ul>
+</div></blockquote>
+<p>The data-layer hierarchy will not be known until the input file is opened.
+Whenever the global hierarchy is established (e.g. by the first input file) or updated (e.g. by a subsequent input file), the framework validates it against what the computational graph requires.
+Validation may involve creating more index-set nodes, provider nodes, preserver nodes, and translator nodes.
+The job shall gracefully end when one of the input files contains a hierarchy that does not meet the hierarchy constraints of the computational graph.</p>
+<p>The semantic distinction between framework drivers and data-product providers will be retained.</p>
+<p>For release v0.3.0, a <em>data-cell index iterator</em> that supplies one data-cell index at a time is sufficient.
+This is a temporary solution that will be modified in the future.
+Range-based processing of multiple data cells at one time is not needed for v0.3.0.</p>
+<p>After v0.3.0, expected future needs include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>updating processed hierarchy when opening another input file</p></li>
+<li><p>a mode where external data management declares file hierarchy in advance</p></li>
+<li><p>support for multiple concurrently open input files for multithreading or overlay use cases</p></li>
+</ul>
+</div></blockquote>
+</section>
 </section>
 
 
@@ -129,6 +170,8 @@ This step is iterative so that all graph-node candidates from <a class="referenc
 </ul>
 </li>
 <li><a class="reference internal" href="#data-marshaling">4.5.2. Data-Marshaling</a></li>
+<li><a class="reference internal" href="#translators">4.5.3. Translators</a></li>
+<li><a class="reference internal" href="#drivers-and-runtime-hierarchy-handling">4.5.4. Drivers and Runtime Hierarchy Handling</a></li>
 </ul>
 </li>
 </ul>
@@ -177,14 +220,14 @@ This step is iterative so that all graph-node candidates from <a class="referenc
         <li class="right" >
           <a href="application.html" title="4.4. Framework Application"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (32aed35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.5. </span>Task Management</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 04, 2026.
+      Last updated on Jun 05, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.7. Data Product Management &#8212; Phlex 0.4.alpha (32aed35) documentation</title>
+    <title>4.7. Data Product Management &#8212; Phlex 0.4.alpha (ad68e35) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=81d1c5bd"></script>
+    <script src="../static/documentation_options.js?v=aab702a3"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="data_modeling.html" title="4.6. Data Modeling"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (32aed35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
       </ul>
@@ -81,7 +81,7 @@
 <section id="specifying-familiies">
 <h2><span class="section-number">4.7.1. </span>Specifying Familiies<a class="headerlink" href="#specifying-familiies" title="Link to this heading">¶</a></h2>
 <p>As discussed in <a class="reference internal" href="../ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a>, the input family to a HOF is specified via a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">family</span><span class="p">(...)</span></code> clause, where the ellipsis is replaced by a <em>family specification</em>.
-One of the specifications provided is <code class="code highlight c++ docutils literal highlight-c++"><span class="n">product_query</span><span class="p">{.</span><span class="n">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;good_hits&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spill&quot;</span><span class="p">}</span></code>, which indicates that a family should be formed from data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> from each <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data layer.</p>
+One of the specifications provided is <code class="code highlight c++ docutils literal highlight-c++"><span class="n">product_selector</span><span class="p">{.</span><span class="n">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;good_hits&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spill&quot;</span><span class="p">}</span></code>, which indicates that a family should be formed from data products labeled <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;good_hits&quot;</span></code> from each <code class="code highlight c++ docutils literal highlight-c++"><span class="s">&quot;spill&quot;</span></code> data layer.</p>
 </section>
 <section id="input-family-specification">
 <h2><span class="section-number">4.7.2. </span>Input Family Specification<a class="headerlink" href="#input-family-specification" title="Link to this heading">¶</a></h2>
@@ -105,6 +105,20 @@ The specifications for <code class="code highlight c++ docutils literal highligh
 <pre>
 <strong id="grammar-token-output_family_spec">output_family_spec</strong> ::= ProductOutputSpec | ProductOutputSpec &quot;,&quot; <a class="reference internal" href="#grammar-token-output_family_spec"><code class="xref docutils literal notranslate"><span class="pre">output_family_spec</span></code></a>
 </pre>
+</section>
+<section id="semantics-and-lookup-policy-for-product-selector">
+<h2><span class="section-number">4.7.4. </span>Semantics and lookup policy for <cite>product_selector</cite><a class="headerlink" href="#semantics-and-lookup-policy-for-product-selector" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Only the data-product concept will be unconditionally required, and that could be calculated by the framework.</p></li>
+<li><p>It is a framework-graph initialization error if the <cite>product_selector</cite> object resolves to multiple data products.</p></li>
+<li><p>Ambiguities can be resolved by specifying additional fields.</p></li>
+<li><p>This implies that a working Phlex job may fail once a user adds another data product whose specification matches an existing <cite>product_selector</cite>.</p></li>
+<li><p>Duplicate specifications, as resolved from <cite>product_selector</cite> objects, of the same input data product will be allowed.</p></li>
+<li><p>A <cite>product_selector</cite> with an absent layer specification implies that any data products matching the query will be presented to the node.</p></li>
+<li><p>The data layers of data products processed by an algorithm do not necessarily need to be known before forming the data-flow graph.</p></li>
+<li><p>If the fields in the <cite>product_selector</cite> are sufficient to unambiguously connect one node to another, the data layer does not need to be known ahead of time.</p></li>
+<li><p>The user must specify a product’s data layer, or equivalent disambiguating information using other <cite>product_selector</cite> fields, to guarantee that only products associated with that layer will be processed.</p></li>
+</ol>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-ebnf" role="doc-biblioentry">
@@ -132,6 +146,7 @@ The specifications for <code class="code highlight c++ docutils literal highligh
 <li><a class="reference internal" href="#specifying-familiies">4.7.1. Specifying Familiies</a></li>
 <li><a class="reference internal" href="#input-family-specification">4.7.2. Input Family Specification</a></li>
 <li><a class="reference internal" href="#output-family-specification">4.7.3. Output family specification</a></li>
+<li><a class="reference internal" href="#semantics-and-lookup-policy-for-product-selector">4.7.4. Semantics and lookup policy for <cite>product_selector</cite></a></li>
 </ul>
 </li>
 </ul>
@@ -180,14 +195,14 @@ The specifications for <code class="code highlight c++ docutils literal highligh
         <li class="right" >
           <a href="data_modeling.html" title="4.6. Data Modeling"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (32aed35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 04, 2026.
+      Last updated on Jun 05, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

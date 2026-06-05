@@ -105,7 +105,7 @@ The :mathfunc:`window(make_tracks)` node in :numref:`workflow` would be represen
         "APA",                  // <= Output data layer
         concurrency::unlimited  // <= Allowed concurrency
      )
-     .input_family(product_query{.suffix = "GoodHits", .layer = "APA"})
+     .input_family(product_selector{.suffix = "GoodHits", .layer = "APA"})
      .output_product_suffixes("GoodTracks");
    }
 

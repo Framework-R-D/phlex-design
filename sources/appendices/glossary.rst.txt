@@ -39,6 +39,10 @@ Glossary
         All other layers in the hierarchy are defined by the combination of the configuration of the framework job and the layers defined in the input data.
         In *art*, the data-layer hierarchy is `Run`\ -\ `Subrun`\ -\ `Event`.
 
+    Computational graph
+         The portion of the workflow graph that performs the computatoins of the reconstruction or simulation job.
+         This does not include the portion of the workflow graph that performs input and output operations.
+
     Concrete data product
         An object managed by the framework and for which provenance information is recorded.
 
