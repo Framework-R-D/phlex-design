@@ -45,7 +45,7 @@ It uses the :cpp:`resource<histogramming>` interface to provide access to a puta
 
      m.observe(histogram_hits, concurrency::serial)
       .input_family(
-        product_query{.suffix = "GoodHits", .layer = "APA"},
+        product_selector{.suffix = "GoodHits", .layer = "APA"},
         h_resource->make<TH1F>(...)
       );
    }

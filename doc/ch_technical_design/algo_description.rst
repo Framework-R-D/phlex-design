@@ -104,7 +104,7 @@ The subsystem provides builders and helpers to make it easy to attach descriptor
 - Descriptor construction from signature information
 - Helpers to add human-readable descriptions, parameter documentation, and configuration examples
 
-**Query API**
+*Selector API**
 
 The subsystem provides queries to retrieve descriptors by:
 
