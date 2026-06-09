@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.7. Data Product Management &#8212; Phlex 0.4.alpha (ad68e35) documentation</title>
+    <title>4.7. Data Product Management &#8212; Phlex 0.4.alpha (33944e0) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=aab702a3"></script>
+    <script src="../static/documentation_options.js?v=c4b3e1d1"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="data_modeling.html" title="4.6. Data Modeling"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
       </ul>
@@ -119,6 +119,23 @@ The specifications for <code class="code highlight c++ docutils literal highligh
 <li><p>If the fields in the <cite>product_selector</cite> are sufficient to unambiguously connect one node to another, the data layer does not need to be known ahead of time.</p></li>
 <li><p>The user must specify a product’s data layer, or equivalent disambiguating information using other <cite>product_selector</cite> fields, to guarantee that only products associated with that layer will be processed.</p></li>
 </ol>
+</section>
+<section id="data-layer-semantics-for-transforms">
+<h2><span class="section-number">4.7.5. </span>Data-layer semantics for transforms<a class="headerlink" href="#data-layer-semantics-for-transforms" title="Link to this heading">¶</a></h2>
+<p>If a transform algorithm receives input data products from unrelated data layers (data layers in different hierarchies) , the data product created by the algorithm will be associated with every input data layer.</p>
+</section>
+<section id="identifier-restrictions-in-product-specification">
+<h2><span class="section-number">4.7.6. </span>Identifier restrictions in product specification<a class="headerlink" href="#identifier-restrictions-in-product-specification" title="Link to this heading">¶</a></h2>
+<p>Phlex will enforce the restriction that the following identifiers used in specifying a data product must be representable as a valid C++ variable name:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>plugin name</p></li>
+<li><p>node name</p></li>
+<li><p>suffix</p></li>
+<li><p>stage name</p></li>
+<li><p>data-layer name element</p></li>
+</ul>
+</div></blockquote>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="wiki-ebnf" role="doc-biblioentry">
@@ -147,6 +164,8 @@ The specifications for <code class="code highlight c++ docutils literal highligh
 <li><a class="reference internal" href="#input-family-specification">4.7.2. Input Family Specification</a></li>
 <li><a class="reference internal" href="#output-family-specification">4.7.3. Output family specification</a></li>
 <li><a class="reference internal" href="#semantics-and-lookup-policy-for-product-selector">4.7.4. Semantics and lookup policy for <cite>product_selector</cite></a></li>
+<li><a class="reference internal" href="#data-layer-semantics-for-transforms">4.7.5. Data-layer semantics for transforms</a></li>
+<li><a class="reference internal" href="#identifier-restrictions-in-product-specification">4.7.6. Identifier restrictions in product specification</a></li>
 </ul>
 </li>
 </ul>
@@ -195,14 +214,14 @@ The specifications for <code class="code highlight c++ docutils literal highligh
         <li class="right" >
           <a href="data_modeling.html" title="4.6. Data Modeling"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.7. </span>Data Product Management</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 05, 2026.
+      Last updated on Jun 09, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

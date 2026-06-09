@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.9. IO &#8212; Phlex 0.4.alpha (ad68e35) documentation</title>
+    <title>4.9. IO &#8212; Phlex 0.4.alpha (33944e0) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=aab702a3"></script>
+    <script src="../static/documentation_options.js?v=c4b3e1d1"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="metadata_management.html" title="4.8. Metadata Management"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.9. </span>IO</a></li> 
       </ul>
@@ -73,6 +73,22 @@
 <li><p>This may include a textual output, which may or may not be parse-able for input</p></li>
 </ul>
 </div>
+<section id="form-integration-and-io-backed-provider-synthesis">
+<h2><span class="section-number">4.9.1. </span>FORM integration and IO-backed provider synthesis<a class="headerlink" href="#form-integration-and-io-backed-provider-synthesis" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Phlex v0.3.0 will support reading one FORM file as input.</p></li>
+<li><p>Phlex will enable registration of providers that return type-erased data.
+Type-erased data in this context means that the data are returned as base class type, not seen by the user, but known to Phlex and FORM.</p></li>
+<li><p>After opening an input file, FORM will provide metadata used by the framework to synthesize a provider node for each data product required by the workflow.</p></li>
+<li><p><cite>std::type_info</cite> will be used to request from FORM a data product with a specific type.</p></li>
+<li><p>An unrequited data product will have a provider created for it.</p></li>
+<li><p>For v0.3.0, an exception will be raised if more than one data product in the FORM file matches the specified product query, including its <cite>std::type_info</cite>.</p></li>
+<li><p>Phlex or FORM must be able to generate a reproducible name for a type if no product suffix is associated with the data product.</p></li>
+<li><p>The data-product concept must be persisted in some form to a file through Phlex’s IO backend interface, such as FORM.</p></li>
+</ol>
+<p>It is possible that the use of <cite>std::type_info</cite> may be problematic across process boundaries.
+For the v0.3.0 release this is not a concern.</p>
+</section>
 </section>
 
 
@@ -85,6 +101,16 @@
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">4.9. IO</a><ul>
+<li><a class="reference internal" href="#form-integration-and-io-backed-provider-synthesis">4.9.1. FORM integration and IO-backed provider synthesis</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="metadata_management.html"
@@ -128,14 +154,14 @@
         <li class="right" >
           <a href="metadata_management.html" title="4.8. Metadata Management"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.9. </span>IO</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 05, 2026.
+      Last updated on Jun 09, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

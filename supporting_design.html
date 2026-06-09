@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Technical Design &#8212; Phlex 0.4.alpha (ad68e35) documentation</title>
+    <title>4. Technical Design &#8212; Phlex 0.4.alpha (33944e0) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=aab702a3"></script>
+    <script src="static/documentation_options.js?v=c4b3e1d1"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="ch_conceptual_design/program_configuration.html" title="3.11. Program Configuration"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Technical Design</a></li> 
       </ul>
     </div>  
@@ -73,7 +73,10 @@ There are also several external systems that users of Phlex may interact with in
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/framework_subsystems.html">4.1. Framework Subsystems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/program_startup.html">4.2. Program Startup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/program_startup.html">4.2. Program Startup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_technical_design/program_startup.html#graph-assembly-and-startup-time-matching">4.2.1. Graph assembly and startup-time matching</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/role_of_data_product_concepts.html">4.3. The Role of Data Product Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/application.html">4.4. Framework Application</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/task_management.html">4.5. Task Management</a><ul>
@@ -89,10 +92,18 @@ There are also several external systems that users of Phlex may interact with in
 <li class="toctree-l2"><a class="reference internal" href="ch_technical_design/data_product_management.html#input-family-specification">4.7.2. Input Family Specification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_technical_design/data_product_management.html#output-family-specification">4.7.3. Output family specification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_technical_design/data_product_management.html#semantics-and-lookup-policy-for-product-selector">4.7.4. Semantics and lookup policy for <cite>product_selector</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_technical_design/data_product_management.html#data-layer-semantics-for-transforms">4.7.5. Data-layer semantics for transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_technical_design/data_product_management.html#identifier-restrictions-in-product-specification">4.7.6. Identifier restrictions in product specification</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/metadata_management.html">4.8. Metadata Management</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/io.html">4.9. IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/metadata_management.html">4.8. Metadata Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_technical_design/metadata_management.html#handle-accessible-provenance-and-metadata">4.8.1. Handle-accessible provenance and metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ch_technical_design/io.html">4.9. IO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ch_technical_design/io.html#form-integration-and-io-backed-provider-synthesis">4.9.1. FORM integration and IO-backed provider synthesis</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/plugin_management.html">4.10. Plugin Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/resource_management.html">4.11. Resource Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ch_technical_design/monitoring.html">4.12. Monitoring and Reporting</a></li>
@@ -194,13 +205,13 @@ There are also several external systems that users of Phlex may interact with in
         <li class="right" >
           <a href="ch_conceptual_design/program_configuration.html" title="3.11. Program Configuration"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (ad68e35) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (33944e0) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Technical Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 05, 2026.
+      Last updated on Jun 09, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>
