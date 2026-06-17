@@ -7,4 +7,4 @@ To support reproducibility of data, a Phlex program is configured by *only one* 
 These documents may be written in the following languages: Jsonnet, YAML, JSON (as a strict subset of Jsonnet), or FHiCL :need:`DUNE 72`.
 A given configuration can be written in any of these languages, but no configuration document may be written in more than one language.
 
-The other details and rules by which a Phlex program is configured largely do not inform the conceptual design and are described in :numref:`ch_subsystem_design/configuration:Configuration`.
+The other details and rules by which a Phlex program is configured largely do not inform the conceptual design and are described in :numref:`ch_technical_design/configuration:Configuration`.

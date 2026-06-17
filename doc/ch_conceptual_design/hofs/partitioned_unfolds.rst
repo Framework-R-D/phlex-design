@@ -141,7 +141,7 @@ The class is then registered with Phlex via:
         concurrency::unlimited     // <= Allowed concurrency
       )
       .input_family(
-        product_query{.suffix = "SimDepos", .layer = "Spill"}
+        product_selector{.suffix = "SimDepos", .layer = "Spill"}
       )
       .output_product_suffixes("Waveforms");
    }

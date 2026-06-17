@@ -13,7 +13,7 @@ It is the program configuration that specifies:
 - any resources needed to process the data, and
 - any other constraints to impose on the program.
 
-The pattern used for constructing the data-flow graph is described in detail in :numref:`ch_subsystem_design/task_management:Creating the data-flow graph`.
+The pattern used for constructing the data-flow graph is described in detail in :numref:`ch_technical_design/task_management:Creating the data-flow graph`.
 Here it is sufficient to note that the graph is primarily driven by which data products are specified to be written to output (i.e. *precious* data products).
 By default, the framework will schedule for execution only those algorithms needed to preserve precious data products.
 This means that not necessarily every algorithm in the program configuration will be used in a general workflow.

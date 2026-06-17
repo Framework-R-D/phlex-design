@@ -31,6 +31,13 @@ If no means of satisfying a required input port can be found, program startup fa
 Finally, for any created data products that the configuration specifies should be written to the output, a preserver node is created.
 The preserver node is connected to the computational node that produces the data product, and is configured to write that data product to the output.
 
+Graph assembly and startup-time matching
+----------------------------------------
+
+1. The program startup design will connect output ports and input ports by an edge when the input-port `product_selector` matches the data product of the output port.
+2. The framework must be able to detect cycles among computational nodes.
+3. User-friendly error messages must be provided for misconfigurations.
+
 .. rubric:: Footnotes
 
 .. [#incomplete-config-list] This list does not describe all the configuration options.

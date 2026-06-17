@@ -30,7 +30,7 @@ A predicate expression can be evaluated on a higher-level data cell than the dat
 For example, suppose none of the :product:`GoodHits` data products in a given `Spill` were suitable for processing.
 It is possible to create a filter that would reject all :product:`GoodHits` data products from that `Spill` even though the predicate itself interrogated only the `Spill` information and not the lower-level good-hits information from the `APA`.
 
-The supported grammar of the predicate expression is discussed in :numref:`ch_subsystem_design/task_management:Task Management`.
+The supported grammar of the predicate expression is discussed in :numref:`ch_technical_design/task_management:Task Management`.
 
 Registration interface
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@ The following example shows the complete registration for histogramming the filt
      auto h_resource = m.resource<histogramming>();
 
      m.observe(histogram_hits, concurrency::serial)
-      .input_family(product_query{.suffix = "GoodHits", .layer = "APA"},
+      .input_family(product_selector{.suffix = "GoodHits", .layer = "APA"},
                     h_resource->make<TH1F>(...))
       .when("high_energy");  // <= predicate expression within the when(...) call
    }
