@@ -60,6 +60,7 @@ Translator nodes for a given data representation conversion should be singular b
 Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
 The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
 The translator metadata required for graph building should be generated at translator plugin build time.
+Users will be able to register their own translators; such translators will be available for discovery by the framework and can be used to create transator nodes as needed for graph building.
 
 
 Drivers and Runtime Hierarchy Handling
@@ -76,19 +77,4 @@ Different policies for supporting hierarchies will be supported:
 
 The data-layer hierarchy will not be known until the input file is opened.
 Whenever the global hierarchy is established (e.g. by the first input file) or updated (e.g. by a subsequent input file), the framework validates it against what the computational graph requires.
-Validation may involve creating more index-set nodes, provider nodes, preserver nodes, and translator nodes.
-The job shall gracefully end when one of the input files contains a hierarchy that does not meet the hierarchy constraints of the computational graph.
-
-The semantic distinction between framework drivers and data-product providers will be retained.
-
-For release v0.3.0, a *data-cell index iterator* that supplies one data-cell index at a time is sufficient.
-This is a temporary solution that will be modified in the future.
-Range-based processing of multiple data cells at one time is not needed for v0.3.0.
-
-After v0.3.0, expected future needs include:
-
-   - updating processed hierarchy when opening another input file
-   - a mode where external data management declares file hierarchy in advance
-   - support for multiple concurrently open input files for multithreading or overlay use cases
-
 

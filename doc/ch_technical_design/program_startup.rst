@@ -36,9 +36,7 @@ Graph assembly and startup-time matching
 
 1. The program startup design will connect output ports and input ports by an edge when the input-port `product_selector` matches the data product of the output port.
 2. The framework must be able to detect cycles among computational nodes.
-3. It may be easier to form the graph in Python than in C++.
-4. Construction of TBB flow-graph nodes may be delayed until graph-formation mechanics are largely complete.
-5. User-friendly error messages must be provided for misconfigurations.
+3. User-friendly error messages must be provided for misconfigurations.
 
 .. rubric:: Footnotes
 

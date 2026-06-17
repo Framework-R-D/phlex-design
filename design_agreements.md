@@ -215,7 +215,7 @@ Agreements identified about data accessible through a handle from [#508](https:/
    - algorithm name
    - module name in which the algorithm was registered
 10. The product suffix should be accessible.
-11. The phase name or stage name should be accessible.
+11. The stage name should be accessible.
 12. Users should not explicitly invoke anything that creates a handle; the framework creates handles as needed.
 
 ## IO
