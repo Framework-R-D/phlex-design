@@ -40,7 +40,7 @@ Glossary
         In *art*, the data-layer hierarchy is `Run`\ -\ `Subrun`\ -\ `Event`.
 
     Computational graph
-         The portion of the workflow graph that performs the computatoins of the reconstruction or simulation job.
+         The portion of the workflow graph that performs the user-facing computations of the framework job.
          This does not include the portion of the workflow graph that performs input and output operations.
 
     Concrete data product
