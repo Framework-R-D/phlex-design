@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.5. Task Management &#8212; Phlex 0.4.alpha (3dd6f6d) documentation</title>
+    <title>4.5. Task Management &#8212; Phlex 0.4.alpha (046e7e2) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=11f40a94"></script>
+    <script src="../static/documentation_options.js?v=4676f1d7"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="application.html" title="4.4. Framework Application"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.5. </span>Task Management</a></li> 
       </ul>
@@ -116,7 +116,8 @@ There are no translators that follow a preserver.</p>
 Translator nodes for a given data representation conversion should be singular by construction and should not be duplicated.
 Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
 The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
-The translator metadata required for graph building should be generated at translator plugin build time.</p>
+The translator metadata required for graph building should be generated at translator plugin build time.
+Users will be able to register their own translators; such translators will be available for discovery by the framework and can be used to create transator nodes as needed for graph building.</p>
 </section>
 <section id="drivers-and-runtime-hierarchy-handling">
 <h2><span class="section-number">4.5.4. </span>Drivers and Runtime Hierarchy Handling<a class="headerlink" href="#drivers-and-runtime-hierarchy-handling" title="Link to this heading">¶</a></h2>
@@ -130,21 +131,7 @@ The translator metadata required for graph building should be generated at trans
 </ul>
 </div></blockquote>
 <p>The data-layer hierarchy will not be known until the input file is opened.
-Whenever the global hierarchy is established (e.g. by the first input file) or updated (e.g. by a subsequent input file), the framework validates it against what the computational graph requires.
-Validation may involve creating more index-set nodes, provider nodes, preserver nodes, and translator nodes.
-The job shall gracefully end when one of the input files contains a hierarchy that does not meet the hierarchy constraints of the computational graph.</p>
-<p>The semantic distinction between framework drivers and data-product providers will be retained.</p>
-<p>For release v0.3.0, a <em>data-cell index iterator</em> that supplies one data-cell index at a time is sufficient.
-This is a temporary solution that will be modified in the future.
-Range-based processing of multiple data cells at one time is not needed for v0.3.0.</p>
-<p>After v0.3.0, expected future needs include:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>updating processed hierarchy when opening another input file</p></li>
-<li><p>a mode where external data management declares file hierarchy in advance</p></li>
-<li><p>support for multiple concurrently open input files for multithreading or overlay use cases</p></li>
-</ul>
-</div></blockquote>
+Whenever the global hierarchy is established (e.g. by the first input file) or updated (e.g. by a subsequent input file), the framework validates it against what the computational graph requires.</p>
 </section>
 </section>
 
@@ -220,7 +207,7 @@ Range-based processing of multiple data cells at one time is not needed for v0.3
         <li class="right" >
           <a href="application.html" title="4.4. Framework Application"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.5. </span>Task Management</a></li> 
       </ul>

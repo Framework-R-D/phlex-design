@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.14. Algorithm Description &#8212; Phlex 0.4.alpha (3dd6f6d) documentation</title>
+    <title>4.14. Algorithm Description &#8212; Phlex 0.4.alpha (046e7e2) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=11f40a94"></script>
+    <script src="../static/documentation_options.js?v=4676f1d7"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,7 +51,7 @@
         <li class="right" >
           <a href="registration.html" title="4.13. Algorithm Registration"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" accesskey="U"><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.14. </span>Algorithm Description</a></li> 
       </ul>
@@ -64,159 +64,13 @@
             
   <section id="algorithm-description">
 <h1><span class="section-number">4.14. </span>Algorithm Description<a class="headerlink" href="#algorithm-description" title="Link to this heading">¶</a></h1>
-<p>The Algorithm Description subsystem collects and provides information about all user-registered code (computational algorithms, providers, preservers, and translators) that can appear in the workflow graph.
-This information is available both as structured data (for tools and the framework) and as human-readable text (for users).</p>
-<section id="responsibilities">
-<h2><span class="section-number">4.14.1. </span>Responsibilities<a class="headerlink" href="#responsibilities" title="Link to this heading">¶</a></h2>
-<p>The subsystem is responsible for:</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
 <ul class="simple">
-<li><p><strong>Providing information to the user as to what an algorithm can do</strong> — human-readable descriptions of algorithm capabilities, behavior, and use cases.</p></li>
-<li><p><strong>Providing information about configuration parameters</strong> — schema, defaults, validation rules, and documentation for each configurable parameter.</p></li>
-<li><p><strong>Supporting descriptions of all user-registered code</strong> — extensible to any plugin type (computational, provider, preserver, translator) and language (C++, Python).</p></li>
+<li><p>Providing information to the user as to what an algorithm can do and what configuration parameters it supports</p></li>
+<li><p>This could support describing all user-registered code</p></li>
 </ul>
-<p>The subsystem answers questions such as:</p>
-<ul class="simple">
-<li><p>“What does this algorithm/node do?”</p></li>
-<li><p>“What are its inputs and outputs?”</p></li>
-<li><p>“What resources does it require?”</p></li>
-<li><p>“What configuration parameters does it accept, and what are their constraints?”</p></li>
-<li><p>“How do I configure this algorithm?”</p></li>
-</ul>
-</section>
-<section id="descriptor-data-model">
-<h2><span class="section-number">4.14.2. </span>Descriptor Data Model<a class="headerlink" href="#descriptor-data-model" title="Link to this heading">¶</a></h2>
-<p>The subsystem defines a canonical descriptor object for each registered algorithm, containing:</p>
-<dl class="simple">
-<dt><strong>Identity</strong></dt><dd><ul class="simple">
-<li><p>Stable algorithm identifier (module + symbol + version)</p></li>
-<li><p>Display name</p></li>
-<li><p>Category (computational/provider/preserver/translator)</p></li>
-<li><p>Language (C++/Python)</p></li>
-</ul>
-</dd>
-<dt><strong>Human-readable description</strong></dt><dd><ul class="simple">
-<li><p>Short summary (one-liner)</p></li>
-<li><p>Detailed description (what it does, capabilities, use cases)</p></li>
-<li><p>Author/maintainer information (optional)</p></li>
-</ul>
-</dd>
-<dt><strong>Signature</strong> (derived from <a class="reference internal" href="../ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>)</dt><dd><ul class="simple">
-<li><p>Ordered list of data-product parameters, each with:
-- Parameter kind (<code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">const&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">const*</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span></code>, <code class="docutils literal notranslate"><span class="pre">phlex::handle&lt;P&gt;</span></code>)
-- Concrete type name (fully qualified)
-- Associated data-product concept identifier (if available)
-- Parameter documentation</p></li>
-<li><p>Ordered list of resource parameters, each with:
-- Type name
-- Access mode (read-only or read-write)
-- Parameter documentation</p></li>
-<li><p>Return type:
-- Created data-product type (<code class="docutils literal notranslate"><span class="pre">T</span></code> or <code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;T&gt;</span></code>)
-- Return documentation</p></li>
-</ul>
-</dd>
-<dt><strong>Ownership and concurrency contracts</strong></dt><dd><ul class="simple">
-<li><p>Ownership model (framework-owned; algorithm must not retain hard references)</p></li>
-<li><p>Concurrency safety (whether safe under configured concurrency)</p></li>
-<li><p>Member function const-ness (<code class="docutils literal notranslate"><span class="pre">const</span></code> recommended; non-<code class="docutils literal notranslate"><span class="pre">const</span></code> discouraged)</p></li>
-</ul>
-</dd>
-<dt><strong>Configuration schema</strong></dt><dd><ul class="simple">
-<li><p>Parameter list with types, defaults, and required/optional status</p></li>
-<li><p>Validation rules (ranges, enums, structural constraints)</p></li>
-<li><p>Documentation string for each parameter</p></li>
-<li><p>Examples of valid configurations</p></li>
-</ul>
-</dd>
-<dt><strong>Provenance</strong></dt><dd><ul class="simple">
-<li><p>Metadata to be attached to produced data products (creator, suffix, etc.)</p></li>
-</ul>
-</dd>
-</dl>
-</section>
-<section id="descriptor-production">
-<h2><span class="section-number">4.14.3. </span>Descriptor Production<a class="headerlink" href="#descriptor-production" title="Link to this heading">¶</a></h2>
-<p>Descriptors are produced at registration time and capture both structural information (signature, types) and human-readable metadata.</p>
-<p><strong>C++</strong></p>
-<ul class="simple">
-<li><p>Signature information is extracted at registration time; the registration API templates already deduce types.</p></li>
-<li><p>Stored information includes:
-- Demangled type names
-- Parameter kinds (reference, pointer, value, handle)
-- Return ownership model
-- Resource access modes</p></li>
-<li><p>Human-readable metadata is captured from:
-- Optional registration-time annotations (e.g., <code class="docutils literal notranslate"><span class="pre">description(...)</span></code>, <code class="docutils literal notranslate"><span class="pre">param_doc(...)</span></code> helpers)
-- Source code comments (if available via reflection)</p></li>
-</ul>
-<p><strong>Python</strong></p>
-<ul class="simple">
-<li><p>Signature information is extracted via reflection and type annotations.</p></li>
-<li><p>Fallback mechanisms include:
-- Explicit annotation objects in registration
-- JIT wrappers (e.g., Numba) that expose signatures
-- <code class="docutils literal notranslate"><span class="pre">ctypes</span></code> bindings with explicit signature metadata</p></li>
-<li><p>Human-readable metadata is captured from:
-- Docstrings (PEP 257)
-- Type hints
-- Optional registration-time annotations</p></li>
-</ul>
-</section>
-<section id="interfaces">
-<h2><span class="section-number">4.14.4. </span>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">¶</a></h2>
-<p><strong>Registration-time API</strong></p>
-<p>The subsystem provides builders and helpers to make it easy to attach descriptors to registered nodes, including:</p>
-<ul class="simple">
-<li><p>Descriptor construction from signature information</p></li>
-<li><p>Helpers to add human-readable descriptions, parameter documentation, and configuration examples</p></li>
-</ul>
-<p><em>Selector API*</em></p>
-<p>The subsystem provides queries to retrieve descriptors by:</p>
-<ul class="simple">
-<li><p>Algorithm identifier or name</p></li>
-<li><p>Input/output type</p></li>
-<li><p>Data-product concept</p></li>
-<li><p>Configuration parameter</p></li>
-<li><p>Capability or keyword</p></li>
-</ul>
-<p><strong>User-facing reporting</strong></p>
-<p>The subsystem provides tools for users to discover and understand registered algorithms:</p>
-<ul class="simple">
-<li><p>CLI command <code class="docutils literal notranslate"><span class="pre">phlex</span> <span class="pre">describe</span> <span class="pre">&lt;node|algorithm&gt;</span></code> — human-readable output of algorithm capabilities, signature, and configuration</p></li>
-<li><p>CLI command <code class="docutils literal notranslate"><span class="pre">phlex</span> <span class="pre">list-algorithms</span> <span class="pre">[--filter</span> <span class="pre">...]</span></code> — list all registered algorithms with brief descriptions</p></li>
-<li><p>JSON/YAML export — for tooling and programmatic access</p></li>
-<li><p>Documentation generation — Sphinx integration to generate reference pages</p></li>
-<li><p>Configuration validation — with helpful error messages explaining constraints and valid values</p></li>
-</ul>
-<p><strong>Validation hooks</strong></p>
-<p>The subsystem validates that registered algorithms satisfy conceptual constraints:</p>
-<ul class="simple">
-<li><p>At least one data-product parameter is required</p></li>
-<li><p>Return type must model a created data-product type (<code class="docutils literal notranslate"><span class="pre">T</span></code> or <code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;T&gt;</span></code>)</p></li>
-<li><p>Ambiguous ownership returns (bare pointers, references) are forbidden</p></li>
-<li><p>Non-<code class="docutils literal notranslate"><span class="pre">const</span></code> member functions trigger warnings</p></li>
-<li><p>Runtime configuration is validated against the schema with clear error messages</p></li>
-</ul>
-</section>
-<section id="integration-with-other-subsystems">
-<h2><span class="section-number">4.14.5. </span>Integration with other subsystems<a class="headerlink" href="#integration-with-other-subsystems" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><strong>Plugin Management</strong>: Descriptors are discovered and loaded alongside modules.</p></li>
-<li><p><strong>Configuration</strong>: Configuration schema is consumed to validate runtime configuration; the subsystem provides user-friendly validation messages.</p></li>
-<li><p><strong>Task Management</strong>: Signature and resource information is used to schedule algorithms safely (e.g., enforcing resource write locks).</p></li>
-<li><p><strong>Data Product Management / Metadata Management</strong>: Descriptor information is used to label produced data products and support data-product lookup.</p></li>
-<li><p><strong>Data Modeling</strong>: Concept identifiers and translation availability information (from descriptors) inform translator insertion decisions.</p></li>
-</ul>
-</section>
-<section id="open-issues">
-<h2><span class="section-number">4.14.6. </span>Open issues<a class="headerlink" href="#open-issues" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><strong>Python signature reliability</strong>: Ensuring that Python type annotations and docstrings are reliably available and correctly interpreted.</p></li>
-<li><p><strong>Concept identifier availability</strong>: Mapping concrete types to data-product concepts, especially for legacy code.</p></li>
-<li><p><strong>Versioning and backward compatibility</strong>: How descriptors evolve as algorithms are updated.</p></li>
-<li><p><strong>Configuration validation error quality</strong>: Providing clear, actionable error messages when configuration is invalid.</p></li>
-</ul>
-</section>
+</div>
 </section>
 
 
@@ -229,21 +83,6 @@ This information is available both as structured data (for tools and the framewo
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../static/phlex-logo.svg" alt="Logo of Phlex"/>
             </a></p>
-  <div>
-    <h3><a href="../index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">4.14. Algorithm Description</a><ul>
-<li><a class="reference internal" href="#responsibilities">4.14.1. Responsibilities</a></li>
-<li><a class="reference internal" href="#descriptor-data-model">4.14.2. Descriptor Data Model</a></li>
-<li><a class="reference internal" href="#descriptor-production">4.14.3. Descriptor Production</a></li>
-<li><a class="reference internal" href="#interfaces">4.14.4. Interfaces</a></li>
-<li><a class="reference internal" href="#integration-with-other-subsystems">4.14.5. Integration with other subsystems</a></li>
-<li><a class="reference internal" href="#open-issues">4.14.6. Open issues</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
   <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="registration.html"
@@ -287,7 +126,7 @@ This information is available both as structured data (for tools and the framewo
         <li class="right" >
           <a href="registration.html" title="4.13. Algorithm Registration"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../supporting_design.html" ><span class="section-number">4. </span>Technical Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4.14. </span>Algorithm Description</a></li> 
       </ul>

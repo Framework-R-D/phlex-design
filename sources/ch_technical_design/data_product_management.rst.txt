@@ -61,7 +61,7 @@ Semantics and lookup policy for `product_selector`
 Data-layer semantics for transforms
 -----------------------------------
 
-If a transform algorithm receives input data products from unrelated data layers (data layers in different hierarchies) , the data product created by the algorithm will be associated with every input data layer.
+If a transform algorithm receives input data products from unrelated data layers (data layers in different hierarchy paths) , the data product created by the algorithm will be associated with every input data layer.
 
 Identifier restrictions in product specification
 ------------------------------------------------

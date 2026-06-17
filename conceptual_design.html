@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (3dd6f6d) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (046e7e2) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=11f40a94"></script>
+    <script src="static/documentation_options.js?v=4676f1d7"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -115,7 +115,7 @@ For the main processing chain of creating vertices:</p>
 <dt><em>resources</em></dt><dd><p>Most workflows require access to some external resource (see <a class="reference internal" href="ch_conceptual_design/resources.html#resources"><span class="std std-numref">Section 3.10</span></a>).</p>
 <p>The histogramming resource in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> enables the <em>observe</em> algorithm to fill and write histograms to a ROOT analysis file.</p>
 </dd>
-<dt><em>computational graph</em></dt><dd><p>The computational graph is the part of the data-flow graph that performs the computations of the reconstruction or simulation task of the configured workflow.
+<dt><em>computational graph</em></dt><dd><p>The computational graph is the part of the data-flow graph that performs the user-facing computations of the configured workflow.
 The computational graph does not include providers, preservers, or the framework driver.
 The computational graph can be disjoint: a workflow may contain parts that are independent of each other.
 In <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a> the computational graph is formed by the unshaded nodes.</p>
@@ -213,7 +213,6 @@ Each data product is also indexed, thus associating it with a particular data ce
 <figcaption>
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">A fictitious workflow showing how HOFs are used in a Phlex program.
 Each unshaded node represent a HOF bound to a user-defined algorithm.
-These nodes form the computational graph of the workflow.
 The top part of the box shows the configured name of the node; the bottom part shows higher-order function invoked, and the name of the user-defined algorithm that is bound to it.
 The algorithm name is shaded in blue.
 Each user-defined algorithm operates on arguments received from the incoming arrows to the node: data products are passed along solid arrows; objects that provide access to resources are passed along dashed arrows.
@@ -336,7 +335,7 @@ For memory purposes, it is also likely that each element of the family is a ligh
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (3dd6f6d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (046e7e2) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>

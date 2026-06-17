@@ -12,16 +12,15 @@ IO
 FORM integration and IO-backed provider synthesis
 -------------------------------------------------
 
-1. Phlex v0.3.0 will support reading one FORM file as input.
+1. Phlex will support reading one FORM file as input.
 2. Phlex will enable registration of providers that return type-erased data.
    Type-erased data in this context means that the data are returned as base class type, not seen by the user, but known to Phlex and FORM.
 3. After opening an input file, FORM will provide metadata used by the framework to synthesize a provider node for each data product required by the workflow.
 4. `std::type_info` will be used to request from FORM a data product with a specific type.
 5. An unrequited data product will have a provider created for it.
-6. For v0.3.0, an exception will be raised if more than one data product in the FORM file matches the specified product query, including its `std::type_info`.
+6. An exception will be raised if more than one data product in the FORM file matches the specified product query, including its `std::type_info`.
 7. Phlex or FORM must be able to generate a reproducible name for a type if no product suffix is associated with the data product.
 8. The data-product concept must be persisted in some form to a file through Phlex's IO backend interface, such as FORM.
 
 It is possible that the use of `std::type_info` may be problematic across process boundaries.
-For the v0.3.0 release this is not a concern.
 
