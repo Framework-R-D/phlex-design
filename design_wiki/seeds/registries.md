@@ -6,6 +6,7 @@ In this context the registry being discussed is an object in the running program
 A data-product concept registry would be owned by the `framework_graph`.
 There would be only one registry for data-product concepts in any program.
 It would not be a global variable (or singleton) but would be owned by the `framework_graph` and passed to whatever functions need it.
+The registry needs to be owned by the `framework_graph` because every time we open a new input file we may discover a need to create new implicit providers, and thus there is the possibility of need new  [translator nodes](the-nature-of-translator-nodes.md).
 
 ### The Need for a Registry of Data-Product Concepts
 
@@ -24,10 +25,12 @@ A registry of data-product concepts can be used to meet this need.
 
 ### How Data-Product Concepts Are Added to the Registry
 
-1. Every computational node that creates a data product should have a data-product concept associated with the concrete data product type.
-2. At the time of the creation of the computational node, the system should add the concept to the registry.
-3. The data product concept should be associated with the concrete data product type being added to registry.
-4. Note that it is possible that the given concept is already in the registry; then all that is needed is to add the new concrete data product type to the set of concrete data product types associated with the concept in the registry.
-5. At the same time the concrete data product type should be associated with the concept in the registry.
-6. Note that it is possible that this concrete data product type is already associated with the concept.
+It is not clear whether data-product concepts should be created "early" or "late".
+"Early" means during the process of populating the `node_catalog`; as each node is created, it could deal with the concrete data- product types and the data-product concepts that needs.
+"Late" means during finalization of the `framework_graph`; the already-created nodes could be traversed, building all of the concept information at one time.
 
+Regardless of whether we handle the processing early or late, we need to do the following for each node:
+1. We need to know the concrete data product type and the data-product concept for each input and output.
+2. For each of the data-product concepts, we need to check the registry.
+	1. If the concept is not in the registry, add it, and add the concrete data product type to the new concept
+	2. If the concept is in the registry, and the concrete data product type is not already part of the concept, add it to the concept.
