@@ -7,8 +7,10 @@ There are two immediate subdirectories, `seeds` and `saplings`.
 It will be common to find that there are inconsistencies to be reconciled in the various notes in `seeds`.
 The directory `saplings` contains notes that are more mature than those in `seeds`, but not yet mature enough to be migrated out of this directory and into the design document itself.
 
-The typical lifetime of notes will be to start in the `seeds` directory, to be edited, merged, split as needed.
-When reaching a certain degree of maturity (perhaps indicated by group consensus in meetings), the notes can be migrated to the `saplings` directory.
+The typical life cycle of notes will be to start in the `seeds` directory, to be edited, merged, split as needed.
+Notes in `seeds` will typically be ideas from an individual or very small group.
+They are not yet ready for the wider group to review, and may be inconsistent with other notes in `seeds` or with the design document itself.
+When reaching a certain degree of maturity (when they are ready to be considered by the whole group), a set of notes should be migrated to the `saplings` directory.
 After sufficient maturity is reached, and when there is clear group agreement, notes can be moved out of `saplings` and into the design document proper.
 
 Sometimes these notes may repeat facts that are already recorded in the design document.
