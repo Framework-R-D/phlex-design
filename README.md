@@ -19,10 +19,10 @@ To build the document:
     - If you do not already have all the necessary software installed, you might install [Conda](https://conda-forge.org/download/), and use Conda to install the required products. Full documentation for Conda is available at <https://docs.conda.io/en/latest/>.  Assuming you already have a LaTeX installation, the following Conda command will install everything else you need into an environment named `for-dune-framework-docs`.
 
       ```console
-      conda create -n for-dune-framework-docs sphinx plantuml doxygen pandoc sphinx-needs
+      conda env create --name for-dune-framework-docs --file environment.yml
       ```
 
-1. Navigate to the `doc` subdirectory and type `make latexpdf`.
+1. Navigate to the `doc` subdirectory and type `make latexpdf`, or run `make -C doc latexpdf` from the root directory of this repository.
 
 ## Developing the design document in VSCode
 
@@ -33,7 +33,7 @@ If you wish to develop documentation in VSCode, we make the following suggestion
 1. Ensure the availability of the following Python packages (e.g. via conda):
 
    ```console
-   conda install -n for-dune-framework-docs doc8 esbonio rstcheck
+   conda install --name for-dune-framework-docs doc8 esbonio rstcheck
    ```
 
 1. Make the following additions to `.vscode/settings.json`, adjusting paths as necessary:
