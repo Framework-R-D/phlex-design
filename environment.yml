@@ -3,9 +3,9 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - plantuml
+  - graphviz2drawio
+  - graphviz[version='>=12']
   - sphinx=9.1.0
-  - doxygen
   - sphinxcontrib-jquery
   - sphinx-needs=8.1.1
   - pandoc
