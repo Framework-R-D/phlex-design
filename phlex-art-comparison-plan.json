@@ -1,0 +1,196 @@
+{
+  "goal": "Create a comprehensive report (phlex-design/phlex-art-comparison-report.md) analyzing Art vs Phlex frameworks, proposing how persistent references should look in Phlex, mapping Art usage to Phlex, identifying migration categories, and outlining remaining steps.",
+  "idempotent": true,
+  "steps": [
+    {
+      "id": "step-1",
+      "description": "Glob all relevant Art framework source files and header files needed for understanding persistent reference APIs (e.g., art-suite/art-root-io/**/*.h, art-suite/art-root-io/**/*.cxx).",
+      "model": "fnal-ow/grep",
+      "input": null,
+      "output": "list of Art source file paths",
+      "gate": false,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "abort",
+      "self_check": "non-empty file list"
+    },
+    {
+      "id": "step-2",
+      "description": "Glob all Phlex framework source files and design documents (phlex/**/*.h, phlex/**/*.cxx, phlex-design/**/*.md, phlex-examples/**/*.cxx).",
+      "model": "fnal-ow/grep",
+      "input": null,
+      "output": "list of Phlex source and documentation file paths",
+      "gate": false,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "abort",
+      "self_check": "non-empty file list"
+    },
+    {
+      "id": "step-3",
+      "description": "Search Art source files for definitions and typical usage patterns of persistent reference types: `art::Ptr<`, `art::Assns<`, `art::FindOne<`, `art::FindMany<`, and related helper functions.",
+      "model": "fnal-ow/grep",
+      "input": "step-1.output",
+      "output": "list of file:line matches for each persistent reference type",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "matches contain the target strings"
+    },
+    {
+      "id": "step-4",
+      "description": "Search Phlex design docs for any mention of persistent references, associations, or related concepts (e.g., persistent-references-and-associations.md, other *.md files).",
+      "model": "fnal-ow/grep",
+      "input": "step-2.output",
+      "output": "list of documentation lines discussing persistent references",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "matches contain keywords like \"persistent\", \"reference\", \"association\""
+    },
+    {
+      "id": "step-5",
+      "description": "Read a representative subset of Art source files that implement persistent reference usage (e.g., a few modules from larsoft/larana that use art::Ptr and art::Assns) to capture concrete code snippets.",
+      "model": "fnal-ow/read",
+      "input": {
+        "files": [
+          "larsoft/larana/Modules/SomeExampleModule.cc",
+          "larsoft/larana/Modules/AnotherExampleModule.cc"
+        ],
+        "offset": 1,
+        "limit": 2000
+      },
+      "output": "selected code excerpts illustrating Art persistent reference usage",
+      "gate": false,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "excerpts contain art::Ptr or art::Assns usage"
+    },
+    {
+      "id": "step-6",
+      "description": "Read Phlex example migration files (phlex-examples/migration/**/*.cxx) that attempt to use Art-like APIs within Phlex to understand current migration approaches.",
+      "model": "fnal-ow/read",
+      "input": {
+        "files": [
+          "phlex-examples/migration/example_migration.cc"
+        ],
+        "offset": 1,
+        "limit": 2000
+      },
+      "output": "code excerpts from migration examples",
+      "gate": false,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "excerpts contain references to Art types or Phlex placeholders"
+    },
+    {
+      "id": "step-7",
+      "description": "Synthesize analysis of differences between Art and Phlex architectures that affect persistent reference design (e.g., event model, product ownership, type erasure, data-product registration, I/O backend).",
+      "model": "coder-qwen",
+      "input": {
+        "art_matches": "step-3.output",
+        "phlex_docs": "step-4.output",
+        "art_examples": "step-5.output",
+        "phlex_migration_examples": "step-6.output"
+      },
+      "output": "structured notes on architectural differences relevant to persistent references",
+      "gate": false,
+      "parallel": false,
+      "retry": 1,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "output contains at least three distinct difference categories"
+    },
+    {
+      "id": "step-8",
+      "description": "Generate a mapping proposal: how typical Art usage (`art::Ptr`, `art::Assns`, `art::FindOne/Many`) would be expressed in a Phlex-native iteration, considering the differences identified in step-7.",
+      "model": "coder-qwen",
+      "input": {
+        "arch_diff": "step-7.output",
+        "art_examples": "step-5.output"
+      },
+      "output": "detailed mapping examples with pseudo‑code showing Phlex equivalents",
+      "gate": false,
+      "parallel": false,
+      "retry": 1,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "output includes at least one mapping for each Art type"
+    },
+    {
+      "id": "step-9",
+      "description": "Identify and enumerate categories of change that can be applied to LArSoft algorithms (without altering Art data products) to smooth migration to Phlex. Base this on the analysis in steps 7‑8 and on common refactoring patterns (e.g., abstract data‑access layer, adapter interfaces, template wrappers).",
+      "model": "coder-qwen",
+      "input": {
+        "arch_diff": "step-7.output",
+        "mapping": "step-8.output"
+      },
+      "output": "list of change categories with brief rationale for each",
+      "gate": false,
+      "parallel": false,
+      "retry": 1,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "output lists >=5 distinct categories"
+    },
+    {
+      "id": "step-10",
+      "description": "Outline the remaining migration steps after the in‑Art changes from step‑9 are implemented, covering testing, verification, Phlex API finalization, and rollout strategy.",
+      "model": "coder-qwen",
+      "input": {
+        "change_categories": "step-9.output"
+      },
+      "output": "ordered checklist of post‑Art migration activities",
+      "gate": false,
+      "parallel": false,
+      "retry": 1,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "output is a numbered list with actionable items"
+    },
+    {
+      "id": "step-11",
+      "description": "Compose the final markdown report (phlex-design/phlex-art-comparison-report.md) integrating: (1) architectural differences, (2) mapping of Art persistent‑reference usage to Phlex, (3) categories of algorithm changes, (4) remaining migration steps, and (5) any open design questions for the Phlex team.",
+      "model": "coder-qwen",
+      "input": {
+        "arch_diff": "step-7.output",
+        "mapping": "step-8.output",
+        "change_categories": "step-9.output",
+        "migration_checklist": "step-10.output"
+      },
+      "output": "full markdown content for the report",
+      "gate": false,
+      "parallel": false,
+      "retry": 1,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "output starts with '#' and contains the four required sections"
+    },
+    {
+      "id": "step-12",
+      "description": "Write the markdown report to phlex-design/phlex-art-comparison-report.md ensuring file ends with exactly one newline and no trailing whitespace.",
+      "model": "fnal-ow/write",
+      "input": {
+        "filePath": "/home/greenc/work/cet-is/sources/phlex/phlex-design/phlex-art-comparison-report.md",
+        "content": "step-11.output"
+      },
+      "output": "file written successfully",
+      "gate": false,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "abort",
+      "self_check": "file exists and ends with a single newline"
+    }
+  ]
+}
