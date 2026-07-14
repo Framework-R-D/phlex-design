@@ -11,7 +11,9 @@ The task output: `phlex-design/phlex-art-comparison-report.md`. a comprehensive 
 
 Steering notes:
 
-- The algorithm-accessible C++ representation of persistent references is _not yet specified by the Phlex design_: this task will contribute to that work.
+- Art and Phlex are _frameworks_: they provide APIs and a workflow execution application utilized by HEP experiments and collaborations to simulate, collect, and analyze physics data.
+- LArsoft is an example of a toolkit providing algorithms used by multiple experiments in their workflows. These algorithms are not necessarily examples of _good_ code—they are _representative_ examples of algorithms that must be migrated in order for Phlex to succeed as a framework and as an ecosystem.
+- The algorithm-accessible C++ representation of persistent references in Phlex is _not yet specified by its design_: this task will contribute to that work.
 - Documents in `phlex-design/` not part of the main design working document in `doc/` represent thoughts and concepts not necessarily reflected (or to be reflected) in the final design and are _not_ to be taken as authoritative.
 - `phlex-design/persistent-references-and-associations.md`—while a recent document discussing a current gap in the design—concentrates on only one aspect of persistent references: how they can be represented in backend-agnostic descriptions of on-disk data products?
 - `phlex-examples/migration/` is an attempt to look at the general issue of migrating algorithms embodied by LArSoft code from Art to Phlex, and does not represent a final process or product.
