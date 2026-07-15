@@ -3,7 +3,7 @@ This task will involve reading a large amount of code and other context. Be sure
 Analyze the production art suite framework as used by LArSoft algorithms (manifest as instances of Art modules and associated code), and the in-development Phlex framework and its design and examples. Specifically:
 
 1. How should differences between Art, and Phlex (and its design) influence what a Phlex-native C++ manifestation of persistent references look like?
-2. What would an algorithm's use of persistent references (`art::Ptr`, `art::Assns`, `art::Find{One,Many}{,P}`, etc. in Art) look like in a Phlex-using iteration of the same algorithm?
+2. What would an algorithm's use of persistent references (`art::Ptr`, `art::Assns`, `art::Find{One,Many}{,P}`, etc. in Art) look like in a Phlex-using iteration of the same algorithm? Analyze the extent to which users must use explicit phlex programming constructs when using persistent references.
 3. Identify and enumerate categories of change that could be made to LArSoft algorithms—preserving functionality within Art without altering data products—that would ease migration to Phlex while retaining verifiability for as much of the migration process as possible.
 4. Outline remaining migration steps after in-Art steps have been implemented.
 
