@@ -92,7 +92,7 @@ Such metadata include:
 - the *creator*, the name of the algorithm that created the data product
 - an identifier for the *data cells* with which the data product is associated (e.g. `Spill`, `Run`, `Calibration Interval`, or other experiment-defined layer)
 - the *stage name*, an identifier for the job in which the data product was created
-- an individual *name* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
+- an individual *suffix* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
 
 In addition to these metadata, a data product is also specified by its *type*.
 
