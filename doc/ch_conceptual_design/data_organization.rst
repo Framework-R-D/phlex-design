@@ -30,7 +30,7 @@ The `Job` layer always includes a single data cell.
              Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data cells.
              The pale green rectangles show two data-cell families; these are identified as families because they are the result of executing the :mathfunc:`unfold(into_apas)` node shown in :numref:`workflow`.
              A solid line from one data cell to another data cell represents a logical association between the two data cells.
-             The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data cell :math:`\textsf{APA}_{1,1,1}`, etc.
+             Each dashed line between a data product and a data cell (e.g., between :math:`\textsf{Waveforms}_{1,1,1}` and :math:`\textsf{APA}_{1,1,1}`) indicates that the data product is logically contained by the data cell (see text).
              Each pale purple rectangle indicates the data-product family created by unfolding each :product:`SimDepos` object as shown in :numref:`workflow`.
    :name: data-organization
 
@@ -69,6 +69,13 @@ Data Layers, Data Cells, and Families
 As illustrated in :numref:`data-organization`, data products are organized into user-defined data cells, families, layers, and hierarchies, supporting varying levels of granularity :need:`DUNE 86` :need:`DUNE 87` :need:`DUNE 88`.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :need:`DUNE 43`.
 This provides the ability to process data too large to fit into memory at one time :need:`DUNE 25`.
+
+.. admonition:: Logical vs. in-memory containment
+
+    From a mathematical perspective, data cells *logically* contain data products.
+    This does not mean, however, that the implementation must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
+    Instead, the implementation is free to retain in memory only those data products necessary for performing a particular task (see :numref:`ch_conceptual_design/data_organization:Data Product Management`).
+    It is from this mathematical viewpoint that a data product equivalently *belongs to*, *is associated with*, *is contained by*, *is in*, or *is a member of* one or more data cells.
 
 Data Product Management
 -----------------------
