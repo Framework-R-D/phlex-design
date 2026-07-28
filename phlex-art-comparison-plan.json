@@ -1,186 +1,187 @@
 {
-  "goal": "Produce a comprehensive markdown report at phlex-design/phlex-art-comparison-report.md analyzing Art vs Phlex persistent reference designs, migration considerations, and steps.",
+  "goal": "Produce phlex-design/phlex-art-comparison-report.md: a comprehensive report for the Phlex design team comparing Art and Phlex persistent references, addressing (1) how Art/Phlex differences should shape a Phlex-native C++ manifestation of persistent references, (2) what algorithm use of art::Ptr/art::Assns/art::Find{One,Many}{,P} looks like in a Phlex iteration and how much explicit Phlex machinery users must touch, (3) enumerated categories of in-Art LArSoft algorithm changes that ease Phlex migration without altering data products while keeping the migration verifiable, and (4) remaining migration steps after the in-Art steps.",
   "idempotent": true,
+  "notes": "Large read-heavy research + single-document synthesis task. Structured as gated phases so the execute orchestrator can run/resume within its step budget. Exploration steps are read-only and parallelizable; each emits a compact structured evidence brief (file:line anchors + quoted snippets) rather than raw dumps, to protect context. Art and LArSoft framework sources are NOT available locally (only spack recipes in ~/work/fnal_art); those steps must fetch canonical headers/modules from GitHub (art-framework-suite/canvas, LArSoft/larana,lardataobj) via webfetch and MUST cite retrieved URLs. Phlex framework, phlex-design docs, and phlex-examples/migration ARE local under ~/work/{phlex,phlex-design,phlex-examples} and should be read directly. Steering constraints to honor in synthesis: phlex-design/ non-doc/ files (incl. persistent-references-and-associations.md) are non-authoritative thoughts; the algorithm-facing C++ representation of Phlex persistent references is deliberately unspecified and this report contributes to it; LArSoft algorithms are representative-not-exemplary; persistent-references-and-associations.md covers only the backend-agnostic on-disk description aspect. Gate G1 checkpoints evidence sufficiency before analysis; gate G2 checkpoints analysis coverage before final synthesis.",
   "steps": [
     {
-      "id": "step-1",
-      "description": "List all markdown design documents in phlex-design/ to understand current Phlex design context.",
-      "model": "fnal-ow/grep",
-      "input": null,
-      "output": "List of file paths matching phlex-design/*.md",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "abort",
-      "self_check": null,
-      "tool": {
-        "name": "glob",
-        "args": {
-          "pattern": "phlex-design/*.md"
-        }
-      }
-    },
-    {
-      "id": "step-2",
-      "description": "Read each design markdown file identified in step-1 to extract discussion of persistent references and backend-agnostic data description.",
-      "model": "fnal-ow/read",
-      "input": "output of step-1",
-      "output": "Contents of each design document",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "continue",
-      "self_check": null,
-      "tool": {
-        "name": "read",
-        "args": {
-          "filePath": "{{filePath}}",
-          "offset": 1,
-          "limit": 2000
-        }
-      }
-    },
-    {
-      "id": "step-3",
-      "description": "Search the Art codebase for definitions and usages of Art persistent reference types (art::Ptr, art::Assns, art::FindOne, art::FindMany, etc.).",
-      "model": "fnal-ow/grep",
-      "input": null,
-      "output": "List of file paths and line numbers where these symbols appear",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "abort",
-      "self_check": null,
-      "tool": {
-        "name": "grep",
-        "args": {
-          "pattern": "art::(Ptr|Assns|FindOne|FindMany|FindOneP|FindManyP)",
-          "path": "art-suite/",
-          "include": "*.{h,hh,cpp,cxx}"
-        }
-      }
-    },
-    {
-      "id": "step-4",
-      "description": "Read a representative subset of Art algorithm source files from the grep results (e.g., up to 10 files) to see concrete usage patterns of persistent references in LArSoft algorithms.",
-      "model": "fnal-ow/read",
-      "input": "output of step-3 (selected file list)",
-      "output": "File contents showing Art persistent reference usage",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "continue",
-      "self_check": null,
-      "tool": {
-        "name": "read",
-        "args": {
-          "filePath": "{{selectedFile}}",
-          "offset": 1,
-          "limit": 2000
-        }
-      }
-    },
-    {
-      "id": "step-5",
-      "description": "Locate Phlex migration example source files that attempt to translate Art algorithms to Phlex.",
-      "model": "fnal-ow/grep",
-      "input": null,
-      "output": "List of migration example files under phlex-examples/migration/",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "abort",
-      "self_check": null,
-      "tool": {
-        "name": "glob",
-        "args": {
-          "pattern": "phlex-examples/migration/**/*.cpp"
-        }
-      }
-    },
-    {
-      "id": "step-6",
-      "description": "Read each migration example file from step-5 to capture how persistent references are currently expressed in Phlex code (if at all).",
-      "model": "fnal-ow/read",
-      "input": "output of step-5",
-      "output": "Contents of migration example files",
-      "gate": false,
-      "parallel": true,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "continue",
-      "self_check": null,
-      "tool": {
-        "name": "read",
-        "args": {
-          "filePath": "{{exampleFile}}",
-          "offset": 1,
-          "limit": 2000
-        }
-      }
-    },
-    {
-      "id": "step-7",
-      "description": "Synthesize a detailed markdown report comparing Art and Phlex persistent reference designs, addressing the four questions, and enumerating migration categories and remaining steps.",
+      "id": "step-1-phlex-model",
+      "description": "coder-qwen sub-agent (litellm default): Read the local Phlex framework identity/reference substructure to characterize what Phlex already offers as building blocks for a persistent reference. Read ~/work/phlex/phlex/model/{data_cell_index,product_specification,handle,identifier,data_cell_counts,products,product_store}.{hpp,cpp} and phlex/phlex/model/fwd.hpp. Produce a compact structured brief: for each type, its role, public API surface relevant to references (constructors, accessors, comparison/hashing, serialization hooks), and how data_cell_index + product_specification + element index together could form the persistent-reference triple. Do NOT dump whole files; quote only the decisive declarations with file:line anchors.",
       "model": "coder-qwen",
-      "input": {
-        "designDocs": "outputs of step-2",
-        "artUsages": "outputs of step-4",
-        "phlexExamples": "outputs of step-6"
-      },
-      "output": "Full markdown text for phlex-art-comparison-report.md",
+      "input": "none",
+      "output": "Evidence brief E1: Phlex in-memory identity model (types, APIs, gaps) with file:line anchors, suitable for grounding a Phlex-native persistent-reference design.",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "Brief names data_cell_index, product_specification, and handle and states whether each is persistable; cites at least 6 file:line anchors."
+    },
+    {
+      "id": "step-2-phlex-hofs-mockworkflow",
+      "description": "coder-qwen sub-agent (litellm default): Read the local Phlex HOF/algorithm programming model and the mock-workflow association usage to characterize how a user's algorithm currently receives inputs and returns products, and how associations are represented today. Read ~/work/phlex/test/mock-workflow/{types.hpp,largeant.cpp,algorithm.hpp,ion_and_scint.cpp,three_tuple_algorithm.cpp} and the phlex module/registration + HOF entry points (grep ~/work/phlex/phlex for module.hpp, transform/fold/unfold registration, PHLEX_REGISTER_ALGORITHMS, handle<>, and 'association'). Produce a compact structured brief: the shape of a Phlex algorithm signature (tuple-in/tuple-out, families, handle<T>), how products are named/labeled, and the current association<A,B,D> placeholder and its usage in largeant.cpp. Quote decisive lines with file:line anchors only.",
+      "model": "coder-qwen",
+      "input": "none",
+      "output": "Evidence brief E2: Phlex algorithm programming model + current association placeholder, with the exact useI've written the JSON execution plan to `phlex-design/phlex-art-comparison-plan.json`. Here it is:
+
+```json
+{
+  "goal": "Produce phlex-design/phlex-art-comparison-report.md: a comprehensive report for the Phlex design team comparing Art and Phlex persistent references (Q1 design implications, Q2 algorithm before/after, Q3 in-Art change categories, Q4 remaining migration steps).",
+  "idempotent": true,
+  "steps": [ 11 steps ... ]
+}
+```
+
+## Plan rationale
+
+**Grounding done before planning.** I verified what is available locally vs. remote so model/tool assignments are realistic:
+
+- **Local (read directly):** Phlex framework (`phlex/phlex/model/` identity types, `test/mock-workflow/` with the `association<A,B,D>` placeholder and `largeant.cpp`), the authoritative design under `phlex-design/doc/` (note: AGENTS.md's `ch_subsystem_design` path is stale — it's now `ch_technical_design`), and the migration exemplar `phlex-examples/migration/gauss_hit_finder/` (with copied LArSoft `Hit.h`, multiple design variants, and a `compare_hits.py` verification harness).
+- **Remote (must webfetch, cannot read locally):** Art/canvas (`art::Ptr`, `Assns`, `Find{One,Many}{,P}`, `ProductID`) and the real LArSoft `larana` GausHitFinder module — only spack recipes exist locally, so steps 5 and 6 use the `general` agent with webfetch and `on_error: fallback`.
+
+**Structure (gated phases within orchestrator budget):**
+
+1. **Steps 1–6 (parallel exploration):** six compact, anchored evidence briefs — Phlex model, Phlex HOF/mock-workflow, Phlex design docs (provenance-tagged authoritative vs non-authoritative per steering), migration exemplar, Art reference semantics, real LArSoft module. Briefs quote decisive lines only, protecting context.
+2. **Gate G1:** `reason` model confirms evidence covers all four questions before analysis; `replan` on failure.
+3. **Steps 7–9 (parallel analysis):** `reason` model answers Q1 (candidate C++ shapes + tradeoffs), Q2 (before/after code sketches + explicit user-machinery accounting), Q3/Q4.
+4. **Gate G2:** analysis-coverage and steering-fidelity check.
+5. **Step 10 (synthesis):** escalated to `litellm/azure/claude-opus-4-8` for the long-form authoritative report — the one place a more capable model is justified.
+6. **Step 11 (verification gate):** `coder-qwen` lint/coverage check against the required structure and repo formatting rules.
+
+Steering constraints are baked in: non-authoritative sources (incl. `persistent-references-and-associations.md`, scoped to on-disk description) are flagged, the unspecified reference C++ representation is framed as a contribution rather than a decision, and LArSoft is treated as representative-not-exemplary.
+I've written the JSON execution plan to `phlex-design/phlex-art-comparison-plan.json`. Here it is:
+
+```json
+{
+  "goal": "Produce phlex-design/phlex-art-comparison-report.md: a comprehensive report for the Phlex design team comparing Art and Phlex persistent references (Q1 design implications, Q2 algorithm before/after, Q3 in-Art change categories, Q4 remaining migration steps).",
+  "idempotent": true,
+  "steps": [ 11 steps ... ]
+}
+```
+
+## Plan rationale
+
+**Grounding done before planning.** I verified what is available locally vs. remote so model/tool assignments are realistic:
+
+- **Local (read directly):** Phlex framework (`phlex/phlex/model/` identity types, `test/mock-workflow/` with the `association<A,B,D>` placeholder and `largeant.cpp`), the authoritative design under `phlex-design/doc/` (note: AGENTS.md's `ch_subsystem_design` path is stale — it's now `ch_technical_design`), and the migration exemplar `phlex-examples/migration/gauss_hit_finder/` (with copied LArSoft `Hit.h`, multiple design variants, and a `compare_hits.py` verification harness).
+- **Remote (must webfetch, cannot read locally):** Art/canvas (`art::Ptr`, `Assns`, `Find{One,Many}{,P}`, `ProductID`) and the real LArSoft `larana` GausHitFinder module — only spack recipes exist locally, so steps 5 and 6 use the `general` agent with webfetch and `on_error: fallback`.
+
+**Structure (gated phases within orchestrator budget):**
+
+1. **Steps 1–6 (parallel exploration):** six compact, anchored evidence briefs — Phlex model, Phlex HOF/mock-workflow, Phlex design docs (provenance-tagged authoritative vs non-authoritative per steering), migration exemplar, Art reference semantics, real LArSoft module. Briefs quote decisive lines only, protecting context.
+2. **Gate G1:** `reason` model confirms evidence covers all four questions before analysis; `replan` on failure.
+3. **Steps 7–9 (parallel analysis):** `reason` model answers Q1 (candidate C++ shapes + tradeoffs), Q2 (before/after code sketches + explicit user-machinery accounting), Q3/Q4.
+4. **Gate G2:** analysis-coverage and steering-fidelity check.
+5. **Step 10 (synthesis):** escalated to `litellm/azure/claude-opus-4-8` for the long-form authoritative report — the one place a more capable model is justified.
+6. **Step 11 (verification gate):** `coder-qwen` lint/coverage check against the required structure and repo formatting rules.
+
+Steering constraints are baked in: non-authoritative sources (incl. `persistent-references-and-associations.md`, scoped to on-disk description) are flagged, the unspecified reference C++ representation is framed as a contribution rather than a decision, and LArSoft is treated as representative-not-exemplary.
+_retries": 3,
+      "on_error": "fallback",
+      "self_check": "Brief precisely defines the art::Ptr = (ProductID, key) model, the Assns storage layout, and the consumer-side nature of Find{One,Many}{,P}; every claim carries a fetched-URL citation. If webfetch is blocked, note it explicitly rather than inventing APIs."
+    },
+    {
+      "id": "step-6-larsoft-real-module",
+      "description": "general sub-agent (litellm default, has webfetch): Ground the report in a REAL production Art module (not only the local simplified copy) by fetching the actual LArSoft GausHitFinder module and its association usage from github.com/LArSoft/larana (path larana/HitFinder/GausHitFinder_module.cc) and, as needed, github.com/LArSoft/lardataobj (lardataobj/RecoBase/Hit.h and the recob::Hit/Wire association conventions) and the art util::CreateAssn helper (github.com/LArSoft/lardata, lardata/Utilities/AssociationUtil.h). Produce a structured brief: how the real GausHitFinder declares/produces recob::Hit and its Assns to recob::Wire/raw::RawDigit, the exact art::Ptr/util::CreateAssn/produces<Assns<...>> call sites, and how downstream consumers use FindManyP to recover the wire/rawdigit from a hit. Contrast briefly with the simplified local copy from step-4. MUST cite retrieved GitHub URLs for every call-site claim.",
+      "model": "litellm",
+      "input": "none",
+      "output": "Evidence brief E6: real-world LArSoft GausHitFinder reference/association producer+consumer call sites and boilerplate, cited to upstream GitHub URLs, contrasted with the local simplified exemplar.",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 3,
+      "on_error": "fallback",
+      "self_check": "Brief shows concrete produces<>/CreateAssn/FindManyP call sites from the real larana module with URL citations; if a file path moved, the agent locates the current path rather than guessing. If webfetch is blocked, say so explicitly."
+    },
+    {
+      "id": "gate-G1-evidence",
+      "description": "reason model: Evidence-sufficiency gate. Review briefs E1-E6 for coverage, consistency, provenance hygiene (authoritative vs non-authoritative; local-read vs webfetched-with-URL), and contradictions. Confirm the evidence can support all four report questions: (Q1) Art/Phlex differences -> Phlex-native ref C++ design; (Q2) algorithm-level before/after and how much explicit Phlex machinery leaks to users; (Q3) enumerable in-Art LArSoft change categories that preserve data products + Art functionality while easing migration and preserving verifiability; (Q4) remaining post-in-Art migration steps. Emit either PASS with a short gap-free confirmation, or FAIL with a specific list of missing evidence and which step id must be re-run/extended.",
+      "model": "reason",
+      "input": "E1,E2,E3,E4,E5,E6",
+      "output": "Gate verdict PASS/FAIL with enumerated gaps mapped to step ids; on FAIL, concrete re-run instructions.",
+      "gate": true,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 1,
+      "on_error": "replan",
+      "self_check": "Verdict explicitly maps available evidence to each of Q1-Q4 and flags any webfetch-blocked or missing-anchor briefs; FAIL includes actionable per-step remediation."
+    },
+    {
+      "id": "step-7-analysis-Q1",
+      "description": "reason model: Analyze Q1 — how differences between Art and Phlex (and its design) should influence a Phlex-native C++ manifestation of persistent references. Using E1,E2,E3,E5 (and E4,E6 as context), reason from the concrete divergences: Art's global mutable Event + ProductID/key handles vs Phlex's functional pure-operator HOFs, framework-owned product lifetime, arbitrary-depth data-layer hierarchy and data-cell coordinates, indexed families vs ordered sequences, concept-vs-concrete types + Translators, and framework-agnostic backend (FORM/HDF5). Derive design implications and options for the algorithm-facing C++ type(s): the reference triple <cell_coord?, product_spec_id, element_index?>; whether refs are values vs handles; cross-cell vs intra-cell defaults (phlex issue #75); how references compose with families and folds/unfolds; how a reference stays valid under Phlex's ownership model; and how associations-as-data-products differ from a transient FindManyP query view. Present 2-3 candidate C++ shapes with tradeoffs, explicitly noting which design points are currently UNSPECIFIED and that this analysis is a contribution, not a ratified decision. Cite evidence-brief anchors.",
+      "model": "reason",
+      "input": "E1,E2,E3,E5,E4,E6",
+      "output": "Analysis A1: Q1 answer — evidence-grounded design implications and 2-3 candidate Phlex-native persistent-reference C++ shapes with tradeoffs, unspecified-points flagged.",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "A1 ties each design implication to a specific Art/Phlex difference and to an evidence anchor, and explicitly labels currently-unspecified design decisions."
+    },
+    {
+      "id": "step-8-analysis-Q2",
+      "description": "reason model: Analyze Q2 — what an algorithm's use of art::Ptr/art::Assns/art::Find{One,Many}{,P} looks like in a Phlex iteration, and the extent to which users must invoke explicit Phlex programming constructs. Using E2,E4,E5,E6 and the candidate shapes from A1, write concrete before/after C++ sketches for a representative producer (create hits + hit<->wire association) and a representative consumer (recover wire from a hit) mapping each Art construct to its Phlex counterpart: produces<Assns> -> returning an association product in the output tuple; art::Ptr -> the Phlex reference value; FindManyP -> either a framework-provided query view or an explicit join over families. Explicitly quantify/enumerate the explicit Phlex machinery the user must touch in each candidate (labels, handle<>, family indices, translators, registration) and where the framework can hide it. Cite anchors.",
+      "model": "reason",
+      "input": "E2,E4,E5,E6,A1",
+      "output": "Analysis A2: Q2 answer — before/after producer+consumer C++ sketches and an explicit enumeration of user-visible Phlex machinery per candidate design.",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "A2 contains paired Art-vs-Phlex code sketches for both a producer and a consumer, and an explicit list of the Phlex constructs the user must write for each candidate."
+    },
+    {
+      "id": "step-9-analysis-Q3-Q4",
+      "description": "reason model: Analyze Q3 and Q4. Q3: enumerate CATEGORIES of change that can be made to LArSoft algorithms while (a) preserving in-Art functionality and (b) not altering data products, that nonetheless ease Phlex migration and keep as much of the process verifiable-in-Art as possible. Ground categories in E4 and E6 (e.g., isolating pure computational cores from Event/Handle access; replacing framework-ref dereferences with parameters carrying the referenced data or intrinsic domain keys; hoisting produces/get boilerplate behind thin adapters; making association production a distinct, testable step; removing incidental Event/ServiceHandle coupling; standardizing input/output as plain-old-data passable to a pure function). For each category: mechanism, why it is Art-behavior-preserving and product-preserving, how it is verified in Art (e.g., compare_hits.py-style regression vs recorded outputs), and how it shortens the eventual Phlex step. Q4: outline the REMAINING migration steps after the in-Art changes — wiring the pure core into a Phlex HOF, expressing references/associations in the chosen Phlex representation, configuring the data-layer hierarchy/families, providing translators/FORM IDL for persistence, and the reduced cross-framework verification that remains. Cite anchors.",
+      "model": "reason",
+      "input": "E4,E6,E3,A1,A2",
+      "output": "Analysis A3: Q3 enumerated, verifiable, product-preserving in-Art change categories + Q4 remaining post-in-Art Phlex migration steps, evidence-anchored.",
+      "gate": false,
+      "parallel": true,
+      "retry": 0,
+      "max_retries": 2,
+      "on_error": "continue",
+      "self_check": "A3 lists distinct Q3 categories each with a preservation rationale AND an in-Art verification method, and a Q4 step sequence that begins where the in-Art work ends."
+    },
+    {
+      "id": "gate-G2-analysis",
+      "description": "reason model: Analysis-coverage gate. Verify A1,A2,A3 fully and consistently answer Q1-Q4, remain faithful to steering constraints (non-authoritative sources flagged; unspecified design decisions labeled as contributions not decisions; LArSoft treated as representative), and contain no unsupported claims (each key claim traceable to E1-E6 anchors). Emit PASS with a brief confirmation, or FAIL listing specific deficiencies mapped to analysis step ids to re-run.",
+      "model": "reason",
+      "input": "A1,A2,A3,E1,E2,E3,E4,E5,E6",
+      "output": "Gate verdict PASS/FAIL with per-analysis-step remediation on FAIL.",
+      "gate": true,
+      "parallel": false,
+      "retry": 0,
+      "max_retries": 1,
+      "on_error": "replan",
+      "self_check": "Verdict confirms each of Q1-Q4 is answered and steering constraints are respected, or specifies exactly which analysis step to redo and why."
+    },
+    {
+      "id": "step-10-synthesize-report",
+      "description": "litellm/azure/claude-opus-4-8 (more capable model required for long-form authoritative synthesis): Write the final comprehensive report to ~/work/phlex-design/phlex-art-comparison-report.md for the Phlex design team and its lead. Integrate A1,A2,A3 and evidence E1-E6 into a single coherent Markdown document. Required structure: (1) Executive summary with a clear recommendation stance and explicit statement that the algorithm-facing Phlex reference C++ representation is currently unspecified and this report is a design contribution, not a ratified decision; (2) Background: Art vs Phlex framework models and the persistent-reference problem; (3) Q1 — Art/Phlex differences and their implications for a Phlex-native C++ reference, with the 2-3 candidate shapes + tradeoffs table; (4) Q2 — before/after algorithm code sketches and an explicit accounting of user-visible Phlex machinery per candidate; (5) Q3 — enumerated in-Art, product-preserving, verifiable LArSoft change categories; (6) Q4 — remaining post-in-Art migration steps; (7) Open questions / recommendations to the design lead. Attribute non-authoritative inputs as such (esp. persistent-references-and-associations.md scoped to on-disk description; other phlex-design/ root docs as non-authoritative), keep code sketches concrete, and preserve source anchors (local file:line and cited GitHub URLs) inline or in a references section. Respect repo formatting: single trailing newline, no trailing whitespace, markdownlint rules MD012/MD022/MD031/MD032/MD034/MD040 (fenced code blocks carry language tags, bare URLs wrapped, blank lines around headings/lists/code fences).",
+      "model": "litellm/azure/claude-opus-4-8",
+      "input": "A1,A2,A3,E1,E2,E3,E4,E5,E6",
+      "output": "The complete report written to phlex-design/phlex-art-comparison-report.md answering Q1-Q4 with candidate designs, code sketches, enumerated change categories, remaining steps, and a references/anchors section.",
       "gate": false,
       "parallel": false,
       "retry": 0,
       "max_retries": 2,
       "on_error": "abort",
-      "self_check": "Ensure the markdown contains sections: 1. Influence of framework differences on Phlex-native persistent references, 2. Re‑written algorithm example, 3. Categories of change preserving Art functionality, 4. Remaining migration steps."
+      "self_check": "File exists at phlex-design/phlex-art-comparison-report.md; contains the seven required sections; each of Q1-Q4 is explicitly answered; non-authoritative sources are flagged; code fences are language-tagged and there is exactly one trailing newline."
     },
     {
-      "id": "step-8",
-      "description": "If the target report file already exists, read it first to satisfy edit pre‑condition; otherwise proceed to create the new report file.",
-      "model": "fnal-ow/read",
-      "input": null,
-      "output": "Existing file content or error indicating file does not exist",
-      "gate": false,
+      "id": "step-11-verify-report",
+      "description": "coder-qwen sub-agent (litellm default): Verify the delivered report. Read ~/work/phlex-design/phlex-art-comparison-report.md and check: (a) all four questions Q1-Q4 are addressed under clearly labeled sections; (b) the executive summary states the reference C++ representation is unspecified and the report is a contribution; (c) non-authoritative sources (persistent-references-and-associations.md and other phlex-design root docs) are flagged and the former is scoped to on-disk description; (d) at least the 2-3 candidate Phlex-native reference C++ shapes and before/after producer+consumer sketches are present; (e) references/anchors include both local file:line citations and fetched GitHub URLs; (f) formatting: single trailing newline, no trailing whitespace, fenced code blocks are language-tagged. Optionally run 'rstcheck'/markdownlint if available in ~/work/phlex-design; otherwise do a manual lint pass. Report PASS with a short checklist, or list precise fixes needed (do not rewrite the report here).",
+      "model": "coder-qwen",
+      "input": "step-10 output",
+      "output": "Verification checklist PASS/FAIL with specific, actionable fixes if any (feeds a targeted re-run of step-10 on FAIL).",
+      "gate": true,
       "parallel": false,
       "retry": 0,
       "max_retries": 1,
       "on_error": "continue",
-      "self_check": null,
-      "tool": {
-        "name": "read",
-        "args": {
-          "filePath": "phlex-design/phlex-art-comparison-report.md",
-          "offset": 1,
-          "limit": 1
-        }
-      }
-    },
-    {
-      "id": "step-9",
-      "description": "Write the synthesized markdown report to phlex-design/phlex-art-comparison-report.md (overwrites any existing content).",
-      "model": "coder-qwen",
-      "input": "output of step-7",
-      "output": "File written successfully",
-      "gate": false,
-      "parallel": false,
-      "retry": 0,
-      "max_retries": 2,
-      "on_error": "abort",
-      "self_check": "Verify file ends with a single newline and contains no trailing whitespace.",
-      "tool": {
-        "name": "write",
-        "args": {
-          "filePath": "phlex-design/phlex-art-comparison-report.md",
-          "content": "{{markdownContent}}"
-        }
-      }
+      "self_check": "Checklist covers items (a)-(f); any FAIL names the exact section/line and required correction."
     }
   ]
 }
