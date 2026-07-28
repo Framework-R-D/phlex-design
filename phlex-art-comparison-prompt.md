@@ -20,8 +20,8 @@ Steering notes:
 
 Context:
 
-- Phlex: `phlex/`
-- Phlex design and auxiliary documents `phlex-design/`.
-- `phlex-examples/`
-- Art: `art-suite/art-root-io/` and those dependencies also in `art-suite/`
-- LArSoft: `larsoft/larana` and those dependencies also in `larsoft/`
+- Phlex: `github.com/Framework-R-D/phlex/`
+- Phlex design and auxiliary documents `github.com/Framework-R-D/phlex-design/`.
+- `github.com/Framework-R-D/phlex-examples/`
+- Art: `github.com/art-framework-suite/art-root-io/` and those dependencies also in `github.com/art-framework-suite/`
+- LArSoft: `github.com/LArSoft/larana` and those dependencies also in `github.com/LArSoft/`
