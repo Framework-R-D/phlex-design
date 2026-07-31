@@ -4,8 +4,8 @@
   "steps": [
     {
       "id": "step-1",
-      "description": "[coder] Extract the AUTHORITATIVE Phlex design position on persistent references, associations, and the data model. Read locally: phlex-design/persistent-references-and-associations.md (full), phlex-design/doc/conceptual_design.rst, phlex-design/doc/ch_conceptual_design/data_organization.rst, and the subsystem-design stubs phlex-design/doc/ch_subsystem_design/role_of_data_product_concepts.rst and .../data_modeling.rst (note which are `.. todo::` stubs). Also skim phlex-design/AGENTS.md and phlex-design/design_agreements.md. Distinguish (a) what the main design in doc/ treats as normative vs (b) non-authoritative exploratory root-level docs per the steering notes. Produce a structured digest (<=1200 words) capturing: the persistent-reference triple ⟨cell_coord?, product_spec_id, element_index?⟩ and its optionality semantics (phlex issues #74/#75, discussion #520), the association-as-data-product stance, the backend-description-only scope of persistent-references-and-associations.md, and every explicit design gap/TODO relevant to an algorithm-facing C++ reference type. Cite file:line anchors.",
-      "model": "coder",
+      "description": "[coder] Extract the AUTHORITATIVE Phlex design position on persistent references, associations, and the data model. Read locally: phlex-design/persistent-references-and-associations.md (full), phlex-design/doc/conceptual_design.rst, phlex-design/doc/ch_conceptual_design/data_organization.rst, and the technical-design stubs phlex-design/doc/ch_technical_design/role_of_data_product_concepts.rst and .../data_modeling.rst (note which are `.. todo::` stubs). Also skim phlex-design/AGENTS.md and phlex-design/design_agreements.md. Distinguish (a) what the main design in doc/ treats as normative vs (b) non-authoritative exploratory root-level docs per the steering notes. Produce a structured digest (<=1200 words) capturing: the persistent-reference triple ⟨cell_coord?, product_spec_id, element_index?⟩ and its optionality semantics (phlex issues #74/#75, discussion #520), the association-as-data-product stance, the backend-description-only scope of persistent-references-and-associations.md, and every explicit design gap/TODO relevant to an algorithm-facing C++ reference type. Cite file:line anchors.",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "none",
       "output": "Digest 'design-digest' of authoritative vs exploratory Phlex design content on persistent references, associations, data model, with file:line citations and explicit enumeration of gaps/TODOs.",
       "gate": false,
@@ -18,7 +18,7 @@
     {
       "id": "step-2",
       "description": "[coder] Extract the Phlex FRAMEWORK C++ realities that constrain an algorithm-facing reference type. Read locally under phlex/phlex/model/: data_cell_index.{hpp,cpp}, product_specification.{hpp,cpp}, handle.hpp, products.{hpp,cpp}, product_store.{hpp,cpp}, identifier.{hpp,cpp}, data_layer_hierarchy.{hpp,cpp}, layer_path.{hpp,cpp}, type_id.hpp, fwd.hpp. Read phlex/test/mock-workflow/ (types.hpp with the association<A,B,D> placeholder, largeant.cpp, ion_and_scint.cpp, three_tuple_algorithm.cpp, algorithm.hpp, MC_truth_algorithm.cpp) to capture how algorithms are written as higher-order-function operators (transform/fold/unfold), how products/families are declared and consumed, and how handles/product_specification appear in signatures. Read phlex/form/ (README, Token/storage/persistence and any Storage_Write_Association stub, root_storage) to capture the persistent-address (Token) model and the association container stub. Produce a structured digest (<=1500 words) mapping each existing Phlex identity/handle/spec construct to the role its art analog plays, noting what already exists vs what is missing for an in-memory algorithm-facing reference. Cite file:line anchors.",
-      "model": "coder",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "none",
       "output": "Digest 'phlex-code-digest' mapping Phlex model/form/mock-workflow constructs (data_cell_index, product_specification, handle, association placeholder, FORM Token) to reference/association roles, with file:line anchors and explicit missing-pieces list.",
       "gate": false,
@@ -31,7 +31,7 @@
     {
       "id": "step-3",
       "description": "[coder] Extract the AUTHORITATIVE art semantics of persistent references and associations from the art-framework-suite sources on GitHub (canvas is NOT available locally). Fetch and read: canvas art::Ptr and PtrVector (github.com/art-framework-suite/canvas -> canvas/Persistency/Common/Ptr.h, PtrVector.h), art::Assns (canvas/Persistency/Common/Assns.h), the FindOne/FindMany/FindOneP/FindManyP query views (canvas/Persistency/Common/FindMany.h, FindOne.h, FindManyP.h, FindOneP.h, and FindManyP/FindOne base helpers), ProductID (canvas/Persistency/Provenance/ProductID.h), and the Event::getValidHandle / put / Ptr-making entry points from art (github.com/art-framework-suite/art -> art/Framework/Principal/Event.h and Handle.h; art/Persistency/Common/PtrMaker.h if present). Use webfetch on the raw GitHub blob URLs. Produce a structured digest (<=1600 words) precisely defining: what art::Ptr stores (ProductID + key + cached ptr), how Assns stores vector<pair<Ptr<L>,Ptr<R>>>(+optional D), how FindMany{,P}/FindOne{,P} build TRANSIENT query views at read time from Assns, the collection-membership (key) role, and how ProductID maps a reference to a producing module/product. Cite the specific header names/paths for every claim.",
-      "model": "coder",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "none",
       "output": "Digest 'art-semantics-digest' precisely defining art::Ptr, PtrVector, Assns<A,B,D>, Find{One,Many}{,P} transient views, ProductID, and Ptr-making, each anchored to a canvas/art header path.",
       "gate": false,
@@ -44,7 +44,7 @@
     {
       "id": "step-4",
       "description": "[coder] Extract REPRESENTATIVE real-world LArSoft-ecosystem usage patterns of persistent references, using the locally available duneana, ubana, and duneanaobj repos as primary evidence and the GitHub LArSoft/larana repo (github.com/LArSoft/larana) for the canonical hit-finder producer context. Locally: grep and read the highest-density users of art::Assns / art::FindManyP / art::FindOneP / art::Ptr in duneana (e.g. duneana/AnaTree/AnalysisTree_module.cc [27 hits], duneana/DAQSimAna/*, duneana/TrackingAna/*, duneana/CalibAna/*) and comparable ubana modules; also inspect duneanaobj data types that carry references. From GitHub, fetch a canonical larana producer (e.g. larana GausHitFinder or a module that puts Assns/Ptr) to see the PRODUCER side (PtrMaker, Assns filling) that complements the CONSUMER-heavy duneana code. Categorize concrete usage idioms: (a) making Ptr into a just-put collection, (b) building Assns in producers, (c) FindManyP/FindOneP consumption to walk associations, (d) intra- vs inter-collection references, (e) reference-carrying data members inside product types. Produce a structured digest (<=1600 words) with 8-15 minimal representative code excerpts (file:line) illustrating each idiom and its data-flow intent (not code quality).",
-      "model": "coder",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "none",
       "output": "Digest 'larsoft-usage-digest' enumerating representative art-reference idioms (producer Ptr/Assns creation; consumer FindManyP/FindOneP; intra/inter-collection; reference-bearing members) with 8-15 file:line-anchored excerpts drawn from local duneana/ubana/duneanaobj plus a GitHub larana producer.",
       "gate": false,
@@ -57,7 +57,7 @@
     {
       "id": "step-5",
       "description": "[coder] Extract the worked-migration evidence from phlex-examples/migration/. Read the full gauss_hit_finder migration set locally: find_hits_with_gaussians.{hpp,cpp}, find_hits_with_gaussians_design1.{hpp,cpp}, the three register_*.cpp variants (including register_find_hits_with_gaussians_cell_id.cpp), print_hits_to_file.*, wires_source.cpp, wire_serialization.*, the jsonnet configs, README.md, and the copied_from_larsoft_minor_edits/ headers (esp. Hit.h — note the removal of art::Ptr<Wire>/art::Ptr<RawDigit> and retention of geo::WireID as the AGENTS.md intrinsic-key workaround). Also read phlex-examples/migration/doc/index.rst. Produce a structured digest (<=1400 words) describing: what the example did to eliminate/replace art references (intrinsic-key embedding), which register_* variant explores cell_id-based references, how the Phlex algorithm signature differs from the art module, what verification harness exists (art_hits_*.txt golden files, compare_hits.py), and what the example deliberately leaves unsolved re: framework-native references. Cite file:line anchors.",
-      "model": "coder",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "none",
       "output": "Digest 'migration-example-digest' of the gauss_hit_finder worked migration: reference-elimination via intrinsic keys, the cell_id register variant, algorithm-signature deltas, the golden-file/compare_hits verification harness, and explicitly-unsolved reference concerns, with file:line anchors.",
       "gate": false,
@@ -70,7 +70,7 @@
     {
       "id": "step-6",
       "description": "[GATE] [reason] Consolidation gate: review the five digests (design-digest, phlex-code-digest, art-semantics-digest, larsoft-usage-digest, migration-example-digest) for completeness and internal consistency before synthesis. Model reason. Verify each of the report's four required questions has sufficient evidentiary coverage: Q1 needs both Art semantics (step-3) and Phlex model constraints (step-2) plus authoritative design gaps (step-1); Q2 needs usage idioms (step-4) + Phlex algorithm-signature reality (step-2) + migration example (step-5); Q3 needs Art-side idioms (step-4) + the intrinsic-key/verification evidence (step-5); Q4 needs the residual/unsolved items (steps 1,2,5). Emit a concise coverage matrix (question x supporting-evidence x gaps) and an explicit list of any missing facts. If a step failed or a critical gap exists (e.g. GitHub fetch failures left Art or larana semantics thin), set the on_error path to trigger targeted re-exploration; otherwise approve synthesis.",
-      "model": "reason",
+      "model": "litellm/asksage-overflow/claude-opus-4-8",
       "input": "design-digest, phlex-code-digest, art-semantics-digest, larsoft-usage-digest, migration-example-digest",
       "output": "Coverage matrix mapping the 4 report questions to evidence with an explicit gap list and an approve/re-explore decision.",
       "gate": true,
@@ -83,7 +83,7 @@
     {
       "id": "step-7",
       "description": "[reason] Author the analytical core of the report addressing Question 1 and Question 2. Model reason (deep design reasoning). Using all five digests plus the step-6 matrix, write two report sections. Q1 section: how the Art-vs-Phlex differences (Phlex functional/graph operators vs art imperative modules; Phlex framework-owned product lifetime; arbitrary-depth data-layer hierarchy & data cells vs art fixed Run/SubRun/Event; indexed families & unfold; concept-vs-concrete + Translators; framework does not define product types) SHOULD shape a Phlex-native C++ persistent-reference type — reconcile the design triple ⟨cell_coord?, product_spec_id, element_index?⟩ with the concrete phlex model constructs (data_cell_index, product_specification, handle) and the FORM Token; present 2-3 candidate C++ shapes (e.g. a ref<T> value type resolvable to handle<T>; an assns<A,B,D> product type; query-view helpers) with trade-offs, and state design implications/recommendations (not a single mandate). Q2 section: show, with concrete before/after C++ sketches grounded in the mock-workflow signatures and the gauss_hit_finder example, what art::Ptr/Assns/FindManyP/FindOneP code becomes in a Phlex algorithm, and analyze how much EXPLICIT Phlex machinery a user must touch (declaration in registration, product families, handle resolution, whether Find-style views are framework-provided or user-written). Write in Markdown, precise, citation-anchored, aimed at the design lead.",
-      "model": "reason",
+      "model": "litellm/asksage-overflow/claude-opus-4-8",
       "input": "design-digest, phlex-code-digest, art-semantics-digest, larsoft-usage-digest, migration-example-digest, step-6 coverage matrix",
       "output": "Markdown draft 'sections-Q1-Q2' containing the Q1 (design-shaping analysis with 2-3 candidate C++ reference shapes + trade-offs) and Q2 (before/after algorithm sketches + explicit-machinery analysis) sections.",
       "gate": false,
@@ -96,7 +96,7 @@
     {
       "id": "step-8",
       "description": "[reason] Author the migration-strategy core of the report addressing Question 3 and Question 4. Model reason. Using all digests plus sections-Q1-Q2, write two sections. Q3 section: enumerate CATEGORIES of change to LArSoft algorithms that (i) stay within Art, (ii) do NOT alter persisted data products, (iii) preserve functionality, and (iv) maximize verifiability during migration — e.g. isolating framework-touching code behind thin adapters, replacing in-place FindManyP walks with pre-gathered plain-C++ inputs, hoisting reference resolution to module boundaries, expressing producer Assns via intrinsic keys retained alongside Ptr, converting modules toward pure-function algorithm cores, introducing golden-file/regression harnesses (as in compare_hits.py). For each category: mechanism, why it eases Phlex migration, what verifiability it preserves (bit/statistical/golden), and risks. Q4 section: outline the REMAINING migration steps after in-Art steps are done — moving the pure algorithm core into a Phlex operator, declaring product families & the persistent-reference representation chosen in Q1, wiring registration/config (jsonnet), FORM/HDF5 persistence of references/associations, and end-to-end verification against art golden outputs; call out open design decisions the team must resolve (referencing the Q1 candidates and the persistent-references-and-associations.md backend scope). Markdown, citation-anchored.",
-      "model": "reason",
+      "model": "litellm/asksage-overflow/claude-opus-4-8",
       "input": "design-digest, phlex-code-digest, art-semantics-digest, larsoft-usage-digest, migration-example-digest, sections-Q1-Q2",
       "output": "Markdown draft 'sections-Q3-Q4' containing the Q3 (enumerated in-Art, product-preserving, verifiable change categories) and Q4 (remaining post-in-Art migration steps + open design decisions) sections.",
       "gate": false,
@@ -109,7 +109,7 @@
     {
       "id": "step-9",
       "description": "[coder] Assemble and write the final report to phlex-design/phlex-art-comparison-report.md. Model coder. Combine sections-Q1-Q2 and sections-Q3-Q4 into one coherent Markdown document with: a title, an executive summary for the design lead (key findings + the headline recommendation space for the persistent-reference C++ type, explicitly framed as options for the team not a fait accompli), a short scope/methodology note (which repos/files were read; that larana/canvas were read from GitHub and duneana/ubana/duneanaobj locally; that non-doc/ phlex-design docs are treated as non-authoritative per steering notes), the four analysis sections (Q1-Q4), a consolidated 'Open questions for the design team' section, and a references/anchors appendix listing the cited file:line sources. Enforce the repo's markdownlint rules (MD012/MD022/MD031/MD032/MD034/MD040) and global formatting (single trailing newline, no trailing whitespace). Do not create any other files.",
-      "model": "coder",
+      "model": "litellm/asksage-overflow/claude-opus-5",
       "input": "sections-Q1-Q2, sections-Q3-Q4, all five digests (for the references appendix)",
       "output": "The file phlex-design/phlex-art-comparison-report.md written with executive summary, scope/methodology, four analysis sections, open-questions section, and references appendix, markdownlint-compliant.",
       "gate": false,
@@ -122,7 +122,7 @@
     {
       "id": "step-10",
       "description": "[reason] Final review-and-polish pass. Model reason. Read the written phlex-design/phlex-art-comparison-report.md and verify against the original prompt: all four questions substantively answered; Art/Phlex framing correct (both are frameworks; LArSoft is a representative toolkit, code judged representative not exemplary); the algorithm-facing reference type explicitly treated as unspecified/contributory rather than settled design; persistent-references-and-associations.md correctly scoped as backend-description-only; non-doc/ phlex-design docs correctly treated as non-authoritative; citations resolve to real files. Produce a short verification checklist with pass/fail per item and apply minor edits directly (via the edit tool) for any wording, consistency, or markdownlint issues found; if a substantive gap remains, note it explicitly at the top of the report's open-questions section rather than silently omitting it.",
-      "model": "reason",
+      "model": "litellm/asksage-overflow/claude-opus-4-8",
       "input": "phlex-design/phlex-art-comparison-report.md, phlex-art-comparison-prompt.md",
       "output": "A pass/fail verification checklist against the prompt's requirements and steering notes, plus any applied minor edits to the report.",
       "gate": false,
