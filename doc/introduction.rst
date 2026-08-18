@@ -157,7 +157,8 @@ Consequently, part of the Phlex design is simply a summary of prior research tha
 Programming Languages
 =====================
 
-The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :need:`DUNE 14`.  Specifically, an algorithm may be written in either C++ [#f2]_ :need:`DUNE 81` or Python [#f3]_ :need:`DUNE 82`.
+The framework will support user :term:`algorithms <algorithm>` written in multiple programming languages :need:`DUNE 14`.
+Specifically, an algorithm may be written in either C++ [#f2]_ :need:`DUNE 81` or Python [#f3]_ :need:`DUNE 82`.
 If there is a need to support user algorithms written in another programming language, a corresponding stakeholder requirement should be created.
 
 Note that the language is left unspecified for the implementation of the framework itself.

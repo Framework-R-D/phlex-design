@@ -25,7 +25,7 @@ This can be achieved by in terms of the C++ *registration stanza*:
    {
      m.transform(                // 1. Higher-order function
         "hit_finder",            // 2. Name assigned to HOF
-        find_hits,               // 3. Algorithm/HOF operation
+        find_hits,               // 3. HOF operator (here, the algorithm itself)
         concurrency::unlimited   // 4. Allowed CPU concurrency
       )
       .input_family(             // 5. Specification of input data-product family (see text)
@@ -38,26 +38,25 @@ This can be achieved by in terms of the C++ *registration stanza*:
 
 The registration stanza is included in a C++ file that is compiled into a :term:`module`, a compiled library that is dynamically loadable by Phlex.
 
-A Python algorithm can be registered with its own companion C++ module or through the Python import helpers that make use of a pre-built, configurable, Phlex module.
-For the sake of consistency and ease of understaning, the helpers have the same naming and follow the same conventions as the C++ registration.
+A Python operator can be registered with its own companion C++ module or through the Python import helpers that make use of a pre-built, configurable, Phlex module.
+For the sake of consistency and ease of understanding, the helpers have the same naming and follow the same conventions as the C++ registration.
 
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS()`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement is a programming statement intended to model the equation described in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` [#statement_ordering]_:
-Loading the library created from the :term:`module` causes the creation of one workflow node for each registration statement in the stanza.
 
 .. math::
 
    \ifamily{b}{\text{output}} = \text{HOF}(f_1,\ f_2,\ \dots)\ \ifamily{a}{\text{input}}
 
-Specifically, in the registration stanza above, we have the following:
+Specifically, in the registration statement above, we have the following:
 
    :cpp:`transform(...)`
      Fully specifying the mathematical expression :math:`\text{HOF}(f_1,\ f_2,\ \dots)` requires several items:
 
      1. The HOF to be used,
      2. The name to assign to the configured HOF,
-     3. The algorithm(s)/HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
-     4. The maximum number of CPU threads the framework can use when invoking the algorithm :need:`DUNE 152`.
+     3. The HOF operator(s) to be used (i.e. :math:`f_1,\ f_2,\ \dots`), and
+     4. The maximum number of CPU threads the framework can use when invoking the operator :need:`DUNE 152`.
         Replace with: The maximum number of CPU threads from which the framework can simultaneously invoke the node.
         Note that this does not address :need:`DUNE 152`.
         We propose to get rid of :need:`DUNE 152`.
@@ -69,14 +68,14 @@ Specifically, in the registration stanza above, we have the following:
         Because the product suffix is empty, the :cpp:`.suffix` field could have been omitted altogether.
 
    :cpp:`output_product_suffixes(...)`
-     6. This is the specification of the output products :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the algorithm :need:`DUNE 156`.
+     6. This is the specification of the output products :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the operator :need:`DUNE 156`.
         The arguments to :cpp:`output_product_suffixes(...)` is one suffix for each product created by the transform operator.
         In this case, because the operator is producing a single product of type :cpp:`hits`, the product suffix could have been an empty string.
         An equivalent to that would have been to omit the :cpp:`output_product_suffixes(...)` clause altogether, in which case the framework would have assigned a default suffix of an empty string to the output product.
 
-The set of information required by the framework for registering an algorithm largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
-However, in general, the registration code will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
-Note that the input and output data-product specifications are matched with the corresponding types of the registered algorithm's function signature.
+The set of information required by the framework for registering an algorithm through an operator largely depends on the HOF being used (see the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for specific interface).
+However, in general, the registration statement will specify which data products are required/produced by the algorithm :need:`DUNE 111` and the hardware resources required by the algorithm :need:`DUNE 9`.
+Note that the input and output data-product specifications are matched with the corresponding types of the registered operator's function signature.
 In other words:
 
 - :cpp:`"Waveforms"` specifies a data product whose C++ type is that of the first (and, in this case, only) input parameter to :cpp:`find_hits` (i.e. :cpp:`waveforms`).
@@ -85,17 +84,18 @@ In other words:
 When executed, the above code creates a :term:`configured higher-order function`, which serves as a node in the function-centric data-flow graph.
 
 The registration block may contain any code supported by C++.
-The block, however, must contain a registration statement to execute an algorithm.
+The block, however, must contain at least one registration statement to execute an algorithm.
 
 .. important::
 
    A module must contain only one registration stanza.
    Note that multiple registration statements may be made in each stanza.
+   Loading the library created from the module causes the creation of one workflow node for each registration statement in the stanza.
 
 Algorithms with Multiple Input Data Products
 --------------------------------------------
 
-The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output family by applying a one-parameter algorithm :cpp:`find_hits` to each element of the input family, as specified by :cpp:`input_family(product_selector{.suffix = "Waveforms", .layer = "APA"})`.
+The registration example given above in :numref:`ch_conceptual_design/registration:Framework Registration` creates an output family by applying a one-parameter operator (specifically, the algorithm :cpp:`find_hits`) to each element of the input family, as specified by :cpp:`input_family(product_selector{.suffix = "Waveforms", .layer = "APA"})`.
 In many cases, however, the algorithm will require more than one data product.
 Consider another algorithm :cpp:`find_hits_subtract_pedestals`, which forms hits by first subtracting pedestal values from the waveforms, both of which are presented to the algorithm as data products from the `APA`.
 The interface of the algorithm and its registration would look like:
@@ -117,15 +117,16 @@ The interface of the algorithm and its registration would look like:
       .output_product_suffixes("GoodHits");
   }
 
-The elements of the input family are thus pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
+As in the earlier example shown above, the HOF operator is the algorithm :cpp:`find_hits_subtract_pedestals` itself.
+The elements of the input family are pairs of the data products labeled :cpp:`"Waveforms"` and :cpp:`"Pedestals"` in each APA. [#zip]_
 In this case, the data cell for both data products is the same—i.e. for a given invocation of :cpp:`find_hits_subtract_pedestals`, both data products will be associated with the same APA.
 
 There are cases, however, where an algorithm needs to operate on data products from *different* data cells :need:`DUNE 89`.
 
 .. note::
 
-   The number of arguments presented to the :cpp:`family(...)` clause must match the number of input parameters to the registered algorithm.
-   The order of the :cpp:`family(...)` arguments also corresponds to the order of the algorithm's input parameters.
+   The number of arguments presented to the :cpp:`family(...)` clause must match the number of input parameters to the registered operator.
+   The order of the :cpp:`family(...)` arguments also corresponds to the order of the operator's input parameters.
 
 Data Products from Different Data Layers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -156,7 +157,7 @@ So long as a relation can be defined between specific `Spill` data cells and spe
 How the relation between data cells is defined is referred to as *data marshaling*, and it is described further in :numref:`ch_technical_design/task_management:Data-Marshaling`.
 
 Data Products from Adjacent Data Cells
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In some cases, it may be necessary to simultaneously access data products from adjacent data-products sets :need:`DUNE 91`, where *adjacency* is defined by the user :need:`DUNE 92`.
 The notion of adjacency can be critical for (e.g.) time-windowed processing (see :numref:`ch_conceptual_design/hofs/windows:Windows`), where the details of the "next" time bin are needed to accurately calculate properties of the "current" time bin.
@@ -182,20 +183,20 @@ To do this, an additional argument (e.g. :cpp:`config`) is passed to the registr
 
 .. note::
 
-   As discussed in :numref:`ch_technical_design/configuration:Programmatic access to the configuration`, the registration code will have access only to the configuration relevant to the algorithm being registered, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
+   As discussed in :numref:`ch_technical_design/configuration:Programmatic access to the configuration`, the registration stanza will have access only to the configuration relevant to the module being loaded, and to certain framework-level configuration such as debug level, verbosity, or parallelization options.
 
-Except for the specification of :cpp:`find_hits` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
+Except for the specification of :cpp:`transform` as the HOF and :cpp:`find_hits` as the HOF operator, all other pieces of information may be provided through the configuration.
 
 Framework Dependence in Registration Code
 -----------------------------------------
 
-Usually, classes like :cpp:`waveforms` and :cpp:`hits` and algorithms like :cpp:`find_hits` are framework-independent (see :numref:`introduction:Framework Independence`).
+Classes like :cpp:`waveforms` and :cpp:`hits` and algorithms like :cpp:`find_hits` are usually framework-independent (see :numref:`introduction:Framework Independence`).
 There may be scenarios, however, where dependence on framework interface is required, especially if framework-specific metadata types are used by the algorithm.
 In such cases, it is strongly encouraged to keep framework dependence within the module itself and, more specifically, within the registration stanza.
-This can be often achieved by registering closure objects that are generated by lambda expressions.
+This can often be achieved by registering closure objects produced by lambda expressions as operators.
 
 For example, suppose a physicist would like to create an algorithm :cpp:`find_hits_debug` that reports a spill number when making tracks.
-By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` object, the data product can be passed to the :cpp:`find_hits_debug` function, along with the spill number from the metadata accessed from the handle:
+By specifying a lambda expression as the HOF operator that takes a :cpp:`phlex::handle<waveforms>` object, the data product can be passed to the :cpp:`find_hits_debug` algorithm, along with the spill number from the metadata accessed from the handle:
 
 .. code:: c++
 
@@ -212,7 +213,7 @@ By specifying a lambda expression that takes a :cpp:`phlex::handle<waveforms>` o
       .output_product_suffixes("GoodHits");
    }
 
-The lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` function, however, retains its framework independence.
+The operator generated from the lambda expression *does* depend on framework interface; the :cpp:`find_hits_debug` algorithm, however, retains its framework independence.
 
 Member Functions of Classes
 ---------------------------
@@ -247,7 +248,7 @@ The :cpp:`hit_finder::find` member function's address is registered in the :cpp:
 
 .. note::
 
-  Algorithm authors should first attempt to implement algorithms as free functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`).
+  Algorithm authors should first try to implement algorithms as free functions (see :numref:`ch_preliminaries/functional_programming:Pure functions`) and register those free functions directly as HOF operators.
   Registering class instances and their member functions with the framework should only be considered when:
 
   - multiple processing steps must work together, relying on shared internal data, or
@@ -257,7 +258,7 @@ Overloaded Functions
 --------------------
 
 Phlex performs a substantial amount of type deduction through the :cpp:`transform(...)` clause.
-This works well except in cases where the registered algorithms are overloaded functions.
+This works well except in cases where the registered operators are overloaded functions.
 For example, suppose one wants to register C++'s overloaded :cpp:`std::sqrt(...)` function with the framework.
 Simply specifying :cpp:`transform(..., std::sqrt)` will fail at compile time as the compiler will not be able to determine which overload is desired.
 

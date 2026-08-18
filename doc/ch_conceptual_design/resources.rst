@@ -1,7 +1,7 @@
 Resources
 =========
 
-As mentioned in :numref:`ch_conceptual_design/algorithms:Algorithms`, the typical form of a C++ function that can be registered with the framework is:
+As mentioned in :numref:`ch_conceptual_design/algorithms:Operators and Algorithms`, the typical form of a C++ function that can be registered with the framework is:
 
 .. code:: c++
 

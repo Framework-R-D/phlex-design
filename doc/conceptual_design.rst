@@ -37,7 +37,7 @@ Various framework aspects are demonstrated by that figure:
       From a functional programming perspective these providers are impure functions that map a data cell index to one of the data products within the indicated data cell.
 
    *HOFs and user-provided algorithms*
-      Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see :numref:`ch_conceptual_design/algorithms:Algorithms`, :numref:`ch_conceptual_design/registration:Framework Registration` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`).
+      Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see :numref:`ch_conceptual_design/algorithms:Operators and Algorithms`, :numref:`ch_conceptual_design/registration:Framework Registration` and :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`).
 
       All seven HOFs supported by Phlex (see :numref:`hofs_in_phlex`) are used in :numref:`workflow`.
       For the main processing chain of creating vertices:

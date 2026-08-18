@@ -138,7 +138,7 @@ A calculation using a HOF is then generally expressed in terms of:
 .. index:: Algorithm
 
 Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
-As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
+As discussed later, each HOF's *operator* binds a user-defined :term:`algorithm` to the framework.
 Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes
