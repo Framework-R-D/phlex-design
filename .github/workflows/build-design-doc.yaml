@@ -20,7 +20,7 @@ jobs:
       image: ghcr.io/framework-r-d/phlexdoc:2025-06-06
 
     steps:
-      - name: Check out repository code (main branch)
+      - name: Check out repository code
         uses: actions/checkout@v4
         with:
           path: main
@@ -56,13 +56,16 @@ jobs:
           for d in static sources images; do mv build/html/_$d build/html/$d; done
           for d in static sources images; do sed -i -e "s|_$d/|$d/|g" $(find build/html/ -name \*.html); done
 
-      - name: Check out repository code (gh-pages branch)
+      # Build every branch, but publish the generated HTML only from main.
+      - name: Check out repository code (gh-pages branch for deployment)
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/checkout@v4
         with:
           path: gh-pages
           ref: gh-pages
 
       - name: Push HTML pages to gh-pages branch
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         working-directory: ./gh-pages/
         run: |
           # Remove the contents to avoid retaining generated images that are no longer used
