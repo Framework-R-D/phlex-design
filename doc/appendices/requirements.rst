@@ -227,7 +227,7 @@ Conceptual Requirements
 
     The framework shall support the registration of algorithms that are independent of framework interface.
 
-- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`, :numref:`ch_conceptual_design/algorithms:Algorithms`
+- See :numref:`introduction:Usability`, :numref:`introduction:Framework Independence`, :numref:`ch_conceptual_design/data_organization:data layers, data cells, and families`, :numref:`ch_conceptual_design/algorithms:Operators and Algorithms`
 
 .. req:: Safely executing thread-safe and non-thread-safe algorithms
     :collapse:

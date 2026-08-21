@@ -86,10 +86,10 @@ Such a HOF is called a map or *transform*:
 In such a scenario, the average :math:`\overline{c}` could be expressed as:
 
 .. math::
-   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \fami{e} = \frac{1}{n}\ \fold{+ \comp w}{0}\ \fami{e}
+   \overline{c} = \frac{1}{n}\ \fold{+}{0}\ \transform{w}\ \fami{e} = \frac{1}{n}\ \fold{+ \comp (w \times w)}{0}\ \fami{e}
 
 The second equality holds by the fold-map fusion law [Bird]_, which states that the application of a :math:`\text{transform}` followed by a :math:`\text{fold}` can be reduced to a single :math:`\text{fold}`.
-The operator to this single fold is ':math:`+ \comp w`', indicating that the function :math:`w` should be applied first before invoking the :math:`+` operation.
+The operator to this single fold is ':math:`+ \comp (w \times w)`', indicating that the function :math:`w` is applied to both input arguments of the :math:`+` operation.
 Relying on such mathematical laws permits the replacement of chained calculations with a single calculation, often leading to efficiency improvements without affecting the result.
 
 .. _hofs_in_phlex:
@@ -138,7 +138,7 @@ A calculation using a HOF is then generally expressed in terms of:
 .. index:: Algorithm
 
 Phlex supports the HOFs listed in :numref:`hofs_in_phlex`.
-As discussed later, each HOF's *operator* is an :term:`algorithm` registered with the framework.
+As discussed later, each HOF's *operator* binds a user-defined :term:`algorithm` to the framework.
 Phlex will likely support other higher order functions as well.
 
 .. rubric:: Footnotes

@@ -37,7 +37,7 @@ The subsystem defines a canonical descriptor object for each registered algorith
   - Detailed description (what it does, capabilities, use cases)
   - Author/maintainer information (optional)
 
-**Signature** (derived from :numref:`ch_conceptual_design/algorithms:Algorithms`)
+**Signature** (derived from :numref:`ch_conceptual_design/algorithms:Operators and Algorithms`)
   - Ordered list of data-product parameters, each with:
     - Parameter kind (``P const&``, ``P const*``, ``P``, ``phlex::handle<P>``)
     - Concrete type name (fully qualified)
