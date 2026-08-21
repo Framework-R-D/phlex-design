@@ -25,7 +25,7 @@ This can be achieved by in terms of the C++ *registration stanza*:
    {
      m.transform(                // 1. Higher-order function
         "hit_finder",            // 2. Name assigned to HOF
-        find_hits,               // 3. HOF operator (here, the algorithm itself)
+        find_hits,               // 3. HOF operator (here, the user's algorithm itself)
         concurrency::unlimited   // 4. Allowed CPU concurrency
       )
       .input_family(             // 5. Specification of input data-product family (see text)
