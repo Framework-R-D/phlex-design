@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Algorithms &#8212; Phlex 0.4.alpha (aa5c413) documentation</title>
+    <title>3.3. Operators and Algorithms &#8212; Phlex 0.4.alpha (94d472d) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=0801919c"></script>
+    <script src="../static/documentation_options.js?v=1f6814c2"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -51,9 +51,9 @@
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Operators and Algorithms</a></li> 
       </ul>
     </div>  
 
@@ -62,17 +62,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="algorithms">
-<h1><span class="section-number">3.3. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">¶</a></h1>
-<p>As mentioned in <a class="reference internal" href="../ch_preliminaries/functional_programming.html#families-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-In general, Phlex supports the registration of C++ algorithms with function signatures like (see <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> for a list of supported HOFs):</p>
+  <section id="operators-and-algorithms">
+<h1><span class="section-number">3.3. </span>Operators and Algorithms<a class="headerlink" href="#operators-and-algorithms" title="Link to this heading">¶</a></h1>
+<p>As mentioned in <a class="reference internal" href="../ch_preliminaries/functional_programming.html#families-of-data-and-higher-order-functions"><span class="std std-numref">Section 2.5</span></a>, a user-defined algorithm is bound to the framework through an operator to a higher-order function (HOF).
+It is the operator registered with the framework that is executed as part of the data-flow graph.
+As will be illustrated in <a class="reference internal" href="registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a>, a framework-agnostic algorithm can often serve directly as the HOF operator, without any framework-specific wrapper code.</p>
+<p>In general, Phlex supports the registration of C++ operators with function signatures like (see <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a> for a list of supported HOFs):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">return_type</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...,</span><span class="w"> </span><span class="n">Rm</span><span class="p">...)</span><span class="w"> </span><span class="p">[</span><span class="n">quals</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>where the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="n">Pn</span><span class="p">...</span></code> denote types of data products and the types <code class="code highlight c++ docutils literal highlight-c++"><span class="n">Rm</span><span class="p">...</span></code> indicate <a class="reference internal" href="../appendices/glossary.html#term-Resource"><span class="xref std std-term">resources</span></a>.
 The bracketed <code class="code highlight c++ docutils literal highlight-c++"><span class="p">[</span><span class="n">quals</span><span class="p">]</span></code> term indicates that Phlex allows for class member functions that have trailing qualifiers (e.g. <code class="code highlight c++ docutils literal highlight-c++"><span class="k">const</span></code>).
-Each registered function must accept at least one data product.</p>
-<p>The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with <cite>Numba</cite>), bound (e.g. with <cite>ctypes</cite>), or annotated.
+Each registered operator must accept at least one data product.</p>
+<p>The signature of a Python operator needs to be available through reflection, either because the function is JITed (e.g. with <cite>Numba</cite>), bound (e.g. with <cite>ctypes</cite>), or annotated.
 The latter is good practice regardless and commonly required by Python coding conventions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">P1</span><span class="p">,</span> <span class="n">pn</span><span class="p">:</span> <span class="n">Pn</span><span class="o">...</span><span class="p">,</span> <span class="n">rm</span><span class="p">:</span> <span class="n">Rm</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">return_type</span><span class="p">:</span>
 </pre></div>
@@ -80,7 +82,7 @@ The latter is good practice regardless and commonly required by Python coding co
 <p>We will first discuss the data-product and resource types in <a class="reference internal" href="#input-parameters"><span class="std std-numref">Section 3.3.1</span></a>, followed by the return types in <a class="reference internal" href="#return-types"><span class="std std-numref">Section 3.3.2</span></a>, and then the function name and optional qualifers in <a class="reference internal" href="#function-names-and-qualifiers"><span class="std std-numref">Section 3.3.3</span></a>.</p>
 <section id="input-parameters">
 <h2><span class="section-number">3.3.1. </span>Input Parameters<a class="headerlink" href="#input-parameters" title="Link to this heading">¶</a></h2>
-<p>A data product of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P</span></code> may be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">PN</span></code> type) is one of the following:</p>
+<p>A data product of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P</span></code> may be presented to a C++ operator if the corresponding input parameter (i.e. the relevant <code class="code highlight c++ docutils literal highlight-c++"><span class="n">P1</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">PN</span></code> type) is one of the following:</p>
 <ul class="simple">
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">P</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span></code> — read-only access to a data product provided through a reference</p></li>
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">P</span><span class="w"> </span><span class="k">const</span><span class="o">*</span></code> — read-only access to a data product provided through a pointer</p></li>
@@ -88,7 +90,7 @@ The latter is good practice regardless and commonly required by Python coding co
 <li><p><code class="code highlight c++ docutils literal highlight-c++"><span class="n">phlex</span><span class="o">::</span><span class="n">handle</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&gt;</span></code> — a lightweight object that provides read-only access to a data product as well as any metadata associated with it</p></li>
 </ul>
 <p>For each of these cases, the data product itself remains immutable.
-A Python algorithm can receive a <cite>phlex::handle</cite> or a direct reference to the data product.
+A Python operator can receive a <cite>phlex::handle</cite> or a direct reference to the data product.
 There is no equivalent language support for read-only access, but it will be enforced where possible.</p>
 <p>Whereas data products may be copied, resources of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">R</span></code> may not.
 The following types are therefore supported:</p>
@@ -102,16 +104,16 @@ The following types are therefore supported:</p>
 </section>
 <section id="return-types">
 <h2><span class="section-number">3.3.2. </span>Return Types<a class="headerlink" href="#return-types" title="Link to this heading">¶</a></h2>
-<p>The meaning of an algorithm’s return type depends on the HOF and is discussed in the <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>.
+<p>The meaning of an operator’s return type depends on the HOF and is discussed in <a class="reference internal" href="supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>.
 However, to simplify the discussion we introduce to concept of the <em>created data-product type</em>.
-For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
-This means that the data products created by algorithms must have types that connote unique ownership.
-An algorithm’s returned object must therefore model a created data-product type, which can be:</p>
+For Phlex to appropriately schedule the execution of operators and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
+This means that the data products created by operators must have types that connote unique ownership.
+An operator’s returned object must therefore model a created data-product type, which can be:</p>
 <ul class="simple">
 <li><p>a <em>value</em> of type <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span></code>, or</p></li>
 <li><p>a <code class="code highlight c++ docutils literal highlight-c++"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span></code>, where the created object is non-null.</p></li>
 </ul>
-<p>For Python, this means that an algorithm should not retain any external hard references to a returned object.</p>
+<p>For Python, this means that an operator should not retain any external hard references to a returned object.</p>
 <p>The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:</p>
 <ul class="simple">
 <li><p><em>bare pointer types</em>, such as <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span><span class="o">*</span></code> or <code class="code highlight c++ docutils literal highlight-c++"><span class="n">T</span><span class="w"> </span><span class="k">const</span><span class="o">*</span></code></p></li>
@@ -120,8 +122,8 @@ An algorithm’s returned object must therefore model a created data-product typ
 </section>
 <section id="function-names-and-qualifiers">
 <h2><span class="section-number">3.3.3. </span>Function Names and Qualifiers<a class="headerlink" href="#function-names-and-qualifiers" title="Link to this heading">¶</a></h2>
-<p>The <code class="code highlight c++ docutils literal highlight-c++"><span class="n">function_name</span></code> in <a class="reference internal" href="#algorithms"><span class="std std-numref">Section 3.3</span></a> above may be any function name supported by the C++ language.
-Code authors should aim to implement algorithms as free functions.
+<p>The <code class="code highlight c++ docutils literal highlight-c++"><span class="n">function_name</span></code> in <a class="reference internal" href="#operators-and-algorithms"><span class="std std-numref">Section 3.3</span></a> above may be any function name supported by the C++ language.
+Code authors should aim to implement operators (or, equivalently, algorithms) as free functions.
 However, in some cases it may be necessary for class member functions to be used instead.
 When member functions are required, the qualifier <code class="code highlight c++ docutils literal highlight-c++"><span class="k">const</span></code> should be specified to indicate that the class instance remains immutable during the execution of the member function <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 <p class="rubric">Footnotes</p>
@@ -160,7 +162,7 @@ However, using such member functions is highly discouraged as it indicates that 
   <div>
     <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">3.3. Algorithms</a><ul>
+<li><a class="reference internal" href="#">3.3. Operators and Algorithms</a><ul>
 <li><a class="reference internal" href="#input-parameters">3.3.1. Input Parameters</a></li>
 <li><a class="reference internal" href="#return-types">3.3.2. Return Types</a></li>
 <li><a class="reference internal" href="#function-names-and-qualifiers">3.3.3. Function Names and Qualifiers</a></li>
@@ -212,14 +214,14 @@ However, using such member functions is highly discouraged as it indicates that 
         <li class="right" >
           <a href="data_organization.html" title="3.2. Data Organization"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Algorithms</a></li> 
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.3. </span>Operators and Algorithms</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 17, 2026.
+      Last updated on Aug 21, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

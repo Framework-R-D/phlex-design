@@ -53,7 +53,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    // Return type: first number = number of good hits
    //              second number = number of all hits
 
-**Transform with one argument (default output product name)**
+**Transform with one argument (default output-product suffix)**
 
 .. code:: c++
 
@@ -63,7 +63,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
       .input_family(product_selector{.suffix = "Waveforms", .layer = "APA"});
    }
 
-**Transform with one argument (user-specified output product name)**
+**Transform with one argument (user-specified output-product suffix)**
 
 *As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Framework Registration`
 
@@ -76,7 +76,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
       .output_product_suffixes("GoodHits");
    }
 
-**Transform with two arguments (default output product name)**
+**Transform with two arguments (default output-product suffix)**
 
 *As shown in* :numref:`workflow` *and described in* :numref:`ch_conceptual_design/registration:Data Products from Different Data Layers`
 
@@ -88,11 +88,10 @@ To illustrate the different ways a transform's algorithm can be registered with 
       .input_family(
         product_selector{.suffix = "Geometry", .layer = "Job"},
         product_selector{.suffix = "GoodTracks", .layer = "APA"}
-      )
-      .output_product_suffixes("Vertices");
+      );
    }
 
-**Transform creating two data products (user-specified output product names)**
+**Transform creating two data products (user-specified output-product suffixes)**
 
 .. code:: c++
 
@@ -100,5 +99,7 @@ To illustrate the different ways a transform's algorithm can be registered with 
    {
      m.transform("hit_counter", count_good_hits, concurrency::unlimited)
       .input_family(product_selector{.suffix = "GoodHits", .layer = "APA"})
-      .output_product_suffixes("NumGoodHits", "NumAllHits");  // <= One name per tuple slot
+      .output_product_suffixes(
+        "NumGoodHits", "NumAllHits"  // <= One suffix per tuple slot
+      );
    }

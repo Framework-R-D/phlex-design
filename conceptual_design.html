@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (aa5c413) documentation</title>
+    <title>3. Conceptual Design &#8212; Phlex 0.4.alpha (94d472d) documentation</title>
     <link rel="stylesheet" type="text/css" href="static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="static/jquery.js?v=5d32c60e"></script>
     <script src="static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="static/documentation_options.js?v=0801919c"></script>
+    <script src="static/documentation_options.js?v=1f6814c2"></script>
     <script src="static/doctools.js?v=9bcbadda"></script>
     <script src="static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>  
@@ -94,7 +94,7 @@ In the example there are two providers, each of which reads data products from a
 One provider reads a <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> data product from each <cite>Spill</cite> in the HDF5 input files, and the other reads a single <span class="math notranslate nohighlight">\(\textit{Geometry}\)</span> corresponding to the <cite>Job</cite> from a GDML file.
 From a functional programming perspective these providers are impure functions that map a data cell index to one of the data products within the indicated data cell.</p>
 </dd>
-<dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
+<dt><em>HOFs and user-provided algorithms</em></dt><dd><p>Arguably the most important aspect of the framework is how user-provided algorithms are bound to HOFs and registered with the framework (see <a class="reference internal" href="ch_conceptual_design/algorithms.html#operators-and-algorithms"><span class="std std-numref">Section 3.3</span></a>, <a class="reference internal" href="ch_conceptual_design/registration.html#framework-registration"><span class="std std-numref">Section 3.4</span></a> and <a class="reference internal" href="ch_conceptual_design/supported_hofs.html#supported-higher-order-functions"><span class="std std-numref">Section 3.5</span></a>).</p>
 <p>All seven HOFs supported by Phlex (see <a class="reference internal" href="ch_preliminaries/functional_programming.html#hofs-in-phlex"><span class="std std-numref">Table 2.2</span></a>) are used in <a class="reference internal" href="#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 For the main processing chain of creating vertices:</p>
 <ul class="simple">
@@ -230,7 +230,7 @@ See text for workflow details.</span><a class="headerlink" href="#workflow" titl
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/data_organization.html#data-product-identification">3.2.4. Data Product Identification</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/algorithms.html">3.3. Algorithms</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="ch_conceptual_design/algorithms.html">3.3. Operators and Algorithms</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#input-parameters">3.3.1. Input Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#return-types">3.3.2. Return Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ch_conceptual_design/algorithms.html#function-names-and-qualifiers">3.3.3. Function Names and Qualifiers</a></li>
@@ -335,13 +335,13 @@ For memory purposes, it is also likely that each element of the family is a ligh
         <li class="right" >
           <a href="ch_preliminaries/data_flow.html" title="2.6. Data Flow"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Conceptual Design</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 17, 2026.
+      Last updated on Aug 21, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

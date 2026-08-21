@@ -1,8 +1,11 @@
-Algorithms
-==========
+Operators and Algorithms
+========================
 
-As mentioned in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, an algorithm is registered with the framework as an operator to a higher-order function (HOF).
-In general, Phlex supports the registration of C++ algorithms with function signatures like (see :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for a list of supported HOFs):
+As mentioned in :numref:`ch_preliminaries/functional_programming:Families of Data and Higher-Order Functions`, a user-defined algorithm is bound to the framework through an operator to a higher-order function (HOF).
+It is the operator registered with the framework that is executed as part of the data-flow graph.
+As will be illustrated in :numref:`ch_conceptual_design/registration:Framework Registration`, a framework-agnostic algorithm can often serve directly as the HOF operator, without any framework-specific wrapper code.
+
+In general, Phlex supports the registration of C++ operators with function signatures like (see :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions` for a list of supported HOFs):
 
 .. code:: c++
 
@@ -10,9 +13,9 @@ In general, Phlex supports the registration of C++ algorithms with function sign
 
 where the types :cpp:`P1, Pn...` denote types of data products and the types :cpp:`Rm...` indicate :term:`resources <resource>`.
 The bracketed :cpp:`[quals]` term indicates that Phlex allows for class member functions that have trailing qualifiers (e.g. :cpp:`const`).
-Each registered function must accept at least one data product.
+Each registered operator must accept at least one data product.
 
-The signature of a Python algorithm needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.
+The signature of a Python operator needs to be available through reflection, either because the function is JITed (e.g. with `Numba`), bound (e.g. with `ctypes`), or annotated.
 The latter is good practice regardless and commonly required by Python coding conventions:
 
 .. rstcheck: ignore-next-code-block
@@ -25,7 +28,7 @@ We will first discuss the data-product and resource types in :numref:`ch_concept
 Input Parameters
 ----------------
 
-A data product of type :cpp:`P` may be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
+A data product of type :cpp:`P` may be presented to a C++ operator if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
 
 - :cpp:`P const&` — read-only access to a data product provided through a reference
 - :cpp:`P const*` — read-only access to a data product provided through a pointer
@@ -33,7 +36,7 @@ A data product of type :cpp:`P` may be presented to a C++ algorithm if the corre
 - :cpp:`phlex::handle<P>` — a lightweight object that provides read-only access to a data product as well as any metadata associated with it
 
 For each of these cases, the data product itself remains immutable.
-A Python algorithm can receive a `phlex::handle` or a direct reference to the data product.
+A Python operator can receive a `phlex::handle` or a direct reference to the data product.
 There is no equivalent language support for read-only access, but it will be enforced where possible.
 
 Whereas data products may be copied, resources of type :cpp:`R` may not.
@@ -49,16 +52,16 @@ Resources are described in more detail in :numref:`ch_conceptual_design/resource
 Return Types
 ------------
 
-The meaning of an algorithm's return type depends on the HOF and is discussed in the :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`.
+The meaning of an operator's return type depends on the HOF and is discussed in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`.
 However, to simplify the discussion we introduce to concept of the *created data-product type*.
-For Phlex to appropriately schedule the execution of algorithms and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
-This means that the data products created by algorithms must have types that connote unique ownership.
-An algorithm's returned object must therefore model a created data-product type, which can be:
+For Phlex to appropriately schedule the execution of operators and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
+This means that the data products created by operators must have types that connote unique ownership.
+An operator's returned object must therefore model a created data-product type, which can be:
 
 - a *value* of type :cpp:`T`, or
 - a :cpp:`std::unique_ptr<T>`, where the created object is non-null.
 
-For Python, this means that an algorithm should not retain any external hard references to a returned object.
+For Python, this means that an operator should not retain any external hard references to a returned object.
 
 The following types (or their equivalents) are forbidden as created data-product types because they do not imply unambiguous ownership:
 
@@ -68,8 +71,8 @@ The following types (or their equivalents) are forbidden as created data-product
 Function Names and Qualifiers
 -----------------------------
 
-The :cpp:`function_name` in :numref:`ch_conceptual_design/algorithms:Algorithms` above may be any function name supported by the C++ language.
-Code authors should aim to implement algorithms as free functions.
+The :cpp:`function_name` in :numref:`ch_conceptual_design/algorithms:Operators and Algorithms` above may be any function name supported by the C++ language.
+Code authors should aim to implement operators (or, equivalently, algorithms) as free functions.
 However, in some cases it may be necessary for class member functions to be used instead.
 When member functions are required, the qualifier :cpp:`const` should be specified to indicate that the class instance remains immutable during the execution of the member function [#f2]_.
 

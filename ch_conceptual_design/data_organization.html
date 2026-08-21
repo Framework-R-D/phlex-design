@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex 0.4.alpha (aa5c413) documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0.4.alpha (94d472d) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=0801919c"></script>
+    <script src="../static/documentation_options.js?v=1f6814c2"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -34,7 +34,7 @@
     <script src="../static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.3. Algorithms" href="algorithms.html" />
+    <link rel="next" title="3.3. Operators and Algorithms" href="algorithms.html" />
     <link rel="prev" title="3.1. Topology of the Data-Flow Graph" href="scheduling.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -48,12 +48,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="algorithms.html" title="3.3. Algorithms"
+          <a href="algorithms.html" title="3.3. Operators and Algorithms"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -308,7 +308,7 @@ The framework-provided <cite>Job</cite> data layer and three different user-defi
 Rectangles with labels <span class="math notranslate nohighlight">\(\textsf{Run}_i\)</span>, <span class="math notranslate nohighlight">\(\textsf{Spill}_{i,j}\)</span>, and <span class="math notranslate nohighlight">\(\textsf{APA}_{i,j,k}\)</span> represent data cells.
 The pale green rectangles show two data-cell families; these are identified as families because they are the result of executing the <span class="math notranslate nohighlight">\(\textit{unfold(into\_apas)}\)</span> node shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
 A solid line from one data cell to another data cell represents a logical association between the two data cells.
-The bottom rectangle shows that <span class="math notranslate nohighlight">\(\textsf{Waveforms}_{1,1,1}\)</span> is in the data cell <span class="math notranslate nohighlight">\(\textsf{APA}_{1,1,1}\)</span>, etc.
+Each dashed line between a data product and a data cell (e.g., between <span class="math notranslate nohighlight">\(\textsf{Waveforms}_{1,1,1}\)</span> and <span class="math notranslate nohighlight">\(\textsf{APA}_{1,1,1}\)</span>) indicates that the data product is logically contained by the data cell (see text).
 Each pale purple rectangle indicates the data-product family created by unfolding each <span class="math notranslate nohighlight">\(\textit{SimDepos}\)</span> object as shown in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
@@ -340,6 +340,15 @@ Framework users are expected to define their own data product types <a class="re
 <p>As illustrated in <a class="reference internal" href="#id1"><span class="std std-numref">Fig. 3.3</span></a>, data products are organized into user-defined data cells, families, layers, and hierarchies, supporting varying levels of granularity <a class="reference internal" href="../appendices/requirements.html#DUNE 86" title="DUNE 86"><em class="xref need">[DUNE 86]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 87" title="DUNE 87"><em class="xref need">[DUNE 87]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 88" title="DUNE 88"><em class="xref need">[DUNE 88]</em></a>.
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales <a class="reference internal" href="../appendices/requirements.html#DUNE 43" title="DUNE 43"><em class="xref need">[DUNE 43]</em></a>.
 This provides the ability to process data too large to fit into memory at one time <a class="reference internal" href="../appendices/requirements.html#DUNE 25" title="DUNE 25"><em class="xref need">[DUNE 25]</em></a>.</p>
+<div class="admonition-logical-vs-in-memory-containment admonition">
+<p class="admonition-title">Logical vs. in-memory containment</p>
+<p>From a mathematical perspective, data cells <em>logically</em> contain data products.
+It is from this mathematical viewpoint that a data product equivalently <em>belongs to</em>, <em>is associated with</em>, <em>is contained by</em>, <em>is in</em>, or <em>is a member of</em> one or more data cells.
+This does not mean, however, that the framework must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
+The framework program owns the in-memory instances of data products rather than data-cell objects or user-defined algorithms.
+The framework program, therefore, controls the in-memory lifetimes of data-product instances and may retain in memory only those instances necessary for performing a particular task (see <a class="reference internal" href="#data-product-management"><span class="std std-numref">Section 3.2.3</span></a>).
+This means that a data product may logically belong to a data cell even if it does not reside in memory.</p>
+</div>
 </section>
 <section id="data-product-management">
 <h2><span class="section-number">3.2.3. </span>Data Product Management<a class="headerlink" href="#data-product-management" title="Link to this heading">¶</a></h2>
@@ -360,7 +369,7 @@ Such metadata include:</p>
 <li><p>the <em>creator</em>, the name of the algorithm that created the data product</p></li>
 <li><p>an identifier for the <em>data cells</em> with which the data product is associated (e.g. <cite>Spill</cite>, <cite>Run</cite>, <cite>Calibration Interval</cite>, or other experiment-defined layer)</p></li>
 <li><p>the <em>stage name</em>, an identifier for the job in which the data product was created</p></li>
-<li><p>an individual <em>name</em> for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.</p></li>
+<li><p>an individual <em>suffix</em> for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.</p></li>
 </ul>
 <p>In addition to these metadata, a data product is also specified by its <em>type</em>.</p>
 <p>The metadata are stored in the framework output file, and the IO interface allows access to the metadata <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a>.</p>
@@ -404,7 +413,7 @@ The algorithms are configured to identify the inputs in which they are intereste
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="algorithms.html"
-                          title="next chapter"><span class="section-number">3.3. </span>Algorithms</a></p>
+                          title="next chapter"><span class="section-number">3.3. </span>Operators and Algorithms</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -434,19 +443,19 @@ The algorithms are configured to identify the inputs in which they are intereste
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="algorithms.html" title="3.3. Algorithms"
+          <a href="algorithms.html" title="3.3. Operators and Algorithms"
              >next</a> |</li>
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (aa5c413) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Jun 17, 2026.
+      Last updated on Aug 21, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

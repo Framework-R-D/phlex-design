@@ -30,7 +30,7 @@ The `Job` layer always includes a single data cell.
              Rectangles with labels :math:`\textsf{Run}_i`, :math:`\textsf{Spill}_{i,j}`, and :math:`\textsf{APA}_{i,j,k}` represent data cells.
              The pale green rectangles show two data-cell families; these are identified as families because they are the result of executing the :mathfunc:`unfold(into_apas)` node shown in :numref:`workflow`.
              A solid line from one data cell to another data cell represents a logical association between the two data cells.
-             The bottom rectangle shows that :math:`\textsf{Waveforms}_{1,1,1}` is in the data cell :math:`\textsf{APA}_{1,1,1}`, etc.
+             Each dashed line between a data product and a data cell (e.g., between :math:`\textsf{Waveforms}_{1,1,1}` and :math:`\textsf{APA}_{1,1,1}`) indicates that the data product is logically contained by the data cell (see text).
              Each pale purple rectangle indicates the data-product family created by unfolding each :product:`SimDepos` object as shown in :numref:`workflow`.
    :name: data-organization
 
@@ -70,6 +70,16 @@ As illustrated in :numref:`data-organization`, data products are organized into 
 They can be unfolded into finer-grained units, enabling detailed analysis or reprocessing at different scales :need:`DUNE 43`.
 This provides the ability to process data too large to fit into memory at one time :need:`DUNE 25`.
 
+.. admonition:: Logical vs. in-memory containment
+
+    From a mathematical perspective, data cells *logically* contain data products.
+    It is from this mathematical viewpoint that a data product equivalently *belongs to*, *is associated with*, *is contained by*, *is in*, or *is a member of* one or more data cells.
+    This does not mean, however, that the framework must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
+    The framework program owns the in-memory instances of data products rather than data-cell objects or user-defined algorithms.
+    The framework program, therefore, controls the in-memory lifetimes of data-product instances and may retain in memory only those instances necessary for performing a particular task (see :numref:`ch_conceptual_design/data_organization:Data Product Management`).
+    This means that a data product may logically belong to a data cell even if it does not reside in memory.
+
+
 Data Product Management
 -----------------------
 
@@ -92,7 +102,7 @@ Such metadata include:
 - the *creator*, the name of the algorithm that created the data product
 - an identifier for the *data cells* with which the data product is associated (e.g. `Spill`, `Run`, `Calibration Interval`, or other experiment-defined layer)
 - the *stage name*, an identifier for the job in which the data product was created
-- an individual *name* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
+- an individual *suffix* for the data product (which may be empty), to distinguish between multiple products of the same type created by the same algorithm.
 
 In addition to these metadata, a data product is also specified by its *type*.
 
