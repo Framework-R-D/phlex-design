@@ -39,6 +39,12 @@ For each of these cases, the data product itself remains immutable.
 A Python operator can receive a `phlex::handle` or a direct reference to the data product.
 There is no equivalent language support for read-only access, but it will be enforced where possible.
 
+.. admonition:: Data-product ownership
+
+    As mentioned in :numref:`ch_conceptual_design/data_organization:Data Product Management`, the framework owns all in-memory data products and releases them from memory once they are no longer required by downstream work.
+    An operator (and any code used by that operator) must, therefore, not retain a handle object, a pointer, or a reference to an input data product after the operator returns.
+    An operator that requires a data product in a later invocation must receive it through the framework as an input to that invocation.
+
 Whereas data products may be copied, resources of type :cpp:`R` may not.
 The following types are therefore supported:
 
@@ -53,8 +59,8 @@ Return Types
 ------------
 
 The meaning of an operator's return type depends on the HOF and is discussed in :numref:`ch_conceptual_design/supported_hofs:Supported Higher-Order Functions`.
-However, to simplify the discussion we introduce to concept of the *created data-product type*.
-For Phlex to appropriately schedule the execution of operators and manage the lifetimes of data products, the framework itself must retain ownership of the data products.
+However, to simplify the discussion we introduce the concept of the *created data-product type*.
+As mentioned in :numref:`ch_conceptual_design/data_organization:Data Product Management`, the framework manages all data products returned by operators.
 This means that the data products created by operators must have types that connote unique ownership.
 An operator's returned object must therefore model a created data-product type, which can be:
 
