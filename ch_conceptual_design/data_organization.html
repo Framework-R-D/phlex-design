@@ -6,22 +6,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.2. Data Organization &#8212; Phlex 0.4.alpha (94d472d) documentation</title>
+    <title>3.2. Data Organization &#8212; Phlex 0.4.alpha (8f9b25c) documentation</title>
     <link rel="stylesheet" type="text/css" href="../static/pygments.css?v=d75fae25" />
     <link rel="stylesheet" type="text/css" href="../static/phlexframework.css?v=47741a9d" />
     <link rel="stylesheet" type="text/css" href="../static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
     <link rel="stylesheet" type="text/css" href="../static/sphinx-needs/modern.css?v=803738c0" />
     
     <script src="../static/jquery.js?v=5d32c60e"></script>
     <script src="../static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../static/documentation_options.js?v=1f6814c2"></script>
+    <script src="../static/documentation_options.js?v=06d7bf35"></script>
     <script src="../static/doctools.js?v=9bcbadda"></script>
     <script src="../static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
@@ -53,7 +53,7 @@
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (8f9b25c) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" accesskey="U"><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
@@ -343,20 +343,38 @@ This provides the ability to process data too large to fit into memory at one ti
 <div class="admonition-logical-vs-in-memory-containment admonition">
 <p class="admonition-title">Logical vs. in-memory containment</p>
 <p>From a mathematical perspective, data cells <em>logically</em> contain data products.
-It is from this mathematical viewpoint that a data product equivalently <em>belongs to</em>, <em>is associated with</em>, <em>is contained by</em>, <em>is in</em>, or <em>is a member of</em> one or more data cells.
-This does not mean, however, that the framework must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
-The framework program owns the in-memory instances of data products rather than data-cell objects or user-defined algorithms.
-The framework program, therefore, controls the in-memory lifetimes of data-product instances and may retain in memory only those instances necessary for performing a particular task (see <a class="reference internal" href="#data-product-management"><span class="std std-numref">Section 3.2.3</span></a>).
-This means that a data product may logically belong to a data cell even if it does not reside in memory.</p>
+It is from this mathematical viewpoint that a data product equivalently <em>belongs to</em>, <em>is associated with</em>, <em>is contained by</em>, <em>is in</em>, or <em>is a member of</em> one or more data cells.</p>
+<p>This does not mean, however, that the framework must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
+The framework program owns the in-memory instances of data products rather than data-cell objects or user-defined algorithms.</p>
+<p>The framework program, therefore, controls the in-memory lifetimes of data-product instances and may retain in memory only those instances necessary for performing a particular task (see <a class="reference internal" href="#data-product-management"><span class="std std-numref">Section 3.2.3</span></a>).
+This has two consequences:</p>
+<ul class="simple">
+<li><p>a data product may logically belong to a data cell even if it does not reside in memory, and</p></li>
+<li><p>data products that logically belong to the same data cell may be released from memory at different times, according to the downstream work that requires each data product.</p></li>
+</ul>
 </div>
 </section>
 <section id="data-product-management">
 <h2><span class="section-number">3.2.3. </span>Data Product Management<a class="headerlink" href="#data-product-management" title="Link to this heading">¶</a></h2>
-<p>Management of the data products returned by an algorithm is taken over by the framework.
+<p>For Phlex to appropriately schedule the execution of operators and manage the lifetimes of data products, all data products returned by algorithms are managed by the framework (see <a class="reference internal" href="algorithms.html#return-types"><span class="std std-numref">Section 3.3.2</span></a>).
 Read-only access to input data products is provided to algorithms <a class="reference internal" href="../appendices/requirements.html#DUNE 121" title="DUNE 121"><em class="xref need">[DUNE 121]</em></a> <a class="reference internal" href="../appendices/requirements.html#DUNE 130" title="DUNE 130"><em class="xref need">[DUNE 130]</em></a>.
 Read-only access to a data product must not mutate it.
-Data products that are intended to be written out are sent to the IO system as soon as they are created <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.
-Data products are removed from memory as soon as they are no longer needed for writing or as input to another algorithm <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.</p>
+Data products that are intended to be written out are sent to the IO system as soon as they are created <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.</p>
+<p>Data products are removed from memory as soon as possible after they are no longer needed for writing or by any remaining downstream work in the data-flow graph <a class="reference internal" href="../appendices/requirements.html#DUNE 142" title="DUNE 142"><em class="xref need">[DUNE 142]</em></a>.
+In particular, the framework retains a data product while it is needed by a scheduled or executing algorithm, or by a preserver that is writing it.
+To illustrate, consider the data product <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> created by the <cite>PulseHitFinder</cite> transform node in <a class="reference internal" href="../conceptual_design.html#workflow"><span class="std std-numref">Fig. 3.1</span></a>.
+The data product is used by five downstream nodes:</p>
+<ul class="simple">
+<li><p>the <cite>OverlapAwareTrackFinder</cite> window node,</p></li>
+<li><p>the <cite>SpillEnergyAccumulator</cite> fold node,</p></li>
+<li><p>the <cite>HighEnergyHitSelector</cite> filter node,</p></li>
+<li><p>the <cite>HitQAMonitor</cite> observer node, and</p></li>
+<li><p>the <cite>preserve(GoodHits)</cite> preserver node.</p></li>
+</ul>
+<p>The <cite>HighEnergyHitSelector</cite> filter examines <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> to determine whether to propagate it to the <cite>HitQAMonitor</cite> observer node.
+If it does, the framework retains the data product until <cite>HitQAMonitor</cite> has completed.
+After the remaining downstream nodes have completed execution, the framework releases <span class="math notranslate nohighlight">\(\textit{GoodHits}_{3,5,9}\)</span> from memory.
+The mechanism by which this happens is described in <a class="reference internal" href="../ch_technical_design/data_product_management.html#data-product-management"><span class="std std-numref">Section 4.7</span></a>.</p>
 </section>
 <section id="data-product-identification">
 <h2><span class="section-number">3.2.4. </span>Data Product Identification<a class="headerlink" href="#data-product-identification" title="Link to this heading">¶</a></h2>
@@ -448,14 +466,14 @@ The algorithms are configured to identify the inputs in which they are intereste
         <li class="right" >
           <a href="scheduling.html" title="3.1. Topology of the Data-Flow Graph"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (94d472d) documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Phlex 0.4.alpha (8f9b25c) documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../conceptual_design.html" ><span class="section-number">3. </span>Conceptual Design</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3.2. </span>Data Organization</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
     &#169; Copyright 2025, Fermi Forward Discovery Group, LLC.
-      Last updated on Aug 21, 2026.
+      Last updated on Sep 04, 2026.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     </div>
   </body>

@@ -74,20 +74,40 @@ This provides the ability to process data too large to fit into memory at one ti
 
     From a mathematical perspective, data cells *logically* contain data products.
     It is from this mathematical viewpoint that a data product equivalently *belongs to*, *is associated with*, *is contained by*, *is in*, or *is a member of* one or more data cells.
+
     This does not mean, however, that the framework must represent a given data cell as an object that keeps all of its logically-contained data products in memory at one time.
     The framework program owns the in-memory instances of data products rather than data-cell objects or user-defined algorithms.
+
     The framework program, therefore, controls the in-memory lifetimes of data-product instances and may retain in memory only those instances necessary for performing a particular task (see :numref:`ch_conceptual_design/data_organization:Data Product Management`).
-    This means that a data product may logically belong to a data cell even if it does not reside in memory.
+    This has two consequences:
+
+    - a data product may logically belong to a data cell even if it does not reside in memory, and
+    - data products that logically belong to the same data cell may be released from memory at different times, according to the downstream work that requires each data product.
 
 
 Data Product Management
 -----------------------
 
-Management of the data products returned by an algorithm is taken over by the framework.
+For Phlex to appropriately schedule the execution of operators and manage the lifetimes of data products, all data products returned by algorithms are managed by the framework (see :numref:`ch_conceptual_design/algorithms:Return types`).
 Read-only access to input data products is provided to algorithms :need:`DUNE 121` :need:`DUNE 130`.
 Read-only access to a data product must not mutate it.
 Data products that are intended to be written out are sent to the IO system as soon as they are created :need:`DUNE 142`.
-Data products are removed from memory as soon as they are no longer needed for writing or as input to another algorithm :need:`DUNE 142`.
+
+Data products are removed from memory as soon as possible after they are no longer needed for writing or by any remaining downstream work in the data-flow graph :need:`DUNE 142`.
+In particular, the framework retains a data product while it is needed by a scheduled or executing algorithm, or by a preserver that is writing it.
+To illustrate, consider the data product :math:`\textit{GoodHits}_{3,5,9}` created by the `PulseHitFinder` transform node in :numref:`workflow`.
+The data product is used by five downstream nodes:
+
+- the `OverlapAwareTrackFinder` window node,
+- the `SpillEnergyAccumulator` fold node,
+- the `HighEnergyHitSelector` filter node,
+- the `HitQAMonitor` observer node, and
+- the `preserve(GoodHits)` preserver node.
+
+The `HighEnergyHitSelector` filter examines :math:`\textit{GoodHits}_{3,5,9}` to determine whether to propagate it to the `HitQAMonitor` observer node.
+If it does, the framework retains the data product until `HitQAMonitor` has completed.
+After the remaining downstream nodes have completed execution, the framework releases :math:`\textit{GoodHits}_{3,5,9}` from memory.
+The mechanism by which this happens is described in :numref:`ch_technical_design/data_product_management:Data Product Management`.
 
 Data Product Identification
 ---------------------------
