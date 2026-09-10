@@ -8,7 +8,9 @@ There would be only one registry for data-product concepts in any program.
 It would not be a global variable (or singleton) but would be owned by the `framework_graph` and passed to whatever functions need it.
 The registry needs to be owned by the `framework_graph` because every time we open a new input file we may discover a need to create new implicit providers, and thus there is the possibility of need new  [translator nodes](the-nature-of-translator-nodes.md).
 
-### The Need for a Registry of Data-Product Concepts
+### The Need for a Registry of Data-Product Concepts (And How it is Used)
+
+Program startup is described in the design document, in the section [Program Startup](https://framework-r-d.github.io/phlex-design/ch_technical_design/program_startup.html#graph-assembly-and-startup-time-matching).
 
 An important reason (perhaps the main reason) for having a registry of data product concepts is related to the need to generate [implicit providers](the-nature-of-implicit-providers.md).
 Closely related is the need to generate [translator nodes](the-nature-of-translator-nodes.md) to connect computational nodes.
@@ -29,8 +31,8 @@ It is not clear whether data-product concepts should be created "early" or "late
 "Early" means during the process of populating the `node_catalog`; as each node is created, it could deal with the concrete data- product types and the data-product concepts that needs.
 "Late" means during finalization of the `framework_graph`; the already-created nodes could be traversed, building all of the concept information at one time.
 
-Regardless of whether we handle the processing early or late, we need to do the following for each node:
+Regardless of whether we handle the processing early or late, we need to do the following for each node in the computational graph:
 1. We need to know the concrete data product type and the data-product concept for each input and output.
-2. For each of the data-product concepts, we need to check the registry.
+2. For each of the data-product concepts, we need to check the registry, and do one of two things:
 	1. If the concept is not in the registry, add it, and add the concrete data product type to the new concept
 	2. If the concept is in the registry, and the concrete data product type is not already part of the concept, add it to the concept.
