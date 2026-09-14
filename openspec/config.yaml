@@ -1,0 +1,58 @@
+schema: spec-driven
+
+context: |
+  This repository is the shared design and OpenSpec planning store for a
+  project that will be managed using spack mpd.
+
+  Existing design documentation in this repository is authoritative project
+  context and should be cited by path.
+
+  The code repositories are available from this repository as
+  ../srcs/phlex and ../srcs/phlex-examples.
+  These are symbolic-link paths and must be used as the repository locations;
+  do not replace them with their resolved target paths.
+
+  phlex contains the Phlex framework itself.
+  phlex-examples contains example user-writte code that will run in Phlex.
+
+  Repository-specific guidance:
+  - Before planning or applying phlex work, read the applicable guidance
+    under ../srcs/phlex, such as AGENTS.md, DEVELOPING.md, and the build,
+    testing, formatting, and language configuration files.
+  - Before planning or applying phlex-examples work, read the applicable
+    guidance under ../srcs/phlex-examples.
+  - Before changing shared design documentation, read the applicable guidance
+    and existing design documents in this repository.
+
+rules:
+  proposal:
+    - Identify every affected repository.
+    - Cite the applicable repository guidance and existing design documents.
+    - >-
+      State whether the change affects shared design, fake-phlex,
+      fake-phlex-examples, or a combination of them.
+  specs:
+    - Keep shared behavior and cross-repository contracts in specifications.
+    - >-
+      Keep repository-specific implementation details out of behavioral
+      requirements unless they are part of the required contract.
+  design:
+    - >-
+      Record cross-repository decisions and their consequences for each
+      repository.
+    - Cite the detailed architecture and style guides that apply.
+  tasks:
+    - >-
+      Name the target repository and use its srcs/ symbolic-link path in every
+      implementation task.
+    - Include the target repository's required build, formatting, and tests.
+
+operations:
+  apply:
+    guidance:
+      - Read and follow the target repository's local instructions.
+      - Run the target repository's required formatting and tests.
+  archive:
+    guidance:
+      - Record which repositories received implementation changes.
+      - Confirm that applicable repository validation was completed.
