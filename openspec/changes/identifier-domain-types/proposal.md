@@ -3,7 +3,7 @@
 `identifier` currently accepts arbitrary strings, including the empty string, even though its
 instances represent names in several distinct domains with different validity rules. An actual
 name must be non-empty and follow the agreed ASCII syntax. By contrast, an empty product suffix
-is meaningful, and a product selection with no suffix criterion matches any suffix rather than
+is meaningful, and a product selector with no suffix criterion matches any suffix rather than
 only an empty one. The creator's plugin component may also be empty. The framework needs
 domain-aware names that preserve these distinctions while rejecting invalid identifiers.
 
@@ -16,14 +16,15 @@ domain-aware names that preserve these distinctions while rejecting invalid iden
 - Introduce `empty_string` as the explicit representation of a meaningful empty textual value.
 - Introduce an `identifier_or_empty` value type that can hold either `empty_string` or a valid
   `identifier`.
-- Define `suffix_t` and `plugin_name_t` as aliases of `identifier_or_empty` while their validity
-  and behavior remain the same.
+- Define `suffix_t` as an alias of `identifier_or_empty` while its validity
+  and behavior remains the same.
 - Replace identifier uses that model a product suffix or the optional plugin component with the
   appropriate domain type; retain `identifier` where a non-empty generic identifier remains the
-  correct model.
+  correct model. Plugin names can not be empty, but some components may have optional plugin
+  names.
 - Preserve the distinction between an unspecified selector field and an explicit empty suffix.
 - Distinguish complete product specifications, whose layer names must be present and non-empty,
-  from product selections, whose omitted layer criterion matches any layer. A specified selection
+  from product selectors, whose omitted layer criterion matches any layer. A specified selector
   layer must also be non-empty.
 - Keep `CURRENT` valid as a generic identifier but reserved as the name of an actual execution
   stage; retain its placeholder uses.
@@ -74,8 +75,6 @@ is semantically valid.
 - Changing the hierarchy of data layers or the existing stage-specific `CURRENT` reservation
   beyond preserving it alongside generic identifier validation. Nameless created layers are
   intentionally ruled out by the new identifier contract.
-- Introducing distinct runtime behavior for `suffix_t` and `plugin_name_t` while they share the
-  same value semantics.
-- Changing product-selection matching rules other than preserving the existing distinction
+- Changing product-selector matching rules other than preserving the existing distinction
   between an unspecified suffix and an explicitly empty suffix.
 - Implementing unrelated translator-type-conversion work.
