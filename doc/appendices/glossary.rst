@@ -63,6 +63,12 @@ Glossary
 
         A particular physical data product may be represented by multiple concrete data products, possibly of different concrete data-product types.
 
+    Product selector
+        A value carrying criteria for matching product specifications. An omitted layer criterion matches any layer; a supplied layer name must be non-empty.
+
+    Product specification
+        The identifying description of a created data product, including a present, non-empty data-layer name.
+
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.
 

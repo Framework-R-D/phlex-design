@@ -7,9 +7,9 @@ an absent plugin component, and an invalid required name. `algorithm_name`,
 plugin bridge consequently each carry or reconstruct those meanings independently.
 
 This design refines the naming model in `proposal.md`, using the product-specification and
-product-selection vocabulary in `CONTEXT.md` and the labeling roles in
+product-selector vocabulary in `CONTEXT.md` and the labeling roles in
 `design_wiki/seeds/how-data-products-are-labeled.md`. A complete label for a created product has
-a non-empty layer name; a selection may omit the layer to match any layer. The current
+a non-empty layer name; a product selector may omit the layer to match any layer. The current
 `experimental::product_specification` class contains creator, suffix, and type, while the product's
 layer is carried separately (for example, by its data cell or provider). Its name does not imply
 that this class alone contains the complete label. Follow `AGENTS.md` for shared design and
@@ -25,7 +25,7 @@ that this class alone contains the complete label. Follow `AGENTS.md` for shared
   usable anywhere suffixes and plugin components are stored, compared, formatted, or hashed.
 - Preserve three selector states: omitted suffix (`std::nullopt`), explicit empty suffix, and
   explicit non-empty suffix.
-- Keep a selection's omitted layer distinct from a concrete, non-empty layer name.
+- Keep a product selector's omitted layer distinct from a concrete, non-empty layer name.
 - Keep C++, JSON configuration, and Python conversion at clear boundaries that construct the
   correct domain type from textual input.
 
@@ -33,7 +33,7 @@ that this class alone contains the complete label. Follow `AGENTS.md` for shared
 
 - Add distinct runtime validation or behavior to `suffix_t` and `plugin_name_t`; they remain
   aliases with the same value semantics.
-- Change the existing creator matching or product-selection rules beyond making their empty and
+- Change the existing creator matching or product-selector rules beyond making their empty and
   omitted inputs explicit.
 - Change the handle's textual metadata views, the fluent string suffix API, the FORM file format,
   or the stage-specific reservation of `CURRENT`.
@@ -69,7 +69,7 @@ reintroduce invalid states.
 A created product's complete specification must carry a concrete, non-empty layer name, modeled
 by `identifier` at the layer-creation and provider boundaries. It is not necessary to add a layer
 member to `experimental::product_specification`: its existing creator/suffix/type metadata combines
-with a data-cell or provider layer to form the complete label. A product selection's layer
+with a data-cell or provider layer to form the complete label. A product selector's layer
 criterion remains optional: omitted matches any concrete layer, while a supplied name is a valid
 `identifier`; an empty string is neither a valid layer name nor a wildcard. This distinction
 matches `CONTEXT.md` and the matching API in `../srcs/phlex/phlex/core/product_selector.hpp`.
@@ -79,7 +79,7 @@ matches `CONTEXT.md` and the matching API in `../srcs/phlex/phlex/core/product_s
 must become distinct wildcard/query state or display text rather than invalid `identifier` values;
 preserve the existing any-layer and any-suffix selection behavior.
 
-Alternative considered: encode an omitted selection layer with an empty identifier or `"*"`.
+Alternative considered: encode an omitted product-selector layer with an empty identifier or `"*"`.
 Rejected because neither is a valid name, and a wildcard is not a concrete layer.
 
 ### Model meaningful emptiness as a sum value
@@ -96,7 +96,7 @@ public model and plugin-facing signatures to communicate the domain even though 
 share implementation and validation.
 
 Alternative considered: use `std::optional<identifier>` for meaningful emptiness. Rejected because
-an optional already means an omitted selector field; using it for both would collapse explicit
+an optional already means an omitted product-selector field; using it for both would collapse explicit
 empty and unspecified suffixes. A raw `std::string` was also rejected because it would weaken the
 validity guarantee of the non-empty alternative.
 
@@ -154,9 +154,9 @@ Rejected because it would bypass the new name invariant and complicate matching 
 ### Preserve selector tri-state semantics at conversion boundaries
 
 `product_selector::suffix` will become `std::optional<suffix_t>`. `std::nullopt` remains an
-unspecified suffix that matches any suffix; `empty_string` is an explicit suffix that matches only
-an empty product suffix; and an `identifier` matches its corresponding named suffix. Matching,
-ordering, equality, and diagnostic rendering must preserve all three states.
+unspecified selector suffix that matches any product suffix; `empty_string` is an explicit suffix
+that matches only an empty product suffix; and an `identifier` matches its corresponding named
+suffix. Matching, ordering, equality, and diagnostic rendering must preserve all three states.
 
 JSON configuration and the Python selector parser will first test whether the `suffix` field is
 present. If it is absent, they produce `std::nullopt`; if present with `""`, they produce

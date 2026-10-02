@@ -3,7 +3,8 @@
 ## Purpose
 
 Define validated names and explicit empty-value semantics for Phlex product labels and
-selections, so naming remains consistent across registration, configuration, plugins, and storage.
+product selectors, so naming remains consistent across registration, configuration, plugins, and
+storage.
 
 ## ADDED Requirements
 
@@ -65,39 +66,40 @@ provider; the product-specification object alone need not contain the entire lab
 - **WHEN** a caller attempts to create a data cell or provide a product with an empty or otherwise invalid layer name
 - **THEN** the framework rejects the creation rather than recording a nameless layer
 
-### Requirement: Product selection treats an omitted layer as unrestricted
+### Requirement: Product selector treats an omitted layer as unrestricted
 
-A product selection SHALL accept an omitted layer criterion and match eligible products from
+A product selector SHALL accept an omitted layer criterion and match eligible products from
 any layer. A supplied layer criterion SHALL be a valid, non-empty identifier and SHALL match
 only that layer. The framework SHALL NOT represent an omitted criterion as a concrete layer name.
-Existing ambiguity rules for selections matching more than one product SHALL remain in effect.
+Existing ambiguity rules for a product selector matching more than one product SHALL remain in
+effect.
 
 #### Scenario: Select without naming a layer
 
-- **WHEN** a selection omits its layer and otherwise matches products labeled in distinct layers
+- **WHEN** a selector omits its layer and otherwise matches products labeled in distinct layers
 - **THEN** products in either layer are eligible matches, subject to the existing ambiguity rules
 
 #### Scenario: Select a particular layer
 
-- **WHEN** a selection specifies `event` as its layer and otherwise matches products in `event` and `job`
-- **THEN** only the product in `event` is eligible to match that selection
+- **WHEN** a selector specifies `event` as its layer and otherwise matches products in `event` and `job`
+- **THEN** only the product in `event` is eligible to match that selector
 
-#### Scenario: Reject an empty selection layer
+#### Scenario: Reject an empty selector layer
 
-- **WHEN** a selection configuration supplies `""` as its layer criterion
-- **THEN** the framework rejects that selection instead of interpreting the empty string as any layer
+- **WHEN** a selector configuration supplies `""` as its layer criterion
+- **THEN** the framework rejects that selector instead of interpreting the empty string as any layer
 
-#### Scenario: Source provides a concrete layer for an unrestricted selection
+#### Scenario: Source provides a concrete layer for an unrestricted selector
 
-- **WHEN** a source supplies a product to satisfy a selection whose layer is omitted
-- **THEN** it uses the product's actual, non-empty layer for matching and provider registration, or reports missing concrete layer metadata instead of deriving a layer from the selection
+- **WHEN** a source supplies a product to satisfy a selector whose layer is omitted
+- **THEN** it uses the product's actual, non-empty layer for matching and provider registration, or reports missing concrete layer metadata instead of deriving a layer from the selector
 
-### Requirement: Product suffix selection preserves three distinct states
+### Requirement: Product selector preserves three distinct suffix states
 
 A product specification SHALL have an explicit suffix that is either empty or a valid name. If
 no output suffix is specified during registration, the resulting product specification SHALL
-have an explicit empty suffix. A product selection SHALL distinguish an omitted suffix
-criterion, which matches any suffix; an explicit empty suffix, which matches only empty
+have an explicit empty suffix. A product selector SHALL distinguish an omitted suffix
+criterion, which matches any product suffix; an explicit empty suffix, which matches only empty
 suffixes; and a named suffix, which matches only that name. Textual configuration and Python
 selector input SHALL preserve those distinctions.
 
@@ -109,12 +111,12 @@ selector input SHALL preserve those distinctions.
 #### Scenario: Match omitted, empty, and named suffixes
 
 - **WHEN** available products have empty and `hits` suffixes
-- **THEN** an omitted selection suffix admits both, an explicit `""` admits only the empty suffix, and `hits` admits only the named suffix
+- **THEN** an omitted selector suffix admits both, an explicit `""` admits only the empty suffix, and `hits` admits only the named suffix
 
 #### Scenario: Preserve suffix meaning across selector inputs
 
 - **WHEN** JSON configuration or a Python selector provides no suffix field, an empty string, or `hits`
-- **THEN** the resulting selections retain the corresponding omitted, explicitly empty, and named matching behavior
+- **THEN** the resulting product selectors retain the corresponding omitted, explicitly empty, and named matching behavior
 
 ### Requirement: Creator plugin components may be empty
 
@@ -182,12 +184,12 @@ persisted file format SHALL remain unchanged.
 ### Requirement: Stage-specific reservation does not invalidate generic names
 
 The framework SHALL accept `CURRENT` as a generic identifier and continue allowing it as a
-stage placeholder in selections and provider registration. It SHALL reject `CURRENT` as the
+stage placeholder in product selectors and provider registration. It SHALL reject `CURRENT` as the
 name of an actual execution stage; actual stage names SHALL satisfy identifier syntax.
 
 #### Scenario: Resolve the current-stage placeholder
 
-- **WHEN** a selection or provider registration uses `CURRENT` to refer to the running stage
+- **WHEN** a product selector or provider registration uses `CURRENT` to refer to the running stage
 - **THEN** the framework retains its existing placeholder behavior
 
 #### Scenario: Reject a reserved execution-stage name

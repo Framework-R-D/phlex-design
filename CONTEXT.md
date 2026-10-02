@@ -48,8 +48,8 @@ An anode plane assembly, a physical far-detector unit consisting of thousands of
 **Product specification**:
 The identifying description of a created data product, including a present, non-empty data-layer name.
 
-**Product selection**:
-Criteria for matching product specifications. An omitted layer criterion matches any layer; a supplied layer name must be non-empty.
+**Product selector**:
+A value carrying criteria for matching product specifications. An omitted layer criterion matches any layer; a supplied layer name must be non-empty.
 
 **Physical data product**:
 A real-world entity, such as detector readout or a derived physics quantity, that may have multiple concrete representations.
