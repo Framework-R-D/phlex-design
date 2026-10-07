@@ -33,11 +33,11 @@ values producing equal hashes. A public API SHALL NOT expose an invalid default 
 
 ### Requirement: Meaningful empty values are distinct from names
 
-The framework SHALL provide an explicit `empty_string` value distinct from every valid
-`identifier`. An `identifier_or_empty` value SHALL contain either that empty value or a validated
-identifier, with textual formatting, equality, ordering, and hashing consistent with its value.
-The public suffix and plugin-name domains SHALL expose these value semantics as `suffix_t` and
-`plugin_name_t` respectively.
+The framework SHALL provide `empty_string` and `identifier_or_empty`, containing either that
+empty value or a valid identifier. Text, equality, ordering, formatting, and hashing SHALL be
+consistent with the value. `suffix_t` SHALL alias `identifier_or_empty` without different validity
+or behavior. Empty-capable plugin components SHALL use `identifier_or_empty` directly; actual
+plugin names SHALL remain non-empty identifiers.
 
 #### Scenario: Compare an empty value with a name
 
@@ -94,19 +94,23 @@ effect.
 - **WHEN** a source supplies a product to satisfy a selector whose layer is omitted
 - **THEN** it uses the product's actual, non-empty layer for matching and provider registration, or reports missing concrete layer metadata instead of deriving a layer from the selector
 
-### Requirement: Product selector preserves three distinct suffix states
+### Requirement: Product specifications have explicit suffixes
 
 A product specification SHALL have an explicit suffix that is either empty or a valid name. If
 no output suffix is specified during registration, the resulting product specification SHALL
-have an explicit empty suffix. A product selector SHALL distinguish an omitted suffix
-criterion, which matches any product suffix; an explicit empty suffix, which matches only empty
-suffixes; and a named suffix, which matches only that name. Textual configuration and Python
-selector input SHALL preserve those distinctions.
+have an explicit empty suffix.
 
 #### Scenario: Default output suffix is explicitly empty
 
 - **WHEN** an algorithm registers an output without specifying its output suffix
 - **THEN** the created product's suffix is explicitly empty, not an omitted selection criterion
+
+### Requirement: Product selector preserves three distinct suffix states
+
+A product selector SHALL distinguish an omitted suffix criterion, which matches any product
+suffix; an explicit empty suffix, which matches only empty suffixes; and a named suffix, which
+matches only that name. Textual configuration and Python selector input SHALL preserve those
+distinctions in matching, comparison, and diagnostic text.
 
 #### Scenario: Match omitted, empty, and named suffixes
 
@@ -118,12 +122,34 @@ selector input SHALL preserve those distinctions.
 - **WHEN** JSON configuration or a Python selector provides no suffix field, an empty string, or `hits`
 - **THEN** the resulting product selectors retain the corresponding omitted, explicitly empty, and named matching behavior
 
+### Requirement: Product selector matches one creator name
+
+A product selector's supplied creator criterion SHALL be one valid identifier. It SHALL match
+either the plugin name or the algorithm name of a product's creator. An omitted creator
+criterion SHALL impose no creator restriction. A qualified creator name SHALL NOT be a valid
+selector criterion.
+
+#### Scenario: Match a plugin or an algorithm
+
+- **WHEN** a product has creator `reco:find_hits` and a selector supplies `reco` or `find_hits`
+- **THEN** either creator criterion matches that product, subject to the other selection criteria
+
+#### Scenario: Reject a combined creator criterion
+
+- **WHEN** a product selector supplies `reco:find_hits` as its creator criterion
+- **THEN** the framework rejects the criterion rather than adding combined-name matching
+
+#### Scenario: Omit a creator criterion
+
+- **WHEN** a product selector omits its creator criterion
+- **THEN** creator identity does not restrict its eligible matches
+
 ### Requirement: Creator plugin components may be empty
 
 A creator name SHALL have a valid, non-empty algorithm component. Its plugin component MAY be
-explicitly empty for an unqualified creator name; a supplied non-empty plugin component SHALL
-be a valid identifier. Parsing and formatting SHALL preserve these meanings without treating
-an empty plugin component as an invalid identifier.
+explicitly empty for an unqualified creator name. A qualified creator name SHALL contain valid,
+non-empty plugin and algorithm names. A supplied actual plugin name SHALL be non-empty.
+Parsing and formatting SHALL preserve absence without constructing an empty identifier.
 
 #### Scenario: Use an unqualified creator
 
@@ -137,8 +163,35 @@ an empty plugin component as an invalid identifier.
 
 #### Scenario: Reject an invalid creator component
 
-- **WHEN** a caller supplies a creator whose algorithm component is empty or whose supplied non-empty component violates identifier syntax
+- **WHEN** a caller supplies `:find_hits`, `reco:`, an empty creator name, or an invalid component
 - **THEN** the framework rejects that creator name
+
+#### Scenario: Reject an empty actual plugin name
+
+- **WHEN** configuration or registration supplies an empty actual plugin name
+- **THEN** the framework rejects it rather than treating the supplied value as an absent component
+
+### Requirement: Product specifications can have absent creators
+
+A product specification SHALL permit an absent creator for exact storage and lookup. Absence
+SHALL remain distinct from every present creator in equality, ordering, and hashing. A missing
+creator SHALL NOT act as a wildcard. Textual suffix-only specifications SHALL retain this state.
+Provider registration SHALL require a present creator.
+
+#### Scenario: Store and find a suffix-only specification
+
+- **WHEN** a caller stores a concrete data product with suffix `hits` and no creator
+- **THEN** the same specification finds it, but a specification with a present creator does not
+
+#### Scenario: Parse suffix-only text
+
+- **WHEN** a caller parses `hits`, `/hits`, `""`, or `/` as product-specification text
+- **THEN** its creator is absent and its suffix is the corresponding named or explicit empty value
+
+#### Scenario: Require a provider creator
+
+- **WHEN** a caller attempts provider registration with an absent creator
+- **THEN** the framework reports the missing creator instead of constructing an empty creator name
 
 ### Requirement: Registration and handle interfaces retain agreed boundaries
 
@@ -163,6 +216,33 @@ as textual views, rather than requiring callers to use the new domain types.
 - **WHEN** a caller inspects a handle for a product with an empty suffix
 - **THEN** the handle exposes the suffix as an empty textual view and continues exposing its other names as textual views
 
+#### Scenario: Read a handle with an absent creator
+
+- **WHEN** a caller inspects a handle whose product specification has no creator
+- **THEN** its creator-component views are empty and its metadata remains borrowed from the product specification
+
+### Requirement: Python name conversion preserves complete input
+
+Python name conversion SHALL validate the complete supplied text, including embedded NUL
+characters. Invalid names SHALL produce a Python error. Concrete provider output metadata
+SHALL accept unqualified or qualified creator names independently of product-selector rules.
+Generated names used by translators SHALL be valid and SHALL preserve the final output suffix.
+
+#### Scenario: Register a qualified Python provider output
+
+- **WHEN** Python registers a concrete provider output with creator `reco:find_hits`
+- **THEN** registration preserves both creator components without applying the one-name selector rule
+
+#### Scenario: Reject complete invalid Python text
+
+- **WHEN** Python supplies an invalid required name or a name containing an embedded NUL character
+- **THEN** the framework reports a Python error rather than truncating the text or letting a C++ exception escape
+
+#### Scenario: Preserve an empty translated output suffix
+
+- **WHEN** a Python transform registers an output with an explicit empty suffix
+- **THEN** any generated intermediate name is valid and the final concrete data product retains its empty suffix
+
 ### Requirement: FORM suffix conversions preserve valid persisted values
 
 The FORM boundary SHALL preserve the textual suffix representation for new and existing
@@ -180,6 +260,28 @@ persisted file format SHALL remain unchanged.
 
 - **WHEN** FORM encounters a persisted non-empty suffix such as `bad-suffix`
 - **THEN** the framework reports the invalid value and does not construct a product specification from it
+
+### Requirement: FORM obtains layers from existing index information
+
+FORM SHALL determine a recovered concrete data product's data-layer name from existing index
+information for its persisted creator and stage. It SHALL use the name only when that information
+establishes one concrete layer. Missing, conflicting, or ambiguous information SHALL cause an
+error. A product selector's layer SHALL NOT supply or resolve the recovered layer.
+
+#### Scenario: Recover one established layer
+
+- **WHEN** the relevant FORM index information establishes one data-layer name
+- **THEN** FORM uses that name for provider registration and matches any supplied layer criterion against it
+
+#### Scenario: Reject uncertain layer information
+
+- **WHEN** the relevant FORM index information is missing or does not establish one data layer
+- **THEN** FORM reports an error even if a product selector supplies a layer name
+
+#### Scenario: Preserve stored and advertised creators
+
+- **WHEN** FORM configuration advertises a creator name different from the persisted creator
+- **THEN** FORM uses the persisted creator for index lookup and retains the configured advertised creator for provider registration
 
 ### Requirement: Stage-specific reservation does not invalidate generic names
 
