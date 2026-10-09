@@ -60,7 +60,7 @@ is semantically valid.
 
 ## Impact
 
-- **Shared design (`phlex-design`)**: Capture the vocabulary of `CONTEXT.md` and align with
+- **Shared design (`phlex-design`)**: Capture the vocabulary of `GLOSSARY.md` and align with
   `design_wiki/seeds/how-data-products-are-labeled.md`, following `AGENTS.md`.
 - **Framework (`../srcs/phlex`, following `../srcs/phlex/AGENTS.md` and
   `../srcs/phlex/DEVELOPING.md`)**: Model (`phlex/model/`) identifiers, algorithm names, product

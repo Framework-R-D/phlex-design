@@ -7,7 +7,7 @@ an absent plugin component, and an invalid required name. `algorithm_name`,
 plugin bridge consequently each carry or reconstruct those meanings independently.
 
 This design refines the naming model in `proposal.md`, using the product-specification and
-product-selector vocabulary in `CONTEXT.md` and the labeling roles in
+product-selector vocabulary in `GLOSSARY.md` and the labeling roles in
 `design_wiki/seeds/how-data-products-are-labeled.md`. A complete label for a created product has
 a non-empty layer name; a product selector may omit the layer to match any layer. The current
 `experimental::product_specification` class contains creator, suffix, and type, while the product's
@@ -74,7 +74,7 @@ member to `experimental::product_specification`: its existing creator/suffix/typ
 with a data-cell or provider layer to form the complete label. A product selector's layer
 criterion remains optional: omitted matches any concrete layer, while a supplied name is a valid
 `identifier`; an empty string is neither a valid layer name nor a wildcard. This distinction
-matches `CONTEXT.md` and the matching API in `../srcs/phlex/phlex/core/product_selector.hpp`.
+matches `GLOSSARY.md` and the matching API in `../srcs/phlex/phlex/core/product_selector.hpp`.
 
 `data_cell_index::make_child("")` and its nameless-cell tests must cease to succeed. The existing
 `"*"_id` sentinels for omitted layers or suffixes in the consumer, router, and producer catalog

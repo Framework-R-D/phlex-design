@@ -3,7 +3,7 @@
 ## Completion Rules
 
 All implementation work targets phlex at `../srcs/phlex`. Read its `AGENTS.md`
-and `DEVELOPING.md`. Use `CONTEXT.md` for domain terms and the specification
+and `DEVELOPING.md`. Use `GLOSSARY.md` for domain terms and the specification
 for required behavior. All boxes remain unchecked until the work is done.
 
 Follow the numbered groups in order. Each implementation task includes its
