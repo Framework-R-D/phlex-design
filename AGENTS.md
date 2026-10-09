@@ -1,6 +1,6 @@
 # Phlex Design
 
-This repository holds shared design documentation and OpenSpec plans for Phlex.
+This repository holds shared design documentation and planning artifacts for Phlex.
 Framework implementation and user examples belong in their respective code
 repositories.
 
@@ -22,9 +22,10 @@ repositories.
   read [persistent-references-and-associations.md](persistent-references-and-associations.md)
   as design research, with proposals and recommendations distinguished from
   agreements.
-- **OpenSpec**: before planning, applying, or archiving work, read
-  [openspec/config.yaml](openspec/config.yaml) for cross-repository contracts,
-  repository locations, and required target-repository guidance. Read the
+- **Cross-repository work**: identify every affected repository and follow each
+  target's local instructions, build, formatting, and test requirements.
+- **OpenSpec**: when using OpenSpec, read
+  [openspec/config.yaml](openspec/config.yaml) for workflow guidance and the
   relevant change's proposal, specifications, design, and tasks for its scope
   and recorded progress.
 - **Sphinx**: before editing or building the design document, read
@@ -36,6 +37,10 @@ repositories.
 
 Identify the source and status of each existing-behavior claim you change.
 Describe proposed behavior as proposed; verify current implementation claims
-against the target repository's code and tests. OpenSpec task checkboxes record
-progress, not proof of implemented behavior. When sources conflict, report the
-conflicting paths and scopes before presenting either claim as settled.
+against the target repository's code and tests. Plans and task checkboxes record
+intent and progress, not proof of implemented behavior. When sources conflict,
+report the conflicting paths and scopes before presenting either claim as settled.
+
+For overlapping work, consult relevant planning documents, including
+[OpenSpec changes](openspec/changes/), regardless of your planning workflow.
+Assess their authority by evidence and agreement status.
