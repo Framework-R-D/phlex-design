@@ -12,16 +12,36 @@ before checking the box. Run focused tests when dependencies permit. Record
 tests that cannot run yet and the checkpoint that will run them; an unrun
 test is not a passing test. Run strict-name rejection cases at Checkpoint C.
 
+Before checking each implementation box, run the existing hooks from the
+phlex repository root on every file changed by that task, including unstaged
+and new files: `prek run --files <files>` or
+`pre-commit run --files <files>`, whichever is available. Inspect any hook
+changes and rerun until the hooks pass. If formatting changes code, repeat
+the affected build/tests when dependencies permit; otherwise record their
+checkpoint as above. Group 9 remains the integration-wide formatting sweep,
+not a substitute for these changed-file checks.
+
 Checkpoints A, B, and C require successful builds and tests before work
 continues. A uses selected framework/test targets in the configured MPD build
-directory; discover that directory from MPD, not a hardcoded path. Use
-`cmake --build <build-directory> --target <targets>` and
-`ctest --test-dir <build-directory> --output-on-failure -R <test-pattern>`.
-List selected tests first and confirm that the selection is not empty.
+directory; obtain it with `spack mpd info --build phlex-work-dir`, not a
+hardcoded path. Build with
+`cmake --build <build-directory> --target <targets>`. List selected tests with
+`ctest --test-dir <build-directory> -N -R <test-pattern>` and confirm that
+the selection is not empty. Execute the same selection with
+`ctest --test-dir <build-directory> --output-on-failure --no-tests=error -R <test-pattern>`.
+For a single named test, anchor its pattern (for example, `'^identifier$'`).
+
+Run verification fail closed: connect dependent steps with `&&`, so tests
+run only after a successful build. Enable `set -o pipefail` in the same shell
+invocation when pipelines are used. Capture build and test output through
+the tool runner without output-truncation pipelines. Use CTest's `-V` option
+when detailed evidence is needed, rather than parsing its output to extract
+and invoke executables. Keep MPD selection and the dependent build or test
+command in the same shell invocation.
 
 ## 1. Explicit Empty Values
 
-- [ ] 1.1 In phlex (`../srcs/phlex/phlex/model/`), add `empty_string` and
+- [x] 1.1 In phlex (`../srcs/phlex/phlex/model/`), add `empty_string` and
   `identifier_or_empty` construction, text views, and formatting. Document
   the public value states in their headers. Add tests in
   `../srcs/phlex/test/identifier_test.cpp`; verify empty and named text is
