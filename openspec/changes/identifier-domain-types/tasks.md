@@ -46,12 +46,12 @@ command in the same shell invocation.
   the public value states in their headers. Add tests in
   `../srcs/phlex/test/identifier_test.cpp`; verify empty and named text is
   preserved. Run the `identifier` CTest at Checkpoint A.
-- [ ] 1.2 In phlex (`../srcs/phlex/phlex/model/`), implement equality,
+- [x] 1.2 In phlex (`../srcs/phlex/phlex/model/`), implement equality,
   ordering, and hashing for the values from 1.1. Add tests in
   `../srcs/phlex/test/identifier_test.cpp`; verify equal empty values have
   equal hashes and remain distinct from named values in ordered and
   unordered containers. Run `identifier` at Checkpoint A.
-- [ ] 1.3 In phlex (`../srcs/phlex/phlex/model/`), define `suffix_t` as the
+- [x] 1.3 In phlex (`../srcs/phlex/phlex/model/`), define `suffix_t` as the
   sole domain alias of `identifier_or_empty`, with unchanged behavior.
   Document it in the public header and register new headers/sources in
   `../srcs/phlex/phlex/model/CMakeLists.txt`. Verify the installed header
