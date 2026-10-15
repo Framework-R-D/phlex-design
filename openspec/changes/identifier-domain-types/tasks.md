@@ -4,7 +4,8 @@
 
 All implementation work targets phlex at `../srcs/phlex`. Read its `AGENTS.md`
 and `DEVELOPING.md`. Use `GLOSSARY.md` for domain terms and the specification
-for required behavior. All boxes remain unchecked until the work is done.
+for required behavior and `design.md` for migration decisions. Preserve
+completed task entries; new work remains unchecked until it is done.
 
 Follow the numbered groups in order. Each implementation task includes its
 tests and documentation. Verify the delivered code, tests, and documentation
@@ -22,22 +23,36 @@ checkpoint as above. Group 9 remains the integration-wide formatting sweep,
 not a substitute for these changed-file checks.
 
 Checkpoints A, B, and C require successful builds and tests before work
-continues. A uses selected framework/test targets in the configured MPD build
+continues. Follow `../srcs/phlex/scripts/README.md`. Checkpoint A is an explicit
+scoped-build exception: Python and FORM source migration follows it, while
+the default verifier always performs a full build and has no target-selection
+option. A uses selected framework/test targets in the configured MPD build
 directory; obtain it with `spack mpd info --build phlex-work-dir`, not a
-hardcoded path. Build with
+hardcoded path. Keep project selection with
+`spack mpd select --project phlex-work-dir`, the targeted build, CTest listing,
+and execution in the same fail-closed shell invocation. Build with
 `cmake --build <build-directory> --target <targets>`. List selected tests with
 `ctest --test-dir <build-directory> -N -R <test-pattern>` and confirm that
 the selection is not empty. Execute the same selection with
 `ctest --test-dir <build-directory> --output-on-failure --no-tests=error -R <test-pattern>`.
 For a single named test, anchor its pattern (for example, `'^identifier$'`).
 
+At B and C, run `../srcs/phlex/scripts/verify.sh` from the workspace root as
+`bash srcs/phlex/scripts/verify.sh --project phlex-work-dir`; B adds
+`--tests '<checkpoint-B-pattern>'`, while C runs the full suite without a
+test filter. B's selection includes A's tests, focused Python/FORM tests,
+and their fixture dependencies. The verifier discovers the build directory,
+selects/builds in the same shell, lists the tests, and executes the same
+non-empty selection. Record unavailable optional Python/FORM coverage
+explicitly; an empty selection is not successful verification.
+
 Run verification fail closed: connect dependent steps with `&&`, so tests
 run only after a successful build. Enable `set -o pipefail` in the same shell
 invocation when pipelines are used. Capture build and test output through
-the tool runner without output-truncation pipelines. Use CTest's `-V` option
-when detailed evidence is needed, rather than parsing its output to extract
-and invoke executables. Keep MPD selection and the dependent build or test
-command in the same shell invocation.
+the tool runner without output-truncation pipelines. Use the verifier's
+`--verbose` option, or CTest's `-V` at A, when detailed evidence is needed,
+rather than parsing output to extract and invoke executables. Test-only
+reruns require a current build and do not establish build freshness.
 
 ## 1. Explicit Empty Values
 
@@ -58,6 +73,18 @@ command in the same shell invocation.
   list and an alias identity check in `identifier_test.cpp`; run at A.
   Leave identifier validation and default-constructor removal for group 8.
 
+- [ ] 1.4 In phlex (`../srcs/phlex/phlex/model/identifier.hpp`), add implicit
+  `identifier_or_empty` construction from `char const*` and explicit
+  construction from `std::string` and `std::string_view`. Map empty text to
+  `empty_string` and named text through `identifier`; retain domain-alternative
+  constructors and the valid empty default. Document the lasting hybrid
+  policy, including the C-string boundary versus length-bearing inputs.
+  Extend `../srcs/phlex/test/identifier_test.cpp` with empty/named construction,
+  conversion-trait assertions, and equivalent text, comparison, and hash
+  behavior for `identifier_or_empty` and `suffix_t`. Verify at A before
+  consuming API migration is accepted; defer invalid-name/embedded-NUL
+  rejection to 8.1 at C. Do not reopen completed tasks 1.1-1.3.
+
 ## 2. Creators And Product Specifications
 
 Tasks 2.1-2.3 form one creator signature transition. The owning absent-creator
@@ -76,13 +103,17 @@ but compilation can wait for Checkpoint A. Do not add a temporary empty
   `../srcs/phlex/phlex/model/products.cpp`), own an optional creator and
   explicitly handle absence in accessors, comparison, hashing, and text.
   Keep `hits`, `/hits`, `""`, and `/` as exact creator-less keys, not wildcards.
-  Document this state and add exact-lookup tests in
+  Document this partial label's state: its metadata combines with a concrete
+  data-cell/provider layer to form the complete product specification; do not
+  add a layer member solely to make this object contain the entire label.
+  Add exact-lookup tests in
   `../srcs/phlex/test/product_store_test.cpp` and `products_test.cpp`, plus
   parsing tests in `output_products_test.cpp`. Verify their CTests at A.
 - [ ] 2.3 In phlex (`../srcs/phlex/phlex/core/consumer.*`,
   `../srcs/phlex/phlex/core/provider_node.cpp`, and
   `../srcs/phlex/phlex/core/detail/make_algorithm_name.cpp`), migrate direct
-  creator accessors and initialization. Require a creator at provider
+  creator accessors and initialization, including `consumer::plugin()` returning
+  `identifier_or_empty`. Require a creator at provider
   construction. Use an absent plugin only for a null configuration pointer;
   a configured missing/empty `module_label` is an error. Document the
   accessor contract and add cases in `../srcs/phlex/test/core_misc_test.cpp`
@@ -108,28 +139,39 @@ but compilation can wait for Checkpoint A. Do not add a temporary empty
 
 ## 3. Product Selection And Catalogs
 
-Tasks 2.4 and 3.1-3.3 form one suffix signature transition. Specification
-suffixes, selector criteria, catalog keys, and tracked suffix pointers must
-agree. FORM writer text conversion in 3.4 must also land before a full build.
+Tasks 2.4, 3.1-3.3, and 3.6 form one suffix signature transition. Specification
+suffixes, selector criteria, catalog keys, tracked suffix pointers, and typed
+output construction must agree. FORM writer text conversion in 3.4 must also
+land before a full build.
 Keep these tasks separate, with compilation verified at the named checkpoints.
 
 - [ ] 3.1 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), use
   `std::optional<suffix_t>` for omitted, empty, and named criteria. Document
   and test matching, equality, ordering, and diagnostics in
-  `../srcs/phlex/test/product_selector_test.cpp`. Replace numeric creator
-  fixtures `1`/`2` with valid names. Verify all three states at A and C.
+  `../srcs/phlex/test/product_selector_test.cpp`. Cover designated initializers
+  with `"hits"`, `""`, domain alternatives, explicitly constructed runtime
+  string values, and an omitted suffix; do not rewrite valid literal calls.
+  Replace numeric creator fixtures `1`/`2` with valid names. Verify all three
+  states and supported call forms at A and C.
 - [ ] 3.2 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), retain
   the optional one-name creator criterion that matches a plugin or algorithm.
   Render `[ANY]` as text instead of constructing an identifier in `noexcept`
   formatting. Document and test omitted, plugin-name, and algorithm-name
   criteria in `../srcs/phlex/test/product_selector_test.cpp`. Verify at A;
   verify qualified/empty supplied creator rejection at C.
-- [ ] 3.3 In phlex (`../srcs/phlex/phlex/core/producer_catalog.*`), migrate
-  suffix keys, lookup, `producing_nodes()`, pointer trackers, and diagnostics
-  together. Use display text for `*`, not an identifier. Keep plugin
-  components in the creator value. Add empty/named/omitted lookup and
-  ambiguity assertions to `../srcs/phlex/test/product_selecting_test.cpp`;
-  verify the `product_selecting` CTest at A and C.
+- [ ] 3.3 In phlex (`../srcs/phlex/phlex/core/producer_catalog.*`,
+  `../srcs/phlex/phlex/core/producer.hpp`, and
+  `../srcs/phlex/phlex/core/node_catalog.cpp`), migrate the current
+  `producer_catalog(std::span<producer* const>)` constructor, suffix keys,
+  lookup, pointer trackers, and diagnostics together. Retain the independent
+  producer interface and collection of transforms, translators, folds, and
+  unfolds through `node_catalog::producers()`; do not recreate the removed
+  `producing_nodes()` helper. Use display text for `*`, not an identifier.
+  Keep plugin components in the creator value. Document the migrated contract
+  and extend `../srcs/phlex/test/producer_catalog_test.cpp` with empty/named
+  suffixes from an independent producer implementation. Add empty/named/omitted
+  lookup and ambiguity assertions in `../srcs/phlex/test/product_selecting_test.cpp`;
+  verify `producer_catalog` and `product_selecting` at A and C.
 - [ ] 3.4 In phlex (`../srcs/phlex/form/form_module.cpp`), write the suffix
   text from `suffix_t`, without an identifier-only accessor. Update
   `../srcs/phlex/form/README.md` and
@@ -137,8 +179,26 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   text. Verify unchanged text at B with `form_basics` and `job:form_module`.
 - [ ] 3.5 In phlex (`../srcs/phlex/test/transform_node_test.cpp` and
   `../srcs/phlex/test/multilayer_join_test.cpp`), migrate known empty-suffix
-  helpers to explicit empty values. Preserve the tested graph behavior;
+  helpers to explicit empty values without rewriting valid named literals or
+  `identifier` arguments preserved by the hybrid policy. Preserve graph behavior;
   verify `transform_node` and `multilayer_join` at A and C.
+- [ ] 3.6 In phlex (`../srcs/phlex/phlex/core/transform_node.hpp`,
+  `../srcs/phlex/phlex/core/fold_node.hpp`,
+  `../srcs/phlex/phlex/core/unfold_node.hpp`, and
+  `../srcs/phlex/phlex/core/translator_node.hpp`), migrate typed output
+  specification construction to the revised creator/suffix values. Check
+  `../srcs/phlex/phlex/core/declared_translator.hpp` and
+  `../srcs/phlex/phlex/core/glue.hpp`; preserve the translator's creator,
+  registered output suffix, input data-cell index, and execution stage.
+  Document that this domain migration does not implement the separate
+  translator-type-conversion semantics. In
+  `../srcs/phlex/test/function_registration_test.cpp`, rename the stage
+  `translator-test` to `translator_test` in registration and expectations.
+  Retain creator/suffix/layer/stage assertions and observer consumption of
+  catalogued translator output. Verify `function_registration`, `transform_node`,
+  `fold`, and `unfold` at A and C. If overlapping translator work lands first,
+  reconcile against its accepted behavior before migration rather than
+  silently importing or reversing that redesign.
 
 ## 4. Data Layers And Provider Registration
 
@@ -152,10 +212,14 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   `"*"_id` for omitted input layers. Prefer collecting only supplied concrete
   layers. Check `declared_transform.cpp`, `declared_observer.cpp`,
   `declared_predicate.cpp`, `declared_translator.cpp`, `declared_fold.cpp`,
-  and `declared_unfold.cpp` in `../srcs/phlex/phlex/core/`.
+  and `declared_unfold.cpp`, plus extracted typed implementations
+  `transform_node.hpp`, `observer_node.hpp`, `predicate_node.hpp`,
+  `translator_node.hpp`, `fold_node.hpp`, and `unfold_node.hpp` in
+  `../srcs/phlex/phlex/core/`. Keep runtime bases and typed nodes separated.
   Single-input omission remains allowed where it is allowed today; multiple
-  inputs and folds/unfolds retain required-layer errors. Check both join
-  headers for impact without requiring an optional-layer rewrite. Document
+  inputs and folds/unfolds retain required-layer errors. Check
+  `multilayer_join_node.hpp` and `fold_join_node.hpp` in
+  `../srcs/phlex/phlex/core/` without an unrelated optional-layer rewrite. Document
   and add omission/required-layer assertions in
   `../srcs/phlex/test/product_selecting_test.cpp`; verify it and
   `transform_node`, `multilayer_join`, `fold`, and `unfold` at A.
@@ -173,27 +237,36 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
 - [ ] 4.5 In phlex (`../srcs/phlex/phlex/core/registration_api.hpp` and
   `../srcs/phlex/phlex/core/provider_node.*`), accept `suffix_t` in explicit
   provider output registration and require a concrete layer and creator.
-  Preserve `CURRENT` placeholders and fluent string registration. Document
-  both suffix APIs; update `../srcs/phlex/test/provider_test.cpp` and the
-  explicit empty provider suffix in `resources_test.cpp`. Verify empty/named
-  suffixes and `CURRENT` at A; verify invalid required names at C.
+  Preserve `CURRENT` placeholders, literal empty/named suffix calls, existing
+  valid `identifier` arguments, and fluent string registration. Runtime string
+  objects require explicit `suffix_t` construction at this typed boundary.
+  Document both suffix APIs and their source-compatibility limits; update
+  `../srcs/phlex/test/provider_test.cpp` and the explicit empty provider suffix
+  in `resources_test.cpp`. Test literal, `empty_string`, named `identifier`,
+  and explicitly constructed string/string-view suffix arguments together.
+  Verify empty/named suffixes and `CURRENT` at A; verify invalid required names at C.
 
 ## 5. JSON Conversion And Checkpoint A
 
 - [ ] 5.1 In phlex (`../srcs/phlex/phlex/configuration.cpp`), convert absent,
   empty, and named JSON suffix fields to the corresponding selector states.
   Keep supplied creator criteria as one-name identifiers and supplied layers
-  and stages as required identifiers. Document this in
+  and stages as required identifiers. Retain full lengths of supplied strings;
+  do not route sized text through the null-terminated constructor. Document this in
   `../srcs/phlex/phlex/configuration.hpp`; add cases to
   `../srcs/phlex/test/config_test.cpp`. Verify the three suffix states at A
   and invalid/embedded-NUL supplied text at C.
 - [ ] 5.2 Checkpoint A in phlex (`../srcs/phlex`): after groups 1-5, build
   targets and run CTests `identifier`, `core_misc`, `output_products`,
   `product_store`, `products`, `product_handle`, `product_selector`,
-  `product_selecting`, `data_cell_index`, `data_layer_hierarchy`,
+  `product_selecting`, `producer_catalog`, `function_registration`,
+  `data_cell_index`, `data_layer_hierarchy`,
   `layer_path`, `provider`, `resources`, `transform_node`, `multilayer_join`,
-  `framework_graph`, `fold`, `unfold`, and `config`. Verify migrated
-  behavior passes. Defer only strict-name rejection cases to C; identify
+  `framework_graph`, `fold`, `unfold`, and `config`. Follow the scoped-build
+  exception in Completion Rules, with a non-empty listed/executed selection.
+  Verify hybrid constructors, supported provider/selector call forms,
+  independent producers, and translator metadata alongside existing behavior.
+  Defer only strict-name rejection cases to C; identify
   them explicitly. Python and FORM source target migration follows next.
 
 ## 6. Python Conversion
@@ -211,6 +284,8 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   private intermediate suffix instead of `_py`. Update callback registration
   and the returned output-translator selector together; both must name the
   same intermediate product. Keep the final user-visible empty suffix.
+  Preserve existing intermediate names for valid named outputs unless migration
+  requires a change.
   Document this in `../srcs/phlex/plugins/python/README.md`; extend
   `../srcs/phlex/test/python/suffix.py` and `source.cpp` for empty/named
   products. Verify `py:suffix` end to end at B and C. This paired naming
@@ -261,13 +336,15 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   `../srcs/phlex/test/form/CMakeLists.txt` for omitted and named selectors,
   non-matching layers, and a supplied layer that cannot resolve mixed or
   missing index information. Verify those cases at B and C.
-- [ ] 7.5 Checkpoint B in phlex (`../srcs/phlex`): build with
-  `spack mpd select --project phlex-work-dir && spack mpd build`.
-  Verify the full framework, Python plugin, and FORM compile. Run A's tests,
+- [ ] 7.5 Checkpoint B in phlex (`../srcs/phlex`): from the workspace root run
+  `bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '<checkpoint-B-pattern>'`.
+  Choose the pattern to include A's tests,
   `py:suffix`, `py:provide`, `form_basics`, `job:form_module`,
   `job:form_source_coverage_write_ttree`,
   `job:form_source_coverage_read_ttree`, and new FORM source cases with their
-  fixture dependencies. Verify all migrated behavior passes before group 8.
+  fixture dependencies. Verify the full framework, Python plugin, and FORM
+  compile before the selected tests execute; use `--verbose` for detailed
+  evidence. Verify all migrated behavior passes before group 8.
   Record optional storage/Python tests that are unavailable in this build.
 
 ## 8. Strict Identifier Validation And Checkpoint C
@@ -278,12 +355,17 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   invariant comments and `../srcs/phlex/test/identifier_test.cpp`; verify
   valid names retain text, formatting, comparison, and hashes, and empty,
   invalid first characters, punctuation, non-ASCII, and embedded NUL text
-  are rejected. Run all cases at C.
+  are rejected. Exercise hybrid `identifier_or_empty`/`suffix_t` text paths
+  from 1.4: empty text remains empty, invalid non-empty text is rejected rather
+  than converted to emptiness, and length-bearing inputs reject embedded NULs
+  without truncation. Include empty-capable plugin components while retaining
+  non-empty actual plugin names. Run all cases at C.
 - [ ] 8.2 In phlex (`../srcs/phlex/phlex/model/identifier.hpp`), remove
   public default construction. Verify domain owners from earlier groups
   use explicit valid initialization rather than new sentinel names. Add a
   non-default-constructibility assertion in
-  `../srcs/phlex/test/identifier_test.cpp`; verify compilation at C.
+  `../srcs/phlex/test/identifier_test.cpp`; retain and test the valid empty
+  default of `identifier_or_empty`/`suffix_t`. Verify compilation at C.
 - [ ] 8.3 Audit phlex (`../srcs/phlex/phlex/`, `../srcs/phlex/plugins/`,
   `../srcs/phlex/form/`, and `../srcs/phlex/test/`) for default/empty
   identifiers, `"*"_id`, invalid names, and composed text used as identifiers.
@@ -291,10 +373,12 @@ Keep these tasks separate, with compilation verified at the named checkpoints.
   test. Route new fixes to the named owning task and rerun its tests; this
   is an audit, not an unbounded implementation task.
 - [ ] 8.4 Checkpoint C in phlex (`../srcs/phlex`): run
-  `spack mpd select --project phlex-work-dir && spack mpd build` and
-  `spack mpd select --project phlex-work-dir && spack mpd test -j 12`.
-  Verify all required model, graph, registration, JSON, Python, and FORM
-  tests pass, including every deferred rejection case. Verify `adjust_config`
+  `bash srcs/phlex/scripts/verify.sh --project phlex-work-dir` from the workspace
+  root for a full build, test listing, and full-suite execution without a test
+  filter. Verify all required model, graph, registration, JSON, Python, and FORM
+  tests pass, including `producer_catalog`, `function_registration`, and every
+  deferred rejection case. Record unavailable optional coverage explicitly;
+  use `--verbose` for detailed evidence. Verify `adjust_config`
   covers invalid actual stage names and reserved `CURRENT`, while selectors
   and provider registration retain its placeholder behavior.
 

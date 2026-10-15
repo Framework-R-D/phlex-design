@@ -67,7 +67,8 @@ Glossary
         A value carrying criteria for matching product specifications. An omitted layer criterion matches any layer; a supplied layer name must be non-empty.
 
     Product specification
-        The identifying description of a created data product, including a present, non-empty data-layer name.
+        The complete identifying description of a created data product, including a present, non-empty data-layer name.
+        Its identifying metadata may be distributed across the product label and its data-cell context; a partial label alone is not the complete specification.
 
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.

@@ -1,3 +1,5 @@
+# Design
+
 ## Context
 
 `experimental::identifier` currently stores arbitrary strings and is default-constructible, so
@@ -15,6 +17,29 @@ layer is carried separately (for example, by its data cell or provider). Its nam
 that this class alone contains the complete label. Follow `AGENTS.md` for shared design and
 `../srcs/phlex/AGENTS.md` and `../srcs/phlex/DEVELOPING.md` for framework migration.
 
+The audited framework baseline is revision `74e8e6c`. It already defines `empty_string`,
+`identifier_or_empty`, and the `suffix_t` alias in `../srcs/phlex/phlex/model/identifier.hpp`,
+but suffix-bearing APIs still use `identifier`, which still accepts invalid and empty names.
+`identifier_or_empty` currently accepts its domain alternatives, not text directly. The textual
+construction policy below is proposed migration work, not behavior already implemented by those
+types. Existing `identifier` construction is implicit from `char const*` and explicit from
+`std::string` and `std::string_view`; preserve that distinction for empty-capable values.
+
+That baseline separates runtime node bases from typed implementations and constructs the producer
+catalog through an independent `producer` interface. Translators now participate in that catalog
+and produce stage-aware products. These are implementation facts verified in
+`../srcs/phlex/phlex/core/producer.hpp`, `node_catalog.cpp`, `producer_catalog.cpp`, and
+`translator_node.hpp`, rather than requirements imported from the separate
+`../translator-type-conversion/proposal.md`.
+
+The architecture context is `doc/ch_technical_design/data_product_management.rst` and
+`doc/ch_technical_design/registration.rst`, reached through `doc/index.rst` and
+`doc/supporting_design.rst`. The labeling note above is a design seed; use this change's
+specification for its required naming behavior. Repository-specific formatting and verification
+remain governed by `../srcs/phlex/AGENTS.md`, `../srcs/phlex/.clang-format`,
+`../srcs/phlex/.clang-tidy`, `../srcs/phlex/.pre-commit-config.yaml`, and
+`../srcs/phlex/scripts/README.md`.
+
 ## Goals / Non-Goals
 
 **Goals:**
@@ -30,6 +55,8 @@ that this class alone contains the complete label. Follow `AGENTS.md` for shared
 - Keep a product selector's omitted layer distinct from a concrete, non-empty layer name.
 - Keep C++, JSON configuration, and Python conversion at clear boundaries that construct the
   correct domain type from textual input.
+- Preserve convenient literal construction at typed suffix boundaries while requiring explicit
+  construction from runtime string objects; both paths must produce the same domain values.
 
 **Non-Goals:**
 
@@ -104,6 +131,47 @@ an optional already means an omitted product-selector field; using it for both w
 empty and unspecified suffixes. A raw `std::string` was also rejected because it would weaken the
 validity guarantee of the non-empty alternative.
 
+### Mirror the existing hybrid textual construction policy
+
+Add implicit construction of `identifier_or_empty` from `char const*`, and explicit construction
+from `std::string` and `std::string_view`. This applies equally to `suffix_t`, because it is an
+alias, and to empty-capable plugin components. Retain construction from `empty_string` and
+`identifier`, as well as the existing valid empty default state. These are lasting public value
+constructors, not temporary compatibility overloads on each consuming API.
+
+Every textual path maps empty text to the `empty_string` alternative and non-empty text to an
+`identifier`. Named text therefore acquires the same ASCII validation as any other identifier
+when strict validation is activated. Invalid non-empty text must never fall back to the empty
+alternative. Length-bearing string inputs must be validated in full, including embedded NULs;
+the `char const*` overload retains the existing null-terminated C-string boundary. Configuration
+and Python conversions must retain lengths rather than route sized input through that overload.
+
+This preserves the existing literal syntax for explicit providers and selectors while making
+runtime string conversion explicit:
+
+```cpp
+registration.output_product("input", "hits", "job");
+registration.output_product("input", "", "job");
+registration.output_product("input", suffix_t{suffix_text}, "job");
+registration.output_product("input", "hits"_id, "job");
+registration.output_product("input", empty_string{}, "job");
+
+product_selector{.suffix = "hits"}; // A named criterion.
+product_selector{.suffix = ""};     // An explicit empty criterion.
+product_selector{};                 // No suffix criterion.
+```
+
+Required-name APIs continue to use `identifier` and reject empty text. Accepting `""` for an
+empty-capable plugin component does not permit an empty actual plugin name; the owning API still
+determines whether absence is allowed. The constructors convert text to values, not selection
+policy: only an omitted optional selector field represents an unrestricted criterion.
+
+Alternative considered: require domain alternatives at every typed call site. Rejected because
+existing provider and selector calls intentionally accept literals, and forcing their migration
+would introduce an additional source break without improving validation. Explicit-only textual
+construction would also break those calls. Implicit conversion from runtime string objects was
+rejected to preserve the existing `identifier` distinction between C strings and string objects.
+
 ### Apply domain types to product metadata and creators
 
 `experimental::product_specification` will store and expose its suffix as `suffix_t`; construction
@@ -145,6 +213,56 @@ Rejected because registration, catalog lookup, and creator formatting would othe
 encoding empty values as invalid identifiers. Changing the handle's public views to domain types
 was also rejected because it needlessly breaks callers of its borrowed textual metadata.
 
+### Migrate the current producer and typed-node architecture
+
+Use the independent `producer` interface, whose contract exposes `name()`, `output_port()`, and
+`output()`. `producer_catalog(std::span<producer* const>)` constructs suffix-keyed entries from
+those output specifications; `node_catalog::producers()` collects transforms, translators, folds,
+and unfolds. Migrate this constructor, suffix keys, lookup, pointer trackers, and diagnostics
+together (`../srcs/phlex/phlex/core/producer.hpp`, `producer_catalog.*`, and `node_catalog.cpp`).
+The older `producing_nodes()` helper no longer exists and must not be recreated for this change.
+The direct regression in `../srcs/phlex/test/producer_catalog_test.cpp` must continue demonstrating
+that catalog construction works with an independent producer implementation, including the new
+suffix values.
+
+Migration must inspect both retained runtime-base policies in `declared_*.cpp` and their extracted
+typed implementations: `transform_node.hpp`, `fold_node.hpp`, `unfold_node.hpp`,
+`observer_node.hpp`, `predicate_node.hpp`, and `translator_node.hpp` under
+`../srcs/phlex/phlex/core/`. Typed nodes construct joins and, where applicable, output
+specifications, so checking only the declared bases is insufficient. Keep today's layer policy:
+single-input omission remains allowed where supported; multiple inputs, folds, and unfolds retain
+their required-layer errors. Inspect `multilayer_join_node.hpp` and `fold_join_node.hpp` for impact
+without introducing an unrelated optional-layer redesign.
+
+Alternative considered: restore the old catalog helper or move typed logic back into declared
+bases to simplify migration. Rejected because the domain transition fits the merged architecture
+and does not justify reversing its separation of interfaces from typed implementations.
+
+### Preserve current translator metadata during the domain migration
+
+At the audited baseline, `translate()` creates a graph producer. Its output specification uses the
+translator's creator and registered output suffix, while its output store keeps the input
+data-cell index and records the translator's execution stage. Preserve this behavior while
+changing creator components and suffix values (`../srcs/phlex/phlex/core/glue.hpp`,
+`declared_translator.hpp`, and `translator_node.hpp`). Do not replace those metadata with the
+input creator, suffix, or stage as part of identifier migration.
+
+Keep the creator, suffix, layer, and stage assertions in the end-to-end translator regression in
+`../srcs/phlex/test/function_registration_test.cpp`. Rename its invalid actual stage
+`translator-test` to a valid fixture such as `translator_test` before strict validation, updating
+both registration and the expected stage. The test must continue verifying that an observer can
+consume the translator's catalogued output.
+
+The separate `../translator-type-conversion/proposal.md` proposes preserving input metadata,
+recording translator identity, and making `translate()` registration-only. Those semantic changes
+remain outside this change. If that work lands before this migration is finished, reconcile the
+overlapping implementation and regression tests against its accepted behavior without silently
+importing its redesign into the identifier contract.
+
+Alternative considered: combine both migrations because they touch translator code. Rejected
+because naming-value changes neither require nor establish the separate conversion semantics.
+Keeping the changes separate makes metadata regressions attributable to the correct work.
+
 ### Convert output suffixes at the appropriate registration boundary
 
 Keep fluent `output_product_suffixes(...)` accepting strings, including the existing empty default;
@@ -153,6 +271,12 @@ provider's `output_product(...)` suffix parameter from `identifier` to `suffix_t
 explicitly supply an empty value. Both paths produce an explicit empty suffix when appropriate,
 not an omitted selection criterion (`../srcs/phlex/phlex/core/upstream_predicates.hpp`,
 `../srcs/phlex/phlex/core/registration_api.hpp`).
+
+The provider remains a typed API even though the hybrid value constructors preserve raw C-string
+arguments, including `""`. Existing `identifier` arguments also remain usable through construction
+of the named alternative. Runtime suffix strings use explicit `suffix_t` construction; the fluent
+API continues accepting strings directly. Test these call forms together so signature migration
+does not inadvertently require rewriting valid literal providers or selector initializers.
 
 Alternative considered: change the fluent API to accept only `suffix_t`. Rejected to preserve its
 convenient textual boundary and avoid breaking existing string-based registration calls.
@@ -233,6 +357,14 @@ because it changes selector matching and loses the distinction required by the p
 - [Public C++ and Python plugin APIs change source types] → Update all exposed signatures and
   boundary conversions together, document the breaking conversion, and cover representative
   plugin calls in tests.
+- [Hybrid constructors accidentally change call-site or empty-value semantics] → Test implicit
+  C-string conversion, explicit string-object construction, domain-value construction, and selector
+  omission separately. Invalid non-empty text remains an error, not an empty alternative.
+- [Node and catalog migrations target the pre-refactor implementation] → Use the audited producer
+  interface and extracted typed headers; run direct producer-catalog and translator-registration
+  regressions at the named checkpoints.
+- [Overlapping translator work changes metadata during the naming migration] → Preserve the audited
+  behavior in this change and reconcile any later merge with the separate accepted conversion plan.
 - [Hashing or ordering an empty-or-identifier value becomes inconsistent with equality] → Define
   and test equality, ordering, and hash behavior as a single value contract before migrating
   associative containers.
@@ -250,19 +382,45 @@ because it changes selector matching and loses the distinction required by the p
 ## Migration Plan
 
 1. Introduce and test the explicit empty value, empty-or-identifier value, and suffix alias. Include
-   text conversion, comparison, ordering, and hashing. Leave strict identifier validation and
-   default-constructor removal until existing empty and wildcard uses have migrated.
+   text conversion, comparison, ordering, and hashing. These values already exist at the audited
+   baseline; add and test the hybrid textual constructors before migrating their consuming APIs.
+   Leave strict identifier validation and default-constructor removal until existing empty and
+   wildcard uses have migrated.
 2. Migrate creator components and owning creator absence. Then migrate product suffix storage,
-   fluent conversion, selector criteria, catalog keys and trackers, and FORM writer text conversion.
-   Retain handle metadata as borrowed text views.
+   fluent conversion, selector criteria, the current producer-catalog constructor, keys and trackers,
+   typed-node output construction, and FORM writer text conversion. Retain handle metadata as
+   borrowed text views and preserve the current translator metadata behavior.
 3. Retire nameless layers, consumer/router wildcard identifiers, and composed graph-name keys.
    Migrate explicit-provider, JSON, Python, and FORM source boundaries with their focused tests
-   and public documentation. Assign known invalid fixtures and internal names to their owning tasks.
+   and public documentation. Preserve supported literal calls through the hybrid constructors.
+   Assign known invalid fixtures and internal names, including the translator regression's stage,
+   to their owning tasks before strict validation.
 4. Activate ASCII validation for every construction path, including `_id` and `_idq`, and remove
    public default construction. Audit remaining constructions in `phlex/`, `plugins/`, `form/`,
    and `test/` for invalid names and domain misuse.
-5. Build with `spack mpd select --project phlex-work-dir && spack mpd build` and test with
-    `spack mpd select --project phlex-work-dir && spack mpd test -j 12`.
+5. Verify each coordinated transition at its named checkpoint using the build-and-test policy
+   below; a successful test-only rerun does not establish that the build is current.
+
+Checkpoint A deliberately builds only the migrated framework and selected test targets after the
+core and JSON transitions, because Python and FORM source migration follows it. Discover the
+configured build directory with `spack mpd info --build phlex-work-dir`; keep project selection,
+the targeted `cmake --build`, CTest listing, and execution in one fail-closed shell invocation.
+List the intended CTests with `-N`, confirm a non-empty selection, and execute the same selection
+with `--no-tests=error`. Include `producer_catalog` and `function_registration` alongside the
+existing A selection, so both independent producers and stage-aware translators are exercised.
+Verify empty/named hybrid construction and supported literal call forms at A; defer only the
+identified strict-name rejection cases to C. This is an explicit scoped-build exception to the
+default verifier, which always performs a full build and has no target-selection option.
+
+At Checkpoint B, after Python and FORM source migration, use
+`bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '<checkpoint-B-pattern>'`
+from the workspace root. The pattern must include A's tests and the focused Python and FORM tests
+with their fixture dependencies. At Checkpoint C, after strict validation, run
+`bash srcs/phlex/scripts/verify.sh --project phlex-work-dir` for a full build and suite, including
+all deferred rejection cases. Follow `../srcs/phlex/scripts/README.md` and use `--verbose` for
+detailed CTest evidence. Both checkpoints require success before continuing; record unavailable
+optional test coverage explicitly. Do not replace required validation with an empty selection or
+truncated build/test output.
 
 Use small dependent tasks with named build checkpoints in `tasks.md`. Each task delivers its
 focused tests and documentation; record runtime checks that must wait for a checkpoint. A task
@@ -273,9 +431,12 @@ callers must agree on the types or names. Do not add temporary compatibility API
 between these dependent tasks. Existing `identifier` tests link configuration, so they are not an
 isolated model-only build.
 
-The change is source-breaking for callers that construct invalid `identifier` values or pass one
-where `suffix_t` or an empty-capable `identifier_or_empty` plugin component is now expected; actual
+The change is source-breaking for invalid identifier constructions, owners relying on invalid
+default names, and callers coupled to the changed suffix, plugin-component, or creator-accessor
+signatures. It does not require a blanket rewrite of valid literal suffix calls or existing valid
+`identifier` arguments: the hybrid constructors and named-alternative constructors preserve those
+forms. Runtime string objects require explicit domain construction at typed boundaries. Actual
 plugin names remain non-empty identifiers, and the fluent string API and handle textual views
-remain. Rollback consists of reverting the cohesive API and boundary-conversion change. The FORM
-file format remains textual and requires no rewrite, but old files with invalid non-empty names
-will no longer be readable under the new validation rule.
+remain unchanged. Rollback consists of reverting the cohesive API and boundary-conversion change.
+The FORM file format remains textual and requires no rewrite, but old files with invalid non-empty
+names will no longer be readable under the new validation rule.
