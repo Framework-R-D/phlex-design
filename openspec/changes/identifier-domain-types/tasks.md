@@ -73,7 +73,7 @@ reruns require a current build and do not establish build freshness.
   list and an alias identity check in `identifier_test.cpp`; run at A.
   Leave identifier validation and default-constructor removal for group 8.
 
-- [ ] 1.4 In phlex (`../srcs/phlex/phlex/model/identifier.hpp`), add implicit
+- [x] 1.4 In phlex (`../srcs/phlex/phlex/model/identifier.hpp`), add implicit
   `identifier_or_empty` construction from `char const*` and explicit
   construction from `std::string` and `std::string_view`. Map empty text to
   `empty_string` and named text through `identifier`; retain domain-alternative
@@ -84,6 +84,14 @@ reruns require a current build and do not establish build freshness.
   behavior for `identifier_or_empty` and `suffix_t`. Verify at A before
   consuming API migration is accepted; defer invalid-name/embedded-NUL
   rejection to 8.1 at C. Do not reopen completed tasks 1.1-1.3.
+
+  Verification (2026-10-16): `pre-commit run --files phlex/model/identifier.hpp
+  test/identifier_test.cpp` passed from the phlex root. The focused MPD build
+  and `identifier` CTest passed with 300 assertions in 31 cases. From the workspace
+  root, `bash srcs/phlex/scripts/verify.sh --project phlex-work-dir` passed the
+  full build and all 119 configured tests, including Python and FORM. Independent
+  standards and task-1.4 spec reviews reported no findings. Checkpoint A and
+  strict-name/embedded-NUL rejection remain assigned to their later tasks.
 
 ## 2. Creators And Product Specifications
 
