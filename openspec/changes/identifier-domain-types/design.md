@@ -17,13 +17,14 @@ layer is carried separately (for example, by its data cell or provider). Its nam
 that this class alone contains the complete label. Follow `AGENTS.md` for shared design and
 `../srcs/phlex/AGENTS.md` and `../srcs/phlex/DEVELOPING.md` for framework migration.
 
-The audited framework baseline is revision `74e8e6c`. It already defines `empty_string`,
-`identifier_or_empty`, and the `suffix_t` alias in `../srcs/phlex/phlex/model/identifier.hpp`,
-but suffix-bearing APIs still use `identifier`, which still accepts invalid and empty names.
-`identifier_or_empty` currently accepts its domain alternatives, not text directly. The textual
-construction policy below is proposed migration work, not behavior already implemented by those
-types. Existing `identifier` construction is implicit from `char const*` and explicit from
-`std::string` and `std::string_view`; preserve that distinction for empty-capable values.
+The audited framework baseline is revision `74e8e6c`. Tasks 1.1-2.6 have since delivered
+`empty_string`, `identifier_or_empty`, the `suffix_t` alias, the hybrid textual constructors,
+creator absence in `product_specification`, and the handle's borrowed views in
+`../srcs/phlex/phlex/model/`; treat them as existing code. The rest of this design remains
+proposed work: suffix-bearing APIs outside the model still use `identifier`, which still accepts
+invalid and empty names until group 8. Existing `identifier` construction is implicit from
+`char const*` and explicit from `std::string` and `std::string_view`; `identifier_or_empty`
+mirrors that distinction.
 
 That baseline separates runtime node bases from typed implementations and constructs the producer
 catalog through an independent `producer` interface. Translators now participate in that catalog
@@ -35,10 +36,26 @@ and produce stage-aware products. These are implementation facts verified in
 The architecture context is `doc/ch_technical_design/data_product_management.rst` and
 `doc/ch_technical_design/registration.rst`, reached through `doc/index.rst` and
 `doc/supporting_design.rst`. The labeling note above is a design seed; use this change's
-specification for its required naming behavior. Repository-specific formatting and verification
-remain governed by `../srcs/phlex/AGENTS.md`, `../srcs/phlex/.clang-format`,
-`../srcs/phlex/.clang-tidy`, `../srcs/phlex/.pre-commit-config.yaml`, and
-`../srcs/phlex/scripts/README.md`.
+specification for its required naming behavior. `tasks.md` governs formatting and verification.
+
+## Decision Index
+
+Each task in `tasks.md` names its section in a `Design:` line. Read Context, this index, and
+that section; read the rest only when the task's text leaves a question open.
+
+| Decision section | Tasks |
+|---|---|
+| Make `identifier` a validated name | 8.1, 8.2 |
+| Separate complete product labels from selection criteria | 4.1-4.3 |
+| Model meaningful emptiness as a sum value | 1.1-1.3 (done) |
+| Mirror the existing hybrid textual construction policy | 1.4 (done), 3.5, 8.1 |
+| Apply domain types to product metadata and creators | 2.1-2.6 (done), 4.4 |
+| Migrate the current producer and typed-node architecture | 3.3, 3.6, 4.2 |
+| Preserve current translator metadata during the domain migration | 3.6 |
+| Convert output suffixes at the appropriate registration boundary | 4.5 |
+| Keep FORM's persisted text and validate it on conversion | 3.4, 7.1-7.4 |
+| Preserve selector tri-state semantics at conversion boundaries | 3.1, 3.2, 5.1, 6.1-6.3 |
+| Migration Plan | 5.2, 7.5, 8.3, 8.4, 9.1 |
 
 ## Goals / Non-Goals
 
@@ -402,34 +419,22 @@ because it changes selector matching and loses the distinction required by the p
    below; a successful test-only rerun does not establish that the build is current.
 
 Checkpoint A deliberately builds only the migrated framework and selected test targets after the
-core and JSON transitions, because Python and FORM source migration follows it. Discover the
-configured build directory with `spack mpd info --build phlex-work-dir`; keep project selection,
-the targeted `cmake --build`, CTest listing, and execution in one fail-closed shell invocation.
-List the intended CTests with `-N`, confirm a non-empty selection, and execute the same selection
-with `--no-tests=error`. Include `producer_catalog` and `function_registration` alongside the
-existing A selection, so both independent producers and stage-aware translators are exercised.
-Verify empty/named hybrid construction and supported literal call forms at A; defer only the
-identified strict-name rejection cases to C. This is an explicit scoped-build exception to the
-default verifier, which always performs a full build and has no target-selection option.
-
-At Checkpoint B, after Python and FORM source migration, use
-`bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '<checkpoint-B-pattern>'`
-from the workspace root. The pattern must include A's tests and the focused Python and FORM tests
-with their fixture dependencies. At Checkpoint C, after strict validation, run
-`bash srcs/phlex/scripts/verify.sh --project phlex-work-dir` for a full build and suite, including
-all deferred rejection cases. Follow `../srcs/phlex/scripts/README.md` and use `--verbose` for
-detailed CTest evidence. Both checkpoints require success before continuing; record unavailable
-optional test coverage explicitly. Do not replace required validation with an empty selection or
-truncated build/test output.
+core and JSON transitions, because Python and FORM source migration follows it; it is an explicit
+scoped-build exception to the default verifier, which always performs a full build. Checkpoint A
+includes `producer_catalog` and `function_registration`, so independent producers and stage-aware
+translators are exercised, and defers only the identified strict-name rejection cases to C.
+Checkpoint B, after Python and FORM source migration, runs a selected pattern through the full
+verifier. Checkpoint C, after strict validation, runs the full build and suite, including every
+deferred rejection case. Each checkpoint requires success before work continues. The commands and
+fail-closed rules live in `tasks.md` under Checkpoint Procedures, the single source of truth.
 
 Use small dependent tasks with named build checkpoints in `tasks.md`. Each task delivers its
-focused tests and documentation; record runtime checks that must wait for a checkpoint. A task
-does not claim that an unrun test passed. Shared signature transitions may temporarily prevent
-compilation within their declared group. The creator/accessor transition, suffix/selector/catalog
-transition, and paired Python intermediate naming changes need coordinated changes because their
-callers must agree on the types or names. Do not add temporary compatibility APIs just to compile
-between these dependent tasks. Existing `identifier` tests link configuration, so they are not an
-isolated model-only build.
+focused tests and documentation, and an unrun test is never recorded as passing. Shared signature
+transitions may temporarily prevent compilation within their declared group: the creator/accessor
+transition, the suffix/selector/catalog transition, and the paired Python intermediate naming
+changes need coordinated changes because their callers must agree on the types or names. Do not
+add temporary compatibility APIs just to compile between these dependent tasks. Existing
+`identifier` tests link configuration, so they are not an isolated model-only build.
 
 The change is source-breaking for invalid identifier constructions, owners relying on invalid
 default names, and callers coupled to the changed suffix, plugin-component, or creator-accessor
