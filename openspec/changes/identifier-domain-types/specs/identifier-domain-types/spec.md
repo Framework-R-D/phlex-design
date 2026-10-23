@@ -144,6 +144,11 @@ selector criterion.
 - **WHEN** a product selector omits its creator criterion
 - **THEN** creator identity does not restrict its eligible matches
 
+#### Scenario: Select against an absent creator
+
+- **WHEN** a product specification has no creator, and one selector omits its creator criterion while another supplies `find_hits`
+- **THEN** the selector without a creator criterion can match that specification and the selector supplying `find_hits` does not
+
 ### Requirement: Creator plugin components may be empty
 
 A creator name SHALL have a valid, non-empty algorithm component. Its plugin component MAY be

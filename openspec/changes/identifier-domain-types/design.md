@@ -22,7 +22,7 @@ The audited framework baseline is revision `74e8e6c`. Tasks 1.1-2.6 have since d
 creator absence in `product_specification`, and the handle's borrowed views in
 `../srcs/phlex/phlex/model/`; treat them as existing code. The rest of this design remains
 proposed work: suffix-bearing APIs outside the model still use `identifier`, which still accepts
-invalid and empty names until group 8. Existing `identifier` construction is implicit from
+invalid and empty names until task group 8. Existing `identifier` construction is implicit from
 `char const*` and explicit from `std::string` and `std::string_view`; `identifier_or_empty`
 mirrors that distinction.
 
@@ -48,14 +48,14 @@ that section; read the rest only when the task's text leaves a question open.
 | Make `identifier` a validated name | 8.1, 8.2 |
 | Separate complete product labels from selection criteria | 4.1-4.3 |
 | Model meaningful emptiness as a sum value | 1.1-1.3 (done) |
-| Mirror the existing hybrid textual construction policy | 1.4 (done), 3.5, 8.1 |
+| Mirror the existing hybrid textual construction policy | 1.4 (done), 3b.1, 8.1 |
 | Apply domain types to product metadata and creators | 2.1-2.6 (done), 4.4 |
-| Migrate the current producer and typed-node architecture | 3.3, 3.6, 4.2 |
-| Preserve current translator metadata during the domain migration | 3.6 |
+| Migrate the current producer and typed-node architecture | 3a.3, 3b.2, 4.2 |
+| Preserve current translator metadata during the domain migration | 3b.2 |
 | Convert output suffixes at the appropriate registration boundary | 4.5 |
-| Keep FORM's persisted text and validate it on conversion | 3.4, 7.1-7.4 |
-| Preserve selector tri-state semantics at conversion boundaries | 3.1, 3.2, 5.1, 6.1-6.3 |
-| Migration Plan | 5.2, 7.5, 8.3, 8.4, 9.1 |
+| Keep FORM's persisted text and validate it on conversion | 3a.4, 7.1-7.4 |
+| Preserve selector tri-state semantics at conversion boundaries | 3a.1, 3a.2, 5.1, 6.1-6.3 |
+| Migration Plan | 3a.5, 3b.3, 4.6, 5.2, 6.4, 7.5, 8.3, 8.4, 9.1 |
 
 ## Goals / Non-Goals
 
@@ -336,7 +336,8 @@ suffix. Matching, ordering, equality, and diagnostic rendering must preserve all
 
 Keep the creator criterion as an optional single `identifier`. It matches either the plugin name
 or the algorithm name, not a qualified `plugin:algorithm` pair. Omission removes the creator
-restriction; supplied qualified text is invalid. Diagnostic placeholders such as `[ANY]` and `*`
+restriction, so it also matches a product specification with an absent creator; a supplied
+creator criterion never matches an absent creator. Supplied qualified text is invalid. Diagnostic placeholders such as `[ANY]` and `*`
 are display text, not identifiers.
 
 JSON configuration and the Python selector parser will first test whether the `suffix` field is
@@ -379,7 +380,7 @@ because it changes selector matching and loses the distinction required by the p
   omission separately. Invalid non-empty text remains an error, not an empty alternative.
 - [Node and catalog migrations target the pre-refactor implementation] → Use the audited producer
   interface and extracted typed headers; run direct producer-catalog and translator-registration
-  regressions at the named checkpoints.
+  regressions at the named gates and checkpoints.
 - [Overlapping translator work changes metadata during the naming migration] → Preserve the audited
   behavior in this change and reconcile any later merge with the separate accepted conversion plan.
 - [Hashing or ordering an empty-or-identifier value becomes inconsistent with equality] → Define
@@ -415,26 +416,46 @@ because it changes selector matching and loses the distinction required by the p
 4. Activate ASCII validation for every construction path, including `_id` and `_idq`, and remove
    public default construction. Audit remaining constructions in `phlex/`, `plugins/`, `form/`,
    and `test/` for invalid names and domain misuse.
-5. Verify each coordinated transition at its named checkpoint using the build-and-test policy
-   below; a successful test-only rerun does not establish that the build is current.
+5. Verify each coordinated transition at its named gate or checkpoint using the build-and-test
+   policy below; a successful test-only rerun does not establish that the build is current.
 
-Checkpoint A deliberately builds only the migrated framework and selected test targets after the
-core and JSON transitions, because Python and FORM source migration follows it; it is an explicit
-scoped-build exception to the default verifier, which always performs a full build. Checkpoint A
-includes `producer_catalog` and `function_registration`, so independent producers and stage-aware
-translators are exercised, and defers only the identified strict-name rejection cases to C.
-Checkpoint B, after Python and FORM source migration, runs a selected pattern through the full
-verifier. Checkpoint C, after strict validation, runs the full build and suite, including every
-deferred rejection case. Each checkpoint requires success before work continues. The commands and
-fail-closed rules live in `tasks.md` under Checkpoint Procedures, the single source of truth.
+Every task group from 3a on ends in a gate: a full build of the whole tree with `spack mpd build`,
+including the Python plugin and FORM, followed by a targeted, non-empty set of passing tests. Gate 3a
+(after the suffix, selector, catalog, and FORM writer transition), Gate 3b (after typed-node output
+and translator metadata), Gate 4 (after layers and provider registration), Checkpoint A (after JSON
+conversion), Gate 6 (after Python conversion), Checkpoint B (after FORM source conversion), and
+Checkpoint C (after strict validation) each require success before the next task group starts. The
+gates differ only in which tests they select. Checkpoint C runs the full build and suite, including
+every deferred rejection case. Task groups 1 and 2 were completed before gates existed; Gate 3a runs
+the tests they deferred. There is no scoped-build exception: every gate uses the verifier's full
+build. The commands and fail-closed rules live in `tasks.md` under Gate And Checkpoint Procedures,
+the single source of truth.
 
-Use small dependent tasks with named build checkpoints in `tasks.md`. Each task delivers its
-focused tests and documentation, and an unrun test is never recorded as passing. Shared signature
-transitions may temporarily prevent compilation within their declared group: the creator/accessor
-transition, the suffix/selector/catalog transition, and the paired Python intermediate naming
-changes need coordinated changes because their callers must agree on the types or names. Do not
-add temporary compatibility APIs just to compile between these dependent tasks. Existing
-`identifier` tests link configuration, so they are not an isolated model-only build.
+Task group 3 is split into 3a and 3b because a full build cannot be green until the suffix
+transition is complete in `product_selector.cpp`, `producer_catalog.cpp`, and `form_module.cpp`.
+Those files and their tests form 3a. The typed-node headers and test helpers in 3b already compile
+against the task group 2 types, so 3b starts from a green build and tests behavior, not
+compilation.
+
+The reason for the gates is early detection. Task groups 1 and 2 were checked off while five of their
+CTests could not link, and a defect in task 2.2 survived until a hand-built stand-in exposed it. A
+gate at the end of each task group exposes such defects while the responsible change is still fresh.
+Gate 3a includes `producer_catalog` and `function_registration`, so independent producers and
+stage-aware translators are exercised from the first gate; later gates repeat the earlier tests as
+regression checks. Strict-name rejection cases are the only tests deferred to C.
+
+Use small dependent tasks with named gates in `tasks.md`. Each task delivers its focused tests and
+documentation, and an unrun test is never recorded as passing. Shared signature transitions may
+leave the build red within their declared task group, and only until that task group's gate. The
+creator/accessor transition (2.1-2.3) and the suffix/selector/catalog transition (2.4, 3a.1-3a.3) are
+coordinated because their callers must agree on the types; both are resolved at Gate 3a, which is
+why task group 2 has no gate of its own. The paired Python intermediate naming changes (6.2) are
+atomic for the same reason. Do not add temporary compatibility APIs just to compile between these
+dependent tasks. A transitional overload that exists only within one task group, and is removed
+before that task group's gate, is acceptable when it lets a task group land in smaller green steps.
+When a signature change breaks a Python or FORM caller, make the smallest edit there that restores
+compilation, and leave the behavior change, tests, and documentation to the later Python or FORM
+task. Existing `identifier` tests link configuration, so they are not an isolated model-only build.
 
 The change is source-breaking for invalid identifier constructions, owners relying on invalid
 default names, and callers coupled to the changed suffix, plugin-component, or creator-accessor
