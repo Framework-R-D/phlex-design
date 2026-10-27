@@ -193,7 +193,7 @@ casts it to a string view and assigns `value_or("")` to an `identifier`. Make th
 smallest edit there that restores compilation, using the suffix's text, and
 record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
 
-- [ ] 3a.1 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), use
+- [x] 3a.1 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), use
   `std::optional<suffix_t>` for omitted, empty, and named criteria. Document
   and test matching, equality, ordering, and diagnostics in
   `../srcs/phlex/test/product_selector_test.cpp`. Cover designated initializers
@@ -202,7 +202,10 @@ record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
   Replace numeric creator fixtures `1`/`2` with valid names. Verify all three
   states and supported call forms at Gate 3a and C.
   Design: § Preserve selector tri-state semantics at conversion boundaries.
-- [ ] 3a.2 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), retain
+
+  Verified (2026-10-27): hooks pass; built: `product_selector`, `pymodule`; ran: `product_selector` (116 assertions, 9 cases); deferred: full build -> Gate 3a, strict-name rejection -> C. Python compile repair uses `suffix_t::text()` for intermediate-name text and explicitly constructs the existing provider helper's `identifier` from suffix text; Python boundary behavior remains assigned to task group 6.
+
+- [x] 3a.2 In phlex (`../srcs/phlex/phlex/core/product_selector.*`), retain
   the optional one-name creator criterion that matches a plugin or algorithm.
   Render `[ANY]` as text instead of constructing an identifier in `noexcept`
   formatting. An omitted creator criterion matches a product specification
@@ -211,7 +214,10 @@ record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
   both absent-creator cases, in `../srcs/phlex/test/product_selector_test.cpp`.
   Verify at Gate 3a; verify qualified/empty supplied creator rejection at C.
   Design: § Preserve selector tri-state semantics at conversion boundaries.
-- [ ] 3a.3 In phlex (`../srcs/phlex/phlex/core/producer_catalog.*`,
+
+  Verified (2026-10-27): hooks pass; built: `product_selector`; ran: `product_selector` (116 assertions, 9 cases), including absent-creator matching and textual `[ANY]` diagnostics; deferred: full build -> Gate 3a, qualified/empty supplied creator rejection -> C.
+
+- [x] 3a.3 In phlex (`../srcs/phlex/phlex/core/producer_catalog.*`,
   `../srcs/phlex/phlex/core/producer.hpp`, and
   `../srcs/phlex/phlex/core/node_catalog.cpp`), migrate the current
   `producer_catalog(std::span<producer* const>)` constructor, suffix keys,
@@ -225,14 +231,20 @@ record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
   lookup and ambiguity assertions in `../srcs/phlex/test/product_selecting_test.cpp`;
   verify `producer_catalog` and `product_selecting` at Gate 3a and C.
   Design: § Migrate the current producer and typed-node architecture.
-- [ ] 3a.4 In phlex (`../srcs/phlex/form/form_module.cpp`), write the suffix
+
+  Verified (2026-10-27): hooks pass; built: `producer_catalog`, `product_selecting`; ran: `producer_catalog` (26 assertions, 1 case), `product_selecting` (109 assertions, 2 cases); deferred: full build and graph regressions -> Gate 3a, strict-name rejection -> C. Catalog suffix keys and ambiguity trackers use `suffix_t`; output-port pointers and the existing `node_catalog::producers()` collection remain unchanged.
+
+- [x] 3a.4 In phlex (`../srcs/phlex/form/form_module.cpp`), write the suffix
   text from `suffix_t`, without an identifier-only accessor. Update
   `../srcs/phlex/form/README.md` and
   `../srcs/phlex/test/form/form_basics_test.cpp` for empty/named persisted
   text. Verify unchanged text at Gate 3a with `form_basics` and
   `job:form_module`.
   Design: § Keep FORM's persisted text and validate it on conversion.
-- [ ] 3a.5 Gate 3a in phlex (`../srcs/phlex`): after task groups 1-3a, run a
+
+  Verified (2026-10-27): hooks pass; built: `form_basics`, `form_module`; ran: `form_basics` (287 assertions, 63 cases), including finalized dictionary text and ROOT TTree string-payload readback for empty/named suffixes; deferred: full build and `job:form_module` -> Gate 3a, legacy rejection -> C. An initial integer-payload fixture exposed existing ROOT empty-branch fundamental-payload corruption; the text-preservation regression uses string payloads without changing the storage backend. RNTuple round-trip coverage was not added.
+
+- [x] 3a.5 Gate 3a in phlex (`../srcs/phlex`): after task groups 1-3a, run a
   full build and the tests below. Procedure: § Gate And Checkpoint Procedures.
   The build must be green before task group 3b starts. Tests: `identifier`,
   `products`, `core_misc`, `output_products`, `product_store`, `product_handle`,
@@ -250,6 +262,14 @@ record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
   repair made under this task group. Strict-name rejection cases remain deferred
   to C.
   Design: § Migration Plan.
+
+  Gate prerequisite (2026-10-27): the user authorized migrating the empty-suffix helper and output expectation at `../srcs/phlex/test/transform_node_test.cpp:79` and line 131 to `empty_string{}` under 3a.5. The selector's valid literal call remains unchanged. This resolves the fixture dependency previously assigned to 3b.1 without changing graph behavior or weakening this gate; task group 3b otherwise remains untouched.
+
+  Verified (2026-10-27): hooks pass on all 14 changed phlex files; built: full MPD tree, including Python and FORM; ran: all 19 Gate 3a tests through `verify.sh` with the exact listed/executed selection below (19 passed, none unavailable); deferred: strict-name rejection -> C. The 2.2 repair supplies `int` types to parsed creator-less keys and verifies that an untyped key remains distinct. Standards and Spec reviews against phlex `f3fdc9b` and phlex-design `f28e2fd`, repeated after the authorized fixture repair, reported no remaining findings. OpenSpec strict validation passed.
+
+  Gate command from the workspace root: `/opt/homebrew/bin/bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '^(identifier|products|core_misc|output_products|product_store|product_handle|provider|product_selector|product_selecting|producer_catalog|form_basics|job:form_module|py:suffix|py:provide|function_registration|transform_node|multilayer_join|fold|unfold)$'`.
+
+  Full-suite evidence: `/opt/homebrew/bin/bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --verbose` completed the full build and listed/executed all 134 configured CTests; 133 passed and only `scripts:unit` failed. Its two verifier tests found macOS system Bash's empty-array/nounset behavior, also encountered by the initial unqualified `bash` verifier invocation after a successful build. The script-test rerun passed with Homebrew Bash first on `PATH` and the exported Spack function removed from child-shell inheritance; no scripts or application code changed. The reproducible test-only rerun on the current build was `/opt/homebrew/bin/bash -c '. /Users/paterno/spack/share/spack/setup-env.sh && spack mpd select --project phlex-work-dir && spack env activate /Users/paterno/MyProjects/phlex-work-dir/local && export PATH="/opt/homebrew/bin:$PATH" && export -n -f spack && ctest --test-dir /Users/paterno/MyProjects/phlex-work-dir/build -R "^scripts:unit$" -N && ctest --test-dir /Users/paterno/MyProjects/phlex-work-dir/build -R "^scripts:unit$" --output-on-failure --no-tests=error'`.
 
 ## 3b. Typed Node Output And Translator Metadata
 
