@@ -9,15 +9,15 @@ tags:
   - analysis
 summary: Sourced answers on pre-write validation, shared target identity, endpoint metadata, multi-target resolution, and PODIO's Apache-2.0 licence; implemented capabilities are distinguished from proposed extensions.
 related:
-  - "[[10_Projects/Phlex/persistent-references/2026-11-06 draft review questions prompt]]"
-  - "[[10_Projects/Phlex/persistent-references/status-2026-10-30]]"
+  - "[[2026-11-06 draft review questions prompt]]"
+  - "[[status-2026-10-30]]"
 ---
 
 # Persistent-reference draft review — 6 November 2026
 
 ## Scope and evidence boundary
 
-This report answers the [[10_Projects/Phlex/persistent-references/2026-11-06 draft review questions prompt|five draft-review questions]]. The [[10_Projects/Phlex/persistent-references/status-2026-10-30|October 30 project checkpoint]] records the earlier state; its uncommitted-branch status is historical, not the state verified for this review.
+This report answers the [[2026-11-06 draft review questions prompt|five draft-review questions]]. The [[status-2026-10-30|October 30 project checkpoint]] records the earlier state; its uncommitted-branch status is historical, not the state verified for this review.
 
 The review covered the working-copy draft and README, applicable technical-design material, and validation branch `persistent-references-option-c` at commit `219e0b48b2137844c8c993993df0f1dae576be32`. That branch is now committed; the documents' "uncommitted" statements are stale. Current framework HEAD `fa056e5e66feaef70d928a03d96c0578b680e02c` was also checked for existing metadata interfaces. The requested branch was read through versioned Git operations without switching the checkout. The available semantic index covered only the `persistent-references` directory, so technical-design and sibling-framework evidence was checked through scoped file reads and versioned Git reads.
 
