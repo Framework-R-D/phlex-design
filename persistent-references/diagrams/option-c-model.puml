@@ -1,0 +1,103 @@
+@startuml option-c-model
+title Persistable reference model (phlex/model)
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+hide empty methods
+
+package "phlex::experimental (model, persistable)" {
+  class cell_coordinate {
+    - layers_ : vector<identifier>
+    - numbers_ : vector<size_t>
+    + cell_coordinate(data_cell_index const&)
+    + matches(data_cell_index const&) : bool
+    + is_ancestor_or_self_of(data_cell_index const&) : bool
+    + layer_name() : identifier const&
+  }
+
+  class product_locator <<struct>> {
+    + creator : algorithm_name
+    + suffix : identifier
+    + stage : identifier
+    + {static} from(product_specification const&, identifier const& stage)
+  }
+
+  class element_token <<struct>> {
+    + cell : cell_coordinate
+    + product : product_locator
+    + element : optional<uint64_t>
+    + is_whole_product() : bool
+  }
+
+  class local_reference <<struct>> {
+    + slot : optional<size_t>
+    + element : optional<uint64_t>
+  }
+
+  class "ref<T>" as ref {
+    - state_ : variant<element_token, local_reference>
+    + {static} element_of(handle<Collection> const&, uint64_t) : ref
+    + {static} whole_product(handle<T> const&) : ref
+    + {static} local(uint64_t, optional<size_t> slot) : ref
+    + {static} local_product(optional<size_t> slot) : ref
+    + {static} forward(element_token) : ref
+    + is_bound() : bool
+    + is_local() : bool
+    + token() : element_token const&
+    + local_target() : local_reference const&
+    + bind(cell_coordinate, product_locator)
+  }
+
+  class "association<L, R, D = void>" as association {
+    - rows_ : vector<row>
+    + add(ref<L>, ref<R>) <<D = void>>
+    + add(ref<L>, ref<R>, D) <<D != void>>
+    + rows() : vector<row> const&
+    + fully_bound() : bool
+    + bind_local(BindL, BindR)
+  }
+
+  class "association::row" as row <<struct>> {
+    + left : ref<L>
+    + right : ref<R>
+    + data : D | no_payload
+  }
+}
+
+package "phlex (model, transient)" {
+  class "handle<T>" as handle {
+    + data_cell_index() : data_cell_index const&
+    + creator() : algorithm_name_view
+    + suffix() : string_view
+    + stage() : string_view
+  }
+  class data_cell_index
+}
+
+element_token *-- cell_coordinate
+element_token *-- product_locator
+ref o-- element_token : bound
+ref o-- local_reference : local
+association *-- "0..*" row
+row *-- "left" ref
+row *-- "right" ref
+cell_coordinate ..> data_cell_index : built from
+handle ..> ref : ref_to(handle, i)\nref_to(handle)
+handle ..> data_cell_index
+
+note right of ref
+  Minting functions written by algorithm authors:
+    ref_to(h, i)        -> bound element reference
+    ref_to(h)           -> bound whole-product reference
+    local<T>(j, slot?)  -> reference into this algorithm's output
+    local_product<T>()  -> whole output product
+  No resolve(), no product_store, no event object.
+end note
+
+note bottom of association
+  The only persisted representation.
+  Contains tokens only; never pointers or handles.
+  Must be fully_bound() before publication.
+end note
+
+@enduml
