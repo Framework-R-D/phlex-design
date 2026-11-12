@@ -1,7 +1,9 @@
 ## Why
 
-The `translator_node` class is currently a renamed copy of `transform_node` with no specific
-semantics for type conversion. It was created only as a skeleton of code to be modified.
+At the 2026-11-12 source audit of rebased phlex revision `20059be`, the typed `translator_node`
+already enforces one input and one output. However, `translate()` still creates a graph producer
+whose output uses the translator's creator, registered suffix, and execution stage, rather than
+preserving input product identity. Concept-based conversion registration remains separate work.
 
 Users need a way to convert objects from one concrete type to another (e.g.,
 `std::vector<int>` → `std::vector<double>`). The existing `transform_node` supports arbitrary
@@ -49,7 +51,7 @@ input and output types, and a `result_storage` value stating whether the convers
 - Change `translate()` on the graph proxy and `framework_graph` to register a conversion function
   with a concept rather than create a node
 - Expose `translate` on `module_graph_proxy` so it is reachable from `PHLEX_REGISTER_ALGORITHMS`
-- Add a `stage()` accessor and a retained-source-store member to `product_store`
+- Reuse the existing `product_store::stage()` accessor and add a retained-source-store member
 - Update the `is_translator_like` concept to require distinct source and target types, so the
   identical-type error is also caught at compile time
 
@@ -60,6 +62,8 @@ or output suffixes. It now expects a conversion function with signature
 No public API creates a `translator_node` in this change; nodes are created by the graph builder
 in a follow-up change. Node behavior is verified by tests that construct `translator_node`
 directly.
+The existing graph-node registration regression must be updated deliberately when registration
+becomes registration-only; its current creator/suffix/stage expectations are not conversion semantics.
 
 ## Capabilities
 
@@ -74,17 +78,32 @@ None
 
 ## Impact
 
+**Affected repositories and guidance:** Shared planning in `phlex-design` follows `AGENTS.md`,
+`GLOSSARY.md`, and the translator design context in `doc/ch_conceptual_design/translators.rst`,
+`doc/ch_technical_design/data_product_management.rst`, and
+`design_wiki/seeds/the-nature-of-translator-nodes.md`. The seed informs the accepted requirements
+in this change; automatic placement described by the conceptual design remains a follow-up.
+Framework work targets `../srcs/phlex`, following its `AGENTS.md`, `DEVELOPING.md`, and
+`scripts/README.md`. No changes to `../srcs/phlex-examples` are planned.
+
+**Overlap:** The immediate Option A consumer repair is owned solely by
+`../identifier-domain-types/tasks.md` R.1-R.3. This change uses node component access through
+`name()` but keeps inherited product creator metadata separate from translator node identity.
+It does not duplicate the repair or import conversion semantics into the identifier migration.
+
 **Affected files:**
 
-- `phlex/core/declared_translator.hpp`: `translator_node` class implementation
-- `phlex/core/declared_translator.cpp`: Base class implementation
+- `phlex/core/translator_node.hpp`: typed `translator_node` execution and metadata construction
+- `phlex/core/declared_translator.hpp/.cpp`: runtime interface and layer policy
 - `phlex/core/concepts.hpp`: `is_translator_like` concept
 - `phlex/core/glue.hpp`: `translate()` becomes registration-only
 - `phlex/core/graph_proxy.hpp`: `translate()` signature
 - `phlex/module.hpp`: expose `translate` on `module_graph_proxy`
 - `phlex/core/framework_graph.hpp`: `translate()` registration method
 - `phlex/model/data_product_concept.hpp/.cpp`: translator-function storage and its invariants
-- `phlex/model/product_store.hpp/.cpp`: `stage()` accessor, retained source store
+- `phlex/model/product_store.hpp/.cpp`: reuse `stage()`, add retained source store
+- `test/function_registration_test.cpp` and direct-node tests: registration-only and conversion
+  verification, replacing obsolete node-registration expectations deliberately
 
 **API changes:**
 

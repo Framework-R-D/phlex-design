@@ -51,9 +51,9 @@ suffix, layer, and stage. Only the concrete type differs.
 #### Scenario: Identity is inherited
 
 - **WHEN** a translator converts a product whose creator is "source_node", suffix is "data", layer
-  is "event", and stage is "CURRENT"
+  is "event", and stage is "input_stage"
 - **THEN** the output product has creator "source_node", suffix "data", layer "event", and stage
-  "CURRENT"
+  "input_stage"
 - **AND** the output product has the concrete target type deduced from the conversion function
 
 #### Scenario: Caller does not supply an output suffix

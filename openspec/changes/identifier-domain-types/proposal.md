@@ -22,6 +22,9 @@ domain-aware names that preserve these distinctions while rejecting invalid iden
   appropriate domain type; retain `identifier` where a non-empty generic identifier remains the
   correct model. Plugin names can not be empty, but some components may have optional plugin
   names.
+- Reconcile consumer naming with the merged abstract interface: remove redundant
+  `consumer::plugin()` and `consumer::algorithm()` forwards and access components through
+  `name().plugin()` and `name().algorithm()`.
 - Preserve the distinction between an unspecified selector field and an explicit empty suffix.
 - Keep a product selector's creator criterion as one name that matches either a plugin or an
   algorithm. Parse concrete provider creator names separately, including qualified names such as
@@ -46,6 +49,7 @@ names will use the new domain types; the handle's textual-view API and the fluen
 registration API remain unchanged. Code that constructed an empty or otherwise invalid
 `identifier` will need to use a valid name or the explicit empty-value representation where that
 is semantically valid.
+Consumer forwarding-accessor callers must use the composed name returned by `name()`.
 
 ## Capabilities
 
@@ -69,6 +73,9 @@ is semantically valid.
 - **Core (`phlex/core/`)**: product selectors, registration APIs, routing, and graph-facing
   product metadata distinguish required identifiers from suffix and plugin-name values. Fluent
   string output suffixes and typed explicit-provider suffixes converge when specifications form.
+  The merged `consumer` owns input and filtering policy; naming and upstream-predicate integration
+  coverage moves from obsolete direct consumer construction to an existing concrete-node test.
+  This repair belongs to this identifier change, not translator conversion.
 - **Configuration and Python (`phlex/configuration.*`, `plugins/python/`)**: textual inputs will
   be converted at their boundaries while retaining the intended empty-value semantics.
 - **FORM (`form/`)**: Convert textual suffixes on input and output without changing the stored

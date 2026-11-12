@@ -2,11 +2,10 @@
 
 ## Context
 
-`experimental::identifier` currently stores arbitrary strings and is default-constructible, so
-the model uses an empty identifier for three different states: a meaningful empty product suffix,
-an absent plugin component, and an invalid required name. `algorithm_name`,
-`experimental::product_specification`, `product_selector`, configuration conversion, and the Python
-plugin bridge consequently each carry or reconstruct those meanings independently.
+The original naming model used empty identifiers for meaningful empty suffixes, absent plugin
+components, and invalid required names. See `proposal.md` for the motivation. The rebased source
+already separates several of these states, but `experimental::identifier` still accepts arbitrary
+strings and is default-constructible; strict validation remains proposed.
 
 This design refines the naming model in `proposal.md`, using the product-specification and
 product-selector vocabulary in `GLOSSARY.md` and the labeling roles in
@@ -17,20 +16,27 @@ layer is carried separately (for example, by its data cell or provider). Its nam
 that this class alone contains the complete label. Follow `AGENTS.md` for shared design and
 `../srcs/phlex/AGENTS.md` and `../srcs/phlex/DEVELOPING.md` for framework migration.
 
-The audited framework baseline is revision `74e8e6c`. Tasks 1.1-2.6 have since delivered
-`empty_string`, `identifier_or_empty`, the `suffix_t` alias, the hybrid textual constructors,
-creator absence in `product_specification`, and the handle's borrowed views in
-`../srcs/phlex/phlex/model/`; treat them as existing code. The rest of this design remains
-proposed work: suffix-bearing APIs outside the model still use `identifier`, which still accepts
-invalid and empty names until task group 8. Existing `identifier` construction is implicit from
-`char const*` and explicit from `std::string` and `std::string_view`; `identifier_or_empty`
-mirrors that distinction.
+Revision `74e8e6c` is the historical audit baseline. The source audit on 2026-11-12 uses rebased
+revision `20059be` on `represent-creator-and-suffix-state-explicitly`. Tasks 1.1-3a.5 remain
+historically completed. Current source contains `empty_string`, `identifier_or_empty`, `suffix_t`,
+hybrid textual constructors, optional product creators, borrowed handle views, selector suffix
+criteria, and catalog suffix keys. Evidence is in `../srcs/phlex/phlex/model/identifier.hpp`,
+`algorithm_name.hpp`, `product_specification.hpp`, `handle.hpp`, and
+`../srcs/phlex/phlex/core/product_selector.hpp` and `producer_catalog.hpp`. Some boundaries still
+use `identifier` for suffixes; their migration and strict validation remain pending. Textual
+construction is implicit from `char const*` and explicit from string objects for the domain values.
+Recorded builds and Gate 3a results predate the rebase; this audit ran no framework build or tests.
 
-That baseline separates runtime node bases from typed implementations and constructs the producer
-catalog through an independent `producer` interface. Translators now participate in that catalog
-and produce stage-aware products. These are implementation facts verified in
-`../srcs/phlex/phlex/core/producer.hpp`, `node_catalog.cpp`, `producer_catalog.cpp`, and
-`translator_node.hpp`, rather than requirements imported from the separate
+The current architecture separates runtime node bases from typed implementations and constructs
+the producer catalog through an independent `producer` interface. Translators participate in that
+catalog and produce stage-aware products (`../srcs/phlex/phlex/core/producer.hpp`,
+`node_catalog.cpp`, `producer_catalog.cpp`, and `translator_node.hpp`). Commit `cea210a` removed
+`products_consumer.*`: abstract `consumer` now owns input selectors, layer policies, and port
+filtering; `declared_output` is independent and owns its name and predicates. The rebased
+`be8841d` restored component forwards and obsolete direct consumer construction in
+`../srcs/phlex/test/core_misc_test.cpp`. That fixture conflicts with the current five-argument,
+abstract interface in `../srcs/phlex/phlex/core/consumer.hpp`; Option A reconciliation below owns
+the repair. These source facts are not requirements imported from the separate
 `../translator-type-conversion/proposal.md`.
 
 The architecture context is `doc/ch_technical_design/data_product_management.rst` and
@@ -50,12 +56,13 @@ that section; read the rest only when the task's text leaves a question open.
 | Model meaningful emptiness as a sum value | 1.1-1.3 (done) |
 | Mirror the existing hybrid textual construction policy | 1.4 (done), 3b.1, 8.1 |
 | Apply domain types to product metadata and creators | 2.1-2.6 (done), 4.4 |
+| Reconcile consumer naming through the composed name | R.1, R.2 |
 | Migrate the current producer and typed-node architecture | 3a.3, 3b.2, 4.2 |
 | Preserve current translator metadata during the domain migration | 3b.2 |
 | Convert output suffixes at the appropriate registration boundary | 4.5 |
 | Keep FORM's persisted text and validate it on conversion | 3a.4, 7.1-7.4 |
 | Preserve selector tri-state semantics at conversion boundaries | 3a.1, 3a.2, 5.1, 6.1-6.3 |
-| Migration Plan | 3a.5, 3b.3, 4.6, 5.2, 6.4, 7.5, 8.3, 8.4, 9.1 |
+| Migration Plan | R.3, 3a.5 (historical), 3b.3, 4.6, 5.2, 6.4, 7.5, 8.3, 8.4, 9.1 |
 
 ## Goals / Non-Goals
 
@@ -216,7 +223,8 @@ for absent creator components. Provider construction reports an absent creator a
 
 Producer catalogs and registration APIs that store a product suffix or plugin component will use
 `suffix_t` or `identifier_or_empty` respectively; required plugin names use `identifier`.
-`consumer::plugin()` must return the new component type. The composed graph node names used as
+Consumer component inspection uses `name().plugin()` and `name().algorithm()`; the plugin value
+remains `identifier_or_empty` through `algorithm_name`. The composed graph node names used as
 keys in `index_router` remain composed names, not generic identifiers: `plugin:algorithm` contains
 a colon and cannot be converted to an `identifier`. Use a valid internal source creator instead
 of `[Source]` in `product_store`. Handles already borrow their product specification
@@ -230,6 +238,34 @@ Rejected because registration, catalog lookup, and creator formatting would othe
 encoding empty values as invalid identifiers. Changing the handle's public views to domain types
 was also rejected because it needlessly breaks callers of its borrowed textual metadata.
 
+### Reconcile consumer naming through the composed name
+
+Option A removes only the redundant `consumer::plugin()` and `consumer::algorithm()` declarations
+and definitions in `../srcs/phlex/phlex/core/consumer.hpp` and `consumer.cpp`. Document component
+inspection through `name()`. Keep `algorithm_name::plugin()` and `algorithm()` and the declared
+producer-node `name()` overrides: the latter satisfy the independent `producer::name()` contract,
+unlike the redundant component forwards. Preserve the merged abstract hierarchy, layer policy,
+and independent `declared_output`.
+
+Remove the obsolete direct-consumer case and unused consumer include in
+`../srcs/phlex/test/core_misc_test.cpp`, retaining algorithm-name and configured-name coverage.
+Extend the existing one-input concrete transform case in
+`../srcs/phlex/test/transform_node_test.cpp` through its `declared_transform` interface. Verify
+complete qualified/unqualified names, named/explicitly empty plugin components, the algorithm
+component, and empty/nonempty ordered `when()` metadata. Keep output creator/suffix/type checks,
+output-port wiring, input submission, graph completion, message ID, index, source, payload, and
+call-count assertions, using the expected creator consistently. Stored predicate metadata in this
+direct construction is not predicate execution; existing filtering regressions remain required.
+
+This four-file repair belongs only to this change (tasks R.1-R.3). It does not remove wildcards,
+rename stages, change producer/catalog contracts, or implement conversion semantics. Completed
+task 2.3 records the historical accessor choice; the pending reconciliation supersedes that choice
+without rewriting its verification. Gate 3a must be rerun after repair before group 3b begins.
+
+Alternative considered: retain forwards and add a concrete test subclass of `consumer`. Rejected
+because the composed name already supplies the components, and an artificial subclass would retain
+a redundant interface rather than exercise meaningful concrete-node integration.
+
 ### Migrate the current producer and typed-node architecture
 
 Use the independent `producer` interface, whose contract exposes `name()`, `output_port()`, and
@@ -242,14 +278,22 @@ The direct regression in `../srcs/phlex/test/producer_catalog_test.cpp` must con
 that catalog construction works with an independent producer implementation, including the new
 suffix values.
 
-Migration must inspect both retained runtime-base policies in `declared_*.cpp` and their extracted
+Layer migration targets `../srcs/phlex/phlex/core/consumer.*`, not deleted
+`products_consumer.*`. Migration must inspect runtime-base policies in `declared_*.cpp` and their extracted
 typed implementations: `transform_node.hpp`, `fold_node.hpp`, `unfold_node.hpp`,
 `observer_node.hpp`, `predicate_node.hpp`, and `translator_node.hpp` under
 `../srcs/phlex/phlex/core/`. Typed nodes construct joins and, where applicable, output
 specifications, so checking only the declared bases is insufficient. Keep today's layer policy:
 single-input omission remains allowed where supported; multiple inputs, folds, and unfolds retain
 their required-layer errors. Inspect `multilayer_join_node.hpp` and `fold_join_node.hpp` for impact
-without introducing an unrelated optional-layer redesign.
+without introducing an unrelated optional-layer redesign. Collecting only supplied layers is
+compatible with supported single-input omission because `no_join` ignores the layer vector;
+multiple-input joins and fold joins still require one concrete layer per input. Keep supplied-layer
+port filtering intact. The router's raw `"*"_id` fallback is a sentinel, not independently verified
+wildcard routing: `layer_path::ends_with(identifier)` uses equality, and normal edge wiring supplies
+the provider's concrete layer (`../srcs/phlex/phlex/core/index_router.cpp`,
+`make_computational_edges.cpp`, and `../srcs/phlex/phlex/model/layer_path.cpp`). Task 4.3 must
+establish the intended unrestricted-query behavior with routing tests rather than assuming it.
 
 Alternative considered: restore the old catalog helper or move typed logic back into declared
 bases to simplify migration. Rejected because the domain transition fits the merged architecture
@@ -257,7 +301,7 @@ and does not justify reversing its separation of interfaces from typed implement
 
 ### Preserve current translator metadata during the domain migration
 
-At the audited baseline, `translate()` creates a graph producer. Its output specification uses the
+At rebased revision `20059be`, `translate()` still creates a graph producer. Its output specification uses the
 translator's creator and registered output suffix, while its output store keeps the input
 data-cell index and records the translator's execution stage. Preserve this behavior while
 changing creator components and suffix values (`../srcs/phlex/phlex/core/glue.hpp`,
@@ -265,9 +309,10 @@ changing creator components and suffix values (`../srcs/phlex/phlex/core/glue.hp
 input creator, suffix, or stage as part of identifier migration.
 
 Keep the creator, suffix, layer, and stage assertions in the end-to-end translator regression in
-`../srcs/phlex/test/function_registration_test.cpp`. Rename its invalid actual stage
-`translator-test` to a valid fixture such as `translator_test` before strict validation, updating
-both registration and the expected stage. The test must continue verifying that an observer can
+`../srcs/phlex/test/function_registration_test.cpp`. Rename its invalid actual stages
+`translator-test` and `input-stage` to valid fixtures `translator_test` and `input_stage` before
+strict validation, updating registration, input-store creation, and expected stages together.
+The test must continue verifying that an observer can
 consume the translator's catalogued output.
 
 The separate `../translator-type-conversion/proposal.md` proposes preserving input metadata,
@@ -367,7 +412,7 @@ because it changes selector matching and loses the distinction required by the p
   Locate all default and empty constructions during migration; replace them with an explicit
   empty-domain value, optional state, or valid initialization according to the owning field.
 - [Existing `"*"_id` sentinels are not valid identifiers] → Represent omitted layer/suffix query
-  state separately in `products_consumer`, `index_router`, and `producer_catalog`; test that
+  state separately in `consumer`, `index_router`, and `producer_catalog`; test that
   wildcard matching is unchanged.
 - [FORM source currently derives a concrete layer from a possibly omitted selection] → Obtain the
   produced product's actual layer for matching and provider creation or report missing metadata
@@ -381,6 +426,11 @@ because it changes selector matching and loses the distinction required by the p
 - [Node and catalog migrations target the pre-refactor implementation] → Use the audited producer
   interface and extracted typed headers; run direct producer-catalog and translator-registration
   regressions at the named gates and checkpoints.
+- [Historical gate success is mistaken for post-rebase verification] → Complete R.1-R.3 before
+  group 3b; preserve the recorded results and append fresh repair and full-build gate evidence.
+- [Deleting the obsolete consumer fixture drops meaningful integration coverage] → Retarget its
+  name and predicate-metadata assertions to the existing concrete transform test and retain its
+  execution assertions; keep actual filter regressions separate.
 - [Overlapping translator work changes metadata during the naming migration] → Preserve the audited
   behavior in this change and reconcile any later merge with the separate accepted conversion plan.
 - [Hashing or ordering an empty-or-identifier value becomes inconsistent with equality] → Define
@@ -399,9 +449,14 @@ because it changes selector matching and loses the distinction required by the p
 
 ## Migration Plan
 
+Before resuming group 3b, complete reconciliation R.1-R.3: remove component forwards, retarget
+concrete-node coverage, and rerun the full-build Gate 3a selection without dropping any of its 19
+tests, adding filtering regressions. These tasks are pending; historical completion and evidence
+remain intact. The procedure and exact selection live in `tasks.md`.
+
 1. Introduce and test the explicit empty value, empty-or-identifier value, and suffix alias. Include
-   text conversion, comparison, ordering, and hashing. These values already exist at the audited
-   baseline; add and test the hybrid textual constructors before migrating their consuming APIs.
+   text conversion, comparison, ordering, and hashing. This work, including hybrid constructors,
+   is historically completed and present at the rebased audit; retain its tests while migrating APIs.
    Leave strict identifier validation and default-constructor removal until existing empty and
    wildcard uses have migrated.
 2. Migrate creator components and owning creator absence. Then migrate product suffix storage,
@@ -431,11 +486,11 @@ the tests they deferred. There is no scoped-build exception: every gate uses the
 build. The commands and fail-closed rules live in `tasks.md` under Gate And Checkpoint Procedures,
 the single source of truth.
 
-Task group 3 is split into 3a and 3b because a full build cannot be green until the suffix
-transition is complete in `product_selector.cpp`, `producer_catalog.cpp`, and `form_module.cpp`.
-Those files and their tests form 3a. The typed-node headers and test helpers in 3b already compile
-against the task group 2 types, so 3b starts from a green build and tests behavior, not
-compilation.
+Task group 3 was split into 3a and 3b because the suffix transition required coordinated edits to
+`product_selector.cpp`, `producer_catalog.cpp`, and `form_module.cpp`. Those files and their tests
+formed the historically completed group 3a. The typed-node headers and helpers in 3b use the
+group 2 types, but the rebased tree must first pass R.3; the old gate does not establish that
+group 3b currently starts from a green build.
 
 The reason for the gates is early detection. Task groups 1 and 2 were checked off while five of their
 CTests could not link, and a defect in task 2.2 survived until a hand-built stand-in exposed it. A

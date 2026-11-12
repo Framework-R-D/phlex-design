@@ -8,7 +8,8 @@ for required behavior. For migration decisions, read `design.md`'s Context and
 Decision Index, then only the section named in the task's `Design:` pointer.
 Preserve completed task entries; new work remains unchecked until it is done.
 
-Follow the numbered task groups in order. Each implementation task includes its
+Complete the Post-Rebase Reconciliation group R before resuming group 3b, then
+follow the numbered task groups in order. Each implementation task includes its
 tests and documentation. Verify the delivered code, tests, and documentation
 before checking the box.
 
@@ -49,6 +50,11 @@ that tasks 1.1-2.6 assign to "Checkpoint A" or "A" run at Gate 3a, as listed in
 3a.5. Task group 3 was split into 3a and 3b: old tasks 3.1-3.4 are now 3a.1-3a.4,
 old 3.5-3.6 are now 3b.1-3b.2, and 3a.5 and 3b.3 are the gates. Task numbers
 inside the verification notes of completed tasks use the new numbers.
+
+The completed entries and dated evidence below describe historical work, not verification of
+rebased revision `20059be`. In particular, task 2.3's forwarding-accessor choice is superseded
+by pending R.1-R.2, and the recorded Gate 3a success must be re-established by R.3. Preserve
+those entries and commands unchanged; append new verification under the reconciliation tasks.
 
 ## 1. Explicit Empty Values
 
@@ -271,9 +277,57 @@ record it under 3a.1. Tasks 6.1-6.3 own the behavior, tests, and documentation.
 
   Full-suite evidence: `/opt/homebrew/bin/bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --verbose` completed the full build and listed/executed all 134 configured CTests; 133 passed and only `scripts:unit` failed. Its two verifier tests found macOS system Bash's empty-array/nounset behavior, also encountered by the initial unqualified `bash` verifier invocation after a successful build. The script-test rerun passed with Homebrew Bash first on `PATH` and the exported Spack function removed from child-shell inheritance; no scripts or application code changed. The reproducible test-only rerun on the current build was `/opt/homebrew/bin/bash -c '. /Users/paterno/spack/share/spack/setup-env.sh && spack mpd select --project phlex-work-dir && spack env activate /Users/paterno/MyProjects/phlex-work-dir/local && export PATH="/opt/homebrew/bin:$PATH" && export -n -f spack && ctest --test-dir /Users/paterno/MyProjects/phlex-work-dir/build -R "^scripts:unit$" -N && ctest --test-dir /Users/paterno/MyProjects/phlex-work-dir/build -R "^scripts:unit$" --output-on-failure --no-tests=error'`.
 
+## R. Post-Rebase Reconciliation
+
+This group is the immediate Option A implementation scope in phlex (`../srcs/phlex`), owned
+only by this identifier change. Complete R.1-R.3 before group 3b or dependent conversion work.
+Do not fold pending wildcard removal, stage-fixture migration, strict validation, or translator
+conversion semantics into this repair. The four implementation files are `consumer.hpp`,
+`consumer.cpp`, `core_misc_test.cpp`, and `transform_node_test.cpp` at the paths below.
+
+- [ ] R.1 In phlex (`../srcs/phlex/phlex/core/consumer.hpp` and `consumer.cpp`), remove
+  redundant `consumer::plugin()` and `consumer::algorithm()` declarations and definitions.
+  Document inspection through `name().plugin()` and `name().algorithm()`. Keep `algorithm_name`
+  component accessors, producer-required declared-node `name()` overrides, the abstract consumer
+  hierarchy, independent `declared_output`, and layer/port filtering unchanged. Verify no consumer
+  forwarding-accessor callers remain and changed-file hooks pass. Coordinate with R.2 and run
+  `core_misc` and `transform_node` through the full-build verifier; record actual results before
+  completion. R.3 establishes the broader post-rebase gate.
+  Design: § Reconcile consumer naming through the composed name.
+- [ ] R.2 In phlex (`../srcs/phlex/test/core_misc_test.cpp` and
+  `../srcs/phlex/test/transform_node_test.cpp`), remove obsolete direct consumer construction
+  and its unused consumer include while retaining algorithm-name and configured-name cases.
+  Extend the existing one-input concrete transform integration test through `declared_transform`
+  with qualified/unqualified complete names, named/explicitly empty plugin components, algorithm
+  components, and empty/nonempty ordered `when()` contents. Preserve output creator/suffix/type,
+  output-port wiring, input submission, graph completion, message ID, index, source, payload, and
+  call-count assertions, using the expected creator consistently. Predicate metadata checks do
+  not establish predicate execution; retain existing filter regressions. Add no mock consumer,
+  restored hierarchy, or new test target. Verify changed-file hooks pass and, with R.1, run
+  `core_misc` and `transform_node` using the full-build verifier before completion.
+  Design: § Reconcile consumer naming through the composed name.
+- [ ] R.3 Post-rebase Gate 3a reconciliation in phlex (`../srcs/phlex`): after R.1-R.2,
+  run a full configured MPD build and every original Gate 3a test plus `filter` and
+  `framework_graph`. Use the command below from the initialized workspace environment. Confirm
+  required Python and FORM components and tests are configured; missing required coverage
+  prevents completion. List and execute the same selection, with `--no-tests=error` and verbose
+  evidence through the verifier. Require all 21 named tests and their fixture dependencies to
+  pass, without weakening the selection or substituting a test-only rerun. Append a new dated
+  verification naming the repaired revision, hooks, full build, listed/executed tests, and any
+  unavailable coverage; preserve the historical 3a.5 record. Group 3b starts only after success.
+  Procedure: § Gate And Checkpoint Procedures. Design: § Migration Plan.
+
+  Command from the workspace root:
+  `bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '^(identifier|products|core_misc|output_products|product_store|product_handle|provider|product_selector|product_selecting|producer_catalog|form_basics|job:form_module|py:suffix|py:provide|function_registration|transform_node|multilayer_join|fold|unfold|filter|framework_graph)$' --verbose`.
+
+Use the usual initialized build environment and MPD project. The historical 3a.5 note documents
+a macOS system-Bash failure and Homebrew-Bash workaround; it is troubleshooting evidence, not
+a required interpreter or proof that the current environment has the same failure. If it recurs,
+record the failing invocation and environment correction, then rerun the complete gate.
+
 ## 3b. Typed Node Output And Translator Metadata
 
-These tasks build on a green Gate 3a. The typed-node headers and the test
+These tasks build on a green post-rebase R.3 rerun of Gate 3a. The typed-node headers and the test
 helpers they touch depend on the creator and suffix values from task group 2,
 not on the selector and catalog types that 3a migrates, so each task should
 keep the build green. Gate 3b (3b.3) confirms it.
@@ -281,7 +335,9 @@ keep the build green. Gate 3b (3b.3) confirms it.
 - [ ] 3b.1 In phlex (`../srcs/phlex/test/transform_node_test.cpp` and
   `../srcs/phlex/test/multilayer_join_test.cpp`), migrate known empty-suffix
   helpers to explicit empty values without rewriting valid named literals or
-  `identifier` arguments preserved by the hybrid policy. Preserve graph behavior;
+  `identifier` arguments preserved by the hybrid policy. Audit remaining helpers first: the
+  transform helper/output expectation was already repaired under historical 3a.5; do not repeat
+  that work or count R.2's naming/predicate coverage as a new suffix migration. Preserve graph behavior;
   verify `transform_node` and `multilayer_join` at Gate 3b and C.
   Design: § Mirror the existing hybrid textual construction policy.
 - [ ] 3b.2 In phlex (`../srcs/phlex/phlex/core/transform_node.hpp`,
@@ -295,7 +351,8 @@ keep the build green. Gate 3b (3b.3) confirms it.
   Document that this domain migration does not implement the separate
   translator-type-conversion semantics. In
   `../srcs/phlex/test/function_registration_test.cpp`, rename the stage
-  `translator-test` to `translator_test` in registration and expectations.
+  `translator-test` to `translator_test` and `input-stage` to `input_stage` in registration,
+  input-store creation, and expectations together.
   Retain creator/suffix/layer/stage assertions and observer consumption of
   catalogued translator output. Verify `function_registration`, `transform_node`,
   `fold`, and `unfold` at Gate 3b and C. If overlapping translator work lands first,
@@ -325,7 +382,7 @@ Gate 4 (4.6) requires a full build and passing tests before task group 5 starts.
   and `data_layer_hierarchy_test.cpp`. Verify named paths at Gate 4; verify empty
   and invalid layer rejection in those CTests at C.
   Design: § Separate complete product labels from selection criteria.
-- [ ] 4.2 In phlex (`../srcs/phlex/phlex/core/products_consumer.*`), remove
+- [ ] 4.2 In phlex (`../srcs/phlex/phlex/core/consumer.*`), remove
   `"*"_id` for omitted input layers. Prefer collecting only supplied concrete
   layers. Check `declared_transform.cpp`, `declared_observer.cpp`,
   `declared_predicate.cpp`, `declared_translator.cpp`, `declared_fold.cpp`,
@@ -336,14 +393,21 @@ Gate 4 (4.6) requires a full build and passing tests before task group 5 starts.
   Single-input omission remains allowed where it is allowed today; multiple
   inputs and folds/unfolds retain required-layer errors. Check
   `multilayer_join_node.hpp` and `fold_join_node.hpp` in
-  `../srcs/phlex/phlex/core/` without an unrelated optional-layer rewrite. Document
+  `../srcs/phlex/phlex/core/` without an unrelated optional-layer rewrite. Preserve
+  the layer-vector invariant: supported single-input omission uses `no_join`, which ignores
+  that vector; multiple-input joins and fold joins retain one concrete layer per input.
+  Keep supplied-layer port filtering intact. `products_consumer.*` was deleted and must not
+  be restored. Document
   and add omission/required-layer assertions in
   `../srcs/phlex/test/product_selecting_test.cpp`; verify it and
   `transform_node`, `multilayer_join`, `fold`, and `unfold` at Gate 4.
   Design: § Separate complete product labels from selection criteria; § Migrate the current producer and typed-node architecture.
 - [ ] 4.3 In phlex (`../srcs/phlex/phlex/core/index_router.*`), represent
   unrestricted layer queries without wildcard identifiers. Preserve real
-  layer keys and routing behavior. Add omitted/named provider-routing cases
+  layer keys and routing behavior. The current raw `"*"_id` fallback uses final-segment equality,
+  not independently verified wildcard semantics; normal edge wiring supplies concrete provider
+  layers. Establish unrestricted-query behavior with tests rather than assuming that fallback.
+  Add omitted/named provider-routing cases
   to `../srcs/phlex/test/provider_test.cpp`; verify `provider` at Gate 4 and C.
   Design: § Separate complete product labels from selection criteria.
 - [ ] 4.4 In phlex (`../srcs/phlex/phlex/core/index_router.*`), keep composed
@@ -548,7 +612,7 @@ Checkpoint B (7.5), the gate for this task group.
 Follow `../srcs/phlex/scripts/README.md`. Empty selections are not successful
 verification; record unavailable optional Python/FORM coverage explicitly.
 
-**Gates 3a, 3b, 4, and 6 and Checkpoints A and B** run
+**Gates 3a, R.3, 3b, 4, and 6 and Checkpoints A and B** run
 `bash srcs/phlex/scripts/verify.sh --project phlex-work-dir --tests '<pattern>'`
 from the workspace root, with `<pattern>` an anchored alternation such as
 `'^(identifier|products|core_misc)$'` listing the tests the gate names, with

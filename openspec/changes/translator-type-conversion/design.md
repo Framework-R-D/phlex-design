@@ -1,16 +1,43 @@
 ## Context
 
-The Phlex framework uses TBB flow graphs with specialized node types for data processing:
+See `proposal.md` for motivation and `specs/translator-type-conversion/spec.md` for the conversion
+contract. The 2026-11-12 source audit uses rebased phlex revision `20059be`. The typed translator
+already enforces one input, one output, and one parameter in
+`../srcs/phlex/phlex/core/translator_node.hpp`. Model-level `result_storage`, translator records,
+and type-pair invariants exist in `../srcs/phlex/phlex/model/data_product_concept.hpp/.cpp`.
+Recorded completed tasks are historical progress, not post-rebase build/test evidence; this audit
+ran no framework build or tests. Input-identity inheritance, translator provenance, source-store
+retention, distinct-type typed constraints, and registration-only `translate()` remain proposed.
 
-- `transform_node`: General-purpose transformations (1+ inputs → 1+ outputs)
-- `translator_node`: Currently behaves like transform_node but conceptually distinct
-- `provider_node`: Produces data from indices
-- `predicate_node`: Filters messages
+The framework separates runtime interfaces in `declared_*.hpp/.cpp` from typed execution in
+`*_node.hpp`. Abstract `consumer` owns input selection, layer policy, and port filtering;
+`declared_output` is independent. `declared_translator` currently implements both `consumer` and
+the independent `producer` interface, and `node_catalog::producers()` includes translators.
+Evidence is in `../srcs/phlex/phlex/core/consumer.hpp`, `declared_output.hpp`,
+`declared_translator.hpp/.cpp`, `producer.hpp`, and `node_catalog.cpp`. Current `translate()`
+registers a graph node through `glue.hpp`; output metadata uses translator creator/suffix/stage,
+while retaining the input data-cell index. This is the behavior the separate identifier migration
+preserves, not the conversion behavior specified here.
 
-The existing `translator_node` is a renamed copy of `transform_node`. It was created only as a
-skeleton of code to be modified; its current behavior is not at all what is wanted.
+Shared planning follows `AGENTS.md` and `GLOSSARY.md`; design context is
+`doc/ch_conceptual_design/translators.rst`, `doc/ch_technical_design/data_product_management.rst`,
+and `design_wiki/seeds/the-nature-of-translator-nodes.md`, reached through `doc/index.rst`.
+The seed informs this change's accepted requirements; automatic placement remains a follow-up.
+Framework work follows `../srcs/phlex/AGENTS.md`, `DEVELOPING.md`, formatting configuration,
+and `scripts/README.md`. No examples-repository implementation is planned.
 
-### Translator Node Behavior
+### Overlap and repair ownership
+
+Option A removes redundant consumer component forwards in favor of `name()` inspection. Its
+four-file repair and fresh Gate 3a verification belong solely to
+`../identifier-domain-types/tasks.md` R.1-R.3. This change depends on that reconciliation before
+resuming implementation and does not duplicate it. The identifier migration preserves current
+translator output creator/suffix/stage; this conversion change deliberately replaces those
+semantics with inherited input identity and separately recorded translator identity. If either
+implementation lands first, reconcile overlapping tests against its accepted behavior without
+silently reversing it or merging the changes' contracts.
+
+### Proposed Translator Node Behavior
 
 - Translator nodes convert one input concrete type to a distinct output concrete type
 - The conversion function supplies the input and output types through its signature
@@ -88,9 +115,14 @@ its return type.
 creator and suffix, substituting only the deduced target type; take layer from the input store's
 index and stage from the input store.
 
-Today `translator_node` builds its output specification from its own node name via
-`to_product_specifications(name(), ...)` and constructs the output store without a stage argument,
-so both must change.
+At the audited revision, `translator_node.hpp` builds output specifications from its own node name
+via `to_product_specifications(name(), ...)`, and explicitly passes its captured execution stage
+to the output store. Both creator/suffix construction and the source of the stage must change.
+Reuse the existing `product_store::stage()` accessor in
+`../srcs/phlex/phlex/model/product_store.hpp/.cpp`; do not introduce a duplicate accessor.
+Node `name()` identifies the translator. `name().plugin()` and `name().algorithm()` inspect its
+components; they do not supply the inherited output product creator. Derive that creator from
+the selected input specification, preserving valid absent-creator states where applicable.
 
 **Alternatives considered**:
 
@@ -106,18 +138,47 @@ creates no graph node.
 
 - A conversion function such as `double convert(int const&)` is generic: it applies to any `int`
   product regardless of creator or layer
-- Creating a node at registration time would require a `product_selector`, whose `layer` field is
-  mandatory, forcing one registration per (creator, layer) pair and destroying that genericity
+- Current single-input translators permit omitted selector layers (`require_layers::multi_input_only`
+  in `../srcs/phlex/phlex/core/declared_translator.cpp`); mandatory layers are not the rationale
+- Node registration binds a conversion to particular product selections and output metadata,
+  whereas concept-level type-pair registration is independent of creator, suffix, layer, and stage
 - Node placement belongs to the graph builder, which knows which consumer inputs are unsatisfied
 
 **Implementation approach**: `glue::translate` stops calling `make_registration<translator_node>`
 and instead records the function with the concept. `framework_graph::translate` follows.
 `module_graph_proxy` must add `translate` to its `using base::...` list, and
-`graph_proxy::translate` must become `const` and take `std::string_view` to match its siblings, so
-that it is callable on the `const&` proxy passed to a module.
+`graph_proxy::translate` already is `const` and takes `std::string_view`; retain and verify those
+properties while updating its registration arguments so it remains callable on the module's
+`const&` proxy.
 
 **Consequence**: no public API constructs a `translator_node` in this change. Node behavior is
 verified by tests that construct `translator_node` directly against a TBB graph.
+
+### 3a. Direct-Node Construction And Deferred Catalog Integration
+
+**Decision**: This change verifies converted nodes only by direct construction. Construction
+binds the input product specification for the tested product and derives the target specification
+from its creator and suffix, substituting the target type. Runtime execution preserves that
+product identity and the input store's index/stage, while recording the translator's separate
+identity. Tests may supply an internal selector to retrieve the bound product; registration-only
+`translate()` accepts no input selectors or output suffixes.
+
+**Rationale**: The current static producer catalog reads output suffix/type and uses `node->name()`
+as creator before messages execute (`../srcs/phlex/phlex/core/producer_catalog.cpp`). That is not
+the inherited product creator contract. Retain runtime/producer interfaces needed by existing nodes,
+including declared-node `name()` overrides, and adapt direct construction without cataloguing
+converted nodes through that old identity assumption. Do not rename the translator node to the
+input creator or change the independent producer interface for unrelated nodes. Registration-only
+conversion records create no catalog entry.
+
+**Deferred**: Reconciling catalog product identity with translator identity, translator lookup,
+and automatic placement belongs to the graph-builder follow-up. Direct-node tests establish
+conversion behavior, not correctness of catalog integration.
+
+**Alternative considered**: Integrate converted nodes into the static catalog in this change.
+Rejected because it expands registration-only work into graph placement and would require a
+separate catalog identity design. Keeping translator identity as output creator was also rejected
+because it violates the accepted conversion contract.
 
 ### 4. Concurrency Support
 
@@ -222,9 +283,13 @@ load. The concept-level check remains for type-erased callers.
 
 **Rationale**:
 
-- `translator_node` has no users yet (experimental feature)
+- The translator API is experimental, but `../srcs/phlex/test/function_registration_test.cpp`
+  already exercises graph-node registration, conversion, and translator creator/suffix/stage
 - Future users benefit from the simplified API
-- No migration is needed
+- Replace the existing node-registration regression deliberately with registration-only assertions
+  and direct-node conversion coverage; no claim of zero migration is justified by current source
+- Keep Python conversion helpers, which currently register transforms, distinct from translator
+  registration (`../srcs/phlex/plugins/python/src/modulewrap.cpp`)
 
 ## Risks / Trade-offs
 
@@ -259,11 +324,39 @@ behavior is only exercised by direct construction in tests.
 **Mitigation**: Cover conversion, identity inheritance, provenance, and retention by direct
 construction so the follow-up change inherits a tested node.
 
+### [Risk] Static catalog identity is mistaken for inherited product identity
+
+The current catalog uses translator node identity as creator; converted products must instead
+inherit their input creator.
+
+**Mitigation**: Bind input specifications for direct-node tests and keep converted nodes out of
+catalog integration in this change. Decision 3a owns this boundary; the follow-up owns catalog
+identity and placement. `name()` component access never authorizes replacing inherited creators.
+
+### [Risk] Completed tasks or existing APIs are mistaken for fresh verification
+
+**Mitigation**: Preserve historical completion and add explicit post-rebase reconciliation and
+verification in `tasks.md`. Reuse existing `stage()` and proxy const/string-view properties;
+run fresh fail-closed verification rather than adding duplicate interfaces or relying on old gates.
+
 ## Migration Plan
 
-1. Add translator-function storage and its invariants to `data_product_concept`
-2. Implement changes to `translator_node`, `product_store`, and the registration path
-3. Update documentation for `translate()`
+Groups 2 and 3 form one coordinated semantic/signature transition: typed conversion changes,
+registration-only APIs, and replacement of incompatible old registration expectations must land
+together before their common green acceptance gate. The existing `function_registration`
+translator case asserts the old catalogued creator/suffix/stage contract and cannot be required
+to pass midway through that transition. Tests and documentation accompany their owning edits;
+defer dependent execution only to the common gate. Introduce no temporary legacy conversion
+mode, reduce no required test selection, and start final validation only after the gate passes.
+
+1. Complete identifier R.1-R.3, then perform this change's pending post-rebase baseline verification.
+   Preserve historical completed tasks; confirm existing storage, constraints, and APIs before edits.
+2. Complete typed conversion, inherited metadata, provenance, retention, and direct construction in
+   `translator_node.hpp` and its runtime base as needed, with their tests and documentation.
+3. Change `translate()` to concept registration, preserving existing proxy const/string-view
+   properties and adding module exposure. Update registration tests and documentation together.
+4. Run the required full build and listed/executed tests under `tasks.md`'s verification procedure.
+   Catalog identity and automatic placement remain outside this implementation.
 
 ## Open Questions
 
