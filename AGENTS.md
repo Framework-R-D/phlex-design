@@ -15,6 +15,12 @@ repositories.
 - **Decisions**: use [design_agreements.md](design_agreements.md) to locate
   decision-bearing issues and discussions. Check the linked primary source and
   retain its agreement strength and caveats; the ledger is a dated snapshot.
+- **ADRs**: read and write all Phlex architectural decision records in
+  [adr/](adr/), relative to this repository. Create the directory as needed.
+  Use sequential `NNNN-slug.md` filenames; scan `adr/` for the highest existing
+  number and increment it for each new ADR. These storage, discovery, creation,
+  and numbering rules override generic skill defaults, including those in
+  `domain-modeling` and its `ADR-FORMAT.md`; do not recreate `docs/adr/`.
 - **Wiki**: before adding or promoting design notes, read
   [design_wiki/design-ideas-wiki.md](design_wiki/design-ideas-wiki.md) for the
   seeds-to-saplings-to-design lifecycle.

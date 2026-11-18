@@ -2,6 +2,14 @@
 
 Design ideas for Phlex, which is intended to satisfy DUNE's data-processing framework requirements.
 
+## Architectural decision records
+
+Phlex architectural decision records (ADRs) are stored in [adr/](adr/).
+For new records, follow the storage and numbering rules in
+[AGENTS.md](AGENTS.md#read-by-task).
+
+- [ADR 0001: Naming and Product Specification Invariants](adr/0001-naming-and-product-specification-invariants.md)
+
 ## Building the design document
 
 The design document is assembled using [Sphinx](https://www.sphinx-doc.org/en/master/index.html).

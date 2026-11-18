@@ -83,6 +83,17 @@ Glossary
     Framework ecosystem
         The ensemble of software delivered with the application framework.
 
+    Identifier
+        A non-empty string beginning with an ASCII letter and containing only ASCII letters, digits, and underscores thereafter; C++ and Python keywords are allowed.
+
+    Algorithm name
+        The registered name of an algorithm: either an :term:`identifier`, or a :term:`plugin label` and an :term:`identifier` separated by a colon (``plugin_label:algorithm``).
+        It names the configured graph entity, not necessarily the function that implements it.
+
+    Plugin label
+        The optional first component of an :term:`algorithm name`.
+        For an algorithm registered by a configured component, it is the label the configuration gives that component under ``modules`` or ``sources``; in a declared product creator it is any :term:`identifier` the author chooses.
+
     Index set
         A mathematical set that provides the indexes of an indexed family.
 

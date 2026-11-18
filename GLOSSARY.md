@@ -6,6 +6,19 @@ This file will be updated periodically, both by the Phlex team and by AI agents,
 
 ## Language
 
+### Naming
+
+**Identifier**:
+A non-empty string beginning with an ASCII letter and containing only ASCII letters, digits, and underscores thereafter; C++ and Python keywords are allowed.
+
+**Algorithm name**:
+The registered name of an algorithm: either an Identifier, or a Plugin label and an Identifier separated by a colon (`plugin_label:algorithm`). It names the configured graph entity, not necessarily the function that implements it.
+_Avoid_: node name, creator name
+
+**Plugin label**:
+The optional first component of an Algorithm name. For an algorithm registered by a configured component, it is the label the configuration gives that component under `modules` or `sources`; in a declared product creator it is any Identifier the author chooses.
+_Avoid_: module label, plugin name, plugin qualifier
+
 ### Execution
 
 **Algorithm**:
