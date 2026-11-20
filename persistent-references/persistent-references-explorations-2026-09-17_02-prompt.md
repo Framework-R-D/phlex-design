@@ -1,6 +1,6 @@
 ---
 ---
-Given the report at ../phlex-design/phlex-art-comparison-report.md, please consider how to proceed with option C of the candidate C++ shapes ("Opaque token resolved by the framework before algorithm dispatch").
+Given the report at phlex-art-comparison-report.md, please consider how to proceed with option C of the candidate C++ shapes ("Opaque token resolved by the framework before algorithm dispatch").
 
 1. Use project memories and semantic_search as necessary to obtain context from the current project, ../phlex-design/, and context from the Art suite: ../../art-devel/{art-root-io,gallery,canvas_root-io,art,canvas,messagefacility,fhicl-cpp,cetlib,hep-concurrency}.
 2. Focus on the POV of the algorithm author.
