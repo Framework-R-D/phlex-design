@@ -57,7 +57,7 @@
 | Component | Responsibility | Key Interfaces |
 |-----------|----------------|----------------|
 | **Registration DSL** (`algorithm.hpp`) | Declares required/produced associations; optional cross‑cell qualifier; conditional outputs; required services. | `m.transform(...).input_association<Left,Right>(label)`, `output_association`, `output_association_if`, `in_cell(expr)`, `requires_service<Service>()`. |
-| **Pre‑dispatch Resolver** (`resolver.hpp/.cpp`) | For each algorithm, resolves every declared association into a `phlex::query::many<T>` view (or a singleton `handle<T>`). Guarantees resolution **before** `execute` is called. | `resolve_associations(const Registration&, const CellContext&)`. |
+| **Pre‑dispatch Resolver** (`resolver.hpp/.cpp`) | Resolves each declared association into a `phlex::resolved_association<L,R,D>` view that retains both endpoints and optional payload (or a singleton `handle<T>`). Guarantees resolution **before** `execute` is called. | `resolve_associations(const Registration&, const CellContext&)`. |
 | **Cell Registry** (`cell_registry.hpp/.cpp`) | Global singleton mapping `CellKey{layer, id}` → `product_store*`. Populated when each `DataCell` is constructed. | `CellRegistry::instance().register_cell(const CellKey&, product_store*)`. |
 | **Reference‑minting API** (`ref.hpp`) | Helper used by algorithms that need to *output* a reference or association. Produces a `phlex_ref` triple. | `phlex_ref ref_to(const handle<T>&, std::size_t element_idx = npos)`. |
 | **YAML Schema DSL** (`schema/phlex-schema.yml`) | Declarative description of all products, reference fields, and associations. Version field enables schema evolution. | Processed by the **code‑generator** (`scripts/generate_schema.py`). |
@@ -70,8 +70,8 @@
 1. **Workflow construction** – All `.input_association` / `.output_association` declarations are collected into a *registration graph*.
 2. **Cell creation** – Each `DataCell` registers itself with `CellRegistry`.
 3. **Scheduler** selects an algorithm to run, creates a `CellContext` (current cell).
-4. **Resolver** (called by the scheduler) walks the registration graph, queries the `CellRegistry` for any cross‑cell stores, builds `phlex::query::many<T>` containers, and injects them into the algorithm’s argument list.
-5. **Algorithm execution** – Receives only `handle<T>` / `query::many<T>` objects; may call `ref_to` to mint references for output.
+4. **Resolver** (called by the scheduler) walks the registration graph, queries the `CellRegistry` for any cross‑cell stores, builds `resolved_association<L,R,D>` views retaining both endpoints and payload, and injects them into the algorithm’s argument list.
+5. **Algorithm execution** – Receives only resolved `handle<T>` / `resolved_association<L,R,D>` views; may call `ref_to` to mint references for output.
 6. **Write phase** – Output products (including `association<A,B,D>`) are handed to `Storage_Write_Association`, which uses the generated mapper to produce FORM `Token`s.
 7. **Read phase (later run)** – `Storage_Read_Association` reconstructs `phlex_ref`s; the resolver later expands them back to `handle<T>` for downstream algorithms.
 
@@ -100,7 +100,7 @@
 | **Fine‑grained per‑element payloads in associations** (e.g. a per‑hit calibration constant) | The schema DSL supports a single `payload` type per association; supporting *different* payloads per element would require a more complex multimap representation. |
 | **Versioned associations where the *link* type changes** (e.g. adding a new field to the association payload) | The mapper currently assumes a stable payload type. Changing it would need a migration path for the association table itself – not yet covered. |
 | **Run‑time user‑defined reference fields** (plugins that add new references without recompiling Phlex) | Because references are described in the static YAML schema, adding a field at run‑time would require a plug‑in‑driven schema loader, which is outside the current design. |
-| **High‑frequency cross‑cell look‑ups** (thousands per event) | The simple map‑lookup in `CellRegistry` is O(1), but the resolver currently copies all referenced data into `query::many<T>` containers. A streaming or lazy view could be needed for extreme scaling. |
+| **High‑frequency cross‑cell look‑ups** (thousands per event) | The simple map‑lookup in `CellRegistry` is O(1), but the resolver currently builds `resolved_association` row views for referenced endpoints. A streaming or lazy view could be needed for extreme scaling. |
 | **Multi‑language (Python) algorithms that need the same reference resolution** | The current resolver is a C++ component; exposing it to Python would require a thin C‑API or pybind11 wrapper, which is not part of the initial implementation. |
 
 ---
@@ -139,7 +139,7 @@ OA --> RES : declares output
 OAI --> RES : optional output
 IC --> RES : optional cell qualifier
 RS --> SP : requests service
-ALG --> RES : receives handles / query::many
+ALG --> RES : receives handles / resolved_association
 ALG --> REF : may mint references
 RES --> REG : fetches product_store (same or cross cell)
 RES --> MAP : uses mapper to build Tokens (write) / reconstruct refs (read)
@@ -171,8 +171,13 @@ class phlex_ref {
 class handle<T> {
   + T const* get() const
 }
-class query::many<T> {
-  + std::vector<handle<T>> data
+class resolved_association<L,R,D> {
+  + std::vector<row> data
+}
+class row {
+  + handle<L> left
+  + handle<R> right
+  + std::optional<D> payload
 }
 class Association<L,R,D> {
   + void add(const phlex_ref&, const phlex_ref&, const D& = {})
@@ -185,7 +190,7 @@ CellRegistry --> product_store
 phlex_ref --> DataCellIndex
 phlex_ref --> ProductSpecification
 Association --> phlex_ref
-query::many --> handle
+resolved_association --> handle
 @enduml
 ```
 
@@ -205,7 +210,7 @@ WB -> REG : cells are created & registered
 WB -> RES : build Registration graph
 User -> RES : scheduler picks algorithm
 RES -> REG : lookup target stores (same/cross cell)
-RES -> ALG : inject handles & query::many
+RES -> ALG : inject handles & resolved_association
 ALG -> ALG : compute, maybe call ref_to()
 ALG -> SW : return association product
 SW -> MAP : phlex_ref → Token
@@ -227,7 +232,7 @@ SW -> REG : write Token to FORM
 | **Integration test (golden‑file)** | Execute a real algorithm (e.g. `find_hits_with_gaussians`) that consumes a cross‑cell association and produces an output association. Compare its text output against the existing `compare_hits.py` golden files. | Build the full Phlex workflow with the new DSL, run the test driver, invoke `compare_hits.py`. |
 | **Service‑provider test** (future) | Verify that an algorithm requesting `geo::Geometry` receives a non‑null provider instance. | Mock a `GeometryProvider` and register it in the service container. |
 
-**Mocking policy:** Use `mimic-cpp` only for external collaborators (`CellRegistry`, `product_store`). All core classes (`phlex_ref`, `handle`, `query::many`) are tested with real objects to avoid hidden bugs.
+**Mocking policy:** Use `mimic-cpp` only for external collaborators (`CellRegistry`, `product_store`). All core classes (`phlex_ref`, `handle`, `resolved_association`) are tested with real objects to avoid hidden bugs.
 
 ---
 
@@ -246,7 +251,7 @@ SW -> REG : write Token to FORM
 | 9 | **Add conditional output macro** (`output_association_if`). | Core dev | 1 | Algorithm can be compiled with a bool config flag; output present only when flag true. |
 |10| **Write unit & integration tests** (see §6). | QA / Test engineer | 8 | Overall test coverage ≥ 80 %; integration golden‑file test passes. |
 |11| **Documentation** – update `doc/architecture_option_c.md` with the design, UML diagrams, and migration steps. | Writer | 2 | Docs build with Doxygen/Sphinx, links to UML PNGs. |
-|**Total**| | | **34 hrs** | |
+|**Total**| | | **32 hrs** | |
 
 *All code‑generation and macro work will be performed by the **coder‑qwen** sub‑agent* with a **single, well‑bounded task description** (e.g., “Add DSL macro X”). The sub‑agent will be limited to **≤ 400 tokens of context per call** and the generated patches will be manually reviewed before integration (the 80 % PR‑threshold rule). If the sub‑agent produces incoherent code twice, we will fall back to the paid **Sage Luna** model for a one‑off rewrite.
 
