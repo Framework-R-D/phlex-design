@@ -46,7 +46,8 @@ To illustrate the how a provider function is registered with Phlex, we use the f
    PHLEX_REGISTER_PROVIDERS(s)
    {
      s.provide("fake_sim_depos", provide_sim_depos, concurrency::unlimited)
-      .output_product({.creator = "fake_sim_depos", .suffix = "", .layer = "Spill"});
+      .output_product("fake_sim_depos", "", "Spill");
    }
 
 This registers a provider that creates a :product:`SimDepos` data product associated with each data cell in the *Spill* data layer.
+Its advertised product has a required creator and an explicitly empty suffix. These describe the output, not criteria for selecting an input.

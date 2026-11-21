@@ -172,7 +172,7 @@ Agreement identified:
 
 Primary source:
 
-- [#343](https://github.com/Framework-R-D/phlex/issues/343)
+- [#343 agreement](https://github.com/Framework-R-D/phlex/issues/343#issuecomment-4034498341)
 
 Strength: Strong
 
@@ -184,6 +184,12 @@ Agreement identified:
    - suffix
    - stage name
    - data-layer name element
+
+The original agreement explicitly allowed an empty suffix. The implemented
+rule is described in [ADR 0001](adr/0001-naming-and-product-specification-invariants.md):
+named components follow Phlex's ASCII grammar rather than C++ variable naming
+rules, and C++ and Python keywords are allowed. An empty suffix is a separate
+value, not an identifier.
 
 ## Metadata Management
 

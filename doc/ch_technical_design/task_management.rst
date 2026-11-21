@@ -46,21 +46,22 @@ This step is iterative so that all graph-node candidates from :numref:`ch_techni
 Data-Marshaling
 ---------------
 
+.. _translator-node-execution:
+
 Translators
 -----------
 
-A *translator* is a node whose input is of one concrete data-product type and whose output is of a different concrete data-product type, both of which model the same data-product concept.
-A translator will be automatically inserted into the graph between two nodes whose data-product types are concept-compatible but not identical.
-Translator nodes belong to the computational graph.
-There are no translators that precede a provider.
-There are no translators that follow a preserver.
+A translator node consumes one concrete data product and produces one result.
+An explicitly registered translator uses an input selector and an output suffix, and participates in the ordinary producer and consumer catalogs without consulting conversion records or checking concept membership.
+Its result shares the input's data-cell index but is advertised with the translator as creator, the registered output suffix, and the translator's execution stage.
 
-From the flow-graph point of view, translators are treated as first-class nodes, while being mostly irrelevant or invisible to the user.
-Translator nodes for a given data representation conversion should be singular by construction and should not be duplicated.
-Translators are not configured directly by the framework user; they must be discovered by the framework based on needs implied by the user configuration.
-The framework should be able to discover translators and select which ones belong in the graph without loading every discovered translator DLL.
-The translator metadata required for graph building should be generated at translator plugin build time.
-Users will be able to register their own translators; such translators will be available for discovery by the framework and can be used to create transator nodes as needed for graph building.
+The design calls for the framework to insert translator nodes automatically when an available product and a required input have different concrete types that model the same concept.
+Translator nodes belong to the computational graph; they do not precede providers or follow preservers.
+The framework should share one node for the same required translation and use metadata generated at plugin build time to discover converters without loading every translator library.
+One conversion record per ordered pair does not by itself ensure that a node is shared for a particular input product.
+
+Proposed ADR 0002 separates registering a conversion function from creating a node and separates the node's execution identity from the identity of the product it advertises.
+The catalog representation, discovery format, and details of placement and node sharing are follow-up work.
 
 
 Drivers and Runtime Hierarchy Handling
@@ -77,4 +78,3 @@ Different policies for supporting hierarchies will be supported:
 
 The data-layer hierarchy will not be known until the input file is opened.
 Whenever the global hierarchy is established (e.g. by the first input file) or updated (e.g. by a subsequent input file), the framework validates it against what the computational graph requires.
-

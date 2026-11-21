@@ -14,6 +14,10 @@ Loading each source creates one or more *provider* nodes to be assembled into th
 Provider nodes are the nodes that either read data products or create data products from an input that is only a data cell index.
 Once the computational and provider nodes have been created, the graph assembly begins.
 
+The following sequence describes the target design for concept-aware matching and automatic translator insertion, not a capability of the explicit translator path under review.
+That path already supplies an explicitly registered node to the ordinary catalog; the graph builder does not yet use concept conversion records to satisfy an unmatched input.
+See :ref:`translator-node-execution` for the distinction.
+
 First, computational nodes whose output data products satisfy the input requirements of other computational nodes are connected forming a graph.
 For each input port on each computational node, a search for a matching output port on another computational node is performed.
 Each input port has associated a creator name, a product suffix, a data layer, a concrete data-product type and a data-product concept.

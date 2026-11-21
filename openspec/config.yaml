@@ -45,13 +45,27 @@ rules:
     - >-
       Name the target repository and use its srcs/ symbolic-link path in every
       implementation task.
-    - Include the target repository's required build, formatting, and tests.
+    - >-
+      Include the target repository's required build, formatting, and tests.
+      Require its existing formatting hooks to pass on each task's changed
+      files before checking the box; reserve any integration-wide formatting
+      sweep for the final integration task. Inspect hook changes and rerun
+      affected validation when formatting changes code.
+    - >-
+      Include fail-closed verification commands: connect dependent steps with
+      &&, enable set -o pipefail in the same shell invocation when pipelines
+      are used, and run builds and tests without output-truncation pipelines.
+      For CTest, list the intended selection with -N before execution and
+      execute the same selection with --no-tests=error. Obtain detailed test
+      evidence through CTest verbosity rather than parsing its output to
+      extract and invoke executables.
 
 operations:
   apply:
     guidance:
       - Read and follow the target repository's local instructions.
       - Run the target repository's required formatting and tests.
+      - Follow the task completion and fail-closed verification requirements in rules.tasks.
   archive:
     guidance:
       - Record which repositories received implementation changes.

@@ -63,6 +63,13 @@ Glossary
 
         A particular physical data product may be represented by multiple concrete data products, possibly of different concrete data-product types.
 
+    Product selector
+        A value carrying criteria for matching product specifications. An omitted layer criterion matches any layer; a supplied layer name must be non-empty.
+
+    Product specification
+        The complete identifying description of a created data product, including a present, non-empty data-layer name.
+        Its identifying metadata may be distributed across the product label and its data-cell context; a partial label alone is not the complete specification.
+
     Data cell
         A grouping of data products that is identifiable by the framework [#data-set]_.
 
@@ -75,6 +82,17 @@ Glossary
 
     Framework ecosystem
         The ensemble of software delivered with the application framework.
+
+    Identifier
+        A non-empty string beginning with an ASCII letter and containing only ASCII letters, digits, and underscores thereafter; C++ and Python keywords are allowed.
+
+    Algorithm name
+        The registered name of an algorithm: either an :term:`identifier`, or a :term:`plugin label` and an :term:`identifier` separated by a colon (``plugin_label:algorithm``).
+        It names the configured graph entity, not necessarily the function that implements it.
+
+    Plugin label
+        The optional first component of an :term:`algorithm name`.
+        For an algorithm registered by a configured component, it is the label the configuration gives that component under ``modules`` or ``sources``; in a declared product creator it is any :term:`identifier` the author chooses.
 
     Index set
         A mathematical set that provides the indexes of an indexed family.
@@ -118,8 +136,6 @@ Glossary
 
     Translator
         A component that converts an object of one concrete data-product type to an object of another concrete data-product type that models the same data-product concept.
-
-        Translators are added to the graph as necessary.
 
     .. The following definitions are needed for the supporting/subsystem design
 

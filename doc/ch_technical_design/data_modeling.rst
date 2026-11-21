@@ -12,5 +12,5 @@ Data Modeling
 A data-product concept can be modeled by multiple concrete data-product types.
 A concrete data-product type may model more than one data-product concept.
 
-The specification of input data products must support data-product concepts.
-This may include an optional explicit specification of the data-product concept.
+See :numref:`ch_technical_design/role_of_data_product_concepts:The Role of Data Product Concepts` for the experimental registration and membership model.
+Supporting concepts in input selection, potentially with an explicit concept criterion, is a design goal rather than behavior provided by the current registry.

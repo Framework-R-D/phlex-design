@@ -25,9 +25,16 @@ Handle-accessible provenance and metadata
 8. The creator name should be accessible through the handle, including:
 
    - algorithm name
-   - module name in which the algorithm was registered
+   - plugin label, if the creator is qualified
 9. The product suffix should be accessible through the handle.
 10. The stage name should be accessible through the handle.
 11. Users should not explicitly invoke anything that creates a handle; the framework creates handles as needed.
 
+The current C++ handle exposes creator components and suffix text as borrowed views, not owning strings. The views refer to the product specification; copy the text if it must outlive that specification. An unqualified creator exposes an empty plugin view, and an explicitly empty suffix exposes an empty suffix view.
 
+Translator provenance
+---------------------
+
+The explicit translator path under review advertises the translator as the output creator and uses the registered output suffix and its execution stage. There is no separate translator provenance field in that path.
+Proposed ADR 0002 would distinguish the input product's creator, suffix, cell and layer, and stage from the identity of the node that translated it. The converted product would retain those identifying fields, change concrete type, and record translator identity separately as provenance.
+This is not an implemented contract. In particular, `Phlex #879 <https://github.com/Framework-R-D/phlex/issues/879>`_ remains open on metadata placement. No handle or persistence encoding for translator provenance is specified here.

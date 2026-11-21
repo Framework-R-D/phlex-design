@@ -64,8 +64,8 @@ Specifically, in the registration statement above, we have the following:
    :cpp:`input_family(...)`
      5. The specification of the input family :math:`\ifamily{a}{\text{input}}` requires (a) the specification of the creator of each data product that serve as input family elements :need:`DUNE 65`, and (b) the label of the data layer in which each input data product is found.
         In the registration code above, this is achieved by the construction of a :cpp:`product_selector` with the appropriate arguments.
-        The example shows finding products created by a node named "calibrate_wires", with an empty product suffix, and in the layer labeled "spill".
-        Because the product suffix is empty, the :cpp:`.suffix` field could have been omitted altogether.
+        The example selects products from "calibrate_wires" in the "spill" layer whose suffix is explicitly empty.
+        Omitting :cpp:`.suffix` instead accepts any suffix. A named criterion such as :cpp:`.suffix = "GoodHits"` matches only that name.
 
    :cpp:`output_product_suffixes(...)`
      6. This is the specification of the output products :math:`\ifamily{b}{\text{output}}`, which is formed from specification(s) of the data product(s) created by the operator :need:`DUNE 156`.
