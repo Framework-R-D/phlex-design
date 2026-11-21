@@ -3,7 +3,7 @@
 Date: 2026-11-16
 
 Status: Accepted; aggregate-class migration and single-point name validation
-implemented in the Phlex repository
+merged in Phlex PR #1068
 
 ## Context
 
@@ -84,9 +84,10 @@ This contract is retained, not redesigned:
   the question has one answer, and an emptiness test on one could only guard an
   unreachable state. A value that may legitimately be empty is an
   `identifier_or_empty`.
-- Failure messages have the form `Invalid identifier "<text>": it must start with
-  an ASCII letter and contain only ASCII letters, digits, or underscores`. The
-  text is quoted and escaped and is shortened to 64 characters with `...`.
+- Failure messages quote the invalid value and state that an identifier must not
+  be empty, must start with an ASCII letter, and must contain only ASCII letters,
+  digits, or underscores. The excerpt is escaped and uses `...` when the input
+  exceeds 64 characters.
 - C strings convert implicitly; `std::string_view` and the owning rvalue-string
   constructor are explicit. C-string callers must supply a non-null,
   null-terminated string. Length-bearing input retains its supplied length,
@@ -214,26 +215,48 @@ to an otherwise forbidden empty algorithm/creator.
 Malformed text must fail construction rather than produce a usable malformed
 object, and every such failure from an algorithm name or its parts is a
 `std::invalid_argument`. Character rules are checked once, by `identifier`.
-`algorithm_name` reports the structural errors itself (empty text, a missing
-component, more than one colon) and re-reports an identifier failure with the
+`algorithm_name` reports structural errors itself (empty text, a missing
+component, more than one colon) and reports an identifier failure with the
 composed name, the failing part, and the rule, so that the message does not
 depend on which entry point received the text. Only the first problem found is
-reported. Registration, text conversion, configuration, and the Python and FORM
-boundaries all reach the same `algorithm_name::create` overload that takes an
-optional plugin label and an algorithm. Boundaries that know which field held
-the text, such as a selector's `creator`, `layer`, or `suffix`, or a source's
-`creator` parameter, add that field name to the message. A configured module or
-source label is checked when the entry is loaded, which lets the message name the
-`modules` or `sources` section. The exception types of other aggregates, such as
-the structural errors of `product_specification` text, remain outside this
-decision. No blanket transactional assignment or allocation-failure guarantee is
-introduced. In particular, the `identifier_or_empty` constructor
+reported. Composed text constructors and callers with separate raw components
+converge on `algorithm_name::create`, which takes an optional plugin label and
+an algorithm. A boundary can add context such as the configuration field or
+the `modules` or `sources` entry; validation of every external input is not
+guaranteed by the value types. The merged product parser throws
+`std::runtime_error` for missing separator or creator, and
+`std::invalid_argument` for an invalid creator or suffix component. The
+exception types of other aggregates are outside this decision. No blanket
+transactional assignment or allocation-failure guarantee is introduced. In
+particular, the `identifier_or_empty` constructor
 that copies an identifier is not `noexcept`, because copying the identifier's
 string may allocate and throw. The constructor that moves an identifier is
 `noexcept`, because moving an identifier does not allocate. Callers supplying
 components need usable values, not already moved-from identifiers.
 
 ## Implementation Status and Evidence
+
+### Merged baseline
+
+- [Phlex #1000](https://github.com/Framework-R-D/phlex/pull/1000), merged as
+  `1a2cdd9a`, introduced the explicit-empty representation and `suffix_t`
+  before strict identifier validation was enabled. Strict validation makes a
+  named identifier with empty text unconstructible.
+- [Phlex #1068](https://github.com/Framework-R-D/phlex/pull/1068), merged as
+  `52346567`, contains the accepted aggregate contracts (`fcbeabaf`,
+  `2b45c001`) and the shared raw-component validation path (`8f979d9c`).
+  Composed text uses constructors in the merged API (`5788acc4`), not the
+  intermediate one-argument `create` factories. See `test/identifier_test.cpp`,
+  `test/product_specification_test.cpp`, and `test/product_selector_test.cpp`
+  for the corresponding construction, exact-key, and matching tests.
+- The draft [Phlex #1009](https://github.com/Framework-R-D/phlex/pull/1009)
+  retains the required creator and optional plugin. Its head `5e6a7c8f` adds
+  documentation and tests for the suffix states, borrowed handle metadata, and
+  FORM writer suffix text. It is not the source of the creator or plugin
+  invariants and does not establish FORM reader recovery or persistence
+  compatibility.
+
+### Historical verification
 
 The implementation snapshot reviewed when the decisions were accepted was Phlex
 commit `59e8aa7` on 2026-11-16. The aggregate decisions below were then
@@ -382,11 +405,12 @@ not necessary to establish the accepted invariants.
 
 This ADR does not decide the full uniqueness scope of registered names, exact
 versus structural type matching policy for every consumer, persistent-label
-encoding, or aggregate exception-safety improvements. Historical translator
-planning proposed retaining input-product creator metadata while recording
-translator identity separately; the reviewed plan alone does not prove that
-behavior was implemented. Translator placement, provenance, and selector
-multiple-match/layer policies remain outside this class-level decision.
+encoding, or aggregate exception-safety improvements. [Proposed ADR 0002](0002-concept-conversion-registration-and-identity.md)
+addresses translator placement and provenance without relaxing the required
+creator invariant. The present creator-matching behavior and unresolved provider
+layer routing have separate follow-ups, [Phlex #1094](https://github.com/Framework-R-D/phlex/issues/1094)
+and [#1082](https://github.com/Framework-R-D/phlex/issues/1082); neither is decided
+by this ADR.
 
 The verification summarized under Implementation Status and Evidence is the
 only build and test evidence this ADR asserts. Future changes must continue to

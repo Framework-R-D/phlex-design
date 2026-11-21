@@ -24,3 +24,8 @@ FORM integration and IO-backed provider synthesis
 
 It is possible that the use of `std::type_info` may be problematic across process boundaries.
 
+FORM product suffix text
+------------------------
+
+The Phlex FORM writer uses the product specification's suffix text for the persisted product name. A named suffix retains its spelling, and an explicitly empty suffix is written as empty text, not as an omitted selector or a generated replacement name.
+The draft `Phlex PR #1009 <https://github.com/Framework-R-D/phlex/pull/1009>`_ adds writer tests for that behavior. It does not establish how the reader should validate legacy labels or recover a product's concrete layer when the input selector omits it. These are separate from the accepted in-memory naming rules in ADR 0001.

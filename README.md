@@ -8,7 +8,7 @@ Phlex architectural decision records (ADRs) are stored in [adr/](adr/).
 For new records, follow the storage and numbering rules in
 [AGENTS.md](AGENTS.md#read-by-task).
 
-- [ADR 0001: Naming and Product Specification Invariants](adr/0001-naming-and-product-specification-invariants.md)
+- [ADR 0001: Naming and Product Specification Invariants][adr-0001]
 
 ## Building the design document
 
