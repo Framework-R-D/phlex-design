@@ -1,3 +1,9 @@
+---
+mainfont: "DejaVu Serif"
+monofont: "DejaVu Sans Mono"
+mathfont: "DejaVu Math TeX Gyre"
+---
+
 # Phlex–art Comparison Report: Persistent References, Algorithm Migration, and Design Directions
 
 ## Executive Summary

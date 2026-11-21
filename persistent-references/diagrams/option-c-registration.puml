@@ -1,0 +1,55 @@
+@startuml option-c-registration
+title Registration: how one resolved_association parameter becomes three input ports
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+
+rectangle "Algorithm signature" as sig {
+  card "void check_hits(\n  handle<vector<wire>>              wires,\n  vector<hit> const&                hits,\n  resolved_association<wire,hit,double> const& wire_hits)" as fn
+}
+
+rectangle "input_family(...) clause" as clause {
+  card "product_selector{wires, spill}" as s0
+  card "product_selector{find_hits/hits, apa}" as s1
+  card "resolve<association<wire,hit,double>>(\n  product_selector{find_hits/wire_hits, apa},   // association\n  product_selector{wires, spill},               // left target\n  product_selector{find_hits/hits, apa})         // right target" as s2
+}
+
+rectangle "port_layout<Params>\ncounts = {1, 1, 3}\noffsets = {0, 1, 2, 5}" as layout
+
+rectangle "products_consumer ports (edge making, multilayer_join_node<5>)" as ports {
+  card "port 0\nwires (spill)" as p0
+  card "port 1\nhits (apa)" as p1
+  card "port 2\nwire_hits (apa)\n[type = association<...>]" as p2
+  card "port 3\nwires (spill)\n[untyped]" as p3
+  card "port 4\nhits (apa)\n[untyped]" as p4
+}
+
+rectangle "Retrievers (one per parameter)" as retrievers {
+  card "retriever<handle<vector<wire>>, 0>" as r0
+  card "retriever<vector<hit> const&, 1>" as r1
+  card "association_retriever<association<wire,hit,double>, 2>\nreads ports 2, 3, 4" as r2
+}
+
+fn -down-> layout : parameter types
+clause -down-> layout : append_ports(...)
+layout -down-> ports : flatten
+layout -down-> retrievers : offsets
+s0 .. p0
+s1 .. p1
+s2 .. p2
+s2 .. p3
+s2 .. p4
+p0 -down-> r0
+p1 -down-> r1
+p2 -down-> r2
+p3 -down-> r2
+p4 -down-> r2
+
+note bottom of ports
+  Same-layer ports join by message id.
+  Ports in a parent layer (spill) are repeated for every child (apa) cell
+  by the existing repeater_node, so cross-cell targets need no new scheduler
+  machinery for the ancestor case.
+end note
+
+@enduml

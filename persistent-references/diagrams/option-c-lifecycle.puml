@@ -1,0 +1,77 @@
+@startuml option-c-lifecycle
+title Reference lifecycle: produce, bind, persist, resolve, consume
+
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+
+participant "Scheduler /\nindex_router" as sched
+participant "transform_node\n(find_hits)" as tnode
+participant "find_hits\n(algorithm)" as find
+participant "product_store\n(APA cell)" as store
+participant "FORM\n(preserver / provider)" as form
+participant "observer_node\n(check_hits)" as onode
+participant "association_retriever\n(framework)" as resolver
+participant "check_hits\n(algorithm)" as check
+
+== Produce ==
+sched -> tnode : message(wires store, id)
+tnode -> tnode : retriever<handle<vector<wire>>>::retrieve
+tnode -> find : find_hits(handle<vector<wire>> wires)
+activate find
+find -> find : hits.push_back(...)
+find -> find : assns.add(ref_to(wires, i),\n   local<hit>(j), payload)
+note right of find
+  ref_to(wires, i): bound token
+    <cell(wires), wires/@stage, i>
+  local<hit>(j):  unbound, slot deduced
+end note
+find --> tnode : tuple{hits, assns}
+deactivate find
+
+== Bind (framework, post-dispatch) ==
+tnode -> tnode : bind_local_references<outputs>(result,\n  {index, stage, output_specs})
+note right of tnode
+  local<hit>(j) -> <cell(APA), find_hits/hits@stage, j>
+  Slot resolved by unique element type or explicit index.
+end note
+tnode -> store : add_product(hits), add_product(assns)
+note over store
+  association rows contain element_tokens only.
+  fully_bound() == true
+end note
+
+== Persist / read back (stage 2 target) ==
+store -> form : preserver writes association rows\n(cell_coordinate, product_locator, element, D)
+form -> form : product_locator -> FORM product_identity (creator, stage, label)\ncell_coordinate -> navigation rows\nelement -> row offset within collection
+form --> store : provider re-creates association<L,R,D>\nwith identical tokens in a later job
+
+== Resolve (framework, pre-dispatch) ==
+sched -> onode : join of 5 messages:\n[wires(spill)] [hits(apa)] [assns(apa)] [wires(spill)] [hits(apa)]
+note right of sched
+  multilayer_join_node repeats the spill-layer
+  wires message for each APA cell; the
+  consumer runs only when all ports have data.
+end note
+onode -> resolver : retrieve(messages)
+activate resolver
+resolver -> resolver : unique_match(association selector)\nunique_match(left target)\nunique_match(right target)
+loop each row
+  resolver -> resolver : resolution_target::identifies(token)\n  (creator, suffix, stage, cell match)
+  resolver -> resolver : &vector<T>[element] or &T
+  note right of resolver
+    Out-of-scope token, missing product,
+    bad index or unbound local ref
+    -> runtime_error before dispatch.
+  end note
+end
+resolver --> onode : resolved_association<wire, hit, double>
+deactivate resolver
+
+== Consume ==
+onode -> check : check_hits(wires, hits, resolved_association const&)
+activate check
+check -> check : for row: row.left->channel, row.right->peak, *row.data
+check -> check : view.rights_of(wires, i)  // FindManyP::at idiom
+deactivate check
+
+@enduml

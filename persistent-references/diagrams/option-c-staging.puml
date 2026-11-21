@@ -1,0 +1,65 @@
+@startuml option-c-staging
+title Staged roadmap and the DSL decision point
+
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor<<done>> #DDF2DD
+  BackgroundColor<<dsl>> #FFE9C6
+}
+
+|Framework|
+start
+:Stage 0 (this branch)
+reference_token, association<L,R,D>,
+resolve<>() registration, pre-dispatch
+resolution, post-dispatch local binding,
+same-cell and ancestor-cell targets;<<done>>
+
+:Stage 1
+FORM round-trip of association<L,R,D>
+(one generic container layout:
+ cell_coordinate, product_locator, element, D);
+note right
+  No user dictionary needed: association
+  is a framework type.  D must already be
+  a persistable type.
+end note
+
+:Stage 2
+Descendant / sibling cell targets
+(gather operator: one message per
+ target cell, keyed by cell_coordinate);
+
+:Stage 3
+Reference sets and many-to-many
+convenience views (grouped iteration,
+one-to-one enforcement at registration);
+
+|Data-model DSL|
+if (References embedded in user product
+types (Hit contains ref<Wire>)?) then (yes)
+  :**DSL decision point**
+  YAML (or Jsonnet) product description with:
+  - ref members: target concept, cardinality,
+    cell scope (same | ancestor:<layer> | any)
+  - schema_version + migration block
+  Generator emits: C++ struct, resolved view
+  struct, ROOT selection XML/LinkDef, HDF5
+  compound layout, FORM descriptors;<<dsl>>
+  :Stage 4
+  Embedded references pre-resolved into
+  generated "<T>_resolved" views;<<dsl>>
+else (no)
+  :Associations remain the only
+  reference carrier; DSL optional;
+endif
+
+|Framework|
+:Stage 5
+Cross-file / cross-job references:
+product_locator gains provenance
+(process/stage chain) and FORM maps
+locator -> file/container;
+stop
+
+@enduml
